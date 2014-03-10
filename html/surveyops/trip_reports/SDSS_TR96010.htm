@@ -1,0 +1,233 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="William N. Boroski">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <TITLE>2.5-Meter Telescope Structure Characterization</TITLE>
+</HEAD>
+<BODY LINK="#0000FF" VLINK="#800080">
+
+<DIV ALIGN=right>TR96010</DIV>
+
+<CENTER><B>SDSS Trip Report</B></CENTER>
+
+<CENTER><B><FONT SIZE=+2>2.5-Meter Telescope Structure Characterization</FONT></B></CENTER>
+
+<CENTER><B>October 3 to 8, 1996</B><BR>
+<BR></CENTER>
+
+<CENTER><A HREF="mailto:hansen@fnal.gov">Sten Hansen</A>, Physics Division</CENTER>
+
+<CENTER>Fermi National Accelerator Laboratory</CENTER>
+
+<CENTER>Batavia, IL&nbsp;&nbsp; USA&nbsp;&nbsp;&nbsp; 60510</CENTER>
+
+<HR SIZE=4 WIDTH="100%">
+<BR><BR>
+
+<body>
+
+
+
+<P>SUMMARY</P>
+
+<P>Several frequency sweeps of the azimuth and the altitude drives 
+for the 2.5m telescope were taken. The data appears to be reasonable. An
+attempt at measuring azimuth friction appears also to give reasonable
+results. Attempts were also made to measure wind disturbance. No useful
+information has come from the wind measurements so far. We were unable
+to make measurements on the rotator drive.</P>
+
+<P>INTRODUCTION</P>
+
+<P>Before making any measurements, it was necessary to
+clean the surfaces of the azimuth drive disks, since an in situ grinding
+of the rotator disk had taken place the previous week. It was also
+necessary to finish the installation of the counter weights since the
+telescope needed to be balanced. With instructions and help from Jon
+Davis, Angela Prosapio was able to wriggle into the rather cramped area
+of the azimuth disk and remove the motor oil preservative and any
+grinding dust embedded in it and replace it with a thin layer of WD 40
+(A very thin oil). In order to clean the area directly under the drive
+capstans, it was necessary to rotate the structure 30 degrees or so.
+With instructions by remote control from Charlie Hull in Seattle, the
+wind screen was rotated along with the telescope. The drives were
+cleaned up by Friday afternoon. It also appeared that we could get a
+little more azimuthal motion between the telescope and the wind screen
+if the wind screen floor plates were moved back a bit from the
+telescope. This did in fact give us about a third more motion.</P>
+
+<P>THE GOALS</P>
+
+<P>We started with this list more or less in order of priority:</P>
+
+<OL>
+
+<LI>Frequency sweeps of the azimuth drive at four different altitude
+   positions with both velocity and acceleration records. 
+<LI>At least one frequency sweep of the altitude drive. 
+<LI>An attempt to measure friction of at least one axis. 
+<LI>An attempt to measure wind disturbance. 
+<LI>Get some time domain records of the system response. 
+</ol>
+
+<P>MEASUREMENT SETUP</P>
+
+<P>The instruments used were an HP 3563A system analyzer to produce the drive
+waveform and record the response in either the time or frequency domain,
+a Wilcox accelerometer with a magnetic base for acceleration, (I didn't
+realize until I saw the data sheet that this device has a velocity mode
+as well) a Kepco bipolar power amplifier to drive the servo motors in
+voltage mode, a Tektronix current probe for measuring motor current, and
+a gain of 20 instrumentation amplifier for the tachometer signal. There
+was a Kollmorgen tachometer installed on the drive shaft of one azimuth
+motor. The tachometer was specified as generating five volts/rad/sec.
+The reason for driving the motors in voltage mode is the thought that
+perhaps the telescope would have less tendency to wander during the
+sweeps because of the damping effect of driving with a low impedance.
+Torque is the input parameter of interest however, hence the use of the
+current probe. A laptop PC was used to extract the data from the HP
+analyzer onto disk.</P>
+
+<P>FIRST MEASUREMENTS</P>
+
+<P>The biggest worry for me was the possibility of the structure 
+slowly wandering during the sweep. This turned out in practice not to be
+the case. It was apparent after first driving the azimuth that the
+constraints at right angles to the azimuth preload springs were loose,
+allowing the azimuth motors to rock back and forth. It turned out that
+the majority of the bolts holding the constraints in place were loose.
+After going around and tightening four sets of bolts the motor swaying
+ceased. The structure was very stable and a sweep could be run for an
+arbitrary length of time. I chose a sweep resolution setting of 133
+points/decade which took about 10 minutes to run to completion. At the
+maximum output voltage of the power supply (43 volts pk) the excursion of
+the telescope would hit the wind screen at a frequency lower than about
+0.2 Hz. This frequency is above the corner frequency of the structure.
+By 0.2 Hz the phase is already -90 degrees. I choose a three decade span
+from 0.2 to 200Hz for the frequency sweeps. We set up a pointer made
+from a gas welding rod an attached it to the end of the structure and
+taped a ruler to the floor to give us an idea of the telescope position
+during the sweeps. By Friday evening, we had two or three sweeps,
+including a one hour run just to check on the degree of fine structure
+of the plot. Examining the data later that evening, it looked odd. There
+seemed insufficient attenuation of the magnitude plot at higher
+frequencies.</P>
+
+<P>On Saturday morning, I checked the setup, and the tach amplifier 
+output had a large offset (200mV). I had no ground reference with very
+high impedance inputs, and the tachometer has essentially infinite
+impedance to ground. The CMOS input leakage of the amplifier would over
+a period of minutes charge up the windings and associated wiring of the
+tach, resulting in many volts of common mode voltage. One 100K resistor
+from each input leg of the amplifier to ground cured the problem. There
+was now about 2mV of offset at the tach amplifier output. We then ran
+the azimuth sweeps again and the results now looked much more
+believable. We also did sweeps with only one motor (the one on which the
+tach was not mounted) to see if there were any magnetic coupling effects
+between the motor and the tach (there appear to be none).</P>
+
+<P>Saturday during the day the weather was marginal, and Jon Davis was 
+uncomfortable with the idea of uncovering the building. We did azimuth
+sweeps at 0 and about 25 degrees within the building. We also did an
+accelerometer run at 0 degrees. It is evident the accelerometer in
+velocity mode has 0.5Hz corner frequency. Since we had done most of the
+sweeps we could inside the building, I tried to measure the friction.
+The azimuth was driven with a very low frequency sine (39 mHz) at a
+voltage just enough to break the static friction. I first tried 10 mHz,
+but when break away occurred, the telescope motion was too large and it
+hit the wind screen. After 2 or three attempts at 39 mHz we got a record
+free of windscreen collisions. The record is in the time domain and
+contains a tach voltage record. On Saturday evening the weather cleared
+and we attempted to move the building, but I was intimidated by the
+Klaxon and decided to wait until Sunday. I plotted the magnitude data
+for a few sweeps Saturday night, and they looked much better than those
+from Friday.</P>
+
+<P>On Sunday morning Charlie Hull showed us how to move the 
+building. In the course of the morning we did azimuth sweeps at 90, 60,
+and 45 degrees of altitude. I noticed during the course of moving the
+telescope around what appeared to be a pronounced torsional resonance of
+the secondary weight disk. To check it we mounted the accelerometer to
+the disc tangential to the edge. The torsional resonance of about 9Hz
+clearly showed up when the telescope was driven in azimuth at 90, 60 and
+45 degrees.</P>
+
+<P>At this point I decided it was time to move the tach from
+the azimuth to the altitude axis. Jon Davis crawled into the nether
+azimuthal regions and removed the tach from the altitude. While trying
+to remove the bearing preload plate from one altitude drive, the drive
+disk slipped. Jon checked the slip torque with a torque wrench and it
+read 20 lb ft. If we assume a drive disk diameter of 4" and a
+coefficient of friction of 0.1 the implication is that that altitude
+drive has about 600# of preload. Jon was able to get the tach mounted,
+although he noted the apparent strength of the permanent magnet was much
+less than when he had first mounted it a year ago. Now any regrets about
+missed azimuth measurements were by definition passed. The first
+altitude measurement was a sweep with velocimeter mounted on the
+secondary. There was no torsional resonance evident when the altitude
+axis was driven. We had time to do tach and accelerometer sweeps of the
+altitude at 0 degrees.</P>
+ 
+<P>Sharon Lackey arrived Sunday night at explained that she would be 
+unable to complete much of her planned work, so that we could have
+access to the telescope for much of Monday. This then was gravy day. The
+weather was very fine, but unfortunately for us almost windless. Our
+first sweep was an altitude run at 90 degrees. We spent the rest of the
+day trying to get some wind disturbance data with marginal success.
+Runs were taken in the time domain with a 5Hz dithering signal sent to
+the servos to break the static friction. For many of the runs the
+voltage to the motors was 150 mV which is clearly not enough to break
+static friction. This small amount of drive was visible both in the
+accelerometer mounted at the end of the structure and the tach. The
+implication the dither is coupled through the compliance of the
+structure. By late Monday we had decided to call a halt and took down
+the equipment, replaced the rotator floor and put the building back.
+Angela and I packed the instruments back into their boxes in preparation
+for shipping them back to Fermilab.</P>
+
+<P>CONCLUSIONS</P> 
+
+<OL>
+<LI>The primary resonance of the structure in azimuth is close to its
+predicted values. 
+
+<LI>The primary resonance of the altitude is lower than the azimuth for
+unknown reasons 
+
+<LI>The secondary support torsional resonance is close to its predicted value 
+
+<LI>The preload on at least one altitude drive is very low. What effect on
+the structural response this may have is for me unknown.
+</ol>
+
+<P>FUTURE GOALS</P>
+
+<OL>
+<LI>Link the measurement data with the data from the finite element analysis going on at Fermilab 
+
+<LI>Measure the friction multiple times to get some statistics. 
+
+<LI>Come again when there is more wind, ideally with the wind screen in
+place to try and get better wind disturbance data 
+
+<LI>Check to see what effect (if any) the preloads have on the
+   response of the structure. 
+</ol>
+
+<P>ACKNOWLEDGEMENTS</P>
+
+<P>My thanks to the APO staff for their help and assistance and 
+particularly to Jon Davis for his long hours of service on our behalf.</P>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this trip report should be addressed to Sten
+Hansen by phone at (630) 840-4027 or by e-mail at <A HREF="mailto:hansen@fnal.gov">hansen@fnal.gov</A>.
+<BR>&nbsp;
+
+<P><I><FONT SIZE=-1>Last modified 02/23/99</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</body>
+</html>

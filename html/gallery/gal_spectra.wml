@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="SDSS Image Gallery: Spectra">
+<title>SDSS Image Gallery: Spectra</title>
+</head>
+
+<sdss-page select="gallery">
+
+<h1 align="center">Image Gallery: SDSS Spectra</h1>
+
+<p>The following are examples of spectra obtained by the SDSS twin
+spectrograph at Apache Point Observatory.  The spectra below have been
+processed by the SDSS 2D reduction software.  The vertical lines in the
+spectra represent features identified by the SDSS 1D code.  Dotted green
+lines correspond to either emission or absorption features fit by 1D.
+Solid blue lines indicate the location of strong emission features
+located by the code.  Solid red lines show potential emission features
+that 1D failed to identify.  Dotted magenta lines give the location of
+night sky lines.  The yellow curve shows a smooth continuum for the
+spectrum while the lower green curve represents the error in the number
+of counts.</p>
+
+<p>Click on any of the links below to download a larger version of the
+image thumbnails.
+</p>
+
+<p><em>(Images and captions courtesy of Brian Wilhite, University of
+Chicago)</em></p>
+<hr>
+
+<: 
+require 'gallery.pl';
+:>
+
+<h2>Quasars</h2>
+
+<:
+print_gallery('../data/spectra', 'quasar');
+:>
+
+<br clear="all">
+
+<h2>Galaxies</h2>
+
+<:
+print_gallery('../data/spectra', 'galaxy');
+:>
+
+<br clear="all">
+
+<h2>Stars</h2>
+
+<:
+print_gallery('../data/spectra', 'star');
+:>
+
+</sdss-page>
+
+</html>

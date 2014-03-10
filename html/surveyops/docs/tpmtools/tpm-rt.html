@@ -1,0 +1,1215 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+<center>
+<h1>
+Telescope Performance Monitor Real-Time Displays</h1></center>
+
+<center>Peregrine M. McGehee
+<br>Los Alamos National Laboratory
+<br><i>Last Revision:&nbsp; 24 January 2000</i></center>
+
+<br>&nbsp;
+<h1>
+1. Introduction</h1>
+
+<h2>
+1.1 EPICS Overview</h2>
+This document describes the Experimental Physics and Industrial Control
+System (EPICS) real-time database that is resident on the SDSS Telescope
+Performance Monitor VxWorks-based input/output Controller (IOC) and associated
+operator displays. This software is developed and maintained by Peregrine
+M. McGehee at Los Alamos National Laboratory who may be contacted by phone
+at (505) 667-3273, or via e-mail at peregrine@lanl.gov (or peregrin@sdsshost.apo.nmsu.edu
+on-site).
+<p>EPICS is a set of software tools and applications jointly developed
+by Argonne National Laboratory and Los Alamos National Laboratory for the
+purpose of controlling Particle Accelerators and Large Experiments. Present
+and future development is being done cooperatively by Argonne (ANL), Los
+Alamos National Laboratory (LANL), Lawrence Berkeley Laboratory (LBL),
+the Jefferson National Laboratory (TJNAF), the Spallation Neutron Source
+Collaboration,&nbsp; BESSY (Berliner Elektronenspeicherring-Gesellschaft
+Fr Synchrotronstrahlung m.b.H.) and DESY (Deutsches Elektronen-Synchrotron).
+</p><p>EPICS provides:
+</p><blockquote>
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp; Interfaces to instrumentation from data acquisition,
+supervisory control, and steady state control through a table entry database.</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp; Operator interface to all control system parameters
+through interactive displays.</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp; Data logging through a table entry archiving file.</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp; Alarm management through a table entry alarm file.</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp; Sequential control through a state definition
+language with convenient database interface routines.</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp; Channel access routines for interfacing the control
+system data to data analysis, third party software packages, adaptive control
+algorithms and any other functions not provided in the control system.</li>
+</blockquote>
+The basic components needed are the Operator Interface (OPI), Input Output
+Controller (IOC), and a Local Area Network (LAN) which allows the OPI and
+IOC to communicate. For detailed information about the EPICS toolkit and
+the channel access protocol please refer to the EPICS homepage at Los Alamos
+National Laboratory:<b><tt><a href="http://epics.aps.anl.gov/epics/">http://epics.aps.anl.gov/epics/.</a></tt></b>
+<h2>
+1.2 Access to Operator Displays on sdsshost</h2>
+Preliminary real-time displays of SDSS engineering data can be run by entering
+at the UNIX command line on sdsshost:
+<br><b><tt>% /usrdevel/peregrin/tpmrt/bin/iris/rt</tt></b>
+<p>Please explore and send me back your comments and suggestions. I need
+to find out from all of you what type of displays and what information
+would be most useful to you.
+</p><p>The data that is available is scanned at 5 Hz rate from the TPM computer
+and shows information that the MCP writes into shared memory. So any information
+that is in the shared memory I can have served across the network for you
+to examine.
+</p><h2>
+1.3 Implementation Note</h2>
+A word on the implementation. The EPICS control system toolkit creates
+a list of named process variables that clients can connect to over the
+local network. Any of these displays can be created by staff with knowledge
+of the specific tools used to build them since it is knowledge of the process
+variable names that define the interface with the user. At Los Alamos,
+many of the operations displays in use are created not by the controls
+staff but by the operators and accelerator physicists.
+<p>For example, to find the name of process variable that is connected
+to a display widget on the edd/dm screens click on that widget using the
+middle mouse button. The resultant pop-up display shows the name of the
+control system process variable. This name can then be typed or pasted
+with the middle mouse button into the StripTool or Tcl/Tk xyplot tools.
+<br>&nbsp;
+</p><dl>
+<center>
+<dt>
+<b>Figure 1. Example of edd/dm Channel Name Pop-up Display</b></dt></center>
+</dl>
+
+<center><img src="tpm-rt_files/imageA54.JPG" height="80" width="200"></center>
+
+<br>&nbsp;
+<h2>
+1.4 User Environment Requirements</h2>
+If you wish to bring up the EPICS operator tools separately, not via the
+<tt>rt
+</tt>script, a number of environmental variables must be first set in the
+user's shell.
+<p>The execution path must include:
+</p><ul>
+<li>
+<b><tt>/usrdevel/peregrin/epics/extensions/bin/sgi</tt></b></li>
+
+<br>for the EPICS operator applications or extensions including edd/dm,
+StripTool, and the EPICS-specific et_wish that combines Tcl, Tk, BLT, Tcl-dp,
+and channel access client library..</ul>
+And the standard Tcl/Tk libraries must be defined:
+<ul>
+<li>
+TCL_LIBRARY = <b><tt>/p/tcl/v7_4d/lib/tcl7.4</tt></b></li>
+
+<li>
+TK_LIBRARY = <b><tt>/p/tk/v4_0d/lib/tk4.0</tt></b></li>
+
+<li>
+DP_LIBRARY = <b><tt>/p/tcldp/v3_2f3/lib/dp</tt></b></li>
+</ul>
+
+<h2>
+1.5 Locations</h2>
+
+<h3>
+1.5.1 EPICS</h3>
+The EPICS distribution is installed under <b><tt>sdsshost:/usrdevel/peregrin/epics</tt></b>,
+hereafter referred to as <b><tt>$EPICS</tt></b>.
+<p><b><tt>$EPICS/base</tt></b> contains the core of the EPICS system, including
+channel access communications, the tools to create and manage the real-time
+database, and the standard database recordtypes and device drivers used
+by the collaboration. EPICS at APO is built using the SGI as a host and
+the MV162 as the target.
+</p><p><b><tt>$EPICS/extensions</tt></b> contains a small number of the numerous
+add-ons to EPICS as contributed by the many sites. This includes all of
+the operator display tools.
+</p><h3>
+1.5.2 TPM application</h3>
+The real-time TPM system is under <b><tt>sdsshost:/usrdevel/peregrin/tpm/tpmApp</tt></b>
+and contains the EPICS database, custom C source code, operator displays,
+and configuration files.
+<h1>
+2. EPICS Operator Tools</h1>
+Three different tools are in use.
+<ul>
+<li>
+The main screens are implemented using the EPICS edd/dm display builder
+developed at LANL.</li>
+
+<li>
+The XY plots are created using a Tcl/Tk program created at LANL using an
+EPICS interface developed at ANL.</li>
+
+<li>
+The Stripcharts make use of the EPICS StripTool program developed at TJNAF.</li>
+</ul>
+Additional user interface displays can be created quickly using the EPICS
+edd/dm display manager program. The complete user's guide to edd/dm is
+available on-line at<b><tt> <a href="http://lansce.lanl.gov/organization/EPICSdata/OPI/opintro-1.html">http://lansce.lanl.gov/organization/EPICSdata/OPI/opintro-1.html.</a></tt></b>
+<p>Descriptions of the XY plot tool and of the StripTool are given below.
+</p><p>Additional operations and analysis utilities can be constructed using
+existing channel access client interfaces to IDL, Mathematica, Java, SDDS,
+and other software systems.
+</p><h2>
+2.1 TPM edd/dm Displays</h2>
+
+<h3>
+2.1.1 Main TPM Display</h3>
+The main TPM edd/dm display, tpm.dl,&nbsp; provides a summary of&nbsp;
+the three axis positions in degrees and their position errors in encoder
+counts.
+<p>The row of four pull-down menus, from left to right, bring up:
+</p><ul>
+<li>
+Tcl/Tk XY Plots</li>
+
+<ul>
+<li>
+User configurable XY Plot</li>
+
+<li>
+Altitude versus Azimuth</li>
+
+<li>
+Rotator versus Azimuth</li>
+</ul>
+
+<li>
+Axis Data</li>
+
+<ul>
+<li>
+Encoder, Current, and Voltage data on the three axes</li>
+</ul>
+
+<li>
+Interlock</li>
+
+<ul>
+<li>
+List of active interlocks</li>
+</ul>
+
+<li>
+Time Plot</li>
+
+<ul>
+<li>
+User configurable stripchart</li>
+
+<li>
+Position errors stripchart</li>
+
+<li>
+Rotator data stripchart</li>
+
+<li>
+Altitude data stripchart</li>
+
+<li>
+Azimuth data stripchart</li>
+</ul>
+</ul>
+The "About" pull-down
+system.
+<br>&nbsp;
+<p><b>Figure 2. Main TPM edd/dm Display</b>
+</p><center><img src="tpm-rt_files/image3FL.JPG" height="363" width="897"></center>
+
+<h3>
+2.1.2 TPM Axis Data Display</h3>
+This display provides text update fields of the encoder, current, and voltage
+readbacks from the altitude, azimuth, and rotator axes.
+<dl>
+<center>
+<dt>
+<b>Figure 3. TPM Axis Data edd/dm Display</b></dt></center>
+</dl>
+
+<center><img src="tpm-rt_files/imageGK6.JPG" height="581" width="451"></center>
+
+<dl>
+<h3>
+<b>2.1.3 TPM Interlock Display</b></h3>
+The Interlock display is meant to show the axis interlocks that are currently
+activated. This is implemented using edd/dm's ability to control widget
+visibility based on the value of a control system process variable.
+<br>&nbsp;
+<center>
+<dt>
+<b>Figure 4. TPM Interlock edd/dm Display</b></dt></center>
+</dl>
+
+<center><img src="tpm-rt_files/image68T.JPG" height="296" width="972"></center>
+
+<dl>
+<h3>
+<b>2.1.4 TPM "About" Display</b></h3>
+The "About" display's purpose is to provide software version and developer
+contact information.
+<br>&nbsp;
+<center>
+<dt>
+<b>Figure 5. TPM "About" edd/dm Display</b></dt></center>
+</dl>
+<img src="tpm-rt_files/image1BF.JPG" height="236" width="896">
+<br>&nbsp;
+<dl>
+<h2>
+<b>2.2 Tcl/Tk-based XY Plots</b></h2>
+This simple utility allows the creation of real-time XY plots of upto three
+variables against a single variable on the same axis. The variables are
+EPICS process variables whose names are listed in section 3. of this document.
+<p>The values of the named process variables are fetched every 0.5 seconds.
+Changing the format of the axes (Min, Max, Nint) does not cause data to
+be lost.
+</p><p>The operator input fields are:
+</p><ul>
+<li>
+OPDES - this is the process variable</li>
+
+<li>
+Min - Minimum value for the X (or Y axis)</li>
+
+<li>
+Max - Maximum value for the X (or Y axis)</li>
+
+<li>
+Nint - Number of labeled intervals on the axis. There is a tick mark between
+every pair of labels.</li>
+</ul>
+The operator controls from left to right are:
+<ul>
+<li>
+Start - Start data acquisition and plotting loop</li>
+
+<li>
+Stop - Stop data acquisition and plotting loop</li>
+
+<li>
+Clear - Erase graph and stop</li>
+
+<li>
+Quit - Exit Program</li>
+</ul>
+
+<br>&nbsp;
+<center>
+<dt>
+<b>Figure 6. Sample XYPlot Tcl/Tk Display</b></dt></center>
+</dl>
+
+<center>
+<h3>
+<img src="tpm-rt_files/imageCE0.JPG" height="594" width="409"></h3></center>
+&nbsp;
+<h2>
+2.3 StripTool</h2>
+
+<h3>
+2.3.1 Program Initialization</h3>
+The EPICS StripTool can be started either from the main TPM edd/dm screen
+or directly from the UNIX shell. The invocation syntax is:
+<br><b>% StripTool &lt;optional config file name&gt;</b>
+<p>The configuration files presently resident in <b><tt>sdsshost:/usrdevel/peregrin/tpm/tpmApp/opi</tt></b>
+are:
+</p><ul>
+<li>
+tpm_alt.cfg&nbsp; - Altitude axis data</li>
+
+<li>
+tpm_az.cfg&nbsp;&nbsp; - Azimuth axis data</li>
+
+<li>
+tpm_err.cfg&nbsp; - Altitude, Azimuth, and Rotator position errors</li>
+
+<li>
+tpm_rot.cfg&nbsp; - Rotator data</li>
+
+<li>
+tpm_ws.cfg - Windscreen LVDT</li>
+</ul>
+
+<h3>
+2.3.2 Example StripTool display</h3>
+The following figure shows a StripTool chart display. The operator control
+features are:
+<ul>
+<li>
+The names of the EPICS process variables being plotted are shown in the
+column on the right-hand side. These names are enclosed in boxes that indicate
+the data color. Other information listed are the units and the display
+min and max for that channel. Clicking on that box changes the vertical
+axis on the left-hand side to reflect those limits.</li>
+
+<li>
+The buttons along bottom of the display have the following functions (given
+from left to right): Pan Left, Pan Right, Zoom In, Zoom Out, and Auto Scroll.</li>
+
+<li>
+The control menu can be accessed by clicking and holding down the right
+mouse button on the main part of the display. The options in this menu
+are:</li>
+
+<ul>
+<li>
+Controls Dialog - see below.</li>
+
+<li>
+Toggle Scroll Buttons - on and off.</li>
+
+<li>
+Print - defaults to the printer<tt> hdraper</tt> at APO.</li>
+
+<li>
+Snapshot - screen capture.</li>
+
+<li>
+Dump - to an ASCII file.</li>
+
+<li>
+Dismiss - close display.</li>
+
+<li>
+Quit - exit program.</li>
+</ul>
+</ul>
+
+<center>
+<dt>
+<b>Figure 7. Example StripTool Chart</b></dt></center>
+<img src="tpm-rt_files/image9UO.JPG" height="320" width="595">
+<br>&nbsp;
+<h3>
+2.3.3 StripTool Controls Dialog</h3>
+The Controls Dialog for the StripTool utility is divided into the following
+five regions:
+<ul>
+<li>
+Signal Connect</li>
+
+<li>
+Time Controls</li>
+
+<li>
+Graph Options</li>
+
+<li>
+Curves</li>
+
+<li>
+Application Controls</li>
+</ul>
+In addition, the File pull-down menu allows you to save the present configuration
+as a named file, or to load an existing configuration file.
+<h4>
+2.3.3.1 Signal Connect</h4>
+The name of an EPICS process variable is typed or pasted into the text
+entry box and the Connect button is pushed. If the process variable can
+be located, a row is added in the Curves section.
+<h4>
+2.3.3.2 Time Controls</h4>
+The user can modify the data sample interval and the redraw interval. The
+practical limits to these are based on the workstation and network performance
+since the shorter intervals pose more of a load on the system performance.
+<h4>
+2.3.3.3 Graph Options</h4>
+These allow the user to alter the color and general appearance of the stripcharts.
+<h4>
+2.3.3.4 Curves</h4>
+Here you may change the display limits of each channel and to remove them
+from the stripchart.
+<h4>
+2.3.3.5 Application Control</h4>
+The control buttons from left to right allow the user to:
+<ul>
+<li>
+Show stripchart</li>
+
+<li>
+Clear the stripchart - removes all process variables</li>
+
+<li>
+Dismiss the controls dialog window</li>
+
+<li>
+End program</li>
+
+<center>
+<dt>
+<b>Figure 8. Example StripTool Dialog Window</b></dt></center>
+</ul>
+<img src="tpm-rt_files/imageR9M.JPG" height="535" width="887">
+<br>&nbsp;
+<h1>
+3. Real-Time EPICS Database</h1>
+
+<h2>
+3.1 Database Descriptions</h2>
+Each record in the real-time EPICS database is described by a number of
+fields (see the <a href="http://epics.aps.anl.gov/epics/EpicsDocumentation/AppDevManuals/RecordRef/Recordref-1.html">EPICS
+Record Reference Manual</a>). For the purpose of this document we will
+list the following set of attributes:
+<blockquote>
+<li>
+Name - the location of the record in the EPICS global namesake implemented
+on the local SDSS Internet. This is the string that clients across the
+network use to access this record. The name is what can be used by any
+operator tool including the display manager, Strip Tool, and Tcl/Tk applications.</li>
+
+<li>
+Description - the information contained in the record.</li>
+
+<li>
+Type - the nature of the database record.</li>
+
+<li>
+Units - the units that the record value is in.</li>
+
+<li>
+Scan Rate - the frequency at which the record is updated.</li>
+</blockquote>
+
+<h2>
+3.2 Shared Memory Access</h2>
+The EPICS database on the TPM primarily serves data that is written by
+the SDDS Mount Control Processor (MCP) across a shared memory interface.
+<h3>
+3.2.1 Data Transfer</h3>
+The tpm_getdata subroutine record is the first to be processed as part
+of the Hz scanning. It's purpose to to copy data from the MCP-TPM shared
+memory into a number of global vxWorks variables. These variables are then
+tied to EPICS database records using the "vxWorks Variable" or symbolic
+device support.
+<br>&nbsp;
+<table border="1" cols="5" width="100%">
+<tr>
+<td><b>Name</b></td>
+
+<td><b>Description</b></td>
+
+<td><b>Type</b></td>
+
+<td><b>Units</b></td>
+
+<td><b>Scan Rate</b></td>
+</tr>
+
+<tr>
+<td>tpm_getdata</td>
+
+<td>Load Data Into Global Variables</td>
+
+<td>General Subroutine</td>
+
+<td>None</td>
+
+<td>5 Hz</td>
+</tr>
+</table>
+
+<h3>
+3.2.2 Altitude Axis</h3>
+
+<table border="1" cols="5" width="100%">
+<tr>
+<td><b>Name</b></td>
+
+<td><b>Description</b></td>
+
+<td><b>Type</b></td>
+
+<td><b>Units</b></td>
+
+<td><b>Scan Rate</b></td>
+</tr>
+
+<tr>
+<td>tpm_ALCPOS</td>
+
+<td>Altitude Position Command</td>
+
+<td>LongIn</td>
+
+<td>Encoder counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALCVOLT&nbsp;</td>
+
+<td>Altitude Voltage Command</td>
+
+<td>LongIn</td>
+
+<td>ADC counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALENC1</td>
+
+<td>First Altitude Encoder</td>
+
+<td>LongIn</td>
+
+<td>Encoder counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALENC2</td>
+
+<td>Secon
+
+<td>LongIn</td>
+
+<td>Encoder counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALMTRV1</td>
+
+<td>Altitude First Motor Voltage</td>
+
+<td>LongIn</td>
+
+<td>ADC counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALMTRV2</td>
+
+<td>Altitude Second Motor Voltage</td>
+
+<td>LongIn</td>
+
+<td>ADC counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALMTRC1</td>
+
+<td>Altitude First Motor Current</td>
+
+<td>LongIn</td>
+
+<td>ADC counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALMTRC2</td>
+
+<td>Altitude Second Motor Current</td>
+
+<td>LongIn</td>
+
+<td>ADC counts</td>
+
+<td>5 Hz</td>
+</tr>
+</table>
+
+<h3>
+3.2.3 Azimuth Axis</h3>
+
+<table border="1" cols="5" width="100%">
+<tr>
+<td><b>Name</b></td>
+
+<td><b>Description</b></td>
+
+<td><b>Type</b></td>
+
+<td><b>Units</b></td>
+
+<td><b>Scan Rate</b></td>
+</tr>
+
+<tr>
+<td>tpm_AZCPOS</td>
+
+<td>Azimuth Position Command</td>
+
+<td>LongIn</td>
+
+<td>Encoder counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZCVOLT&nbsp;</td>
+
+<td>Azimuth Voltage Command</td>
+
+<td>LongIn</td>
+
+<td>DAC counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZENC1</td>
+
+<td>First Azimuth Encoder</td>
+
+<td>LongIn</td>
+
+<td>Encoder counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZENC2</td>
+
+<td>Second Azimuth Encoder</td>
+
+<td>LongIn</td>
+
+<td>Encoder counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZMTRV1</td>
+
+<td>Azimuth First Motor Voltage</td>
+
+<td>LongIn</td>
+
+<td>ADC counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZMTRV2</td>
+
+<td>Azimuth Second Motor Voltage</td>
+
+<td>LongIn</td>
+
+<td>ADC counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZMTRC1</td>
+
+<td>Azimuth First Motor Current</td>
+
+<td>LongIn</td>
+
+<td>ADC counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZMTRC2</td>
+
+<td>Azimuth Second Motor Current</td>
+
+<td>LongIn</td>
+
+<td>ADC counts</td>
+
+<td>5 Hz</td>
+</tr>
+</table>
+
+<h3>
+3.2.4 Instrument Rotator</h3>
+
+<table border="1" cols="5" width="100%">
+<tr>
+<td><b>Name</b></td>
+
+<td><b>Description</b></td>
+
+<td><b>Type</b></td>
+
+<td><b>Units</b></td>
+
+<td><b>Scan Rate</b></td>
+</tr>
+
+<tr>
+<td>tpm_ROCPOS</td>
+
+<td>Rotator Position Command</td>
+
+<td>LongIn</td>
+
+<td>Encoder counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ROCVOLT&nbsp;</td>
+
+<td>Rotator Voltage Command</td>
+
+<td>LongIn</td>
+
+<td>DAC counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ROCENC</td>
+
+<td>Rotator Encoder</td>
+
+<td>LongIn</td>
+
+<td>Encoder counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ROMTRV</td>
+
+<td>Rotator Motor Voltage</td>
+
+<td>LongIn</td>
+
+<td>ADC counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ROMTRC</td>
+
+<td>Rotator Motor Current</td>
+
+<td>LongIn</td>
+
+<td>ADC counts</td>
+
+<td>5 Hz</td>
+</tr>
+</table>
+
+<h3>
+3.2.5 Windscreen</h3>
+
+<table border="1" cols="5" width="100%">
+<tr>
+<td><b>Name</b></td>
+
+<td><b>Description</b></td>
+
+<td><b>Type</b></td>
+
+<td><b>Units</b></td>
+
+<td><b>Scan Rate</b></td>
+</tr>
+
+<tr>
+<td>tpm_ALWSPOS</td>
+
+<td>Altitude/Windscreen LVDT&nbsp;</td>
+
+<td>LongIn</td>
+
+<td>Encoder counts</td>
+
+<td>5 Hz</td>
+</tr>
+</table>
+
+<h3>
+3.2.6 Interlocks</h3>
+
+<table border="1" cols="5" width="100%">
+<tr>
+<td><b>Name</b></td>
+
+<td><b>Description</b></td>
+
+<td><b>Type</b></td>
+
+<td><b>Units</b></td>
+
+<td><b>Scan Rate</b></td>
+</tr>
+
+<tr>
+<td>tpm_ALLWC</td>
+
+<td>Alitude/Windscreen Lower Collision</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALP100&nbsp;</td>
+
+<td>Altitude 100 Degree Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALP20</td>
+
+<td>Altitude 20 Degree Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALP_2</td>
+
+<td>Altitude -2 Degree Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALRWC</td>
+
+<td>Altitude/Wind Screen Raise Collision</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ALSTOW</td>
+
+<td>Altitude Stow Position</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZCCWC</td>
+
+<td>Azimuth/Windscreen CCW Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZCCWHL</td>
+
+<td>Azimuth/Windscreen CCW Hard Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZCCWSL</td>
+
+<td>Azimuth/Windscreen CCW Soft Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZCWC</td>
+
+<td>Azimuth/Windscreen CW Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZCWHL</td>
+
+<td>Azimuth/Windscreen CW Hard Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_AZCWSL</td>
+
+<td>Azimuth/Windscreen CW Soft Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ROCCWHL</td>
+
+<td>Rotator CCW Hard Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ROCCWSL</td>
+
+<td>Rotator CCW Soft Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ROCWHL</td>
+
+<td>Rotator CW Hard Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ROCWSL</td>
+
+<td>Rotator CW Soft Limit</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_ROICHG</td>
+
+<td>Rotator at Instrument Change</td>
+
+<td>BinaryIn</td>
+
+<td>Triggered=1/OK=0</td>
+
+<td>5 Hz</td>
+
+</tr>
+</table>
+
+<h2>
+3.3 Derived Quantities</h2>
+The raw data obtained from the shared memory interface can be transformed
+into other forms by use of EPICS Calculation records. For each axis we
+scale the encoder readings into degrees on the sky and compute the differences
+between the axis encoder and commanded positions.
+<table border="1" cols="5" width="100%">
+<tr>
+<td><b>Name</b></td>
+
+<td><b>Description</b></td>
+
+<td><b>Type</b></td>
+
+<td><b>Units</b></td>
+
+<td><b>Scan Rate</b></td>
+</tr>
+
+<tr>
+<td>tpm_altitude</td>
+
+<td>Altitude Position</td>
+
+<td>Calculation</td>
+
+<td>Degrees</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_azimuth</td>
+
+<td>Azimuth Position</td>
+
+<td>Calculation</td>
+
+<td>Degrees</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_rotator</td>
+
+<td>Rotator Position</td>
+
+<td>Calculation</td>
+
+<td>Degrees</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_alterr</td>
+
+<td>Altitude Servo Error</td>
+
+<td>Calculation</td>
+
+<td>Encoder Counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_azerr</td>
+
+<td>Azimuth Servo Error</td>
+
+<td>Calculation</td>
+
+<td>Encoder Counts</td>
+
+<td>5 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_roterr</td>
+
+<td>Rotator Servo Error</td>
+
+<td>Calculation</td>
+
+<td>Encoder Counts</td>
+
+<td>5 Hz</td>
+</tr>
+</table>
+
+<h2>
+3.4 Other</h2>
+For informational purposes we compute the time since last reboot of the
+TPM IOC. This is available from the system as clock ticks and we use a
+Calculation record to translate that into hours.
+<table border="1" cols="5" width="100%">
+<tr>
+<td><b>Name</b></td>
+
+<td><b>Description</b></td>
+
+<td><b>Type</b></td>
+
+<td><b>Units</b></td>
+
+<td><b>Scan Rate</b></td>
+</tr>
+
+<tr>
+<td>tpm_uptime</td>
+
+<td>TPM IOC up-time</td>
+
+<td>Calculation</td>
+
+<td>Hours</td>
+
+<td>0.1 Hz</td>
+</tr>
+
+<tr>
+<td>tpm_vxTicks</td>
+
+<td>vxWorks clock ticks</td>
+
+<td>LongIn</td>
+
+<td>Ticks</td>
+
+<td>Passive</td>
+</tr>
+</table>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->
+

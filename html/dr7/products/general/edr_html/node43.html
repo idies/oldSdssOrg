@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Known Problems in frames</TITLE>
+<META NAME="description" CONTENT="Known Problems in frames">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html592" HREF="node44.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html590" HREF="node36.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html586" HREF="node42.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html593" HREF="node44.html">Photometric Calibration</A>
+<B>Up:</B> <A NAME="tex2html591" HREF="node36.html">The Frames Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html587" HREF="node42.html">Measurements of Shape and </A>
+<BR> <P>
+<H3><A NAME="SECTION00044700000000000000">Known Problems in <TT>frames</TT></A></H3>
+<P>
+<A NAME="swphotocaveats">&#160;</A>
+<P>
+Throughout this section, we have listed various known problems with
+the processing, many of which will be fixed in future releases of the
+data.  We now list problems that were not otherwise mentioned
+earlier.
+<P>
+<UL>
+<LI> There are several quantities that have not yet been finalized,
+and are currently place-holders in the pipeline outputs.  These
+include error estimates for <TT>PetroR50</TT> and <TT>PetroR90</TT>, all
+errors associated with isophotal quantities, a
+<TT>texture</TT> parameter to measure the small-scale roughness of an
+object, and <TT>fracPSF</TT>, the fraction of light included in the PSF.
+Quantities which are not calculated are designated -9999 in the
+database, while <EM>errors</EM> which are not calculated are designated
+-1000.  Note that some quantities are not calculated, e.g., for
+objects very close to the edge of a frame.
+<LI> We have not done a thorough testing of every one of the outputs
+of the pipeline.  Quantities such as <TT>psfMag</TT> and <TT>petroMag</TT>,
+which are used in target selection (&#167;&nbsp;<A HREF="node51.html#swtarget">4.8</A>),
+are very extensively tested, while quantities such as the parameters
+of the elliptical isophote fit, or the errors in the model fit
+parameters, have not been as carefully vetted.
+<LI> Due to difficulties in cosmic-ray rejection, one should be
+suspicious of objects detected in only one band.  This is particularly
+problematic in <I>z</I>, where the occasional cosmic ray can splatter in
+the thick chip to be indistinguishable from the PSF (see the
+discussion in fan01b).  Future releases
+of <TT>frames</TT> will set a flag <TT>MAYBE_CR</TT> to flag ambiguous
+cases.
+<LI> Electronics cross-talk can give faint ghosts of saturated
+stars in <I>z</I>.  Draw a line down the central column of the CCD; the
+ghost will appear at the mirror position relative to this line.  These
+will be flagged in future releases.
+<LI> The code does not subtract diffraction spikes from stars
+(although bleed trails are interpolated over).  
+These will be subtracted in future releases.
+<LI> There are a variety of faint ghosts due to reflection off the edges of
+the filters.  Thus one should be suspicious of the reality of very low
+surface brightness (fainter than 24 mag per square arcsec in <I>r</I>)
+extended features close to the edges of frames, especially in the <I>u</I>
+band.
+<LI> Similarly, the deblender occasionally pulls off low surface
+brightness features from large galaxies.  This problem is much
+reduced with improvements to the deblender in subsequent versions of
+the pipeline.
+<LI> The proper motion errors are occasionally underestimated (yielding a
+few quasars with nominally significant proper motions!).  This is due
+to uncertainties in the astrometric offsets between bands, and will be
+fixed in future releases.   However, overlapping scans have shown that
+the proper motion errors for the majority of asteroids are <EM>overestimated</EM>
+by roughly a factor of two.
+<LI> Ghosting in the <I>u</I> filter causes systematic errors in the
+flat-fields in some of the runs, affecting the photometry by up to
+10%.  This is discussed in detail in &#167;&nbsp;<A HREF="node47.html#swphotocalfcalib">4.5.3</A> below.
+<P>
+</UL>
+<P>
+Finally, a disclaimer: we have tested the outputs of the pipeline to
+the best of our ability, but there are no doubt subtle problems not
+listed here that we are currently unaware of.  For example, many of the
+quoted error estimates have not yet been tested adequately.  We are
+eager for feedback from the community if any problems are found.
+<P>
+<HR><A NAME="tex2html592" HREF="node44.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html590" HREF="node36.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html586" HREF="node42.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html593" HREF="node44.html">Photometric Calibration</A>
+<B>Up:</B> <A NAME="tex2html591" HREF="node36.html">The Frames Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html587" HREF="node42.html">Measurements of Shape and </A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

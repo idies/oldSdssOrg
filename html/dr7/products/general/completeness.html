@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title> Completeness - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<h1>Completeness</h1>
+
+<p>We have determined the completeness of the SDSS photometric survey
+by comparing the number of objects found by the SDSS pipeline to the
+number found by the <a href="http://www.mpia-hd.mpg.de/COMBO/">COMBO-17
+survey</a> in a region of sky that has been scanned by both surveys,
+and in a second comparison with data from observations of a <a
+href="http://www.astro.utoronto.ca/~cnoc/">CNOC</a> survey field.
+While the comparison was carried out for DR1 data, the DR2/DR3 data are
+not significantly different.</p>
+
+<p>Here we show details for the comparison with COMBO-17 data. The region
+of sky used here for calibration is COMBO-17's S11 field, which is
+covered by run 1140, camcol 5, fields 151-154 and run 1231 camcol 5
+and 6, fields 42-45.</p>
+
+<p>The sky brightness in over half the SDSS is better than it is in
+these fields, and the seeing in most of the survey is better than it
+is in one of these runs, so the completeness in most of the survey
+should be better than what is shown here. See the <a
+href="#seeingandskybrighttable">seeing and sky brightness table for
+COMBO-17/SDSS overlap</a> below.</p>
+
+<p>In the following plots, PSF r-band magnitudes are used for stars,
+and Petrosian r-band magnitudes are used for galaxies.</p>
+
+<table>
+  <tr>
+    <th>Which objects</th>
+    <th>Number counts</th>
+    <th>Fractional completeness</th>
+  </tr>
+  <tr>
+    <td>Stars</td>
+    <td><img src="combo_number_counts_stars_r.jpg"></td>
+    <td><img src="combo_fractional_completeness_stars_r.jpg"></a></td>
+  </tr>
+  <tr>
+    <td>Galaxies</td>
+    <td><img src="number_counts_galaxies_r.jpg"></td>
+    <td><img src="fraction_galaxies_r.jpg"></a></td>
+  </tr>
+</table>
+
+<p>Note that COMBO-17's multicolor classification starts to become
+incomplete for stars at about one magnitude fainter than
+SDSS. Therefore, the SDSS 50% completeness is slightly brighter than
+indicated by this plot.</p>
+
+<p>The number of objects above the 5-sigma detection threshold depends
+heavily on the <a href="seeing.html">seeing and sky brightness</a> in
+a given field. The following table summarises the seeing and sky
+brightness in the overlap region.</p>
+
+<p>
+<a name="seeingandskybrighttable"></a>
+<table border="1">
+ <tr>
+   <th> run </th>
+   <th> camcol </th>
+   <th> field </th>
+   <th> seeing ["] </th>
+   <th> sky brightness [mag/sq. "]</th>
+  </tr><tr>
+    <td align="center"> 1140 </td>
+    <td align="center"> 5 </td>
+    <td align="center"> 151 </td>
+    <td align="center"> 1.293 </td>
+    <td align="center"> 20.8210 </td>
+  </tr><tr>
+    <td align="center"> 1140 </td>
+    <td align="center"> 5 </td>
+    <td align="center"> 152 </td>
+    <td align="center"> 1.273 </td>
+    <td align="center"> 20.8210 </td>
+  </tr><tr>
+    <td align="center"> 1140 </td>
+    <td align="center"> 5 </td>
+    <td align="center"> 153 </td>
+    <td align="center"> 1.280 </td>
+    <td align="center"> 20.8150 </td>
+  </tr><tr>
+    <td align="center"> 1140 </td>
+    <td align="center"> 5 </td>
+    <td align="center"> 154 </td>
+    <td align="center"> 1.331 </td>
+    <td align="center"> 20.8060 </td>
+  </tr><tr>
+    <td align="center"> 1231 </td>
+    <td align="center"> 5 </td>
+    <td align="center"> 42 </td>
+    <td align="center"> 1.941 </td>
+    <td align="center"> 20.7670 </td>
+  </tr><tr>
+    <td align="center"> 1231 </td>
+    <td align="center"> 5 </td>
+    <td align="center"> 43 </td>
+    <td align="center"> 2.051 </td>
+    <td align="center"> 20.7670 </td>
+  </tr><tr>
+    <td align="center"> 1231 </td>
+    <td align="center"> 5 </td>
+    <td align="center"> 44 </td>
+    <td align="center"> 2.052 </td>
+    <td align="center"> 20.7700 </td>
+  </tr><tr>
+    <td align="center"> 1231 </td>
+    <td align="center"> 5 </td>
+    <td align="center"> 45 </td>
+    <td align="center"> 2.011 </td>
+    <td align="center"> 20.7710 </td>
+  </tr><tr>
+    <td align="center"> 1231 </td>
+    <td align="center"> 6 </td>
+    <td align="center"> 42 </td>
+    <td align="center"> 2.010 </td>
+    <td align="center"> 20.7740 </td>
+  </tr><tr>
+    <td align="center"> 1231 </td>
+    <td align="center"> 6 </td>
+    <td align="center"> 43 </td>
+    <td align="center"> 2.113 </td>
+    <td align="center"> 20.7750 </td>
+  </tr><tr>
+    <td align="center"> 1231 </td>
+    <td align="center"> 6 </td>
+    <td align="center"> 44 </td>
+    <td align="center"> 2.122 </td>
+    <td align="center"> 20.7750 </td>
+  </tr><tr>
+    <td align="center"> 1231 </td>
+    <td align="center"> 5 </td>
+    <td align="center"> 45 </td>
+    <td align="center"> 2.033 </td>
+    <td align="center"> 20.7780 </td>
+   </tr>
+</table>
+
+<p>Comparing with the <a href="./seeing.html">seeing and sky
+brightness</a> statistics, most of the SDSS fields have better seeing
+than this overlap region.  Over half of the fields have lower sky
+levels. Therefore, the completeness in most of the survey should be
+better than what is shown here</p>
+
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Thu Jun 22 11:29:34 BST 2006
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

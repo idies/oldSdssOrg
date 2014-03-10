@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html> <head>
+<title>SDSS pipelines</title>
+</head>
+
+<body bgcolor="#ffffff">
+<h1>SDSS pipelines</h1>
+<h2>The pipelines</h2>
+<p>Each of the operating steps is actually a collection of algorithms run in
+pipelines producing a number of data products. Here, we give a brief
+description of what is contained in these steps, together with links to more
+detailed explanations. Again, refer to descriptions of the <a
+href="../../catalog/index.html" target="_parent">Catalog Archive Server
+contents</a> and the <a href="../../data/index.html" target="_parent">Data
+Archive Server contents</a> as well as <a href="../../algorithms/index.html"
+target="_parent">details of our algorithms</a> elsewhere.</p>
+
+<h3><a href="./mtpipe.html">Photometric Telescope (PT) / Monitoring Telescope
+(MT) pipeline</a></h3>
+
+<p>The photometric telescope (PT) has two main functions: it measures
+the atmospheric extinction on each clear night based on observations
+of primary standards at a variety of air masses, and it calibrates
+secondary patches in order to determine the photometric zero point of
+the 2.5 m imaging scans. The monitor telescope pipeline (<a
+href="./mtpipe.html"><code>mtpipe</code></a>), so called for
+historical reasons, processes the PT data.</p>
+
+<h3><a href="./photo.html">Imaging pipelines</a></h3>
+
+<p>The imaging pipelines include the following:</p>
+<ul>
+  <li>the astrometric pipeline <code>astrom</code>, which performs the astrometric calibration</li>
+  <li>the <code>photo</code> pipeline, consisting of two components:
+      <ol>
+	<li>the postage stamp pipeline <code>psp</code>, which
+	    characterizes the behavior of the point-spread function as a function
+	    of time and location in the focal plane</li>
+	<li>the <code>frames</code> pipeline, which finds, deblends,
+	    and measures the properties of objects</li>
+      </ol>
+  </li>
+  <li>the final calibration pipeline <code>nfcalib</code> which applies the
+      photometric calibration to the objects</li>
+</ul>
+      
+<h3><a href="./opdb.html">Operational database (OPDB)</a></h3>
+
+<h3><a href="./ts.html">Target selection, tileing and plate
+generation</a></h3>
+
+<h3><a href="./spectro.html">Spectroscopic pipelines</a></h3>
+
+
+
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Thu Nov 14 18:53:29 CST 2002
+<!-- hhmts end -->
+</body> </html>

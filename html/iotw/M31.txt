@@ -1,0 +1,8 @@
+M31, better known as the Andromeda galaxy, is our nearest spiral neighbor. 
+Visible to the naked eye on a clear moonless night, M31 appears nearly
+three degrees wide in our sky -- that's six times the width of the full
+moon! Because of M31's large angular size, this picture was created by
+stitching together data from multiple SDSS images. A new dwarf spheroidal
+galaxy was recently discovered in M31 using SDSS photometry data and
+follow-up observations. This puts the count at 10 known satellite galaxies
+contained within M31.

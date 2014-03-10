@@ -1,0 +1,208 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+<H2 align=center>REQUIREMENTS FOR SDSS DATA MANAGEMENT SYSTEMS</H2>
+<H4 align=center>June 5, 1995<br>
+Revision 1 - February 26, 2004</H4>
+<I>[All requirements are subject to budgetary, 
+manpower, and technical limitations] </I>
+<P>The data management systems shall maintain all processed data from the SDSS 
+and provide access by SDSS scientists and operators in order to maximize the 
+ease of the following: 
+<OL>
+  <LI>Operate the SDSS survey so as to maximize the efficiency of operations. 
+  <LI>Perform Quality Analysis operations on the data so as to ensure its 
+  integrity. The operations will verify calibrations, target selection criteria 
+  and classifications, and completeness &amp; accuracy. 
+  <LI>Provide SDSS scientists with access to the data and tools to permit 
+  selection of spectroscopic targets for certain categories (serendipity; 
+  stars). 
+  <LI>Provide SDSS scientists with access to the data so as to enable scientific 
+  analyses. </LI></OL>
+<HR>
+
+<H2>Requirements for the Science Archive</H2>The science archive shall consist 
+of: 
+<OL>
+  <LI>A science database that shall: 
+  <DL compact>
+    <DT><TT>a. </TT>Retain resolved calibrated object catalogs (photometric 
+    CCD output) for two sky versions of the data: Best and Target. 
+    <DT><TT>b. </TT>Retain parameters from spectroscopic pipeline 
+    <DT><TT>c. </TT>Retain references to atlas images and extracted spectra 
+    <DT><TT>d. </TT>Provide ability to carry out manual target selection for 
+    certain target categories 
+    <DT><TT>e. </TT>Provide ability for SDSS scientists to extract subsets of 
+    retained data. 
+    <DT><TT>f. </TT>Provide smooth transition to public distribution system. </DT></DL>
+  <LI>A set of files tracked by the science database. 
+  <LI>A set of files not tracked by the science database. </LI></OL>
+A public version of the science database shall be a snapshot of the Science 
+Archive.  The public version will include two versions of the sky: Best and
+Target.  It will not include all runs obtained in the course of survey operations.<br><br>
+An enhanced goal is to create a "Runs" database in addition to Target and Best
+versions.  A Runs database would contain every imaging scan obtained over the
+course of operations.
+<HR>
+
+<H3>I. Input to Science Archive</H3>
+<OL>
+  <LI>Survey Definition 
+  <DL compact>
+    <DT><TT>a. </TT>A description of the North Imaging survey area 
+    <DT><TT>b. </TT>Survey progress: A description of sky inserted into database 
+    to date </DT></DL>
+  <LI>Final Astrometric Calibration 
+  <DL compact>
+    <DT><TT>a. </TT>List of calibration coefficients on a frame-by-frame 
+    basis.
+    <DT><TT>b. </TT>Position errors stored on an object-by-object basis.
+    </DT></DL>
+  <LI>Final Photometric Calibraton 
+  <DL compact>
+    <DT><TT>a. </TT>List of photometric calibration coefficients on a 
+    frame-by-frame basis. </DT></DL>
+  <LI>Merged Object Lists 
+  <DL compact>
+    <DT><TT>a. </TT>A list of calibrated objects and parameters from the Frames 
+    pipeline of photo 
+    <DT><TT>b. </TT>A list of masks derived from object masks from the 
+    Frames pipeline of photo. 
+    <DT><TT>c. </TT>Run, Rerun and Field information. 
+    <DT><TT>d. </TT>Star/Galaxy classifications
+    <DT><TT>e. </TT>Target selection flags
+    <DT><TT>f. </TT>Status flags 
+    <DT><TT>g. </TT>Cross-identifications to other 
+    catalogs </DT></DL>
+  <LI>Target Selection 
+  <DL compact>
+    <DT><TT>a. </TT>A list of all targetable objects with target selection 
+    categories 
+    <DT><TT>b. </TT>A list of all objects from (5a) selected as targets with 
+    selection category 
+    <DT><TT>c. </TT>Tiling flags for all objects in b. </DT></DL>
+  <LI>Spectroscopic Pipeline 
+  <DL compact>
+    <DT><TT>a. </TT>Redshifts and parameters of all targeted objects 
+    <DT><TT>b. </TT>Tile and plate information.
+    <DT><TT>c. </TT>Primary target designation, to identify primary
+    measurements of targets for which multiple spectra have been 
+    obtained. </DT></DL>
+  <LI><I>Enhanced goal:</I> Scientist derived catalogs 
+  <LI><I>Enhanced goal:</I> Other input catalogs 
+  <LI>Separate files tracked from Science Database 
+  <DL compact>
+    <DT><TT>a. </TT>Atlas Images 
+    <DT><TT>b. </TT>1-D spectra 
+    <DT><TT>c. </TT>Corrected frames
+    <DT><TT>d. </TT>Masks
+    <DT><TT>e. </TT>Binned frames
+    <DT><TT>f. </TT>fpFieldStat
+    <DT><TT>g. </TT>psField </DT></DL>
+  <LI>TBD: Southern Survey </LI></OL>
+<HR>
+
+<H3>II. Functional Goals</H3>
+<OL>
+  <LI>User will be able to carry out efficient queries to locate objects over 
+  one or more ranges of following attributes: 
+  <DL compact>
+    <DT><TT>a. </TT>Longitude or latitude in several spherical coordinates
+    <DL compact>
+      <DT><TT>i) </TT>J2000 Ra and Dec 
+      <DT><TT>ii)</TT>Galactic coordinates 
+      <DT><TT>iii) </TT>Survey Coordinates 
+      <DT><TT>iv) </TT>Any linear combination of the two coordinates</DT></DL>
+    <DT><TT>b. </TT>Radius within a give point of the sky 
+    <DT><TT>c. </TT>u' g' r' i' z' (One set of magnitudes per object) 
+    <DT><TT>d. </TT>Any linear combination of c. 
+    <DT><TT>e. </TT>Object radius 
+    <DT><TT>f. </TT>Surface brightess formed by c and d. 
+    <DT><TT>g. </TT>Star/Galaxy classification flag 
+    <DT><TT>h. </TT>Target Selection Category 
+    <DT><TT>i. </TT>Spectrum available flag 
+    <DT><TT>j. </TT>Status and photo flags </DT></DL>
+  <LI>User will be able to carry out queries on any retained object parameter. 
+  <LI><I>Enhanced Goal:</I> All calibrated quantities can be recomputed using 
+  improved astrometric and photometric calibrations. Queries can be performed on 
+  the recalibrated quantities. 
+  <LI>For all efficient queries, return an esimated number of objects to be 
+  located. 
+  <LI>For all located objects, users shall be able to specify an arbitrary 
+  subset of stored parameters to be returned plus the number of located
+  objects. </DT></DL>
+  <LI>Users shall be able to perform the following functions: 
+  <DL compact>
+    <DT><TT>a. </TT>Proxy queries [e.g, get all objects within each 
+    of 10,000 QSOs in my favorite catalog).] 
+    <DT><TT>b. </TT>Formulate new queries based on results of previous queries. 
+    </DT></DL>
+  <LI>Users shall be able to query for database metadata:
+    <DT><TT>a. </TT>List of tables
+    <DT><TT>b. </TT>List of attributes
+    <DT><TT>c. </TT>List of enumerated constants with text descriptors.</LI></OL>
+<HR>
+
+<H3>III. Technical Goals</H3>
+<OL>
+  <LI>User interface 
+  <DL compact>
+    <DT><TT>a. </TT>User interface shall be http-based.
+    <DT><TT>b. </TT>User interface shall communicate with a query support layer 
+    via ASCII interface protocol. 
+    <DT><TT>c. </TT>Data shall be returnable on the sockets in ASCII, HTML,
+    or XML format. 
+    <DT><TT>d. </TT>User interface shall be documented. </DT></DL>
+  <LI>Data shall be stored in a system providing an industry-standard OSQL-like 
+  interface to enable use of commercial products to provide alternative view 
+  of the database.
+  <LI>Distributability 
+  <DL compact>
+    <DT><TT>a. </TT>A master copy of all data shall be maintained (the Master 
+    Science Archive) 
+    <DT><TT>b. </TT>Capability shall be present to replicate all or part of the 
+    Master Science Archive as local databases at SDSS institutions. Replication 
+    may consist of: 
+    <DL compact>
+      <DT><TT>i) </TT>Science Database in its entirety 
+      <DT><TT>ii) </TT>All or part of separate files tracked by Science Database 
+
+      <DT><TT>iii) </TT>No capability shall be present to replicate an 
+      arbitrarily selected subset of the science database beyond that described 
+      by section 1.c of USER INTERFACE. 
+      <DT><TT>iv) </TT>The institution requesting replication shall be responsible
+      for providing the hardware that the database and/or files will be copied
+      onto. </DT></DL>
+    <DT><TT>d. </TT>No capability is required to be present to replicate all or 
+    part of separate files not tracked by Science Database </DT></DL>
+  <LI>Security 
+  <DL compact>
+    <DT><TT>a. </TT>Master Science Archive shall be protected against corruption 
+    by SDSS participant users 
+    <DT><TT>b. </TT>Master Science Archive shall be protected against 
+    unauthorized access by non-SDSS participants. 
+    <DT><TT>c. </TT>Computer security policies and procedures of the institution
+    hosting the Master Science Archive shall be followed.</DT></DL>
+  <LI>Version Retention (NEW)
+  <DL compact>
+      <DT><TT>a. </TT>Two prior data release versions of the Science Database,
+      in addition to the current release, should be maintained on-line.</DT></DL></DL>
+  <LI>System Availability (NEW)
+  <DL compact>
+    <DT><TT>a. </TT>99% system availability to the end user of the public
+    version of the current data release.  
+    <DT><TT>b. </TT>95% system availability to the end user of the current
+    collaboration version of the Science Database.
+    <DT><TT>c. </TT>95% system availability to the end user on prioir 
+    release versions of the Science Database.
+    <DT><TT>d. </TT>For 95% uptime systems:
+    <DL compact>
+       <DT><TT>i) </TT>Fault response time should be within 16 hours. 
+       <DT><TT>ii) </TT>Fault recovery time should be within 48 hours.</DT></DL></DL>
+    <DL compact>
+    </LI></OL>
+</dl>
+
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

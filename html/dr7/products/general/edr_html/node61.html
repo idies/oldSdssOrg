@@ -1,0 +1,313 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Measuring Spectra</TITLE>
+<META NAME="description" CONTENT="Measuring Spectra">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html781" HREF="node62.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html779" HREF="node59.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html773" HREF="node60.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html782" HREF="node62.html">Spectroscopic Pipelines Testing and </A>
+<B>Up:</B> <A NAME="tex2html780" HREF="node59.html">Spectroscopic Pipelines</A>
+<B> Previous:</B> <A NAME="tex2html774" HREF="node60.html">Extraction and Calibration of </A>
+<BR> <P>
+<H3><A NAME="SECTION000410200000000000000">Measuring Spectra</A></H3>
+<P>
+<A NAME="swspectro1d">&#160;</A>
+<P>
+The <TT>spectro1d</TT> pipeline analyzes the combined, merged spectra
+output by <TT>spectro2d</TT> and determines object classifications 
+(galaxy, quasar, star, or unknown) and redshifts; it also provides 
+various line measurements and warning flags.
+<P>
+The code attempts to measure an emission and absorption
+redshift independently for every targeted (non-sky) object. That is,
+to avoid biases, the absorption and emission codes operate
+independently, and they both operate independently of any target selection
+information.
+<P>
+The <TT>spectro1d</TT> pipeline performs a sequence of tasks for 
+each object spectrum on a plate: The spectrum and error array are read in, along 
+with the pixel mask. Pixels with mask bits set to <TT>FULLREJECT,
+NOSKY, NODATA</TT>, or <TT>BRIGHTSKY</TT> are given no weight in the
+<TT>spectro1d</TT> routines.  The continuum is then fit with  a 5th order polynomial, 
+ with iterative rejection of outliers (e.g., strong
+lines). The fit continuum is subtracted from the spectrum. 
+The continuum-subtracted spectra are used for cross-correlating 
+with the stellar templates.
+<P>
+Emission Line Redshifts
+<P>
+Emission lines (peaks in the 1d spectrum) are found by carrying out a
+wavelet transform of the
+continuum-subtracted spectrum <IMG WIDTH=36 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3535" SRC="img183.gif">:
+<BR><IMG WIDTH=525 HEIGHT=43 ALIGN=BOTTOM ALT="equation1281" SRC="img184.gif"><BR>
+where <I>g</I>(<I>x</I>;<I>a</I>,<I>b</I>) is the wavelet (with complex conjugate <IMG WIDTH=9 HEIGHT=23 ALIGN=MIDDLE ALT="tex2html_wrap_inline3539" SRC="img185.gif">) with
+translation and scale parameters <I>a</I>, <I>b</I>. We apply the
+<EM>&#224; trous</EM> wavelet stark97.
+For fixed wavelet scale <I>b</I>, the wavelet transform is computed at
+each pixel center <I>a</I>; the scale <I>b</I> is then increased in
+geometric steps and the process repeated. Once the full wavelet
+transform is computed, the code finds peaks above a threshold and
+eliminates multiple detections (at different <I>b</I>) of a given line
+by searching nearby pixels. The output of this routine is a set of
+positions of candidate emission lines.
+<P>
+This list of lines with non-zero weights is matched against a list of
+common galaxy and quasar emission lines given in
+Table&nbsp;<A HREF="node65.html#tblreflines">30</A>, many of which were measured from the
+composite quasar spectrum of vandenberk01 (due to velocity
+shifts of different lines in quasars, the wavelengths listed don't
+necessarily match their rest-frame values). Each significant peak found by the wavelet
+routine is assigned a trial line identification from the common list
+(e.g., Mg2) and an associated trial redshift. The peak is fit
+with a Gaussian, and the line center, width, and height above the
+continuum are stored in the <TT>SpecLine</TT> class as parameters <TT>wave</TT>,
+<TT>sigma</TT>, and <TT>height</TT>, respectively.  If the code detects
+close neighboring lines, it fits them with multiple
+Gaussians. Depending on the trial line identification, the linewidth
+it tries to fit is physically constrained. The code then searches for
+the other expected common emission lines at the appropriate
+wavelengths for that trial redshift and computes a Confidence Level
+(<I>CL</I>) by summing over the weights of the found lines and dividing by
+the summed weights of the expected lines. The <I>CL</I> is penalized if the
+different line centers do not quite match.  Once all the trial line
+identifications/redshifts have been explored, an emission line
+redshift is chosen as the one with the highest <I>CL</I>,
+and stored as <TT>z</TT> in the <TT>EmissionRedshift</TT> class.  The exact
+expression for the emission line <I>CL</I> has been tweaked to match our
+empirical success rate in assigning correct emission line redshifts,
+based on manual inspection of a large number of spectra from the 
+EDR (&#167;&nbsp;<A HREF="node62.html#swspectrotest">4.10.3</A>).
+<P>
+The <TT>SpecLine</TT> class also gives the errors, continuum, equivalent width,
+<IMG WIDTH=17 HEIGHT=33 ALIGN=MIDDLE ALT="tex2html_wrap_inline3143" SRC="img97.gif">, spectral index, and significance of each line, in parameters listed
+in Table&nbsp;<A HREF="node65.html#tblspecinfo">12</A>.  We caution that the emission line measurement for
+H<IMG WIDTH=11 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline3417" SRC="img151.gif"> should only be used if <IMG WIDTH=78 HEIGHT=32 ALIGN=MIDDLE ALT="tex2html_wrap_inline3563" SRC="img186.gif">.  In the <TT>SpecLine</TT>
+class, ``found'' lines denote only those lines used to measure the emission
+line redshift, while ``measured'' lines are all lines in the emission line
+list (Table&nbsp;<A HREF="node65.html#tblreflines">30</A>) measured at the redshifted positions
+appropriate to the final redshift assigned to the object.
+<P>
+A separate routine searches for high-redshift (<I>z</I>&gt;2.3) quasars by
+identifying spectra that contain a Ly<IMG WIDTH=11 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline3417" SRC="img151.gif"> forest signature: a
+broad emission line with more fluctuation on the blue side than on the
+red side of the line.  The routine outputs the wavelength of the
+Ly<IMG WIDTH=11 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline3417" SRC="img151.gif"> emission line; while this allows a determination of the
+redshift, it is not a high-precision estimate, because the Ly<IMG WIDTH=11 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline3417" SRC="img151.gif">
+line is intrinsically broad and affected by Ly<IMG WIDTH=11 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline3417" SRC="img151.gif"> absorption.
+The <TT>spectro1d</TT> pipeline stores this as an additional
+emission-line redshift.  This redshift information is stored in the
+<TT>EmissionRedshift</TT> class (Table&nbsp;<A HREF="node65.html#tblspecinfo">12</A>), which
+includes an association to an object in the <TT>SpecObj</TT> class.  Thus
+one <TT>SpecObj</TT> can have one or two <TT>EmissionRedshift</TT> objects 
+associated with it.
+<P>
+If the highest <I>CL</I> emission line redshift uses lines only expected
+for quasars (e.g., Ly<IMG WIDTH=11 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline3417" SRC="img151.gif">, C4, C3]; see Table
+&nbsp;<A HREF="node65.html#tblreflines">30</A>), then the object is <EM>provisionally</EM>
+classified as a quasar.  If any of the identified lines is broader
+than 500&nbsp;km&nbsp;sec<IMG WIDTH=16 HEIGHT=9 ALIGN=BOTTOM ALT="tex2html_wrap_inline2861" SRC="img20.gif"> (FWHM), then the object is also provisionally
+classified as a quasar for the EDR.  
+We expect that this threshold will change in
+future data releases.  These provisional classifications
+will hold up if the <EM>final</EM> redshift assigned to the object (see
+below) agrees with its emission redshift.
+<P>
+Cross-Correlation Redshifts
+<P>
+The spectra are cross-correlated with stellar, emission-line
+galaxy, and quasar template spectra to determine a cross-correlation
+redshift and error.   
+The cross-correlation templates are obtained from SDSS commissioning
+spectra of high <I>S</I>/<I>N</I>, and comprise roughly one for each stellar
+spectral type from B to almost L, a
+non-magnetic and a magnetic white dwarf, an emission line galaxy, a composite
+LRG spectrum, and a composite quasar
+spectrum (from vandenberk01). The composites are based on
+co-additions of <IMG WIDTH=51 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3583" SRC="img187.gif"> spectra each. The template redshifts are
+determined by cross-correlation with a large number of stellar spectra
+from SDSS observations of the M67 star cluster, whose radial velocity
+is precisely known.
+<P>
+When an object spectrum is cross-correlated with the stellar
+templates, its found emission lines are masked out; i.e., the redshift
+is derived from the absorption features. The cross-correlation routine
+follows the technique of tonry79: the continuum-subtracted
+spectrum is Fourier-transformed and convolved with the transform of
+each template. For each template, the three highest Cross-Correlation
+Function (CCF) peaks are found, fit with parabolas, and output with
+their associated confidence limits (<I>CL</I>s). The corresponding redshift
+errors are given by the widths of the CCF peaks. The cross-correlation
+<I>CL</I>s are empirically calibrated as a function of peak level based on
+manual inspection of a large number of spectra from the EDR.  
+The final cross-correlation redshift is then chosen as the
+one with the highest <I>CL</I> from among all the templates.
+<P>
+If there are discrepant high-<I>CL</I> cross-correlation peaks, i.e., if
+the highest peak has <I>CL</I> &lt; 0.99 and the next highest peak corresponds
+to a <I>CL</I> that is greater than <IMG WIDTH=30 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3597" SRC="img188.gif"> of the highest peak, then the
+code extends
+the cross-correlation analysis for the corresponding templates to
+lower wavenumber and includes the continuum in the analysis, i.e., it
+chooses the redshift based on which template provides a better match
+to the continuum shape of the object. These flagged spectra are then
+manually inspected (see below).
+<P>
+The cross-correlation redshift is stored as <TT>z</TT> in the 
+<TT>CrossCorrelationRedshift</TT> class.
+<P>
+Final Redshifts and Spectrum Classification
+<P>
+The <TT>spectro1d</TT> pipeline assigns a <EM>final</EM> redshift to each
+object spectrum by choosing the emission or cross-correlation redshift
+with the highest <I>CL</I>, and stores this as  <TT>z</TT> in the 
+<TT>SpecObj</TT> class.  A redshift status
+bitmask (<TT>zStatus</TT>) and a redshift warning bitmask (<TT>
+zWarning</TT>) are stored, with bitmask values given in
+Table&nbsp;<A HREF="node65.html#tblspecobj">11</A>.  The <I>CL</I> is stored in <TT>zConf</TT>.  Objects
+with redshifts determined manually (see below) have <I>CL</I> set to 0.95
+(<TT>MANUAL_HIC</TT> set in <TT>zStatus</TT> ), or 0.4 or 0.65 (both <TT>
+MANUAL_LOC</TT> set in <TT>zStatus</TT>).  Rarely, objects have the entire
+red or blue half of the spectrum missing; such objects have their
+<I>CL</I>s reduced by a factor of 2, so they are automatically flagged as
+having low confidence, and the mask bits <TT>Z_WARNING_NO_BLUE</TT> or
+<TT>Z_WARNING_NO_RED</TT> are set in <TT>zWarning</TT> as appropriate.
+<P>
+All objects are classified (in <TT>specClass</TT>) 
+as either a quasar, high-<I>z</I> quasar, galaxy,
+star, late-type star, or unknown.  If the object has been identified
+as a quasar by the emission line routine, and if the emission line
+redshift is chosen as the final redshift, then the object retains its
+quasar classification.  Also, if the quasar cross-correlation template
+provides the final redshift for the object, then the object is
+classified as a quasar.  If the object has a final redshift <I>z</I>&gt;2.3 (so
+that Ly<IMG WIDTH=11 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline3417" SRC="img151.gif"> is or should be present in the spectrum), 
+and if at least 2 out of 3 redshift estimators agree on this 
+(the 3 estimators being the emission-line, Ly<IMG WIDTH=11 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline3417" SRC="img151.gif">, and 
+cross-correlation redshifts), then it is
+classified as a high-<I>z</I> quasar.  If the object has a redshift <I>cz</I> &lt;
+450&nbsp;km&nbsp;sec<IMG WIDTH=16 HEIGHT=9 ALIGN=BOTTOM ALT="tex2html_wrap_inline2861" SRC="img20.gif">, then it is classified as a star. If the final
+redshift is obtained from one of the late-type stellar
+cross-correlation templates, it is classified as a late-type star.  If
+the object has a cross-correlation <I>CL</I>&lt; 0.25, it is classified as
+unknown.
+<P>
+There exist among the spectra a small number of composite objects.
+Most common are bright stars on top of galaxies, but there are also
+galaxy-galaxy pairs at distinct redshifts, and at least one
+galaxy-quasar pair, and one galaxy-star pair.  Most of these have the
+<TT>zWarning</TT> flag set, indicating that more than one redshift was
+found.
+<P>
+Additional Spectral Measures
+<P>
+For all objects, Gaussians are fit at the positions of all expected
+emission lines in the reference list (see Table&nbsp;<A HREF="node65.html#tblreflines">30</A>),
+not just the common lines, and their parameters are stored in the
+class <TT>SpecLineIndex</TT> (Table&nbsp;<A HREF="node65.html#tblspecinfo">12</A>).
+<P>
+For galaxies, we compute in the rest frame: the equivalent width, magnitude,
+and their errors of a number of standard line indices, which are useful for
+stellar population, age, and metallicity measures.  These are stored in <TT>
+ew</TT>, <TT>ewErr</TT>, <TT>mag</TT>, and <TT>magErr</TT> in the class <TT>
+SpecLineIndex</TT>.  The equivalent width and magnitude are not corrected for
+velocity dispersion.  We only recommend the use of these line indices for
+stellar population studies for galaxy spectra with good signal to noise ratio: <TT>sn[0]</TT>
+of class <TT>SpecObj</TT> should be greater than 30.
+<P>
+A complete list of the lines we measure is available on our web sites.  They
+were gathered from the following sources:
+<P>
+<UL>
+<LI>Lick line indices 
+	(21 absorption-line strengths on the revised Lick/IDS line-strength
+	system) trager98
+<LI>CN, H+K, Ca1, G, H<IMG WIDTH=11 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline3625" SRC="img189.gif">, Mg, MH, FC, NaD brodie86
+<LI>Ca2&nbsp;8498, Ca2&nbsp;8542, Ca2&nbsp;8662, 
+Mg1&nbsp;8807 diaz89.
+<P>
+</UL>
+<P>
+We also calculate a measure of the strength of the 4000&#197; break as the ratio
+of the flux from 3751-3951&#197; to the flux from 4051-4251&#197;, and the ratio
+of the strength of the Ca K and H lines, as integrated from 3921-3946&#197; and
+3956-3981&#197;, respectively.  These are also stored as ``lines'' in the class
+<TT>SpecLineIndex</TT>, with the flux ratio stored in the parameter <TT>ew</TT>.
+This flux ratio is used as a sanity check on the spectra.  If the break is in
+the wrong direction (flux <EM>decreasing</EM> with increasing <IMG WIDTH=8 HEIGHT=12 ALIGN=BOTTOM ALT="tex2html_wrap_inline2921" SRC="img35.gif">), or if
+the flux ratio is greater than 0.95, the <TT>Z_WARNING_4000BREAK</TT> bit is
+set in <TT>zWarning</TT>.
+<P>
+Finally, galaxies are classified by a Principal Component Analysis
+(PCA) (connolly95a, as extended by
+connollyszalay99), using cross-correlation with
+eigentemplates constructed from early SDSS spectroscopic data. 
+The 5 eigencoefficients
+and a classification number are stored in <TT>eCoeff</TT> and <TT>
+eClass</TT>, respectively, in the <TT>SpecObj</TT> class.  <TT>eClass</TT>
+ranges from about -0.35 to 0.5 for early- to late-type galaxies.
+<P>
+In future data releases, we expect to implement more detailed stellar
+spectral classification based on a larger set of stellar templates.
+The velocity dispersion of each galaxy is currently a placeholder.  It
+will be calculated and stored in a future release.
+<P>
+Redshift Warning flags
+<P>
+The <TT>zWarning</TT> bitmask mentioned above records problems that the
+<TT>spectro1d</TT> pipeline found with each spectrum.  It provides
+compact information about the spectra for end users, and it is also
+used to trigger manual inspection of a subset of spectra on every
+plate.  The bitmasks are listed in Table&nbsp;<A HREF="node65.html#tblspecobj">11</A>.  
+Users should particularly heed warnings
+about parts of the spectrum missing, low
+signal-to-noise ratio in the spectrum, significant discrepancies between
+the various measures of the redshift, and especially low confidence 
+in the redshift determination. In addition, redshifts for objects 
+ with <TT>zStatus = FAILED</TT> should not be used.
+<P>
+Manual Inspection of Spectra
+<P>
+A small percentage of spectra on every plate are inspected manually
+and, if necessary, the redshift, classification, <TT>zStatus</TT>, 
+and <I>CL</I> are corrected.  We
+inspect those spectra that have <TT>zWarning</TT> or <TT>zStatus</TT>
+indicating that there were multiple high-confidence cross-correlation
+redshifts, that the redshift was high (<I>z</I> &gt; 3.2 for quasar or <I>z</I> &gt;
+0.5 for a galaxy), that the confidence was low, that signal-to-noise ratio
+was low in <I>r</I>, or that the spectrum was not measured.  All objects 
+with <TT>zStatus</TT> = <TT>EMLINE_HIC</TT> or <TT>EMLINE_LOC</TT>, i.e., 
+for which the redshift was determined only by emission lines, are  
+also examined. 
+If, however, the object has a final
+<I>CL</I>&gt;0.98 and <TT>zStatus</TT> of either <TT>XCORR_EMLINE</TT> or <TT>
+EMLINE_XCORR</TT>, then, despite the above, it is not manually checked.
+All objects with either <TT>specClass=SPEC_UNKNOWN</TT> or <TT>
+zStatus=FAILED</TT> are manually inspected.
+<P>
+Roughly 8% of the spectra in the EDR were thus inspected, of which
+about 1/8, or 1% overall, had the classification, redshift, <TT>
+zStatus</TT>, or <I>CL</I> manually
+corrected.  Such objects are flagged with <TT>zStatus</TT> changed to
+<TT>MANUAL_HIC</TT> or <TT>MANUAL_LOC</TT>, depending on whether we had
+high or low confidence in the manual inspection classification and
+redshift.  Tests on the validation plates, described in the next
+section, indicate that this selection of spectra for manual inspection
+successfully finds <IMG WIDTH=49 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3643" SRC="img190.gif"> of the spectra for which the automated
+pipeline assigns an incorrect redshift.
+<P>
+<HR><A NAME="tex2html781" HREF="node62.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html779" HREF="node59.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html773" HREF="node60.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html782" HREF="node62.html">Spectroscopic Pipelines Testing and </A>
+<B>Up:</B> <A NAME="tex2html780" HREF="node59.html">Spectroscopic Pipelines</A>
+<B> Previous:</B> <A NAME="tex2html774" HREF="node60.html">Extraction and Calibration of </A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

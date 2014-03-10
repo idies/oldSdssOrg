@@ -1,0 +1,5 @@
+NGC 5005 is an example of a Seyfert 2 galaxy. Seyfert galaxies typically
+have exceptionally bright, compact nuclei; the nucleus of NGC 5005 is
+saturated in this image. The light from the nucleus features strong emission
+lines, which cannot be accounted for by starlight.
+

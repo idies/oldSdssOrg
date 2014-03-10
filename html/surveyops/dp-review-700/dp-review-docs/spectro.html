@@ -1,0 +1,410 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<P>        </P>
+<CENTER><B><I><FONT size=+1>Sloan Digital Sky Survey</FONT></I></B></CENTER>
+<P>   </P>
+<CENTER><B><I><FONT size=+1>Review of Data Processing 
+Operations</FONT></I></B><BR> <BR></CENTER>
+<P>   </P>
+<CENTER><B><FONT size=+2>Overview and Status of the Spectroscopic Pipeline  
+as of July 2000</FONT></B></CENTER>
+<P>  </P>
+<P>
+<P> 
+<CENTER>Josh Frieman</CENTER>
+<P>   </P>
+<CENTER>July 7, 2000</CENTER>
+<P>   </P>
+<P> 
+<HR style="HEIGHT: 6px">
+
+<P>  </P>
+<H3>Outline</H3>
+<P> <B>I. Overview of the Spectroscopic Pipeline</B> </P>
+<P>
+<OL>
+  <LI>Purposes of the pipeline 
+  <LI>Structure of the pipeline </LI></OL>
+<P> <B>II. Status of the Pipeline</B> </P>
+<P>
+<OL>
+  <LI>A Brief History 
+  <LI>Pipeline Requirements and Current Performance wrt Requirements 
+</LI></OL>
+<P> <B>III. Future of the Pipeline</B> </P>
+<P>
+<OL>
+  <LI>Tasks remaining to satisfy requirements and estimated time to completion 
+
+  <LI>Enhanced goals and plans to achieve them 
+  <LI>Staffing needed for long-term code maintenance and operations </LI></OL>
+<P> </P>
+<HR>
+
+<P>  <B>Personnel:</B> As far as I am aware, the following people have 
+contributed to the development of the Spectroscopic pipeline (I would like 
+to be informed of others): M. Bernardi, S. Burles, F. Castander, A. 
+Connolly, D. Finkbeiner, L. Hui, D. Johnston, J. Loveday, R. Lupton, A. 
+Meiksin, A. Merrelli, J. Munn, R. Nichol, A. Pope, D. Schlegel, M. Strauss, 
+M. Subbarao, B. Wilhite, B. Yanny.  </P>
+<HR>
+
+<P> </P>
+<P>
+<P>
+<P>
+<H3>I. Overview of the Spectroscopic Pipeline</H3>
+<P> </P>
+<H4>1. Purposes of the pipeline</H4>
+<P> The spectroscopic pipeline is designed to be a multi-purpose, highly 
+automated pipeline for processing the 10^6 galaxy, QSO, and stellar spectra 
+from the SDSS spectrographs. This is an unprecedented challenge, mitigated 
+by the very high quality spectra these spectrographs produce. </P>
+<P>The pipeline is designed to extract and process all spectra taken in the 
+course of the Survey, and specifically to: 
+<UL>
+  <LI>archive the reduced, red/blue combined, co-added 1d spectra 
+  <LI>classify objects (Star, Galaxy, QSO) independently of the target selection 
+  pipeline 
+  <LI>estimate redshifts and provide spectral information for all objects 
+  possible, with  required redshift accuracy and success rates depending on 
+  object type (see Sect. II) </LI></UL>
+<P> In addition to the above goals, which enable science to be carried 
+out with the spectra, the pipeline has the following roles in survey 
+operations: </P>
+<UL>
+  <LI>provides near real-time diagnostic S/N outputs for APO observers so that 
+   exposure time for each plate can be determined under varying conditions; 
+  this is a critical element in determining Survey time to completion 
+  <LI>provides diagnostic outputs for spectroscopic data processors at Fermilab 
+  so that  data quality on each processed plate can be rapidly assessed as 
+  satisfying Survey scientific requirements or not (i.e., a check on the 
+  previous point); these outputs also provide QA monitoring of the 
+  spectrographic system over time 
+  <LI>provides feedback to target selection on object classification and on 
+  redshift success rates for different object classes as function of 
+  magnitude, surface brightness, etc; this allows the Working groups to 
+  optimize TS parameters for survey efficiency and completeness </LI></UL>
+<P> Aside from these functions in survey operations, the Spectroscopic 
+pipeline is not a critical-path item for the Survey to operate.  
+</P>
+<P>
+<P>
+<P> 
+<H4>2. Structure and Functionality of the Pipeline</H4>
+<P> N.B.: The available documentation on the design of the spectroscopic 
+pipeline is unfortunately out of date (the last major update to the printed 
+documentation was at the time of the Spectroscopic pipeline review in April 
+'99). This will be rectified in the next few months, when technical papers 
+describing the 1d and 2d pipelines will be prepared for publication. 
+</P>
+<P>The Spectroscopic pipeline is split operationally into two parts, 2d and 
+1d. The 2d pipeline reduces the raw data and calibration images from the red 
+and blue CCD cameras from each spectrograph and outputs merged, combined, 
+flux-calibrated spectra and noise for analysis by the 1d pipeline. The 1d 
+pipeline determines emission and absorption redshifts, classifies spectra by 
+object type, and outputs spectral information about each object. During 
+normal data processing operations at Fermilab, a batch of spectroscopic 
+plates is first run through the 2d pipeline and then through 1d.  
+<P> 
+<H4>Spectro2d</H4>
+<P> In October of 1999, it was determined that the then-current version 
+of 2d, which was built around IRAF commands, was not flexible or robust 
+enough to satisfy the Survey requirements. The Spectro2d pipeline was 
+completely rewritten from scratch by S. Burles and D. Schlegel in IDL 
+(idlspec2d). The current version of the code used for data 
+processing (3c) was tagged in early May of this year and was 
+then determined to meet the Survey Requirements of this year and 
+was determined to meet the Survey Requirements in early May. </P>
+<P><B>Key Tasks of Spectro2d</B>  
+<UL>
+  <LI>Overscan 
+  <LI>Bias and dark subtraction 
+  <LI>Spatial tracing of fiber images from flat-field image 
+  <LI>Optimal extraction of flats and arcs 
+  <LI>Wavelength calibration from arc lamps and sky lines 
+  <LI>Flat-fielding: remove spectral response using flat exposures; remove pixel 
+  to pixel response using uniformly illuminated flats 
+  <LI>Optimal Object and sky extraction, including scattered light removal 
+  <LI>Sky subtraction using supersky built from sky fibers 
+  <LI>Telluric absorption removal using spectrophotometric standard spectra 
+  <LI>Flux calibration from spectrophotometric standard (F) stars spectra 
+  <LI>Output spectrum, variance, and pixel mask information 
+  <LI>Rebin spectra and merge red and blue halves; heliocentric correction 
+  <LI>Combine multiple 15-minute exposures as needed to reach required S/N per 
+  plate (multiple-night exposures are combined if necessary, but not if a 
+  plate has been replugged) 
+  <LI>Output diagnostic information on cumulative S/N per plate: this is used by 
+  the spectroscopic data processors to decide if a given plate satisfies 
+  Survey requirements and can be declared "good, done" (and unplugged). The 
+  current requirement is that the mean (S/N)^2  100 for objects with fiber 
+  magnitudes of g'=19.2, r'=19.25, i'=18.9 in each spectrograph. This 
+  limit will be reviewed and refined in the next month (see below) 
+  <LI>Output other diagnostic information that provides QA monitoring on the 
+  spectroscopic system (e.g., errors in wavelength solution, QA for 
+  scattered light levels, throughput compared to PHOTO g,r,i magnitudes, 
+  etc) </LI></UL>
+<P> For a list of the routines used in idlspec2d, see <A 
+href="/surveyops/dp-review-700/dp-review-docs/idlspectro2d.html" >IDL Help for IDLSPEC2d</A>.  </P>
+<P>In addition, a faster, stripped-down version of the 2d pipeline is run on 
+the mountain during spectroscopic observations. This mountain-top version of 
+the 2d pipeline 
+<UL>
+  <LI>provides "real-time" information to the APO observers on the 
+  approximate S/N achieved per 15-minute exposure </LI></UL>
+<P>Based on this information, the APO observers carry out as many 
+spectroscopic exposures on a plate as are necessary under the given 
+conditions to achieve the cumulative (S/N)^2 deemed necessary to meet the 
+Survey requirements. Currently, this is set at (S/N)^2  80 at the same 
+magnitudes as above; this translates approximately to (S/N)^2  100 in 
+idlspec2d.   </P>
+<P>  
+<H4>Spectro1d</H4>
+<P> The 1d pipeline, which analyzes the combined spectra output by 
+spectro2d, is written in C and TCL. A velocity dispersion module written in 
+IDL has been recently added. The version of the code currently used in data 
+processing, 1d_4 was/will be cut on July 10 of this year. The code outputs a 
+FITS image for each fiber: it includes the 1d spectrum, noise, and mask 
+array from 2d, basic information about the target from PHOTO and TS, as well 
+as line measurements and redshift determinations. These outputs are listed 
+in the (unofficial) <A href="/surveyops/dp-review-700/dp-review-docs/spectrodatamodel.txt">Spectro Data Model</A>; the 
+schema of outputs of the pipeline as they will appear to the SX database can 
+be found at <A href="http://www.sdss.jhu.edu/sx/spectro.html">this Web site</A>. 
+Although out of date, general information about the structure of the 1d 
+pipeline can be found at the <A 
+href="http://www-sdss.fnal.gov:8000/spectrodoc/doc/www/spectrodoc.home.html">Spectro 
+Pipeline Home Page</A>.   </P>
+<P><B>Key Tasks of Spectro1d</B>  
+<UL>
+  <LI>Fit and subtract continuum 
+  <LI>Find and fit emission lines (using a wavelet filter) 
+  <LI>Identify emission lines and determine an emission-line redshift and error 
+  where possible 
+  <LI>Cross-correlate the spectra with stellar, galaxy, and QSO templates to 
+  determine a cross-correlation redshift and error (emission lines are 
+  removed in this procedure, except for the QSO template) 
+  <LI>Classify all object spectra as Galaxy, QSO, high-redshift QSO, Star, or 
+  unknown (currently a discrete choice) 
+  <LI>Output a final redshift by comparing emission and absorption redshift 
+  confidence levels; final redshift determination is denoted high 
+  confidence, low confidence, inconsistent, or failed 
+  <LI>Output information on identified emission and absorption lines (equivalent 
+  widths, etc) 
+  <LI>Output warning flags for spectra (e.g., blue or red half of spectrum 
+  missing; conflicting high-CL cross-correlation redshifts; outlier redshift 
+  for object class; classification differs from TS) 
+  <LI>Flag low-confidence level redshift determinations for subsequent 
+  inspection and interactive z-determination 
+  <LI>Provide interactive redshift determination environment for inconsistent, 
+  failed, and other spectra: to be used by Spectro pipeline developers to 
+  manually determine redshifts. It is expected that this will be necessary 
+  for a few percent of all spectra; also to be used on a spotcheck basis for 
+  QA monitoring. 
+  <LI>Estimate velocity dispersion and error for galaxies 
+  <LI>Provide diagnostic output for Spectroscopic data processors to monitor QA 
+  (e.g., compare emission and absorption redshifts for all objects where 
+  both are available and check dispersion and outliers; plot redshift vs. 
+  magnitude and redshift histogram for each plate, etc) </LI></UL>
+<P> </P>
+<P>
+<HR>
+
+<P></P>
+<P>
+<H3>II. Status of the Spectroscopic Pipeline</H3>
+<P> </P>
+<H4>1. Recent History of Pipeline Development</H4>
+<P> </P>
+<UL>
+  <LI>Prior to 3/99: Pipeline development. Pipeline testing by M. Strauss using 
+  simulations provided by D. Schneider. 
+  <LI>3/99: first 3 spectroscopic plates taken with SDSS 2.5m telescope 
+  <LI>4/99: Review of Spectroscopic pipeline at Chicago. 
+  <LI>9-10/99: First calibrated spectra (though shutter problems and light 
+  leaks). 
+  <LI>10/99: Spectroscopic pipeline meeting at Fermilab. Decision taken shortly 
+  thereafter to rewrite spectro2d. 
+  <LI>12/99: Spectroscopic pipeline meeting at Princeton. Task lists and 
+  schedule to pipeline completion updated. As of May 2000, the 2d and 1d 
+  pipelines were within 1-2 months of this schedule. 
+  <LI>3/00-6/00: Spectra of improved quality and in larger numbers obtained. 
+  Processing of the data through the pipeline by spectroscopic data 
+  processors at Fermilab gradually becoming routine. 
+  <LI>5/00: Spectroscopic pipeline meeting at Fermilab, shortly after cuts of 2d 
+  and 1d. 2d determined to satisfy Survey requirements. 
+  <LI>7/00: New version of 1d cut and used to reprocess plates at FNAL. Data 
+  Processing Review at FNAL. </LI></UL>
+<P> </P>
+<H4>2. Spectroscopic Requirements and Current Performance</H4>
+<P> The requirements on the performance of the SDSS Spectroscopic 
+pipeline are described in two documents: Section 7 of the <A 
+href="http://www-sdss.fnal.gov:8000/requirements/doc/www/scireq/scireq.html">Scientific 
+Requirements and Scientific Commissioning for the SDSS</A> and the <A 
+href="http://www-sdss.fnal.gov:8000/requirements/doc/www/softreq/softreq.html">Offline 
+software processing requirements</A>. Note also that some of the 
+requirements on the spectroscopic system are implicitly linked to 
+requirements on Target Selection enumerated in Section 6 of the <A 
+href="http://www-sdss.fnal.gov:8000/requirements/doc/www/scireq/scireq.html">Scientific 
+Requirements and Scientific Commissioning for the SDSS</A>.  </P>
+<P>The current status of the Spectroscopic pipeline in terms of the Survey 
+requirements is described in varying levels of detail in three documents: 
+ 
+<OL>
+  <LI>Michael Strauss' document <A 
+  href="/surveyops/dp-review-700/dp-review-docs/requirements/requirements.html">status 
+  of requirements</A> for the survey provides a general overview. 
+  <LI>Andy Connolly's document <A 
+  href="/surveyops/dp-review-700/dp-review-docs/spectro-req-review.pdf">Requirements 
+  and Status of the SDSS Spectroscopic Systems</A> describes the status of 
+  the SDSS spectroscopic hardware and software with regard to the 
+  requirements set out in Sect. 7 of the <A 
+  href="http://www-sdss.fnal.gov:8000/requirements/doc/www/scireq/scireq.html">Scientific 
+  Requirements and Scientific Commissioning for the SDSS</A> 
+  <LI>Mark Subbarao's webpage <A 
+  href="http://www-sdss.fnal.gov:8000/spectrodoc/doc/www/requirements/sp1dRequirements.html"> 
+  Status of 1d with respect to SDSS Science requirements</A> describes the 
+  current performance of the 1d pipeline with respect to the requirements 
+  set out in Sec. 7 of the <A 
+  href="http://www-sdss.fnal.gov:8000/requirements/doc/www/scireq/scireq.html">Scientific 
+  Requirements and Scientific Commissioning for the SDSS</A> as well as 
+  those set out in the <A 
+  href="http://www-sdss.fnal.gov:8000/requirements/doc/www/softreq/softreq.html">Offline 
+  software processing requirements</A>. Parts of the information on this 
+  page have been incorporated into <A 
+  href="/surveyops/dp-review-700/dp-review-docs/spectro-req-review.pdf">Requirements 
+  and Status of the SDSS Spectroscopic Systems</A>. The numbers reported on 
+  this page are based on comparison of spectro1d outputs (using the checked-out 
+  version of the code as of 6/23/00) with manual determination of 
+  redshifts on several plates of varying S/N taken in the Spring of this 
+  year. Over the next month, all reduced spectroscopic plates taken so far 
+  (over 40) will be manually checked; this will allow more accurate 
+  statistics on pipeline and spectroscopic system performance as a function 
+  of plate S/N to be compiled. </LI></OL>
+<P> </P>
+<P><B>Summary on Pipeline Status and Requirements</B> 
+<P> Based on tests carried out and summarized in the documents above, 
+ 
+<UL>
+  <LI>idlspectro2d is deemed to satisfy the Survey science requirements 
+  <LI>spectro1d satisfies most of the Survey science requirements at the current 
+  minimum acceptable S/N level per plate. This includes the requirements on 
+  redshift success rates for galaxies, BRGs, and QSOs, the redshift accuracy 
+  requirements on galaxies and QSOs (though these have only been tested 
+  internally; external comparison is difficult and remains to be carried 
+  out), and the successful classification of galaxy and QSO spectra as such. 
+  </LI></UL>
+<P> </P>
+<P>The spectro1d requirements which are not yet satisfied or verified are 
+the following: 
+<UL>
+  <LI>Although 95% of QSO spectra are successfully classified as such, the 
+  requirements also state that 99% of the QSO spectra not correctly 
+  classified should be classified as unknown. Currently the majority of 
+  misclassified QSO spectra (typically 0 or 1 per plate) are instead 
+  identified as stars or galaxies by the pipeline. It is the goal of the 
+  pipeline that misclassified QSO spectra will be flagged for manual 
+  classification and redshift determination. 
+  <LI>Currently 96% of stellar spectra are correctly classified by the pipeline 
+  (based on 5 plates), while the requirement is 99%. This will be addressed 
+  by the addition of hot and cool stellar templates for the 
+  cross-correlation analysis. 
+  <LI>The status of the requirement on the accuracy of BAL QSO redshifts is not 
+  yet known; internal reproducibility is within the required accuracy 
+  limit, but comparison with manual redshift determinations needs to be done. 
+  This will occur in the next few weeks. </LI></UL>
+<P> Note: internal and external verification of redshift accuracy 
+for galaxies at the 30 km/sec level is a difficult problem. The pipeline 
+developers will compare 1d redshifts with high-resolution redshifts from the 
+literature where available. Aside from this, manual determination of 
+redshifts of all the spectra taken so far (~42 plates) will be used as a 
+"truth table"; statistical comparison with these manual redshifts will be 
+used to determine whether the pipeline meets the science requirements of the 
+survey.    </P>
+<P>
+<HR>
+
+<P></P>
+<P>
+<H3>III. Future Development of the Spectroscopic Pipeline</H3>
+<P></P>
+<P>
+<H4>1. Remaining Tasks and Estimated Time to Completion</H4>
+<P></P>
+<P>The near-term prioritized tasks for the 1d pipeline listed here are aimed 
+at satisfying the remaining Survey science requirements. It is expected that 
+these will be completed by 9/1/00: 
+<OL>
+  <LI>Add stellar templates to improve stellar classification success rate 
+  <LI>Improve QSO classification scheme so that unclassified QSO spectra are 
+  flagged for visual inspection 
+  <LI>Manually determine redshifts and classification for all objects on all 
+  plates observed so far; this will be used to check classification and 
+  redshift success rates as functions of plate S/N and thus to determine 
+  required plate S/N for survey operations. It will also be used to determine 
+  whether additional parameters beyond plate S/N need to be checked in 
+  declaring plates "done". 
+  <LI>Recalibrate emission and absorption redshift Confidence Levels using 
+  manual redshifts above. 
+  <LI>Implement redshift warning flags (e.g., missing half-spectra, discordant 
+  high-CL redshift determinations, etc) 
+  <LI>Check external accuracy of redshifts where possible from the literature 
+
+  <LI>Check BAL QSO redshifts against manual determination from the QSO working 
+  group to verify required accuracy 
+  <LI>Improve continuum fitting algorithm (expected to improve QSO redshift 
+  success and classification) </LI></OL>
+<P> In addition to these tasks, both the 2d and 1d pipelines need to 
+implement regression tests to ensure code robustness in the course of future 
+development. </P>
+<P>
+<H4>2. Enhanced Goals and Estimated Time to Achieve Them</H4>
+<P></P>
+<P><B>Spectro2d:</B> 
+<P>It is expected that the following enhanced goals will be achieved by 
+approximately 10/1/00: 
+<P>
+<OL>
+  <LI>output estimated error covariance in addition to variance 
+  <LI>implement code to reduce binned diamond-pattern exposures 
+  <LI>improve flux calibration based on spectrophotometric standards? 
+</LI></OL>
+<P></P>
+<P><B>Spectro1d:</B> 
+<P>The following enhanced goals of Spectro1d are expected to be achieved at 
+various stages, but in all cases by the end of 2000; they are listed in 
+expected order of completion: 
+<OL>
+  <LI>Test and finalize galaxy velocity dispersion code 
+  <LI>Output line indices 
+  <LI>Implement galaxy and QSO spectral classification using eigenspectrum (PCA) analysis 
+  
+  <LI>Implement stellar spectral classification using non-continuum-subtracted 
+  spectra/templates 
+  <LI>Determine feasibility of galaxy spectrophotometry using diamond-pattern 
+  exposures; implement to the extent possible </LI></OL>
+<P></P>
+<P><B>3. Long-term Staffing Needs</B> 
+<P>The long-term staffing needs for the spectroscopic pipeline are based on 
+the two roles that will be needed during Survey Operations: 
+<OL>
+  <LI>Long-term code maintenance: QA monitoring; possible code development 
+  necessary if hardware changes significantly (i.e., some component breaks 
+  or degrades over time); possible additional enhancements desired by the 
+  collaboration; provide assistance as needed to Spectroscopic data processors 
+  at Fermilab 
+  <LI>Interactive Redshift Determination: this will be carried out by the 
+  pipeline developers over the course of the Survey for up to a few percent 
+  of all spectra. This will provide z determinations and object 
+  classifications for objects where the automated pipeline cannot make a 
+  determination as well as provide spotchecking of the automated pipeline 
+  for QA. </LI></OL>
+<P></P>
+<P>The anticipated long-term staffing level (2001 and beyond) needed to meet 
+these requirements is 1 FTE supported by ARC.     
+</P>
+
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

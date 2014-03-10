@@ -1,0 +1,53 @@
+<html>
+
+
+<h3>Stripes 1356/72 Footprint Anomaly </h3>
+
+There is a defect in the footprint along stripes 1356 and 72 from 70 > RA > 50  and 10 < DEC < 20 :
+
+<p>
+   
+<img src="global1356-72.png">
+<p>
+ <h3>Here is a possible SQL for recovering these objects (to do both in the context dr7 and Runsdb ) : </h3> 
+<p>  
+<p>
+Select
+p.run,p.rerun,p.camcol,p.field,p.obj,p.ra,p.dec,g,mode,p.status,stripe,strip
+<p>
+From
+Photoobjall p,field f,segment s
+<p>
+Where
+<p>
+Ra between  70 and 50 and
+<p>
+Dec between 10 and 20   and
+<p>
+G between 18  and 18.2  and
+
+<p>
+p.fieldid = f.fieldid and f.segmentid = s.segmentid
+<p>
+(and mode=1 for the context dr7)
+<p>
+<p>
+<p>
+
+<h3>With this, we can select the interesting data in Runsdb keeping the data  from Runsdb: </h3>
+<p>
+($11 == 1356 && $4 > 103 && $4 < 131) || ($11==72 && $4 > 321)
+
+<p>
+The South strip of Stripe 1356 from the runsdb consists of objects from run 6003.
+<p>
+The South strip of Stripe 72 from the runsdb consists of objects from run 4843.
+<p>
+
+<h3> A new Stripe </h3>
+<p>
+The stripe  205 appears in the runsdb whereas it didn't exist in dr7. Here is a picture showing this stripe : here all the datas come from runsdb.
+<p>
+<img src ="stripe205.png"> 
+</html>
+

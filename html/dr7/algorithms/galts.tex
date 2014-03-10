@@ -1,0 +1,61 @@
+\documentclass[12pt,preprint]{aastex}
+
+\pagestyle{empty}
+\begin{document}
+\newcommand{\rpsf}{{r_{\rm PSF}}}
+\newcommand{\rmodel}{{r_{\rm model}}}
+\newcommand{\rfiber}{{r_{\rm fiber}}}
+\newcommand{\muh}{{\mu_{50}}}
+\begin{figure}
+\begin{picture}(504,320)(0,170)
+\put(200,550){\makebox(0,0){\fbox{$> 5\,\sigma$ in $r$?}}}
+\put(242,550){\vector(1,0){93}}
+\put(280,555){\makebox(0,0)[b]{No}}
+\put(340,545){Reject}
+\put(200,540){\vector(0,-1){50}}
+\put(203,500){\shortstack{Y\\e\\s}}
+\put(200,480){\makebox(0,0){\fbox{Star/gal separation: 
+  $\rpsf - \rmodel \ge 0.3?$}}}
+\put(310,480){\vector(1,0){25}}
+\put(325,485){\makebox(0,0)[b]{No}}
+\put(340,475){Reject}
+\put(200,470){\vector(0,-1){29}}
+\put(203,443){\shortstack{Y\\e\\s}}
+\put(200,423){\makebox(0,1){\fbox{\parbox{15em}{{\tt SATURATED, BRIGHT}, or
+({\tt BLENDED} and not {\tt NODEBLEND})?}}}}
+\put(294,430){\vector(1,0){44}}
+\put(310,435){\makebox(0,0)[b]{Yes}}
+\put(340,425){Reject}
+\put(200,406){\vector(0,-1){18}}
+\put(203,395){\shortstack{No}}
+\put(200,380){\makebox(0,0){\fbox{$r_P \le 17.77?$}}}
+\put(240,380){\vector(1,0){95}}
+\put(280,385){\makebox(0,0)[b]{No}}
+\put(340,375){Reject}
+\put(200,370){\line(0,-1){30}}
+\put(203,345){\shortstack{Y\\e\\s}}
+\put(100,340){\line(1,0){200}}
+\put(100,340){\vector(0,-1){50}}
+\put(200,340){\vector(0,-1){50}}
+\put(300,340){\vector(0,-1){50}}
+\put(100,280){\makebox(0,0){\fbox{$\muh \le 23.0?$}}}
+\put(200,280){\makebox(0,0){\fbox{$23.0 < \muh \le 24.5?$}}}
+\put(300,280){\makebox(0,0){\fbox{$\muh > 24.5?$}}}
+\put(100,270){\vector(0,-1){100}}
+\put(100,170){\makebox(0,0)[t]{Accept}}
+\put(103,200){\shortstack{Y\\e\\s}}
+\put(200,270){\vector(0,-1){30}}
+\put(200,230){\makebox(0,0){\fbox{$\rm Sky_{global} - Sky_{local} <
+0.05$}}}
+\put(200,210){\makebox(0,0){\fbox{or $\rfiber \le 19.0$?}}}
+\put(200,200){\vector(0,-1){30}}
+\put(200,170){\makebox(0,0)[t]{Accept}}
+\put(203,175){\shortstack{Y\\e\\s}}
+\put(300,270){\vector(0,-1){30}}
+\put(310,230){\makebox(0,0){\fbox{$\rfiber \le 19.0$?}}}
+\put(300,220){\vector(0,-1){50}}
+\put(300,170){\makebox(0,0)[t]{Accept}}
+\put(303,185){\shortstack{Y\\e\\s}}
+\end{picture}
+\end{figure}
+\end{document}

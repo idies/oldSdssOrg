@@ -1,0 +1,61 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<script>
+
+s = new String(window.location)
+q = s.indexOf("?")
+if (q >= 0) {
+   b = s.substring(q+1,s.length)
+   c = b.indexOf(",")
+   x = b.substring(0, c)
+   y = b.substring(c+1,b.length)
+
+   a = 174.644380535
+   b = 0.00010998658699
+   c = 6.35477517284e-08
+   d = -0.00699051453215
+   e = 1.26053107193e-08
+   f = 0.0001100183405
+   node = 94.999999999950006
+   incl = 65.0
+   taiEnd = 7.631906399968889
+   rate = 38.005
+   date="2000-4-4"
+   run=1332
+   camcol=4
+   field=66
+
+   newurl=new String("../../../../template/objpos.htm?")
+   newurl = newurl + "x=" + x + "&"
+   newurl = newurl + "y=" + y + "&"
+   newurl = newurl + "a=" + a + "&"
+   newurl = newurl + "b=" + b + "&"
+   newurl = newurl + "c=" + c + "&"
+   newurl = newurl + "d=" + d + "&"
+   newurl = newurl + "e=" + e + "&"
+   newurl = newurl + "f=" + f + "&"
+   newurl = newurl + "node=" + node + "&"
+   newurl = newurl + "incl=" + incl + "&"
+   newurl = newurl + "taiEnd=" + taiEnd + "&"
+   newurl = newurl + "rate=" + rate + "&"
+   newurl = newurl + "date=" + date + "&"
+   newurl = newurl + "run=" + run + "&"
+   newurl = newurl + "camcol=" + camcol + "&"
+   newurl = newurl + "field=" + field + "&"
+   window.location.replace(newurl)
+
+} else {
+   document.write("Click on image to get coordinates<br>")
+   document.write("(You must have javascript enabled)<br>")
+   }
+
+
+</script>
+
+</body>
+</html>
+

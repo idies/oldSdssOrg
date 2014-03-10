@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorials - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Tutorials</h1> These pages provide detailed worked examples of
+SDSS data retrieval using the various <a
+href="../access/index.html">interfaces</a> provided. In addition, we
+provide discussions of how to access and read some of the unusual file
+types used in the survey, and perform certain operations, such as
+calibration.<br>
+
+<ul class="pad">
+  <li>Getting Data for Individual objects<br /><br />
+      <ul class="pad">
+    <li><a href="getimage/index.html">Get an image of my favorite object?</a></li>
+    <li><a href="getspec/index.html">Get a spectrum of my favorite object?</a></li>
+    <li><a href="flags/index.html">Find out if SDSS's imaging data for an object are reliable?</a></li>
+    <li><a href="finding/index.html">Create a finding chart for my telescope?</a></li>
+    <li><a href="./retrieveFITS.html">Get FITS images of objects?</a></li>
+      </ul><br />
+   </li>
+   <li>Searching for Data<br /><br />
+        <ul class="pad">
+    <li><a href="getdata/index.html">Find all objects in a given RA/Dec/Magnitude/Absolute Magnitude range?</a></li>
+    <li><a href="searchimage/index.html">Find images and spectra for all objects in a given RA/Dec/Magnitude/Absolute Magnitude range?</a></li>
+    <li><a href="crossid/index.html">Upload my own data to see what the SDSS knows about those objects?</a></li>
+    <li><a href="random/index.html">Get a random subset of the data?</a></li>
+    <li><a href="pairs/index.html">Find closely paired objects?</a></li>    
+<!--	<li><a href="./galaxyspectra.html">Getting galaxy spectra within a
+	    magnitude range</a></li>-->
+	<li><a href="./colorconstraints.html">Get spectra based on color constraints?</a></li>
+	<li><a href="./flagspropermotion.html">Get flags and proper motions for a list of targets?</a></li>
+<!--	<li><a href="./galaxypositionmagnitudes.html">Position and Magnitude Limited Catalog Query</a></li>-->
+<!-- 	<li><a href="./proximitysearch.html">Proximity Query - Getting Objects Near Your Coordinates</a></li> -->
+	
+	<li><a href="../products/spectra/getspectra.html">Get all spectra in bulk</a>? (Note: This is a variant of the spectroscopic
+	    data set which has extra files per plate: one containing the calibrated
+	    object list entries for each spectrum, and one containing the corresponding
+	    postage-stamp (or "atlas") images.)</li>
+<!--    <li><a href="complete/index.html">Select a complete sample of a given object type (Quasars, G stars...)</a></li>	     -->
+      </ul><br />
+  </li>
+  
+  
+
+  <li>Reading SDSS Data Files<br /><br />
+      <ul class="pad">
+	<li><a href="./fitsfiles.html">Software for reading fits images
+	    and tables</a></li>
+	<li><a href="../products/catalogs/read_tsObj.html">Reading the <code>tsObj*.fits</code>
+	    files</a> containing the calibrated photometric object lists</li>
+	<li><a href="../products/spectra/read_spSpec.html">Reading the
+	    <code>spSpec*.fits</code> files</a> containing calibrated
+	    spectra, redshifts, and line measurements</li>
+	<li><a href="../data/parfiles.html">Reading <code>.par</code> files</a></li>
+	<li><a href="../products/images/read_atlas.html">Reading Atlas Images</a></li>
+	<li><a href="../products/images/read_mask.html">Extracting Mask Frames</a></li>
+	<li><a href="../products/images/read_psf.html">Extracting PSF
+	    Images</a> to reconstruct the PSF at a given
+	    location.</li>
+      </ul><br />
+  </li>
+
+
+  <li>Operating on SDSS Data<br /><br />
+      <ul class="pad">
+	<li><a href="../algorithms/fluxcal.html#counts2mag">Converting counts in the fpC file to calibrated ugriz magnitudes</a></li>
+	<li><a
+	    href="../products/general/astrometry.html#calibrationEquations">Applying astrometric calibrations</a> beyond the WCS info.</li>
+      </ul>
+  </li>
+</ul>
+      
+<!-- end page content-->
+
+<hr>
+<!-- hhmts start -->Last modified: Tue Sep 16 15:50:58 ET 2008
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

@@ -1,0 +1,10 @@
+Title: VV150b
+
+Caption: The 5 brightest galaxies form a compact group of galaxies that
+likely form a gravitationally bound system.  All have velocities of about
+8000 km/s.  The group is known as VV150b and also Arp 322.  Tidal interactions
+give rise to the streamers of material that appear to connect some of the
+galaxies.  By accurately measuring the velocities of the galaxies with respect
+to one another, it is possible to estimate the total mass of such groups.
+
+Caption by Steve Kent

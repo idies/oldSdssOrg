@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="SDSS Redshift Gallery: Quasars">
+<title>SDSS Redshift Gallery: Quasars</title>
+</head>
+
+<sdss-page select="gallery">
+
+<h1 align="center">Redshift Gallery: Quasars</h1>
+
+<p>The following table shows how quasars at different redshifts appear
+to us, both photometrically and spectroscopically.  The redshift
+(<i>z</i>) of each quasar is listed in the leftmost column.  
+</p>
+
+<p><em>(This page is image-intensive; please be patient.  Page courtesy
+of Mark Subbarao, University of Chicago)</em></p>
+
+<hr>
+<table border="1" width="100%" bgcolor="#000000">
+
+<tr>
+<td><font color="#FF0000"><font size="+2">0.1</font></font></td>
+<td><img src="../data/zgal/qso01i.gif"></td>
+<td><img src="../data/zgal/qso01s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">0.2</font></font></td>
+<td><img src="../data/zgal/qso02i.gif"></td>
+<td><img src="../data/zgal/qso02s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">0.3</font></font></td>
+<td><img src="../data/zgal/qso03i.gif"></td>
+<td><img src="../data/zgal/qso03s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">0.4</font></font></td>
+<td><img src="../data/zgal/qso04i.gif"></td>
+<td><img src="../data/zgal/qso04s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">0.5</font></font></td>
+<td><img src="../data/zgal/qso05i.gif"></td>
+<td><img src="../data/zgal/qso05s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">0.6</font></font></td>
+<td><img src="../data/zgal/qso06i.gif"></td>
+<td><img src="../data/zgal/qso06s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">0.7</font></font></td>
+<td><img src="../data/zgal/qso07i.gif"></td>
+<td><img src="../data/zgal/qso07s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">0.8</font></font></td>
+<td><img src="../data/zgal/qso08i.gif"></td>
+<td><img src="../data/zgal/qso08s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">0.9</font></font></td>
+<td><img src="../data/zgal/qso09i.gif"></td>
+<td><img src="../data/zgal/qso09s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">1.1</font></font></td>
+<td><img src="../data/zgal/qso11i.gif"></td>
+<td><img src="../data/zgal/qso11s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">1.2</font></font></td>
+<td><img src="../data/zgal/qso12i.gif"></td>
+<td><img src="../data/zgal/qso12s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">1.3</font></font></td>
+<td><img src="../data/zgal/qso13i.gif"></td>
+<td><img src="../data/zgal/qso13s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">1.4</font></font></td>
+<td><img src="../data/zgal/qso14i.gif"></td>
+<td><img src="../data/zgal/qso14s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">1.5</font></font></td>
+<td><img src="../data/zgal/qso15i.gif"></td>
+<td><img src="../data/zgal/qso15s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">1.6</font></font></td>
+<td><img src="../data/zgal/qso16i.gif"></td>
+<td><img src="../data/zgal/qso16s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">1.7</font></font></td>
+<td><img src="../data/zgal/qso17i.gif"></td>
+<td><img src="../data/zgal/qso17s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">1.8</font></font></td>
+<td><img src="../data/zgal/qso18i.gif"></td>
+<td><img src="../data/zgal/qso18s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">1.9</font></font></td>
+<td><img src="../data/zgal/qso19i.gif"></td>
+<td><img src="../data/zgal/qso19s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">2.0</font></font></td>
+<td><img src="../data/zgal/qso20i.gif"></td>
+<td><img src="../data/zgal/qso20s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">2.1</font></font></td>
+<td><img src="../data/zgal/qso21i.gif"></td>
+<td><img src="../data/zgal/qso21s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">2.2</font></font></td>
+<td><img src="../data/zgal/qso22i.gif"></td>
+<td><img src="../data/zgal/qso22s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">2.3</font></font></td>
+<td><img src="../data/zgal/qso23i.gif"></td>
+<td><img src="../data/zgal/qso23s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">2.4</font></font></td>
+<td><img src="../data/zgal/qso24i.gif"></td>
+<td><img src="../data/zgal/qso24s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">2.5</font></font></td>
+<td><img src="../data/zgal/qso25i.gif"></td>
+<td><img src="../data/zgal/qso25s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">2.6</font></font></td>
+<td><img src="../data/zgal/qso26i.gif"></td>
+<td><img src="../data/zgal/qso26s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">2.7</font></font></td>
+<td><img src="../data/zgal/qso27i.gif"></td>
+<td><img src="../data/zgal/qso27s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">2.8</font></font></td>
+<td><img src="../data/zgal/qso28i.gif"></td>
+<td><img src="../data/zgal/qso28s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">2.9</font></font></td>
+<td><img src="../data/zgal/qso29i.gif"></td>
+<td><img src="../data/zgal/qso29s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">3.0</font></font></td>
+<td><img src="../data/zgal/qso30i.gif"></td>
+<td><img src="../data/zgal/qso30s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">3.1</font></font></td>
+<td><img src="../data/zgal/qso31i.gif"></td>
+<td><img src="../data/zgal/qso31s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">3.2</font></font></td>
+<td><img src="../data/zgal/qso32i.gif"></td>
+<td><img src="../data/zgal/qso32s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">3.3</font></font></td>
+<td><img src="../data/zgal/qso33i.gif"></td>
+<td><img src="../data/zgal/qso33s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">3.4</font></font></td>
+<td><img src="../data/zgal/qso34i.gif"></td>
+<td><img src="../data/zgal/qso34s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">3.6</font></font></td>
+<td><img src="../data/zgal/qso36i.gif"></td>
+<td><img src="../data/zgal/qso36s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">3.7</font></font></td>
+<td><img src="../data/zgal/qso37i.gif"></td>
+<td><img src="../data/zgal/qso37s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">3.8</font></font></td>
+<td><img src="../data/zgal/qso38i.gif"></td>
+<td><img src="../data/zgal/qso38s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">4.0</font></font></td>
+<td><img src="../data/zgal/qso40i.gif"></td>
+<td><img src="../data/zgal/qso40s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">4.1</font></font></td>
+<td><img src="../data/zgal/qso41i.gif"></td>
+<td><img src="../data/zgal/qso41s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">4.3</font></font></td>
+<td><img src="../data/zgal/qso43i.gif"></td>
+<td><img src="../data/zgal/qso43s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">4.4</font></font></td>
+<td><img src="../data/zgal/qso44i.gif"></td>
+<td><img src="../data/zgal/qso44s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">4.5</font></font></td>
+<td><img src="../data/zgal/qso45i.gif"></td>
+<td><img src="../data/zgal/qso45s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">4.6</font></font></td>
+<td><img src="../data/zgal/qso46i.gif"></td>
+<td><img src="../data/zgal/qso46s.gif"></td>
+</tr>
+
+<tr>
+<td><font color="#FF0000"><font size="+2">5.0</font></font></td>
+<td><img src="../data/zgal/qso50i.gif"></td>
+<td><img src="../data/zgal/qso50s.gif"></td>
+</tr>
+</table>
+
+</sdss-page>
+
+</html>

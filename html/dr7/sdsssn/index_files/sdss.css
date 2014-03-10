@@ -1,0 +1,236 @@
+body
+{
+padding : 0px;
+margin : 0px;
+margin-top : 0px;
+margin-left : 0px;
+margin-right: 0px;
+margin-bottom: 0px;
+font-family : verdana, arial, helvetica, sans-serif;
+/*font-size : 9pt; xm's original*/
+font-size : 1em;
+background: #ffffff;
+}
+
+td
+{
+font-family : arial, helvetica, sans-serif;
+font-size : 1em;
+}
+
+colorborder
+{
+background: #6352c7;
+}
+
+h1
+{
+color : #6352c7;
+font-size: 1.5em;
+font-weight:bold;
+margin-top : 0em;
+}
+
+h2
+{
+font-size: 1.3em;
+font-weight:bold;
+}
+
+h3
+{
+font-size: 1.3em;
+font-weight: normal;
+margin-bottom : 0em;
+}
+
+h4
+{
+font-size: 1.0em;
+font-weight: bold;
+margin-bottom : 0em;
+}
+
+caption
+{
+font-weight: bold;
+}
+
+/* for tables holding figures with captions */
+div.fig
+{ 
+  margin-left: 5em;
+}
+
+/* for figures with captions */
+.cfig
+{ 
+  width:640px;
+}
+
+div.cfig
+{
+  width:670px;
+  padding:30px;
+  border-style:solid;
+  border-width:thin;
+  border-color:black;
+  margin-left: 5em;
+}
+
+p.cfig
+{ 
+  text-align:justify;
+}
+
+
+/* tutorial ordered lists with space between list entries */
+ol.tut > li
+{
+padding-bottom:1em;
+}
+
+/* unordered list with space between list entries */
+ul.pad > li
+{
+padding-bottom:1em;
+}
+
+/* .eqn should really be called .var; .equation is for formatting equations */
+.eqn
+{
+font-family : serif;
+/*font-weight : bold;*/
+font-style : italic;
+}
+
+div.equation
+{
+font-family: serif;
+font-style: italic;
+margin-left: 5em;
+}
+
+.linkcell
+{
+background: #bbbbbb;
+font-family : arial, helvetica, sans-serif;
+font-size : 1em;
+font-weight : bold;
+}
+
+.link
+{
+font-size : 1em;
+color : #6252BC;
+/*background : #bbbbbb;*/
+font-weight : bold;
+padding-left : 3px;
+padding-right : 1px;
+padding-top : 1px;
+padding-bottom : 1px;
+}
+
+.none
+{
+text-decoration : none;
+}
+
+.menutd
+{
+border-bottom : thin;
+}
+
+.divider
+{
+background : #dddddd;
+}
+
+.txt
+{
+font-size : 0.9em;
+color : #000000;
+}
+
+.body
+{
+font-size : 1em;
+color : #000000;
+}
+
+.header
+{
+color : #6352c7;
+font-size: 1.2em;
+font-weight:bold;
+}
+
+.boldcolortext
+{
+color : #6352c7;
+font-size: 1em;
+font-weight:bold;
+}
+
+.footer
+{
+font-size : 0.7em;
+font-family : arial, helvetica, sans-serif;
+color : #dddddd;
+padding-top : 1px;
+padding-bottom : 2px;
+background : #000000;
+text-align : left;
+}
+
+.mailto
+{
+color : #dddddd;
+text-decoration : none;
+}
+
+.newsBox
+{
+font-size : 1em;
+padding-top : 2px;
+padding-bottom : 2px;
+background : #ffffff;
+border : 1px solid #000000;
+}
+
+.infoBoxes
+{
+font-size : 1em;
+color : #6352c7;
+padding-top : 2px;
+padding-bottom : 2px;
+background : #efeff9;
+text-align : center;
+border : 1px solid #6352c7;
+font-weight : bold;
+}
+
+fdl
+{
+font-size: 1em;
+font-weight: bold;
+}
+
+/* warnings */
+span.warn
+{
+color: red;
+}
+td.warn
+{
+color: red;
+}
+/* extra information Color */
+span.xtra
+{
+color: darkorange;
+}
+td.xtra
+{
+color: darkorange;
+}

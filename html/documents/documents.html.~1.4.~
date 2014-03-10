@@ -1,0 +1,24 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+<h2>Technical Information</h2>
+<p>A complete description of the Sloan Digital Sky Survey scientific
+program and instrumentation can be found in the <a
+href="http://www.astro.princeton.edu/PBOOK/welcome.htm">SDSS Project
+Book</a>.  See <a href="http://www.sdss.org/dr2">http://www.sdss.org/dr2</a> for some of the principal attributes of the survey, which is
+designed to be completed in five years of observations.  The SDSS
+photometric system is calibrated using the <i>u'g'r'i'z'</i> magnitudes
+of <a href="../documents/photo_primary_stds.html">these standard
+stars</a>.</p>
+<h2>Scientific Goals</h2>
+<ul>
+<li><a href="goals.html">Survey Goals</a> (Fermilab site)
+<li><a href="5yearbaseline.pdf">5 Year Baseline Plan</a> (in PDF format)
+<li><a href="5yrbaselineschedule.pdf">5 Year Baseline Schedule</a> (in PDF format)
+</ul>
+<h2>Scientific Requirements</h2>
+<ul>
+<li><a
+href="http://tdpc01.fnal.gov/sdss/project/req_spec.htm">Requirements and
+Specifications</a> (Survey Ops site)
+</ul>
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->

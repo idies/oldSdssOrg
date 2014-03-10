@@ -1,0 +1,3 @@
+find run* -name j\*htm -exec wget -x -nH http://sdsslnx.fnal.gov:8015/\{\} \;
+sr 's/^<a href.+Overlay.+$//;' */*/*/*/h*htm
+rm */*/*/*/h*htm.bak

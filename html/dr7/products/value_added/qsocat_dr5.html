@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>QSO catalog - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Fourth edition of the SDSS Quasar Catalog</h1>
+
+<p>The DR5 quasar catalog is described in <a
+href="http://adsabs.harvard.edu/abs/2007AJ....134..102S">Schneider et
+al. 2007, AJ 134, 102</a>. The catalog contains 77,429 objects from
+DR5 that have apparent <var>i</var>-band PSF magnitude fainter than
+15, absolute <var>i</var>-band magnitudes brighter than -22, contain
+at least one emission line or are unambiguously broad absorption line
+quasars, and have highly reliable redshifts. The catalog was created
+by inspecting all spectra that were either targeted as quasar
+candidates, or classified as a quasar by the <a
+href="../../algorithms/redshift_type.html">spectroscopic
+pipelines</a>.</p>
+
+<h3>SDSS Quasar Catalog redshifts supersede those in other data
+products</h3>
+
+<p>Because of the re-inspection of the spectra, the DR5 Quasar Catalog
+provides the most reliable classifications and redshifts of SDSS
+quasars. The classifications in the catalog supersede those found in
+other data products accessible from the <a href="../../access/">data
+access page</a>, as well as from the DR3, DR1 and EDR quasar
+catalogs. The improved classifications will be fed back into other
+data products for future data releases.</p>
+
+<h3>The DR5 Quasar Catalog is not a statistical sample</h3>
+
+<p>There are two reasons:</p>
+<ol>
+  <li>It includes objects from all categories of <a
+      href="../../algorithms/target.html">target selection</a> in SDSS, not just those
+      selected as quasar candidates.</li>
+  <li><p>While the catalog contains both the
+      <code>TARGET</code> selection flags used to select spectroscopic
+      targets, and the <code>BEST</code> selection flags obtained by
+      applying the final target selection version (sometimes to better
+      photometric data obtained later during the survey), use of the <code>BEST</code> data
+      produces a different set of quasar candidates than the
+      <code>TARGET</code> version that was used to define
+      spectroscopic plates, even for those parts of the sky that were
+      targeted using the <a
+      href="../../algorithms/target.html#qso">final quasar target
+      selection algorithm</a> described in <a
+      href="http://www.journals.uchicago.edu/AJ/journal/issues/v123n6/201557/201557.html">Richards
+      et al. 2002</a>.  If one uses the <code>BEST</code> photometry
+      to define a statistical sample, not only must one drop catalog
+      entries which were not selected by the final version, but one also has to
+      account for missing quasar candidates, i.e., those identified by
+      the final target selection algorithm but without spectroscopic
+      observations. A forthcoming paper will discuss the construction
+      of a statistical quasar sample in detail.</p>
+  </li>
+</ol>
+
+<p>These caveats aside, the selection of UV excess quasars has
+remained reasonably uniform. These constitute 89% of the
+color-selected objects, and 63% of the total DR5 Catalog. Changes to
+the target selection algorithm were primarily aimed at improving the
+effectiveness of the identification of <var>z</var>&gt; 2.5
+quasars.</p>
+
+<h3>Download the DR5 Quasar Catalog</h3>
+
+<p>The catalog is available in the following formats:</p>
+
+<ul>
+  <li>ASCII table
+      <ul>
+	<li><a href="./dr5qso.dat">dr5qso.dat</a> (35 MB)</li>
+	<li><a href="./dr5qso.dat.gz">dr5qso.dat.gz</a> (gzipped, 8.3 MB)</li>
+      </ul>
+  </li>    
+  <li><a href="http://fits.gsfc.nasa.gov/">fits</a> binary table
+      <ul>
+	<li><a href="./dr5qso.fits">dr5qso.fits</a> (23 MB)</li>
+	<li><a href="./dr5qso.fits.gz">dr5qso.fits.gz</a> (gzipped, 9.1 MB)</li>
+      </ul>
+  </li>    
+</ul>
+
+<p>The catalog files have been generated on March 28, 2007.</p>
+
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Wed Jan  9 12:00:19 CET 2008
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>
+
+

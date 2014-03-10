@@ -1,0 +1,228 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Algorithms: Spectral line fits - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Algorithms - Emission and absorption line fitting</h1>
+
+<h2>Overview of line fits, result tables, and line "<code>category</code>"</h2>
+
+<p>Spectro1D fits spectral features at three separate stages during
+the pipeline.  The first two fits are fits to emission lines
+only. They are done in the process of determining an emission line
+redshift and these are referred to as <code>foundLines</code>. The
+final fitting of the complete line list, i.e. both emission and
+absorption lines, occurs after the object's classification has been
+made and a redshift has been measured. These fits are known as
+<code>measuredLines</code>.  In all cases a single Gaussian is fitted
+to a given feature, therefore the quality of the fit is only good
+where this model holds up.</p>
+
+<p>The first line fit is done when attempting to measure the object's
+emission line redshift.  Wavelet filters are used to locate emission
+lines in the spectrum.  The goal of these filters is to find strong
+emission features, which will be used as the basis for a more careful
+search. The lines identified by the wavelet filter are stored in the
+<code>specLine</code> table as <code>foundLines</code>, i.e., with the
+parameter <code>category</code> set to 1. They are stored without any
+identifications, i.e., they have <code>restWave = 0</code>.</p>
+
+<p>Every one of these features is then tentatively matched to each of
+a list of candidate emission lines as given in the <a
+href="#linelist">line table</a> below, and a system of lines is
+searched for at the position indicated by the tentative matching.  The
+best system of emission lines (if any) found in this process is used
+to calculate the object's emission-line redshift. The lines from this
+system and their parameters are stored in the <code>specLine</code>
+table as <code>foundLines</code>, i.e., with the parameter
+<code>category</code> set to 1. These lines are identified by their
+<code>restWave</code> as given in the line table below.</p>
+
+<p>The final line fitting is done for <em>all</em> features (both
+emission and absorption) in the <a href="#linelist">line list</a>
+below, and occurs after the object has been classified and a redshift
+has been determined. This allows for a better continuum estimation and
+thus better line fits. This latter fit is stored in <a
+href="../dm/flatFiles/spSpec.html#hdu2">HDU 2 of the
+<code>spSpec*.html</code> files</a> in the DAS, and in the
+<code>specLine</code> view in the CAS (those rows from the
+<code>specLineAll</code> table with the parameter
+<code>category</code> set to 2).</p>
+
+<table border="1">
+  <caption>Types of line fits stored in <code>spSpec</code> files</caption>
+  <tr>
+    <th>Type of fit</th>
+    <th><code>category</code></th>
+    <th><code>restWave</code></th>
+  </tr>
+  <tr>
+    <td>"Found" emission lines from wavelet filter</td>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>"Found" emission lines from best-fit system to
+	wavelet detections</td>
+    <td>1</td>
+    <td><code>restWave</code> from <a href="#linelist">line list</a></td>
+  </tr>
+  <tr>
+    <td>"Measured" emission and absorption lines according to the
+	object's classification and best redshift</td>
+    <td>2</td>
+    <td><code>restWave</code> from <a href="#linelist">line list</a></td>
+  </tr>
+</table>
+
+<p><strong>For almost all purposes we recommend the use of the
+<code>measuredLines</code> (<code>category=2</code> stored in HDU 2 of
+spSpec files or the specLine view) since these result from the most
+careful continuum measurement and precise line fits.</strong></p>
+
+<h3>Spectral line indices (Lick indices)</h3>
+
+<p>Separate continuum and flux windows are used to determine spectral
+line indices analogous to the Lick indices. These are stored in <a
+href="../dm/flatFiles/spSpec.html#lineindex">Line index HDU (HDU 5) of
+the <code>spSpec*.fits</code> files (this link also shows the
+continuum and line windows used for these indices)</a> and in the
+<code>specLineIndex</code> table in the CAS. </p>
+
+<h2>Details of continuum fitting and line measurements</h2>
+
+<h3>Parameter Notes</h3>
+
+<p>All of the line parameters are <strong> measured in the observed frame</strong>, and
+no correction has been made for the instrumental resolution. Line
+indices are invariant under transforming from observed to rest frame.</p>
+<p>The results of the line fit are returned in the parameters:<br>
+  <strong>wave</strong>: The central wavelength of the Gaussian in Angstroms.<br> 
+  <strong>height</strong>: The height of the fitted Gaussian in units of 10E-17 erg/s/cm^2/Ang<br> 
+  <strong>sigma</strong>: The dispersion(observed frame) of the Gaussian measured in units of Angstroms.<br>
+  <strong>ew</strong>: The integrated equivalent width of the line (observed frame) in Angstroms. The equivalent width can also be estimated from the Gaussian fit. </p>
+
+<h3>Continuum Fitting</h3>
+
+<p>The continuum is fit using a median/mean filter.  A sliding window is
+created of length 300 pixels for galaxies and stars or 1000 pixels for
+quasars.  Pixels closer than 8 pixels(560km/s) for galaxies and stars
+or 30 pixels (2100 km/s) for QSOs to any reference line are masked and
+not used in the continuum measurement.  The remaining pixels in the
+filter are ordered and the values between the 40th and 60th percentile
+are averaged to give the continuum.  The category=1 lines are fit with
+a cruder continuum which is given by a fifth order polynomial fit
+which iteratively rejects outlying points.</p>
+
+<h3>Reference Line List</h3>
+
+<p>The list of lines which are fit are given as <a
+href="./reflines.dat">ASCII line list</a> and as HTML <a
+href="#linelist">line table</a> below.  Note that many times that a
+single line in the table actually represents multiple features.  Since
+the line fits are allowed to drift in wavelength somewhat, the exact
+precision of the lines are not important.  The wavelength precision
+does become important for the emission line determination.   
+
+<h3>Line Fitting</h3>
+
+<p>Every line in the reference list is fit as a single Gaussian on top of
+the continuum subtracted spectrum.  Lines that are deemed close enough
+are fitted simultaneously as a blend.  The basic line fitting is
+performed by the SLATEC common mathematical library routine SNLS1E
+which is based on the Levenberg-Marquardt method.  Parameters are
+constrained to fall within certain values by multiplying the returned
+chi-squared values by a steep function.  Any lines with parameters
+falling close to these constraints should be treated with caution.
+The constraints are: sigma &gt; 0.5 Angstrom, sigma &lt; 100 Angstrom, and
+the center wavelength is allowed to drift by no more than 450 km/sec
+for stars and galaxies or 1500 km/sec for QSOs, except for the CIV
+line which is allowed to be shifted by as much as 3000 km/sec.</p>
+
+
+<h3>Testing the results</h3>
+
+<p>There are a number of ways that the line fitting can fail.  If the
+continuum is bad the line fits will be compromised.  The median/mean
+filtering routine will always fail for white dwarfs, some A stars as
+well as late-type stars.  In addition is has trouble for galaxies with
+a strong 4000 Angstrom break.  Likewise the line fitting will have
+trouble when the lines are not really Gaussian.  The
+Levenberg-Marquardt routine can fall into local minima, which can
+happen when there is self-absorption in a QSO line or both a narrow
+and broad component for example.  One should always check the
+chi-squared values to evaluate the quality of the fit.  Examples of
+the quality of the line fits for over 100 spectra can be found in <a
+href="./speclinefit.ps.gz">ps file with sample line fits</a> (.ps.gz,
+16 MB). In these plots, the red line is the continuum and the blue
+line is the continuum plus the sum of the Gaussian fits.</p>
+
+<h3><a name="linelist">Reference line list</a></h3>
+
+<p>You can download the <a href="./reflines.dat">line list as ASCII table</a>.</p>
+
+<table>
+  <tr>
+    <th>restWave</th><th>Line</th>
+  </tr>
+<tr><td>1033.82</td><td>OVI</td></tr>
+<tr><td>1215.67</td><td>Ly</td></tr>
+<tr><td>1240.81</td><td>NV</td></tr>
+<tr><td>1305.53</td><td>OI</td></tr>
+<tr><td>1335.31</td><td>CII</td></tr>
+<tr><td>1399.8</td><td> SiIV+OIV  </td></tr>
+<tr><td>1549.48</td><td>CIV</td></tr>
+<tr><td>1640.4</td><td> HeII</td></tr>
+<tr><td>1665.85</td><td>OIII</td></tr>
+<tr><td>1857.4</td><td>AlIII</td></tr>
+<tr><td>1908.73</td><td>CIII</td></tr>
+<tr><td>2326.0</td><td>CII</td></tr>
+<tr><td>2439.5</td><td> NeIV</td></tr>
+<tr><td>2799.11</td><td>MgII</td></tr>
+<tr><td>3346.79</td><td>NeV</td></tr>
+<tr><td>3426.85</td><td>NeV</td></tr>
+<tr><td>3727.092</td><td>OII</td></tr>
+<tr><td>3729.875</td><td>OII</td></tr>
+<tr><td>3798.976</td><td>H_theta</td></tr>
+<tr><td>3836.47</td><td>H_eta</td></tr>
+<tr><td>3889.0</td><td> HeI</td></tr>
+<tr><td>3934.777</td><td>K</td></tr>
+<tr><td>3969.588</td><td>H</td></tr>
+<tr><td>4072.3</td><td> SII</td></tr>
+<tr><td>4102.89</td><td>H_delta</td></tr>
+<tr><td>4305.61</td><td>G</td></tr>
+<tr><td>4341.68</td><td>H_gamma</td></tr>
+<tr><td>4364.436</td><td>OIII</td></tr>
+<tr><td>4862.68</td><td>H_beta</td></tr>
+<tr><td>4960.295</td><td>OIII</td></tr>
+<tr><td>5008.240</td><td>OIII</td></tr>
+<tr><td>5176.7</td><td> Mg</td></tr>
+<tr><td>5895.6</td><td> Na</td></tr>
+<tr><td>6302.046</td><td>OI</td></tr>
+<tr><td>6365.536</td><td>OI</td></tr>
+<tr><td>6549.86</td><td>NII</td></tr>
+<tr><td>6564.61</td><td>H_alpha</td></tr>
+<tr><td>6585.27</td><td>NII</td></tr>
+<tr><td>6707.89</td><td>Li</td></tr>
+<tr><td>6718.29</td><td>SII</td></tr>
+<tr><td>6732.67</td><td>SII</td></tr>
+<tr><td>8500.36</td><td>CaII</td></tr>
+<tr><td>8544.44</td><td>CaII</td></tr>
+<tr><td>8664.52</td><td>CaII</td></tr>
+
+</table>
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Sep 27 13:29:36 CDT 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

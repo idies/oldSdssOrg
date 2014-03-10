@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                         "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<article class="faq">
+<articleinfo>
+  <title>SDSS Frequently Asked Questions</title>
+  <author>
+    <firstname>Eric</firstname>
+    <othername>H.</othername>
+    <surname>Neilsen</surname>
+    <lineage>Jr.</lineage>
+  </author>
+</articleinfo>
+
+<section><title>Introduction</title>
+
+<para>This page holds answers to questions specifically about the
+Sloan Digital Sky Survey. Several other sites have answers to general
+astronomy questions, including the 
+<ulink url="http://sciastro.astronomy.net/">sci.astro FAQ</ulink> and
+the <ulink url="http://curious.astro.cornell.edu/">Curious about
+Astronomy?</ulink> site at Cornell University.  </para>
+
+</section>
+
+<section><title>Questions and Answers</title>
+
+<qandaset>
+
+<qandaentry>
+
+<question>
+<para>What does the SDSS logo represent?</para>
+<figure><title>The SDSS logo</title>
+<graphic format="gif" fileref="logos/SDSS_pi_bevel.gif"/>
+</figure>
+</question>
+
+<answer>
+<para>The Sloan Survey's goal is to image one-half of the
+northern celestial hemisphere (one quarter of the total sky), as well
+as a smaller portion of the southern sky. The portion of the universe
+that the survey will observe is represented by our vaguely
+parachute-shaped logo. We are at the center of the logo, at the vertex
+of the parachute strings. The elliptical background evokes the shape
+of a galaxy, the celestial object of greatest interest to the Sloan
+Survey.</para>
+<para>Because the total solid angle (area) of the survey will be
+10,000 square degrees, or pi steradians, the logo is sometimes
+jokingly referred to as "pi on the sky".</para>
+</answer>
+
+</qandaentry>
+
+<qandaentry>
+
+<question>
+<para>Can I download/use the images from the SDSS site?</para>
+</question>
+
+<answer>
+<para>Yes, with a few restrictions:</para>
+<itemizedlist>
+
+<listitem><para>You must maintain the image credits if you publish or
+reproduce the image for any purpose other than personal
+enjoyment.</para></listitem>
+
+<listitem><para>You must not use the image in such a way as to imply
+endorsement for a product or service.</para></listitem>
+
+<listitem><para>If you reproduce these images on a web page, we ask
+that you provide a link back to our site. </para></listitem>
+
+</itemizedlist>
+
+<para>More detailed information can be found on the <ulink
+url="http://sdss.org/collaboration/credits.html">credits page</ulink>.</para>
+
+</answer>
+
+</qandaentry>
+
+<qandaentry>
+<question><para>Who is the "Sloan" in the Sloan Digital Sky
+Survey?</para></question>
+
+<answer><para>The "Sloan" refers to the Alfred P. Sloan Foundation,
+one of the major funding sources of the survey. You can learn about
+Mr. Sloan and his philanthropic foundation at <ulink
+url="http://www.sloan.org">http://www.sloan.org</ulink>. More
+information about all the members of the survey is also available on
+<ulink url="http://www.sdss.org/members/index.html">our
+site</ulink>.</para></answer> 
+</qandaentry>
+
+<qandaentry>
+<question>
+
+<para>The <application>SDSS Query Analyzer</application> (SDSSQA) used
+to work, but now it doesn't any more. How can I fix
+it?</para></question>
+
+<answer><para>In general, the use of <application>sdssQA</application>
+is deprecated. The CasJobs interface: 
+<ulink url="http://casjobs.sdss.org/CasJobs/">http://casjobs.sdss.org/CasJobs/</ulink>,
+is a better tool for most purposes.</para>
+
+<para>If you really want to use the SDSS QA, there are a few things
+you can do. Begin by removing the existing installation. When you are
+certain that no instances of <application>sdssQA</application> are
+running, delete the <filename class="directory">.sdssQA</filename>
+directory, probably found in your home directory. Then reinstall
+<application>sdssQA</application> using the latest jar file from
+<ulink url="http://cas.sdss.org/astro/en/help/download/sdssQA/default.asp">
+the sdssQA page</ulink>.</para>
+
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How can I query for specific types of galaxies?</para></question>
+
+<answer><para>You have several options, none of them perfectly
+reliable. One of these the <property>eclass</property> field,
+described in section 4.10.2.4 of the 
+<ulink url="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123..485S">early data release paper</ulink>
+and in the 
+<ulink url="http://www.sdss.org/dr3/algorithms/redshift_type.html">algorithms section of the data release pages.</ulink>.
+</para>
+
+</answer>
+</qandaentry>
+
+</qandaset>
+
+</section>
+
+
+</article>

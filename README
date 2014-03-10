@@ -1,0 +1,35 @@
+
+SCRIPTS, MAKEFILES, BUILDFILES
+
+The scripts and build files used to maintain this site are being
+reorganized. Some of the old files may have useful information in
+them, and may still be obtained from CVS. I have tagged the last
+version that included these files in CVS as lastWithDepricatedScripts.
+The files deleted are:
+	imgcopy.sh
+	imglink.sh
+	imgunlink.sh
+	Makefile
+	RSYNCTHIS
+	scripts/stat.pl 
+
+An ant based build process is under development. Currently, Sun's java
+must be available to ant. It can be run by executing ant in the
+product's root directory.
+
+CONTENT LOCATION
+
+The content of sdss.org resides in AFS space, which appears on the 
+/afs/fnal.gov/files/expwww/sdss/html directory on fnalu.fnal.gov.
+
+SYMBOLIC LINKS
+
+The subdirectory structure reflects the organization of web site.
+There is one special aspect of this file space.  There are no
+"index.html" files; instead symbolic links with "index.html" name
+point to actual files.  Consistently, the actual files are named the
+same as the directory name (except at the top), e.g. publication.html
+in the publication sub-dir associates to (via symlink) to
+"index.html".  Reminder, web server uses index.html as default page to
+show users.
+

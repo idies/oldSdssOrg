@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Astrometric Quality</TITLE>
+<META NAME="description" CONTENT="Astrometric Quality">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html489" HREF="node34.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html487" HREF="node32.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html481" HREF="node32.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html490" HREF="node34.html">WCS</A>
+<B>Up:</B> <A NAME="tex2html488" HREF="node32.html">Astrometric Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html482" HREF="node32.html">Astrometric Pipeline</A>
+<BR> <P>
+<H3><A NAME="SECTION00042100000000000000">Astrometric Quality</A></H3>
+<P>
+<A NAME="secastrom_quality">&#160;</A>
+<P>
+The relative astrometry between the <I>r</I> and the <I>i</I>, <I>u</I>,
+<I>z</I>, and <I>g</I> CCDs is independent of the astrometric catalog
+used, and typically has rms errors of 20 to 30 mas per coordinate, and
+systematic errors of order 20 mas.  The quality of the absolute
+astrometry (based on the <I>r</I> astrometric solutions and centroids)
+is dependent on the astrometric catalog used, and is dominated by
+systematic errors which vary on timescales of minutes.  Within a given
+run, the distribution of systematic errors is well characterized by a
+Gaussian.  Reductions against UCAC have rms systematic errors of order
+50 mas per coordinate.  Reductions against Tycho-2 have rms systematic
+errors of order 100 mas, and show additional systematic errors
+constant over entire scans of up to 50 mas.  Centroiding errors
+contribute an additional random source of error, of order 20 mas, for
+objects brighter than <IMG WIDTH=56 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3015" SRC="img55.gif">.  Comparison with the astrometry of
+the Two-Micron All Sky Survey for stars in common
+shows systematic offsets under 50 mas, well within our quoted errors and
+the expected systematic astrometric calibration effects quoted by the 2MASS team.
+<P>
+Atmospheric conditions contribute significantly to image wander.
+These affect the Tycho-2 reductions more than the UCAC reductions due
+to the shorter integration times on the astrometric CCDs.  We attempt
+to follow this wander by fitting the residuals with cubic splines.
+Figure&nbsp;<A HREF="node65.html#figastromresiduals">6</A> shows the astrometric residuals as a
+function of frame number for a typical run.  The spline-fitted
+solution is superposed on the points showing the residuals.  The top
+plot shows <IMG WIDTH=10 HEIGHT=17 ALIGN=MIDDLE ALT="tex2html_wrap_inline2949" SRC="img47.gif"> residuals (along the direction of the scan), and the
+bottom plot shows <IMG WIDTH=8 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline2951" SRC="img48.gif"> residuals (the cross-scan direction).
+Approximately 100 frames per hour are obtained, so the figure shows
+roughly half an hour of scanning.  Note that the residuals wander
+several tenths of an arcsecond over time scales of minutes.  The
+frequency and amplitude of these wanderings vary from night to night
+(and, occasionally, hour to hour).
+<P>
+<HR><A NAME="tex2html489" HREF="node34.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html487" HREF="node32.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html481" HREF="node32.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html490" HREF="node34.html">WCS</A>
+<B>Up:</B> <A NAME="tex2html488" HREF="node32.html">Astrometric Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html482" HREF="node32.html">Astrometric Pipeline</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

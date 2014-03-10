@@ -1,0 +1,75 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+
+<h1 align="center">
+Credits
+</h1>
+<h3>Sponsors</h3>
+<p>Funding for the Sloan Digital Sky Survey (SDSS) has been provided by
+the <a href="../members/sponsors.html#sloan">Alfred P. Sloan Foundation</a>,
+the Participating Institutions, the <a
+href="http://www.nasa.gov/">National Aeronautics and Space
+Administration</a>, the <a href="../members/sponsors.html#nsf">National
+Science Foundation</a>, the <a
+href="../members/sponsors.html#doe">U.S. Department of Energy</a>,
+the <a href="http://www.mext.go.jp/english/index.htm">Japanese
+Monbukagakusho</a>, the <a href="http://www.mpg.de/english/">Max
+Planck Society</a>, and the HEFCE.
+</p>
+<h3>Participating Institutions</h3>
+<p>The SDSS is a joint project of The University of Chicago, Fermilab,
+the Institute for Advanced Study, the Japan Participation Group, The
+Johns Hopkins University, the Korean Scientist Group, Los Alamos National Laboratory, 
+the Max-Planck-Institute for Astronomy (MPIA),
+the Max-Planck-Institute for Astrophysics (MPA), New Mexico State
+University, University of Pittsburgh, University of Portsmouth,
+Princeton University, the United States Naval Observatory,
+and the University of Washington.</p>
+<h3>Acknowledging SDSS: Commercial Use</h3>
+<p>
+Data from the SDSS public archive may not be used for any commercial
+publication or other commercial purpose except with explicit approval by
+the Astrophysical Research Consortium (ARC). Requests for such use should
+be directed to the ARC Corporate Office via ARC's Business Manager as
+follows:
+<p>
+<ul>
+         Michael L. Evans<br>
+         ARC Business Manager<br>
+         c/o University of Washington<br>
+         Office of Research, Box 351202<br>
+         Seattle, WA 98195<br>
+         Phone: 206-685-7857<br
+         FAX: 206-543-9850<br>
+         Email: evans@astro.washington.edu<br>
+</ul>
+<p>
+<h3>Acknowledging SDSS: Non-Commercial Use</h3>
+Non-commercial scientific and technical publications using SDSS data 
+should include the following acknowledgment:
+</p>
+<blockquote><font color="#663300">
+<p>Funding for the creation and distribution of the SDSS Archive has
+been provided by the Alfred P. Sloan Foundation, the Participating
+Institutions, the National Aeronautics and Space Administration, the
+National Science Foundation, the U.S. Department of Energy, the Japanese
+Monbukagakusho, and the Max Planck Society.  The SDSS Web site is <a
+href="http://www.sdss.org/">http://www.sdss.org/</a>.
+</p>
+<p>The SDSS is managed by the Astrophysical Research Consortium (ARC) for the
+Participating Institutions.  The Participating Institutions are The University of Chicago,
+Fermilab, the Institute for Advanced Study, the Japan Participation
+Group, The Johns Hopkins University, 
+the Korean Scientist Group, Los Alamos National Laboratory,
+the Max-Planck-Institute for
+Astronomy (MPIA), the Max-Planck-Institute for Astrophysics (MPA), New
+Mexico State University, University of Pittsburgh, 
+University of Portsmouth, 
+Princeton University, the United States Naval
+Observatory, and the University of Washington.</p>
+</font></blockquote>
+<p>Please also refer to the appropriate <a
+href="http://www.astro.psu.edu/users/dps/sdsstechrefs.html">SDSS technical publications</a>.</p>
+
+
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->

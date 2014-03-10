@@ -1,0 +1,242 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+<!--#include virtual="segueheader.html"-->
+<html>
+<head>
+<meta name="Author" content="segue-webmaster@sdss.org">
+
+<meta name="Keywords" content="SEGUE, Milky Way, stars, stellar parameters, 
+SDSS, Sloan, 
+digital, survey, galaxy, galaxies, quasar, universe, telescope, 
+astronomy, astrometry,
+spectroscopy, cosmology, large-scale structure, observatory,
+observatories, big bang, redshift, map">
+
+<meta name="Description" content="SEGUE SSPP">
+
+<title>SEGUE</title>
+<link rel=StyleSheet href="../includes/sdss.css" type="text/css" media=screen>
+
+</head>
+
+<body>
+
+<!-- Overall table structure - 3x3 -->
+
+<table width="100%" height="100%" border="0" cellspacing="0" 
+cellpadding="0" style="padding:0px; margin:0px; border:0px"> <tr>
+
+<!-- Header -->
+
+
+</tr>
+
+<tr>
+<!-- Body -->
+
+<td valign="top" width="100%" height="100%" bgcolor="#FFFFFF" 
+style="padding:15px;">
+<div align="center">
+<h1> SSPP Caveats</h1>
+<div align="left">
+<p>
+It is important that the SSPP be able to identify situations where the quoted
+atmospheric parameters may be in doubt, or simply to make the user away where
+possible anomalies might be found in the spectra of a given star. We have
+designed a number of flags which serve this purpose.
+</p>
+<div align="center">
+<h3>Brief Descriptions
+of SSPP Flags</h3> 
+<table cellspacing="2" border=1 bgcolor=#FFFFCC>
+<tr>
+<th align="left" bgcolor=#FFFF99>Flag</th>
+<th align="left" width="300" bgcolor=#FFFF99>Comment</th>
+</tr>
+<tr><td>n <td> All appears normal </tr><tr>
+<td>D <td> Likely white dwarf </tr><tr>
+<td>d <td> Likely sdO or sdB </tr><tr>
+<td>H <td> Hot star with T<sub>eff</sub> > 10,000 K</tr><tr>
+<td>h <td> Helium line detected, possibly very hot star</tr><tr>
+<td>l <td> Likely solar abundance, late-type star</tr><tr>
+<td>E <td> Emission lines in spectrum </tr><tr>
+<td>S <td> Sky spectrum </tr><tr>
+<td>V <td> No radial velocity information available</tr><tr>
+<td>N <td> Noisy spectrum at extrema </tr><tr>
+<td>C <td> The photometric g-r color may be incorrect </tr><tr>
+<td>B <td> Unexpected H&alpha; line strength predicted from H&delta; 
+</tr><tr>
+<td>G <td> Strong G-band feature </tr><tr>
+<td>g <td> Mild G-band feature </tr>
+</table>
+
+<div align="left">
+
+<p>
+There are two primary categories of flags -- critical flags and cautionary
+flags.  Critical flags are discussed below. When a critical flag is
+raised, the SSPP is set to either ignore the determinations of atmospheric
+parameters for a given source, or it is forced (in the case of the color flag
+described below) to take steps that differ from
+normal processing in an attempt to rescue this information. 
+Obviously, even when
+information is salvaged, the presence of a critical flag means the user must be
+aware that special steps have been taken, and the reported estimated parameters
+must be viewed with this knowledge in mind. 
+</p>
+<p>
+The second category of flags are the
+cautionary flags, which are provided for user consideration, but are not
+necessarily cause for undue concern. Indeed, sometimes these flags are raised
+when all is in fact OK, but the flag has been raised due to a peculiarity 
+in the
+spectrum that is relatively harmless, and which will not unduly influence the
+determinations of atmospheric parameters. The user should nevertheless be aware
+of the existence of these flags.
+</p>
+<p>
+The flags are combined into a single set of four letters, the meanings of which
+are summarized in the table above, and described below in more detail. 
+Four placeholders
+are used in order to accommodate cases where more than one sort of flag is
+raised.
+</p>
+<p>
+The nominal condition for the four letter flag combination is `nnnn', which
+indicates that the SSPP is satisfied that a given stellar spectrum (and its
+reported g-r colors) has passed all of the tests that have been performed, 
+and
+the stellar parameters should be considered as well determined.
+</p>
+<p>
+The first letter in this combination is set to one of 10 different values:
+<b> n,
+D, d, H, h, l, E, S, V,</b> and<b> N</b>.  Their explanations follow:
+
+<ul>
+
+<li> <b>n</b>:  The letter<b> n</b> indicates nominal.
+
+<li> <b>D</b>: The letter <b>D </b>indicates that a comparison of the breadth of the 
+H&delta; line at 20% below its continuum, D<sub>0.2</sub>, and the line 
+depth below the
+continuum, R<sub>c</sub>, relative to their expected relationship for 
+"normal stars",
+provided below, does not apply.  The expected relationship is given by:
+<br>
+&nbsp
+<br>
+  R<sub>c</sub> = -0.009503 + 0.027740D<sub>0.2</sub> -
+0.000590D<sub>0.2</sub><sup>2</sup> + 0.000006D<sub>0.2</sub><sup>3</sup>
+<br>
+&nbsp
+<br>
+If D<sub>0.2</sub> is greater than 35.0 &#197; and the predicted
+R<sub>c</sub> from the above relationship is less than the measured value,
+then the star is most likely a white dwarf. This is a critical flag.
+
+<li> <b>d</b>: This flag is raised if D<sub>0.2</sub> is less than 35.0 &#197; 
+and the
+predicted R<sub>c</sub> from above is less than the measured value. In
+this case, the star is most likely a sdO or sdB star.  This is a
+critical flag.
+
+<li><b> H</b>: This flag is raised when the estimated T<sub>eff</sub> from 
+the SSPP is
+greater than 10,000K, and is meant to indicate a hot star.  This is a critical
+flag.
+
+<li><b> h</b>: This flag is raised if the estimated T<sub>eff</sub> from the
+SSPP is greater than 8,000K, and either of the line indices of He I
+(at 4026.2 &#197;) or He I (at 4471.7 &#197;) is greater than 1.0 &#197;.
+This indicates that the star is likely to be a hot star.  This is a
+critical flag.
+
+<li><b> l</b>: This flag is raised if the SSPP judges the star to have a high
+likelihood of being a late type star (generally late K, M, or later
+spectral type), beyond the ability of the present pipeline to
+determine acceptable atmospheric parameter estimates. The condition
+used for raising the<b> l</b> flag is that the Na line (5892.9 &#197;)
+index, as measured over a 24 &#197; band centered on this feature, is
+larger than 10 &#197;, and the g-r color is greater than 0.80.  This
+is a critical flag.
+
+<li><b> E</b>: This flag is raised if significant emission lines are detected
+in a spectrum.  This is a critical flag.
+
+<li><b> S</b>: This flag is raised if the spectrum (according to the header 
+information)
+is a night sky spectrum.  This is a critical flag.
+
+<li><b> V</b>: This flag is raised when an adequate radial velocity could not 
+be found for a given spectrum.  This is a critical flag.
+
+<li><b> N</b>: This flag is raised if the spectrum is considered noisy at the extremes
+of the wavelength range (e.g., around Ca II K and the Ca II triplet).  
+This is a cautionary flag.
+
+</ul>
+</p>
+<p>
+The flags that are used to fill out the remaining three positions of the four
+letter flag combination are <b>C, B, G,</b> or <b>g,</b> as described below:
+
+<ul>
+
+<li><b> C</b>: This flag is raised if the SSPP is concerned that the reported
+g-r color is incorrect. As mentioned in
+<a href="documents/sspp0627.pdf">Lee et al 2007</a>, we calculate 
+three estimates of
+predicted g-r colors.
+For each of these three predicted colors, we find the one which is closest to
+the reported g-r color based on the photometry. If the difference between the
+reported color and the closest predicted color is larger than 0.2 magnitudes,
+the color flag is raised. The SSPP is set up to proceed with its calculations 
+of
+atmospheric parameters using the predicted g-r color. This flag is always
+found in the second position of the combination flag parameters. This is a
+critical flag.
+
+<li><b> B</b>: This flag is raised if the SSPP is concerned that there exists a 
+strong mismatch
+between the strength of the predicted H&alpha; line index HA24, based on the
+measured H&delta; line index, HD24. For the great majority of normal
+stars, the predicted value of the H\alpha line index is found to be HA24 =
+2.737 + 0.775HD24. For stars with significant HA24 and HD24 measurements
+(which we take to mean that the values of these indices exceed zero by 
+more than
+2&sigma;, where &sigma; is the error in the measured line index), if the
+difference between the predicted HA24 line index and the measured HA24 index
+is larger than 2.5 &#197;, then the B flag is raised. This flag is always found
+in the third position of the combination flag parameters. This is a cautionary
+flag.
+
+<li><b> G or g</b>: This flag is raised if the SSPP suggests that the star may 
+exhibit a
+strong (G) or mild (g) CH G-band (around 4,300 &#197;), relative to
+expectation for normal stars. This flag is always found in the fourth
+position of the combination flag parameters. This is a cautionary flag.
+
+</ul>
+
+
+<br clear=all>
+<img src="images/dot_clear.gif" width="90%" height="5"><br>
+
+
+<tr>
+
+<td height="30" bgcolor="#000000" width="132">
+&nbsp;
+</td>
+
+
+</span>
+</center>
+
+</td></tr></table>
+
+</body>
+</html>
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->
+

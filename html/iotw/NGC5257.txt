@@ -1,0 +1,13 @@
+Galaxies lead very active lives. In this image NGC 5257 and 5258, 
+two spiral galaxies in the constellation Virgo, are seen in the midst of a 
+collision that has taken on the order of a billion years. As a result, a dim 
+bridge of stars is now stretched between them and both are actively 
+forming new stars in their disks. The shapes of galaxies after a collision 
+depend on the collision geometry and the masses of the galaxies.
+
+Chris Mihos of Case Western Reserve University, together with colleagues 
+at the University of Oregon, has created a java applet that lets you crash 
+galaxies together. Try different collision geometries and masses to see if 
+you can reproduce the collision seen in this image.
+
+http://burro.astr.cwru.edu/JavaLab/GalCrashWeb/GCSolo.html

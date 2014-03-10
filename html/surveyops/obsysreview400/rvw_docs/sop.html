@@ -1,0 +1,208 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<CENTER><B><I><FONT SIZE=+0>Sloan Digital Sky Survey<BR>
+Review of Observing Systems and Survey Operations<BR>
+<BR>
+</FONT></I><FONT SIZE=+2>Spectroscopic Observers Program Overview<BR>
+</FONT></B>Scott Burles<BR>
+April 13, 2000
+<HR SIZE=4 width="100%"></CENTER>
+
+<H2>
+<FONT SIZE=+0>Introduction</FONT></H2>
+<FONT SIZE=-1>The Spectroscopic Observers Program, or SOP, provides the
+observers an interface to the spectroscopic systems and control of the
+SDSS telescope during spectroscopic observing. SOP is entirely dependent
+on IOP, and utilizes IOP commands to control the 4 cameras in the spectroscopic
+system. The SOP interface is entirely command line based, and resides in
+an "IOP" environment.</FONT>
+<H2>
+<FONT SIZE=+0>Goals:</FONT></H2>
+
+<OL>
+<LI>
+<FONT SIZE=-1>Control Spectrographs</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Communicate with Cameras</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Acquire Spectroscopic data</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Communicate with calibration lamps, screen</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Communicate with TCC</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Perform closed-loop guiding</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Digest plugMap file for guiding and QA</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Real-time feedback from guide images and science frames</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Output of report files and informative file headers</FONT></LI>
+</OL>
+
+<H2>
+<FONT SIZE=+0>Successes:</FONT></H2>
+
+<OL>
+<LI>
+<FONT SIZE=-1>Full control of spectrograph mechanicals</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Control of 4 cameras, including rebinning.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Routine data acquisition is complete.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Lamps and screen communication set.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Basic TCC communication</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Stable guiding with 2 - 11 coherent guide fibers</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Straightforward reading of plugMap files</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Automatic monitoring of guide images for feedback</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Correct log files and header entries are creates</FONT></LI>
+</OL>
+
+<H2>
+<FONT SIZE=+0>Remaining Tasks:</FONT></H2>
+
+<OL>
+<LI>
+<FONT SIZE=-1>Graceful recovery from hangs and crashes:</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>Currently, all critical information is stored in current
+window.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Upon exiting, information is lost, and calibrations must
+begin anew. This can cost up to a 30 minutes to recover lost position.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Solution: Critical information must be stored on disk or
+crates, and with one command, the observers can recover the desired state.</FONT></LI>
+</UL>
+
+<LI>
+<FONT SIZE=-1>Lack of exposure control:</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>pause, restart, abort</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Fifteen minute exposures are currently best not interrupted,
+even if no data is be obtained.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>This uses an IOP command "goStare", and needs to be fixed
+at that level.</FONT></LI>
+</UL>
+
+<LI>
+<FONT SIZE=-1>Need to properly receive status from TCC</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>Many SOP tasks depend on completion of slews, offsets, focus
+and scale changes issued by the TCC. Currently, only predicted delays are
+used and which assume the previous action was completed. Instead, we should
+receive confirmation from the TCC that the desired action completed successfully.</FONT></LI>
+</UL>
+
+<LI>
+<FONT SIZE=-1>Quantitave feedback from:</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>Guide Images (exposure meter)</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Science frames (SPECTRO-on-the-mountain)</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Critical to decide whether data meets survey standards, and
+to alert observers to any problems which may arise in the data.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Scope, speed, and platform of feedback needs to be decided.</FONT></LI>
+</UL>
+
+<LI>
+<FONT SIZE=-1>Increase efficiency!</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>Auto-loading of fiber rotation angles (w/ index pins)</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>multiplexing of calibrations</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Is the current spectroscopic paradigm optimal?</FONT></LI>
+</UL>
+
+<LI>
+<FONT SIZE=-1>Documentation</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>Documentation of operating and checkout procedures (on a
+yearly, run and nightly basis)</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Documentation of procedures for recovery from failure</FONT></LI>
+</UL>
+
+<LI>
+<FONT SIZE=-1>Special flat-fielding algorithm to obtain near-uniform CCD
+coverage</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>"Rocking collimator flats"</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Quality, repeatability, and necessity are unknown</FONT></LI>
+</UL>
+</OL>
+
+<H2>
+<FONT SIZE=+0>Summary</FONT></H2>
+<FONT SIZE=-1>SOP is in a state to be used for routine observing. Efficiency
+is severely compromised by the unfinished tasks. Hangs and crashes not
+only waste time, but even worse, the target tile (or sky coordinates) moves
+through and even out of the allotted hour angle window. QA, documentation,
+and repeatable tests of the spectroscopic system are required to ensure
+survey quality data, as well as uniform and consistent data over the course
+of the survey.&nbsp;&nbsp; These tasks are currently being addressed with
+a target completion by the start of the summer shutdown.</FONT><BR>
+<BR>
+<BR>
+<HR SIZE=4 WIDTH="100%">
+<BR><FONT SIZE=-1><B><I>Review of Observing Systems and Survey Operations</I></B></FONT>
+<BR><FONT SIZE=-1><I>Apache Point Observatory</I></FONT>
+<BR><FONT SIZE=-1><I>April 25-27, 2000</I></FONT>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

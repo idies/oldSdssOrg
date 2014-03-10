@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>DAS User's Guide - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>SDSS DAS User's Guide</h1>
+
+<h2>Caveats</h2>
+
+<p>The DAS webserver will time out for queries taking longer than 20
+minutes to process. However, the script looking for your data will
+still continue to run. The page you see after submitting a query will
+have instructions on what to do if that happens.</p>
+
+<p>Here is an indication 
+of how long it takes to process queries:
+<pre>
+
+   # files      time
+  requested
+  ---------     ----
+     100        5 sec
+    1000       60 sec
+    2000      135 sec
+    5000      660 sec
+   10000      >20 min (times out)
+
+</pre>
+The above timing estimates assumes that the rsync or wget
+method of downloading the files was selected; selecting tar.gz, tar,
+or zip methods take substantially longer to process and are therefore
+limited to queries requesting 10 or fewer files.  </p>
+
+
+<h2>Directory Formats</h2>
+
+<p>The location of files on disk at FNAL is described in the <a
+href="../dm/flatFiles/DIRS.html">Data Model Directory Structure</a>
+document. It is up to you to define the root directory for data you
+download to your machine.  The data files you retrieve from the DAS
+(either as a .tar, .tar.gz, or .zip file archive file or as an <a
+href="./rsync.html">rsync</a> command) will be organized into
+subdirectories under your root directory, mimicking the directory
+structure at FNAL.</p>
+
+
+<h2> The Web Interface </h2>
+
+<p><a href="http://das.sdss.org/">The web interface to the
+DR7 DAS </a> is configured for public access to the DR7 data.</p>
+
+<p>
+The steps to use this interface are outlined on the interface:</p>
+<ol>
+
+<li> <b>Select one or more data products:</b>  <p>Use the buttons to select
+what kind of files you want.  If you don't know what the abbreviations
+mean, click on the short file description to see the data model
+description of the file type.</p>
+    <p>For each file type, the table on the right lists which
+    parameters you need to specify in your upload file to locate files
+    of this type.  So, for example, if you want to retrieve fpC files,
+    your upload file must contain <bf>run</bf>, <bf>rerun</bf>,
+    <bf>camCol</bf>, <bf>filter</bf>, <bf>field</bf> for each object.</p></li>
+
+<li><a name="fileformat"></a> <b>Create the upload file:</b>
+
+    The upload file you create contains a list of objects.  For each
+of the objects, you must specify the necessary parameters as given in
+the table, based on the data products you selected in the previous
+step.  There are four formats that the DAS understands.  It uses the
+file specification (.csv, .tbl, .par, .fit, or .fits) to guess the
+file format, so please name your files appropriately.  Here are sample
+files for:
+
+	<ul>
+
+	  <li> <a href=imaging.csv>Comma Separated Value
+(imaging.csv)</a> for imaging data.  This contains run, rerun, camcol,
+field, and filter, so it can be used to get fpC files, for example.  
+Note that the first line is a comma separated list of the parameter names.  
+This is mandatory.
+
+	  <li> <a href=spectro.csv>Comma Separated Value
+(spectro.csv)</a> for spectro data.  This contains plate, mjd,
+fiberID, and sprerun (the spectro rerun, always 25 for DR7), so it
+could be used to get spSpec files.</li>
+
+	  <li> <a href=imaging.tbl>Table File (imaging.tbl) </a> for
+imaging data.  This contains field, run, rerun, and camCol, so it can
+be used to get tsObj files.  To get fpC or fpBIN files, you would need
+	      to add a "filter" column.</li>
+
+	  <li> <a href=spectro.tbl>Table File (spectro.tbl) </a> for
+spectro data.  This contains the same information as the spectro.cvs
+file above.  Note that the columns are in a different order.  This
+does not matter -- as long as the information in the column header
+agrees with the information in the data for the column!</li>
+
+	  <li> <a href=imaging.par>ASCII Parameter File (imaging.par)
+</a> for imaging data.  This contains run, rerun, camcol, field,
+filter.</li>
+
+	  <li> <a href=spectro.par>ASCII Parameter File (spectro.par)
+</a> for spectro data.  This contains plate, mjd, and rerun, and can
+be used to get spPlate files.</li>
+
+	  <li> <a href=imaging.fit>FITS Binary Table (.fit) </a> for
+imaging data.  This contains run, rerun, camcol, field, and filter
+information, and can be used to get fpC files.  If you use it to get
+fpObjc files, the filter information will be ignored.</li>
+
+	  <li> <a href=spectro.fit>FITS Binary Table (.fit) </a> for
+spectro data.  This contains plate, mjd, fiberID, and rerun information,
+and can be used to get spSpec files.</li>
+
+	</ul>
+	</li>
+
+<li> <b>Select the file to upload:</b> Once you have a file, either
+type in its name, or browse to find it on your local computer.</li>
+
+<li> <b>Select the transfer format:</b>
+
+<p>The recommended option is for the DAS to create an rsync include
+file, to be used with rsync (see our <a href="./rsync.html">rsync help
+page</a>), or a wget (http client) include file which will copy over
+all the files you requested directly via a command line interface from
+our rsync or http server.
+Since the rsync and wget commands require no overhead for combining the
+requested files into an archive (.tar, .tar.gz, or .zip) file and
+since it only copies files which do not exist or have changed on your
+local machine, it is the preferred method for transferring large
+numbers of files.  Due to this consideration, any request for more
+than 10 files will default to the rsync option.  See our <a
+href="./rsync.html">rsync help page</a>) for help installing rsync.
+
+<p>    There are three further options for transferring the data,
+    which are, however, only available for small data sets (up to 10
+    files) to prevent large requests from locking up the DAS.  UNIX
+users will likely wish to use either a .tar or a .tar.gz archive file
+containing the files requested, and Windows users will probably want a
+.zip archive file.  </p></li>
+
+<li> <b>Submit:</b> Self-explanatory.</li>
+
+</ol>
+
+<h2>What happens next? </h2>
+
+<p>If you chose the .tar, .tar.gz, or .zip transfer format options -- <i>
+and if you requested 10 or fewer files</i> -- a script runs which
+looks for all of the files you requested, makes an archive of them,
+prepares a listing of the files, and presents you with a web page
+where you can download the archive.  It will look something like this:</p>
+
+<pre><b>SDSS Data Archive Server Download Results (DR7)</b>
+
+Use your browser to download the results file. /webscratch/DAS_27303_1096658512/imaging.tar.gz
+
+(Note that any files generated under /export/data/www/data/webscratch/DAS_27303_1096658512 will have a
+limited lifetime -- typically 24 hours.)
+
+The file size is 7194872 bytes.
+
+SDSS wrapper report Fri Oct  1 14:21:57 CDT 2004
+Version v16_80 
+Total number of bytes to be written:  7192974
+        2403437 1356/40/corr/3/fpC-001356-r3-0086.fit.gz
+        2398552 1356/40/corr/3/fpC-001356-r3-0087.fit.gz
+        2390985 1356/40/corr/3/fpC-001356-r3-0088.fit.gz
+</pre>
+(NOTE: The above is example output.  Actual results files are removed
+from our system daily.)
+
+<P>
+
+If you chose the rsync transfer format option, <i> or if you
+requested more than 10 files</i>, you will obtain a page describing
+how you can transfer them to your computer using rsync by using the
+rsync include file the DAS creates:
+
+<a name="rsync_command">
+<pre>
+<strong>SDSS Data Archive Server Results (dr71)</strong>
+You have requested X FITS, postscript, and/or gif files.
+
+Use <code>rsync</code> to download the files (see our <a href="./rsync.html">rsync help page</a>).
+
+<code>rsync</code> will mirror the data archive directories containing the files
+you have requested on your disk.
+
+In the directory where you would like the directories containing your data to be placed, 
+save <a href=./sdss-rsync.lis>this link as sdss-rsync.lis</a>
+and type:
+
+        rsync -vtrLPR rsync://sdss@rsync.sdss.org/DR7/ ./ --include-from=sdss-rsync.lis
+</pre>
+The rsync password you will need is the usual SDSS corraboration password. There are three ways to specify the password:
+<ul>
+  <li>Type the password when prompted after issuing the rsync command.</li>
+  <li>First set an environment variable RSYNC_PASSWORD to the password, then issue the rsync command</li>
+  <li>First save the password in a file <em>(on UNIX-like systems, the
+      file must not be readable
+      by anyone but the user)</em>, then tell rsync its location with
+      the option --password-file=FILENAME</li>
+</ul>
+
+
+<h2> What if it does not work? </h2>
+
+Please run one of the examples to see if the server is functional.
+Then please check your file to confirm you have it formatted
+correctly.  Submit your problem to 
+<a href="http://www.lib.uchicago.edu/e/ask/SDSSask.html">
+the SDSS helpdesk</a> and
+include the following:
+<ul>
+  <li>your query or upload file</li>
+  <li>the timestamp and directory name at the top of the results page
+      (a line like <code>Begin access on Fri Feb 28 11:46:45 CST 2003
+      at /webscratch/DAS_21769_1046454405</code></li>
+  <li>the URL of the particular DAS webserver you are using</li>
+  <li>the version of DP that the DAS webserver was using;
+    this is listed at the bottom of the DAS query form
+    (e.g., "DP Version: dp v14_207;")
+</UL>
+We keep usage logs for each access, sorted by date, and this
+information will help us track down trouble.
+
+<h2> What Data Are Available? </h2>
+
+Sky coverage for DR7 is described on the <a
+href="../coverage/index.html">coverage page</a>.
+
+<P>
+
+See also the <a href="http://das.sdss.org/imaging/">imaging</a>
+and <a href="http://das.sdss.org/spectro/">spectro</a> root
+directories for more information.
+
+<h2> Do I have to use the Web Interface?</h2>
+
+<p>No, there are other ways to get at the data.  One way is to use the
+rsync command from your computers command line <a
+href="#rsync_command"> as described above </a>using an appropriate
+include file like <a href="./sdss-rsync.lis">sdss-rsync.lis</a>.  In
+addition, other methods of access are described on the <a
+href="../access/index.html">Data Access Page</a>.</p>
+
+<!-- end page content-->
+
+<hr>
+This page was last modified on $Date: 2009/10/13 20:28:10 $ (UT).
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

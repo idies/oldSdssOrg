@@ -1,0 +1,3804 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<P>       </P>
+<H1>IDL Help for IDLSPEC2D</H1>
+<P></P>
+<P>This page was created by the IDL library routine 
+<CODE>mk_html_help</CODE>. For more information on this routine, refer 
+to the IDL Online Help Navigator or type: 
+<P><PRE>     ? mk_html_help</PRE>
+<P>at the IDL command line prompt.
+<P><STRONG>Last modified: </STRONG>Wed Apr 26 19:41:01 2000.
+<P> 
+<HR>
+
+<P> <A name=ROUTINELIST> </P>
+<H1>List of Routines</H1>
+<P></A></P>
+<UL>
+  <LI><A href="#ARCFIT_GUESS">ARCFIT_GUESS</A> 
+  <LI><A href="#COMBINE2DOUT">COMBINE2DOUT</A> 
+  <LI><A href="#DIVIDEFLAT">DIVIDEFLAT</A> 
+  <LI><A href="#EXTRACT_BOXCAR">EXTRACT_BOXCAR</A> 
+  <LI><A href="#EXTRACT_IMAGE">EXTRACT_IMAGE</A> 
+  <LI><A href="#EXTRACT_OBJECT">EXTRACT_OBJECT</A> 
+  <LI><A href="#EXTRACT_PROFILE">EXTRACT_PROFILE</A> 
+  <LI><A href="#EXTRACT_ROW[1]">EXTRACT_ROW[1]</A> 
+  <LI><A href="#EXTRACT_ROW[2]">EXTRACT_ROW[2]</A> 
+  <LI><A href="#FCHEBYSHEV">FCHEBYSHEV</A> 
+  <LI><A href="#FIBERFLAT">FIBERFLAT</A> 
+  <LI><A href="#FIBERMASK_BITS">FIBERMASK_BITS</A> 
+  <LI><A href="#FITANSIMAGE">FITANSIMAGE</A> 
+  <LI><A href="#FITARCIMAGE[1]">FITARCIMAGE[1]</A> 
+  <LI><A href="#FITARCIMAGE[2]">FITARCIMAGE[2]</A> 
+  <LI><A href="#FITDISPERSION">FITDISPERSION</A> 
+  <LI><A href="#FITFLATWIDTH">FITFLATWIDTH</A> 
+  <LI><A href="#FITMEANX">FITMEANX</A> 
+  <LI><A href="#FITVACSET">FITVACSET</A> 
+  <LI><A href="#FLEGENDRE">FLEGENDRE</A> 
+  <LI><A href="#FLUXCORR">FLUXCORR</A> 
+  <LI><A href="#FUNC_FIT">FUNC_FIT</A> 
+  <LI><A href="#GENFLATMASK">GENFLATMASK</A> 
+  <LI><A href="#IDLSPEC2D_VERSION">IDLSPEC2D_VERSION</A> 
+  <LI><A href="#LOCATESKYLINES">LOCATESKYLINES</A> 
+  <LI><A href="#LOGSHEET">LOGSHEET</A> 
+  <LI><A href="#PIXELMASK_BITS">PIXELMASK_BITS</A> 
+  <LI><A href="#QAPLOT_ARCLINE">QAPLOT_ARCLINE</A> 
+  <LI><A href="#QAPLOT_FFLAT">QAPLOT_FFLAT</A> 
+  <LI><A href="#QAPLOT_SCATLIGHT">QAPLOT_SCATLIGHT</A> 
+  <LI><A href="#QAPLOT_SKYDEV">QAPLOT_SKYDEV</A> 
+  <LI><A href="#QAPLOT_SKYLINE">QAPLOT_SKYLINE</A> 
+  <LI><A href="#QAPLOT_SKYSUB">QAPLOT_SKYSUB</A> 
+  <LI><A href="#QUICKPROC">QUICKPROC</A> 
+  <LI><A href="#RDSS_FITS">RDSS_FITS</A> 
+  <LI><A href="#SDSSPROC">SDSSPROC</A> 
+  <LI><A href="#SELECT_ARC">SELECT_ARC</A> 
+  <LI><A href="#SELECT_FLAT">SELECT_FLAT</A> 
+  <LI><A href="#SKYSUBTRACT">SKYSUBTRACT</A> 
+  <LI><A href="#SORTPLUGMAP">SORTPLUGMAP</A> 
+  <LI><A href="#SPALLFLAT">SPALLFLAT</A> 
+  <LI><A href="#SPALLREDUCE">SPALLREDUCE</A> 
+  <LI><A href="#SPCALIB">SPCALIB</A> 
+  <LI><A href="#SPFLATTEN">SPFLATTEN</A> 
+  <LI><A href="#SPFLATTEN2">SPFLATTEN2</A> 
+  <LI><A href="#SPGAIN">SPGAIN</A> 
+  <LI><A href="#SPLOG">SPLOG</A> 
+  <LI><A href="#SPPLAN">SPPLAN</A> 
+  <LI><A href="#SPREDUCE">SPREDUCE</A> 
+  <LI><A href="#SSHIFT">SSHIFT</A> 
+  <LI><A href="#SSHIFT2D">SSHIFT2D</A> 
+  <LI><A href="#SSHIFTVEC">SSHIFTVEC</A> 
+  <LI><A href="#SUPERFLAT">SUPERFLAT</A> 
+  <LI><A href="#TELLURIC_CORR">TELLURIC_CORR</A> 
+  <LI><A href="#TRACE320CEN">TRACE320CEN</A> 
+  <LI><A href="#TRACE320CRUDE">TRACE320CRUDE</A> 
+  <LI><A href="#TRACESET2PIX">TRACESET2PIX</A> 
+  <LI><A href="#TRACESET2XY">TRACESET2XY</A> 
+  <LI><A href="#TRACE_CRUDE">TRACE_CRUDE</A> 
+  <LI><A href="#TRACE_FIX">TRACE_FIX</A> 
+  <LI><A href="#TRACE_FWEIGHT">TRACE_FWEIGHT</A> 
+  <LI><A href="#TRACE_GWEIGHT">TRACE_GWEIGHT</A> 
+  <LI><A href="#TWEAKTRACE">TWEAKTRACE</A> 
+  <LI><A href="#USHIFT">USHIFT</A> 
+  <LI><A href="#XY2TRACESET">XY2TRACESET</A> </LI></UL>
+<P> 
+<HR>
+
+<P> </P>
+<H1>Routine Descriptions</H1>
+<P><A name=ARCFIT_GUESS> </P>
+<H2>ARCFIT_GUESS</H2>
+<P></A><A href="#COMBINE2DOUT">[Next Routine]</A> <A 
+href="#ROUTINELIST">[List of Routines]</A> </P><PRE> NAME:
+   arcfit_guess
+
+ PURPOSE:
+   Determine initial wavelength solution by comparing spectrum to arc
+spectrum
+
+ CALLING SEQUENCE:
+   wset = arcfit_guess( spec, loglam, intensity, color=color, $
+    [ func=func, bestcorr=bestcorr ] )
+
+ INPUTS:
+   spec       - 1-D spectrum
+   loglam     - Log-lambda of arc lines
+   intensity  - Intensity of arc lines
+
+ REQUIRED KEYWORDS:
+   color      - 'red' or 'blue'
+
+ OPTIONAL KEYWORDS:
+   func       - Name of fitting function; default to 'legendre'
+
+ OUTPUTS:
+   wset       - traceset (pix - lambda)
+
+ OPTIONAL OUTPUTS:
+   bestcorr   - Correlation coefficient with simulated arc spectrum
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ INTERNAL SUPPORT PROCEDURES:
+   tset_struc()
+   arcfit_iter()
+
+ PROCEDURES CALLED:
+   traceset2xy()
+   xy2traceset
+
+ REVISION HISTORY:
+   18-Nov-1999  Written by D. Schlegel, Princeton.
+                Excised code from FITARCIMAGE.
+</PRE>
+<P><STRONG>(See pro/spec2d//arcfit_guess.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=COMBINE2DOUT> </P>
+<H2>COMBINE2DOUT</H2>
+<P></A><A href="#ARCFIT_GUESS">[Previous Routine]</A> <A 
+href="#DIVIDEFLAT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   combine2dout
+
+ PURPOSE:
+   Combine several reduced frames of the same objects
+
+ CALLING SEQUENCE:
+   combine2dout, filenames, outputroot, spectrographid, $
+    binsz, zeropoint, nord=nord, wavemin=wavemin, $
+    bkptbin=bkptbin, everyn=everyn, display=display, window=window, $
+    individual=individual
+
+ INPUTS:
+   filenames      - Name(s) of files written by SPREDUCE
+   outputroot     - Root name for all output files
+   spectrographid - Spectrograph ID (1 or 2) for use in computing fiber
+                    number for output file name; fibers from spectro-1
+                    are numbered from 1, those from spectro-2 from 321.
+
+ REQUIRED KEYWORDS:
+
+ OPTIONAL KEYWORDS:
+
+   display        - Show QA plot for each combined spectrum
+   individual     - Append individual spectra in HDU's after combined spectra
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+       This routine also outputs original 2048 spectra with mask pixels
+       replaced with their b-spline values.  Helpful for FFT
+
+
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djs_oplot
+   djs_plot
+   djs_maskinterp()
+   mrdfits()
+   writefits
+
+ INTERNAL SUPPORT PROCEDURES:
+   makelabel()
+
+ REVISION HISTORY:
+   ??-Sep-1999  Written by S. Burles
+   02-Jan-2000  Modified by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//combine2dout.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=DIVIDEFLAT> </P>
+<H2>DIVIDEFLAT</H2>
+<P></A><A href="#COMBINE2DOUT">[Previous Routine]</A> <A 
+href="#EXTRACT_BOXCAR">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   divideflat
+
+ PURPOSE:
+   Divide an extracted image with a fiber-flat
+
+ CALLING SEQUENCE:
+   divideflat, flux, fluxivar, fflat, [ fibermask=fibermask, minval=minval ]
+
+ INPUTS:
+   flux       - Array of extracted flux from a flat-field image [Nrow,Ntrace]
+   fluxivar   - Inverse variance map for FLUX.
+   fflat      - Array of flat-field flat-field vectors [Nrow,Ntrace]
+
+ OPTIONAL KEYWORDS:
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+   minval     - Minimum value to consider good for flat-field;
+                default to 0.03.
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+   Wherever the fiber is denoted bad in FIBERMASK, or wherever FFLAT is
+   &lt;= MINVAL, we set FLUX=FLUXIVAR=0.
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   splog
+
+ REVISION HISTORY:
+   17-Nov-1999  Written by S. Burles, Chicago
+   23-Nov-1999  Modified by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//divideflat.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=EXTRACT_BOXCAR> </P>
+<H2>EXTRACT_BOXCAR</H2>
+<P></A><A href="#DIVIDEFLAT">[Previous Routine]</A> <A 
+href="#EXTRACT_IMAGE">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   extract_boxcar
+
+ PURPOSE:
+   Extract the total flux within a boxcar window at many positions.
+
+ CALLING SEQUENCE:
+   fextract = extract_boxcar( fimage, xcen, ycen, [radius=radius] )
+
+ INPUTS:
+   fimage     - Image
+   xcen       - Initial guesses for X centers
+   ycen       - Y positions corresponding to "xcen" (expected as
+integers)
+
+ OPTIONAL KEYWORDS:
+   radius     - Radius of extraction; default to 3.0
+
+ OUTPUTS:
+   fextract   - Extracted flux at each position specified by (xcen, ycen)
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   Dynamic link to extract_boxcar.c
+
+ REVISION HISTORY:
+   24-Mar-1999  Written by David Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//extract_boxcar.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=EXTRACT_IMAGE> </P>
+<H2>EXTRACT_IMAGE</H2>
+<P></A><A href="#EXTRACT_BOXCAR">[Previous Routine]</A> <A 
+href="#EXTRACT_OBJECT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   extract_image
+
+ PURPOSE:
+   Extract the fiber profile flux for an entire image
+
+ CALLING SEQUENCE:
+   extract_image(fimage, invvar, xcen, sigma, flux, [finv, yrow=yrow,
+              ymodel=ymodel, fscat=fscat,proftype =
+proftype,ansimage=ansimage,
+              wfixed=wfixed, mask=mask, pixelmask=,  reject=, wsigma=, 
+              nPoly=nPoly, maxIter=maxIter, highrej=highrej, lowrej=lowrej,
+              fitans=fitans, whopping=whopping,relative=relative])
+
+ INPUTS:
+   fimage     - Image[nCol, nRow]
+   invvar     - Inverse Variance[nCol, nRow]
+   xcen       - Initial guesses for X centers[nRow, nFibers]
+   sigma      - sigma of gaussian profile; default to 1.0 
+                  (scalar or [nFibers] or [nRow, nFibers])
+
+ OPTIONAL KEYWORDS:
+   yrow       - long array specifying which rows to extract, default is all
+   proftype   - currently, one can only use 1: Gaussian (scalar)
+              - or                          2: Exp Cubic
+              - or                          3: Double Gaussian
+              - or              4: Exp Cubic with doublewide Gaussian
+   ansimage   - return the coefficients of fit for each row [nCoeff,nRow]
+   wfixed     - array of 1's and zero's which set which parameters are fixed.
+                e.g. [1] just gaussian's with fixed width sigma
+                     [1, 1] fit gaussian + sigma correction
+                     [1, 0, 1] fit gaussian + center correction
+                     [1, 1, 1] fit gaussian + sigma and center
+corrections.   
+   mask       - byte mask: 1 is good and 0 is bad [nCol,nRow] 
+   pixelmask  - bits set due to extraction rejection [nRow,nFiber]
+   reject     - two elements array setting partial and full rejection
+thresholds 
+   nPoly      - order of chebyshev scattered light background; default to 4
+   maxIter    - maximum number of profile fitting iterations; default to 20
+   highrej    - positive sigma deviation to be rejected (default 10.0)
+   lowrej     - negative sigma deviation to be rejected (default 10.0)
+   fitans     - ratio of profiles to do in single profile fitting
+   relative   - Scale rejection thresholds by reduced chi-squared (default 0)
+   whopping   - traces which have WHOPPINGingly high counts, and need extra
+                background terms
+   wsigma     - sigma width of whopping profile (exponential, default 25)
+
+ OUTPUTS:
+   flux       - Total extracted flux in each profile [nRowExtract, nFibers]
+
+ OPTIONAL OUTPUTS:
+   mask       - modified by setting the values of bad pixels to 0
+   finv       - Estimated inverse variance each profile [nRowExtract,
+nFibers]
+   ymodel     - model best fit of row[nCol, nRow]
+   fscat      - scattered light contribution in each fiber[nRow, nFibers]
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+    extract_row.pro
+
+ REVISION HISTORY:
+    8-Aug-1999  Version 0.0 Scott Burles, Chicago 
+</PRE>
+<P><STRONG>(See pro/spec2d//extract_image.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=EXTRACT_OBJECT> </P>
+<H2>EXTRACT_OBJECT</H2>
+<P></A><A href="#EXTRACT_IMAGE">[Previous Routine]</A> <A 
+href="#EXTRACT_PROFILE">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   extract_object
+
+ PURPOSE:
+
+   Performs all object extraction tasks
+      0) Locate bright fibers, and test image background
+      1) 3 step Optimal extraction
+      2) Tweak to sky lines
+      3) Sky subtraction
+      4) Flux calibration
+      5) Telluric correction
+
+ CALLING SEQUENCE:
+   extract_object, outname, objhdr, image, invvar, plugsort, wset, $
+    xarc, lambda, xtrace, fflat, fibermask, color=, [plottitle=]
+
+ INPUTS:
+   outname    - Name of outputs FITS file
+   objhdr     - Header cards from object image
+   image      - Object image [nx,ny]
+   invvar     - Inverse Variance of object image [nx,ny]
+   plugsort   - Plugmap structure for [ntrace] spectra
+   wset       - wavelength solution from arc line spectra
+   xarc       - centroids measured in arc line spectra
+   lambda     - air wavelengths corresponding to xarc
+   xtrace     - spatial traces from flat field
+   fflat      - 1d flat field vectors
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+
+ REQUIRED KEYWORDS:
+   color      - camera color (red or blue)
+
+ OPTIONAL KEYWORDS:
+   plottitle  - Prefix for titles in QA plots.
+
+ OUTPUTS:
+   A fits file is output in outname, which contains
+      float flux [nx,ntrace]
+      float flux_invvar [nx,ntrace]
+      plugsort struct [ntrace]
+      vacuum wavelength coefficients 
+      integer pixelmask [nx,ntrace]
+      byte    fibermask [ntrace]
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djs_median()
+   djs_oplot
+   djs_plot
+   extract_boxcar()
+   extract_image
+   fibermask_bits()
+   fitansimage()
+   fitvacset()
+   fluxcorr()
+   locateskylines
+   mwrfits
+   pixelmask_bits()
+   qaplot_scatlight
+   qaplot_skyline
+   qaplot_skysub
+   qaplot_skydev
+   skysubtract
+   splog
+   telluric_corr
+   tweaktrace
+
+ INTERNAL SUPPORT ROUTINES:
+   find_whopping()
+
+ REVISION HISTORY:
+   24-Jan-2000  Written by S. Burles, Chicago
+</PRE>
+<P><STRONG>(See pro/spec2d//extract_object.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=EXTRACT_PROFILE> </P>
+<H2>EXTRACT_PROFILE</H2>
+<P></A><A href="#EXTRACT_OBJECT">[Previous Routine]</A> <A 
+href="#EXTRACT_ROW[1]">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   extract_profile
+
+ PURPOSE:
+   Extract the flux with profile weighting at centroid positions.
+
+ CALLING SEQUENCE:
+   fextract = extract_profile( fimage, invvar, xcen, ycen, 
+                  [ferror=ferror, fscattered=fscattered, fwidth=fwidth, 
+                   sigma=sigma, nPoly=nPoly, maxIter=maxIter,
+                   refit=refit, highrej=highrej, lowrej=lowrej, boxap=boxap])
+
+ INPUTS:
+   fimage     - Image[nCol,nRow]
+   invvar     - Inverse Variance[nCol,nRow]
+   xcen       - Initial guesses for X centers[nFibers,nRow]
+   ycen       - Y positions corresponding to "xcen[nFibers]" [nRow]
+
+ OPTIONAL KEYWORDS:
+   ferror     - error array (-1 if bad pixel)
+   fscattered - scattered light contribution 
+   fwidth     - final profile width used
+
+   sigma      - sigma of gaussian profile; default to 1.0
+   nPoly      - order of chebyshev scattered light background; default to 5
+   maxIter    - maximum number of profile fitting iterations; default to 5
+   refit      - order of chebyshev to fit to profile widths vs. row,
+                       default is 0, which does no refitting
+   highrej    - positive sigma deviation to be rejected (default 5.0)
+   lowrej     - negative sigma deviation to be rejected (default 5.0)
+   boxap      - boxcar aperture size in pixels 
+                       default is 0, which does no boxcar extraction
+
+ OUTPUTS:
+   fextract   -  Extracted flux at each position specified by (xcen, ycen)
+                  [nFibers,nRow]
+               2: Scattered light estimate
+               3: Final profile width 
+               4: Boxcar extracted flux
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   Dynamic link to extract_profile.c
+
+ REVISION HISTORY:
+   24-Mar-1999  David Schlegel, Princeton.
+   24-Jun-1999  Stolen and modified by Scott Burles, Chicago.
+</PRE>
+<P><STRONG>(See pro/spec2d//extract_profile.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=EXTRACT_ROW[1]> </P>
+<H2>EXTRACT_ROW[1]</H2>
+<P></A><A href="#EXTRACT_PROFILE">[Previous Routine]</A> <A 
+href="#EXTRACT_ROW[2]">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   extract_row
+
+ PURPOSE:
+   Fit the fiber profiles and background in a single row with least squares
+
+ CALLING SEQUENCE:
+   ans = extract_row( fimage, invvar, xcen, sigma, [ymodel=, fscat=, 
+              proftype=, wfixed=, inputans=, iback=, bfixarr=, xvar=,
+              mask=, relative=, diagonal=, fullcovar=, wfixarr=, npoly=,
+              maxiter=, lowrej=, highrej=, niter=, squashprofile=,
+              whopping=, wsigma=, pixelmask=, reject=, reducedChi= ])
+
+ INPUTS:
+   fimage     - Vector [nCol]
+   invvar     - Inverse variance [nCol]
+   xcen       - Initial guesses for X centers [nFiber]
+   sigma      - Sigma of gaussian profile; (scalar or [nFiber])
+
+ OPTIONAL KEYWORDS:
+   proftype   - Select profile type:
+                  1: Gaussian
+                  2: (exponential)^3
+                  3: (exponential)^2.5
+                Default to 1.
+   inputans   - Input fit, excluding background and whopping terms
+                [ncoeff*nFiber]
+                The array is sorted as follows:
+                  [ncoeff] values for fiber #0
+                   ...
+                  [ncoeff] values for fiber #(nFiber-1)
+   relative   - Set to use reduced chi-square to scale rejection threshold
+   squashprofile - ???
+   npoly      - Order of chebyshev scattered light background; default to 5
+   maxiter    - Maximum number of profile fitting iterations; default to 10
+   lowrej     - Negative sigma deviation to be rejected; default to 5
+   highrej    - Positive sigma deviation to be rejected; default to 5
+   whopping   - X locations to center additional "whopping"
+terms to describe
+                the exponentail tails of flux near bright fibers; default
+                to -1, which means not to use any such terms.
+   wsigma     - Sigma width for exponential whopping profiles; default to 25
+   reject     - Three-element array setting partial and full rejection
+                thresholds for profiles; default [0.2, 0.5, 0.8].
+                What does this mean???
+                When this was hardwired, it was [0.4, ??, 0.8].
+
+ MODIFIED INPUTS (OPTIONAL):
+   wfixed     - Array to describe which parameters to fix in the profile;
+                0=fixed, 1=float; default to [1].
+                The number of parameters to fit per fiber is determined
+                this way; e.g. nCoeff = n_elements(wfixed), so the default
+                is to fit only 1 parameter per fiber.  For the (default)
+                Gaussian profile, this is the height of the Gaussian.
+                Note that WFIXED is used to build the array WFIXARR.
+   iback      - 1D array of input background coeff 
+                (needed if fixed parameters are non-zero)
+   bfixarr    - 1D integer array to specify which terms of the background
+                coefficients to fix; 0=fixed, 1=float.
+   wfixarr    - 1D integer array to specify which parameters in the full fit
+                to fix; 0=fixed, 1=float.
+                The array is sorted as follows:
+                  [ncoeff] values for fiber #0
+                   ...
+                  [ncoeff] values for fiber #(nFiber-1)
+                  [npoly] values for the background polynomial terms
+                  [whoppingct] values for the whopping terms
+   xvar       - X values of fimage and invvar; default is findgen(NX).
+   mask       - Image mask: 1=good, 0=bad [NX]
+   pixelmask  - Bits set for each fiber due to extraction rejection [nFiber]
+
+ OUTPUTS:
+   ans        - Output fit [ncoeff*nFiber+npoly+whoppingct]
+                The array is sorted as follows:
+                  [nFiber] values for coefficient #0
+                   ...
+                  [nFiber] values for coefficient #(nCoeff-1)
+                  [npoly] values for the background polynomial terms
+                  [whoppingct] values for the whopping terms
+                Note this array is **not** sorted as INPUTANS or WFIXARR!
+
+ OPTIONAL OUTPUTS:
+   ymodel     - Evaluation of best fit [nCol]
+   fscat      - Scattered light contribution in each fiber [nFiber]
+   diagonal   - 1D diagonal of covariance matrix.  Currently, this is
+                the diagonal from the Cholesky decompostion, which is
+                1/error[j].  [ncoeff*nFiber+npoly+whoppingct]
+   fullcovar  - 2D covariance matrix.  This is a symmetric matrix, and we
+                only fill the lower triangle.  Computing this increases CPU
+                time by a factor of 2 or 3.
+   niter      - Number of rejection iterations performed
+   reducedChi - Reduced chi ???
+
+ COMMENTS:
+
+ BUGS:
+    Still need to do:
+       limits on chebyshev polynomial are assumed to be 0.0 &lt;-- nx
+       these may need to be optional if only partial rows are being fit
+
+       Error codes need to be returned, currently no such codes are returned
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   Dynamic link to extract_row.c
+
+ REVISION HISTORY:
+    8-Aug-1999  Written by Scott Burles, Chicago 
+</PRE>
+<P><STRONG>(See pro/spec2d//extract_row.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=EXTRACT_ROW[2]> </P>
+<H2>EXTRACT_ROW[2]</H2>
+<P></A><A href="#EXTRACT_ROW[1]">[Previous Routine]</A> <A 
+href="#FCHEBYSHEV">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   extract_row
+
+ PURPOSE:
+   Fit the fiber profiles and background in a single row with least squares
+   Wrapper to extract row, which does extra testing
+
+ CALLING SEQUENCE:
+   ans = extract_row_safe( fimage, invvar, xcen, sigma, [ymodel=, fscat=, 
+              proftype=, wfixed=, inputans=, iback=, bfixarr=, xvar=,
+              mask=, relative=, diagonal=, fullcovar=, wfixarr=, npoly=,
+              maxiter=, lowrej=, highrej=, niter=, squashprofile=,
+              whopping=, wsigma=, pixelmask=, reject=, reducedChi= ])
+
+ INPUTS:
+   fimage     - Vector [nCol]
+   invvar     - Inverse variance [nCol]
+   xcen       - Initial guesses for X centers [nFiber]
+   sigma      - Sigma of gaussian profile; (scalar or [nFiber])
+
+ OPTIONAL KEYWORDS:
+   proftype   - Select profile type:
+                  1: Gaussian
+                  2: (exponential)^3
+                  3: (exponential)^2.5
+                Default to 1.
+   inputans   - Input fit, excluding background and whopping terms
+                [ncoeff*nFiber]
+                The array is sorted as follows:
+                  [ncoeff] values for fiber #0
+                   ...
+                  [ncoeff] values for fiber #(nFiber-1)
+   relative   - Set to use reduced chi-square to scale rejection threshold
+   squashprofile - ???
+   npoly      - Order of chebyshev scattered light background; default to 5
+   maxiter    - Maximum number of profile fitting iterations; default to 10
+   lowrej     - Negative sigma deviation to be rejected; default to 5
+   highrej    - Positive sigma deviation to be rejected; default to 5
+   whopping   - X locations to center additional "whopping"
+terms to describe
+                the exponentail tails of flux near bright fibers; default
+                to -1, which means not to use any such terms.
+   wsigma     - Sigma width for exponential whopping profiles; default to 25
+   reject     - Two-element array setting partial and full rejection
+                thresholds for profiles; default [0.8, 0.2].
+                What does this mean???
+                When this was hardwired, it was [0.8,0.4].
+
+ MODIFIED INPUTS (OPTIONAL):
+   wfixed     - Array to describe which parameters to fix in the profile;
+                0=fixed, 1=float; default to [1].
+                The number of parameters to fit per fiber is determined
+                this way; e.g. nCoeff = n_elements(wfixed), so the default
+                is to fit only 1 parameter per fiber.  For the (default)
+                Gaussian profile, this is the height of the Gaussian.
+                Note that WFIXED is used to build the array WFIXARR.
+   iback      - 1D array of input background coeff 
+                (needed if fixed parameters are non-zero)
+   bfixarr    - 1D integer array to specify which terms of the background
+                coefficients to fix; 0=fixed, 1=float.
+   wfixarr    - 1D integer array to specify which parameters in the full fit
+                to fix; 0=fixed, 1=float.
+                The array is sorted as follows:
+                  [ncoeff] values for fiber #0
+                   ...
+                  [ncoeff] values for fiber #(nFiber-1)
+                  [npoly] values for the background polynomial terms
+                  [whoppingct] values for the whopping terms
+   xvar       - X values of fimage and invvar; default is findgen(NX).
+   mask       - Image mask: 1=good, 0=bad [NX]
+   pixelmask  - Bits set for each fiber due to extraction rejection [nFiber]
+
+ OUTPUTS:
+   ans        - Output fit [ncoeff*nFiber+npoly+whoppingct]
+                The array is sorted as follows:
+                  [nFiber] values for coefficient #0
+                   ...
+                  [nFiber] values for coefficient #(nCoeff-1)
+                  [npoly] values for the background polynomial terms
+                  [whoppingct] values for the whopping terms
+                Note this array is **not** sorted as INPUTANS or WFIXARR!
+
+ OPTIONAL OUTPUTS:
+   ymodel     - Evaluation of best fit [nCol]
+   fscat      - Scattered light contribution in each fiber [nFiber]
+   diagonal   - 1D diagonal of covariance matrix.  Currently, this is
+                the diagonal from the Cholesky decompostion, which is
+                1/error[j].  [ncoeff*nFiber+npoly+whoppingct]
+   fullcovar  - 2D covariance matrix.  This is a symmetric matrix, and we
+                only fill the lower triangle.  Computing this increases CPU
+                time by a factor of 2 or 3.
+   niter      - Number of rejection iterations performed
+   reducedChi - Reduced chi ???
+
+ COMMENTS:
+
+ BUGS:
+    Still need to do:
+       limits on chebyshev polynomial are assumed to be 0.0 &lt;-- nx
+       these may need to be optional if only partial rows are being fit
+
+       Error codes need to be returned, currently no such codes are returned
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   Dynamic link to extract_row.c
+
+ REVISION HISTORY:
+    4-Feb-1999  Written by Schlegel
+        
+</PRE>
+<P><STRONG>(See pro/spec2d//extract_row_safe.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FCHEBYSHEV> </P>
+<H2>FCHEBYSHEV</H2>
+<P></A><A href="#EXTRACT_ROW[2]">[Previous Routine]</A> <A 
+href="#FIBERFLAT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+        FCHEBYSHEV
+ PURPOSE:
+       Compute the first M terms in a CHEBYSHEV polynomial expansion.  
+ EXPLANATION:
+       Meant to be used as a supplied function to SVDFIT.
+
+ CALLING SEQUENCE:
+       result = FCHEBYSHEV( X, M, /halfintwo)
+
+ INPUTS:
+       X - the value of the independent variable, scalar or vector
+       M - number of term of the CHEBYSHEV expansion to compute, integer
+scalar 
+
+ OUTPUTS:
+       result - (N,M) array, where N is the number of elements in X and M
+               is the order.   Contains the value of each CHEBYSHEV term for
+               each value of X
+ EXAMPLE:
+       (1) If x = 2.88 and M = 3 then 
+       IDL print, fchebyshev(x,3)   ==   [1.00, 2.88, 15.5888]
+
+       (2) Find the coefficients to an M term Chebyshev polynomial that gives
+               the best least-squares fit to a dataset (x,y)
+               IDL coeff = SVDFIT( x,y,M,func='fchebyshev')
+       
+ METHOD:
+
+ REVISION HISTORY:
+       04-Aug-1999  Written by Scott Burles by hacking FLEGENDRE code
+                    by Landsman in the Goddard libraries.
+</PRE>
+<P><STRONG>(See pro/spec2d//fchebyshev.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FIBERFLAT> </P>
+<H2>FIBERFLAT</H2>
+<P></A><A href="#FCHEBYSHEV">[Previous Routine]</A> <A 
+href="#FIBERMASK_BITS">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   fiberflat
+
+ PURPOSE:
+   Construct the flat-field vectors from an extracted flat-field image.
+
+ CALLING SEQUENCE:
+   fflat = fiberflat( flux, fluxivar, wset, [ fibermask=fibermask, $
+    minval=, ncoeff=, pixspace=, /dospline, nord=, lower=, upper=,
+    /dospline, plottitle= ])
+
+ INPUTS:
+   flux       - Array of extracted flux from a flat-field image [Nrow,Ntrace]
+   fluxivar   - Inverse variance map for FLUX.
+   wset       - Wavelength solution
+
+ OPTIONAL KEYWORDS:
+   fibermask  - Mask of 0 for bad fibers and 1 for good fibers [NFIBER]
+   minval     - Minimum value to use in fits to flat-field vectors;
+                default to 3% of the median of FLUX.
+   ncoeff     - Number of coefficients used in constructing FFLAT;
+                default to 3 (cubic)
+   pixspace   - Approximate spacing in pixels for break points in the
+                spline fits to individual fibers; default to 10 pixels.
+   dospline   - If this keyword is set, then fit the flat-field vectors
+                to splines (using PIXSPACE) rather than to a Legendre
+                polynomial (using NCOEFF).  This is **not** recommended.
+   plottitle  - Prefix for titles in QA plots.
+
+ PARAMETERS FOR SLATEC_SPLINEFIT:
+   nord
+   lower
+   upper
+
+ OUTPUTS:
+   fflat      - Array of flat-field flat-field vectors for each fiber
+                that remove relative flat-field variations as a function
+                of wavelength between fibers [Nrow, Ntrace]
+
+ OPTIONAL OUTPUTS:
+   fibermask  - (Modified)
+
+ COMMENTS:
+   The user should first "flat-field" the input array to take out
+   pixel-to-pixel variations.
+
+   The parameters for SLATEC_SPLINEFIT are only used when generating the
+   "superflat".
+
+   The 'BADFLAT' bit is set in FIBERMASK if the mean throughput for
+   a fiber is less than 0.7 times the median of all good-fiber throughputs.
+
+   In any given fiber, set FFLAT=0 wherever there are at least 5 contiguous
+   bad pixels.
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   fibermask_bits()
+   slatec_bvalu()
+   slatec_splinefit()
+   splog
+   superflat
+   traceset2xy
+   xy2traceset
+
+ REVISION HISTORY:
+   14-Oct-1999  Written by D. Schlegel, APO
+</PRE>
+<P><STRONG>(See pro/spec2d//fiberflat.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FIBERMASK_BITS> </P>
+<H2>FIBERMASK_BITS</H2>
+<P></A><A href="#FIBERFLAT">[Previous Routine]</A> <A 
+href="#FITANSIMAGE">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   fibermask_bits
+
+ PURPOSE:
+   Return a byte with a single bit set which matches bitlabel
+
+ CALLING SEQUENCE:
+   fibermask_bits(bitlabel)
+
+ INPUTS:
+   bitlabel   - String to match to corresponding bit
+
+ OUTPUTS:
+   One byte with 1 bit set 
+   returns 0 if no label is matched
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+   fibermask[i] = fibermask_bits('BADARC') 
+
+ BUGS:
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   23-Jan-2000 Written by S. Burles, Chicago
+</PRE>
+<P><STRONG>(See pro/spec2d//fibermask_bits.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FITANSIMAGE> </P>
+<H2>FITANSIMAGE</H2>
+<P></A><A href="#FIBERMASK_BITS">[Previous Routine]</A> <A 
+href="#FITARCIMAGE[1]">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   fitansimage
+
+ PURPOSE:
+   Convert output from extract_image (ansimage) into a smooth
+    function of fiber number and row
+
+ CALLING SEQUENCE:
+    fitans = fitansimage(ansimage, nterms, ntrace, npoly, nfirst, yrow, $
+            tempflux, fluxm = [1,1,0], scatfit=scatfit, $
+            smallflux, fluxm=fluxm, nord=nord, nscatbkpts=nscatbkpts, $
+            ymin=ymin, ymax=ymax, fullrows=fullrows)
+
+ INPUTS:
+     ansimage  -  Keyword Output from extract_image
+     nterms    -  number of profile terms
+     ntrace    -  Number of fibers (currently hardwired to 320)
+     npoly     -  Order of chebyshev polynomial in scattered light
+     yrow      -  Array of rows extracted in first pass 
+     smallflux -  Flux extracted in first pass
+
+ OPTIONAL KEYWORDS:
+     fluxm    -   Factor profile terms contribute to total flux
+                   (asymmetric terms are set to zero)
+
+ OUTPUTS:
+    fitans    -  Smooth version of ansimage (expanded to 2048 rows)
+
+ OPTIONAL OUTPUTS:
+    scatfit   - Image of scattered light from smoothing polynomials
+
+ COMMENTS:
+       fitansimage takes the output from extract_image, and smooths
+          the corresponding parameters of nfibers and npoly with
+          functions of order nord 
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   ??-Oct-1999  Written by S. Burles, Chicago
+   25-Feb-2000  Modified to be more robust (yeah!)
+                  but requires exactly 320 fibers (boo)
+</PRE>
+<P><STRONG>(See pro/spec2d//fitansimage.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FITARCIMAGE[1]> </P>
+<H2>FITARCIMAGE[1]</H2>
+<P></A><A href="#FITANSIMAGE">[Previous Routine]</A> <A 
+href="#FITARCIMAGE[2]">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   fitarcimage
+
+ PURPOSE:
+   Determine wavelength calibration from arclines
+
+ CALLING SEQUENCE:
+   fitarcimage, arc, arcivar, xcen, ycen, wset, [wfirst=, $
+    color=color, lampfile=lampfile, fibermask=fibermask, $
+    func=func, aset=aset, ncoeff=ncoeff, lambda=lambda, $
+    thresh=thresh, row=row, nmed=nmed, /gauss, $
+    xdif_tset=xdif_tset, bestcorr=bestcorr ]
+
+ INPUTS:
+   arc        - Extracted arc spectra with dimensions [NY,NFIBER]
+   arcivar    - Inverse variance of ARC
+
+ OPTIONAL KEYWORDS:
+   color      - 'red' or 'blue'; not required if ANS is set
+   lampfile   - Name of file describing arc lamp lines;
+                default to the file 'lamphgcdne.dat' in $IDLSPEC2D_DIR/etc.
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+   func       - Name of fitting function; default to 'legendre'
+   aset       - Trace set for initial wavelength solution in row number ROW.
+   ncoeff     - Number of coefficients in fits.  This may be different than
+                the number of coefficients in the initial guess ASET.
+                Default to 5.
+   thresh     - Threshhold counts for significant lines;
+                default to 200 if COLOR='blue' or 500 if COLOR='red'
+   row        - Row to use in initial guess of wavelength solution;
+                default to (NFIBER-30)/2
+   nmed       - Number of rows around ROW to median filter for initial
+                wavelengths solution; default to 5
+   gauss      - Use gaussian profile fitting for final centroid fit
+
+ OUTPUTS:
+   aset       - (Modified)
+   xcen       - pixel position of lines [nfiber, nlambda]
+   ycen       - fiber number [nfiber, nlambda]
+   wset       - traceset (pix - lambda)
+
+ OPTIONAL OUTPUTS:
+   lampfile   - Modified from input to include full path name of file
+   lambda     - Returns wavelengths of good lamp lines [Angstroms]
+   fibermask  - (Modified)
+   xdif_tset  - Fit residual of lamp lines to fit positions [pixels]
+   bestcorr   - Correlation coefficient with simulated arc spectrum
+   wfirst     - traceset from first iteration on arc fits
+
+ COMMENTS:
+   Return from routine after computing BESTCORR if XCEN, YCEN and WSET
+   are not to be returned.
+
+ EXAMPLES:
+
+ BUGS:
+   Not making sure that only the same lines are fit for each fiber.
+      (Different lines can be rejected in xy2traceset.)
+   THRESH is unused.
+   TRACESET2PIX maybe returns the transpose of what is natural?
+   Check QA stuff at end.
+   FIBERMASK not yet modified if an arc is atrociously bad.
+
+
+ PROCEDURES CALLED:
+   arcfit_guess()
+   djs_median
+   djsig()
+   finalarcfit
+   trace_crude()
+   trace_fweight()
+   traceset2pix()
+   traceset2xy()
+   xy2traceset
+
+ REVISION HISTORY:
+   15-Oct-1999  Written by S. Burles, D. Finkbeiner, &amp; D. Schlegel, APO.
+   09-Nov-1999  Major modifications by D. Schlegel, Ringberg.
+   20-Jan-2000  Gone back to very simple procedure: replacement (S. Burles)
+</PRE>
+<P><STRONG>(See pro/spec2d//fitarcimage.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FITARCIMAGE[2]> </P>
+<H2>FITARCIMAGE[2]</H2>
+<P></A><A href="#FITARCIMAGE[1]">[Previous Routine]</A> <A 
+href="#FITDISPERSION">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   fitarcimage
+
+ PURPOSE:
+   Determine wavelength calibration from arclines
+
+ CALLING SEQUENCE:
+   fitarcimage, arc, arcivar, xnew, ycen, wset, $
+    [ color=color, lampfile=lampfile, fibermask=fibermask, $
+    func=func, aset=aset, ncoeff=ncoeff, lambda=lambda, $
+    thresh=thresh, row=row, nmed=nmed, $
+    xdif_tset=xdif_tset, bestcorr=bestcorr ]
+
+ INPUTS:
+   arc        - Extracted arc spectra with dimensions [NY,NFIBER]
+   arcivar    - Inverse variance of ARC
+
+ OPTIONAL KEYWORDS:
+   color      - 'red' or 'blue'; not required if ANS is set
+   lampfile   - Name of file describing arc lamp lines;
+                default to the file 'lamphgcdne.dat' in the IDL path.
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+   func       - Name of fitting function; default to 'legendre'
+   aset       - Trace set for initial wavelength solution in row number ROW.
+   ncoeff     - Number of coefficients in fits.  This may be different than
+                the number of coefficients in the initial guess ASET.
+                Default to 5.
+   thresh     - Threshhold counts for significant lines;
+                default to 200 if COLOR='blue' or 500 if COLOR='red'
+   row        - Row to use in initial guess of wavelength solution;
+                default to (NFIBER-30)/2
+   nmed       - Number of rows around ROW to median filter for initial
+                wavelengths solution; default to 5
+
+ OUTPUTS:
+   aset       - (Modified)
+   xnew       - pixel position of lines [nfiber, nlambda]
+   ycen       - fiber number [nfiber, nlambda]
+   wset       - traceset (pix - lambda)
+
+ OPTIONAL OUTPUTS:
+   lampfile   - Modified from input to include full path name of file
+   lambda     - Returns wavelengths of good lamp lines [Angstroms]
+   fibermask  - (Modified)
+   xdif_tset  - Fit residual of lamp lines to fit positions [pixels]
+   bestcorr   - Correlation coefficient with simulated arc spectrum
+
+ COMMENTS:
+   Return from routine after computing BESTCORR if XCEN, YCEN and WSET
+   are not to be returned.
+
+   THIS IS REVISION 1.27 OF FITARCIMAGE, SINCE THE CURRENT VERSION
+   APPEARS TO BE BUGGY!!!
+
+ EXAMPLES:
+
+ BUGS:
+   Not making sure that only the same lines are fit for each fiber.
+      (Different lines can be rejected in xy2traceset.)
+   THRESH is unused.
+   TRACESET2PIX maybe returns the transpose of what is natural?
+   Check QA stuff at end.
+   FIBERMASK not yet modified if an arc is atrociously bad.
+
+
+ PROCEDURES CALLED:
+   arcfit_guess()
+   djs_median
+   djsig()
+   trace_crude()
+   trace_fweight()
+   traceset2pix()
+   traceset2xy()
+   xy2traceset
+
+ REVISION HISTORY:
+   15-Oct-1999  Written by S. Burles, D. Finkbeiner, &amp; D. Schlegel, APO.
+   09-Nov-1999  Major modifications by D. Schlegel, Ringberg.
+</PRE>
+<P><STRONG>(See pro/spec2d//fitarcimage_old.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FITDISPERSION> </P>
+<H2>FITDISPERSION</H2>
+<P></A><A href="#FITARCIMAGE[2]">[Previous Routine]</A> <A 
+href="#FITFLATWIDTH">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   fitdispersion
+
+ PURPOSE:
+   Fit polynomials to the line width (dispersion axis) for each fiber bundle
+
+ CALLING SEQUENCE:
+   dispset = fitdispersion(arc_flux, arc_fluxivar, xcen, $
+             sigma=sigma, ncoeff=ncoeff, xmin=xmin, xmax=xmax)
+
+ INPUTS:
+   arc_flux     - arc image extracted flux
+   arc_fluxivar - corresponding inverse variance
+   xcen         - xpeaks of arc lines [ntrace,nlines]
+
+ OPTIONAL KEYWORDS:
+   ncoeff     - order of legendre polynomial to apply to width vs. row
+   sigma      - The initial sigma (in pixels, 1.0 is a good guess)
+   xmin, xmax - limits in traceset
+
+ OUTPUTS:
+   dispset   - a traceset structure containing fitted coefficients
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+    Used to fill arcstruct.dispset, which can then be applied
+     to psf-corrected sky subtraction 
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   1-Mar-2000  Written by S. Burles, FNAL
+</PRE>
+<P><STRONG>(See pro/spec2d//fitdispersion.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FITFLATWIDTH> </P>
+<H2>FITFLATWIDTH</H2>
+<P></A><A href="#FITDISPERSION">[Previous Routine]</A> <A 
+href="#FITMEANX">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   fitflatwidth
+
+ PURPOSE:
+   Fit a traceset to the first-order corrected width of the flat field
+
+ CALLING SEQUENCE:
+   widthset = fitflatwidth(flux, fluxivar, ansimage, fibermask, $
+        ncoeff=ncoeff, sigma=sigma)
+
+ INPUTS:
+   flux       - flat-field extracted flux
+   fluxivar   - corresponding inverse variance
+   ansimage   - output from extract image which contains parameter values
+   fibermask  - nTrace bit mask, which marks bad fibers
+
+ OPTIONAL KEYWORDS:
+   ncoeff     - order of legendre polynomial to apply to width vs. row
+   sigma      - The zeroth order sigma of extracted profile
+
+ OUTPUTS:
+   widthset   - a traceset structure containing fitted coefficients
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+    Used to fill flatstruct.widthset, which can then be applied
+     to object extraction (known profile widths)
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   1-Mar-2000  Written by S. Burles, FNAL
+</PRE>
+<P><STRONG>(See pro/spec2d//fitflatwidth.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FITMEANX> </P>
+<H2>FITMEANX</H2>
+<P></A><A href="#FITFLATWIDTH">[Previous Routine]</A> <A 
+href="#FITVACSET">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   fitmeanx
+
+ PURPOSE:
+   Use fitans to tweak trace and sigma
+   This just perturbs the input values of xcen and sigma
+
+ CALLING SEQUENCE:
+   xdiff = fitmeanx(wset, lambda, xpos, xinvvar, $
+                      nord=nord, maxdev=maxdev, mx=mx)
+
+ INPUTS:
+   wset     - Initial wavelength solution
+   lambda   - air wavelengths corresponding to xpos
+   xpos     - centroids of sky lines in object image
+
+ OPTIONAL KEYWORDS:
+   nord     - order of fit to delta x positions
+   maxdev   - max abs difference to reject outlying sky line positions
+
+ OUTPUTS:
+   xdiff    - smooth fit to difference between measured sky positions
+                and those predicted from arc wavelength solution
+
+ OPTIONAL OUTPUTS:
+   xinvvar  - weights in xpos (mask)
+   mx       - sky line positions predicted from arc line solution
+
+ COMMENTS:
+    LAMBDA = log10-wavelength
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   19-Oct-1999  Written by S. Burles, Chicago
+</PRE>
+<P><STRONG>(See pro/spec2d//fitmeanx.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FITVACSET> </P>
+<H2>FITVACSET</H2>
+<P></A><A href="#FITMEANX">[Previous Routine]</A> <A 
+href="#FLEGENDRE">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   fitvacset
+
+ PURPOSE:
+   Use measured positions of arc lines and shift coefficients
+    passed through xset to produce a final vacuum wavelength solution 
+
+ CALLING SEQUENCE:
+   vacset = fitvacset(xpeak, lambda, wset, xset, ncoeff=ncoeff)
+
+ INPUTS:
+   xpeak  - Arc line centroids 
+   lambda - Corresponding wavelengths
+   wset   - Initial arc line solution coefficients
+   xset   - Coefficients specifying shift to coefficients 
+
+ OPTIONAL KEYWORDS:
+   ncoeff - Number of coefficients to fit final wavelength solution
+(Default 5)
+
+ OUTPUTS:
+   vacset - output wavelength solution which includes shift to
+                    sky lines and conversion to vacuum wavelengths
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   traceset2xy
+   xy2traceset
+
+ REVISION HISTORY:
+   20-Jan-2000  Written by S. Burles, Chicago
+</PRE>
+<P><STRONG>(See pro/spec2d//fitvacset.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FLEGENDRE> </P>
+<H2>FLEGENDRE</H2>
+<P></A><A href="#FITVACSET">[Previous Routine]</A> <A 
+href="#FLUXCORR">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+        FLEGENDRE
+ PURPOSE:
+       Compute the first M terms in a Legendre polynomial expansion.  
+ EXPLANATION:
+       Meant to be used as a supplied function to SVDFIT.
+
+       This procedure became partially obsolete in IDL V5.0 with the 
+       introduction of the /LEGENDRE keyword to SVDFIT and the associated 
+       SVDLEG function.    However, note that, unlike SVDLEG, FLEGENDRE works
+       on vector values of X.     
+ CALLING SEQUENCE:
+       result = FLEGENDRE( X, M)
+
+ INPUTS:
+       X - the value of the independent variable, scalar or vector
+       M - number of term of the Legendre expansion to compute, integer
+scalar 
+
+ OUTPUTS:
+       result - (N,M) array, where N is the number of elements in X and M
+               is the order.   Contains the value of each Legendre term for
+               each value of X
+ EXAMPLE:
+       (1) If x = 2.88 and M = 3 then 
+       IDL print, flegendre(x,3)   ==   [1.00, 2.88, 11.9416]
+
+       This result can be checked by explicity computing the first 3 Legendre
+       terms, 1.0, x, 0.5*( 3*x^2 -1)
+
+       (2) Find the coefficients to an M term Legendre polynomial that gives
+               the best least-squares fit to a dataset (x,y)
+               IDL coeff = SVDFIT( x,y,M,func='flegendre')
+       
+           The coefficients can then be supplied to the function POLYLEG to 
+               compute the best YFIT values for any X. 
+ METHOD:
+       The recurrence relation for the Legendre polynomials is used to
+compute
+       each term.   Compare with the function FLEG in "Numerical
+Recipes"
+       by Press et al. (1992), p. 674
+
+ REVISION HISTORY:
+       Written     Wayne Landsman    Hughes STX      April 1995
+    
+       Converted to IDL V5.0   W. Landsman   September 1997
+</PRE>
+<P><STRONG>(See pro/spec2d//flegendre.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FLUXCORR> </P>
+<H2>FLUXCORR</H2>
+<P></A><A href="#FLEGENDRE">[Previous Routine]</A> <A 
+href="#FUNC_FIT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   fluxcorr
+
+ PURPOSE:
+   Use sky-subtracted SPECTROPHOTO_STD's to calculate flux correction
+   as a function of wavelength.  We assume the correction is uniform
+   for all fibers (This may change).
+
+ CALLING SEQUENCE:
+   ff = fluxcorr(flux, fluxivar, wset, plugsort, color=color, $
+        spectrostd=spectrostd, bkptfile=bkptfile, lower=lower, upper=upper, $
+        fibermask=fibermask)
+
+ INPUTS:
+   flux         - sky-subtracted extracted spectra [nx,ntrace]
+   fluxivar     - corresponding inverse variance [nx,ntrace]
+   wset         - wavelength coefficients as a trace set
+   plugsort     - plugmap entries
+
+ REQUIRED KEYWORDS:
+   color        - 'red' or 'blue'
+
+ OPTIONAL KEYWORDS:
+   spectrostd   - file with spectrophoto continuum, set to 1.0 at 5556 Ang.
+   bkptfile     - file with wavelengths of specific bkpts 
+                     default is (red.bkpts or blue.bkpts)
+   absfile      - file delineating regions of absorption to avoid in
+                     in continuum fitting
+   lower        - lower rejection threshold for continuum fitting
+   upper        - upper rejection threshold for continuum fitting
+   fibermask    - use to reject possible standards which have spectral
+troubles
+   
+ OUTPUTS:
+   ff           - Flux calibration to correct each pixel in flux array
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         What we really need is an accurate prediction of
+         f-star continua as a function of u',g',r', and i'
+         Right now, all we can do is estimate.
+         Also need to rewrite to make use of all f-stars.
+       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   19-Oct-1999  Written by S. Burles, Chicago
+</PRE>
+<P><STRONG>(See pro/spec2d//fluxcorr.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=FUNC_FIT> </P>
+<H2>FUNC_FIT</H2>
+<P></A><A href="#FLUXCORR">[Previous Routine]</A> <A 
+href="#GENFLATMASK">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   func_fit
+
+ PURPOSE:
+   Fit X, Y positions to a functional form.
+
+ CALLING SEQUENCE:
+   res = function func_fit( x, y, ncoeff, [invvar=, function_name=, $
+    /halfintwo, yfit=, ia=, inputans= ]
+
+ INPUTS:
+   x          - X values (independent variable)
+   y          - Y values (dependent variable)
+   ncoeff     - Number of coefficients to fit
+   invvar     - Weight values (inverse variance)
+
+ OPTIONAL KEYWORDS:
+   function_name - Function to fit; options are:
+                'legendre'
+                'chebyshev'
+                Default to 'legendre'
+   halfintwo  - Optional keyword for Chebyshev function, FCHEBYSHEV
+   ia         - Array specifying free (1) and fixed (0) variables [NCOEFF]
+   inputans   - If holding parameters fixed, set this array to those values
+                [NCOEFF]
+
+ OUTPUTS:
+   res        - Fit coefficients [NCOEFF]
+
+ OPTIONAL OUTPUTS:
+   yfit       - Fit evaluated at the points X
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   fchebyshev()
+   flegendre()
+
+ REVISION HISTORY:
+   10-Sep-1999  Written by D. Finkbeiner, APO?
+   16-Nov-1999  Modified by D. Schlegel to never fit more coefficients
+                than there are data points.
+</PRE>
+<P><STRONG>(See pro/spec2d//func_fit.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=GENFLATMASK> </P>
+<H2>GENFLATMASK</H2>
+<P></A><A href="#FUNC_FIT">[Previous Routine]</A> <A 
+href="#IDLSPEC2D_VERSION">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   genflatmask
+
+ PURPOSE:
+   Read or generate a mask for pixels to ignore when generating flat-fields.
+
+ CALLING SEQUENCE:
+   maskimg = genflatmask( [ flatname, spectrographid=, color=, indir=,
+tmpdir= ] )
+
+ OPTIONAL INPUTS:
+   flatname   - Name of flat-field image
+                Note that many flats from many nights can be combined.
+
+ OPTIONAL KEYWORDS:
+   spectrographid - Spectrograph ID (1 or 2); reqired if FLATNAME not set.
+   color      - Spectrograph color ('red' or 'blue');
+                reqired if FLATNAME not set.
+   indir      - Input directory for FLATNAME; default to '.'
+   tmpdir     - Temporary directory for uncompressing the mask image
+                if FLATNAME is not specified; default to '.'
+
+ OUTPUTS:
+   maskimg    - Mask image with 0=good, 1=bad
+
+ COMMENTS:
+   If FLATNAME is specified, then a bad pixel mask is generated from
+   that flat-field image assuming it has a mean value approximately equal
+   to one.  If not, then read the mask from the distribution of IDLSPEC2D
+   in the "etc" subdirectory.
+
+   Mask values =0 for good pixels, =1 for bad.
+
+   This routine spawns the Unix comments 'zcat' and 'rm'.
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   readfits()
+
+ DATA FILES:
+   $IDLSPEC2D/etc/flatmask-b1.fits.gz
+   $IDLSPEC2D/etc/flatmask-b2.fits.gz
+   $IDLSPEC2D/etc/flatmask-r1.fits.gz
+   $IDLSPEC2D/etc/flatmask-r2.fits.gz
+
+ REVISION HISTORY:
+   16-Dec-1999  Written by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//genflatmask.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=IDLSPEC2D_VERSION> </P>
+<H2>IDLSPEC2D_VERSION</H2>
+<P></A><A href="#GENFLATMASK">[Previous Routine]</A> <A 
+href="#LOCATESKYLINES">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   idlspec2d_version
+
+ PURPOSE:
+   Return the version name for the product idlspec2d
+
+ CALLING SEQUENCE:
+   vers = idlspec2d_version()
+
+ INPUTS:
+
+ OUTPUTS:
+   vers       - Version name for the product idlspec2d
+
+ COMMENTS:
+   If this version is not tagged by CVS, then we return 'NOCVS:TOPLEVEL'
+   where TOPLEVEL is the last directory in the environment variable
+   $IDLSPEC2D_DIR.  For example, if you are using a version of the code
+   in the directory '/u/schlegel/idlspec2d/v0_0', then this returns
+   'NOCVS:v0_0'.
+
+ BUGS:
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   01-Dec-1999  Written by D. Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//idlspec2d_version.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=LOCATESKYLINES> </P>
+<H2>LOCATESKYLINES</H2>
+<P></A><A href="#IDLSPEC2D_VERSION">[Previous Routine]</A> <A 
+href="#LOGSHEET">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   locateskylines
+
+ PURPOSE:
+   Tweak wavelength calibration using skylines
+
+ CALLING SEQUENCE:
+   locateskylines, skylinefile, fimage, ivar, wset, xsky, ysky, skywaves, $
+    lambda=lambda, xset=xset
+
+ INPUTS:
+   skylinefile - filename of skyline file
+   fimage      - flattened image containing skylines (npix x nfiber)
+   ivar        - inverse variance of fimage
+   wset        - traceset (pix - lambda)
+
+ OPTIONAL KEYWORDS:
+   lambda      - override skyline file (log10 Angstroms)
+
+ OUTPUTS:
+   xsky        - pixel position of lines [nfiber, nline]
+   ysky        - fiber number [nfiber, nline]
+   skywaves    - wavelengths used (Angstroms)
+
+ OPTIONAL OUTPUTS:
+   errcode     - returns errcode (see below)
+
+ COMMENTS:
+   Error codes:
+  -1 - &lt;unknown error
+   0 - Everything fine
+
+ EXAMPLES:
+
+ BUGS:
+  I've now changed traceset2pix to use the forward trace set, but have
+  not yet made any changes to this code.
+
+ PROCEDURES CALLED:
+  fitmeanx()         
+  trace_gweight()
+  traceset2pix()
+
+ REVISION HISTORY:
+   15-Oct-1999  Written by S. Burles, D. Finkbeiner, &amp; D. Schlegel, APO
+   18-Nov-1999  Moved skyline QA to fit_skyset (SMB)
+</PRE>
+<P><STRONG>(See pro/spec2d//locateskylines.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=LOGSHEET> </P>
+<H2>LOGSHEET</H2>
+<P></A><A href="#LOCATESKYLINES">[Previous Routine]</A> <A 
+href="#PIXELMASK_BITS">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   logsheet
+
+ PURPOSE:
+   Make a summary of header keywords in a directory of raw SDSS spectro
+files.
+   Only look at files matching "*.fit"
+
+ CALLING SEQUENCE:
+   logsheet, [dir, outfile=]
+
+ INPUTS:
+
+ OPTIONAL INPUTS:
+   dir        - Directory name; default to ''
+   outfile    - Output file
+
+ OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   headfits()
+   sxpar()
+
+ REVISION HISTORY:
+   06-Oct-1999  Written by David Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//logsheet.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=PIXELMASK_BITS> </P>
+<H2>PIXELMASK_BITS</H2>
+<P></A><A href="#LOGSHEET">[Previous Routine]</A> <A 
+href="#QAPLOT_ARCLINE">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   pixelmask_bits
+
+ PURPOSE:
+   Return mask value corresponding to a mask condition for PIXELMASK.
+
+ CALLING SEQUENCE:
+   mask = pixelmask_bits(bitlabel)
+
+ INPUTS:
+   bitlabel   - String name specifying bit
+
+ OUTPUTS:
+   mask       - Signed long set to 2^BIT, where BIT is the bit specified by
+                BITLABEL, or set to 0 if no label is matched
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+   mask = pixelmask_bits('FULLREJECT') 
+
+ BUGS:
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   23-Jan-2000 Written by S. Burles, Chicago
+   27-Jan-2000 Changed from signed int to signed long
+</PRE>
+<P><STRONG>(See pro/spec2d//pixelmask_bits.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=QAPLOT_ARCLINE> </P>
+<H2>QAPLOT_ARCLINE</H2>
+<P></A><A href="#PIXELMASK_BITS">[Previous Routine]</A> <A 
+href="#QAPLOT_FFLAT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   qaplot_arcline
+
+ PURPOSE:
+   Generate QA plot for arcline fits
+
+ CALLING SEQUENCE:
+   qaplot_arcline, xdif, lambda, [color=, fibermask=, title=]
+
+ INPUTS:
+   xdif       - Deviations in arc line fits in pixels, array [NFIBER, NLAMP]
+   lambda     - Wavelength for each lamp in Angstroms, vector [NLAMP]
+
+ OPTIONAL KEYWORDS:
+   color      - Specify 'blue' or 'red' to fix plotting limits
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+   title      - TITLE of plot
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+   Skip over bad fibers in plots.
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djs_iterstat
+   djs_oplot
+   djs_plot
+
+ REVISION HISTORY:
+   15-Oct-1999  Written by D. Finkbeiner, APO
+   23-Nov-1999  Modified by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//qaplot_arcline.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=QAPLOT_FFLAT> </P>
+<H2>QAPLOT_FFLAT</H2>
+<P></A><A href="#QAPLOT_ARCLINE">[Previous Routine]</A> <A 
+href="#QAPLOT_SCATLIGHT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   qaplot_fflat
+
+ PURPOSE:
+   Generate QA plot for fiber-flats
+
+ CALLING SEQUENCE:
+   qaplot_fflat, fflat, wset, [ fibermask=, dx=, title= ]
+
+ INPUTS:
+   fflat      - Array of flat-field flat-field vectors for each fiber
+                that remove relative flat-field variations as a function
+                of wavelength between fibers [Nrow, Ntrace]
+   wset       - Wavelength solution
+
+ OPTIONAL KEYWORDS:
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+   dx         - Bin log-lambda by this number; default to 1.e-3 (about 10
+pix)
+   title      - TITLE of plot
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+   Do not plot bad fibers or masked pixels in good fibers.
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djs_oplot
+   djs_plot
+
+ REVISION HISTORY:
+   23-Nov-1999  Written by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//qaplot_fflat.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=QAPLOT_SCATLIGHT> </P>
+<H2>QAPLOT_SCATLIGHT</H2>
+<P></A><A href="#QAPLOT_FFLAT">[Previous Routine]</A> <A 
+href="#QAPLOT_SKYDEV">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   qaplot_scatlight
+
+ PURPOSE:
+   Generate QA plots for scattered light
+
+ CALLING SEQUENCE:
+   qaplot_scatlight, scatfit, yrow, wset=, xcen=, [ fibermask=, title= ]
+
+ INPUTS:
+   scatfit    - Scattered light image after fitting [NX,NY/8]
+   yrow       - extracted rows in scatfit 
+
+ REQUIRED KEYWORDS:
+   wset       - Wavelength solution
+   xcen       - X positions corresponding to the extracted wavelength sol'n
+                [NY,NTRACE]
+
+ OPTIONAL KEYWORDS:
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+   title      - TITLE of plot
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djs_median()
+   djs_oploterr
+   djs_plot
+   traceset2xy
+
+ REVISION HISTORY:
+   13-Dec-1999  Written by D. Schlegel, Princeton
+   22-Jan-2000  Trying to speed up, S. Burles
+</PRE>
+<P><STRONG>(See pro/spec2d//qaplot_scatlight.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=QAPLOT_SKYDEV> </P>
+<H2>QAPLOT_SKYDEV</H2>
+<P></A><A href="#QAPLOT_SCATLIGHT">[Previous Routine]</A> <A 
+href="#QAPLOT_SKYLINE">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   qaplot_skydev
+
+ PURPOSE:
+   Generate QA plot: scatter in sky line positions
+
+ CALLING SEQUENCE:
+   qaplot_skydev, flux, fluxivar, vacset, plugsort, color, $
+    [fibermask=, title=]
+
+ INPUTS:
+   flux       - Pre-skysubtracted flux array [Nrow, Ntrace]
+   fluxivar   - Associated inverse variance
+   vacset     - Vacuum Wavelength solution
+   plugsort   - Plugmap struct [Ntrace]
+   color      - string specifying 'red' or 'blue' spectra
+
+ OPTIONAL KEYWORDS:
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+   title      - TITLE of plot
+
+ OUTPUTS:
+   Output plots only
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djs_oplot
+   djs_plot
+   trace_gweight
+   traceset2xy
+   traceset2pix
+   djs_median
+
+ REVISION HISTORY:
+   22-Jan-2000 Written by S. Burles, Chicago
+</PRE>
+<P><STRONG>(See pro/spec2d//qaplot_skydev.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=QAPLOT_SKYLINE> </P>
+<H2>QAPLOT_SKYLINE</H2>
+<P></A><A href="#QAPLOT_SKYDEV">[Previous Routine]</A> <A 
+href="#QAPLOT_SKYSUB">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   qaplot_skyline
+
+ PURPOSE:
+   Generate QA plots for flux in particular skylines
+
+ CALLING SEQUENCE:
+   qaplot_skyline, lwave, obj, objivar, objsub, objsubivar, plugsort, wset, $
+    [fibermask=, dwave=, title= ]
+
+ INPUTS:
+   lwave      -
+   obj        - Image
+   objivar    - Inverse variance for OBJ
+   objsub     - Image after sky-subtraction
+   objsubivar - Inverse variance for image after sky-subtraction
+   plugsort   - Plugmap structure trimmed to one element per fiber
+   wset       - Wavelength solution
+
+ OPTIONAL KEYWORDS:
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+   dwave      - Half-width about LWAVE for fitting sky line;
+                default to 5.0 Ang
+   titel      - File name to use for TITLE of plot
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djs_iterstat
+   djs_median
+   djs_oplot
+   splog
+   traceset2xy
+
+ INTERNAL SUPPORT ROUTINES:
+
+ REVISION HISTORY:
+   01-Jan-2000  Written by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//qaplot_skyline.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=QAPLOT_SKYSUB> </P>
+<H2>QAPLOT_SKYSUB</H2>
+<P></A><A href="#QAPLOT_SKYLINE">[Previous Routine]</A> <A 
+href="#QUICKPROC">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   qaplot_skysub
+
+ PURPOSE:
+   Generate QA plots for sky-subtraction
+
+ CALLING SEQUENCE:
+   qaplot_skysub, obj, objivar, objsub, objsubivar, wset, $
+    iskies, [title= ]
+
+ INPUTS:
+   obj        - Image
+   objivar    - Inverse variance for OBJ
+   objsub     - Image after sky-subtraction
+   objsubivar - Inverse variance for image after sky-subtraction
+   wset       - Wavelength solution
+   iskies     - List of good sky fibers
+
+ OPTIONAL KEYWORDS:
+   title      - TITLE of plot
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djs_median
+   djs_oplot
+   djs_plot
+
+ INTERNAL SUPPORT ROUTINES:
+   skyplot
+
+ REVISION HISTORY:
+   30-Dec-1999  Written by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//qaplot_skysub.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=QUICKPROC> </P>
+<H2>QUICKPROC</H2>
+<P></A><A href="#QAPLOT_SKYSUB">[Previous Routine]</A> <A 
+href="#RDSS_FITS">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   quickproc
+
+ PURPOSE:
+   Read in Raw SDSS files, and keep as UINT, process with opConfig.par
+
+ CALLING SEQUENCE:
+   image = quickproc(infile, hdr=hdr, configfile=configfile)
+    
+
+ INPUTS:
+   infile     - Raw SDSS frame
+
+ OPTIONAL KEYWORDS:
+   hdr        - Header returned in memory
+   configfile - Default to "opConfig.par"
+
+ OUTPUTS:
+   image      - Processed 2d image (UINT) zero level 1000
+
+ COMMENTS:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   rdss_fits()
+   yanny_free
+   yanny_read
+
+ REVISION HISTORY:
+   10-Nov-1999  Written by Scott Burles, modified from sdssproc
+</PRE>
+<P><STRONG>(See pro/spec2d//quickproc.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=RDSS_FITS> </P>
+<H2>RDSS_FITS</H2>
+<P></A><A href="#QUICKPROC">[Previous Routine]</A> <A 
+href="#SDSSPROC">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   rdss_fits
+
+ PURPOSE:
+   Read a FITS file into IDL data and header variables
+
+ CALLING SEQUENCE:
+   image = rdss_fits( filename, [ hdr, nofloat ] )
+
+ INPUTS:
+   filename   - Scalar string containing the name of the FITS file  
+                (including extension) to be read.   If the filename has
+                a *.gz extension, it will be treated as a gzip compressed
+                file.   If it has a .Z extension, it will be treated as a
+                Unix compressed file.
+
+ OPTIONAL KEYWORDS:
+
+ OUTPUTS:
+   image      - FITS data array constructed from designated record.
+                If the specified file was not found, then return -1.
+
+ OPTIONAL OUTPUTS:
+   hdr        - String array containing the header from the FITS file.
+
+ COMMENTS:
+   This routine will read a simple FITS image, or convert a non-standard
+   SDSS image that uses unsigned 16-bit integers.  One can pass any other
+   keywords expected by READFITS().
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   readfits()
+   sxpar()
+
+ REVISION HISTORY:
+   13-May-1999  Written by David Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//rdss_fits.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SDSSPROC> </P>
+<H2>SDSSPROC</H2>
+<P></A><A href="#RDSS_FITS">[Previous Routine]</A> <A 
+href="#SELECT_ARC">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   sdssproc
+
+ PURPOSE:
+   Read in Raw SDSS files, and process with opConfig, opECalib, opBC par
+files.
+
+ CALLING SEQUENCE:
+   sdssproc, infile, [image, invvar, indir=, $
+    outfile=, varfile=, nsatrow=, fbadpix=, $
+    hdr=hdr, configfile=, ecalibfile=, bcfile=, $
+    pixflatname=, minflat=, spectrographid=, color= ]
+
+ INPUTS:
+   infile     - Raw SDSS file name
+
+ OPTIONAL KEYWORDS:
+   indir      - Input directory for INFILE
+   outfile    - Calibrated 2d frame, after processing
+   varfile    - Inverse variance frame after processing
+   nsatrow    - Number of saturated rows, assuming that a row is saturated
+                if at least 20 of its pixels are above saturation level
+   fbadpix    - Fraction of bad pixels, not including bad columns
+   hdr        - Header returned in memory
+   configfile - Default to "opConfig.par"
+   ecalibfile - Default to "opECalib.par"
+   bcfile     - Default to "opBC.par"
+   minflat    - Minimum values allowed for pixflat
+                   (lower values of pixflat are set to 0 invvar)
+   pixflatname- Name of pixel-to-pixel flat, produced with SPFLATTEN.
+
+ OUTPUTS:
+   image      - Processed 2d image
+   invvar     - Associated inverse variance
+   spectrographid - Return spectrograph ID (1 or 2)
+   color      - Return spectrograph color ('red' or 'blue')
+
+ COMMENTS:
+   Only the header is read from the image if IMAGE, INVVAR, OUTFILE and
+   VARFILE are all not set.
+
+   Required header keywords: EXPTIME.
+
+ BUGS:
+   The open-shutter correction SMEARIMG will include smeared data from
+   any cosmic rays, which is wrong.  At the minimum, I could interpolate
+   over A/D saturations (in ADMASK) before constructing SMEARIMG.
+
+ PROCEDURES CALLED:
+   djs_iterstat
+   headfits()
+   idlspec2d_version()
+   idlutils_version()
+   rdss_fits()
+   readfits()
+   splog
+   sxaddpar
+   sxpar()
+   writefits
+   yanny_free
+   yanny_read
+
+ REVISION HISTORY:
+   13-May-1999  Written by Scott Burles &amp; David Schlegel, Apache Point.
+   08-Sep-1999  Modified to read Yanny param files instead of FITS
+                versions of the same (DJS).
+   01-Dec-1999  Added version stamping (DJS).
+   07-Dec-1999  Mask neighbors of pixels that saturated the A/D converter.
+                Identify blead trails and mask from that row up (DJS).
+   10-Dec-1999  Test if the shutter was open during readout, and try
+                to correct the light for that (DJS).
+   04-Feb-2000  Declare that the shutter was open if it is a 640 sec
+                exposure taken before MJD=51570 (DJS).
+</PRE>
+<P><STRONG>(See pro/spec2d//sdssproc.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SELECT_ARC> </P>
+<H2>SELECT_ARC</H2>
+<P></A><A href="#SDSSPROC">[Previous Routine]</A> <A 
+href="#SELECT_FLAT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   select_arc
+
+ PURPOSE:
+   Select best arc from an arc structure produced with SPCALIB.
+
+ CALLING SEQUENCE:
+   bestarc = select_arc ( arcstruct )
+
+ INPUTS:
+   arcstruct  - Structure array with extracted arc calibration information
+
+ OPTIONAL KEYWORDS:
+
+ OUTPUTS:
+   bestarc    - Structure with extracted arc calibration information
+                for that arc selected from ARCSTRUCT
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djsig()
+
+ REVISION HISTORY:
+   25-Jan-2000  Written by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//select_arc.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SELECT_FLAT> </P>
+<H2>SELECT_FLAT</H2>
+<P></A><A href="#SELECT_ARC">[Previous Routine]</A> <A 
+href="#SKYSUBTRACT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   select_flat
+
+ PURPOSE:
+   Select best flat from a flat-field structure produced with SPCALIB.
+
+ CALLING SEQUENCE:
+   bestflat = select_flat( flatstruct, tai )
+
+ INPUTS:
+   flatstruct - Structure array with extracted flat calibration information
+   tai        - Time of observation for object frame (from header card)
+
+ OPTIONAL KEYWORDS:
+
+ OUTPUTS:
+   bestflat   - Structure array with extracted flat calibration information
+                for best flat selected for the time specified by TAI.
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   25-Jan-2000  Written by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//select_flat.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SKYSUBTRACT> </P>
+<H2>SKYSUBTRACT</H2>
+<P></A><A href="#SELECT_FLAT">[Previous Routine]</A> <A 
+href="#SORTPLUGMAP">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   skysubtract
+
+ PURPOSE:
+   Sky-subtract an image and modify the variance
+
+ CALLING SEQUENCE:
+   skystruct = skysubtract(obj, objivar, plugsort, wset, objsub,
+objsubivar, $
+    [iskies= , fibermask=, nord=, upper=, lower=, maxiter=, pixelmask=, $
+      relchi2struct= ])
+
+ INPUTS:
+   obj        - Image
+   objivar    - Inverse variance for OBJ
+   plugsort   - Plugmap structure trimmed to one element per fiber
+   wset       - Wavelength solution
+
+ OPTIONAL KEYWORDS:
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+   pixelmask  - Mask of 0 for good pixels [NPIX,NFIBER]
+   relchi2struct  - Structure containing information of chi^2 fitting
+
+ PARAMETERS FOR SLATEC_SPLINEFIT (for supersky fit):
+   nord       -
+   upper      -
+   lower      -
+   maxiter    -
+
+ OUTPUTS:
+   skystruct  - structure containing sorted sky wavelengths,flux,fluxivar
+                      +  bkpts and coeffs from fitting
+   objsub     - Image (OBJ) after sky-subtraction
+   objsubivar - Inverse variance (OBJIVAR) after sky-subtraction
+
+ OPTIONAL OUTPUTS:
+   iskies=    - array of good sky fibers
+
+ COMMENTS:
+   Construct a "supersky" spectrum by spline-fitting the (good)
+sky fibers,
+   resampling this at every wavelength in the extracted image, then
+   subtracting.  We then measure the variance of the sky-subtracted sky
+   fibers in terms of chi^2.  Wherever chi^2  1, we increase the variance
+   of all fibers such that chi^2=1 in the sky fibers.
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djs_iterstat
+   djs_oplot
+   djs_oploterr
+   djs_plot
+   pixelmask_bits()
+   slatec_splinefit()
+   slatec_bvalue()
+
+ REVISION HISTORY:
+   16-Sep-1999  Written by S. Burles, APO
+   30-Dec-1999  Modified by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//skysubtract.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SORTPLUGMAP> </P>
+<H2>SORTPLUGMAP</H2>
+<P></A><A href="#SKYSUBTRACT">[Previous Routine]</A> <A 
+href="#SPALLFLAT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   sortplugmap
+
+ PURPOSE:
+   Cull the nTrace plugmap entries which match the fibers in the
+     current image
+
+ CALLING SEQUENCE:
+  plugsort = sortplugmap(plugmap, spectrographid, fibermask, nFibers=nFibers)
+
+ INPUTS:
+   plugmap         - The full Plug map structure read in from plPlugMapM
+   spectrographid  - The spectrograph number
+
+ OPTIONAL KEYWORDS:
+   nFiebrs         - number of fibers to locate (default 320)
+
+ OUTPUTS:
+   plugsort        - culled plugmap structure matching current traces
+
+ OPTIONAL OUTPUTS:
+   fibermask       - returns an array of byte with bits set for unknown
+fibers
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   fibermask_bits()
+
+ REVISION HISTORY:
+   19-Oct-1999  Written by S. Burles, Chicago
+</PRE>
+<P><STRONG>(See pro/spec2d//sortplugmap.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SPALLFLAT> </P>
+<H2>SPALLFLAT</H2>
+<P></A><A href="#SORTPLUGMAP">[Previous Routine]</A> <A 
+href="#SPALLREDUCE">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   spallflat
+
+ PURPOSE:
+   Calling script for SPFLATTEN that generates pixel flats as specified in
+   a plan file.
+
+ CALLING SEQUENCE:
+   spallflat, planfile=planfile
+
+ INPUTS:
+
+ OPTIONAL INPUTS:
+   planfile   - Name of output plan file; default to 'spPlanFlat.par'
+
+ OUTPUT:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   spflatten
+   yanny_read
+
+ INTERNAL SUPPORT ROUTINES:
+
+ REVISION HISTORY:
+   02-Nov-1999  Written by David Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//spallflat.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SPALLREDUCE> </P>
+<H2>SPALLREDUCE</H2>
+<P></A><A href="#SPALLFLAT">[Previous Routine]</A> <A 
+href="#SPCALIB">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   spallreduce
+
+ PURPOSE:
+   Calling script for SPREDUCE and COMBINE2DOUT that reduces a night
+   of data according to a plan file.
+
+ CALLING SEQUENCE:
+   spallreduce, [ planfile, docams=, /nocombine, /xdisplay ]
+
+ INPUTS:
+
+ OPTIONAL INPUTS:
+   planfile   - Name(s) of output plan file; default to reducing all
+                plan files matching 'spPlan2d*.par'
+   docams     - Cameras to reduce; default to ['b1', 'b2', 'r1', 'r2'];
+                set to 0 or '' to disable running SPREDUCE and to only
+                combine files.
+   nocombine  - Only run SPREDUCE, not COMBINE2DOUT.
+   xdisplay   - Send plots to X display rather than to plot file
+
+ OUTPUT:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+   Try to avoid using SPAWN.
+   How do I just combine files? and not re-run spreduce?
+
+   What happens when the gain has changed?
+   We need to list opECalib.par in spPlan file.
+   Use default opECalib if not found...
+
+ PROCEDURES CALLED:
+   combine2dout
+   idlspec2d_version()
+   idlutils_version()
+   splog
+   spreduce
+   yanny_free
+   yanny_read
+
+ INTERNAL SUPPORT ROUTINES:
+
+ REVISION HISTORY:
+   02-Nov-1999  Written by David Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//spallreduce.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SPCALIB> </P>
+<H2>SPCALIB</H2>
+<P></A><A href="#SPALLREDUCE">[Previous Routine]</A> <A 
+href="#SPFLATTEN">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   spcalib
+
+ PURPOSE:
+   Extract calibration frames.
+
+ CALLING SEQUENCE:
+   spcalib, flatname, arcname, [pixflatname=, fibermask=, $
+    lampfile=, indir=, timesep=, ecalibfile=, plottitle=, $
+    arcinfoname=, flatinfoname=, arcstruct=, flatstruct=]
+
+ INPUTS:
+   flatname   - Name(s) of flat-field SDSS image(s)
+   arcname    - Name(s) of arc SDSS image(s)
+
+ OPTIONAL KEYWORDS:
+   pixflatname- Name of pixel-to-pixel flat, produced with SPFLATTEN.
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER].
+                Note this is not modified, but modified copies appear
+                in the returned structures ARCSTRUCT and FLATSTRUCT.
+   lampfile   - Name of file describing arc lamp lines;
+                default to the file 'lamphgcdne.dat' in the IDL path.
+   indir      - Input directory for FLATNAME, ARCNAME, OBJNAME;
+                default to '.'
+   timesep    - Maximum time separation between flats and arcs to pair them;
+                set to zero to disable this test; default to 7200 sec.
+   ecalibfile - opECalib file to pass to SDSSPROC
+   plottitle  - Prefix for titles in QA plots.
+   arcinfoname- File name (with path) to output arc extraction and fitting
+                information
+   flatinfoname-File name (with path) to output flat field extraction and
+                fitting information
+
+ OUTPUTS:
+   arcstruct  - Structure array with extracted arc calibration information
+   flatstruct - Structure array with extracted flat calibration information
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+   Always pair arcs to the nearest good flat, and flats to the nearest good
+   arc (nearest in time, as defined by the TAI keyword in the FITS headers).
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   extract_image
+   fiberflat()
+   fitarcimage
+   fitarcimage_old
+   sdssproc
+   shift_trace()
+   splog
+   trace320crude()
+   traceset2xy
+   xy2traceset
+
+ INTERNAL SUPPORT ROUTINES:
+   create_arcstruct()
+   create_flatstruct()
+
+ REVISION HISTORY:
+   24-Jan-2000  Written by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//spcalib.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SPFLATTEN> </P>
+<H2>SPFLATTEN</H2>
+<P></A><A href="#SPCALIB">[Previous Routine]</A> <A 
+href="#SPFLATTEN2">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   spflatten
+
+ PURPOSE:
+   Create pixel-to-pixel flat-field from a stack of SDSS spectral flats.
+
+ CALLING SEQUENCE:
+   spflatten, flatname, [ pixflat, sigrej=, maxiter=, $
+    outfile=, indir=, outdir=, tmpdir=, $
+    bkspace=, nord=, lower=, upper= ]
+
+ INPUTS:
+   flatname   - Name(s) of raw SDSS flat-field image(s).
+                Note that many flats from many nights can be combined.
+
+ OPTIONAL INPUTS:
+   sigrej     - Sigma rejection level; default to 1, 1, 1.1, 1.3, 1.6 or 1.9
+                for 1,2,3,4,5 or 6 flats.  For more then 6 flats, default
+                to 2.0.
+   maxiter    - Number of rejection iterations; default to 2.
+   outfile    - Write the image PIXFLAT to this file.
+   indir      - Input directory for FLATNAME; default to './'
+   outdir     - Output directory for OUTFILE; default to './'
+   tmpdir     - Directory for temporary files; default to same as OUTDIR
+
+ PARAMETERS FOR SLATEC_SPLINEFIT:
+   bkspace
+   nord
+   lower
+   upper
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+   pixflat    - Image containing all the information about pixel-to-pixel
+                variations.  Illumination variations are removed.
+
+ COMMENTS:
+   This program writes 2*nflat temporary files to disk to save internal
+memory.
+   But it still creates an two arrays (FLATARR (float) and OUTMASK (byte))
+   that is as large as all of the input flats.
+   Thus, if you are using ten 16 MB flat images,
+   that array will be 10*(16+4)=200 MB (in addition to a few other images).
+
+ EXAMPLES:
+
+ BUGS:
+   Not sure what to do if exactly 2 frames are passed.
+
+ PROCEDURES CALLED:
+   djs_avsigclip()
+   extract_image
+   readfits()
+   slatec_bvalu()
+   slatec_splinefit()
+   sdssproc
+   writefits
+
+ REVISION HISTORY:
+   13-Oct-1999  Written by D. Schlegel, APO
+</PRE>
+<P><STRONG>(See pro/spec2d//spflatten.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SPFLATTEN2> </P>
+<H2>SPFLATTEN2</H2>
+<P></A><A href="#SPFLATTEN">[Previous Routine]</A> <A 
+href="#SPGAIN">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   spflatten2
+
+ PURPOSE:
+   Create pixel-to-pixel flat-field from a stack of SDSS spectral flats.
+
+ CALLING SEQUENCE:
+   spflatten2, flatname, arcname, allflats, [ pixflat, sigrej=, maxiter=, $
+    oldflat=, outfile=, indir=, outdir=, tmpdir=, $
+    pixspace=, nord=, lower=, upper= ]
+
+ INPUTS:
+   flatname   - Name of flat image for tracing arc
+   arcname    - Name of arc image
+   allflats   - Name(s) of raw SDSS flat-field image(s).
+                Note that many flats from many nights can be combined.
+
+ OPTIONAL INPUTS:
+   sigrej     - Sigma rejection level; default to 1, 1, 1.1, 1.3, 1.6 or 1.9
+                for 1,2,3,4,5 or 6 flats.  For more then 6 flats, default
+                to 2.0.
+   maxiter    - Number of rejection iterations; default to 2.
+   oldflat    - Name of old flat-field from which to select pixels to mask;
+                if not set, then read the masks in this source distribution.
+   outfile    - Write the image PIXFLAT to this file.
+   indir      - Input directory for FLATNAME; default to './'
+   outdir     - Output directory for OUTFILE; default to './'
+   tmpdir     - Directory for temporary files; default to same as OUTDIR
+   pixspace   - Approximate spacing in pixels for break points in the
+                spline fits to individual fibers; default to 50 pixels.
+                Note that this spacing need be small enough to fit out
+                the flux variations of multiple fibers crossing a single
+                column, but it need not fit out the actual flat-field
+                variations.
+
+ PARAMETERS FOR SLATEC_SPLINEFIT:
+   nord       - Default to 4
+   lower      - Default to 2
+   upper      - Default to 2
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+   pixflat    - Image containing all the information about pixel-to-pixel
+                variations.  Illumination variations are removed.
+
+ COMMENTS:
+   This program writes 2*nflat temporary files to disk to save internal
+memory.
+   But it still creates an two arrays (FLATARR (float) and OUTMASK (byte))
+   that is as large as all of the input flats.
+   Thus, if you are using ten 16 MB flat images,
+   that array will be 10*(16+4)=200 MB (in addition to a few other images).
+
+ EXAMPLES:
+
+ BUGS:
+   Not sure what to do if exactly 2 frames are passed.
+   Pass UPPER and LOWER.
+   Look for bad fibers or outlier fibers to exclude from superflat.
+   Right now, we can get bad spline fits across the large hole in the
+     b1 flat-field if the break points fall too close to the edges of
+     that hole.  Try to keep more data points between the last break point
+     and the beginning of the hole, or do a linear interpolation across
+     the hole.
+
+ PROCEDURES CALLED:
+   djs_avsigclip()
+   extract_image
+   genflatmask()
+   readfits()
+   slatec_bvalu()
+   slatec_splinefit()
+   sdssproc
+   superflat
+   trace320crude()
+   traceset2xy
+   writefits
+   xy2traceset
+
+ REVISION HISTORY:
+   13-Oct-1999  Written by D. Schlegel, APO
+</PRE>
+<P><STRONG>(See pro/spec2d//spflatten2.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SPGAIN> </P>
+<H2>SPGAIN</H2>
+<P></A><A href="#SPFLATTEN2">[Previous Routine]</A> <A 
+href="#SPLOG">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   spgain
+
+ PURPOSE:
+   Measure the gain + read noise for SDSS spectroscopic images
+
+ CALLING SEQUENCE:
+   spgain, flatfile1, flatfile2, [ biasfile1, biasfile2, indir=indir, $
+    xskip=xskip, yave=yave, gain=gain, rnoise=rnoise ]
+
+ INPUTS:
+   flatfile1  - File name for flat #1
+   flatfile2  - File name for flat #2
+   biasfile1  - File name for bias #1
+   biasfile2  - File name for bias #2
+
+ OPTIONAL KEYWORDS:
+   indir      - Input directory for all files
+   xskip      - Number of columns to ignore at beginning and end of each
+                amplifier; default to 50
+   yave       - Number of rows to analyze for each calculation of gain and
+                read noise; default to 15
+
+ OUTPUTS:
+   gain       - Gain in electrons/ADU for each amplifier (array)
+   rnoise     - Read noise in electrons for each amplifier (array)
+
+ COMMENTS:
+
+ BUGS:;
+
+ PROCEDURES CALLED:
+   djs_iterstat
+   sdssproc
+
+ REVISION HISTORY:
+   21-Nov-1999  Written by D. Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//spgain.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SPLOG> </P>
+<H2>SPLOG</H2>
+<P></A><A href="#SPGAIN">[Previous Routine]</A> <A href="#SPPLAN">[Next 
+Routine]</A> <A href="#ROUTINELIST">[List of Routines]</A> </P><PRE> NAME:
+   splog
+
+ PURPOSE:
+   Logging routine for spectroscopic pipeline.
+
+ CALLING SEQUENCE:
+   splog, v1, v2 ..., [, _EXTRA=extra, /noname, prelog=, filename=, $
+    /append, /close ]
+
+ INPUTS:
+   v1, v2 ... - The expressions to be passed to PRINT or PRINTF
+
+ OPTIONAL KEYWORDS:
+   _EXTRA     - Any keywords for PRINT or PRINTF, such as FORMAT
+   noname     - If set, then suppress printing name of calling routine
+   prelog     - If set, then print this string immediately after the
+                name of the calling routine on each line, i.e. 'b1'
+   filename   - If specified, then open this file for text output
+   append     - If set at the same time as FILENAME, then append to this
+file;
+                default is to overwrite file
+   close      - If set, then close the output file
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+   Open a file for text output, write to it, then close it:
+     splog, filename='test.log'
+     splog, 'This is a test', 123.4, format='(a,f8.2)'
+     splog, /close
+   Alternatively, this can all be done on one line
+     splog, filename='test.log', /close, $
+      'This is a test', 123.4, format='(a,f8.2)'
+
+ BUGS:
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   17-Nov-1999  Written by D. Schlegel, Princeton
+</PRE>
+<P><STRONG>(See pro/spec2d//splog.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SPPLAN> </P>
+<H2>SPPLAN</H2>
+<P></A><A href="#SPLOG">[Previous Routine]</A> <A href="#SPREDUCE">[Next 
+Routine]</A> <A href="#ROUTINELIST">[List of Routines]</A> </P><PRE> NAME:
+   spplan
+
+ PURPOSE:
+   Create plan file(s) for running the Spectro-2D pipeline.
+
+ CALLING SEQUENCE:
+   spplan, [ rawdir, astrolog=, mjd=, flatdir=, minexp= ]
+
+ INPUTS:
+
+ OPTIONAL INPUTS:
+   rawdir     - Search for raw data files in RAWDIR/MJD/*.
+                This should be an absolute file path, and we default to
+                '/usr/sdss/data05/spectro/rawdata'.
+   astrolog   - Search for plug-map files in PLUGDIR/MJD/*.
+                This should be an absolute file path, and we default to
+                '/usr/sdss/data05/spectro/astrolog'.
+   mjd        - Look for raw data files in RAWDIR/MJD; default to '*' to
+                search all subdirectories.  Note that this need not be
+                integer-valued, but could be for example '51441_test'.
+   flatdir    - Directory for pixel flat files.  For now, default
+                to 'pixflat'.
+   minexp     - Minimum exposure time for science frames; default to 300 sec.
+
+ OUTPUT:
+
+ COMMENTS:
+   Look for the input files in:
+     RAWDIR/MJD/sdR-cs-eeeeeeee.fit          - Raw frames, c=color, s=spec #
+     RAWDIR/MJD/plPlugMapM-pppp-mmmmm-aa.par - Plug map files, aa=mapper
+
+   The top-level of the output directory structure, TOPDIR, is 2d_VERSION,
+   where we read the version with IDLSPEC2d_VERSION().  If this is not a CVS-
+   declared version of the code, then the output directory is '2d_test'.
+   The files created are:
+     TOPDIR/PLATE/spPlan2d-mmmmm-pppp.par    - 2D plan file (could be
+several)
+
+   If an output plan file already exists, this procedure will crash rather
+   than overwrite that file.
+
+   Note we assume Unix directory names and we SPAWN the Unix 'ls' command.
+
+ EXAMPLES:
+   Create the plan file(s) for reducing the data for MJD=51441, with that
+   raw data in the directory '/u/schlegel/rawdata/51441'
+     spplan, '/u/schlegel/rawdata', mjd=51441
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   headfits()
+   idlspec2d_version()
+   splog
+   sxpar()
+   yanny_read
+   yanny_write
+
+ INTERNAL SUPPORT ROUTINES:
+   spplan_create_exp
+   spplan_create_plug
+   spplan_create_pixflats
+
+ REVISION HISTORY:
+   02-Nov-1999  Written by David Schlegel, Princeton.
+   10-Nov-1999  SMB added checkstats to verify flavors.
+   18-Jan-2000  Re-written to conform to new file names + directory
+structure.
+                Not using CHECKSTATS any more at the moment.
+</PRE>
+<P><STRONG>(See pro/spec2d//spplan.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SPREDUCE> </P>
+<H2>SPREDUCE</H2>
+<P></A><A href="#SPPLAN">[Previous Routine]</A> <A href="#SSHIFT">[Next 
+Routine]</A> <A href="#ROUTINELIST">[List of Routines]</A> </P><PRE> NAME:
+   spreduce
+
+ PURPOSE:
+   Extract, wavelength-calibrate, and flatten SDSS spectral frame(s).
+
+ CALLING SEQUENCE:
+   spreduce, flatname, arcname, objname, pixflatname=pixflatname, $
+    plugfile=plugfile, lampfile=lampfile, $
+    indir=indir, plugdir=plugdir, outdir=outdir, $
+    ecalibfile=ecalibfile, plottitle=plottitle, summarystruct=summarystruct
+
+ INPUTS:
+   flatname   - Name(s) of flat-field SDSS image(s)
+   arcname    - Name(s) of arc SDSS image(s)
+   objname    - Name(s) of object SDSS image(s)
+
+ REQUIRED KEYWORDS:
+   plugfile   - Name of plugmap file (Yanny parameter file)
+
+ OPTIONAL KEYWORDS:
+   pixflatname- Name of pixel-to-pixel flat, produced with SPFLATTEN.
+   lampfile   - Name of file describing arc lamp lines;
+                default to the file 'lamphgcdne.dat' in the IDL path.
+   indir      - Input directory for FLATNAME, ARCNAME, OBJNAME;
+                default to '.'
+   plugdir    - Input directory for PLUGFILE; default to '.'
+   outdir     - Directory for output files; default to '.'
+   ecalibfile - opECalib.par file for SDSSPROC
+   plottitle  - Prefix for titles in QA plots.
+   summarystruct - Good intentions ???
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+   Should test that arcs and flats are valid images with CHECKFLAVOR.
+
+ PROCEDURES CALLED:
+   extract_object
+   qaplot_arcline
+   qaplot_fflat
+   select_arc()
+   select_flat()
+   sortplugmap
+   sdssproc
+   spcalib
+   splog
+   yanny_free
+   yanny_read
+
+ REVISION HISTORY:
+   12-Oct-1999  Written by D. Schlegel &amp; S. Burles, APO
+</PRE>
+<P><STRONG>(See pro/spec2d//spreduce.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SSHIFT> </P>
+<H2>SSHIFT</H2>
+<P></A><A href="#SPREDUCE">[Previous Routine]</A> <A 
+href="#SSHIFT2D">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+       sshift
+ PURPOSE: (one line)
+       Shift data using a damped sinc function for fractional part.
+ DESCRIPTION:
+
+       This function will shift an array of data pointed to by x and
+       extending for n points.  The amount of the shift is given by shift.
+       The result of the operation is placed at xp.  A shift that is within
+       0.0001 of a whole number is treated to be that of the whole number.  If
+       the shift is by an integral number of pixels then the shift involves
+       reindexing the data, no interpolation is done.  If the shift is some
+       non-integral amount then the data is resampled using a damped sinc
+       function.
+
+       The sense of the shift is as follows: think of the array plotted on a
+       fixed scale.  A shift of 1 corresponds to shifting the data by one data
+       point to the right relative to the fixed scale, ie. x[3]=xp[4].
+
+       The data will fall off one end or another of the output vector as a
+       result of the shift.  However, this is not as significant as the edge
+       effect, the convolution is not complete for any data point within 10
+       points of the edge, so those points cannot be trusted.  The missing
+       points in the convolution are assumed to be equal to the end points.
+
+ CATEGORY:
+       Numerical
+ CALLING SEQUENCE:
+       xp = sshift(x,shift)
+ INPUTS:
+       x     - Input data array to be shifted.
+       shift - Amount to shift (negative to left).
+ OPTIONAL INPUT PARAMETERS:
+ KEYWORD PARAMETERS:
+ OUTPUTS:
+       Return value is the shifted array.
+ COMMON BLOCKS:
+ SIDE EFFECTS:
+ RESTRICTIONS:
+       The input and output arrays cannot be the same.
+ PROCEDURE:
+ MODIFICATION HISTORY:
+       Adapted from Zodiac routine: shiftc/sshift
+         Marc W. Buie, Lowell Observatory, 1992 October 2
+</PRE>
+<P><STRONG>(See pro/spec2d//sshift.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SSHIFT2D> </P>
+<H2>SSHIFT2D</H2>
+<P></A><A href="#SSHIFT">[Previous Routine]</A> <A 
+href="#SSHIFTVEC">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+    sshift2d
+ PURPOSE: (one line)
+    Shift a 2-D array using a damped sinc function for the fractional part.
+ DESCRIPTION:
+
+ CATEGORY:
+    Mathematical
+ CALLING SEQUENCE:
+    result = sshift2d( array, shiftvec )
+ INPUTS:
+    array    : Array to be shifted.
+    shiftvec : Vector of two elements: [ xshift, yshift ].
+ OPTIONAL INPUT PARAMETERS:
+
+ KEYWORD PARAMETERS:
+
+ OUTPUTS:
+    The shifted array is returned as the function value.
+ COMMON BLOCKS:
+
+ SIDE EFFECTS:
+
+ RESTRICTIONS:
+
+ PROCEDURE:
+
+ MODIFICATION HISTORY:
+    February, 1993:
+    Copied from "sincshift.pro" written by John Spencer, Lowell
+Observatory.
+    Very minor modifications by Doug Loucks, Lowell Observatory.
+</PRE>
+<P><STRONG>(See pro/spec2d//sshift2d.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SSHIFTVEC> </P>
+<H2>SSHIFTVEC</H2>
+<P></A><A href="#SSHIFT2D">[Previous Routine]</A> <A 
+href="#SUPERFLAT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   sshiftvec
+
+ PURPOSE:
+   Shift vector or image (line-at-a-time) using a damped sinc function.
+
+ CALLING SEQUENCE:
+   simage = sshiftvec( fimage, shift, [ sincrad=sincrad, dampfac=dampfac, $
+    eps=eps ] )
+
+ INPUTS:
+   fimage     - Input vector (1D) or image (2D)
+   shift      - Distance to shift
+
+ OPTIONAL KEYWORDS:
+   sincrad    - Half-width of sinc convolution kernal; default to 10 pixels
+   dampfac    - Damping factor for gaussian; default to 3.25
+   eps        - Smallest fractional shift allowed; default to 1.0e-5
+
+ OUTPUTS:
+   simage     - Shifted image
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+   This routine is based upon the IDL routine SSHIFT from Marc Buie,
+   which in turn is based upon the Zodiac routine shiftc/sshift.
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   Dynamic link to sshiftvec.c
+
+ REVISION HISTORY:
+   14-Apr-1999  Written by David Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//sshiftvec.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=SUPERFLAT> </P>
+<H2>SUPERFLAT</H2>
+<P></A><A href="#SSHIFTVEC">[Previous Routine]</A> <A 
+href="#TELLURIC_CORR">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   superflat
+
+ PURPOSE:
+   Create a "superflat" from an extracted flat-field image
+
+ CALLING SEQUENCE:
+   superflat, flux, fluxivar, wset, fullbkpt, coeff, $
+    [ fibermask=, minval=, lower=, upper=, medval=, title= ]
+
+ INPUTS:
+   flux       - Array of extracted flux from a flat-field image [Nrow,Ntrace]
+   fluxivar   - Inverse variance map for FLUX.
+   wset       - Wavelength solution
+
+ OPTIONAL KEYWORDS:
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+   minval     - Minimum value to use in fits to flat-field vectors;
+                default to 0.
+   title      - TITLE of plot
+
+ PARAMETERS FOR SLATEC_SPLINEFIT:
+   lower      -
+   upper      -
+
+ OUTPUTS:
+   fullbkpt   - Breakpoints describing spline fit to superflat
+   coeff      - Coefficients describing spline fit to superflat
+
+ OPTIONAL OUTPUTS:
+   medval     - Median value of each fiber [NFIBER]
+   fibermask  - (Modified)
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djs_maskinterp()
+   djs_mean()
+   djs_oplot
+   djs_plot
+   slatec_bvalu()
+   slatec_splinefit()
+   traceset2xy
+
+ REVISION HISTORY:
+   02-Jan-2000  Excised code from SPFLATTEN2 (DJS).
+</PRE>
+<P><STRONG>(See pro/spec2d//superflat.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=TELLURIC_CORR> </P>
+<H2>TELLURIC_CORR</H2>
+<P></A><A href="#SUPERFLAT">[Previous Routine]</A> <A 
+href="#TRACE320CEN">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   telluric_corr
+
+ PURPOSE:
+   Use SPECTROPHOTO and REDDEN_STD's to fit telluric features
+   between wavelengths 10^minw and 10^maxw
+
+ CALLING SEQUENCE:
+   telluric_factor = telluric_corr(flux, fluxivar, wset, plugsort, $
+       contwave=contwave, contflux=contflux, contivar=contivar,    $
+       telluricbkpt=telluricbkpt, telluriccoeff=telluriccoeff, $
+       minw=minw, maxw=maxw, lower=lower, upper=upper, $
+       ncontbkpts = ncontbkpts, fibermask=fibermask)
+
+ INPUTS:
+   flux         - sky-subtracted extracted spectra [nx,ntrace]
+   fluxivar     - corresponding inverse variance [nx,ntrace]
+   wset         - wavelength coefficients as a trace set
+   plugsort     - plugmap entries
+
+ OPTIONAL KEYWORDS:
+   minw         - minimum wavelength to fit (Default 3.82)
+   maxw         - maximum wavelength to fit (Default 3.92)
+   ncontbkpts   - Number of bkpts to fit continuum in telluric region (5)
+   lower        - lower rejection threshold for telluric fitting
+   upper        - upper rejection threshold for telluric fitting
+   fibermask    - use to reject possible standards which have spectral
+troubles
+   
+ OUTPUTS:
+   telluric_factor - Telluric correction for each pixel in flux array
+
+ OPTIONAL OUTPUTS:
+   contflux     - Normalized flux of stars used in telluric fitting
+   contivar     - Corresponding inverse variance
+   contwave     - Corresponding wavelengths  (log lambda)
+   telluricbkpt - bkpts used in telluric absorption fit
+   telluriccoeff- best fit b-spline coefficients for telluric absorption
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+   There is still some low order residual from flux correction
+     (I think due to telluric absorption), which is in turned
+   removed by the telluric_correction.  Although there is not
+   a clean break between the two steps, used together they seem
+   to correct the spectra properly
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   19-Oct-1999  Written by S. Burles, Chicago
+</PRE>
+<P><STRONG>(See pro/spec2d//telluric_corr.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=TRACE320CEN> </P>
+<H2>TRACE320CEN</H2>
+<P></A><A href="#TELLURIC_CORR">[Previous Routine]</A> <A 
+href="#TRACE320CRUDE">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   trace320cen
+
+ PURPOSE:
+   Find the 320 fiber positions for the central row of an image.
+
+ CALLING SEQUENCE:
+   xfiber = trace320cen( fimage, [mthresh=, ystart=, nmed=, xgood= ] )
+
+ INPUTS:
+   fimage     - Image
+
+ OPTIONAL INPUTS:
+   mthresh    - Threshold for peak-finding in convolved row; default to 0.5
+                times the dispersion (found with djs_iterstat).
+   ystart     - Y position in image to search for initial X centers; default
+                to the central row
+   nmed       - Number of rows to median filter around YSTART; default to 21
+
+ OUTPUTS:
+   xfiber     - Vector of 320 X centers
+
+ OPTIONAL OUTPUTS:
+   xgood      - Set to 1 for fibers that were actually found, 0 otherwise
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   djs_iterstat
+
+ REVISION HISTORY:
+   13-Sep-1999  Written by David Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//trace320cen.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=TRACE320CRUDE> </P>
+<H2>TRACE320CRUDE</H2>
+<P></A><A href="#TRACE320CEN">[Previous Routine]</A> <A 
+href="#TRACESET2PIX">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   trace320crude
+
+ PURPOSE:
+   Calling script to return 320 full traces using TRACE_CRUDE.
+
+ CALLING SEQUENCE:
+   xset = trace320crude( fimage, invvar, [mthresh=, ystart=, nmed=, $
+    xmask=, yset=, maxerr=, maxshifte=, maxshift0=, xerr=, maxdev=, ngrow=, $
+    fibermask=  ] )
+
+ INPUTS:
+   fimage     - Image
+
+ OPTIONAL INPUTS FOR TRACE320CEN:
+   mthresh    - Threshold for peak-finding in convolved row; default to 0.5
+                times the dispersion (found with djs_iterstat).
+   ystart     - Y position in image to search for initial X centers; default
+                to the central row
+   nmed       - Number of rows to median filter around YSTART; default to 21
+
+ OPTIONAL INPUTS FOR TRACE_CRUDE:
+   invvar     - Inverse variance (weight) image
+   radius     - Radius for centroiding; default to 3.0
+   maxerr     - Maximum error in centroid allowed for valid recentering;
+                default to 0.2
+   maxshifte  - Maximum shift in centroid allowed for valid recentering;
+                default to 0.1
+   maxshift0  - Maximum shift in centroid allowed for initial row;
+                default to 0.5
+
+ OPTIONAL INPUTS:
+   maxdev     - Maximum deviation of X in pixels; default to rejecting any
+                XPOS positions that deviate by more than 1.0 pixels from
+                a polynomial remapping of the centroids from other rows.
+   ngrow      - For each trace, replace all centroids within NGROW rows
+                of a bad centroid with the predicted centroid locations.
+                Default to 5.
+   fibermask  - Fiber status bits, set nonzero for bad status [NFIBER]
+
+ OUTPUTS:
+   xset       - X centers for all traces
+
+ OPTIONAL OUTPUTS:
+   yset       - Y centers for all traces
+   xerr       - Errors for XSET
+   xmask      - Mask set to 1 for good fiber centers, 0 for bad;
+                same dimensions as XSET.
+   fibermask  - (Modified.)
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   fibermask_bits()
+   trace_crude()
+   trace_fweight()
+   trace320cen()
+
+ REVISION HISTORY:
+   13-Sep-1999  Written by David Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//trace320crude.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=TRACESET2PIX> </P>
+<H2>TRACESET2PIX</H2>
+<P></A><A href="#TRACE320CRUDE">[Previous Routine]</A> <A 
+href="#TRACESET2XY">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   traceset2pix
+
+ PURPOSE:
+   Use a traceset to find the pixel numbers corresponding to a certain
+postion
+
+ CALLING SEQUENCE:
+   pixpos = traceset2pix(tset, lambda, [nicoeff=nicoeff] )
+
+ INPUTS:
+   tset       - Structure containing trace set
+   lambda     - Wavelengths at which to find X pixel position
+
+ OPTIONAL KEYWORDS:
+   nicoeff    - Number of coefficients to use in inversion; default to using
+                2 more coefficients than for the forward trace set
+                (e.g., TSET.NCOEFF+2)
+
+ OUTPUTS:
+   pixpos     - Pixel positions corresponding to LAMBDA as
+                an [Nlambda,Ntrace] array
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ BUGS:
+
+ PROCEDURES CALLED:
+   djs_laxisgen()
+   flegendre()
+   traceset2xy
+   xy2traceset
+
+ REVISION HISTORY:
+   09-Nov-1999  Written by David Schlegel, Ringberg.
+</PRE>
+<P><STRONG>(See pro/spec2d//traceset2pix.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=TRACESET2XY> </P>
+<H2>TRACESET2XY</H2>
+<P></A><A href="#TRACESET2PIX">[Previous Routine]</A> <A 
+href="#TRACE_CRUDE">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   traceset2xy
+
+ PURPOSE:
+   Convert from a trace set to an array of x,y positions
+
+ CALLING SEQUENCE:
+   traceset2xy, tset, xpos, ypos
+
+ INPUTS:
+   tset       - Structure containing trace set
+
+ OPTIONAL KEYWORDS:
+
+ OUTPUTS:
+   xpos       - X positions corresponding to YPOS as an [nx,Ntrace] array
+   ypos       - Y centers as an [nx,nTrace] array
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   djs_laxisgen()
+   flegendre()
+
+ REVISION HISTORY:
+   19-May-1999  Written by David Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//traceset2xy.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=TRACE_CRUDE> </P>
+<H2>TRACE_CRUDE</H2>
+<P></A><A href="#TRACESET2XY">[Previous Routine]</A> <A 
+href="#TRACE_FIX">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   trace_crude
+
+ PURPOSE:
+   Create a crude trace set given one position (eg, a center) in each trace.
+
+ CALLING SEQUENCE:
+   xset = trace_crude( fimage, invvar, [xstart=, ystart=, radius=, yset=, $
+    nave=, nmed=, thresh=, maxerr=, maxshifte=, maxshift0=, xerr= ] )
+
+ INPUTS:
+   fimage     - Image
+
+ OPTIONAL INPUTS:
+   invvar     - Inverse variance (weight) image
+   xstart     - Initial guesses for X centers (one for each trace).
+                If not set, then this code searches for all peaks at YSTART.
+   ystart     - Y positions corresponding to "xstart" (expected
+as integers).
+                There are three options for this parameter:
+                (1) One element of YSTART for each value of XSTART,
+                (2) A scalar value that is used for every XSTART, or
+                (3) Not set, in which case the center row is used.
+   radius     - Radius for centroiding; default to 3.0
+   nmed       - Median filtering size down columns before performing trace;
+                default to 1
+   nave       - Averaging size down columns before performing trace;
+                default to 5
+   thresh     - Threshold for initial peak finding; if not set, then use
+                1.0 times the median of the row(s) used for the initial
+peaks.
+   maxerr     - Maximum error in centroid allowed for valid recentering;
+                default to 0.2
+   maxshifte  - Maximum shift in centroid allowed for valid recentering;
+                default to 0.1
+   maxshift0  - Maximum shift in centroid allowed for initial row;
+                default to 0.5
+
+ OUTPUTS:
+   xset       - X centers for all traces
+
+ OPTIONAL OUTPUTS:
+   yset       - Y centers for all traces
+   xerr       - Errors for XSET
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   djs_laxisgen()
+
+   Dynamic link to trace_crude.c
+
+ REVISION HISTORY:
+   14-May-1999  Written by David Schlegel, Princeton.
+   12-Jul-1999  Added optional output YSET (DJS).
+   06-Aug-1999  Added optional outpust XERR (DJS).
+</PRE>
+<P><STRONG>(See pro/spec2d//trace_crude.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=TRACE_FIX> </P>
+<H2>TRACE_FIX</H2>
+<P></A><A href="#TRACE_CRUDE">[Previous Routine]</A> <A 
+href="#TRACE_FWEIGHT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   trace_fix
+
+ PURPOSE:
+   Fix a set of trace centers by replacing traces that converge.
+
+ CALLING SEQUENCE:
+   xnew = trace_fix( xcen, [minsep= , ngrow=, ycen=, xerr=])
+
+ INPUTS:
+   xcen       - X centers for all traces [ny,nTrace]
+
+ OPTIONAL INPUTS:
+   minsep     - Minimum separation between adjacent traces.  Smaller
+                separations are regarded as bad traces.  Default to 5.5.
+   ngrow      - Replace all pixels within MINSEP of its adjacent trace,
+                plus NGROW of its neighboring pixels.  Default to 20.
+   ycen       - Y centers corresponding to XCEN.
+   xerr       - X errors corresponding to XCEN.
+
+ OUTPUTS:
+   xnew       - Modified XCEN; traces may be removed or shifted.
+   ycen       - Modified YCEN; columns may be removed.
+   xerr       - Modified XERR; columns may be removed.
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+
+ INTERNAL PROCEDURES:
+   remove_column
+
+ REVISION HISTORY:
+   13-Aug-1999  Written by David Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//trace_fix.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=TRACE_FWEIGHT> </P>
+<H2>TRACE_FWEIGHT</H2>
+<P></A><A href="#TRACE_FIX">[Previous Routine]</A> <A 
+href="#TRACE_GWEIGHT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   trace_fweight
+
+ PURPOSE:
+   Recenter a trace using flux-weighting centers.
+
+ CALLING SEQUENCE:
+   xnew = trace_fweight( fimage, xcen, ycen, [radius=radius, xerr=xerr, 
+    invvar=invvar] )
+
+ INPUTS:
+   fimage     - Image
+   xcen       - Initial guesses for X centers
+   ycen       - Y positions corresponding to "xcen" (expected as
+integers)
+
+ OPTIONAL KEYWORDS:
+   radius     - Radius for centroiding; default to 3.0
+   invvar     - Inverse variance of image used only in computing errors XERR.
+                If not set, then INVVAR=1 is used.
+
+ OUTPUTS:
+   xnew       - New X centers
+
+ OPTIONAL OUTPUTS:
+   xerr       - Formal errors for XNEW; set equal to 999.0 if there are any
+                masked pixels in a centroiding region (e.g., if INVVAR=0)
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+   Dynamic link to trace_fweight.c
+
+ REVISION HISTORY:
+   24-Mar-1999  Written by David Schlegel, Princeton.
+</PRE>
+<P><STRONG>(See pro/spec2d//trace_fweight.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=TRACE_GWEIGHT> </P>
+<H2>TRACE_GWEIGHT</H2>
+<P></A><A href="#TRACE_FWEIGHT">[Previous Routine]</A> <A 
+href="#TWEAKTRACE">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   trace_gweight
+
+ PURPOSE:
+   Recenter a trace using gaussian-weighted centers.
+
+ CALLING SEQUENCE:
+   xnew = trace_fweight( fimage, xcen, ycen, [sigma=sigma, xerr=xerr, 
+    invvar=invvar] )
+
+ INPUTS:
+   fimage     - Image
+   xcen       - Initial guesses for X centers
+   ycen       - Y positions corresponding to "xcen" (expected as
+integers)
+
+ OPTIONAL KEYWORDS:
+   radius     - Sigma in pixels; default to 1.0
+   invvar     - Inverse variance of image used only in computing errors XERR.
+                If not set, then INVVAR=1 is used.
+
+ OUTPUTS:
+   xnew       - New X centers
+
+ OPTIONAL OUTPUTS:
+   xerr       - Formal errors for XNEW; set equal to 999.0 if there are any
+                masked pixels in a centroiding region (e.g., if INVVAR=0)
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ REVISION HISTORY:
+   17-Jan-2000  Written by Scott Burles, Chicago
+</PRE>
+<P><STRONG>(See pro/spec2d//trace_gweight.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=TWEAKTRACE> </P>
+<H2>TWEAKTRACE</H2>
+<P></A><A href="#TRACE_GWEIGHT">[Previous Routine]</A> <A 
+href="#USHIFT">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+   tweaktrace
+
+ PURPOSE:
+   Use fitans to tweak trace and sigma
+   This just perturbs the input values of xcen and sigma
+
+ CALLING SEQUENCE:
+   tweaktrace, x, sigma, centershift, sigmashift, maxshift=maxshift
+
+ INPUTS:
+   x            - the input trace positions
+   sigma        - the input sigma widths of profiles
+   centershift  - the pixel shift in x
+   sigmashift   - the fractional change of sigma
+
+ OPTIONAL KEYWORDS:
+   maxshift     - the absolute allowed shift in x (default = 1.0)
+
+ OUTPUTS:
+
+ OPTIONAL OUTPUTS:
+
+ COMMENTS:
+
+ EXAMPLES:
+
+ PROCEDURES CALLED:
+
+ REVISION HISTORY:
+   19-Oct-1999  Written by S. Burles, Chicago
+</PRE>
+<P><STRONG>(See pro/spec2d//tweaktrace.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=USHIFT> </P>
+<H2>USHIFT</H2>
+<P></A><A href="#TWEAKTRACE">[Previous Routine]</A> <A 
+href="#XY2TRACESET">[Next Routine]</A> <A href="#ROUTINELIST">[List of 
+Routines]</A> </P><PRE> NAME:
+       ushift
+ PURPOSE: (one line)
+       Shift data using a damped sinc onto slightly non-linear x values
+       
+ DESCRIPTION:
+
+       This function will shift an array of data pointed to by x and
+       extending for n points.  The amount of the shift is given by shift.
+       The result of the operation is placed at xp.  A shift that is within
+       0.0001 of a whole number is treated to be that of the whole number.  If
+       the shift is by an integral number of pixels then the shift involves
+       reindexing the data, no interpolation is done.  If the shift is some
+       non-integral amount then the data is resampled using a damped sinc
+       function.
+
+       The sense of the shift is as follows: think of the array plotted on a
+       fixed scale.  A shift of 1 corresponds to shifting the data by one data
+       point to the right relative to the fixed scale, ie. x[3]=xp[4].
+
+       The data will fall off one end or another of the output vector as a
+       result of the shift.  However, this is not as significant as the edge
+       effect, the convolution is not complete for any data point within 10
+       points of the edge, so those points cannot be trusted.  The missing
+       points in the convolution are assumed to be equal to the end points.
+
+ CATEGORY:
+       Numerical
+ CALLING SEQUENCE:
+       yp = ushift(y, invset, xp)
+ INPUTS:
+       y     - Input data array to be shifted.
+       invset - Structure which contains coefficients to map xin to pixels
+       xin    - The x-axis values for the requested yp
+ OPTIONAL INPUT PARAMETERS:
+ KEYWORD PARAMETERS:
+ OUTPUTS:
+       Return value is the shifted array.
+ COMMON BLOCKS:
+ SIDE EFFECTS:
+ RESTRICTIONS:
+       The input and output arrays cannot be the same.
+ PROCEDURE:
+ MODIFICATION HISTORY:
+       Adapted from Zodiac routine: shiftc/sshift
+         Marc W. Buie, Lowell Observatory, 1992 October 2
+</PRE>
+<P><STRONG>(See pro/spec2d//ushift.pro)</STRONG>
+<P>
+<HR>
+
+<P> <A name=XY2TRACESET> </P>
+<H2>XY2TRACESET</H2>
+<P></A><A href="#USHIFT">[Previous Routine]</A> <A 
+href="#ROUTINELIST">[List of Routines]</A> </P><PRE> NAME:
+   xy2traceset
+
+ PURPOSE:
+   Convert from an array of x,y positions to a trace set
+
+ CALLING SEQUENCE:
+   xy2traceset, xpos, ypos, tset, [ func=func, ncoeff=ncoeff, $
+    xmin=xmin, xmax=xmax, maxdev=maxdev, maxsig=maxsig, maxiter=maxiter, $
+    singlerej=singlerej, xmask=xmask, yfit=yfit, inputans=inputans, $
+    invvar=invvar, _EXTRA=KeywordsForFuncFit ]
+
+ INPUTS:
+   xpos       - X positions corresponding to YPOS as an [nx,Ntrace] array
+   ypos       - Y centers as an [nx,ntrace] array
+
+ OPTIONAL KEYWORDS:
+   func       - Function for trace set; options are:
+                'legendre'
+                'chebyshev'
+                Default to 'legendre'
+   ncoeff     - Number of coefficients in fit; default to 3
+   ncoeff     - Inverse variance for weighted func_fit
+   xmin       - Explicitly set XMIN for trace set rather than using minimum
+                in XPOS
+   xmax       - Explicitly set XMAX for trace set rather than using maximum
+                in XPOS
+   maxdev     - Maximum deviation in the fit to YPOS; set to 0 for no reject;
+                default to 0.
+   maxsig     - Maximum deviation in the fit to YPOS in terms of the 1-sigma
+                dispersion of the residuals; set to 0 for no reject;
+                default to 0.
+   maxiter    - Maximum number of rejection iterations; set to 0 for no
+                rejection; default to 10 if either MAXDEV or MAXSIG are set.
+                Rejection iterations continues until convergence
+                (actually, until the number of rejected pixels is unchanged).
+   singlerej  - If set, then reject at most one deviant point per iteration,
+                rejecting the worst one each time.  In this case, MAXITER
+                represents the maximum number of points that can be rejected
+                per trace.
+   inputans   - ???
+
+ OUTPUTS:
+   tset       - Structure containing trace set
+
+ OPTIONAL OUTPUTS:
+   xmask      - Mask set to 1 for good points and 0 for rejected points;
+                same dimensions as XPOS, YPOS.
+   yfit       - Fit values at each XPOS.
+
+ COMMENTS:
+   Note that both MAXDEV and MAXSIG can be set for applying both rejection
+   schemes at once.
+
+   The HALFINTWO keyword can be passed to FCHEBYSHEV by this procedure.
+
+ EXAMPLES:
+
+ BUGS:
+   Should probably change default to no rejection.
+
+ PROCEDURES CALLED:
+   fchebyshev()
+   flegendre()
+   func_fit()
+
+ REVISION HISTORY:
+   19-May-1999  Written by David Schlegel, Princeton.
+   04-Aug-1999  Added chebyshev option (DJS).
+</PRE>
+<P><STRONG>(See pro/spec2d//xy2traceset.pro)</STRONG>
+<P>
+<HR>
+
+<P>     </P>
+
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

@@ -1,0 +1,69 @@
+I am writing you to request external collaborator status for 
+large-scale structure and galaxy-related projects involving
+the Sloan Digital Sky Survey, as I will be starting my new position
+at the University of Arizona next month. As you well know, I 
+have been actively involved in analyzing the SDSS data for the 
+past four years, during my appointments as a research associate 
+at the University of Chicago and Fermilab. In collaboration with 
+other members of the SDSS team, I have been leading the effort 
+to quantify and investigate the spatial clustering of galaxies in 
+the redshift survey by measuring the two-point correlation function  
+and other related statistics in real- and redshift-space, which 
+constitute one of the main SDSS Key Projects.
+
+My work resulted in the first measurements of galaxy clustering in 
+the SDSS redshift survey (Zehavi et al. 2002; with an early sample 
+of 30,000 galaxies), where we presented the correlation function in 
+redshift and real space and redshift distortions, and have also 
+investigated the dependence of clustering on galaxy properties such 
+as color, luminosity, morphology and surface brightness.
+
+I have been performing on-going clustering studies with the growing
+redshift survey. A forthcoming paper will include detailed analysis
+of the spatial clustering of the current large-scale-structure sample
+of roughly 170,000 galaxies. We have improved and extended our 
+measurements and performed more detailed studies of the dependence on 
+galaxy properties, in particular the inter-related dependence on both 
+galaxy color and luminosity. In addition, we have been using the observed 
+galaxy correlations to constrain theories of galaxy formation, using the 
+halo occupation distribution framework.  The clustering measurements have 
+already led to a new interesting result.  We detect subtle but systematic 
+departures from a power law in the galaxy real-space correlation function, 
+which can be naturally explained by contemporary models of galaxy clustering
+(Zehavi et al. 2003).
+
+These clustering measurements also provide a useful back-bone for 
+comparisons with many other complementary estimates from the SDSS (and 
+from other surveys) and for creating realistic simulations of various types. 
+
+I have also participated in the efforts to study the angular clustering
+using the photometric data and in studies of galaxy properties, resulting 
+in co-authorship on several publications, where my contributions ranged 
+from improving the error estimation and performing systematic tests (e.g 
+in Scranton et al. 2002) to conceptual (e.g Hogg et al. 2003;  Budavari 
+et al. 2003).  I was also involved in some aspects of the tiling algorithm
+and the spectroscopic target selection (such as the effects of fiber 
+collisions).  My close work with the data at all its evolving stages 
+have also directly contributed to the validation and verification of the
+reliability and usefulness of the various  large-scale structure samples.
+
+In addition to extending the work above to future SDSS samples, I have
+also began to investigate and would plan to continue working on
+improved analysis of redshift distortions; additional investigations of 
+the dependence of clustering on galaxy properties and their implications 
+on galaxy formation models; extension of the clustering studies to the 
+other SDSS large-scale samples, such as clusters of galaxies, quasars, 
+and luminous red galaxies (LRG); peculiar motion studies using the sample 
+of early-type galaxies with fundamental-plane distances. The LRG sample, 
+in particular, is ripe for studying clustering on large scales, and its 
+extension with the SDSS-2dF project will enable measuring the evolution 
+of galaxy clustering.
+
+I will appreciate the opportunity to continue to contribute to these
+and other exciting projects, and look forward to continuing being an 
+active member of the SDSS large-scale structure and galaxy working groups.  
+
+With best wishes,
+
+Idit
+

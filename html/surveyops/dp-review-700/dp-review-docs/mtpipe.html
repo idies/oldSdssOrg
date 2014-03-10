@@ -1,0 +1,205 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+<CENTER>
+<H1>The Monitor Telescope Pipeline (MTPIPE)</H1>
+<H4> Presented by Douglas L. Tucker </H4>
+</CENTER>
+<HR>
+
+<H4> General Summary </H4>
+
+The original 0.6m Monitor Telescope (a.k.a., "MT") was assigned three
+main tasks:
+
+<UL>
+<LI> to set up the SDSS standard star network, calibrating 100+
+     primary standard stars against the three fundamental 
+     primaries, BD+17 4708, BD+21 607, and BD+26 2606;
+
+<LI>  to calibrate roughly 2500 27x27 arcmin^2 secondary transfer
+     fields, which in turn would be used to calibrate the main 
+     photometric survey; and
+
+<LI>  to monitor the transparency and extinction of the sky
+     at APO in real-time, in order to forewarn the 2.5-m 
+     operators of any important changes in the night's 
+     photometric quality.
+</UL>
+
+In January 1998, it was determined that the MT was not up to these
+tasks, so they were split up between two other telescopes.
+Observations for setting up the standard star network were to be made
+with the USNO 40in telescope (Flagstaff, AZ); these observations
+started in March 1998 and continued through January 2000.  The other
+two tasks -- calibration of secondary transfer fields and APO sky
+monitoring -- were to be done by a replacement telescope for the MT.
+This replacement telescope, a 0.5m DFM known as the Photometric
+Telescope (or "PT"), now resides in the old MT dome.  (Due to the
+larger field-of-view of the PT, now only about 1500 40x40arcmin^2
+secondary transfer fields need to be calibrated.)
+
+<P>
+
+The Monitor Telescope Pipeline (``MTPIPE'') is charged with the duty
+of reducing the data for the first two of the above tasks -- that of
+setting up the primary standard star network and that of calibrating
+the secondary transfer fields to this photometric system.
+(Incidentally, many of the tools developed for these offline
+reductions are also being used for the third directive, that of
+realtime monitoring of the sky conditions, although this is not an
+official requirement for MTPIPE.)
+
+<P>
+
+The main trunk of MTPIPE is composed of four parts:
+
+<P>
+
+<UL>
+<LI> <b>preMtFrames</b>, which is basically a "pre-burner" to the other
+     three packages.  It 
+     <UL>
+     <LI> creates a directory structure for a night's reductions 
+     <LI> copies night log from the spool directory into the reductions
+          directory
+     <LI> copies the appropriate input parameter files into the reductions
+          directory
+     <LI> runs checks on the contents of the observing log
+     <LI> produces quality assurance histograms for the raw bias, dome flat, 
+          and twilight frames
+     </UL> 
+
+<P>
+
+<LI> <b>mtFrames</b>, which 
+     <UL>
+     <LI> creates master bias frames, dome flats, and twilight flats
+          for the night's data
+     <LI> bias subtracts and flattens target images
+     <LI> detects objects in the flattened frames
+     <LI> performs aperture photometry on these objects
+     <LI> outputs the results for each target to a file
+     <LI> produces quality assurance plots
+     </UL>
+
+<P>
+
+<LI> <b>excal</b>, which 
+     <UL>
+     <LI> takes the output of mtFrames (object positions, aperture
+          photometry) for the "primary standard star" fields
+     <LI> determines the scale and orientation of the images
+     <LI> identifies all primary standard stars in these fields,
+     <LI> invokes a least squares routine to solve the SDSS photometric 
+          equations for the night (see <a href="#appendix">Appendix</a> below for details)
+     <LI> if desired, the least squares routine can also calibrate
+          any uncalibrated primaries observed during this night
+     <LI> outputs the photometric solution for each night and 
+          observed magnitudes of each primary standard star to a file
+     <LI> produces quality assurance plots
+     </UL>
+
+<P>
+
+<LI> <b>kali</b>, which 
+     <UL> 
+     <LI> takes the output of mtFrames (object positions, aperture
+          photometry) for the "secondary patch" transfer fields
+     <LI> determines the astrometric solution (row,col on CCD --> RA,DEC) for each field
+     <LI> applies the astrometric solution to each field
+     <LI> applies the photometric solution from excal on each field
+     <LI> outputs the positions and photometry for each secondary patch target
+          to a file
+     <LI> produces quality assurance plots
+     </UL>
+
+</UL>
+
+<P>
+
+These secondary patches are later scanned over by the imaging camera
+on the SDSS 2.5m telescope.  They thus act as calibration transfer
+fields to set the photometric zeropoints for the imaging camera data.
+This calibration is performed by the FCALIB package, which will be
+discussed by Brian Lee.
+
+<P>
+
+A flowchart of the mtpipe reduction process can be found in the
+figure below.
+
+<P>
+
+<HR>
+<img src="mtpipe.flowchart.gif">
+<HR>
+
+
+<H4> <a name="appendix">Appendix:  The SDSS Photometric Equations</a> </H4>
+
+Specifically, the SDSS photometric equations which are solved by the
+least squares routine are of the form:
+
+<P>
+
+<pre>
+g'(instr) = g' + a_g + b_g*(g'-r') 
+                     + c_g*[(g'-r') - (g'-r')_zp]*[X - X_zp] 
+                     + k_g*X 
+</pre>
+where we have used the g' band equation for the purpose of illustration.
+
+<P>
+
+The variables are defined thusly:
+<UL>
+<LI> g'(instr) is the instrumental magnitude; i.e., -2.5log(counts/sec)
+<LI> g' is the known magnitude for this standard star
+<LI> a_g is the zeropoint
+<LI> b_g is the instrumental color term coefficient
+    (b_g is defined to be 0 for the USNO40 data and is approximately 
+     zero for the PT data) 
+<LI> c_g is the atmospheric color term coefficient
+<LI> k_g is the first-order extinction
+<LI> X is the airmass
+<LI> (g'-r') is the known color of this standard star
+<LI> (g'-r')_zp is a zeropoint color (defined to be a cosmic average color)
+<LI> X_zp is a zeropoint airmass (defined to be 1.3 for the SDSS)
+</UL>
+
+Note that the above equation converts known magnitudes and colors
+into an instrumental magnitude.  After solving this equation, 
+excal also determines the coeffients for the inverse equation,
+which converts instrumental magnitudes and colors into a calibrated
+magnitude:
+
+<P>
+     
+<pre>
+g' = g'(instr) + a_g' + b_g'*(g'(instr)-r'(instr)) 
+               + c_g'*[(g'(instr)-r'(instr)) - (g'(instr)-r'(instr)_zp]*[X-X_zp] 
+               + k_g'*X 
+
+where 
+
+     a_g' = a_g - b_g*(a_g - a_r)
+     b_g' = b_g
+     c_g' = c_g
+     k_g' = k_g - b_g*(k_g - k_g)
+     (g'(instr)-r'(instr))_zp = (g'-r')_zp + (a_g - a_r) + (k_g - k_r)*X
+</pre>
+
+This equation is used by kali to calibrate the stars in the secondary
+patch transfer fields.
+
+<P>
+
+<HR>
+<EM>Last updated:  5 July 2000 </EM><BR>
+
+<ADDRESS>Douglas Tucker
+(<A HREF="mailto:dtucker@fnal.gov">dtucker@fnal.gov</A>)</ADDRESS>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

@@ -1,0 +1,162 @@
+For release after 9:45 a.m. Pacific Daylight Time
+Monday, June 8, 1998
+
+
+HISTORIC NEW SKY SURVEY ACHIEVES FIRST LIGHT
+
+San Diego -- Scientists of the Sloan Digital Sky Survey, the most
+ambitious sky-mapping project ever undertaken, announced today (June 8)
+that the project's unique telescope, located at Apache Point Observatory
+in southern New Mexico, has achieved first light.  In a presentation at
+the San Diego meeting of the American Astronomical Society, Constance
+Rockosi, a University of Chicago graduate student and member of the Sky
+Survey collaboration, discussed the team's achievement.
+
+"With first light, we have demonstrated that we have the tools in place
+to make a deep, high-resolution, multicolor, digital map of the sky,"
+Rockosi said.  "It is an exciting and important milestone in our project
+to chart the large-scale structure of the universe."
+
+Years of work by project collaborators, along with recent
+round-the-clock efforts by a team of scientists and engineers on the
+mountaintop, culminated in first light on the night of May 9 and the
+first high-quality images of a large swath of sky in the constellations
+Serpens and Ophiuchus on the night of May 27.
+
+"When I saw the starry images appear on the monitor, it was suddenly
+worth the 18 trips I have taken across the Pacific," said astronomer
+Mamoru Doi, of the University of Tokyo, whose work on the project
+includes contributions to the system that renders the starry images in
+brilliant color.  Chicago's Rockosi echoed his excitement at seeing the
+first images scrolling across a bank of computer monitors.
+
+"It was incredible to see such a large piece of the sky presented in
+such depth and fine detail -- really a beautiful sight," she said.
+
+Several elements of forefront astronomical technology came together in
+the new telescope to yield the first celestial images.  Chicago's
+Rockosi is part of a team, headed by Princeton University astronomer Jim
+Gunn, the Survey's project scientist, that designed, built and installed
+the telescope's digital camera, the most complex imaging instrument ever
+developed for astronomy.  It uses a large array of silicon
+charge-coupled devices to create five-color digital images of the sky.
+
+"The camera has come together in concept and in metal, glass, and
+silicon over the past many years," Gunn said, "and has, of course, been
+thoroughly tested in the laboratory.  So we did not really doubt that it
+would work on the sky.  But the thrill of seeing real images and knowing
+that the Survey was truly going to work after so many years of the sweat
+and tears of so many people was quite incredible."
+
+The telescope will also incorporate two spectrographs, built by
+scientists at The Johns Hopkins University.  The spectrographs provide
+information about the chemical composition of the astronomical sources
+and information about their distances, to pinpoint their positions in
+three-dimensional space.
+
+"The spectrographs are our 3-D glasses," said Johns Hopkins
+astrophysicist Alan Uomoto, who led the spectrograph team.  "They make
+the Sky Survey far more than just cosmic cartography.  The information
+provided by the spectrographs is vital if we hope to understand the
+origin and evolution of the universe and its constituents."
+
+The new telescope has an unusually wide field of view, enabling it to
+map large areas of sky in a practical length of time.  It features very
+accurate tracking, necessary for precision measurements of star
+positions.
+
+"The telescope, though small, was particularly challenging, because it
+has to produce good images across a wide field," said Walter Siegmund,
+of the University of Washington, the Survey's project engineer.
+
+After several months of commissioning, Survey operations will begin.
+The collaboration's astronomers will use the images and spectra to
+construct the most comprehensive three-dimensional model of the cosmos
+ever attempted.  Five years of data-taking by the Survey will produce a
+catalog of the positions and brightnesses of more than 100 million
+stars, galaxies and quasars, according to University of Washington
+astrophysicist Bruce Margon, the Sky Survey's scientific director.
+
+"The Sloan Digital Sky Survey will be significantly more sensitive than
+our current comprehensive guide to the heavens, the forty-year-old
+Palomar Sky Survey," Margon said.  "The Palomar survey used photographic
+plates to produce two-color, two-dimensional images.  Our survey will
+use digital technology and spectroscopy to produce five-color images in
+three dimensions.  It will map one quarter of the sky and give us a
+three-dimensional picture of the universe through a volume a hundred
+times greater than anyone has explored before."
+
+Scientists will use the new map to explore critical questions about the
+nature and evolution of the universe.
+
+"The Sky Survey will greatly advance our knowledge of the universe --
+past, present and future," said University of Chicago/Fermilab
+astrophysicist Michael Turner, the project's scientific spokesman.  "We
+are struggling to understand how the wondrous panoply of structure we
+see in the universe today -- galaxies, clusters of galaxies, voids and
+great walls of galaxies -- arose.  Our best explanations involve what
+happened in the first instants after the Big Bang and relate to the
+unification of the fundamental forces of nature.  So the Sky Survey may
+give us not only a clearer picture of outer space but also of the inner
+space at the heart of matter."
+
+Ultimately, the Sky Survey will make its historic celestial catalog
+available to astronomers around the world, for a wide range of future
+studies.  The catalog's unprecedented volume of data creates challenges
+for the scientists who will use it.
+
+"The techniques that astronomers use today do not scale to this survey,
+whose information content will rival the Library of Congress," said
+Johns Hopkins astronomer Alex Szalay, who is designing data-analysis
+systems for the project.  "The Sky Survey requires a novel computing and
+analysis environment.  In fact, the Sky Survey approach is creating new
+standards in data analysis for astronomy that may well apply to other
+fields, such as the study of the human genome, that require
+extraordinarily large data sets."
+
+Data from the mountaintop will be transferred daily to computer systems
+at Fermi National Accelerator Laboratory near Chicago.  Software systems
+called data pipelines will translate the raw data into images of the
+sky.
+
+"Creating the data-processing software has been a major effort of the
+project," said astronomer Jeff Pier, of the U.S. Naval Observatory.
+"Scientists across the collaboration developed the pipelines, which are
+then integrated at Fermilab."
+
+Eventually, the Sky Survey's data will be available to the public over
+the Internet.  Professional and amateur astronomers, teachers and
+budding school-age astronomers anywhere in the world will be able to
+dial up an image of a selected piece of the sky in five colors.  When
+the Next Generation Internet arrives, they will be able to conduct
+complex searches of the Sky Survey archives.
+
+The Sky Survey collaboration includes scientists from the University of
+Chicago, Fermilab, the Institute for Advanced Study, the Japan
+Participation Group, The Johns Hopkins University, Princeton University,
+the United States Naval Observatory and the University of Washington.
+Apache Point Observatory, site of the Sloan Digital Sky Survey, is owned
+by the Astrophysical Research Consortium, a nonprofit corporation
+consisting of seven research institutions, and is operated by New Mexico
+State University.  Funding to date for the project has been provided by
+the Alfred P. Sloan Foundation, Sky Survey member institutions, the
+National Science Foundation and the U.S. Department of Energy.  In
+addition to its support for the Sloan Digital Sky Survey, NSF provides
+more than $110 million annually for ground-based astronomy and
+astrophysics.  Support from DOE, a longtime stronghold of high-energy
+physics research, reflects the increasing convergence of particle
+physics and cosmology.
+
+
+Media Contacts:
+Kathy Anderson, University of Chicago 773-702-8364
+Judy Jackson, Fermilab 630-840-3351
+Rachel Gray, The Institute for Advanced Study 609-734-8201
+Satoru Ikeuchi, Japan Participation Group 81-52-789-2427
+Emil Venere, The Johns Hopkins University 410-516-7906
+Steven Dick, U.S. Naval Observatory 202-762-1438
+Mary Caffrey, Princeton University 609-258-5748
+Vince Stricherz, University of Washington 206-543-2580
+Bruce Gillespie, Apache Point Observatory 505-437-6822
+
+Website: www.sdss.org

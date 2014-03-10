@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Data products: Spectra - Quality of stellar radial
+velocities - SDSS DR5</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>The SEGUE Stellar Parameter Pipeline 'sppParams' Table</h1>
+Up to  <a href="./index.html">Spectra</a>
+
+<p>Spectra for over 464,000 Galactic stars of all common
+spectral types are available with DR7.
+These Spectra were processed with a pipeline called the 'SEGUE Stellar 
+Parameter Pipeline' (sspp) which computes standard
+stellar atmospheric parameters such as  [Fe/H], log g and Teff 
+for each star by a variety of methods.
+These outputs are stored in the CAS in a table called 'sppParams',
+indexed on the 'specObjID' key index parameter for queries joining
+to other tables such as specobjall and photoobjall.</p>
+
+<p>The fields available in the sppParams <a
+href="http://cas.sdss.org/collabdr7/en/help/browser/description.asp?n=sppParams&t=U">(also
+see sppParams description in CAS schema browser)</a> table are: <pre>
+
+n 	fieldName	type/unit 	 Description
+0 	specobjid 	int64 		64 bit unique spectrum id f(plate,mjd,fiberid)
+1 	plate 		int 		plate number
+2 	mjd 		int 		Modified Julian Date of (last) observation for this plate/mjd combination
+3 	fiberid 	int 		Fiber number (1-640) 1-320 on spectrograph#1 321-640 on spectrograph#2
+4 seguetargetclass      char[4]		SEGUE or SDSS target type abbreviations (type as targeted from photo) 
+					AGB 	Asymtotic Giant Branch candidate star
+					BHB 	Blue Horizontal Branch candidate star
+					CVR 	Cool White Dwarf candidate star
+					FTO 	F turnoff candidate star
+					GAL 	SDSS main survey or LRG GALAXY candidate
+					GD 	G Dwarf candidate star
+					HOT 	HOT standard star (main SDSS Survey, g-r < 0)
+					KD 	K Dwarf candidate star
+					KG 	K Giant candidate star
+					LOW 	Low metalicity candidate star
+					MD	M Dwarf candidate star
+					PHO 	Photometric Standard star (usually brighter F dwarf)
+					QA 	Quality Assurance target (in SEGUE, duplicates another fiber)
+					QSO 	SDSS main survey QSO candidate
+					RED 	Reddening Standard star (usually fainter F dwarf)
+					ROS 	may be F/G dwarf or MS/WD or low lat target
+					SER 	Serendip. Manual (1. globular/open cluster 2. High Prop motion)
+					STA 	Main SDSS survey STAR (not GAL or QSO or Standard)
+					SKY 	Sky fiber, should have no object flux
+					WD 	White Dwarf candidate fiber
+5 	hammersptype 	char[4] 	Stellar Type Classification -- A
+					F0-F9, G0-G9, K0-K5, K7, M0-M9, L0-L8 NA
+6	sptypea 	char[5] 	Stellar Type Classification -- B
+					00, AGN, QSO, O, OB, A0, A0p, B6, B9, Car, CAR, CV, CWD, 
+					F2, F5, F9 G0, G2, G5, K1, K3, K5, K7, M0V, M1-M8, L0, L1-L5, 
+					L9, QSO, SBT, SFM, SKY, STA, T2, WD, WDm
+7	flag 	        char[5] 	SSPP flags
+    					4 or 5 flags for each spectrum as a char string 'abcd(e)'. 
+    					n= all is normal for this flag position 
+
+       					1.  d, D, E, h, H, l, n, N, S, V
+              			  	d: possible White Dwarf
+              			  	D: apparent White Dwarf
+              			  	E: Emission, possible QSO
+              			  	h: Helium line detected
+              			  	H: apparent Teff too Hot for parameter est.
+              			  	l: Sodium line, possibly late type
+              			  	N: Noise spectrum
+              			  	S: Sky fiber -- no signal
+              			  	V: Radial Velocity mismatch 
+       			       		2. C
+              				  Color mismatch (spectroscopic color Teff far from implied (g-r)_0
+              				  color Teff)
+			       		3. B
+			       		   Balmer flag: unusual Balmer eq. widths for star 
+			       		4. g, G
+              				  g band : unsual G-band eq. width for star Carbon star? 
+
+8 	feha 		float/dex 	adopted [Fe/H] value -- 
+                                        biweight average of all other estimators
+9 	fehan 		int 		number of estimators combined. 
+10	fehaerr 	float/dex 	error/sigma on the [Fe/H] value. If not available, set to -9.999
+11 	feh1 		float/dex 	YoungSun's [Fe/H] from alpha-enhanced grid ymp2. If not available, set to -9.999
+12 	feh1n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+13 	feh1err 	float/dex 	error/sigma on the [Fe/H] value. If not available, set to -9.999
+14 	feh2 		float/dex 	YoungSun's [Fe/H] from the Teff 4000-5500 range ymp1. If not available, set to -9.999
+15 	feh2n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+16 	feh2err 	float/dex 	error/sigma on the [Fe/H] value. If not available, set to -9.999
+17 	feh3 		float/dex 	[Fe/H] from ANNSR neural network method. If not available, set to -9.999
+18 	feh3n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+19 	feh3err 	float/dex 	error/sigma on the [Fe/H] value. If not available, set to -9.999
+20 	feh4 		float/dex 	[Fe/H] from ANNRR (neural network) method. If not available, set to -9.999
+21 	feh4n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+22 	feh4err 	float/dex 	error/sigma on the [Fe/H] value. If not available, set to -9.999
+23 	feh5 		float/dex 	[Fe/H] from YSL's Ca HK estimate. If not available, set to -9.999
+24 	feh5n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+25 	feh5err 	float/dex 	error/sigma on the [Fe/H] value. If not available, set to -9.999
+26 	feh6 		float/dex 	[Fe/H] from TB's Ca K Metalicity estimate. If not available, set to -9.999
+27 	feh6n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+28 	feh6err 	float/dex 	error/sigma on the [Fe/H] value. If not available, set to -9.999
+29 	feh7 		float/dex 	[Fe/H] from TB's 2nd Ca K estimate. If not available,
+                                        set to -9.999
+30 	feh7n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+31 	feh7err 	float/dex 	error/sigma on the [Fe/H] value. If not available, set to -9.999
+32 	feh8 		float/dex 	[Fe/H] from JEN Autocorrelation function method. If not available, set to -9.999
+33 	feh8n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+34 	feh8err 	float/dex 	error/sigma on the [Fe/H] value. If not available, set to -9.999
+35 	feh9 		float/dex 	[Fe/H] Ca IR Triplet method. If not available, set to -9.999
+36 	feh9n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+37 	feh9err 	float/dex 	error/sigma on the [Fe/H] value. If not available, set to -9.999
+38      feh10		float/dex	[Fe/H] Wilhelm, Beers, and Gray (1999) method.
+39      feh10n		int		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+40 	feh10err        float/dex	error/sigma on the [Fe/H] value. If not available, set to -9.999
+41 	feh11		float/dex	[Fe/H] estimate from Carlos' K24 grid method
+42 	feh11n		int		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+43 	feh11err	float/dex	error/sigma on the [Fe/H] value. If not available, set to -9.999
+44 	feh12		float/dex	[Fe/H] estimate from Carlos' K13 grid method
+45 	feh12n		int		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+46 	feh12err	float/dex	error/sigma on the [Fe/H] value. If not available, set to -9.999
+47 	teffa 		float/Kelvin 	Adopted Teff -- weighted mean of all available methods teff1-teff10
+                                        below. If not available, set to -9999
+48 	teffan 		int 		number of methods averaged
+49 	teffaerr 	float/K 	error/sigma on the Teff. If not available, set to -9999
+50 	teff1 		float/K 	Teff from H alpha line.  4133+371*ha24
+51 	teff1n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+52 	teff1err 	float/K 	error/sigma on the Teff. If not available, set to -9999
+53 	teff2 		float/K 	Teff from H delta line index. 5449+206*hd24
+54 	teff2n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+55 	teff2err 	float/K 	error/sigma on the Teff. If not available, set to -9999
+56 	teff3 		float/K 	Teff from Kurucz models, based on colors. If not available, set to -9999
+57 	teff3n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+58 	teff3err 	float/K 	error/sigma on the Teff. If not available, set to -9999
+59 	teff4 		float/K 	Teff from Girardi isochrones (2004). If not available, set to -9999
+60 	teff4n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+61 	teff4err 	float/K 	error/sigma on the Teff. If not available, set to -9999
+62 	teff5 		float/K 	Teff from Ivezic et al. (2007) -- based on colors. If not available,
+                                        set to -9999
+63 	teff5n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+64 	teff5err 	float/K 	error/sigma on the Teff. If not available, set to -9999
+65 	teff6 		float/K 	Teff from YoungSun's ytp1 Kurucz grid 1 (NGC1 grid). If not available,
+                                        set to -9999
+66 	teff6n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+67 	teff6err 	float/K 	error/sigma on the Teff. If not available, set to -9999
+68 	teff7 		float/K 	Teff from neural network ANNSR method. If not available, set to -9999
+69 	teff7n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+70 	teff7err 	float/K 	error/sigma on the Teff. If not available, set to -9999
+71 	teff8 		float/K 	Teff from neural network ANNRR method.
+                                        set to -9999
+72 	teff8n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+73 	teff8err 	float/K 	error/sigma on the Teff. If not available, set to -9999
+74 	teff9 		float/K 	Teff from Wilhelm, Beers, and Gray (1999) method. 
+75 	teff9n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+76 	teff9err 	float/K 	error/sigma on the Teff. If not available, set to -9999
+77 	teff10 		float/K 	Teff from Carlos K24 grid method. If not available, set to -9999
+78 	teff10n 	int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+79 	teff10err 	float/K 	error/sigma on the Teff. If not available, set to -9999
+80	teff11		float/K		Teff from Carlos' K13 grid temp
+81	teff11n		int             indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+82	teff11err	float/K		error/sigma on the Teff. If not available, set to -9999
+83 	logga 		float/dex 	Adopted log g -- weighted mean of all available methods logg1-logg10
+                                        below. If not available, set to -9.999
+84 	loggan 		int 		number of methods used
+85 	loggaerr 	float/dex 	error/sigma in the log g. If not available, set to -9.999
+86 	logg1 		float/dex 	log g from YoungSun's alpha-enhanced Kurucz grid 2 (NGS2). 
+87 	logg1n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+88 	logg1err 	float/dex 	error/sigma in the log g. If not available, set to -9.999
+89 	logg2 		float/dex 	log g from YoungSun's 4000-5500K grid 1 (NGS1). If not available,
+                                        set to -9.999
+90 	logg2n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+91 	logg2err 	float/dex 	error/sigma in the log g. If not available, set to -9.999
+92 	logg3 		float/dex 	log g from neural netork ANNSR method. If not available, set to -9.999
+93 	logg3n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+94 	logg3err 	float/dex 	error/sigma in the log g. If not available, set to -9.999
+95 	logg4 		float/dex 	log g from ANNRR neural network method. If not available, set to -9.999
+96 	logg4n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+97 	logg4err 	float/dex 	error/sigma in the log g. If not available, set to -9.999
+98 	logg5 		float/dex 	log g from YSL's CaHK alpha grid 
+99 	logg5n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+100 	logg5err 	float/dex 	error/sigma in the log g. If not available, set to -9.999
+101 	logg6 		float/dex 	log g from Ca I (4226A) line method
+102	logg6n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+103 	logg6err 	float/dex 	error/sigma in the log g. If not available, set to -9.999
+104	logg7 		float/dex 	log g from MgH features (5170A) strength. If not available, set to -9.999
+105	logg7n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+106 	logg7err 	float/dex 	error/sigma in the log g. If not available, set to -9.999
+107 	logg8 		float/dex 	log g from Wilhelm, Gray, and Beers method.
+108 	logg8n 		int 		indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+109 	logg8err 	float/dex 	error/sigma in the log g. If not available, set to -9.999
+110	logg9		float/dex	log g from Carlos K24 grid estimate
+111	logg9n		int             indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+112	logg9err	float/dex
+113	logg10		float/dex	log g from Carlos K13 grid
+114	logg10n		int             indicator variable, =2 used in average, =1 no used in feha, but ok, =0 no value
+115	logg10err	float/dex	
+116 	alphafe 	float/dex 	[alpha/Fe] from YoungSun's Kurucz grid 2 (NGS2). If not available, 
+                                        set to -9.999 (experimental)
+117 	alphafen 	int 		indicator variable, =1 ok, =0 no value
+118 	alphafeerr 	float/dex 	error/sigam in [alpha/Fe]. If not available, set to -9.999
+119 	elodierv 	float/km/s 	ELODIE template match RV (our best stellar RV estimate, includes a +7.3km/s offset)
+120 	elodierverr 	float/km/s 	ELODIE RV error
+121 	g0 		float/mag 	Dereddened psf magnitude in the g band. SFD(98) used to subtract 
+                                        E(B-V)*3.793
+122 	gmr0 		float/mag 	Dereddened psf color (g-r)_0
+123 	grhbaa 		float/mag 	Adopted predicted (g-r)_0 from grbha, grbhd, grhp
+124 	grbha 		float/mag 	predicted (g-r)_0 from H alpha line index
+125 	grbhd 		float/mag 	predicted (g-r)_0 from H delta line index
+126 	grhp 		float/mag 	predicted (g-r)_0 from half power point
+127 	umg0 		float/mag 	Dereddened psf color (u-g)_0
+128 	rmi0 		float/mag 	Dereddened psf color (r-i)_0
+129 	imz0 		float/mag 	Dereddened psf color (i-z)_0
+130 	uerr 		float/mag 	Error in psf magnitude u band
+131 	gerr 		float/mag 	error in g
+132 	rerr 		float/mag 	error in r
+133 	ierr 		float/mag 	error in i
+134 	zerr 		float/mag 	error in z
+135 	ebv 		float 		E(B-V) at this (l,b) from SFD98
+136 	sna 		float 		Average Signal to noise ratio per pixel over 3950-6000 A
+137 	qualitycheck 	int 		Quality check integer (=0)
+138 	ra 		double/deg 	RA (J2000)
+139 	dec 		double/deg 	DEC (J2000)
+140 	l 		double/deg 	Galactic Longitude
+141 	b 		double/deg 	Galactic Latitude
+142 	chiHK 		float 		chi-square/dof measurement for the best fit to the spectrum in the 
+                                        region of Ca H+K
+143 	chiGband	float 		chi-square/dof measure for the best fit spectrum in the region of the 
+                                        G band and the Mg 5100 triplet region
+144 	targ_pmepoch 	double/years 	Proper motion epoch (propermotions
+					here are obsolete -- use
+				        joins to the propermotions table
+					via bestobjid for best propermotions)
+145 	targ_pmmatch 	int 		Proper motion match to USNO-B catalog (1 = match, 0 =no match)
+146 	targ_pmdelta 	float/arcsec 	distance the star has moved
+147 	targ_pml 	float/mas/yr 	propermotion in the Galactic l direction
+148 	targ_pmb 	float/mas/yr 	proper motion in the Galactic b direction
+149 	targ_pmra 	float/mas/yr 	proper motion in ra
+150 	targ_pmdec 	float/mas/yr 	proper motion in dec
+151 	targ_pmraerr 	float/mas/yr 	error in pmra
+152 	targ_pmdecerr	float/mas/yr 	error in pmdec
+153 	targ_pmsigra 	float 		sigma in ra ppm
+154 	targ_pmsigdec	float 		sigma in dec ppm
+155 	targ_pmnfit 		int 		number of fits to the ppm
+156 	targ_usnomag_u 	float/mag 	USNO-B mag of the star in the derived u band
+157 	targ_usnomag_g 	float/mag 	USNO-B mag of the star in the derived g band
+158 	targ_usnomag_r 	float/mag 	USNO-B mag of the star in the derived r band
+159 	targ_usnomag_i 	float/mag 	USNO-B mag of the star in the derived i band
+160 	targ_usnomag_z 	float/mag 	USNO-B mag of the star in the derived z band
+161 	targ_pmdist20 	float/mag 	distance to nearest star brighter than 20th
+162 	targ_pmdist22 	float/mag 	distance to nearest star brighter than 22nd
+163	targ_raErr 	mas	 	
+164 	targ_decErr 	mas 	
+165 	targ_raDecCorr 	dimen
+166 	brun 		int 		Run number (best reduction of sky) from photoobjall table
+167 	brerun 		int 		Rerun number
+168 	bcamcol 	int 		Camcol (1-6 on 2.5m mosaic camera)
+169	bfield 		int 		Field number
+170 	bobj 		int 		object number within field
+171 	lpar 		float/mag 	Newberg-Lenz "l" color, perpendicular to stellar locus, sensitive 
+                                        to metalicity.
+172 	spar 		float/mag 	Ivezic s color, principal component
+173 	wpar 		float/mag 	Ivezic w color, principal component
+174 	p1spar 		float/mag 	Ivezic perpendicular to s color,component
+175 	bsz 		dimen	 	SpecBS z redshift -- based on templates taken from actual SDSS spectra, (no offset has been applied here, see: elodierv)
+176 	bsrz	 	dimen	 	SpecBS z error
+177	targettype      char[32]	Target type string from Legacy or SEGUE 					target selection 
+					(SEGUE type is unique, Legacy is 
+					primary target type, one choice of many)
+178 	zbclass 	char[32] 	SpecBS class
+179 	zbsubclass 	char[32] 	specBS subclass
+180 	zbelodiesptype 	char[32] 	specBS ELODIE best match template type
+181 	zbrchi2 	float		SpecBS rchi2 reduced chi-square per dof
+182 	zbdof 		float 		SpecBS dof measure for best fit template
+183 	zbvdisp 	float/km/s 	SpecBS Velocity dispersion (only relevant for GALaxies, not for stars)
+184 	zbvdisperr 	float/km/s 	SpecBS error in Velocity dispersion
+185 	zbzwarning 	int 		SpecBS warning flag
+186 	spec_cln 	char[32] 	Spectro1d(Chicago) classification 1= star, 6= red star, 0 = unknown
+187 	spz 		dimen	 	Spectro1d(Chicago) pipeline redshift (no offset has been applied, see elodierv)
+188 	spzerr	 	dimen	 	Spectro1d(Chicago) pipeline redshift err
+189 	vel_dis 	float/km/s 	Spectro1d(Chicago) Velocity dispersion (only relevant for GALaxies, 
+                                        not for stars)
+190 	vel_disperr 	float/km/s 	Spectro1d(Chicago) Velocity dispersion error
+191 	spz_conf 	float 		Spectro1d(Chicago) redshift confidence
+192 	spz_status 	int 		Spectro1d(Chicago) redshift status
+193 	spz_warning 	int 		Spectro1d(Chicago) redshift warning
+194 	eclass 		float 		Spectro1d(Chicago) Galaxy Principal component classification - 
+                                        Andy Connolly
+195 	ecoeff1 	float 		Spectro1d(Chicago) Principal component 1 (for Galaxies)
+196 	ecoeff2 	float 		Spectro1d(Chicago) Principal component 2 (for Galaxies)
+197 	ecoeff3 	float 		Spectro1d(Chicago) Principal component 3 (for Galaxies)
+198 	ecoeff4 	float 		Spectro1d(Chicago) PC 4
+199 	ecoeff5 	float 		Spectro1d PC5
+200	tsver		char[32]	SEGUE target selection code version
+201	amnhtype	char[32]	AMNH Red Star Spectral Type (sdM,esdM,usdM)
+202	amnhsubtype	float		AMNH Red Star Spectral SubType (0-9)
+203	amnhmindex	float		AMNH Red Star pixel shift for best fit
+204	amnhmvalue	float		AMNH Red Star chi-sq estimate
+205 	inspect 	int 		Inspection flag (=identically 0)
+
+-------------------------------------------------------------------------------------------------
+
+Try this query in the CAS to get a feel for the columns:
+
+select top 10 * from sppParams    (DR7 context)
+
+Here's a sample query which selects low metalicity stars ([Fe/H] < -3.5)
+which have relatively small error bars on the abundance (err < 0.5 dex)
+and which are brighter than 19th mag (dereddened) and where more than three
+different measures of feh are ok and are averaged.
+
+select sp.plate,sp.mjd,sp.fiberid,sp.g0,sp.gmr0,
+        sl.caIIK,sl.caIIKerr,sl.caIIKmask,
+        sp.feha,sp.fehaerr,sp.fehan,sp.logga,sp.loggaerr,sp.loggan 
+                from sppLines as sl, sppParams as sp where
+        feha < -3.2 and fehaerr between 0.01 and 0.5 and fehan > 3 
+        and g0 < 19
+        and sl.specobjid = sp.specobjid
+
+(29 stars returned)
+
+</pre>
+
+<p>
+<hr>
+<!-- hhmts start -->Last modified: Tue Jun 26 15:05:55 CEST 2007
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

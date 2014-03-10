@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>How frames Designates Objects</TITLE>
+<META NAME="description" CONTENT="How frames Designates Objects">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html534" HREF="node38.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html532" HREF="node36.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html526" HREF="node36.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html535" HREF="node38.html">Outline of frames</A>
+<B>Up:</B> <A NAME="tex2html533" HREF="node36.html">The Frames Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html527" HREF="node36.html">The Frames Pipeline</A>
+<BR> <P>
+<H3><A NAME="SECTION00044100000000000000">How <TT>frames</TT> Designates Objects</A></H3>
+<P>
+<A NAME="swphotoids">&#160;</A>
+<P>
+Each object detected during the <TT>frames</TT> analysis of a particular set
+of data is given a unique identifier which consists of five integers:
+<UL>
+<LI> <TT>run</TT> of class <TT>Segment</TT> 
+(Table &nbsp;<A HREF="node65.html#tbladministrativerunchunksegment">15</A>): A run number refers
+to a given uninterrupted drift-scan.
+<LI> <TT>rerun</TT> of class <TT>Segment</TT> 
+(Table &nbsp;<A HREF="node65.html#tbladministrativerunchunksegment">15</A>): Each time we
+analyze a run with a different set of pipeline version or calibrations
+we assign it a new rerun number. The same rerun number in different
+runs does not necessarily refer to the same version of the pipelines.
+<LI> <TT>camCol</TT> of class <TT>Segment</TT>
+(Table &nbsp;<A HREF="node65.html#tbladministrativerunchunksegment">15</A>): This number, from 1
+to 6, refers to the dewar, or column of photometric CCDs in the
+imaging camera, by which this object was imaged.
+<LI> <TT>fieldID</TT> of class <TT>Field</TT> 
+(Table&nbsp;<A HREF="node65.html#tbladministrativefield">16</A>): Refers to which field
+(&#167;&nbsp;<A HREF="node29.html#hwda">3.5</A>) the object is in.
+<LI> <TT>objID</TT> of class <TT>PhotoObj</TT> 
+(Table&nbsp;<A HREF="node65.html#tblphoto">6</A>): This is an identification number for the
+object that is unique within each field.
+<P>
+</UL>
+<P>
+Several different versions of the pipelines were run on the imaging
+data for the EDR (Table &nbsp;<A HREF="node65.html#tblpipelineversions">20</A>).  The <TT>rerun</TT>
+number for each <TT>run</TT> distinguishes a set of pipeline versions.
+Two rerun numbers are important for the EDR. The first <TT>rerun</TT> was
+used to select targets for spectroscopic observation.  The second <TT>
+rerun</TT> used the most recent versions of the pipelines, and the results
+of this processing are distributed.  Between reruns of <TT>frames</TT>,
+the <TT>run</TT>, <TT>camCol</TT> and  fieldID of detected objects do not
+change, because <TT>frames</TT> acts on individual frames.  However, the
+<TT>objID</TT> does change.  Future data releases will most likely be
+made with yet another <TT>rerun</TT> which uses the most current version
+of our pipelines and calibrations.
+<P>
+In addition, data quality flags are set for each field, after we
+evaluate the processing from an entire run.  These are discussed below
+in section <A HREF="node49.html#swquality">4.6</A>.
+<P>
+<HR><A NAME="tex2html534" HREF="node38.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html532" HREF="node36.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html526" HREF="node36.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html535" HREF="node38.html">Outline of frames</A>
+<B>Up:</B> <A NAME="tex2html533" HREF="node36.html">The Frames Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html527" HREF="node36.html">The Frames Pipeline</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,6 @@
+typedef struct {
+int plate;
+int mjd;
+} PM
+
+PM 513 51989

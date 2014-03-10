@@ -1,0 +1,8 @@
+This object is an HII region in the constellation Perseus.  The
+colored image is constructed from three separate images taken with
+ultraviolet, green, and red filters.  The light is emitted by a hot,
+rarefied plasma of gas that is being excited by embedded hot stars.
+The reddish light is emitted by a combination of hydrogen and
+nitrogen; the yellowish light is emitted by a combination of oxygen
+and other elements.  Dust is mixed in with the glas, creating
+silhouette patterns throughout the neubla.

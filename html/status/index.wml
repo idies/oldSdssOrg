@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+#use "collab_macros.wml"
+<html>
+<head>
+<meta name="Description" content="SDSS Collaboration Status of Data Processing">
+<title>SDSS Collaboration Status of Data Processing</title>
+</head>
+<sdss-page select="stat_dp">
+<h1>Data Processing: Status</h1>
+
+<html><body bgcolor=#FFFFFF>
+<!--Table Goes Here -->
+<table width=100% border=1 cellspacing =0 cellpadding=0>
+<tr>
+<td></td><td>Base</td> <td>Done</td>
+ <td>Percent Complete</td>
+</tr>
+<!--END Table Row ----------------------------------------!>
+<tr>
+<td>
+Imaging
+</td>
+<td>
+8452 (Scanned Square Degrees)
+</td> 
+<td>
+3199
+</td>
+<td>
+<IMG SRC=statSummaryimg.gif width=341 height=35><BR>
+37 % as of Oct 15, 2001
+</td>
+</tr>
+<!--END Table Row ---------------------------------!>
+<tr>
+<td>
+Spectroscopy
+</td>
+<td>
+1688 (Tiles)
+</td> 
+<td>
+304
+</td>
+<td>
+<IMG SRC=statSummaryspec.gif width=341 height=35><BR>
+18 % as of Oct 17, 2001
+</td>
+</tr>
+<!--END Table Row ---------------------------------!>
+<tr>
+<td>
+MT (Secondary) Patches
+</td>
+<td>
+1563 (Patches)
+</td> 
+<td>
+756
+</td>
+<td>
+<IMG SRC=statSummarypatch.gif width=341 height=35><BR>
+48 % as of Sep 26, 2001
+</td>
+</tr>
+<!--END Table Row ---------------------------------!>
+</table>
+<H1>Cumulative Progress Graphs</H1>
+<UL TYPE=CIRLE>
+<LI><A href=statImg.NORTH.gif>North Imaging</a> 
+<LI><A href=statImg.SOUTH.gif>South Imaging</A> 
+<LI><A href=statImg.REPEAT.gif>Southern EQ Repeat Imaging</A>
+<LI><A href=statSpec.NORTH.gif>North Spectroscopy</a> 
+<LI><A href=statSpec.SOUTH.gif>Southern Survey Spectroscopy</A>
+<LI><A href=statSpec.REPEAT.gif>Southern EQ Spectroscopy</A>
+<LI><A href=statPatch.NORTH.gif>MT Secondary Patches for North</A> 
+<LI><A href=statPatch.SOUTH.gif>MT Secondary Patches for South</A>
+</UL>
+
+<h3>FootPrints</h3>
+<a href=../edoc/status/imaging/imagingStatus.gif>Imaging</a>&nbsp;
+<a href=../edoc/status/spectroscopy/survey_area_covered_14.gif>Spectroscopy</a>&nbsp;
+<a href=../edoc/status/mt/secondary_coverage.gif>Secondary Patch Coverage</a>
+
+<h3>Data Analysts Reports</h3>
+<a href =../edoc/status/weekly/index.html>Weekly Reports</a>
+
+<h3>Spectroscopy</h3>
+<a href = ../edoc/spectroStatus.html>Status of Spectro Processing</a>&nbsp;
+<a href = ../edoc/spectro_reruns.html>Spectro Rerun Summary</a>
+
+<h3>Monitor Telescope</h3>
+<a href = ../edoc/MT.operations.html>MT operations home</a>&nbsp;
+<a href=../edoc/status/mt/status_mt_data.html>Status of MT Data Processing</a>&nbsp;
+<a href=../edoc/status/mt/secondary_coverage.gif>Secondary Patch Coverage</a>&nbsp;
+<a href =../edoc/status/mt/status_mt_data.html>Status from MTDB</a>
+
+<h3>Database Reports</h3>
+<a href =../edoc/strategy/doc/www/strategy.home.html>Runs Loaded into Databases(Strategy)</a>&nbsp;
+<a href = ../edoc/sxstats/EDR/2001_Max_Concurrent_Users_by_Day >Concurrent User Reports for EDR</a>&nbsp;
+<a href = ../edoc/sxstats/chunk/2001_Max_Concurrent_Users_by_Day >Concurrent User Reports for Chunk</a>
+
+<sdss-address>
+</sdss-page>
+</html>
+

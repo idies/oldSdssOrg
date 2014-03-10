@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="./includes/sdss.css">
+  <title>DR7 Layout</title>
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<h1>Proposed Layout for DR7 - the legacy release</h2>
+
+<p>First some notes on organising the restructuring.</p>
+
+<em>Applicable documents</em>
+<ul>
+  <li><a
+      href="http://www.astro.princeton.edu:81/sdss-archive/msg.3698.html">sdss-archive/3698</a>
+      on DR7 web site discussions
+  <li><a
+      href="http://www.astro.princeton.edu:81/sdss-archive/msg.3696.html">sdss-archive/3696</a>
+      Michael Strauss's list on what the DR7 paper and web site need to document
+      incrementally relative to DR6.
+  <li><a
+      href="http://www.astro.princeton.edu:81/sdss-archive/msg.3702.html">sdss-archive/3702</a>
+      with Michael's use case examples, and ensuing discussions in <a
+      href="http://www.astro.princeton.edu:81/sdss-archive/msg.3703.html">sdss-archive/3703</a>
+      and <a
+      href="http://www.astro.princeton.edu:81/sdss-archive/msg.3705.html">sdss-archive/3705</a>
+      <li><a
+	  href="http://www.astro.princeton.edu:81/sdss-archive/msg.3706.html">sdss-archive/3706</a>
+	  with action items and notes from June 23 phonecon
+</ul>
+
+<em>Suggested rules for the new web page</em>
+<ol>
+<li> There shall be section numbers to the necessary hierarchy level
+    (I have no idea how to implement this in a flexible way, though -
+    this is an area where we might need outside web consultants)
+<li> The nav-bar shall show clearly where in the hierarchy the
+  current page is
+<li> The ``up'', ``next'', ``previous'' menubar items available in
+  some browsers shall be usable for navigating the site
+<li> New top-level section names shall make it easy to find
+  information already contained on DR6 and previous sites
+<li> Perhaps we should call this the Sloan Digital Sky Survey<strong>s</strong>?
+</ol>
+
+Now the actual proposed layout, which could turn into the new
+sdss.org/dr7 front page.
+
+<h2>Overview &amp; other information</h2>
+
+This section introduces all top-level concepts and terms to give a
+broad overview, and so that we can refer to all important terms
+before they get explained in detail (e.g. CAS, spectroscopic samples,
+etc.).
+
+Not sure if we still need ``where to start'' as we are trying to be
+comprehensive here. We do, however, need to list all the <strong>technical and
+data release papers</strong>, and at the beginning is a good place.
+
+<h2>Surveys and coverage</h2>
+
+SDSS-I and SDSS-II, which actually contains 3 surveys:
+<ol>
+<li> Legacy -- the completion of SDSS-I imaging and
+  spectroscopy. Includes ``special-plate'' spectroscopy in the
+  southern galactic cap.
+<li> SEGUE -- the galactic-structure extension of SDSS-I. Some SEGUE
+  imaging and spectra were taken as part of SDSS-I.
+<li> Supernova survey -- repeat scans under any conditions
+</ol>
+
+Now follows one subsection per survey, which explains:
+<ol>
+<li> Motivation, scope
+<li> Survey contents, strategy, quality criteria (including top-level
+  description of data products, i.e. imaging, spectra,
+  calibrations...)
+<li> Sky and time coverage
+</ol>
+
+<strong>E.g.:</strong>
+
+<ul>
+  <li>Legacy
+      <ul>
+	<li>Scope - is like <a href="./start/aboutdr7.1.html">About
+	    DR7.1</a> but restricted to legacy</li>
+	<li>Survey contents, strategy, quality criteria - just a
+	    paragraph as broad introduction, with links to appropriate
+	    subsections of the next section, and perhaps with a
+	    summary table such as the current <a
+	    href="./index.html">front page</a>
+	<li><a href="./coverage/index.html">sky coverage</a> -
+	    probably useful to show both the union of all surveys, and
+	    the coverage of individual surveys.
+      </ul>
+  <li><a href="http://segue.uchicago.edu">SEGUE</a>
+  <li><a href="http://www.sdss.org/drsn1/DRSN1_data_release.html">Supernova</a>
+</ul>
+
+<h2>Instruments</h2>
+
+Pretty much as the existing <a
+href="./instruments/index.html">instruments page</a>
+
+<h2>Pipelines, algorithms &amp; products</h2>
+
+This again has one subsection per survey, since they are by now
+sufficiently different from each other. Each explains which pipelines
+there are, and what they do.
+
+My suggestion would be to structure this page following the actual
+data flow, with links to both algorithms and products for every
+stage. In this way, the distinction between 'products' and
+'algorithms' and 'pipelines' would be lifted at the top level, and the
+connection becomes clear. A basic version of this outline is on the <a
+href="./dataflow/index.html">dataflow</a> page, and links to the
+descriptions of <a href="./products/index.html">input/output data</a>
+and <a href="./algorithms/index.html">algorithms</a> could be added
+here, as well as to the <a href="./dm/flatFiles/FILES.html">data
+model</a> <strong>which probably needs an overhaul, too</strong>.
+
+<ol>
+<li>Data flow overview
+<li>Photometry
+  <ol>
+  <li> photo -- find objects and their properties in counts and
+    pixels
+  <li> calibration pipelines and methods
+    <ol>
+    <li> PSF
+    <li> photometric, flat-fielding, ubercal
+    <li> astrometric
+    </ol>
+  <li> Target selection, resolve concept of legacy, ``Primary''
+    <ol>
+    <li> All the spectro surveys
+    </ol>
+  <li> tiling, masks
+  </ol>
+<li> Data model for each pipeline (though this is starting to get
+  into data-access land); TARGET and BEST; we need to document all the
+  flaws that appear somewhere in TARGET photometry!
+<li>top-level description of all QA things etc. which apply to more
+    than one targeting category (e.g.)
+</ol>
+
+<a href="./products/index.html">data products</a> and <a
+href="./products/value_added/index.html">value added products</a>
+
+<h2>Data access</h2>
+
+As <a href="./access/index.html">data access</a> now.
+
+<h2>Known unfixed problems</h2>
+
+As <a href="./help/known.html">known problems</a>now, except that it's
+only a clearinghouse list with pointers to detailed information
+further up -- doesn't need to be numbered, though?
+
+<h2>FAQ</h2>
+
+Should address most common how-to questions - with links to tutorials
+where they answer the question
+
+<h2>Tutorials</h2>
+
+As <a href="./tutorials/index.html">tutorials</a> now -- except with heavy updating!
+
+<h2>Help</h2>
+
+As <a href="./help/index.html">help</a> now -- doesn't need to be
+numbered, though?
+
+
+<h2>Search</h2>
+
+As <a href="./search/index.html">search</a> now -- doesn't need to be
+numbered, though? Won't work until we're public!
+
+</body>
+</html>
+

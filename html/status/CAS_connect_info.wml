@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="CAS connection info">
+<title>Catalog Archive Server connection info</title>
+</head>
+
+<sdss-page select="status">
+
+<h2>Catalog Archive Server Connection info</h2>
+
+<a name="fermilab"></a><h3>Fermilab</h3>
+<p><b>Port Daemon Host:</b> sdssdp5.fnal.gov<br>
+<b>Port Daemon Port:</b> 2005<br>
+<b>User ID:</b> fermiEDR<br>
+</p>
+
+</sdss-page>
+
+</html>

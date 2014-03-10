@@ -1,0 +1,9 @@
+#XSTART ASCII 
+# 4
+# "sprerun" "plate" "mjd" "fiberID"
+# int int int int
+# %d %d %d %d
+15 513 51989 300
+15 513 51989 312
+15 513 51989 618
+15 513 51989 638

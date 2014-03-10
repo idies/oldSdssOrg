@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Generator" CONTENT="Microsoft Word 97">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <META NAME="Author" CONTENT="William Boroski">
+   <TITLE>Trip Report: SDSS Interlock System Work, Oct 19-22, 1998</TITLE>
+</HEAD>
+<BODY>
+
+<DIV ALIGN=right></DIV>
+
+<div align="left"> <B><FONT SIZE=+2>SDSS Interlock System Work<br>
+  </FONT><font size="+1">October 19-22, 1998</font></B><br>
+  <br>
+    <I><em>Sloan Digital Sky Survey Technical Not</em></I>e <em>19981019 </em><BR>
+  <BR>
+  <em>John Anderson and Glenn Federwitz</em>, Fermi National Accelerator LaboratoryBatavia, IL USA 60510</div>
+<HR SIZE=4 WIDTH="100%">
+
+<P><B><FONT SIZE=+1>Bypass Enable Chassis</FONT></B>
+
+<P>The interlock system bypass enable chassis has been modified to contain
+two key switches. The right hand switch functions the same as on the original
+module. This is used to bypass individual elements on the splitter chassis.
+
+<P>The left hand switch is used to bypass all stop switches at the same
+time. When this switch is activated, a strobe light on the bypass chassis
+and another strobe light on the azimuth stow light box on the upper level
+will begin flashing. In addition, all stop switches at the telescope will
+begin flashing.
+<BR>&nbsp;
+
+<P><B><FONT SIZE=+1>Stop Switch LED’s</FONT></B>
+
+<P>The individual stop switch LED’s have been modified to provide additional
+status information.
+<UL>LED OFF - Stop switch reset. Normal state for running.</UL>
+
+<UL>LED ON - Stop switch tripped. Disables telescope motion.</UL>
+
+<UL>LED Flashing - Stop switch bypassed on splitter chassis or stop switch
+bypass key set to bypass all stop switches on the bypass enable chassis.</UL>
+<B><FONT SIZE=+1>Stop Switch Logic</FONT></B>
+
+<P>The low level axis logic has been modified to eliminate the possibility
+of inadvertently bypassing the telescope stop switches.
+<BR>&nbsp;
+
+<P><B><FONT SIZE=+1>South Windbaffle Stop Switch</FONT></B>
+
+<P>An additional stop switch was added to the south fork of the windbaffle
+and added to the low level axis logic.
+<BR>&nbsp;
+
+<P><B><FONT SIZE=+1>Azimuth Telescope Clamp</FONT></B>
+
+<P>Modified the high level logic to allow the alignment clamp to be used
+below 15 degrees. The clamp may still be used at zenith.&nbsp; The clamp
+must be disengaged for the windscreen or telescope azimuth axes to receive
+a CW or CCW motion permit. This is to prevent LVDT errors from moving the
+windscreen with the clamp on and to prevent the telescope from attempting
+to drive against the windscreen.
+<BR>&nbsp;
+
+<P><B><FONT SIZE=+1>AZ and ALT Motor Ready signals</FONT></B>
+
+<P>For the telescope to have AZ CW and CCW permits, both azimuth motor
+1 and 2 drive amplifiers must be ready. Any internal interlock trips on
+one amplifier will trip the other amplifier off. The same has been done
+for the altitude axis.
+<BR>&nbsp;
+
+<P><B><FONT SIZE=+1>Windscreen CW / CCW / UP / DN permits</FONT></B>
+
+<P><FONT COLOR="#000000">The windscreen soft inhibits now follow the telecope
+soft inhibits. If the telescope receives an UP inhibit, then an UP inhibit
+is sent to the windbaffle as well. The same holds true for Down, CW, and
+CCW inhibits. By implementing the logic in this fashion, the windbaffle
+will no longer follow an out-of-balance telescope past the soft limits
+to an out-of-operating-range position.</FONT>
+
+<P>&nbsp;
+<BR><B><FONT SIZE=+1>Hatch Switch and Dog House Door Switch</FONT></B>
+
+<P>These switches were moved from Splitter chassis Slot 2, channels 6 and
+7, to Slot 8, channels 6 and 7.
+<BR>&nbsp;
+
+<P><B><FONT SIZE=+1>Lightning Protection</FONT></B>
+
+<P>The Allen Bradley communications network now has lightning suppressors
+installed in the Interlock Rack, the windbaffle junction box, and in the
+azimuth junction box. This will help suppress any induced transients in
+the communications network between the PLC components. We will add a suppressor
+in the altitude junction box in the future. We were not able to move the
+telescope to a position that would allow for work in the altitude junction
+box this trip.
+<BR>&nbsp;
+
+<P>
+<HR SIZE=4 WIDTH="100%">
+<BR>Comments regarding this trip report should be addressed to <A HREF="mailto: jea@fnal.gov">John
+Anderson</A> at (630) 840-4973.
+
+<P><I><FONT SIZE=-1>Last updated 11/19/98.</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto: boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</BODY>
+</HTML>

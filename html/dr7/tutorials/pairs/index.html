@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Find Closely Paired Objects - SDSS DR7</title>
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<div id="pdflink">
+  <a href="pairs.swf" target="text" onmouseover="this.T_WIDTH=320;this.T_BGCOLOR='#FFFFFF';return escape('Get text as Flash paper document (opens in new window)')">
+     <img src="../../images/swf_icon.jpg" alt="Get text as Flash paper document" />
+  </a>
+  &nbsp;&nbsp;&nbsp;  
+  <a href="pairs.pdf" target="text" onmouseover="this.T_WIDTH=270;this.T_BGCOLOR='#FFFFFF';return escape('Get text as PDF document (opens in new window)')">
+     <img src="../../images/pdf_icon.gif" alt="Get text as PDF document (opens in new window)" />
+  </a>
+
+</div>
+
+
+<h2>How do I...</h2>
+
+<h2>Find closely paired objects?</h2>
+
+
+<hr />
+
+<p>One common task is to find objects that form close pairs on the sky. Such close pairs might indicate objects that 
+are interacting in some way, or might help identify clusters of objects. You can search for closely paired objects 
+in SDSS data with an <a href="http://cas.sdss.org/astro/en/tools/search/sql.asp" target="tools">SQL Search</a> 
+(link opens in a new window) in the Catalog Archive Server. To get to SQL Search from the astronomers' main page, 
+look under <i>Search Tools</i>. From the public main page, look under <i>SkyServer Tools</i>, then <i>Search</i>.</p>
+
+<p>To learn more about SQL, see SkyServer's <a href="http://cas.sdss.org/astro/en/help/howto/search">SQL Tutorial</a> 
+and guide to <a href="http://cas.sdss.org/astro/en/help/docs/sql_help.asp">Using SQL with SkyServer</a>.</p>
+
+<ol class="tut">
+
+<li>In the large textbox of the <a href="http://cas.sdss.org/astro/en/tools/search/sql.asp" target="tools">SQL Search</a> tool (new 
+window), type the following query (or see it in the textbox at the bottom of this page):</p>
+
+<table width="100%">
+  <tr>
+    <td><code>SELECT	P1.objID as P1_ID, P1.ra as first_ra, P1.dec as first_dec,</code></td>
+  </tr>
+  <tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;P2.objID as second_ID, P2.ra as second_ra, P2.dec as second_dec</code></td>
+  </tr>
+  <tr>
+    <td><code>&nbsp;&nbsp;&nbsp;&nbsp;-- return object IDs and positions for both objects</code></td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>FROM PhotoTag   P1,				-- P1 is the first object</code></td>
+  </tr>
+  <tr>
+    <td><code>&nbsp;&nbsp;&nbsp;&nbsp;Neighbors  N,				-- N is the pre-computed neighbor objects</code></td>
+  </tr>
+  <tr>
+    <td><code>&nbsp;&nbsp;&nbsp;&nbsp;PhotoTag   P2				-- P2 is the second object</code></td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>WHERE P1.objID = N. objID 			-- P1 and P2 are neighbors</code></td>
+  </tr>
+  <tr>
+    <td><code>&nbsp;&nbsp;&nbsp;&nbsp;AND P2.objID = N.NeighborObjID</code></td>
+  </tr>
+  <tr>
+    <td><code>&nbsp;&nbsp;&nbsp;&nbsp;AND N.Distance < .05			-- objects are within 3 arcseconds</code></td>
+  </tr>		
+</table>
+</li>
+
+<li>The query will return the object ID, ra, and dec of each of the two objects in each pair.</li>
+
+<li>If you would like to see thumbnail images of each of the objects that matches the query, go to the 
+<a href="http://cas.sdss.org/astro/en/tools/chart/list.asp" target="tools">Image List</a> tool (link opens in new window). From 
+the astronomers' main page, look under <i>Advanced Tools</i>. From the public main page, look under 
+<i>SkyServer Tools</i>.</li>
+
+</ol>
+
+
+<hr />
+
+
+<h4>View thumbnails (<a href="http://cas.sdss.org/astro/en/tools/chart/list.asp" target="tools">open Image List in new window</a>)</h4>
+
+
+<ol class="tut">
+
+<li>In the Image List tool, click on the <b>Use query to fill form</b> link, near the top left of the tool. 
+You will see a textbox appear in the main panel of the window.</li>
+
+<li>Queries in the Image List tool must take a slightly different form than queries in the SQL Search 
+tool. All Image List queries must have the following for their SELECT blocks:</p>
+
+<table width="100%">
+  <tr>
+    <td><code>SELECT <i>name</i>, ra, dec</code></td>
+  </tr>
+</table>
+
+<p>So you must rewrite your query as:</p>
+
+<table width="100%">
+  <tr>
+    <td><code>SELECT	top 100 P1.objID as name, P1.ra as ra, P1.dec as dec</code></td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>FROM PhotoTag   P1,				-- P1 is the first object</code></td>
+  </tr>
+  <tr>
+    <td><code>&nbsp;&nbsp;&nbsp;&nbsp;Neighbors  N,				-- N is the pre-computed neighbor objects</code></td>
+  </tr>
+  <tr>
+    <td><code>&nbsp;&nbsp;&nbsp;&nbsp;PhotoTag   P2				-- P2 is the second object</code></td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>WHERE P1.objID = N. objID 			-- P1 and P2 are neighbors</code></td>
+  </tr>
+  <tr>
+    <td><code>&nbsp;&nbsp;&nbsp;&nbsp;AND P2.objID = N.NeighborObjID</code></td>
+  </tr>
+  <tr>
+    <td><code>&nbsp;&nbsp;&nbsp;&nbsp;AND N.Distance < .05			-- objects are within 3 arcseconds</code></td>
+  </tr>		
+</table>
+
+<p>Note that this will return only the name and position of the first object in the pair (although you should be 
+able to see both objects in the thumbnail image). Also, note that the <i>top 100</i> means that the query 
+will be limited to return 100 objects.</p>
+
+</li>
+
+<li>Click <b>Submit</b>, then <b>Send to List</b>. You will see thumbnail images for each of the objects that 
+match your search criteria. The object at the center of the image will be only one of the objects, but both should 
+be visible in the frame. You may find it helpful to turn on the <b>Grid</b> and <b>PhotoObjs</b> checkbox options.</li>
+
+<li>Note that if you run this query without the <i>top 100</i>, the query will return many results. To get all 
+results you will probably need to use <a href="http://casjobs.sdss.org/casjobs/" target="tools">CasJobs</a> (link opens in new window). 
+See the <a href="http://casjobs.sdss.org/casjobs/guide.aspx" target="tools">CasJobs help pages</a> (new window) for more information.</li>
+
+</ol>
+
+
+<hr />
+
+<h4><a href="../index.html">Back to tutorial index</a></h4>
+
+<!-- end page content-->
+
+
+<!--#include virtual="../../includes/footer.html"-->
+</body> </html>

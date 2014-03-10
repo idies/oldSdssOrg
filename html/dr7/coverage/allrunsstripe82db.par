@@ -1,0 +1,341 @@
+#
+# Contains a list of all 305 run/rerun combinations in Stripe82DB CAS
+# Runs 106 and 206 are the Coadd Runs
+#
+# whichDatabase indicates if the run/rerun may be found in:
+#  DASONLY (i.e. not in any CAS)
+#  the RunsDB CAS
+#  the Stripe82DB CAS
+#  the DR7 CAS
+#
+# whichSurvey indicates if the run/rerun is from the
+# Legacy SDSS-I or SDSS-II or Supernovae stripe 82 survey
+# SEGUE SDSS-II survey
+# A special Run, such as a M31 scan or a crossing or oblique scan
+# 
+# inDAS indicates 1=this run/rerun is in the DAS
+#                 0=this run/rerun is CAS only
+#
+
+typedef struct {
+        int run;
+        int rerun;
+        int stripe;
+        char strip[2];
+        float muStart;
+        float muEnd;
+        int field0;
+        int nFields;
+        float node;
+        float incl;
+        char whichDatabase[20];
+        char whichSurvey[20];
+        int inDAS;
+} RUNINFO;
+
+
+RUNINFO    94  40   82 N 336.58 415.76   12  529 284.205   0.008 stripe82   Legacy 1
+RUNINFO   106   2   82 S 309.13 419.76   62  739  95.000   0.000 stripe82   Legacy 0
+RUNINFO   125  40   82 S 350.47 436.64   11  576 284.281   0.008 stripe82   Legacy 1
+RUNINFO   206   2   82 N 309.13 419.76   62  739  95.000   0.000 stripe82   Legacy 0
+RUNINFO  1033  40   82 N 318.62 353.65   11  234  95.000   0.000 stripe82   Legacy 1
+RUNINFO  1040  40   82 S 305.94 323.31   39  116  95.000   0.000 stripe82   Legacy 0
+RUNINFO  1056  40   82 S 325.92 359.02   12  221  95.000   0.000 stripe82   Legacy 1
+RUNINFO  1752  40   82 N  26.76  76.62   40  333  95.000   0.000 stripe82   Legacy 1
+RUNINFO  1755  40   82 S 314.69 406.02   74  610  95.000   0.000 stripe82   Legacy 1
+RUNINFO  1894  40   82 S  32.64  57.35   11  165  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2385  40   82 N 307.38 320.86   11   90  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2570  40   82 N  23.07  41.18  100  121  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2578  40   82 N  37.37  59.97   60  151  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2579  40   82 S  43.42  58.25   51   99  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2583  40   82 S 307.39 341.08   30  225  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2585  40   82 S 328.12 340.99   11   86  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2589  40   82 N  27.26  60.95   81  225  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2649  40   82 N 345.64 368.84   26  155  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2650  40   82 N   5.15  29.85   11  165  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2659  40   82 N 308.25 324.12   48  106  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2662  40   82 N 320.33 383.06   18  419  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2677  40   82 N   9.26  31.57   38  149  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2700  40   82 N  23.35  61.52   22  255  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2708  40   82 N 347.44 384.26   25  246  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2709  40   82 S  23.45  58.94   25  237  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2728  40   82 N 320.57 392.28  150  479  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2738  40   82 N  14.88  60.39   18  304  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2768  40   82 N 344.00 375.74   26  212  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2820  40   82 N  23.28  59.81   22  244  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2855  40   82 N  20.72  29.11   11   56  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2856  40   82 N  29.51  37.90   11   56  95.000   0.000 stripe82   Legacy 0
+RUNINFO  2861  40   82 N  34.16  63.35   13  195  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2873  40   82 N  21.76  60.09   55  256  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2886  40   82 S  21.47  59.80   53  256  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2960  40   82 S  81.66  93.04   45   76  95.000   0.000 stripe82   Legacy 1
+RUNINFO  2968  40   82 N  81.51  93.04   11   77  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3322  40   82 N 303.16 318.73   20  104  95.000   0.000 stripe82   Legacy 0
+RUNINFO  3325  41   82 S 345.43 419.69   11  496  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3355  40   82 S  20.35  60.03   11  265  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3360  41   82 S 307.51 384.16   11  512  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3362  40   82 N  21.44  55.13   11  225  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3384  40   82 N 307.37 421.45   18  762  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3388  40   82 S 313.75 420.49   11  713  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3427  40   82 S 312.12 329.78   28  118  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3430  40   82 S  22.03  37.75   13  105  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3434  40   82 S 311.30 393.34   28  548  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3437  40   82 N 311.24 383.54   18  483  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3438  40   82 S  31.60  60.05   11  190  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3460  40   82 S  22.48  60.06   25  251  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3461  40   82 N  43.75  59.92   11  108  95.000   0.000 stripe82   Legacy 1
+RUNINFO  3465  40   82 S 326.80 379.05   11  349  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4128  40   82 N 343.15 420.11   11  514  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4136  40   82 S  28.86  59.55   11  205  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4145  40   82 S 345.10 420.55   11  504  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4153  40   82 N 344.74 370.49   11  172  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4157  40   82 N  20.20  60.03   11  266  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4158  40   82 N  80.37  91.90   43   77  95.000   0.000 stripe82   Legacy 0
+RUNINFO  4184  40   82 N 306.23 348.45   31  282  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4187  40   82 S 309.25 324.67   11  103  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4188  40   82 N 345.13 366.69   11  144  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4192  40   82 S 308.31 381.96   11  492  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4198  40   82 N 307.41 419.83   11  751  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4203  40   82 S 304.26 420.13   33  774  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4207  40   82 N 305.97 420.04   11  762  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4247  40   82 S 345.31 376.45   11  208  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4253  40   82 N 345.39 371.14   11  172  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4263  40   82 S 344.28 412.69   11  457  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4288  40   82 S  20.24  45.39   11  168  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4797  40   82 N 307.44 334.39   11  180  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4849  40   82 N 293.53 432.91   11  931  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4858  40   82 N 309.65 419.09   18  732  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4868  40   82 N 330.51 421.54   11  609  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4874  40   82 N 298.57 446.78   11  990  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4894  40   82 N 327.51 357.00   11  197  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4895  40   82 N 356.25 429.01   11  487  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4899  40   82 N   9.17  61.57   11  350  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4905  40   82 N   1.42  70.29   11  461  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4917  40   82 N 295.45 411.47   11  776  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4927  40   82 N 308.89 421.17   11  750  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4930  40   82 S 302.96 360.60   11  385  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4933  40   82 N 307.34 421.71   11  765  95.000   0.000 stripe82   Legacy 1
+RUNINFO  4948  40   82 N  18.43  60.95   66  285  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5042  40   82 S  19.39  59.96   11  271  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5052  40   82 S 345.31 384.53   11  262  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5566  40   82 N 327.42 418.90   11  612  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5582  40   82 S 305.41 417.40   11  749  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5590  40   82 N 300.34 370.55   11  470  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5597  40   82 S 296.00 343.00   11  293  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5603  40   82 N 296.65 420.16   25  826  95.000   0.000 stripe82   Legacy 0
+RUNINFO  5607  40   82 S 400.28 419.89  700  132  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5610  40   82 N 294.30 423.95   11  867  95.000   0.000 stripe82   Legacy 0
+RUNINFO  5619  40   82 S 309.31 420.70   96  745  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5622  40   82 N 296.55 421.85   11  838  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5628  40   82 S 296.42 361.99   11  439  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5633  40   82 N 299.44 396.45   11  649  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5637  40   82 S 339.42 421.91   11  552  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5642  40   82 N 350.32 421.44   11  476  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5646  40   82 S 346.14 429.23  350  556  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5654  40   82 N 290.04 306.97   11  114  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5658  40   82 N  16.15  54.63   11  257  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5665  40   82 S 292.02 305.79   11   93  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5666  40   82 S  41.39  61.90   11  138  95.000   0.000 stripe82   Legacy 0
+RUNINFO  5675  40   82 S 300.43 318.24   11  120  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5681  40   82 S  23.37  52.87   11  198  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5702  40   82 N 304.29 313.57   90   63  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5709  40   82 N 308.39 383.39  110  502  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5713  40   82 S 292.63 401.46   11  728  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5719  40   82 N 297.36 362.33   11  435  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5729  40   82 S 309.83 317.16   89   49  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5730  40   82 S  37.34  61.00   11  159  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5731  40   82 N  21.31  60.98   11  266  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5732  40   82 S  47.25  61.03   11   93  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5744  40   82 N 330.40 417.83   11  585  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5745  40   82 S  33.23  55.09   11  147  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5754  40   82 S 303.27 417.95   11  766  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5759  40   82 N 301.48 417.95   11  779  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5760  40   82 S  25.28  55.67   11  204  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5763  40   82 S 304.51 363.94   29  398  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5765  40   82 N   2.37  54.92   11  351  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5770  40   82 N 304.38 418.01   11  759  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5771  40   82 S  33.16  61.01   11  186  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5776  40   82 S 300.97 418.04   11  782  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5777  40   82 N  24.48  58.03   11  224  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5781  40   82 N 304.83 417.86   11  756  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5782  40   82 S  32.80  60.95   11  189  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5786  40   82 S 324.29 421.92   11  652  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5792  40   82 N 298.59 417.90   11  798  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5797  41   82 S 301.95 418.12   11  776  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5800  40   82 N 305.43 418.61   37  757  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5807  40   82 S 312.40 417.96   11  705  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5808  40   82 N  49.41  57.95   11   58  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5813  40   82 N 295.90 404.59   11  727  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5820  40   82 S 317.55 419.96   24  685  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5823  40   82 N 300.94 421.00   11  803  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5836  40   82 S 300.47 420.99   11  806  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5842  40   82 N  29.90  60.90  600  208  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5853  40   82 S 301.05 387.88   34  581  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5865  40   82 N 317.18 341.88   11  166  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5866  40   82 N  18.35  60.87   11  285  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5870  40   82 S 297.83 353.98   11  376  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5871  40   82 S  31.54  61.33   11  200  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5872  40   82 N  25.29  61.37   11  242  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5878  40   82 N 300.01 420.68   22  807  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5882  40   82 S 299.89 420.70   28  808  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5889  40   82 S  44.00  61.67   62  119  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5895  40   82 S 299.88 420.70   25  808  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5898  40   82 N 357.95 400.47  430  285  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5902  40   82 N  33.90  60.70  650  180  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5905  40   82 S 300.00 420.83   58  808  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5918  40   82 N 305.53 420.81   57  771  95.000   0.000 stripe82   Legacy 1
+RUNINFO  5924  40   82 S 299.93 420.90   25  809  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6281  40   82 N 316.57 325.55  100   60  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6283  40   82 N 348.38 372.64   11  162  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6287  40   82 S 301.29 421.06   11  800  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6293  40   82 N   7.38  13.52   11   41  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6313  40   82 N 297.17 314.23   11  114  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6314  40   82 N 312.68 421.22   11  725  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6330  40   82 S   1.24  28.04   11  179  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6348  40   82 S 328.87 363.01   11  228  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6349  40   82 S  26.17  39.05   11   86  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6353  40   82 S 298.28 311.30   11   87  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6355  40   82 S 354.29 420.01   11  439  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6360  40   82 N 299.94 345.29   23  303  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6362  40   82 N   9.20  25.97   11  112  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6363  40   82 N  25.74  40.11   11   96  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6367  40   82 S 312.25 421.08   11  727  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6370  40   82 N 295.14 334.21   11  261  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6373  40   82 N 342.85 368.46   11  171  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6374  40   82 N  38.22  51.25   11   87  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6377  40   82 S 293.48 375.82   11  550  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6383  40   82 N 327.19 413.57   11  577  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6400  40   82 N 299.30 329.09   11  199  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6401  40   82 S 309.17 318.45   11   62  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6402  40   82 S 335.15 371.98   11  246  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6409  40   82 N   1.56  27.02  240  170  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6412  40   82 N 301.16 335.89   11  232  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6414  40   82 N 334.14 414.98   11  540  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6417  40   82 S 299.19 410.42   11  743  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6418  40   82 N  53.28  60.92   11   51  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6421  40   82 N 297.55 420.91   11  824  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6422  40   82 S  37.15  56.17   11  127  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6425  40   82 S 298.53 420.99   11  818  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6430  40   82 N 297.27 420.93   11  826  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6433  40   82 S 294.89 420.95   11  842  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6435  40   82 N  36.15  54.57   11  123  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6441  40   82 N 298.29 366.70   11  457  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6444  40   82 N  43.21  45.31  158   14  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6447  40   82 S 293.28 400.17   11  714  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6448  40   82 S  39.15  67.00   11  186  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6453  40   82 S 297.52 355.75   11  389  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6458  40   82 S 353.33 415.92   11  418  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6461  40   82 N 299.21 421.08   11  814  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6464  40   82 S 291.24 315.35   11  161  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6468  40   82 S 297.31 363.03   11  439  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6471  40   82 S   9.60  62.00   11  350  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6474  40   82 N 297.32 391.48   11  629  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6476  40   82 N  30.63  61.17   11  204  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6479  40   82 S 296.83 394.89   11  655  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6480  40   82 S  33.26  59.46   11  175  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6484  40   82 N 297.22 421.02   11  827  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6488  40   82 S 293.27 333.24   11  267  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6494  40   82 S 298.41 327.30   17  193  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6501  40   82 S 327.50 421.69   11  629  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6504  40   82 N 296.93 421.93   11  835  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6508  40   82 S 297.30 420.21   11  821  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6513  40   82 N 297.29 421.10   11  827  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6518  40   82 S 297.25 421.06   11  827  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6522  40   82 N 292.43 340.18   11  319  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6524  40   82 N   6.17  61.86   11  372  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6525  40   82 S  39.18  61.34   11  148  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6528  40   82 S 299.81 334.99   48  235  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6530  40   82 S 352.09 421.71   11  465  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6533  40   82 N 294.58 399.97   11  704  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6534  40   82 N  38.76  62.87   11  161  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6537  40   82 S 342.69 421.00   11  523  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6542  40   82 S 297.23 360.56   11  423  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6545  40   82 S  41.29  61.05   11  132  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6548  40   82 N 296.30 338.06   11  279  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6552  40   82 N 297.32 422.04   11  833  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6555  40   82 S 293.76 391.22   11  651  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6556  40   82 S  28.44  61.23   11  219  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6559  40   82 N 297.31 374.12   11  513  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6564  40   82 N 296.68 390.40   11  626  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6565  40   82 N  28.24  61.18   11  220  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6568  40   82 S 295.23 420.99   11  840  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6571  40   82 S 306.31 340.74   11  230  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6577  40   82 N 296.33 421.50   11  836  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6580  40   82 S 294.47 421.58   11  849  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6584  40   82 N 317.23 421.00   11  693  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6590  40   82 S 297.74 346.55   11  326  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6592  40   82 S  12.14  60.95   11  326  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6596  40   82 S 297.15 420.97   11  827  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6600  40   82 N 296.23 395.94   11  666  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6604  40   82 S  27.31  61.60   11    3  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6609  40   82 N  33.25  60.95   11  185  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6615  40   82 S 296.28 343.29   11  314  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6618  40   82 S 358.26 421.14   11  420  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6921  40   82 N  24.12  54.96   11  206  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6933  40   82 S 299.87 345.98   35  308  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6934  40   82 N 345.36 416.03   11  472  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6947  40   82 N  32.32  38.31   11   40  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6951  40   82 N 307.37 339.40   11  214  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6955  40   82 S 293.67 421.07   11  851  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6961  40   82 N 320.38 325.32   55   33  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6963  40   82 N 359.25 386.05   11  179  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6964  40   82 S  14.50  31.42   11  113  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6976  40   82 S 340.20 421.04  170  540  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6981  40   82 S 299.86 341.03   41  275  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6982  40   82 N 332.21 420.99   11  593  95.000   0.000 stripe82   Legacy 1
+RUNINFO  6985  40   82 N 296.41 324.85   11  190  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7003  40   82 N 309.47 327.88   11  123  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7006  40   82 N 325.68 361.77   27  241  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7013  40   82 S 334.29 351.96   11  118  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7016  40   82 S  12.23  60.89   11  325  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7018  40   82 S 300.18 309.61   34   63  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7024  40   82 S 299.89 375.94   35  508  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7033  40   82 N 308.27 330.12   11  146  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7034  40   82 N 342.31 421.06   11  526  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7037  40   82 N 296.26 348.96   11  352  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7038  40   82 S 355.19 420.92   11  439  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7043  40   82 N 302.92 326.58   11  158  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7047  40   82 N   5.29  44.36   11  261  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7051  40   82 S 297.47 420.98   11  825  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7054  40   82 N 301.36 421.43   11  802  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7057  40   82 S 297.88 420.95   11  822  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7069  40   82 S 306.27 317.05   11   72  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7074  40   82 S  11.14  60.99   11  333  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7077  40   82 N  17.19  60.91   11  292  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7080  40   82 N 299.80 375.40   22  505  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7081  40   82 N  18.19  61.01   36  286  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7084  40   82 S 297.24 420.90   11  826  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7092  40   82 N 294.30 331.13   11  246  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7095  40   82 N   7.62  61.21   11  358  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7096  40   82 S  14.59  61.31   11  312  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7101  40   82 S 302.27 421.01   11  793  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7106  40   82 N 295.26 421.16   11  841  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7110  40   82 S 296.97 337.99   11  274  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7111  40   82 N 338.19 346.43   11   55  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7112  40   82 N 351.32 421.10   11  466  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7117  40   82 N 343.25 398.95   11  372  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7121  40   82 N 297.32 420.98   11  826  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7124  40   82 S 297.26 385.43   11  589  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7130  40   82 N  40.16  60.97  702  139  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7133  40   82 S 296.18 341.09   11  300  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7136  40   82 S 311.65 421.08   11  731  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7140  40   82 N 297.06 378.80   11  546  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7142  40   82 N  16.29  61.05   11  299  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7145  40   82 S 296.00 421.16   11  836  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7150  40   82 N 297.30 324.10   11  179  95.000   0.000 stripe82   Legacy 0
+RUNINFO  7151  40   82 S 342.68 351.81   11   61  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7152  40   82 S  21.26  60.19  215  260  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7155  40   82 N 294.31 420.96   11  846  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7158  40   82 S 356.29 421.11   11  433  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7161  40   82 S 294.50 421.01   11  845  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7164  40   82 N 295.12 347.97   11  353  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7170  40   82 N 297.47 421.43   11  828  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7173  40   82 S 297.30 420.96   11  826  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7176  40   82 N 297.53 334.95   12  250  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7177  40   82 N 349.55 420.96   11  477  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7182  40   82 S 295.35 346.10   11  339  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7183  40   82 S   8.25  60.95   11  352  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7188  40   82 N 293.76 353.20   14  397  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7195  40   82 N 307.78 385.94   11  522  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7199  40   82 N   9.29  61.24   11  347  95.000   0.000 stripe82   Legacy 1
+RUNINFO  7202  40   82 N 316.29 420.95   11  699  95.000   0.000 stripe82   Legacy 1

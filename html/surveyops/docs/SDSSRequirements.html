@@ -1,0 +1,1684 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+<CENTER><B><FONT SIZE=+2>Technical Requirements and Performance 
+Specifications</FONT></B></CENTER>
+
+<CENTER><B><FONT SIZE=+2>for the 2.5-Meter Telescope</FONT></B><BR>
+<BR></CENTER>
+
+<CENTER><IMG SRC="ColorfulStoneStripe.gif" HEIGHT=4 WIDTH=500><BR>
+<BR></CENTER>
+
+<CENTER><B><I><U><FONT COLOR="#800080"><FONT SIZE=+1>Revision 
+History</FONT></FONT></U></I></B></CENTER>
+
+<CENTER>&nbsp;</CENTER>
+
+<CENTER><TABLE BORDER CELLSPACING=0 CELLPADDING=0 WIDTH="100%" HEIGHT="10" >
+
+<TR>
+<TD WIDTH="15%">
+<UL><B><I><FONT SIZE=-1>Date</FONT></I></B></UL>
+</TD>
+
+<TD>
+<CENTER><B><I><FONT SIZE=-1>Revision Description</FONT></I></B></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD>
+<CENTER><FONT SIZE=-1>10/17/97</FONT></CENTER>
+</TD>
+
+<TD><FONT SIZE=-1>Initial document release.</FONT></TD>
+</TR>
+
+<TR>
+<TD></TD>
+
+<TD></TD>
+</TR>
+
+<TR>
+<TD></TD>
+
+<TD></TD>
+</TR>
+
+<TR>
+<TD></TD>
+
+<TD></TD>
+</TR>
+</TABLE></CENTER>
+<FONT SIZE=-1>&nbsp;</FONT>
+<CENTER><BR>
+<IMG SRC="ColorfulStoneStripe.gif" HEIGHT=4 WIDTH=500></CENTER>
+
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<CENTER><B><I><U><FONT COLOR="#800080"><FONT SIZE=+1>Table of 
+Contents</FONT></FONT></U></I></B></CENTER>
+
+
+<P><B><A HREF="#1.0  Introduction">1.0&nbsp;&nbsp;&nbsp; Introduction</A></B>
+
+<UL><FONT SIZE=-1>1.1&nbsp;&nbsp;&nbsp; 
+Scope............................................................................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>1.2&nbsp;&nbsp;&nbsp; Change 
+Control...........................................................................................Rev.
+10/97</FONT></UL>
+<B><A HREF="#2.0    Environment">2.0&nbsp;&nbsp;&nbsp; Environment</A></B>
+<UL><FONT SIZE=-1>2.1&nbsp;&nbsp;&nbsp; On-site Compressed 
+Air.............................................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>2.2&nbsp;&nbsp;&nbsp; Enclosure Overhead Door 
+Opening.........................................................Rev.
+5/97</FONT>
+
+<BR><FONT SIZE=-1>2.3&nbsp;&nbsp;&nbsp; Maximum Operating Wind 
+Speed.............................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>2.4&nbsp;&nbsp;&nbsp; Normal Operating Wind 
+Speed.................................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>2.5&nbsp;&nbsp;&nbsp; Operating Temperature 
+Range..................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>2.6&nbsp;&nbsp;&nbsp; Lightning 
+Protection...................................................................................tbd</FONT></UL>
+<B><A HREF="#3.0   Telescope Parameters">3.0&nbsp;&nbsp;&nbsp; Telescope
+Parameters</A></B>
+
+<UL><FONT SIZE=-1>3.1&nbsp;&nbsp;&nbsp; Basic Telescope 
+Parameters......................................................................See
+URL</FONT>
+<BR><FONT SIZE=-1>3.2&nbsp;&nbsp;&nbsp; Wind Baffle 
+Dimensions............................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>3.3&nbsp;&nbsp;&nbsp; Wind Baffle to Enclosure Door Opening
+Clearances............................Rev. 7/97</FONT>
+<BR><FONT SIZE=-1>3.4&nbsp;&nbsp;&nbsp; Wind Baffle Drive 
+Friction.........................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>3.5&nbsp;&nbsp;&nbsp; Camera 
+Weights..........................................................................................Rev.</FONT></UL>
+
+<B><A HREF="#4.0  Telescope Axis Controls">4.0&nbsp;&nbsp;&nbsp; Telescope
+Axis Controls</A></B>
+<UL><FONT SIZE=-1>4.1&nbsp;&nbsp;&nbsp; Pointing 
+Precision.......................................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.2&nbsp;&nbsp;&nbsp; Tracking 
+Precision.......................................................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>4.3&nbsp;&nbsp;&nbsp; Maximum Tracking 
+Rate.............................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.4&nbsp;&nbsp;&nbsp; Maximum Tracking 
+Acceleration..............................................................Rev.
+7/97</FONT>
+
+<BR><FONT SIZE=-1>4.5&nbsp;&nbsp;&nbsp; Absolute Fiducial Transducer 
+Precision.................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.6&nbsp;&nbsp;&nbsp; Normal Operating 
+Range............................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.7&nbsp;&nbsp;&nbsp; Safe Operating Range</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.7.1&nbsp;&nbsp;
+Telescope 
+Azimuth..........................................................................Rev.
+7/97</FONT>
+
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.7.2&nbsp;&nbsp;
+Telescope 
+Altitude...........................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.7.3&nbsp;&nbsp;
+Instrument 
+Rotator...........................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.8&nbsp;&nbsp;&nbsp; Normal Velocity 
+Range...............................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.9&nbsp;&nbsp;&nbsp; Safe Velocity 
+Limits.....................................................................................Rev.
+7/97</FONT>
+
+<BR><FONT SIZE=-1>4.10&nbsp; Maximum Acceleration 
+Rate......................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.11&nbsp; Home Position 
+Accuracy............................................................................Rev.
+9/97</FONT>
+<BR><FONT SIZE=-1>4.12&nbsp; Mechanical Stops on the Instrument 
+Rotator.........................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.13&nbsp; Mechanical Stops on the Azimuth 
+Axis..................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.14&nbsp; Locking Pins</FONT>
+
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.14.1&nbsp;&nbsp;
+Telescope 
+Azimuth........................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.14.2&nbsp;&nbsp;
+Telescope 
+Altitude........................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.14.3&nbsp;&nbsp;
+Wind Baffle 
+Azimuth.....................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.14.4&nbsp;&nbsp;
+
+Wind Baffle 
+Altitude.....................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.14.5&nbsp;&nbsp;
+Instrument 
+Rotator.........................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.15&nbsp; Mechanical Brakes</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.15.1&nbsp;&nbsp;
+Telescope 
+Azimuth.........................................................................Rev.
+10/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.15.2&nbsp;&nbsp;
+
+Telescope 
+Altitude.........................................................................Rev.
+10/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.15.3&nbsp;&nbsp;
+Wind Baffle 
+Azimuth......................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.15.4&nbsp;&nbsp;
+Wind Baffle 
+Altitude......................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.15.5&nbsp;&nbsp;
+Instrument 
+Rotator.........................................................................Rev.
+7/97</FONT>
+
+<BR><FONT SIZE=-1>4.16&nbsp; Wind Baffle-to-Telescope Tracking 
+Precision........................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.17&nbsp; Sense Switches on the 15-degree Hard 
+Stop..........................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.18&nbsp; Telescope to Wind Baffle Alignment 
+Clamps........................................Rev.
+9/97</FONT>
+<BR><FONT SIZE=-1>4.19&nbsp; Telescope to Wind Baffle Bump 
+Switches..............................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>4.20&nbsp; Small Telescope Motions Within the 
+Enclosure....................................Rev.
+7/97</FONT>
+
+<BR><FONT SIZE=-1>4.21&nbsp; Telescope Counterweights</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.21.1&nbsp;&nbsp;
+Telescope 
+Balance.........................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.21.2&nbsp;&nbsp;
+Counterweight Motor-driven Operation....................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.21.3&nbsp;&nbsp;
+
+Counterweight Manual 
+Operation...............................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.21.4&nbsp;&nbsp;
+Counterweight Position 
+Display..................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+4.21.5&nbsp;&nbsp;
+Counterweight 
+Covers...................................................................Rev.
+7/97</FONT></UL>
+<B><A HREF="#5.0  Telescope Motion Interlocks">5.0&nbsp;&nbsp;&nbsp; Telescope
+Motion Interlocks</A></B>
+<UL><FONT SIZE=-1>5.1&nbsp;&nbsp;&nbsp; Azimuth Axis 
+Motion..................................................................................Rev.
+7/97</FONT>
+
+<BR><FONT SIZE=-1>5.2&nbsp;&nbsp;&nbsp; Altitude Axis 
+Motion..................................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>5.3&nbsp;&nbsp;&nbsp; Instrument Rotator 
+Motion........................................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>5.4&nbsp;&nbsp;&nbsp; Motor Drive Capstan Slip 
+Detection........................................................Rev.
+7/97</FONT>
+<BR><FONT SIZE=-1>5.5&nbsp;&nbsp;&nbsp; Telescope Stop 
+Buttons.............................................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>5.6&nbsp;&nbsp;&nbsp; Telescope Drive 
+Motors.............................................................................Rev.
+8/97</FONT>
+
+<BR><FONT SIZE=-1>5.7&nbsp;&nbsp;&nbsp; Wind Baffle Drive 
+Motors..........................................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>5.8&nbsp;&nbsp;&nbsp; Telescope 
+Brakes.........................................................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>5.9&nbsp;&nbsp;&nbsp; Interlock System Status 
+Display................................................................Rev.
+8/97</FONT></UL>
+<B><A HREF="#6.0   Instrument Exchange Controls and 
+Interlocks">6.0&nbsp;&nbsp;&nbsp;
+Instument Exchange Controls and Interlocks</A></B>
+<UL><FONT SIZE=-1>6.1&nbsp;&nbsp;&nbsp; Maximum Instrument Lift 
+Force................................................................Rev.
+8/97</FONT>
+
+<BR><FONT SIZE=-1>6.2&nbsp;&nbsp;&nbsp; Instrument Lift Automated Control
+System............................................Rev. 8/97</FONT>
+<BR><FONT SIZE=-1>6.3&nbsp;&nbsp;&nbsp; Instrument Change 
+Interlocks...................................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>6.4&nbsp;&nbsp;&nbsp; Instrument Change Indicator 
+Lights........................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>6.5&nbsp;&nbsp;&nbsp; Low-level Illumination 
+Lamps...................................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>6.6&nbsp;&nbsp;&nbsp; Observer Intercom 
+System........................................................................Rev.
+8/97</FONT>
+
+<BR><FONT SIZE=-1>6.7&nbsp;&nbsp;&nbsp; Cartridge Cart Staging 
+Area......................................................................Rev.
+8/97</FONT>
+<BR><FONT SIZE=-1>6.8&nbsp;&nbsp;&nbsp; Camera Doghouse 
+Doors..........................................................................Rev.
+8/97</FONT></UL>
+<B><A HREF="#7.0  Optics">7.0&nbsp;&nbsp;&nbsp; Optics</A></B>
+<UL><I><FONT SIZE=-1>To be developed</FONT></I></UL>
+<B><A HREF="#8.0   Imager">8.0&nbsp;&nbsp;&nbsp; Imager</A></B>
+
+<UL><I><FONT SIZE=-1>To be developed.</FONT></I></UL>
+<B><A HREF="#9.0   Spectrographs">9.0&nbsp;&nbsp;&nbsp; Spectrograph</A></B>
+<UL><I><FONT SIZE=-1>To be developed.</FONT></I></UL>
+<B><A HREF="#10.0  Fiber System">10.0&nbsp;&nbsp; Fiber System</A></B>
+<UL><I><FONT SIZE=-1>To be developed.</FONT></I></UL>
+<B><A HREF="#11.0 Telescope Performance Monitor">11.0&nbsp;&nbsp;&nbsp;
+Telescope Performance Monitor</A></B>
+
+<UL><I><FONT SIZE=-1>To be developed.</FONT></I></UL>
+<B><A HREF="#Glossary of Terms and Acronyms">Appendix A - Glossary of 
+Terms</A></B>
+
+<P><B>&nbsp;</B>
+<CENTER><B>&nbsp;</B></CENTER>
+
+<CENTER><IMG SRC="ColorfulStoneStripe.gif" HEIGHT=4 WIDTH=500></CENTER>
+&nbsp;
+
+<P><A NAME="1.0  Introduction"></A><B><FONT SIZE=+1>1.0&nbsp;&nbsp;&nbsp;
+Introduction</FONT></B>
+
+<P><FONT SIZE=-1>1.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SCOPE</FONT>
+
+<UL><FONT SIZE=-1>This document defines the technical requirements and
+performance specifications for the major hardware systems associated with
+the Sloan Digital Sky Survey (SDSS) 2.5-meter telescope. This document
+also serves as a repository for information on site environmental conditions
+and telescope construction parameters relevant to the telescope hardware
+systems.</FONT></UL>
+<FONT SIZE=-1>1.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CHANGE 
+CONTROL</FONT>
+<DIR><FONT SIZE=-1>Revisions to this requirements document are approved
+by the SDSS Telescope Change Control Board (TCCB). Requests for revisions
+should be submitted to Bill Boroski via e-mail (<A 
+HREF="MAILTO:boroski@fnal.gov">boroski@fnal.gov</A>)
+or by fax (630.840.8032). Revision requests will be forwarded to the TCCB
+for review and consideration. As necessary, the TCCB may solicit the help
+of technical experts to aid in the evaluation of specific requests. 
+Notification
+of each revision to the requirements document will be provided to the SDSS
+organization via e-mail messages sent to 
+sdss-general@astro.princeton.edu.</FONT></DIR>
+<A NAME="2.0    Environment"></A><B><FONT SIZE=+1>2.0&nbsp;&nbsp;&nbsp;
+Environment</FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;2.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ON-SITE
+COMPRESSED AIR</FONT>
+
+<DIR><FONT SIZE=-1>The maximum pressure available from the APO site air
+compressor is 120 psig (set by the burst disk on the compressor). The site
+air compressor is set to cycle on when the pressure drops to 80 psig and
+cycle off when the pressure reaches 110 psig. Air pressure to the site
+is regulated to 100 psig. Systems connected to the site air compressor
+should be designed to operate with an air pressure as low as 80 psig.</FONT>
+
+<P><FONT SIZE=-1>Reference: Dan Long e-mail (8/14/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp; 8/14/97</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>2.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENCLOSURE
+OVERHEAD DOOR OPENING</FONT>
+<DIR><FONT SIZE=-1>Design vertical clearance of overhead door: 144" above
+the finished floor.</FONT>
+
+<BR><FONT SIZE=-1>As-built vertical clearance of overhead door: 146" above
+the finished floor</FONT>
+
+<P><FONT SIZE=-1>Reference: W. Siegmund e-mail (5/27/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>2.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MAXIMUM
+OPERATING WIND SPEED</FONT>
+<DIR><FONT SIZE=-1>The telescope enclosure shall be closed by the time
+the wind speed reaches 60 mph. It should be noted that the site operational
+wind speed limit is 35 mph (average, not peak) and that the enclosure is
+designed to withstand wind speeds to 134 mph.</FONT>
+
+<P><FONT SIZE=-1>Reference: W. Siegmund.</FONT>
+
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>2.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NORMAL 
+OPERATING
+WIND SPEED</FONT>
+<DIR><FONT SIZE=-1>The telescope will be operated under wind speeds up
+to 35 mph.</FONT>
+
+<P><FONT SIZE=-1>Reference: S. Kent.</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>2.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OPERATING
+TEMPERATURE RANGE</FONT>
+<DIR><FONT SIZE=-1>The operating temperature range of the telescope is
+20 deg. C to -20 deg. C.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; ITF Meeting (7/20/96).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>2.6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LIGHTNING
+PROTECTION</FONT>
+
+<DIR><FONT SIZE=-1>&nbsp;(TBD)</FONT>
+
+<P><FONT SIZE=-1>Reference:</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><A NAME="3.0   Telescope Parameters"></A><B><FONT SIZE=+1>3.0&nbsp;&nbsp;
+Telescope Parameters</FONT></B>
+
+<P><FONT SIZE=-1>3.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BASIC TELESCOPE
+PARAMETERS</FONT>
+
+<DIR><FONT SIZE=-1>Walter Siegmund has prepared a reference document titled
+"Basic Telescope Parameters" that summarizes information on various telescope
+and wind baffle parameters such as mass, center of gravity, moments of
+inertia, etc. The document also contains the procedure for setting the
+drive motor preloads for the telescope altitude and azimuth axes. This
+document can be found at the following URL:
+  <a target="_top" 
+href="http://www.apo.nmsu.edu/Telescopes/SDSS/eng.papers/19970514_BasicTelescopeInfo/19970514.html">http://www.apo.nmsu.edu/Telescopes/SDSS/eng.papers/19970514_BasicTelescopeInfo/19970514.html</a></FONT>
+
+<P><FONT SIZE=-1>Reference: SDSS Tech Note # 19970514</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp; See URL.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>3.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WIND BAFFLE
+DIMENSIONS</FONT>
+<DIR><FONT SIZE=-1>With the telescope and wind baffle at 0 deg. 
+elevation:</FONT>
+
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Maximum height of the
+wind baffle: 137" above the finished floor</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Maximum height of the
+wind baffle support: 138" above the finished floor</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vertical clearance of
+the wind baffle: 6" above the finished floor</FONT>
+
+<P><FONT SIZE=-1>Reference: W. Siegmund e-mail (5/27/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 5/27/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>3.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WIND BAFFLE
+-TO-ENCLOSURE DOOR OPENING CLEARANCES</FONT>
+<DIR><FONT SIZE=-1>With the telescope and wind baffle in the stow position,
+the side-to-side clearance between the wind baffle and the enclosure door
+opening is 13.1". The door clamps encroach 5" on either side of the door
+opening at about 84" above the finished floor.</FONT>
+
+<P><FONT SIZE=-1>Reference: W. Siegmund e-mail (5/27/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp; 5/27/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>3.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WIND BAFFLE
+DRIVE FRICTION</FONT>
+
+<DIR><FONT SIZE=-1>The friction for the azimuthal motion of the wind baffle
+is 9000 ft.-lb.&nbsp;&nbsp; The friction for the altitude motion is 900
+ft.-lb. friction..</FONT>
+
+<P><FONT SIZE=-1>Reference: SDSS Tech Note # 19950608</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;3.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CAMERA 
+WEIGHTS</FONT>
+<UL><FONT SIZE=-1>The camera weight exclusive of the optical benches is
+673 pounds. The optical benches add another 30 pounds, so the total camera
+weight is 703 pounds. This is the total weight that is supported on the
+instrument latches and kinematic mounts.</FONT>
+
+<P><FONT SIZE=-1>The saddle fully assembled weighs between 280 and 317
+pounds, depending on whether the intermediate LN2 dewars are empty or full.
+This is the weight on the saddle latches.</FONT>
+
+<P><FONT SIZE=-1>Thus, the total weight of the camera/saddle assembly on
+the telescope is between approximately 980 and 1020 pounds.</FONT>
+
+<P><FONT SIZE=-1>The camera operations cart weighs 240 pounds. Thus, the
+maximum that the instrument lift must handle is the weight of the camera,
+saddle, and operations cart, which is 703 + 317(full) + 240 = 1260 
+pounds.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; Jim Gunn e-mails (10/10/97 and 
+10/15/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 10/16/97</FONT></UL>
+<A NAME="4.0  Telescope Axis Controls"></A><B><FONT SIZE=+1>4.0&nbsp; 
+Telescope
+Axis Controls</FONT></B>
+
+<P><FONT SIZE=-1>4.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; POINTING
+PRECISION</FONT>
+<DIR><FONT SIZE=-1>The pointing requirement is 3 arcsecs RMS radius error.
+This is equivalent to 2 arcsec RMS per axis, or +/-5 arcsec per axis.</FONT>
+
+<P><FONT SIZE=-1>Reference: Table 2, SDSS Tech Note 19970527, "2.5-m Telescope
+Pointing Error Budget", by W. Siegmund.</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>&nbsp;4.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRACKING
+PRECISION</FONT>
+
+<DIR><FONT SIZE=-1>4.2.1&nbsp;&nbsp;&nbsp;&nbsp; For time scales between
+1 and 10 minutes, the tracking error shall be less than 165 mas RMS per
+axis.</FONT>
+<DIR><FONT SIZE=-1><U>Basis</U>:&nbsp; Uncorrected tracking errors cause
+astrometric errors. Given other entries in Table 10.2 of the Black Book,
+one finds that the uncorrected tracking error can be as large as 258 mas
+RMS radius error without exceeding the target of 265 mas RMS radius error.
+Of this, about 50 mas RMS radius error is due to bearing wobble, etc. This
+leaves 180 mas RMS servo error per axis.</FONT>
+
+<P><FONT SIZE=-1><U>Comment</U>:&nbsp; This tracking error requirement
+applies to operation of the telescope under worst case wind conditions.
+Under calm conditions, the maximum tracking error should approach 10 mas
+RMS per axis. This is consistent with SDSS Tech Note 19970523, "2.5-m 
+Telescope
+Tracking Error Budget", which gives 10 mas RMS servo error per axis as
+a goal.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;References:</FONT>
+
+<DIR><FONT SIZE=-1>1)&nbsp;&nbsp; Black Book, Table 10.2, "Contributions
+to Astrometric Errors."</FONT>
+<BR><FONT SIZE=-1>The uncorrected tracking error entry in this table comes
+in turn from Table 1, SDSS Tech Note 19970527, "2.5-m Telescope Pointing
+Error Budget."</FONT>
+
+<P><FONT SIZE=-1>2)&nbsp;&nbsp; S. Kent, "Astrometric Calibration: III.
+Requirements on tracking errors", May 29, 1997.</FONT></DIR>
+</DIR>
+<FONT SIZE=-1>4.2.2&nbsp;&nbsp;&nbsp;&nbsp; For time scales less than one
+minute, the tracking error shall be less than 100 mas RMS per axis.</FONT>
+<DIR><FONT SIZE=-1><U>Basis</U>:&nbsp; Image broadening due to such motion
+must be less than the best seeing (about 800 mas FWHM, or 340 mas RMS per
+axis).</FONT></DIR>
+
+<FONT SIZE=-1>4.2.3&nbsp;&nbsp;&nbsp;&nbsp; The tracking rate shall be
+accurate to one part in 4000 averaged over one minute.</FONT>
+<DIR><FONT SIZE=-1><U>Basis</U>:&nbsp; Drift of 0.5 pixel in 55 seconds
+will cause image elongation.</FONT></DIR>
+<U><FONT SIZE=-1>Notes:</FONT></U>
+<DIR><FONT SIZE=-1>1.&nbsp;&nbsp; Time scales:</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Astrometric CCD crossing
+time - 11 sec</FONT>
+
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Photometric CCD crossing
+time - 55 sec</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Time between standard
+stars (Tycho catalog) - 6/minute.</FONT>
+<BR><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Camera crossing time -
+10 min.</FONT></DIR>
+</DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MAXIMUM
+TRACKING RATE</FONT>
+<DIR><FONT SIZE=-1>Azimuth:&nbsp;&nbsp; 45 arcsec/sec (3x sidereal)</FONT>
+
+<BR><FONT SIZE=-1>Altitude:&nbsp;&nbsp; 15 arcsec/sec (3x sidereal)</FONT>
+<BR><FONT SIZE=-1>Rotator:&nbsp;&nbsp;&nbsp; 45 arcsec/sec (3x 
+sidereal)</FONT>
+
+<P><FONT SIZE=-1>&nbsp;<U>Basis</U>:&nbsp; Minimal zone of avoidance near
+the zenith gives a reasonable limit of 3x sidereal.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; S. Kent, Telescope Controls Requirements
+Discussion (4/26/97).</FONT>
+
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>&nbsp;4.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MAXIMUM
+TRACKING ACCELERATION</FONT>
+<DIR><FONT SIZE=-1>The maximum acceleration during tracking shall not exceed
+0.02 deg/min./min. (maximum)</FONT>
+
+<P><FONT SIZE=-1>&nbsp;<U>Comment:</U> This is high. It comes while tracking
+inside a region near the zenith where we know that we dont actually track
+in practice.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; S. Kent (11/8/96).</FONT>
+
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ABSOLUTE
+POSITION TRANSDUCER PRECISION</FONT>
+<DIR><FONT SIZE=-1>Altitude:&nbsp;&nbsp; 7.2 microns RMS (+/- 18 microns
+at the transducer radius).</FONT>
+<BR><FONT SIZE=-1>Azimuth:&nbsp;&nbsp; 7.2 microns RMS (+/- 18 microns
+at the transducer radius).</FONT>
+<BR><FONT SIZE=-1>Rotator:&nbsp;&nbsp;&nbsp; 30 microns RMS&nbsp; (+/-
+75 microns at the transducer radius).</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>: These values are derived from pointing 
+precision
+requirements. One arcsec corresponds to 6 microns at the magnetic fiducials
+on the azimuth axis. Also, for the rotator, one pixel of transverse motion
+across the CCD array's body to trailing edge (462 mm) is allowed. Sources
+of error that will contribute to transducer precision include tilt error,
+sensor angle error, noise, and thermal drift.</FONT>
+
+<P><FONT SIZE=-1>Reference: Telescope Controls Requirements Discussion
+(4/26/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NORMAL 
+OPERATING
+RANGE</FONT>
+<DIR><FONT SIZE=-1>Azimuth:&nbsp;&nbsp;&nbsp; Center: 90 degrees, +/- 270
+degrees.</FONT>
+
+<BR><FONT SIZE=-1>Altitude:&nbsp;&nbsp;&nbsp; Range: 25 - 87 degrees</FONT>
+<BR><FONT SIZE=-1>Rotator:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Center: 90 degrees,
++/- 270 degrees.</FONT>
+
+<P><FONT SIZE=-1><U>Comment</U>: The altitude operating range applies to
+normal tracking and slewing operations. For instrument change, the telescope
+must be allowed to reach the zenith.</FONT>
+
+<P><FONT SIZE=-1>Reference: ITF 7/20/96; S. Kent, "Azimuth Range for 2.5M
+Telescope and Rotation Range Revisited", 7/9/96.</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT>
+
+<P><FONT SIZE=-1><U>Note</U>: A clearly specified motion and orientation
+convention for all axes is needed. W. Siegmund will publish a convention
+(4/26/97).</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAFE OPERATING
+RANGE</FONT>
+<DIR><FONT SIZE=-1>4.7.1&nbsp;&nbsp;&nbsp;&nbsp; TELESCOPE AZIMUTH</FONT>
+<DIR><FONT SIZE=-1>Range:&nbsp;&nbsp; Center: 90 degrees, +/- 285 
+degrees.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>:&nbsp;&nbsp; Should the normal operating
+range be exceeded, the interlock system will initiate a directional inhibit
+to prevent further motion outside of the normal range. For a velocity change
+from 2 deg/sec to 0 deg/sec, the telescope azimuth coasting distance is
+calculated to be 5 degrees. The safe operating range includes room for
+the telescope to coast to a stop once a directional inhibit has been 
+applied.</FONT>
+
+<P><FONT SIZE=-1>Reference: W. Siegmund, 6/30/97.</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp; 4.7.2&nbsp;&nbsp;&nbsp; TELESCOPE ALTITUDE</FONT>
+<DIR><FONT SIZE=-1>&nbsp;Range:&nbsp;&nbsp; 0.6 to 90.5 degrees.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;<U>Basis</U>:&nbsp; The telescope altitude operating
+range is determined by the position and performance of the upper and lower
+shock absorbers. Note that actual locations may vary slightly from the
+design drawings.</FONT></DIR>
+</DIR>
+&nbsp;
+<CENTER><TABLE BORDER CELLPADDING=6 BORDERCOLOR="#000000" >
+<TR>
+<TD VALIGN=CENTER></TD>
+
+<TD VALIGN=CENTER>
+<CENTER><FONT SIZE=-1>First contact with&nbsp;</FONT></CENTER>
+
+<CENTER><FONT SIZE=-1>shock absorber</FONT></CENTER>
+
+</TD>
+
+<TD VALIGN=CENTER>
+<CENTER><FONT SIZE=-1>Shock absorber at</FONT></CENTER>
+
+<CENTER><FONT SIZE=-1>full compression.</FONT></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER>
+<CENTER><FONT SIZE=-1>Lower limits</FONT></CENTER>
+</TD>
+
+<TD VALIGN=CENTER>
+<CENTER><FONT SIZE=-1>0.9 deg</FONT></CENTER>
+</TD>
+
+<TD VALIGN=CENTER>
+<CENTER><FONT SIZE=-1>0.0 deg.</FONT></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER>
+<CENTER><FONT SIZE=-1>Upper limits</FONT></CENTER>
+</TD>
+
+<TD VALIGN=CENTER>
+<CENTER><FONT SIZE=-1>90.3 deg.</FONT></CENTER>
+</TD>
+
+<TD VALIGN=CENTER>
+<CENTER><FONT SIZE=-1>91.2 deg.</FONT></CENTER>
+</TD>
+</TR>
+</TABLE></CENTER>
+&nbsp;
+<DIR>
+<DIR><FONT SIZE=-1>Reference: Telescope mechanical drawings E326315 and
+E326316.</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+
+<FONT SIZE=-1>&nbsp;4.7.3&nbsp;&nbsp;&nbsp; INSTRUMENT ROTATOR</FONT>
+<DIR><FONT SIZE=-1>Range:&nbsp;&nbsp; Center: 90 degrees, +/- 285 
+degrees.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>:&nbsp;&nbsp; Should the normal operating
+range be exceeded, the interlock system will initiate a directional inhibit
+to prevent further motion outside of the normal range. For a velocity change
+from 2 deg/sec to 0 deg/sec, the rotator coasting distance is calculated
+to be 1 degree. The safe operating range includes room for the rotator
+to coast to a stop once a directional inhibit has been applied.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; W. Siegmund (6/30/97).</FONT>
+
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+</DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NORMAL
+VELOCITY RANGE</FONT>
+<DIR><FONT SIZE=-1>Azimuth:&nbsp;&nbsp;&nbsp; 0 - 2.8 deg/sec.</FONT>
+<BR><FONT SIZE=-1>Altitude:&nbsp;&nbsp;&nbsp; 0 - 2.8 deg/sec.</FONT>
+
+<BR><FONT SIZE=-1>Rotator:&nbsp;&nbsp;&nbsp;&nbsp; 0 - 2.8 deg/sec.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>: The slew rate is set by requiring the average
+slew time to be about one minute. The slew rate expected by the TCC will
+be 2.8 degrees per second. The control system will need to be able to respond
+to this.</FONT>
+
+<P><FONT SIZE=-1><U>Comment</U>: These velocities apply over the normal
+operating range of the telescope. Refer to the section on safe velocity
+limits for limits when the telescope altitude axis is outside of the normal
+operating range.</FONT>
+
+<P><FONT SIZE=-1>Reference: ITF minutes (7/20/96); Notes from 
+control/interlocks
+requirements review (7/20/96).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAFE VELOCITY
+LIMITS</FONT>
+<DIR><FONT SIZE=-1>Azimuth:&nbsp;&nbsp;&nbsp;&nbsp; 3.5 deg/sec.</FONT>
+<BR><FONT SIZE=-1>Altitude:&nbsp;&nbsp;&nbsp;&nbsp; 3.5 deg/sec. (over
+the normal operating range)</FONT>
+<BR><FONT 
+SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1.0 deg/sec. (outside of the normal operating range)</FONT>
+
+<BR><FONT SIZE=-1>Rotator:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.5 deg/sec.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;<U>Basis</U>:</FONT>
+<BR><FONT SIZE=-1>1) Velocity limits of 3.5 deg/sec provide headroom for
+normal jitter of the control system. These limits may be adjusted later
+based on operating experience.</FONT>
+
+<P><FONT SIZE=-1>2) When the altitude axis is outside of the normal operating
+range, the telescope is nearing the upper or lower shock absorbers. The
+maximum velocity near these limits must be lower to avoid hard contact
+with the shock absorbers in a run-away situation.</FONT>
+
+<P><FONT SIZE=-1>Reference: Telescope Requirements Discussion (7/1/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MAXIMUM ACCELERATION
+RATE</FONT>
+<DIR><FONT SIZE=-1>Azimuth:&nbsp;&nbsp; 50 deg/sec</FONT><SUP><FONT 
+SIZE=-2>2</FONT></SUP>
+<BR><FONT SIZE=-1>Altitude:&nbsp;&nbsp; 50 deg/sec</FONT><SUP><FONT 
+SIZE=-2>2</FONT></SUP>
+<BR><FONT SIZE=-1>Rotator:&nbsp;&nbsp;&nbsp;&nbsp; 100 
+deg/sec</FONT><SUP><FONT SIZE=-2>2</FONT></SUP>
+
+<P><FONT SIZE=-1><U>Basis</U>: Derived from limiting acceleration to 3
+m/sec</FONT><SUP><FONT SIZE=-2>2</FONT></SUP><FONT SIZE=-1> at 3.5 meters,
+which is the distance from the telescope altitude axis to the secondary
+mirror. It is noted that 3 m/sec</FONT><SUP><FONT 
+SIZE=-2>2</FONT></SUP><FONT SIZE=-1>
+is the maximum seismic acceleration expected at the site. It is also noted
+that the maximum acceleration depends on the kinematic mounts for the imager.
+The axis control system will allow as little as 0.3 
+degrees/second/second.</FONT>
+
+<P><FONT SIZE=-1>Reference: Telescope Requirements Discussion (7/1/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>&nbsp;4.11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HOME POSITION
+ACCURACY</FONT>
+<DIR><FONT SIZE=-1>Azimuth:&nbsp;&nbsp;&nbsp;&nbsp; +/- 0.2 deg.</FONT>
+<BR><FONT SIZE=-1>Altitude:&nbsp;&nbsp;&nbsp;&nbsp; +/- 0.05 deg.</FONT>
+<BR><FONT SIZE=-1>Rotator:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +/- 0.1 deg.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>:&nbsp; Driven primarily by the precision
+to which the instrument kinematic mounts and the instrument cart must be
+aligned during instrument change requirements. The requirement for rotator
+and altitude axis alignment was derived by assuming a kinematic mount 
+alignment
+requirement of +/-0.062" at a radius of 20" (radial position of the kinematic
+mounts on these axes).</FONT>
+
+<P><FONT SIZE=-1>Reference: W. Siegmund (6/30/97); Requirements Control
+Group Phone-Con (9/12/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp; 9/12/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>&nbsp;4.12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MECHANICAL STOPS
+ON THE INSTRUMENT ROTATOR</FONT>
+
+<DIR><FONT SIZE=-1>There shall be no mechanical stop on the instrument
+rotator.</FONT>
+
+<P><FONT SIZE=-1>Reference: ITF (7/20/96).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MECHANICAL STOPS ON
+THE AZIMUTH AXIS</FONT>
+<DIR><FONT SIZE=-1>There shall be no mechanical stop on the telescope azimuth
+axis.</FONT>
+
+<P><FONT SIZE=-1><U>Comment</U>: Procedures will be used for power out
+movement of the telescope in azimuth to avoid cable breakage.</FONT>
+
+<P><FONT SIZE=-1>Reference: ITF (7/20/96).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>&nbsp;4.14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOCKING PINS</FONT>
+<DIR><FONT SIZE=-1>4.14.1&nbsp;&nbsp; TELESCOPE AZIMUTH</FONT>
+<DIR><FONT SIZE=-1>There shall be no locking pins on the telescope azimuth
+axis.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;<U>Basis</U>: Telescope brakes will be used to hold
+the telescope in position.</FONT>
+
+<P><FONT SIZE=-1>Reference: Telescope requirements discussion (7/1/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp; 4.14.2&nbsp; TELESCOPE ALTITUDE</FONT>
+<DIR><FONT SIZE=-1>There shall be no locking pins on the telescope altitude
+axis.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;<U>Basis</U>: Telescope brakes will be used to hold
+the telescope in position.</FONT>
+
+<P><FONT SIZE=-1>Reference: Telescope requirements discussion (7/1/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;4.14.3&nbsp;&nbsp; WIND BAFFLE AZIMUTH</FONT>
+<DIR><FONT SIZE=-1>&nbsp;There shall be no locking pins on the wind baffle
+azimuth axis.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>: Friction in the wind baffle azimuth drives
+will hold the wind baffle assembly in position.</FONT>
+
+<P><FONT SIZE=-1>Reference: Weekly Friday Phonecon (5/30/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;4.14.4&nbsp;&nbsp; WIND BAFFLE ALTITUDE</FONT>
+<DIR><FONT SIZE=-1>There shall be no locking pin on the wind baffle altitude
+axis.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>: The brake on the wind baffle altitude drive
+motor will be used to hold the wind baffle in position.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; ITF (7/20/96).</FONT>
+
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;4.14.5&nbsp;&nbsp; INSTRUMENT ROTATOR</FONT>
+<DIR><FONT SIZE=-1>&nbsp;There shall be no locking pin on the instrument
+rotator.</FONT>
+
+<P><FONT SIZE=-1><U>&nbsp;Basis</U>: There is sufficient friction in the
+rotator bearing to hold a balanced rotator in position. A switch cutting
+power to the motor will be used to hold the rotator in position during
+instrument change operations.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; ITF (7/20/96), W. Siegmund e-mail dated
+2-May-97.</FONT>
+
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+</DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MECHANICAL BRAKES</FONT>
+<DIR><FONT SIZE=-1>4.15.1&nbsp;&nbsp;&nbsp; TELESCOPE AZIMUTH</FONT>
+<DIR>
+<DIR><FONT SIZE=-1>&nbsp;4.15.1.1&nbsp; A mechanical brake shall be installed
+on the telescope azimuth axis.</FONT>
+
+<P><FONT SIZE=-1>4.15.1.2&nbsp;&nbsp; During brake engagement, the position
+of the telescope azimuth drive disk cannot move more than 2 arcsec RMS
+(equivalent to 12 microns RMS, or +/- 31 microns at the drive disk 
+radius).</FONT>
+
+<P><FONT SIZE=-1>4.15.1.3&nbsp;&nbsp; The brake shall have automatic and
+manual control modes. During automatic operation, the brake shall be 
+controlled
+by the MCP.</FONT>
+
+<P><FONT SIZE=-1>4.15.1.4&nbsp;&nbsp; Operators shall have the capability
+to manually release the brake during power-out conditions.</FONT>
+
+<P><FONT SIZE=-1>4.15.1.5&nbsp;&nbsp; During brake engagement, decelleration
+of the telescope shall not exceed the maximum acceleration rate.</FONT>
+
+<P><FONT SIZE=-1>Reference: Telescope Controls Review Discussion (4/26/97);
+Requirements Control Group</FONT>
+<BR><FONT 
+SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Phone-Con (10/3/97)</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp; 10/3/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp; 4.15.2&nbsp;&nbsp; TELESCOPE ALTITUDE</FONT>
+<DIR><FONT SIZE=-1>&nbsp;4.15.2.1&nbsp;&nbsp; A mechanical brake shall
+be installed on the telescope altitude axis. A single brake on one of the
+drive disks is sufficient.</FONT>
+
+<P><FONT SIZE=-1>4.15.2.2&nbsp;&nbsp;&nbsp; During brake engagement, the
+position of the telescope altitude drive disk cannot move more than 2 arcsec
+RMS (equivalent to 12 microns RMS, or &amp;plusmn; 31 microns at the drive
+disk radius).</FONT>
+
+<P><FONT SIZE=-1>4.15.2.3&nbsp;&nbsp;&nbsp; The brake shall have automatic
+and manual control modes. During automatic operation, the brake shall be
+controlled by the MCP.</FONT>
+
+<P><FONT SIZE=-1>4.15.2.4&nbsp;&nbsp;&nbsp; Operators shall have the 
+capability
+to manually release the brake during power-out conditions.</FONT>
+
+<P><FONT SIZE=-1>4.15.2.5&nbsp;&nbsp;&nbsp; During brake engagement, 
+decelleration
+of the telescope shall not exceed the maximum acceleration rate.</FONT>
+
+<P><FONT SIZE=-1>Reference: Telescope Controls Review Discussion (4/26/97).
+Requirements Control Group</FONT>
+<BR><FONT 
+SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Phone-Con (10/3/97)</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp; 10/3/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp; 4.15.3&nbsp;&nbsp;&nbsp; WIND BAFFLE AZIMUTH</FONT>
+
+<DIR><FONT SIZE=-1>There shall be no brake on the wind baffle azimuth 
+axis.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;<U>Basis</U>: There is sufficient friction in the
+wind baffle azimuth drive motors to hold the wind baffle in position during
+power-out conditions.</FONT>
+
+<P><FONT SIZE=-1>Reference: Telescope Controls Review Discussion 
+(4/26/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;4.15.4&nbsp; WIND BAFFLE ALTITUDE</FONT>
+<DIR><FONT SIZE=-1>&nbsp;4.15.4.1&nbsp;&nbsp; A mechanical brake shall
+be installed on the wind baffle altitude axis to hold wind baffle position
+under maximum operating wind speeds.</FONT>
+
+<P><FONT SIZE=-1>4.15.4.2&nbsp;&nbsp;&nbsp; The brake shall be automatically
+applied whenever power to the brake is lost.</FONT>
+
+<P><FONT SIZE=-1>4.15.4.3&nbsp;&nbsp;&nbsp; When being applied, the brake
+shall limit maximum wind baffle deceleration to 100 
+deg/sec</FONT><SUP><FONT SIZE=-2>2</FONT></SUP><FONT SIZE=-1>.</FONT>
+
+<P><FONT SIZE=-1>4.15.4.4&nbsp;&nbsp;&nbsp; Operators shall have the 
+capability
+of overriding the brake. Disabling the brake by removing the drive chain
+is acceptable.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>: A mechanical brake is required as there
+is insufficient friction in the wind baffle altitude drive motor to hold
+the wind baffle altitude position during windy, power- out conditions.</FONT>
+
+<P><FONT SIZE=-1>Reference: Telescope Controls Review Discussion 
+(4/26/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;4.15.5&nbsp; INSTRUMENT ROTATOR</FONT>
+<DIR><FONT SIZE=-1>&nbsp;There shall be no brake on the instrument 
+rotator.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;<U>Basis</U>: There is sufficient friction in the
+rotator axis bearing to hold the rotator in place during power-out 
+conditions.</FONT>
+
+<P><FONT SIZE=-1>Reference: W. Siegmund e-mail (5/2/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+</DIR>
+</DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>&nbsp;4.16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WIND 
+BAFFLE-TO-TELESCOPE
+TRACKING PRECISION</FONT>
+<DIR><FONT SIZE=-1>Azimuth:&nbsp;&nbsp; +/- 1 cm at the end of the wind
+baffle aperture.</FONT>
+
+<BR><FONT SIZE=-1>Altitude:&nbsp;&nbsp; +/- 1 cm at the end of the wind
+baffle aperture.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>:&nbsp; Vignetting of the corner astrometric
+chips.</FONT>
+
+<P><FONT SIZE=-1><U>Comment</U>:&nbsp; 1 cm corresponds to 0.11 
+degrees.</FONT>
+
+<P><FONT SIZE=-1>Reference: Telescope Requirements Discussion (7/1/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SENSE SWITCHES ON THE
+WIND BAFFLE 15-DEGREE STOP</FONT>
+<DIR><FONT SIZE=-1>Sense switches shall be installed on the wind baffle
+15-degree stop to detect the state of the stop lever.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; ITF (7/20/96).</FONT>
+
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>&nbsp;4.18&nbsp;&nbsp;&nbsp;&nbsp; TELESCOPE-TO-WIND BAFFLE
+ALIGNMENT CLAMPS (Altitude, Azimuth)</FONT>
+<DIR><FONT SIZE=-1>4.18.1&nbsp;&nbsp;&nbsp; There shall be an alignment
+clamp between the wind baffle and telescope to maintain the azimuth alignment
+of the telescope and wind baffle to within 0.017 degrees.</FONT>
+
+<P><FONT SIZE=-1>4.18.2&nbsp;&nbsp;&nbsp;&nbsp; No manual release is required
+on the alignment clamp.</FONT>
+
+<P><FONT SIZE=-1>4.18.3&nbsp;&nbsp;&nbsp;&nbsp; Compliance shall be built
+into the alignment clamp assembly to relieve radial run-out stresses should
+the telescope/wind-baffle assembly need to be moved with the clamp engaged
+during power-out conditions.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>: The cartridge transfer cart spans the gap
+between the telescope and wind baffle when the foremost cartridge bay is
+positioned over the instrument lift plate. The instrument cart rails on
+the telescope and windbaffle must be aligned to within 0.017 degrees in
+order to ensure proper alignment of the cartridge alignment pins, the 
+cartridge
+cart plate, and the instrument lift plate.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; Requirements Control Group Phone-Con
+(9/18/97)</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 9/18/97.</FONT></DIR>
+
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>&nbsp;4.19&nbsp;&nbsp;&nbsp;&nbsp; TELESCOPE-TO-WIND BAFFLE
+BUMP SWITCHES (Altitude and Azimuth)</FONT>
+<DIR><FONT SIZE=-1>&nbsp;4.19.1&nbsp;&nbsp; A means of determining and
+recording that a bump has occurred between the telescope and wind baffle
+shall be provided.</FONT>
+
+<P><FONT SIZE=-1>4.19.2&nbsp;&nbsp; No action shall be taken by the interlocks
+system as a result of a bump between the wind baffle and telescope.</FONT>
+
+<P><FONT SIZE=-1><U>Comment</U>: Several means may be used to detect bumps,
+such as bump switches or the wind baffle LVDTs. Data from the LVDTs will
+be logged to file by the TPM and can be used to analyze bumps. If necessary,
+a "bump" study could be made to determine if bump switches should be used
+actively in the interlock system.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; ITF (7/20/96); Telescope Controls 
+Requirements
+Phone-Con (5/2/97)</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SMALL TELESCOPE MOTIONS
+WITHIN THE ENCLOSURE</FONT>
+<DIR><FONT SIZE=-1>Small movements of the telescope within the wind baffle
+shall be allowed with the enclosure in place. No special monitoring is
+required by the interlocks system.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>: Due to the limited amount of space within
+the enclosure, there is little benefit in providing systems to allow limited
+telescope/wind baffle motions while the enclosure is in place.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; Telescope Requirements Discussion (7/1/97);
+e-mail between M. Klaene and W. Siegmund.</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>4.21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TELESCOPE 
+COUNTERWEIGHTS</FONT>
+<DIR><FONT SIZE=-1>4.21.1 TELESCOPE BALANCE</FONT>
+<DIR><FONT SIZE=-1>4.21.1.1&nbsp;&nbsp; The counterweight system shall
+allow the telescope to be balanced when no instrument is attached.</FONT>
+
+<P><FONT SIZE=-1>4.21.1.2&nbsp;&nbsp; The counterweight system shall include
+the capability for altitude balance adjustment after instrument mount.</FONT>
+
+<P><FONT SIZE=-1>4.21.1.3&nbsp;&nbsp; Capability for counterweight adjustment
+during observation shall be included and augmented if needed.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>: Provisions for balancing the telescope when
+no instruments are attached are required for safe operation of the telescope.
+It is noted that the telescope cannot be balanced without the spectrographs
+in place. Therefore, if a spectrograph is removed from the telescope, a
+dummy weight must be installed in its place in order to maintain telescope
+balance.</FONT>
+
+<P><FONT SIZE=-1><U>Comment</U>: Automatic adjustments to the balance after
+instrument change would become a requirement only after experience during
+construction and operation.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; ITF 7/20/96</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;4.21.2&nbsp;&nbsp; COUNTERWEIGHT MOTOR-DRIVEN 
+OPERATION</FONT>
+<DIR><FONT SIZE=-1>4.21.2.1&nbsp;&nbsp; Under normal operations, positioning
+of the counterweights to balance the telescope shall be done by the telescope
+motion control processor (MCP).</FONT>
+
+<P><FONT SIZE=-1>4.21.2.2&nbsp;&nbsp; The MCP shall have the capability
+to adjust the position of each counterweight independently.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; ITF (7/20/96)</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+</DIR>
+
+<DIR><FONT SIZE=-1>4.21.3&nbsp;&nbsp; COUNTERWEIGHT MANUAL OPERATION</FONT>
+<DIR><FONT SIZE=-1>The counterweight system shall be designed to allow
+for manual operation.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; ITF (7/20/96).</FONT>
+
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+</DIR>
+
+<DIR><FONT SIZE=-1>4.21.4&nbsp;&nbsp;&nbsp; COUNTERWEIGHT POSITION 
+DISPLAY</FONT>
+<DIR><FONT SIZE=-1>&nbsp;The position of each counterweight shall be digitally
+displayed on the front panel of the counterweight control module.</FONT>
+
+<P><FONT SIZE=-1><U>Comment</U>: During manual operation, observation of
+the weight will be adequate to determine position.</FONT>
+
+<P><FONT SIZE=-1>Reference: ITF (7/20/96).</FONT>
+
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;4.21.5&nbsp;&nbsp; COUNTERWEIGHT COVERS</FONT>
+<DIR><FONT SIZE=-1>Each counterweight shall be enclosed within a steel
+cover equipped with a window to allow the counterweight position to be
+observed.</FONT>
+
+<P><FONT SIZE=-1>Reference: ITF (7/20/96).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+</DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><A NAME="5.0  Telescope Motion Interlocks"></A><B><FONT SIZE=+1>5.0&nbsp;
+
+Telescope Motion Interlocks</FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;5.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AZIMUTH
+AXIS MOTION</FONT>
+<DIR><FONT SIZE=-1>5.1.1&nbsp;&nbsp; A two-level interlock shall be installed
+on the azimuth axis to inhibit azimuth rotation beyond the safe operating
+zone.</FONT>
+
+<P><FONT SIZE=-1>5.1.2&nbsp;&nbsp; The Level-1 limits shall inhibit telescope
+movement in the direction beyond the limit but allow movement in the direction
+away from the limit. The Level-1 limits shall be positioned at each end
+of the normal operating range.</FONT>
+
+<P><FONT SIZE=-1>5.1.3&nbsp;&nbsp; The Level-2 limits shall remove power
+from the azimuth drive motors, thereby stopping all telescope azimuth motion.
+The Level-2 limits shall be positioned at each end of the safe operating
+range.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; ITF (7/20/96).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>5.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ALTITUDE
+AXIS MOTION</FONT>
+
+<DIR><FONT SIZE=-1>5.2.1&nbsp;&nbsp; A two-level interlock shall be installed
+on the altitude axis to inhibit altitude rotation beyond the safe operating
+range.</FONT>
+
+<P><FONT SIZE=-1>5.2.2&nbsp;&nbsp; The Level-1 limit shall inhibit telescope
+movement in the direction beyond the limit but allow movement in the direction
+away from the limit.</FONT>
+
+<P><FONT SIZE=-1>5.2.3&nbsp;&nbsp; The Level-2 limits shall remove power
+from the altitude drive motors, thereby stopping all telescope altitude
+motion.</FONT>
+
+<P><FONT SIZE=-1>5.2.4&nbsp;&nbsp; The altitude motion limit switches shall
+be installed at the following locations:</FONT>
+
+<BR><FONT SIZE=-1>&nbsp;</FONT></DIR>
+&nbsp;
+<CENTER><TABLE BORDER CELLPADDING=6 HEIGHT="10%" >
+<TR>
+<TD></TD>
+
+<TD>
+<CENTER><FONT SIZE=-1>Lower Limit</FONT></CENTER>
+</TD>
+
+<TD>
+<CENTER><FONT SIZE=-1>Upper Limit</FONT></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD>
+<CENTER><FONT SIZE=-1>Level-1 Limits</FONT></CENTER>
+</TD>
+
+<TD>
+<CENTER><FONT SIZE=-1>0.8 deg.</FONT></CENTER>
+</TD>
+
+<TD>
+<CENTER><FONT SIZE=-1>90.3 deg.</FONT></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD>
+<CENTER><FONT SIZE=-1>Level-2 Limits</FONT></CENTER>
+</TD>
+
+<TD>
+<CENTER><FONT SIZE=-1>0.6 deg.</FONT></CENTER>
+</TD>
+
+<TD>
+<CENTER><FONT SIZE=-1>90.5 deg.</FONT></CENTER>
+</TD>
+</TR>
+</TABLE></CENTER>
+
+&nbsp;
+<DIR>
+<DIR><FONT SIZE=-1><U>Basis</U>: These positions will allow the telescope
+to reach the stow and instrument change positions without encountering
+a limit switch. In all cases, the Level-1 limit switches are encountered
+shortly after the shock absorbers begin to compress. The Level-2 switches
+are encountered well before the shock absorbers are fully 
+compressed.</FONT></DIR>
+<FONT SIZE=-1>Reference:&nbsp; ITF 7/20/96; Telescope Requirements Discussion
+(7/1/97); W. Boroski e-mail (8/13/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 8/13/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>5.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+INSTRUMENT
+ROTATOR MOTION</FONT>
+
+<DIR><FONT SIZE=-1>5.3.1&nbsp;&nbsp; A two-level interlock shall be installed
+on the instrument rotator axis to inhibit rotator movement beyond the safe
+operating zone.</FONT>
+
+<P><FONT SIZE=-1>5.3.2&nbsp;&nbsp; The Level-1 limits shall inhibit rotator
+movement in the direction beyond the limit but allow movement in the direction
+away from the limit. The Level-1 limits shall be positioned at each end
+of the normal operating range.</FONT>
+
+<P><FONT SIZE=-1>5.3.3&nbsp;&nbsp; The Level-2 limits shall remove power
+from the rotator drive motors, thereby stopping all instrument rotator
+motion. The Level-2 limits shall be positioned at each end of the safe
+operating range.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; ITF (7/20/96).</FONT>
+
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+&nbsp;
+
+<P><FONT SIZE=-1>5.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOTOR
+DRIVE CAPSTAN SLIP DETECTION</FONT>
+<DIR><FONT SIZE=-1>&nbsp;5.4.1&nbsp;&nbsp; A slip-detection system shall
+be provided on the azimuth, altitude, and rotator axes to detect non-rolling
+contact between the motor drive capstans and the drive disks.</FONT>
+
+<P><FONT SIZE=-1>5.4.2&nbsp;&nbsp;&nbsp; The interlock system shall shut
+down the motor drives if capstan-to-drive-disk slippage exceeds the equivalent
+of 1 degree of capstan rotation.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>: Telescope drive motors must be shut down
+before drive disks are damaged by excessive slippage of the drive capstans
+on the drive disks.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; Telescope Controls Requirements Discussion
+(4/26/97).</FONT>
+<BR><FONT SIZE=-1>Revised:</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>5.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TELESCOPE
+STOP BUTTONS</FONT>
+
+<DIR><FONT SIZE=-1>Telescope stop buttons shall be installed near the 
+telescope
+to disable the motion control system. These buttons shall not be lit during
+normal telescope operations (telescope on). A button that is active shall
+be lit as an indication that it is active. Each button shall provide a
+positive interrupt to the motion control system. Each button shall be clearly
+marked as a shut-off for the 2.5m telescope drive system.</FONT>
+
+<P><FONT SIZE=-1>The following systems shall be disabled:</FONT>
+<DIR><FONT SIZE=-1>A.&nbsp; The telescope altitude, azimuth and rotator
+axes.</FONT>
+<BR><FONT SIZE=-1>B.&nbsp;&nbsp; The wind baffle altitude and azimuth axes.
+The wind baffle altitude brake shall be enabled.</FONT></DIR>
+<FONT SIZE=-1>Telescope stop buttons shall be installed at the following
+locations:</FONT>
+<DIR><FONT SIZE=-1>A.&nbsp;&nbsp; Three buttons on the observing level,
+mounted on the observing deck railings. These three switches must be outdoor
+switches that will provide for telescope drive shutoff when the building
+is off the telescope. They should be mounted as close to the telescope
+as possible for quick user access. They should also be mounted in a manner
+that limits visitor access. Mounting locations shall be as follows:</FONT>
+
+<DIR><FONT SIZE=-1>1)&nbsp; One button on the north rail, 17 degrees east
+of the enclosure in the closed position. All hardware shall be mounted
+such to avoid mechanical interference with the telescope enclosure.</FONT>
+
+<P><FONT SIZE=-1>2)&nbsp; One button on the south railing, 17 degrees east
+of the enclosure in the closed position. All hardware shall be mounted
+such to avoid mechanical interference with telescope enclosure.</FONT>
+
+<P><FONT SIZE=-1>3)&nbsp; One button near the center of the west 
+railing.</FONT></DIR>
+<FONT SIZE=-1>B.&nbsp; Two buttons on the observing level, mounted on the
+telescope fork.</FONT>
+
+<DIR><FONT SIZE=-1>1)&nbsp; One button on the east face of the north fork
+(with respect to the telescope at the stow position).</FONT>
+
+<P><FONT SIZE=-1>2)&nbsp; One button on the west face of the south fork
+(referenced as above).</FONT></DIR>
+<FONT SIZE=-1>C.&nbsp; Four buttons on the lower level, mounted on the
+exterior walls.</FONT>
+<DIR><FONT SIZE=-1>1)&nbsp; One on each of the 4 interior walls, spaced
+evenly around the lower level.</FONT></DIR>
+
+<FONT SIZE=-1>D.&nbsp; One button in the control room.</FONT>
+<DIR><FONT SIZE=-1>1)&nbsp; One button mounted on the wall in the 2.5-meter
+telescope control room.</FONT></DIR>
+</DIR>
+<FONT SIZE=-1><U>Basis</U>: These telescope stop switches are installed
+to provide personnel safety and equipment protection. They allow an individual
+to quickly disable motions of the telescope that may be endangering other
+personnel. They are not intended to be a substitute for lockout protection
+on service panels.</FONT>
+
+<P><FONT SIZE=-1><U>Comment</U>: If reasonable to install, the APO operations
+staff would appreciate a controller that will give the status of all the
+buttons so one can tell which is on/off from the control room or a 
+terminal.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp;&nbsp; Mark Klaene and Walt Siegmund;
+Instrument Change Operations Review (8/4/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8/4/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>5.6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TELESCOPE
+DRIVE MOTORS</FONT>
+<DIR><FONT SIZE=-1>Power to the telescope drive motors shall be disabled
+as soon as the telescope brakes are applied.</FONT>
+
+<P><FONT SIZE=-1>Reference: Instrument Change Operations Review 
+(8/4/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 8/4/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>5.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WIND
+BAFFLE DRIVE MOTORS</FONT>
+<DIR><FONT SIZE=-1>Wind baffle drive motors shall be disabled whenever
+the telescope motors are disabled.</FONT>
+
+<P><FONT SIZE=-1>Reference: Instrument Change Operations Review 
+(8/4/97).</FONT>
+
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp; 8/4/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>5.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TELESCOPE
+BRAKES</FONT>
+<DIR><FONT SIZE=-1>Engagement of the telescope altitude and azimuth brakes
+shall be inhibited if the telescope is moving.</FONT>
+
+<P><FONT SIZE=-1>Reference: Instrument Change Operations Review 
+(8/4/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp; 8/4/97.</FONT></DIR>
+
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>5.9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTERLOCK
+SYSTEM STATUS DISPLAY</FONT>
+<UL><FONT SIZE=-1>The status of the interlock system shall be displayed
+in an X-window accessible from any on-site terminal.</FONT></UL>
+
+<DIR><FONT SIZE=-1>Reference: Instrument Change Operations Review 
+(8/4/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 8/4/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><A NAME="6.0   Instrument Exchange Controls and 
+Interlocks"></A><B><FONT SIZE=+1>6.0&nbsp;&nbsp;
+Instrument Exchange Controls and Interlocks</FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;6.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MAXIMUM
+INSTRUMENT LIFT FORCE</FONT>
+<DIR><FONT SIZE=-1>The maximum force exerted by the instrument lift shall
+not exceed 1500 lb.</FONT>
+
+<P><FONT SIZE=-1>Reference: Instrument Change Operations Review 
+(8/4/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp; 8/4/97</FONT></DIR>
+
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>6.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INSTRUMENT
+LIFT AUTOMATED CONTROL SYSTEM</FONT>
+<DIR><FONT SIZE=-1>6.2.1&nbsp;&nbsp; The MCP instrument change control
+script shall be operable through IOP, SOP, and through direct access to
+the MCP.</FONT>
+
+<P><FONT SIZE=-1>6.2.2&nbsp;&nbsp; The same instrument change system 
+information
+shall be displayed in the control room and on the operator terminal mounted
+near the telescope. The video display does not have to be the same in both
+locations.</FONT>
+
+<P><FONT SIZE=-1>6.2.3&nbsp;&nbsp; Lift control circuitry shall time-out
+if not refreshed with a motion control request every 10 milliseconds.</FONT>
+
+<P><FONT SIZE=-1>6.2.4&nbsp;&nbsp; The MCP shall report interlock error
+status to the observer. All error messages should be clear, concise, and
+unique. APO observers should be included in error message development.</FONT>
+
+<P><FONT SIZE=-1>6.2.5&nbsp;&nbsp; The operator shall have the ability
+to pause the instrument lift at any time during the lift operation. The
+operator shall have the ability to continue the lift or to reverse the
+operation through the use of up/down buttons on the instrument lift control
+pendant.</FONT>
+
+<P><FONT SIZE=-1>6.2.6&nbsp;&nbsp; The instrument lift control pendant
+shall have an up button, a down button, and an emergency stop button. The
+up and down buttons shall be deadman switches. The emergency stop button
+shall disable power to the instrument lift.</FONT>
+
+<P><FONT SIZE=-1>6.2.7&nbsp;&nbsp; All new instruments shall be ballasted
+to look like existing instruments, or shall have new counterweight and
+force/position curves generated.</FONT>
+
+<P><FONT SIZE=-1>6.2.8&nbsp;&nbsp; Each time the telescope brakes are 
+released,
+the MCP shall read the instrument id switches and verify that the 
+counterweights
+are positioned properly. If the counterweights are in the correct position
+for the installed instrument, the telescope brakes can be released. If
+not, an error message shall be displayed to the operator.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; Instrument Change Operations Review 
+(8/4/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 8/4/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>6.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INSTRUMENT
+CHANGE INTERLOCKS</FONT>
+
+<DIR><FONT SIZE=-1>&nbsp;6.3.1&nbsp;&nbsp; Interlock requirements associated
+with the corrector lens cat house shall be addressed by the UW group.</FONT>
+
+<P><FONT SIZE=-1>6.3.2&nbsp;&nbsp; The telescope stop buttons shall be
+used to disable the telescope drive systems during instrument change 
+operations.
+No key switch is required.</FONT>
+
+<P><FONT SIZE=-1>6.3.3&nbsp;&nbsp; There is no requirement to sense that
+covers are in place on a cartridge or corrector assembly. Such covers include
+plug plate covers, slithead covers, and corrector lens covers.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; Instrument Change Operations Review 
+(8/4/97).</FONT>
+
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 8/4/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>6.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INSTRUMENT
+CHANGE INDICATOR LIGHTS</FONT>
+<DIR><FONT SIZE=-1>&nbsp;6.4.1&nbsp;&nbsp; All instrument change indicator
+lights shall be visible under full sunlight and tolerable under dim 
+conditions.</FONT>
+
+<P><FONT SIZE=-1>6.4.2&nbsp;&nbsp; There shall be an indicator light (Exchange
+Position Light) near the cart staging area to indicate that the telescope
+is in the instrument change position and is safe to approach.</FONT>
+
+<P><FONT SIZE=-1>6.4.3&nbsp;&nbsp; There shall be an indicator light to
+indicate that the lift plate is in the fully-down position. The light shall
+be operable only during instrument change operations.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; Instrument Change Operations Review 
+(8/4/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 8/4/97</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>6.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOW-LEVEL
+ILLUMINATION LAMPS</FONT>
+
+<DIR><FONT SIZE=-1>&nbsp;6.5.1&nbsp; Low-level illumination lamps shall
+be installed to illuminate the area under the telescope for instrument
+change operations.</FONT>
+
+<P><FONT SIZE=-1>6.5.2&nbsp;&nbsp; The low-level illumination lamp system
+shall be capable of manual and computer control.</FONT>
+
+<P><FONT SIZE=-1>6.5.3&nbsp;&nbsp; The MCP shall turn on the low-level
+illumination lamps immediately after the telescope stop switch is pressed
+for instrument change, and shall turn off the illumination lamps when the
+stop switch is released.</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; Instrument Change Operations Review 
+(8/4/97).</FONT>
+
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 8/4/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>6.6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OBSERVER INTERCOM
+SYSTEM</FONT>
+<DIR><FONT SIZE=-1>There shall be an intercom link between the telescope
+enclosure and the 2.5-m control room. (APO task)</FONT>
+
+<P><FONT SIZE=-1>Reference:&nbsp; Instrument Change Operations Review 
+(8/4/97)</FONT>
+
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 8/4/97.</FONT></DIR>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>6.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CARTRIDGE
+CART STAGING AREA</FONT>
+<DIR><FONT SIZE=-1>&nbsp;6.7.1&nbsp;&nbsp; There shall be a marked staging
+area near the telescope for the cartridge cart. No sensors are required
+to detect the presence of a cart in this safe zone area. (APO task)</FONT>
+
+<P><FONT SIZE=-1>6.7.2&nbsp;&nbsp; The following switches shall be mounted
+near the staging area:</FONT>
+
+<DIR><FONT SIZE=-1>1)&nbsp; Telescope stop switch;</FONT>
+<BR><FONT SIZE=-1>2)&nbsp; Exchange Change Position light;</FONT>
+<BR><FONT SIZE=-1>3)&nbsp; Manual switch to turn on low-level illumination
+lights via relay contacts.</FONT></DIR>
+<FONT SIZE=-1>Reference:&nbsp; Instrument Change Operations Review 
+(8/4/97).</FONT>
+<BR><FONT SIZE=-1>Revised:&nbsp;&nbsp;&nbsp;&nbsp; 8/4/97.</FONT></DIR>
+
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><FONT SIZE=-1>6.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CAMERA 
+DOG-HOUSE
+DOORS</FONT>
+<DIR><FONT SIZE=-1>Telescope altitude and azimuth motion shall be inhibited
+whenever the camera dog-house door is not fully closed.</FONT>
+
+<P><FONT SIZE=-1><U>Basis</U>: The telescope will hit the dog-house door
+if the door is open.</FONT>
+
+<P><FONT SIZE=-1>Reference: Instrument Change Operations Review 
+(8/4/97).</FONT>
+<BR><FONT SIZE=-1>Revised: 8/4/97</FONT></DIR>
+
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P><A NAME="7.0  Optics"></A><B><FONT SIZE=+1>7.0&nbsp; Optics</FONT></B>
+<DIR><I><FONT SIZE=-1>&nbsp;To be completed.</FONT></I></DIR>
+<A NAME="8.0   Imager"></A><B><FONT SIZE=+1>8.0&nbsp;&nbsp; Imager</FONT></B>
+<DIR><I><FONT SIZE=-1>To be completed.</FONT></I></DIR>
+<A NAME="9.0   Spectrographs"></A><B><FONT SIZE=+1>9.0&nbsp;&nbsp; 
+Spectrographs</FONT></B>
+
+<DIR><I><FONT SIZE=-1>To be completed.</FONT></I></DIR>
+<A NAME="10.0  Fiber System"></A><B><FONT SIZE=+1>10.0&nbsp; Fiber 
+System</FONT></B>
+<DIR><I><FONT SIZE=-1>To be completed.</FONT></I></DIR>
+<I>&nbsp;<A NAME="11.0 Telescope Performance Monitor"></A></I><B><FONT 
+SIZE=+1>11.0
+Telescope Performance Monitor</FONT></B>
+<DIR><I><FONT SIZE=-1>To be completed.</FONT></I>
+<CENTER>&nbsp;</CENTER>
+</DIR>
+
+<CENTER><IMG SRC="ColorfulStoneStripe.gif" HEIGHT=4 WIDTH=500></CENTER>
+
+<CENTER>
+<p></p>
+</CENTER>
+
+<CENTER><A NAME="Glossary of Terms and Acronyms"></A><B><I><U><FONT 
+SIZE=+1>Glossary
+of Terms and Acronyms</FONT></U></I></B></CENTER>
+
+<CENTER>&nbsp;</CENTER>
+
+<TABLE CELLSPACING=0 WIDTH="280" >
+<TR>
+<TD VALIGN=CENTER HEIGHT="5"><FONT SIZE=-1>FWHM</FONT></TD>
+
+<TD VALIGN=CENTER HEIGHT="5"><FONT SIZE=-1>Full-width, half-max.</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>MCP</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>Motion Control Processor</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>TCC</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>Telescope Control Computer</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>TPM</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>Telescope Performance Monitor</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER>&nbsp;</TD>
+
+<TD VALIGN=CENTER>&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+
+<P>
+
+<HR WIDTH="100%">
+
+<P><I><FONT SIZE=-1>This document is maintained by William N. Boroski for
+the Sloan Digital Sky Survey.</FONT></I>
+<BR><I><FONT SIZE=-1>Please send questions or comments to: <A 
+HREF="MAILTO:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+<BR>&nbsp;
+<BR><FONT SIZE=-1></FONT>&nbsp;
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

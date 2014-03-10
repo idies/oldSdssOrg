@@ -1,0 +1,340 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Select a Complete Sample of a Given Object Type - SDSS DR7</title>
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<div id="pdflink">
+  <a href="complete.swf" target="text" onmouseover="this.T_WIDTH=320;this.T_BGCOLOR='#FFFFFF';return escape('Get text as Flash paper document (opens in new window)')">
+     <img src="../../images/swf_icon.jpg" alt="Get text as Flash paper document" />
+  </a>
+  &nbsp;&nbsp;&nbsp;  
+  <a href="complete.pdf" target="text" onmouseover="this.T_WIDTH=270;this.T_BGCOLOR='#FFFFFF';return escape('Get text as PDF document (opens in new window)')">
+     <img src="../../images/pdf_icon.gif" alt="Get text as PDF document (opens in new window)" />
+  </a>
+
+</div>
+
+
+<h2>How do I...</h2>
+
+<h2>Select a complete sample of a given object type (Quasars, G stars...)?</h2>
+
+
+<hr />
+
+<p>With careful use of SQL searching of SDSS data, it is possible to select a complete sample of a given type of sky object. This tutorial 
+shows how to write a query to do such selection for quasars and G stars; to select a complete sample of a different type of object, simply 
+change some conditions in the WHERE block of the query.</p>
+
+<p>To learn more about SQL, see SkyServer's <a href="http://cas.sdss.org/astro/en/help/howto/search">SQL Tutorial</a> 
+and guide to <a href="http://cas.sdss.org/astro/en/help/docs/sql_help.asp">Using SQL with SkyServer</a>.</p>
+
+<ol class="tut">
+
+<li>Go to the <a href="http://cas.sdss.org/astro/en/tools/search/sql.asp" target="tools">SQL Search</a> page (link opens in new 
+window). From the astronomers' main page, look under <i>Search Tools</i>. From the public main page, look 
+under <i>SkyServer Tools</i>, then <i>Search</i>.<br /></li>
+
+<li>In the large textbox, type the following SQL query. The query will return a count of objects that the SDSS spectroscopically 
+identified as quasars in 5x5 degree boxes on the sky and in bins of one magnitude:<br /><br />
+
+<table width="100%" bgcolor="#EBC79E">
+
+  <tr>
+    <td><code>-- Count objects that have spectra that are confirmed to be Quasars</code></td>
+  </tr>
+  <tr>  
+    <td><code>-- (as measured by the (inspected) specclass being one of the two QSO types (3,4)</code></td>
+  </tr>
+  <tr>  
+    <td><code>-- indicating QSO or hi-z QSO.</code></td>
+  </tr>  
+  <tr>
+    <td><code>-- Group the counts into 1 magnitude bins and into 5x5 (tunable) degree boxes on the sky</code></td>
+  </tr>  
+  <tr>
+    <td><code>-- and compute the area of each box (approx), correcting for cos(DEC) effects</code></td>
+  </tr>    
+  
+  <tr>
+    <td><code>SELECT count(*) as qsospecconfirmed,</code></td>
+  </tr>
+  <tr>
+    <td><code>floor(psfmag_g-extinction_g) as g0lo,floor(psfmag_g-extinction_g)+1 as g0hi,</code></td>
+  </tr>
+  <tr>
+    <td><code>floor(ph.ra/2)*2 as ralo,floor(ph.ra/2)*2+2 as rahi,</code></td>
+  </tr>  
+  <tr>
+    <td><code>floor(ph.dec/2)*2 as declo,floor(ph.dec/2)*2+2 as dechi,</code></td>
+  </tr>  
+  <tr>
+    <td><code>str(2*2*cos((floor(ph.dec/2)*2+2/2)*3.14159/180),5,2) as area</code></td>
+  </tr>  
+  <tr>
+    <td><code>FROM photoprimary ph,specobj s</code></td>
+  </tr>  
+  <tr>
+    <td><code>WHERE s.bestobjid = ph.objid</code></td>
+  </tr>  
+  <tr>
+    <td><code>and (s.primtarget & 31) != 0  and s.specclass in (3,4)</code></td>
+  </tr>    
+  <tr>
+    <td><code>and ph.ra between 180 and 200</code></td>
+  </tr>
+  <tr>
+    <td><code>and ph.dec between -5 and 5</code></td>
+  </tr>    
+  <tr>
+    <td><code>and psfmag_g-extinction_g between 14 and 20</code></td>
+  </tr>    
+  <tr>
+    <td><code>GROUP BY floor(ph.ra/2),floor(ph.dec/2),floor(psfmag_g-extinction_g)</code></td>
+  </tr>  
+  <tr>
+    <td><code>ORDER BY floor(ph.ra/2),floor(ph.dec/2),floor(psfmag_g-extinction_g)</code></td>
+  </tr>  
+</table>
+
+<br />
+
+<p>The query should take about 5 to 10 minutes to run.</p>
+
+</li>
+
+
+<li>The query searches the sky in the region between RA = 180 and RA = 200, Dec = -5 and Dec = +5 (in 
+the WHERE section). It works by dividing the sky up into 5 by 5 degree boxes (in the GROUP BY section). 
+Within each box, it searches for quasars (<i>s.specclass in (3,4)</i>) with good imaging data (<i>(s.primtarget & 31) != 0</i>) 
+with magnitudes between 14 and 20. It returns the number of quasars (<i>count(*)</i>) in each box. The 
+most important line in the query is <i>WHERE s.bestobjid = ph.objid</i>, which matches quasar imaging and 
+spectroscopy data; if this line is not present, the query will try to return <i>all</i> data from <i>both</i> 
+tables - trillions of rows - and will time out.</li>
+
+<li>Here are the first three rows that the query will return:<br /><br />
+
+<table border="1" cellpadding="2" cellspacing="2">
+  <tr>
+    <td align="center">qsospecconfirmed</td>
+    <td align="center">g0lo</td>
+    <td align="center">g0hi</td>
+    <td align="center">ralo</td>
+    <td align="center">rahi</td>
+    <td align="center">declo</td>
+    <td align="center">dechi</td>
+    <td align="center">area</td>
+  </tr>
+  <tr>
+    <td align="center">1</td>
+    <td align="center">15</td>
+    <td align="center">16</td>
+    <td align="center">180</td>
+    <td align="center">182</td>
+    <td align="center">-4</td>
+    <td align="center">-2</td>
+    <td align="center">3.99</td>
+  </tr> 
+  <tr>
+    <td align="center">10</td>
+    <td align="center">18</td>
+    <td align="center">19</td>
+    <td align="center">180</td>
+    <td align="center">182</td>
+    <td align="center">-4</td>
+    <td align="center">-2</td>
+    <td align="center">3.99</td>
+  </tr>
+  <tr>
+    <td align="center">6</td>
+    <td align="center">19</td>
+    <td align="center">20</td>
+    <td align="center">180</td>
+    <td align="center">182</td>
+    <td align="center">-4</td>
+    <td align="center">-2</td>
+    <td align="center">3.99</td>
+  </tr>  
+</table>
+
+</li>
+
+<li>You can also use <a href="http://casjobs.sdss.org/casjobs" target="_blank">CasJobs</a> (link opens in a new window) to run the 
+query. CasJobs allows you to search for these number counts in a larger area of sky and/or narrower bins. CasJobs will let you enter 
+a search radius for your query as a variable at the top of the query; you can then more easily experiment with different search radii, 
+and it will also let you store your results in a personal "MyDB" database space. For an introduction to CasJobs, see 
+<a href="http://casjobs.sdss.org/casjobs/Guide.aspx">CasJobs Help</a>.</li>
+
+<li>To write this quasar number count query in CasJobs instead of the regular CAS SQL search, register and login to CasJobs. Enter the following 
+query into the textbox and click Submit:<br /><br />
+
+
+<table width="100%" bgcolor="#EBC79E">
+ 
+  <tr>
+    <td><code>-- Count objects that have spectra that are confirmed to be Quasars</code></td>
+  </tr>
+  <tr>  
+    <td><code>-- (as measured by the (inspected) specclass being one of the two QSO types (3,4)</code></td>
+  </tr>
+  <tr>  
+    <td><code>-- indicating QSO or hi-z QSO.</code></td>
+  </tr>  
+  <tr>
+    <td><code>-- Group the counts into 1 magnitude bins and into 5x5 (tunable) degree boxes on the sky</code></td>
+  </tr>  
+  <tr>
+    <td><code>-- and compute the area of each box (approx), correcting for cos(DEC) effects</code></td>
+  </tr>    
+  <tr>
+    <td><code>DECLARE @box numeric&nbsp;&nbsp;&nbsp;&nbsp;-- Declare a variable to hold the sky box size</code></td>
+  </tr>  
+  <tr>
+    <td><code>SET @box = 5.0&nbsp;&nbsp;&nbsp;&nbsp;-- Set the box to be 5 degrees on a side</code></td>
+  </tr>    
+  <tr>
+    <td><code>SELECT count(*) as qsospecconfirmed,</code></td>
+  </tr>
+  <tr>
+    <td><code>floor(psfmag_g-extinction_g) as g0lo,floor(psfmag_g-extinction_g)+1 as g0hi,</code></td>
+  </tr>
+  <tr>
+    <td><code>floor(ph.ra/@box)*@box as ralo,floor(ph.ra/@box)*@box+@box as rahi,</code></td>
+  </tr>  
+  <tr>
+    <td><code>floor(ph.dec/@box)*@box as declo,floor(ph.dec/@box)*@box+@box as dechi,</code></td>
+  </tr>  
+  <tr>
+    <td><code>str(@box*@box*cos((floor(ph.dec/@box)*@box+@box/2)*3.14159/180),5,2) as area</code></td>
+  </tr>  
+  <tr>
+    <td><code>INTO mydb.qsospecconfirmed&nbsp;&nbsp;&nbsp;&nbsp;-- Store the results in a table in your MyDB</code></td>
+  </tr>    
+  <tr>
+    <td><code>FROM photoprimary ph,specobj s</code></td>
+  </tr>  
+  <tr>
+    <td><code>WHERE s.bestobjid = ph.objid</code></td>
+  </tr>  
+  <tr>
+    <td><code>and (s.primtarget & 31) != 0  and  s.specclass in (3,4)</code></td>
+  </tr>    
+  <tr>
+    <td><code>and ph.ra between 180 and 200</code></td>
+  </tr>
+  <tr>
+    <td><code>and ph.dec between -5 and 5</code></td>
+  </tr>    
+  <tr>
+    <td><code>and psfmag_g-extinction_g between 14 and 20</code></td>
+  </tr>    
+  <tr>
+    <td><code>GROUP BY floor(ph.ra/@box),floor(ph.dec/@box),floor(psfmag_g-extinction_g)</code></td>
+  </tr>  
+  <tr>
+    <td><code>ORDER BY floor(ph.ra/@box),floor(ph.dec/@box),floor(psfmag_g-extinction_g)</code></td>
+  </tr>  
+</table>
+
+<br />
+
+<p>You don't have to worry about how long it takes the query to run - just return to CasJobs at a later time to get the results.</p>
+
+</li>
+
+<li>After the query runs, you will be taken <b>TO WHAT PAGE?????</b></li>
+
+
+<li>Here is a similar query to count stars targeted by SEGUE that actually have G star-like spectra (as 
+indicated by the "UW Hammer" spectral type code). This more complex query can <i>only</i> be completed with 
+CasJobs. This is a two-step process: first, select </li>
+
+<li>To run the query, log into <a href="http://casjobs.sdss.org/casjobs" target="_blank">CasJobs</a> (link opens in 
+another window). Copy and paste the query below.
+
+
+
+<!--
+<table width="100%">
+
+  <tr>
+    <td><code>-- Count objects that have spectra that are confirmed to be Quasars</code></td>
+  </tr>
+  <tr>  
+    <td><code>-- (as measured by the (inspected) specclass being one of the two QSO types (3,4)</code></td>
+  </tr>
+  <tr>  
+    <td><code>-- indicating QSO or hi-z QSO.</code></td>
+  </tr>  
+  <tr>
+    <td><code>-- Group the counts into 1 magnitude bins and into 5x5 (tunable) degree boxes on the sky</code></td>
+  </tr>  
+  <tr>
+    <td><code>-- and compute the area of each box (approx), correcting for cos(DEC) effects</code></td>
+  </tr>    
+  
+  <tr>
+    <td><code>SELECT count(*) as qsospecconfirmed,</code></td>
+  </tr>
+  <tr>
+    <td><code>floor(psfmag_g-extinction_g) as g0lo,floor(psfmag_g-extinction_g)+1 as g0hi,</code></td>
+  </tr>
+  <tr>
+    <td><code>floor(ph.ra/2)*2 as ralo,floor(ph.ra/2)*2+2 as rahi,</code></td>
+  </tr>  
+  <tr>
+    <td><code>floor(ph.dec/2)*2 as declo,floor(ph.dec/2)*2+2 as dechi,</code></td>
+  </tr>  
+  <tr>
+    <td><code>str(2*2*cos((floor(ph.dec/2)*2+2/2)*3.14159/180),5,2) as area</code></td>
+  </tr>  
+  <tr>
+    <td><code>FROM photoprimary ph,specobj s</code></td>
+  </tr>  
+  <tr>
+    <td><code>WHERE s.bestobjid = ph.objid</code></td>
+  </tr>  
+  <tr>
+    <td><code>and (s.primtarget & 31) != 0  and s.specclass in (3,4)</code></td>
+  </tr>    
+  <tr>
+    <td><code>and ph.ra between 180 and 200</code></td>
+  </tr>
+  <tr>
+    <td><code>and ph.dec between -5 and 5</code></td>
+  </tr>    
+  <tr>
+    <td><code>and psfmag_g-extinction_g between 14 and 20</code></td>
+  </tr>    
+  <tr>
+    <td><code>GROUP BY floor(ph.ra/2),floor(ph.dec/2),floor(psfmag_g-extinction_g)</code></td>
+  </tr>  
+  <tr>
+    <td><code>ORDER BY floor(ph.ra/2),floor(ph.dec/2),floor(psfmag_g-extinction_g)</code></td>
+  </tr>  
+</table>
+-->
+<br />
+
+<p>The query should take about 5 to 10 minutes to run.</p>
+
+</li>
+
+
+</ol> 
+<hr />
+
+
+<h4><a href="../index.html">Back to tutorial index</a></h4>
+
+<!-- end page content-->
+
+
+<!--#include virtual="../../includes/footer.html"-->
+</body> </html>

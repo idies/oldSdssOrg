@@ -1,0 +1,33 @@
+I am currently finishing my dissertation at the University of Washington, 
+under the supervision of Julianne Dalcanton, and I will be moving to a 
+postdoctoral fellowship at NYU on November 1st, 2003. I would like to 
+request external collaborator status  to continue the work I have begun in 
+my SDSS  dissertation.  I have also begun working on several refinements to the 
+project, in collaboration with Julianne Dalcanton and Connie Rockosi, and 
+would like external collaboration status for this extension as well.
+ 
+For my dissertation, I have designed a survey for resolved Milky Way 
+satellite galaxies and applied it to DR1.  The 
+scientific significance of this project is a strong function of the 
+area of sky I am able to survey, and requires more area than available in 
+DR1 to make substantive conclusions.  Because of the specialized software 
+that I have and the unique skill set I have developed, my continued effort 
+in the analysis of the SDSS data would be beneficial to the 
+collaboration, particularly in assessing the uniformity of photometry and 
+star-galaxy separation.
+
+I also request permission to refine the work begun in my 
+dissertation.  I have begun collaborating with Connie Rockosi (currently a 
+postdoc at UW) to combine the matched CMD technique she developed for 
+tracing the tidal tails of Palomar 5 with the spatial filtering technique 
+used in my dissertation for resolved Milky Way satellites.  We would like  
+to use CMD templates with a range of ages and metallicities, and projected 
+to a range of distances, to search for outer halo substructure.  This 
+technique may be sensitive to the types of substructure that Newberg et al 
+02, Yanny et al 03 have detected, but at distances that are larger than 
+can be probed with their techniques based on blue horizontal branch 
+stars.
+ 
+Thank you for your time,
+Beth Willman
+ 

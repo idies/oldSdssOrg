@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="William N. Boroski">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <TITLE>Recalibration of Rotator Encoder Readheads</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#3333FF" VLINK="#FF0000" ALINK="#FF0000">
+
+<DIV ALIGN=right>TR-99020</DIV>
+
+<CENTER><B>SDSS Report</B></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Recalibration of Heidenhain ERA 880C Readheads</FONT></B></CENTER>
+
+<CENTER><B>February 11, 1999</B><BR>
+<BR></CENTER>
+
+<CENTER>William N. Boroski</CENTER>
+
+<CENTER>Fermi National Accelerator Laboratory</CENTER>
+
+<CENTER>Batavia, IL&nbsp; USA&nbsp;&nbsp;&nbsp; 60510</CENTER>
+
+<HR SIZE=4 WIDTH="100%">
+
+<P>On 2/11/99, I took two of the rotator encoder read-heads to the Heidenhain
+office in Schaumburg, IL, to verify that the ERA 880C read-heads were functioning
+properly and to understand why we were having such a difficult time aligning
+these heads to the rotator tape.&nbsp; I worked with Rick Glos (VP-Sales),
+Tom Wyatt (Area Sales Manager), and Dan Braasch (Service Supervisor) to
+check the strength of the reference pulse signals and to understand how
+head misalignment affects the performance of the encoder.
+
+<P>Dan put one of the readheads on a bench setup and took about 30 seconds
+to align the head and get good output signals from both the counting track
+and the reference pulse.&nbsp; However, upon closer inspection Dan noted
+that while the crossing point for the reference signal was within spec,
+it was higher than he thought it should have been under ideal bench conditions.&nbsp;
+Ideally, the crossing point should be at zero when looking at the reference
+pulse signal on an analog oscilloscope.&nbsp; If the reference pulse signal
+looks like a "greater than" sign (>), then the crossing point is the apex
+of the V.&nbsp; If the reference signal is looser and looks more like a
+figure eight (8), then the crossing point is where the lines cross in the
+middle.&nbsp; In either case, we were seeing this crossing point at about
+0.15V on the scope.&nbsp; There is an internal pot on the readhead that
+adjusts the reference signal bias voltage, so Dan adjusted this pot until
+the reference signal crossing point was at zero.&nbsp; Dan commented that
+while 0.15V is within the calibration specification, starting out with
+a bias this high may eat up some of the misalignment tolerance of the head.&nbsp;
+Thus, if the mechanical alignment was a little out, we might see a signal
+on the scope that wouldn't be adequate enough to fire the reference indicator
+on the Heidenhain PWM-8 phase meter.&nbsp; This is exactly what we were
+seeing at APO on Feb 4-5.
+
+<P>We installed the second readhead on the bench and found that the reference
+pulse crossing point was also set at 0.15V, so Dan adjusted the bias voltage
+on this head as well.&nbsp; Since all five of the heads we purchased were
+from the same lot, Dan says it's likely they were all calibrated on the
+same bench and are all likely to behave the same way.&nbsp; Although Dan
+showed me how to adjust the reference pulse bias voltage, he agreed to
+recalibrate the remaining three read-heads for us, so I will return them
+to him after we install and test the two heads he just calibrated.&nbsp;
+Calibrating them in-situ on the telescope will be too difficult given the
+location of the readheads.
+
+<P>We also played with angular misalignment and found that if the face
+of the head is not parallel with the face of the tape, then the magnitude
+of the reference signal varies.&nbsp; If the head is tipped such that the
+top of the head is farther from the tape than the bottom, the magnitude
+of the reference pulse decreases.&nbsp;&nbsp; When Scott Smith of Heidenhain
+was with me at APO, he noted that the amplitude of the reference pulse
+was smaller than it should have been. This suggests that our tape may not
+be perpendicular to the read-head mounting surface and that we may have
+to shim the head to adjust the angle.&nbsp; We also need to check the radial
+run-out of the tape along the top and&nbsp; bottom edges to make sure we
+don't have any wobble in the tape.&nbsp; If the tape pitches in and out,
+then we may occassionally miss reference marks due to the angular misalignment
+with the head.
+
+<P>Finally, we measured the vertical position of the head with respect
+to the tape when the head and tape were "ideally" aligned.&nbsp; The distance
+from the top of the head to the top edge of the tape was 0.685".&nbsp;&nbsp;
+We can use this dimension to determine the ideal thickness of the shim
+beneath the head mounting brackets.&nbsp; We also played with the vertical
+misalignment tolerance
+<BR>and found that we could move the head approximately +/-.030" without
+compromising the output signals.
+
+<P>Once the revised telescope engineering schedule is worked out, I will
+schedule a trip to APO to install and align the two heads that have been
+re-calibrated.&nbsp; If we're successful with the alignment, then I will
+return the remaining three heads to Heidenhain for recalibration.
+
+<P>I want to note that Rick Glos, Tom Wyatt, and Dan Braasch at Heidenhain
+were all extremely helpful and supportive in identifying the source of
+our problems and in providing a solution that I'm confident will work.&nbsp;
+I also want to acknowledge the help given to me by Scott Smith last week
+at APO.
+
+<P>
+<HR SIZE=4 WIDTH="100%">
+<BR><I><FONT SIZE=-1>Last modified 02/11/99</FONT></I>
+<BR><I><FONT SIZE=-1>Send comments to <A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+<BR>&nbsp;
+</BODY>
+</HTML>

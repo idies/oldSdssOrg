@@ -1,0 +1,108 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<P><FONT size=5><STRONG>Operational Database 
+</STRONG></FONT></P>
+<P><FONT size=2>The Operational Database (OPDB) archives and provides efficient 
+access to all data necessary for the conduct of Survey Operations. </FONT></P>
+<P><FONT size=4><STRONG>Implementation </STRONG></FONT></P>
+<P><FONT size=2>The OPDB consists of two components: </FONT></P>
+<OL>
+  <LI><FONT size=2>A commercial object-oriented database (OODB, Objectivity), 
+  providing disk-based storage to that data which must be efficiently accessed 
+  for normal Survey Operations. Access to the data is via C++ and TCL wrappers 
+  for the C++ code. </FONT></LI>
+  <LI><FONT size=2>A hierarchical tape storage system, providing storage of 
+  pixel-based data (raw and corrected images, atlas images, masks, etc), for 
+  which efficient access is not required for normal Survey Operations. 
+  </FONT></LI></OL>
+<P><FONT size=4><STRONG>Functions </STRONG></FONT></P>
+<P><FONT size=2>The OPDB provides the following functions (all but the first are 
+implemented entirely within the OODB):</FONT></P>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P><FONT size=2>Archives the Data Acquistion Sytems (DA) and Pipeline outputs. 
+  </FONT></P>
+  <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+    <P><FONT size=2>Multiple copies of all data are stored. The DA and Pipeline 
+    outputs can be reproduced "exactly" from the OPDB. The exact manner in which 
+    the Pipelines ran are recorded, including the Pipeline version, settings for 
+    tunable parameters, and the specific inputs to the 
+  Pipelines.</FONT></P></BLOCKQUOTE>
+  <P><FONT size=2>Provides efficient recalibration of the raw Pipeline 
+  outputs.</FONT></P>
+  <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+    <P><FONT size=2>The raw outputs (pixels, counts, etc) from the ps and frames 
+    Pipeline are stored in the OODB, along with the astrometric and photometric 
+    calibrations (from the astrom and fcalib Pipelines, respectively). Multiple 
+    calibrations may be stored. Calibrations may be applied on the fly. New 
+    calibrations may be obtained by re-running the astrom and fcalib Pipelines 
+    from inputs reproduced from the OODB alone (re-running ssc, ps, and photo 
+    all require fetching inputs from the hierarchical tape storage system). 
+    </FONT></P></BLOCKQUOTE>
+  <P><FONT size=2>Provides efficient QA.</FONT></P>
+  <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+    <P><FONT size=2>Objects in overlapping areas are matched up in the OODB. 
+    Tools are provided to perform QA based on the matched pairs. 
+  </FONT></P></BLOCKQUOTE>
+  <P><FONT size=2>Tracks survey progress. </FONT></P>
+  <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+    <P><FONT size=2>The following functions are performed within the OODB (on 
+    "lite" versions of the objects for efficiency) to track survey progress: 
+    </FONT></P></BLOCKQUOTE></BLOCKQUOTE>
+<OL style="MARGIN-RIGHT: 0px">
+  <OL>
+    <OL>
+      <LI><FONT size=2>Objects in overlapping regions are matched. </FONT></LI>
+      <LI><FONT size=2>Data quality is assigned on a field-by-field basis. 
+      </FONT></LI>
+      <LI><FONT size=2>Pieces of sky are defined as done by assigning segments 
+      of imaging scans, along with specific astrometric and photometric 
+      calibrations, to those pieces of sky. Objects within those segments are 
+      assigned as "primary" or "secondary" survey objects.</FONT></LI></OL></OL></OL>
+<P><FONT size=2>Perform target selection.</FONT></P>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P><FONT size=2>Target selection is performed within the OODB, applying 
+  calibrations on the fly.</FONT></P></BLOCKQUOTE>
+<P><FONT size=2>Track tile assignment and plate drilling.</FONT></P>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P><FONT size=2>All spectroscopic targets assigned to tiles are recorded in 
+  the OODB. Each time tiling is run, the OODB provides the list of untiled 
+  spectroscopic targets. Similar functionality is providing in support of plate 
+  drilling. </FONT></P></BLOCKQUOTE>
+<P><FONT size=2>Export calibrated objects to the Science Database. </FONT></P>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P><FONT size=2>Calibrated objects are exported to the Science Database. 
+  Objects may be re-exported when new calibrations are available. 
+</FONT></P></BLOCKQUOTE>
+<P>&nbsp;</P>
+<P><FONT size=4><STRONG>Status </STRONG></FONT></P>
+<P><FONT size=2>All functions outlined above are currently supported. The 
+performance speed in all cases is satisfactory. There have been no problems to 
+date as the database grows (the size of the OODB component is currently 40 
+Gbytes). Security of archived data has yet to be proven. Problems, due to bugs 
+in the commercial OODB, have been encountered both with schema evolution and 
+incremental backups (work arounds exist for both problems).</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=4><STRONG>Still To Do </STRONG></FONT></P>
+<P><FONT size=2>The following functionality is not yet implemented: </FONT></P>
+<OL>
+  <LI><FONT size=2>Archive Spectroscopic Pipeline outputs. While the 
+  Spectroscopic DA outputs are archived, the Pipeline outputs currently are not. 
+  </FONT></LI>
+  <LI><FONT size=2>Full back-up strategy must be implemented. Currently, 
+  back-ups are done by hand on a semi-regular basis. Next release of the 
+  commercial OODB should support the full implementation. </FONT></LI>
+  <LI><FONT size=2>Data verification tools. </FONT></LI>
+  <LI><FONT size=2>Interface to survey planning tools. </FONT></LI>
+  <LI><FONT size=2>Interface to more of the day-to-day tasks of Survey 
+  Operations (tracking data reductions, etc). </FONT></LI>
+  <LI><FONT size=2>Archiving Photometric Telescope data and reductions within 
+  the OODB (which is currently fully supported, however we're not doing it now, 
+  and may never want to). </FONT></LI></OL>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

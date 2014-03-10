@@ -1,0 +1,421 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+<P><H1 ALIGN="CENTER">Science Requirements of the Sloan Digital Sky Survey: Current Status</H1>
+<P ALIGN="CENTER"><STRONG>Michael A. Strauss, Princeton University</STRONG></P>
+<P ALIGN="LEFT"></P>
+<H1><A NAME="SECTION00010000000000000000">
+1 Image Quality and Throughput</A>
+</H1>
+<P><UL>
+<LI> 1.1 arcsec imaging in 0.8 arcsec seeing; variation across the
+focal plane of <IMG WIDTH="57" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.gif"
+ ALT="$< 30\%$">.  Survey quality imaging data is &lt; 1.2''.
+<P><BLOCKQUOTE>
+<I>We are rarely meeting these specs.  The site does not deliver as good seeing
+as we had hoped, there are thermal problems with the telescope, and there
+may be errors in the optical figure.  We are currently planning to
+back off to 1.5'' for definition of survey quality imaging data.  We
+are diagnosing the problems with improvements in and better monitoring
+of the thermal environment of the telescope, with Hartmann data, and with
+profilometry of secondary and common corrector.  We are also working
+on the determination of what fraction of an imaging run not meet specs
+before we mark the run to be redone.
+<P>
+Image quality appears to be as good off the Equator as on
+the Equator. 
+</I></BLOCKQUOTE>
+<LI> Telescope and imaging camera throughput.
+<P><BLOCKQUOTE>
+<I>We are meeting specifications in all but a few <I>z</I>' chips:
+</I></BLOCKQUOTE>
+<P><TABLE CELLPADDING=3>
+<TR VALIGN="TOP"><TD ALIGN="LEFT" NOWRAP>Passband</TD>
+<TD ALIGN="LEFT" NOWRAP>Minimum <I>e<SUP>-</SUP></I></TD>
+<TD ALIGN="LEFT" NOWRAP>Measured <I>e<SUP>-</SUP></I></TD>
+</TR>
+<TR VALIGN="TOP"><TD ALIGN="LEFT" NOWRAP><I>u</I>'</TD>
+<TD ALIGN="LEFT" NOWRAP>1300</TD>
+<TD ALIGN="LEFT" NOWRAP>1771-1938</TD>
+</TR>
+<TR VALIGN="TOP"><TD ALIGN="LEFT" NOWRAP><I>g</I>'</TD>
+<TD ALIGN="LEFT" NOWRAP>9000</TD>
+<TD ALIGN="LEFT" NOWRAP>10128-10922</TD>
+</TR>
+<TR VALIGN="TOP"><TD ALIGN="LEFT" NOWRAP><I>r</I>'</TD>
+<TD ALIGN="LEFT" NOWRAP>9000</TD>
+<TD ALIGN="LEFT" NOWRAP>9171-9977</TD>
+</TR>
+<TR VALIGN="TOP"><TD ALIGN="LEFT" NOWRAP><I>i</I>'</TD>
+<TD ALIGN="LEFT" NOWRAP>6500</TD>
+<TD ALIGN="LEFT" NOWRAP>6775-7981</TD>
+</TR>
+<TR VALIGN="TOP"><TD ALIGN="LEFT" NOWRAP><I>z</I>'</TD>
+<TD ALIGN="LEFT" NOWRAP>1500</TD>
+<TD ALIGN="LEFT" NOWRAP>1281-1531</TD>
+</TR>
+</TABLE>
+<LI> Signal-to-noise ratio.
+<P><BLOCKQUOTE>
+<I>Our nominal 5 <IMG WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.gif"
+ ALT="$\sigma$"> limits are 22.3, 23.1, 22.8, 22.3, and 20.8
+in <I>u</I>'<I>g</I>'<I>r</I>'<I>i</I>'<I>z</I>', respectively.  These are close to specs in all cases
+(despite poorer seeing than the specifications assumed),
+but this needs to be confirmed with comparisons of repeat observations. 
+</I></BLOCKQUOTE></UL><H1><A NAME="SECTION00020000000000000000">
+2 Photometric Calibration</A>
+</H1>
+<P>
+We have an end-to-end requirement of 2% rms calibration accuracy in
+<I>r</I>', 2% in <I>g</I>'-<I>r</I>', <I>r</I>'-<I>i</I>', and 3% in <I>u</I>'-<I>g</I>', <I>i</I>'-<I>z</I>'.
+<P>
+We have not yet demonstrated that we are meeting these
+specifications.
+<P>
+We have broken this down in an 11-term error budget.  Some of the
+important items include:
+<P><UL>
+<LI> Primary standard star system defined to an accuracy of 0.006
+mag.  <I>We're meeting this.</I>
+<LI> Errors in transferring between 40'' and PT &lt; 0.006 mag. <I>
+More work is needed to check this.</I>
+<LI> Errors due to correction for nonlinearity in the PT &lt; 0.006
+mag. <I>We're meeting this.</I>
+<LI> Determination of the zeropoint on any given night should be
+accurate to 0.006 mag. <I>We're meeting this. A solution is
+determined once every three hours; we need to determine whether
+extinction varies significantly on shorter timescales.</I>
+<LI> Flat-fielding of PT patches accurate to 0.006 mag. <I>We are
+not meeting this by a factor of 2-3.  We have problems with both
+flat-fielding and fringing in <I>i</I>' and <I>z</I>'.</I>
+<LI> Color transformations between PT and 2.5m should not introduce
+errors &lt; 0.006 mag.  <I>We have recently discovered substantial
+differences between the filter response curves of the two telescopes,
+and are still grappling with the problem of how to deal with this.</I>
+<LI> Systematic aperture correction effects &lt; 0.006 mag.  <I>We
+have recently found disturbing systematic effects with seeing, for which
+we think we have a solution.</I>
+<LI> Time variation of zeropoints along a stripe &lt; 0.006 mag.
+<I>We are seeing much larger effects than this.</I>
+<LI> Repeat observations of a given area of sky should give a scatter
+of <IMG WIDTH="62" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.gif"
+ ALT="$<2.4\%$"> at the bright end. <I>We do meet this, if (and it is a
+big `if') we allow
+ourselves an overall zeropoint shift.  Further tests are underway.</I>
+</UL><H1><A NAME="SECTION00030000000000000000">
+3 Astrometric accuracy</A>
+</H1>
+<P>
+RMS astrometric errors per coordinate should be &lt; 180 mas,
+both absolute, and relative between bands.
+<P><BLOCKQUOTE>
+<I>This is not a concern.  For Equatorial scans, we have seen results
+as good as 60 mas per coordinate.  For off-Equatorial scans, we find
+100-140 mas per coordinate (both determined by scanning over regions
+of sky with extensive astrometric data available).  Much structure is
+seen in the residual plots, due to anomalous atmospheric
+refraction. The relative astrometry between bands is 20-35 mas per
+coordinate. 
+</I></BLOCKQUOTE><H1><A NAME="SECTION00040000000000000000">
+4 Target Selection</A>
+</H1>
+Some of the requirements may need rewording. 
+<DL COMPACT>
+<DIV ALIGN="CENTER"><B>Galaxies:</B>
+<BR>
+</DIV>
+<DT>1.
+<DD><B>Surface Density of Galaxies:</B> The mean surface density
+of galaxy and BRG targets, averaged over a (not necessarily
+contiguous) region of 15 square degrees or larger, will be in the
+range 95-105 per square degree.  
+<BLOCKQUOTE>
+<I>We are currently meeting this.  This will have to be revisited
+after photometric calibration is finalized.
+</I></BLOCKQUOTE>
+<DT>2.
+<DD><B>Redshift Success of Galaxies:</B> At least 95% of galaxy targets (main sample) will yield
+a measurable, reproducible redshift, and will indeed be determined to be
+a galaxy (and not a star at <I>z</I> = 0) under standard spectroscopic
+observing conditions.  In repeated spectroscopic measurements of
+the same objects spanning the range of acceptable survey spectroscopy
+conditions, no more than 1% of the targets will yield a
+redshift one time and not another.
+<BLOCKQUOTE>
+<I>
+We are clearly close to meeting this requirement, and are trying to
+quantify how this translates to S/N requirements on the spectra.  It is
+unlikely that this requirement will be the driver for spectral S/N.
+We have not yet quantified the reproducibility question. 
+</I></BLOCKQUOTE>
+<P><DT>3.
+<DD><B>Completeness of Galaxy Target Selection:</B> In regions of
+the sky that are not masked (due to bright stars, etc.), 
+95% of galaxies whose true magnitude and surface brightness are both at
+least 0.2 mag (mag/arcsec<SUP>2</SUP> for surface brightness) above the selection
+thresholds will be selected.  
+No more than 5% of galaxies whose true magnitude and surface brightness 
+are both at least 0.2 mag below the selection thresholds will be selected.
+In between these limits, the dependence of selection probability on
+true magnitude and surface brightness will be reasonably
+smooth. 
+<BLOCKQUOTE>
+<I>This requirement has not been tested, as it requires a sample of
+ground truth.  However, we have tested this at the bright end against
+the Zwicky galaxy catalog and the JPG visual sample, and things look
+good; further tests with the latest version of PHOTO are needed.  We
+anticipate things will be better at the faint end.
+</I></BLOCKQUOTE>
+<P><DT>4.
+<DD><B>Reproducibility of Galaxy Target Selection over Range
+of Observing Conditions:</B>
+<P>
+Consider two photometric scans covering a given
+15 square degree region spanning
+the range of acceptable survey imaging conditions; galaxy target
+selection run on the two sets of data should give the same number of
+targets within TBD %. 
+<BLOCKQUOTE>
+<I>The TBD above is probably of the order of 98%.  We have the data
+in hand to carry out this test, but have not done so yet.
+</I></BLOCKQUOTE>
+<P><DT>5.
+<DD><B>Uniformity of Galaxy Target Selection:</B> Patches of size
+15 square degrees at different Galactic and survey latitude 
+and longitude will yield surface densities of
+galaxy spectroscopic targets that are the same to within 10%.
+<BLOCKQUOTE>
+<I>We have data in hand to check this.  It has been done
+qualitatively but not quantitatively.  We don't anticipate a problem
+here.
+</I></BLOCKQUOTE>
+<P><P>
+<P>
+<BR>
+<DIV ALIGN="CENTER"><B>Bright Red Galaxies (BRGs):</B>
+<BR>
+</DIV>
+<P>
+The BRG sample attempts to create a volume-limited sample of luminous
+red galaxies with 0.2 &lt; <I>z</I> &lt; 0.45.  It was an oversight on our part
+not to write down formal requirements on the sample itself, but we are
+finding to our delight that the vast majority of these objects indeed
+lie in this redshift range, and the sample is approximated as
+volume-limited.
+<P><DT>6.
+<DD><B>Redshift Success of BRGs:</B> At least 85% of BRG targets in the main sample will yield
+a measured, reproducible redshift under standard spectroscopic
+observing conditions.  In repeated spectroscopic measurements of
+the same objects spanning the range of acceptable survey spectroscopy
+conditions, no more than 5% of the BRG targets will yield a
+redshift one time and not another.  
+<BLOCKQUOTE>
+<I>This is probably the driver to determine the limits for
+spectroscopic S/N.  The indications are very positive: with good S/N,
+we clearly reach this, and we are trying to find the appropriate
+threshold. 
+</I></BLOCKQUOTE>
+<P><DT>7.
+<DD><B>Completeness of BRG Target Selection:</B> In regions of
+the sky that are not masked (due to bright stars, etc.), 
+95% of BRGs whose true (absolute magnitude, rest frame color) are (0.2, 0.1)
+above the selection thresholds will be selected.
+No more than 5% of BRGs whose true (absolute magnitude, rest frame color) are
+(0.2,0.1) below the selection thresholds will
+be selected. In between these limits, the dependence of selection probability
+on true magnitude and surface brightness will be reasonably smooth.
+<BLOCKQUOTE>
+<I>Like its galaxy counterpart above, this requires some ground
+truth, and is therefore very difficult to test.  This requirement as
+worded is incomplete; we also need requirements that BRG targets are
+actually luminous and red (i.e., the population we're aiming at.).  As
+indicated above, we're doing well on that front.
+</I></BLOCKQUOTE>
+<P><DT>8.
+<DD><B>Reproducibility of BRG Target Selection over Range
+of Observing Conditions:</B> Consider two photometric scans covering a 
+15 square degree region spanning
+the range of acceptable survey imaging conditions.  BRG target
+selection run on the two sets of data should give the same number of
+targets within TBD %. 
+<BLOCKQUOTE>
+<I>This can be checked with data in hand. 
+</I></BLOCKQUOTE>
+<P><P>
+<P>
+<BR>
+<DIV ALIGN="CENTER"><B>Quasars:</B>
+<BR>
+</DIV>
+<DT>9.
+<DD><B>Surface Density of Quasars:</B> The mean surface density of quasar <I>candidates</I>
+in the cap region averaged over a region of 15 square degrees or
+larger, 
+will be 15 per square degree. 
+<BLOCKQUOTE>
+<I>
+We are meeting this requirement. 
+</I></BLOCKQUOTE>
+<P><DT>10.
+<DD><B>Quasar Target Selection Efficiency:</B> At least 65% of
+<I>z</I> &lt; 5 quasar targets will be 
+true quasars (i.e., not stars, or non-AGN galaxies) that yield
+a measured, reproducible redshift under standard spectroscopic
+observing conditions.  
+<BLOCKQUOTE>
+We are close to meeting this, but we are not properly handling cases
+in which PHOTO photometry does poorly (e.g., due to poor seeing).
+Thus the efficiency varies substantially from one region of sky to
+another, but we have ideas on how to improve this.
+</BLOCKQUOTE>
+<P><DT>11.
+<DD><B>Redshift Success of Quasars:</B> In repeated spectroscopic measurements of
+the same objects spanning the range of acceptable survey spectroscopy
+conditions, no more than 4% of the quasar targets will yield a
+redshift one time and not another. 
+<BLOCKQUOTE>
+<I>This needs to be tested now that the spectroscopic pipeline is
+giving <IMG WIDTH="57" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$\gt 90\%$"> correct redshifts for quasars.  There are about 5% of quasars
+with very weak lines, which will probably be the limiting effect
+here. 
+</I></BLOCKQUOTE>
+<P><DT>12.
+<DD><B>Quasar Selection Completeness:</B> 
+<I>We would ideally like to have an absolute requirement on the
+completeness of quasar target selection, but such a requirement would
+necessarily be untestable without a spectroscopic survey of <EM>
+every</EM> stellar object over a quite large area.  This motivates the
+following, weaker requirement.</I>  In a region of sky reasonably well
+sampled by existing quasar surveys in the literature, the quasar
+target selection should successfully select 90% of all known quasars
+in the region brighter than <I>i</I>' = 19. 
+<BLOCKQUOTE>
+<I>Gordon Richard's comparison with known quasars has consistently been
+giving completeness numbers between 85 and 90%. 
+</I></BLOCKQUOTE>
+<P><DT>13.
+<DD><B>Reproducibility of Quasar Target Selection over Range
+of Observing Conditions:</B> Consider two photometric scans covering a 
+15 square degree region spanning
+the range of acceptable survey imaging conditions.  The number of
+quasar candidates per unit area should match within TBD%. 
+<BLOCKQUOTE>
+<I>We have the data to test this in hand.
+</I></BLOCKQUOTE>
+<P><DT>
+<DD><B>Other remaining issues with quasar target selection:</B>
+<UL>
+<LI> Photometric calibration.  This affects all aspects of things.
+<LI> Further flag checking of PHOTO outputs (in pretty good shape).
+<LI> Putting in code to go deeper for the Southern survey. 
+</UL>
+<P><DT>14.
+<DD><B>Covering of the Tiling Algorithm:</B> The tiling
+algorithm will fail to tile no more than 10<SUP>-2</SUP> of 
+the selected galaxy and quasar targets. 
+<BLOCKQUOTE>
+<I>This can now be tested, now that we've got two-dimensional data to
+tile.
+</I></BLOCKQUOTE></DL><H1><A NAME="SECTION00050000000000000000">
+5 Spectroscopy</A>
+</H1>
+<P><UL>
+<LI> Throughput of spectrographs should be <IMG WIDTH="57" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$\gt 90\%$"> of design.
+<P><BLOCKQUOTE>
+<I>The peak end-to-end throughput is 18% in the blue and 24% in the
+red.  This includes losses due to the atmosphere, the telescope, fiber
+mis-positioning, absorption by the fibers, and the spectrographs
+themselves.  This is spectacularly good!
+</I></BLOCKQUOTE>
+<LI> Requirements on uniformity of throughput, fiber-to-fiber.  <I>
+These are being met.</I>
+<LI> Spectral coverage 3900-9100&#197;.  <I>We are covering
+3850-9200&#197;.</I>
+<LI> Wavelength calibration to 0.06&#197;.  <I>We are meeting this.</I>
+<LI> Flexure &lt;0.3 pixels in 900s; resolution &gt; 1800.
+<P><BLOCKQUOTE>
+<I>We are
+finding &lt;0.6 pixel in one hour; we meet the requirement on
+resolution.</I>
+</BLOCKQUOTE>
+<LI> Cross-talk between fibers <IMG WIDTH="47" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.gif"
+ ALT="$<1\%$">.<P><BLOCKQUOTE>
+<I>We're probably OK; we
+have demonstrated the ability to extract useful spectra of 19th mag
+objects from the wings of 15th mag objects.</I>
+</BLOCKQUOTE>
+<LI> Galaxy redshifts at <I>r</I>'=19.5 should be accurate to 30
+km/s.
+<P><BLOCKQUOTE>
+<I>
+Repeat spectroscopic observations show a redshift scatter of <IMG WIDTH="41" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.gif"
+ ALT="$\approx
+25$"> km/s at <I>r</I>'=18; BRG's (which are fainter) show a scatter closer
+to 100 km/s.  This test does not address systematic errors due to the
+templates.  Emission and absorption line redshifts are in good
+agreement, with no systematic offsets. 
+</I></BLOCKQUOTE>
+<LI> Accurate classification of quasars and stars as such.
+<P><BLOCKQUOTE>
+<I>This
+is at the <IMG WIDTH="57" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.gif"
+ ALT="$\gt 95\%$"> level. Work is ongoing to flag problematic cases for
+visual inspection. 
+</I></BLOCKQUOTE>
+<LI> Quasar redshifts to <IMG WIDTH="95" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.gif"
+ ALT="$\Delta z = 0.005$"> (rms).
+<P><BLOCKQUOTE>
+<I>Repeat observations show a reproducibility of 0.0023.
+</I></BLOCKQUOTE>
+<LI> Spectrophotometry to 10% accuracy.
+<P><BLOCKQUOTE>
+<I>This is difficult to test in detail.  Spectrophotometry is
+currently being done only in a crude way.  The broad-band colors
+synthesized from the spectra are in good qualitative agreement with
+the photometric values.
+</I></BLOCKQUOTE></UL><H1><A NAME="SECTION00060000000000000000">
+6 Operations</A>
+</H1>
+<P>
+I do not follow the requirements document closely in this section,
+but just make some general comments.
+<P><UL>
+<LI> We are not currently meeting requirements on observing
+efficiency, although things are improving rapidly.  Spectroscopic
+overhead is still 50 minutes per frame; we think we can halve this in
+the near term.  Much work has been done on the mountain with observing
+software to improve imaging and spectroscopic efficiency, to do
+on-line QA (especially on spectroscopy), and to switch quickly between
+the two observing modes.
+<LI> We have demonstrated the ability to completely reduce and
+calibrate imaging data, run target selection, drill plates, and
+deliver them to the mountain, in several months.  The pipelines are
+still not static, making this difficult to do routinely.
+Spectroscopic reduction time is very short (fully-reduced data 24
+hours after it is taken is not unusual).
+<LI> Tools for deciding observing strategy (what will we observe
+tonight?) exist, but need further work, especially for imaging.  We
+have not thought hard enough about planning to make observing most
+efficient at the end of the survey.
+<LI> Much work is on-going to set criteria for survey-quality data,
+and to build tools to make these decisions easily and efficiently. 
+</UL>
+<BR><HR>
+<ADDRESS>
+<I>Michael Strauss</I>
+<BR><I>7/4/2000</I>
+</ADDRESS>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

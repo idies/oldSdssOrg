@@ -1,0 +1,140 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+   <title>Camspring</title>
+<X-CLARIS-WINDOW TOP=114 BOTTOM=624 LEFT=16 RIGHT=546>
+<X-CLARIS-TAGVIEW MODE=minimal>
+</head>
+<body bgcolor=white>
+
+<h1>Calculating the Parameters of the Disk Springs in the SDSS Camera Stirrup Mechanism</h1>
+<i>Sloan Digital Sky Survey Telescope Technical Note 19970402</i><br>&nbsp;
+
+<address>
+<a href="mailto:bartoszek@fnal.gov">Larry Bartoszek</a></address>
+
+
+
+
+
+<P><B>Introduction:</b></P>
+
+<P>This calculation will look at the force provided by a stack of belleville disk springs actuated by the instrument latches on the bottom of the Sloan 2.5m telescope.  The goal is to determine the correct combination of springs in series and parallel to provide about 800 lbf at full deflection.  The springs selected for the camera stirrup are Schnorr part number Z-12B, SWACO part number BS-1.102-0.500-1.25.  Parameters are given below.</P>
+<BR>
+<p align="center"><IMG SRC="camspring0072.gif" width="480" height="150"></p>
+<BR>
+<p><IMG SRC="Camspring1.gif" WIDTH=496 HEIGHT=354></p>
+
+<P>The following equation relates the load and deflection of disc springs without annular flats and comes from the Belleville Springs catalog:</P>
+
+<P><IMG SRC="Camspring2.gif" WIDTH=565 HEIGHT=128></P>
+
+<P>If I have two springs in parallel (oriented the same way), the force will be about double for the same deflection as one spring.</P>
+
+<P><IMG SRC="Camspring3.gif" WIDTH=381 HEIGHT=70></P>
+
+<P>The drawing of the camera stirrup from Jim Gunn shows eight sets of springs in series.  Each set is made up of two springs in parallel.  This arrangement provides for the load of 972lbs when all of the sets of parallel springs are deflected by .026".  The total deflection of the stack comes from multiplying the number of sets in series by the deflection.</P>
+
+<P><IMG SRC="Camspring4.gif" WIDTH=524 HEIGHT=72></P>
+
+<P>This number is the additional extension that the screw should stick out from the bottom of the stirrup aftertightening from the condition with the latch latched and the bellevilles initially uncompressed.</P>
+
+<P>If we want to limit the force to 800 lbf, what would the deflection be?</P>
+
+<P><IMG SRC="Camspring5.gif" WIDTH=577 HEIGHT=192></P>
+
+<P>The effective stroke of thelatch is only about 0.59".  The bellevilles will still be under load when the latch has unlatched.  What is the initial load of the belleville washers with the latch unlatched?  I will assume that the full 75% deflection was the force while the latch is latched.</P>
+
+<P><IMG SRC="Camspring6.gif" WIDTH=553 HEIGHT=314></P>
+
+<P><B>APPENDIX B:</b>  Check of disk spring linearity.
+
+
+
+<FONT SIZE=2>
+<P><IMG SRC="Camspring7a.gif" WIDTH=545 HEIGHT=72></P>
+
+<P>&nbsp;</P>
+<P><IMG SRC="Camspring7b.gif" WIDTH=478 HEIGHT=66><BR>
+
+<Table>
+<TR><Td align="center">0</td><TD width=80></td>
+<Td align="center">0</td><TD width=230></td>
+<Td align="center">0</td>
+</tr>
+
+<TR><TD>0.002</td><TD width=80></td>
+<TD align="right">51.034</td><TD width=230></td>
+<Td align="right">2.552-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.004</td><TD width=80></td>
+<TD align="right">99.233</td><TD width=230></td>
+<Td align="right">2.481-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.006</td><TD width=80></td>
+<TD align="right">144.775</td><TD width=230></td>
+<Td align="right">2.413-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.008</td><TD width=80></td>
+<TD align="right">187.837</td><TD width=230></td>
+<Td align="right">2.348-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.010</td><TD width=80></td>
+<TD align="right">228.596</td><TD width=230></td>
+<Td align="right">2.286-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.012</td><TD width=80></td>
+<TD align="right">267.229</td><TD width=230></td>
+<Td align="right">2.227-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.014</td><TD width=80></td>
+<TD align="right">303.913</td><TD width=230></td>
+<Td align="right">2.171-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.016</td><TD width=80></td>
+<TD align="right">338.827</td><TD width=230></td>
+<Td align="right">2.118-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.018</td><TD width=80></td>
+<TD align="right">372.145</td><TD width=230></td>
+<Td align="right">2.067-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.020</td><TD width=80></td>
+<TD align="right">404.047</td><TD width=230></td>
+<Td align="right">2.020-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.022</td><TD width=80></td>
+<TD align="right">434.708</td><TD width=230></td>
+<Td align="right">1.976-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.024</td><TD width=80></td>
+<TD align="right">464.307</td><TD width=230></td>
+<Td align="right">1.935-10<font size=2><sup>4</sup></font></td></tr>
+
+<TR><TD>0.026</td><TD width=80></td>
+<TD align="right">493.020</td><TD width=230></td>
+<Td align="right">1.896-10<font size=2><sup>4</sup></font></td></tr>
+</table>
+</P>
+
+<P>&nbsp;</P>
+<P><IMG SRC="Camspring7c.gif" WIDTH=584 HEIGHT=56></P></FONT>
+
+<P>See the following page for graphs of force vs deflection and spring constant vs. deflection.</P>
+
+<P><IMG SRC="Camspring8.gif" width="582" height="417"></P>
+
+<P><IMG SRC="Camspring9.gif" width="592" height="393"></P>
+
+<BR>
+BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this note should be addressed to Larry Bartoszek by phone at (630) 844-0248 or by e-mail at <A HREF="mailto:bartoszek@fnal.gov">bartoszek@fnal.gov</A>.
+<BR>&nbsp;
+
+<P><I><FONT SIZE=-1>Last modified 04/28/99</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</BODY>
+</HTML>

@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="William N. Boroski">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <TITLE>Telescope Control System Measurements</TITLE>
+</HEAD>
+<BODY LINK="#0000FF" VLINK="#800080">
+
+<DIV ALIGN=right>TR97040</DIV>
+
+<CENTER><B>SDSS Trip Report</B></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Telescope Control System Measurements</FONT></B></CENTER>
+
+<CENTER><B>July 23 to 27, 1997</B><BR>
+<BR></CENTER>
+
+<div align="center"><A HREF="mailto:rivetta@fnal.gov">Claudio Rivetta</A> and <A HREF=
+"mailto:hansen@fnal.gov">Sten Hansen</a></div>
+
+<div align="center">Fermi National Accelerator Laboratory</div>
+
+<div align="center">Batavia, IL&nbsp;&nbsp; USA&nbsp;&nbsp;&nbsp; 60510</div>
+
+<HR SIZE=4 WIDTH="100%">
+
+
+<body>
+
+<P>The trip was ok, we collected data and learned some things. There are several
+things I would like to discuss. Let me first to describe the
+trip and then we can talk about future actions.</P>
+
+<P>On Wednesday, Angie Prosapio and I hooked up the amplifier and tachometer on
+the altitude axis and I took a lot of data.  At night, very late, we saw some numbers
+that we did not like.  On Thursday morning we found a moth squeezed on the altitude
+drive.  After we cleaned the drive, numbers looked more reasonable.</P>
+
+<P>On Thursday morning, I took more data from the altitude axis.  During the
+afternoon, Angie and I connected all the stuff to the rotator.  We took all the
+data necessary and left the system ready for some closed-loop tests
+in position.</P>
+
+<P>On Friday, with Charlie at APO, we moved the rotator and he read the encoder
+with the MEI. All the pieces worked OK.   During the afternoon we
+set and tuned the PID loop. In general it works OK.  We found that the program
+for tuning the parameters of PID is not enough; we have to do something
+better. The other problem is due to the coupling of the Harmonic
+Drive.  The motor shaft has an oscillatory response.  You can not see the
+oscillations on the encoder on the instrument rotator, but by using the tachometer
+included with the reduction it is possible to see an oscillatory
+response.  I'd like to feedback that signal to the controller either through the
+MEI or the summing node at the input of the Glentek Box.  To do this requires running 
+an extra shielded cable from the motor drive to the MEI
+or Glentek rack.  I talked a little with Angie and Paul Czarapata about this.
+I'll talk with Paul in more detail later.  I wanted to play a
+little more with my parameters in the computer but I 
+had some problems with my simulation.  It is a new homework, but we know
+that for Phase 1A or 1B the rotator can be moved and parked at some
+position using the MEI controller.</P>
+
+<P>On Saturday, we started working on Azimuth with Sten Hansen while Angie and Charlie
+worked on the instrument lift. (I think this is the first time the
+schedule on the telescope overlapped between two groups!!!)  We spent
+almost all morning troubleshooting the noise induced on the tach.  At some point
+we decided to take some measurements with noise and then filter them out.
+The azimuth has almost twice as much friction as we recorded in January,
+and now the friction is symmetric, which is a good news.  We also found
+that if someone was walking on the wind screen or on the building floor, the
+vibration was coupled to the telescope (the velocity signal from the tach.
+was showing noise in low frequency). Sten double-checked the coupling
+between the wind-screen and the telescope and we finally found that Carl
+Lindenmeyer put four tabs made of stainless steel on the telescope fork.  These
+tabs span the gap between the fork and the wind-screen.  They allow
+the instrument cart to move easily between the wind-screen and the fork.
+One of them was touching the wind screen floor and coupling the vibrations
+between both parts.  We bent the tab up with a screwdriver and now you can jump on
+the wind-screen and not cause any output on the tach. signal. We lost
+one morning chasing down this problem, but we now know how sensitive the 
+telescope is. After fixing the vibration problem, we took some additional drive data 
+and redid some of our earlier measurements.  Finally, we packed up our equipment.</P>
+
+<P>I have discussed the tab problem with Carl and he is considering using
+another material for the tabs, or using another scheme. It is not a big deal.
+He raised a good question about what will happen when people start putting
+more stuff on the telescope and a lot of wire and hoses will couple the
+telescope with the building.  The only thing I can say is that the control
+loop will reject only the low frequency vibration (up to 1Hz if we are optimists).
+The rest will be coupled in the same way the tab coupled the
+vibrations.  We should monitor this every month 
+with the encoder or the tachometer to verify whether the coupling is increasing as more cables
+are installed.  In this way, we can check for solutions or
+improvements to reduce the coupling.  Carl told me that French wants to seal
+the gap between the telescope and the wind-screen with 'something'.
+He should know about this problem and if he installs a seal, it
+will be prudent for us measure the coupling after installation.</P>
+
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this trip report should be addressed to Claudio Rivetta
+ by phone at (630) 840-8035 or by e-mail at <A HREF="mailto:rivetta@fnal.gov">rivetta@fnal.gov</A>.
+<BR>&nbsp;
+
+<P><I><FONT SIZE=-1>Last modified 02/23/99</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</body>
+</html>

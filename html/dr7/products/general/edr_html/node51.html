@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Target Selection</TITLE>
+<META NAME="description" CONTENT="Target Selection">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html674" HREF="node52.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html672" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html666" HREF="node50.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html675" HREF="node52.html">Galaxies</A>
+<B>Up:</B> <A NAME="tex2html673" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html667" HREF="node50.html">Resolving Multiple Detections</A>
+<BR> <P>
+<H2><A NAME="SECTION00048000000000000000">Target Selection</A></H2>
+<P>
+<A NAME="swtarget">&#160;</A>
+<P>
+The spectroscopic survey aims to observe complete samples of three
+categories of astronomical objects (Table&nbsp;<A HREF="node65.html#tblfiberallocation">26</A>):
+<P>
+<UL>
+<LI> <B>Galaxies</B>, selected to be brighter than <IMG WIDTH=79 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3349" SRC="img137.gif">, using Petrosian magnitudes;
+<LI> <B>Luminous Red Galaxies</B>, selected by their color and magnitude
+to be a roughly volume-limited sample of the most luminous red
+ellipticals to <IMG WIDTH=61 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3351" SRC="img138.gif">; and
+<LI> <B>Quasars</B>, selected by their distinctive colors in the SDSS
+photometric system, and by radio detection in the FIRST survey catalog.
+<P>
+</UL>
+<P>
+The following sections describe the algorithms used to select targets for
+spectroscopic observation.  The quantity <TT>primTarget</TT> records the results
+of target selection for each object by using the target bit masks in
+Table&nbsp;<A HREF="node65.html#tbltarget_flag">27</A>.  An object can be targeted by more than one
+algorithm.  The quasar and galaxy targets are marked as ``tiled'' in the table to
+indicate that we intend to obtain a uniform and complete sample.  The <TT>
+TARGET_STAR_BROWN_DWARF</TT> and <TT>TARGET_HOT_STD</TT> targets are
+also tiled, as described below.
+<P>
+The data included in the EDR are commissioning data, and were used, among
+other things, to refine the algorithms discussed here.
+Table&nbsp;<A HREF="node65.html#tblpipelineversions">20</A> lists the versions of the <TT>target</TT>
+pipeline that were used to select which objects to observe spectroscopically.
+The exact algorithms used are not uniform throughout all the data released,
+and Table&nbsp;<A HREF="node65.html#tbltargetcriteria">29</A> summarizes the important differences.  The
+results of target selection are recorded in the quantity <TT>PrimTarget</TT>,
+which appears in two classes.  The class <TT>SpecObj</TT> records the results of
+<TT>target</TT> we used to select objects for spectroscopic observation (v2.2a,
+v2.5, and v2.7), while the class <TT>PhotoObj</TT> records the results of <TT>
+target</TT> run on the final photometric catalog (<TT>target</TT> v2.13.8).
+<P>
+The galaxy magnitude limit has changed slightly, as has the criterion for
+selecting low-surface brightness galaxies, and a number of changes have been
+made to quasar target selection.  Since the pipeline software versions, the
+photometric calibration, and target selection criteria change, there will be
+slight mis-matches between the value of <TT>PrimTarget</TT> for the same object
+recorded in class <TT>SpecObj</TT> and <TT>PhotoObj</TT>.
+<P>
+The quasar selection algorithm is substantially different in <TT>target</TT>
+v2.13.8.  A complete description of these improvements is beyond the scope of
+this paper.
+<P>
+<BR> <HR>
+<UL><A NAME="CHILD_LINKS">&#160;</A>
+<LI> <A NAME="tex2html676" HREF="node52.html#SECTION00048100000000000000">Galaxies</A>
+<LI> <A NAME="tex2html677" HREF="node53.html#SECTION00048200000000000000">Luminous Red Galaxies</A>
+<LI> <A NAME="tex2html678" HREF="node54.html#SECTION00048300000000000000">Quasars</A>
+<LI> <A NAME="tex2html679" HREF="node55.html#SECTION00048400000000000000">Other Science Targets</A>
+<LI> <A NAME="tex2html680" HREF="node56.html#SECTION00048500000000000000">Calibration Targets</A>
+<LI> <A NAME="tex2html681" HREF="node57.html#SECTION00048600000000000000">Target Culling</A>
+</UL>
+<HR><A NAME="tex2html674" HREF="node52.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html672" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html666" HREF="node50.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html675" HREF="node52.html">Galaxies</A>
+<B>Up:</B> <A NAME="tex2html673" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html667" HREF="node50.html">Resolving Multiple Detections</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

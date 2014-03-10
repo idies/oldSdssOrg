@@ -1,0 +1,5 @@
+The fifth data release (DR5) from the Sloan Digital Sky Survey is available 
+to the public starting today. The survey's database now contains imaging for 
+215 million unique objects including this one, NGC 5162. With its many 
+spiral arms and a bar structure in the center, NGC 5162 resides in the 
+constellation Virgo.

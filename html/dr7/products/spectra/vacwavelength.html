@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Vacuum Wavelengths Used in Spectroscopy - SDSS DR7</title>
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<!-- Start page content -->
+<h1>Vacuum Wavelengths</h1>
+
+Up: <a href="./index.html">Spectra</a> 
+ 
+<h2>Conversion between vacuum and air wavelengths</h2>
+
+<p> Because the SDSS observes many quasars at rest frame ultraviolet
+wavelengths, the data are stored in vacuum wavelengths.  However,
+most optical astronomers know the wavelengths of transitions as measured
+at S.T.P., which is how the CRC lists them for any transitions redward of
+2000 Angstroms. </p>
+     
+<p> The IAU standard for conversion from air to vacuum wavelengths
+is given in Morton (1991, ApJS, 77, 119).  For vacuum wavelengths (VAC) in
+Angstroms, convert to air wavelength (AIR) via:<br>
+</p>
+     
+<pre>  AIR = VAC / (1.0 + 2.735182E-4 + 131.4182 / VAC^2 + 2.76249E8 / VAC^4)
+<br></pre>
+       
+<p> These are the air and vacuum wavelength of some common transitions:<br></p>
+     
+<table cellpadding="2" cellspacing="2" border="1" width="300">
+ <tr>
+<td valign="top"><b>Line </b><br>
+</td>
+<td valign="top"><b>Air</b><br>
+</td>
+<td valign="top"><b>Vacuum</b><br>
+</td>
+</tr>
+
+<tr>
+<td valign="top">H-beta<br>
+</td>
+<td valign="top">4861.363<br>
+</td>
+<td valign="top">4862.721<br>
+</td>
+</tr>
+
+<tr>
+<td valign="top">[O III]<br>
+</td>
+<td valign="top">4958.911<br>
+</td>
+<td valign="top">4960.295<br>
+</td>
+</tr>
+
+<tr>
+<td valign="top">[O III]<br>
+</td>
+<td valign="top">5006.843<br>
+</td>
+<td valign="top">5008.239<br>
+</td>
+</tr>
+
+<tr>
+<td valign="top">[N II]<br>
+</td>
+<td valign="top">6548.05<br>
+</td>
+<td valign="top">6549.86<br>
+</td>
+</tr>
+
+<tr>
+<td valign="top">H-alpha<br>
+</td>
+<td valign="top">6562.801<br>
+</td>
+<td valign="top">6564.614<br>
+</td>
+</tr>
+
+<tr>
+<td valign="top">[N II]<br>
+</td>
+<td valign="top">6583.45<br>
+</td>
+<td valign="top">6585.27<br>
+</td>
+</tr>
+
+<tr>
+<td valign="top">[S II]<br>
+</td>
+<td valign="top">6716.44<br>
+</td>
+<td valign="top">6718.29<br>
+</td>
+</tr>
+
+<tr>
+<td valign="top">[S II]<br>
+</td>
+<td valign="top">6730.82<br>
+</td>
+<td valign="top">6732.68<br>
+</td>
+</tr>
+</table>
+  
+<p>There is an IRAF tool to convert air to vacuum wavelengths in <a
+href="phist.html">Pat Hall's IRAF tools for SDSS spectra</a>.</p>
+       
+<hr> 
+<!-- hhts start -->Last modified: Thu Apr  3 16:28:03 CST 2003
+<!-- hhmts end --> 
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

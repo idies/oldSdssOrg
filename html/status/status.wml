@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+#use "sdss_macros.wml"
+<html>
+<head>
+<meta name="Description" content="SDSS Survey Status">
+<title>SDSS Survey Status</title>
+</head>
+<sdss-page select="status">
+<body>
+<h2>SDSS Survey Status</h2>
+
+<!--Table Goes Here -->
+<table width=100% border=1 cellspacing =0 cellpadding=0>
+<tr>
+<td></td><td>Base</td> <td>Done</td>
+ <td>Percent Complete</td>
+</tr>
+<!--END Table Row ----------------------------------------!>
+<tr>
+<td>
+Imaging
+</td>
+<td>
+13574 (Scanned Square Degrees)
+</td> 
+<td>
+2706
+</td>
+<td>
+<IMG SRC=statSummaryimg.gif><BR>
+19 % as of Aug 05, 2001
+</td>
+</tr>
+<!--END Table Row ---------------------------------!>
+<tr>
+<td>
+Spectroscopy
+</td>
+<td>
+2064 (Tiles)
+</td> 
+<td>
+268
+</td>
+<td>
+<IMG SRC=statSummaryspec.gif><BR>
+12 % as of Jul 31, 2001
+</td>
+</tr>
+<!--END Table Row ---------------------------------!>
+<tr>
+<td>
+MT (Secondary) Patches
+</td>
+<td>
+1600 (Patches)
+</td> 
+<td>
+719
+</td>
+<td>
+<IMG SRC=statSummarypatch.gif><BR>
+44 % as of Jul 31, 2001
+</td>
+</tr>
+<!--END Table Row ---------------------------------!>
+</table>
+<H1>Cumulative Progress Graphs</H1>
+<UL TYPE=CIRLE>
+<LI><A href=statImg.NORTH.gif>North Imaging</a> 
+<LI><A href=statImg.SOUTH.gif>South Imaging</A> 
+<LI><A href=statImg.EQ.gif>EQ Imaging</A>
+<LI><A href=statSpec.NORTH.gif>North Spectroscopy</a> 
+<LI><A href=statSpec.SOUTH.gif>South Spectroscopy</A>
+<LI><A href=statPatch.NORTH.gif>MT Secondary Patches for North</A> 
+<LI><A href=statPatch.SOUTH.gif>MT Secondary Patches for South</A>
+</UL>
+
+
+
+<BR>
+<text-navbar>
+<sdss-address>
+</sdss-page>
+</html>
+

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Other Science Targets</TITLE>
+<META NAME="description" CONTENT="Other Science Targets">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html720" HREF="node56.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html718" HREF="node51.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html712" HREF="node54.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html721" HREF="node56.html">Calibration Targets</A>
+<B>Up:</B> <A NAME="tex2html719" HREF="node51.html">Target Selection</A>
+<B> Previous:</B> <A NAME="tex2html713" HREF="node54.html">Quasars</A>
+<BR> <P>
+<H3><A NAME="SECTION00048400000000000000">Other Science Targets</A></H3>
+<P>
+<A NAME="swtargetothersci">&#160;</A>
+<P>
+A variety of other science targets are selected.  These include
+optical counterparts of ROSAT sources, stars, and
+serendipitous targets.  These samples are not complete (with the
+exception of spectrophotometric standards and brown dwarfs), but are
+assigned to excess fibers left over after the main samples of galaxies,
+LRG's, and quasars are tiled (&#167;&nbsp;<A HREF="node58.html#swplate">4.9</A>).
+<P>
+ROSAT Targets
+<P>
+For typical values of the ratio of optical to X-ray flux of various
+classes of Galactic and extragalactic sources, there is an excellent
+match between the depth of SDSS in the optical 
+and that of the ROSAT All Sky Survey (RASS; voges99)
+in X-rays.  Objects detected in SDSS imaging data are positionally
+matched against X-ray sources from the RASS catalogs. SDSS objects
+within the RASS positional error circles (commonly 10-20'' radius)
+are scrutinized further by target selection algorithms tuned to select
+likely optical counterparts to the X-ray sources. 
+In decreasing priority order, spectra are obtained for
+SDSS/RASS coincidences that: (a) are also radio sources (flagged <TT>ROSAT_A</TT>); (b) have SDSS
+optical colors of AGN/quasars (<TT>ROSAT_B</TT>); (c) fall in a broad intermediate
+priority bin that includes bright and/or moderately blue stars and
+galaxies (<TT>ROSAT_C</TT>); (d) are otherwise bright enough for
+follow-up spectroscopy (<TT>ROSAT_D</TT>).  Objects flagged <TT>
+ROSAT_E</TT> are not targeted; they fall within the ROSAT error circle,
+but are either too faint or too bright for our spectrographs.  Objects
+with fiber magnitude brighter than 15 in
+<IMG WIDTH=15 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline2829" SRC="img10.gif">, <IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline2863" SRC="img21.gif">, or <IMG WIDTH=12 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3201" SRC="img110.gif"> are not targeted, because of cross-talk
+between fibers in the spectrograph.
+<P>
+This algorithm targets of order 10-15 objects per plate; over half are
+AGN or quasars.
+<P>
+Stars
+<P>
+A variety of stars are also targeted by their distinctive colors.
+Specific stellar spectroscopic target categories include blue
+horizontal branch stars (flagged <TT>STAR_BHB</TT>), carbon stars, both
+dwarf and giant (<TT>
+STAR_CARBON</TT>), low-luminosity subdwarfs (<TT>STAR_SUB_DWARF</TT>), the
+central stars of planetary nebulae (<TT>STAR_PN</TT>), cataclysmic
+variables (<TT>CATY_VAR</TT>), red and
+brown dwarfs (<TT>STAR_RED_DWARF</TT> and <TT>STAR_BROWN_DWARF</TT>),
+and hot white dwarfs (<TT>STAR_WHITE_DWARF</TT>).  The planetary
+nebula and cataclysmic variable categories are essentially completely
+contained within the quasar target selection region of color-color
+space, and are much rarer than quasars; only a handful of these
+objects have been found.   The definition of red dwarf was too
+inclusive in the version of <TT>target</TT> used, resulting in the
+observations of a large number
+of ordinary M dwarfs.  The brown dwarfs are very rare (typically
+one every several plates); unlike the other categories of stars, these
+are tiled.  However, in the
+EDR data, the algorithm for selecting these objects was modified
+several times, making the formal definition of a complete sample
+difficult.
+<P>
+Additionally, of order 30% of the objects targeted as quasars
+turn out, in fact, to be stars, for the most part outliers from the
+stellar locus by definition (but occasionally objects in the stellar
+locus as well, due to early errors in the code).  This is of course
+not a complete sample, but it contains several thousand spectra of
+uniform data quality of stars of all spectral types.
+<P>
+Serendipity Targets
+<P>
+Finally, we have an open category of targets, referred to as <EM>
+serendipity</EM>, whose criteria are subject to change as different
+regions of parameter space are explored.  There are several categories
+of these in the EDR.  These are flagged as <TT>
+SERENDIP_RED</TT>, <TT>SERENDIP_BLUE</TT>, and <TT>SERENDIP_DISTANT</TT> for
+objects lying outside the stellar locus in color space (the latter
+refers to distance 
+from the stellar locus).  These overlap somewhat with the quasar and
+some of the stellar target selection categories.  Objects coincident
+with FIRST radio sources are flagged <TT>SERENDIP_FIRST</TT>; this
+matching goes fainter than the equivalent for quasar target selection,
+and has no restriction on stellarity.  Finally, <TT>SERENDIP_MANUAL</TT>
+targets are selected by hand, as the name implies. 
+A wide variety of
+interesting objects have emerged from serendipity spectroscopic
+targets, ranging from highly unusual categories of white dwarfs to
+radio-loud broad absorption line quasars menou01.
+<P>
+<HR><A NAME="tex2html720" HREF="node56.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html718" HREF="node51.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html712" HREF="node54.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html721" HREF="node56.html">Calibration Targets</A>
+<B>Up:</B> <A NAME="tex2html719" HREF="node51.html">Target Selection</A>
+<B> Previous:</B> <A NAME="tex2html713" HREF="node54.html">Quasars</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

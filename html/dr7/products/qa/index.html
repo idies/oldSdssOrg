@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Data products: Photometry QA - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+<h1>Photometry QA</h1>
+Up: <a href="../index.html">Data Products</a> Sections: <a
+href="../images/index.html">Images</a> - <a
+href="../catalogs/index.html">Object lists</a> - <a href="../spectra/index.html">Spectra</a> - <a
+href="../tiling/index.html">Tiling</a> - summaryQA
+
+<h2>Accessing summary and single-run QA information</h2>
+
+<p>The DAS serves the <a
+href="http://das.sdss.org/imaging/QA/summaryQA_analyzePC.html"><code>summaryQA</code>
+tables and plots</a>.</p>
+
+<h2>Overview of Quality Assurance</h2>
+
+<p>In order to assess the overall quality of the SDSS imaging data, each
+SDSS imaging run goes through a  series of tests to confirm its
+overall photometric and astrometric quality.  This document describes
+these tests in detail, in particular the detailed web pages that are
+made summarizing the results.  These quality assurance tests have
+developed over the course of the survey, and have several goals:</p>
+<ul>
+  <li> To flag possible problems in the telescope or imaging camera;</li>
+  <li> To flag possible problems in the data themselves (caused by
+      clouds, poor seeing, etc.)</li>
+  <li> To flag possible problems in the image processing or photometric
+      or astrometric calibration;</li>
+  <li> To give quantitative measures of the accuracy of the SDSS
+      photometry and astrometry, and their errors. </li>
+</ul>
+      
+<p>These pages describing the QA output are not meant to be read
+end-to-end, but rather to be used as a reference for those using the
+QA outputs to understand the quality of a given set of SDSS data.  We
+have a <a
+href="http://das.sdss.org/imaging/QA/summaryQA_FieldPhotomQuality.dat">summary
+of the photometric quality of each SDSS image frame</a>. The file
+contents are described in detail in the <a
+href="./summaryQA.html">summaryQA documentation</a>.  A description of
+the QA mechanisms may also be found in <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2004AN....325..583I">Ivezic
+et al. 2004</a>.</p>
+
+<h2>Types of imaging QA</h2>
+
+<p>There are two types of quality assurance carried out for each SDSS
+imaging run: that produced by each pipeline (astrom, psp, frames, and
+nfcalib; see the EDR paper for descriptions of each of these
+pipelines, as well as the paper by Pier et al. (2003) for the
+astrometry) to diagnose immediate problems with running the pipeline,
+and summary quality assurance on the outputs, which is run after the
+data are completely reduced and calibrated.  The latter final quality
+assurance itself comes in several flavors:</p>
+<ul>
+  <li>Field-by-field quality assurance using
+      internal checks within a given run: <a href="./singlerunQA.html">single-run QA</a></li>
+  <li>Global per-run summaries of quantities derived by single-run QA:
+      <a href="summaryQA.html">summary QA</a>
+  <li>Quality assurance using the overlap between adjacent runs: <em>overlap
+      QA</em></li>
+</ul>
+
+<p>Since DR4, we make available the <em>single-run and summary QA</em> outputs;
+since <em>overlap QA</em> may involve data which are not public yet,
+we do not publish those outputs, but may do so in the future. These
+pages are devoted to a detailed description of single-run QA and a
+description of overall assessments of SDSS data quality. 
+
+
+
+<hr>
+<!-- hhmts start -->Last modified: Thu Jun 14 17:30:25 CEST 2007
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

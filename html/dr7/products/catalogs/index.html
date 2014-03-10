@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Data products: Object lists - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+<h1>Calibrated object lists</h1>
+Up: <a href="../index.html">Data Products</a> Sections: <a
+href="../images/index.html">Images</a> - Object lists - <a
+href="../spectra/index.html">Spectra</a> - <a
+href="../tiling/index.html">Tiling</a>
+
+<h2>About SDSS object lists</h2>
+
+<p>The calibrated object lists reports positions, fluxes, and shapes
+of all objects detected at &gt;5 sigma on the survey
+images. Photometry is reported on the natural system of the <a
+href="../../glossary/index.html#APO">APO</a> 2.5m survey telescope (a
+system which includes 1.3 airmasses at APO; see description of <a
+href="../../algorithms/fluxcal.html">photometric flux calibration</a>)
+in <a href="../../glossary/index.html#asinh">asinh magnitudes</a>.</p>
+
+<h2>Getting and using object lists</h2>
+
+<p><strong>You need to look at the <a href="./flags.html">object
+      flags</a> in the object lists to obtain meaningful
+      results.</strong></p>
+
+<p>Calibrated object lists are stored in two file types in the <a
+href="../../access/index.html#DAS">Data Archive Server</a>:
+<ul>
+  <li><p><a
+      href="../../dm/flatFiles/tsObj.html"><code>tsObj*.fits</code></a>
+      containing the object lists themselves. There is one file
+      per <a
+      href="../../glossary/index.html#field">field</a>. The files
+      are binary fits tables with one row per object.
+      <h4>Notes</h4>
+      <ul>
+	<li>The primary header of <code>tsObj</code> files contains
+	    some parameters applying to the entire field, such as the
+	    seeing (but also see the PSF parameters in the
+	    <code>tsField</code> file below).</li>
+	<li>The reported magnitudes are corrected for atmospheric
+	    extinction (compare <a
+	    href="../../algorithms/fluxcal.html#counts2mag">converting
+	    counts to magnitudes)</a>, but not for Galactic
+	    extinction. The Galactic extinction
+	    for each object as derived from <a
+	    href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1998ApJ...500..525S">Schlegel,
+	    Finkbeiner, and Davis (1998)</a> dust maps is reported as
+	    <code>reddening</code>. The <a
+	    href="../../algorithms/target.html">target selection algorithms</a>
+	    use magnitudes corrected for both kinds of extinction.</li>
+      </ul>
+      
+      </p>
+      
+      <p><a href="./read_tsObj.html">How to read tsObj files</a>
+      includes an <a href="./read_tsObj.sm">illustrative SM
+      script to filter tsObj files</a> and
+      explanations of which flags to check.</p></li>
+  <li><a
+      href="../../dm/flatFiles/tsField.html"><code>tsField*.fits</code></a>
+      files, with one row of
+      parameters relevant to the entire field. This includes the
+      average PSF profile, e.g.</li>
+</ul>
+
+<p>The <a
+href="../../dm/flatFiles/fpAtlas.html"><code>fpAtlas*.fits</code></a>
+files contain "postage-stamp"
+images, the set of pixels determined to belong to each object.
+See <a href="../images/read_atlas.html">how to read an atlas
+image</a>.  </p>
+
+<p>The <a href="../../access/">data access</a> page contains various
+query forms to search the object lists by coordinates, magnitude,
+color etc., and to retrieve data from the archive.  In particular, the
+<a href="../../access/index.html#CAS">Catalog Archive Server</a>
+provides a fast search capability for object lists and spectroscopic
+parameters as well as pointers to the files in the <a
+href="../../access/index.html#DAS">Data Archive Server</a>.  The <a
+href="http://cas.sdss.org/astro/en/tools/search/IQS.asp">Imaging
+Query Server</a> query form is dedicated to the search of the imaging
+database.</p>
+
+
+<!-- Reiko's notes need to be polished XXX deblending issues, like
+piecing together bright galaxy children</li>-->
+
+<a name="caveats"></a>
+<h2>Caveats</h2>
+
+<a name="highpmstars"></a>
+<h3>Missing high proper-motion stars in SDSS DR6 and before</h3>
+<!--#include virtual="./missinghighpmstars.html"-->
+
+<a name="cav_lowlat"></a>
+<h3>Incomplete and/or inaccurate photometry at low galactic latitudes</h3>
+
+<p>Much of the data in SEGUE and <a
+href="../../start/aboutdrsup.html">DRsup</a> is imaging at low
+Galactic latitude |b| &lt; 25 degrees, and as such, there are highly
+crowded fields, and regions of high extinction. These data were
+processed with the standard SDSS photo pipelines. Since these
+pipelines were not designed to work in such crowded regions, the
+quality of the photometry in these areas is not guaranteed to be
+accurate to the SDSS quoted limits of 2% in color and r magnitude, nor
+is each and every crowded frame fully deblended; i.e. many fields are
+incompletely cataloged.</p>
+
+<h3>Overestimation of sky levels in the vicinity of bright
+objects</h3>
+
+<!--#include virtual="./brightgalsky.html"-->
+
+<a name="isoradii"></a>
+<h3>Isophotal radii in DR3-DR7 are given in pixels, not arcseconds</h3>
+
+<p>The isophotal radii of objects are supposed to be reported in
+arcseconds, as they were in earlier data releases. Due to a
+programming error, all isophotal radii are given in pixels in
+DR3-DR7. To obtain the isophotal radii in arcseconds, scale by the
+pixel size of 0.396 arcseconds.</p>
+
+<p>The bug is present in both the <code>tsObj</code> files in the <a
+href="../../access/index.html#DAS">DAS</a> and the
+<code>photoObj</code> and derived tables in the <a
+href="../../access/index.html#CAS">CAS</a>.</p>
+
+<a name="AB"></a>
+<h3>SDSS and AB magnitudes</h3>
+
+<p>The SDSS photometry is intended to be on the AB system.  However,
+this is known not to be exactly true. See <a
+href="../../algorithms/fluxcal.html#sdss2ab">Conversion from SDSS to
+AB magnitudes</a> in the Flux calibration section of the Algorithm
+descriptions.</p>
+
+<a name="cav_skybright"></a>
+<h3>Sky brightness values are extinction-corrected</h3>
+
+<p>The various measures of sky brightness reported in the
+<code>tsField</code> files are corrected for atmospheric extinction in
+the same way as calibrated object magnitudes in <code>tsObj</code>
+files. To do a correct <a
+href="../../algorithms/fluxcal.html#counts2mag">conversion from
+magnitudes to counts and vice versa</a>, you need to treat object and
+sky magnitudes in the same way.</p>
+
+<a name="cav_skyunit"></a>
+<h3>Sky brightness values are given in maggies, not magnitudes</h3>
+
+<p>The various measures of sky brightness reported in the
+<code>tsField</code> files are given in <a
+href="../../glossary/index.html#maggie">maggies/square arcsecond</a> (as
+in <code>tsObj</code> files), but the fits headers incorrectly give
+magnitudes/square arcseconds as units.  Only <code>tsField</code>
+files in the <code>TARGET</code> version of runs 94, 125, 1033 and
+1056 still have the numbers in magnitudes.</p>
+
+<a name="cav_objcounts"></a>
+<h3>Object counts</h3>
+
+<p>The <code>nobjects</code> etc. entries in <code>tsField</code>
+files (<code>field</code> table in the CAS database) are currently
+meaningless.</p>
+
+<a name="cav_psfvsap"></a>
+<h3>A few runs processed with slightly older version of photo</h3>
+<p>
+  As described in the DR2 paper, mis-estimates of the sky background
+in the postage stamps of stars used for PSF determination occasionally
+coupled with the PSF determination itself in early versions of the
+photometric pipeline.  We were able to suppress this behavior by
+explicitly forcing the sky-subtracted images to zero at their edges.
+This revised code was run on most of the imaging runs included in DR2
+and DR3, but not quite all of them.  In every case that was run with
+the old code, a comparison of PSF and aperture photometry of stars
+confirmed that there was no significant contribution to the PSF from
+wrongly estimated sky, but the user should be aware that these runs have
+not been reduced by the identical version of the pipeline.  The run/reruns
+in question are: 1239/40, 1336/40, 1339/40, 1356/40, 1359/40, 1659/40, 1889/40, 
+2075/40, 2076/40, 2248/40, 2305/40, 2328/40, 2335/40, 2662/40, 2738/40,
+3538/40, 3704/40, 3723/40, 3894/40, 3905/40, 3909/40, 3910/40, 3919/40,
+3927/30, 3325/41, and 3838/41.  These will be reprocessed and replaced
+in the archive for a future data release. 
+
+<a name="cav_redobj"></a>
+<h3>Red leak to the <var>u</var> filter and very red objects</h3>
+
+<!--#include virtual="../images/u_redleak.html"-->
+
+<a name="cav_skysub"></a>
+<h3>u-band sky determination</h3>
+
+<!--#include virtual="../images/u_sky.html"-->
+
+
+<a name="cav_astrom_not_r"></a>
+<h3>Astrometry bug fixed since DR2</h3>
+
+<!--#include virtual="./astrombug_nonrband.html"-->
+
+<a name="cav_brightgal"></a>
+<h3>Deblending of bright galaxies significantly improved since DR2</h3>
+
+<p>The behavior of the deblender of overlapping images has been
+further improved for DR2 and beyond; these changes are most important for
+bright galaxies of large angular extent (&gt; 1').  In the EDR, and to
+a lesser extent in the DR1, bright galaxies were occasionally
+&quot;shredded&quot; by the deblender, i.e., interpreted as two or
+more objects and taken apart.  With improvements in the code that
+finds the center of large galaxies in the presence of superposed
+stars, and the deblending of stars superposed on galaxies, this
+shredding now rarely happens.  Indeed, inspections of several hundred
+NGC galaxies shows that the deblend is correct in 95% of the cases;
+most of the exceptions are irregular galaxies of various sorts.</p>
+
+<hr>
+Last modified $Date: 2008/10/31 18:00:40 $ (UT).
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

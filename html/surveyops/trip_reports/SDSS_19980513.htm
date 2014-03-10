@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Generator" CONTENT="Microsoft FrontPage 5.0">
+   <META NAME="Template" CONTENT="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <TITLE>Windscreen Servo Commissioning</TITLE>
+</HEAD>
+<BODY LINK="#0000FF" VLINK="#800080">
+
+<DIV ALIGN=right></DIV>
+
+<div align="left">
+  <p><B><FONT SIZE=+2>Windbaffle Servo System Commissioning at APO<br>
+  </FONT><FONT SIZE=4>May 13-16, 1998</FONT></B></p>
+</div>
+<div align="left"><em>Sloan Digital Sky Survey Technical Note 19989513</em><BR>
+  <BR>
+</div>
+<div align="left"><A HREF="mailto:pcceed@fnal.gov"><em>Paul C. Czarapata</em>, </A>Fermi National Accelerator Laboratory, Beams Division / Headquarters, Batavia, IL USA 60510</div>
+  <HR SIZE=4 WIDTH="100%">
+<BR>&nbsp;
+<BR>On this trip I concentrated on the continued commissioning of the Windscreen
+Servo System. The new Altitude motor (with brake) was installed and wired.
+The brake control was implemented and tested. The Windscreen altitude brake
+is applied whenever <U>both</U> directional inhibits are asserted. This
+is the only mode that makes sense since if only one inhibit is asserted
+(at zenith for example) the windscreen must still be able to move off the
+limit. The E-Stop generates a bi-directional inhibit and thus asserts the
+brake.
+
+<P>I took an additional look at the noise being picked up on the LVDT’s
+for both Azimuth and Altitude and found that there was a ground loop through
+the iso-buffer that was inducing the noise. I removed the buffer and went
+directly to the ADC of the PLC. This change brought the operational noise
+down to a few hundred counts or less with all servos on. This appears to
+be an acceptable level.
+
+<P>The altitude loop gain was set for the proportional part of the PID
+loop. Additional tuning will be needed for the I and D terms when the actual
+windscreen is installed and wind loading and other structural resonance’s
+can be explored. Based on what I observed I believe the servo system will
+be "stiff" enough to meet the tolerances at the telescope truss.
+
+<P>One operational difficulty that will have to be addressed is the functioning
+of the telescope servo amplifier interlocks. The interlock for the bi-directional
+inhibit require someone press the reset on the front of the amplifier.
+I have spoken to Peter Prieto and he knows of the problem and has a new
+interlock PAL to install.
+
+<P>On departing the site, the windscreen system was operational in both
+Azimuth and Altitude and had tracked the telescope motion for over twelve
+hours while work on the telescope servo system progressed. A small amount
+of my time was spent on other miscellaneous system issues.
+
+<P>
+<HR SIZE=4 WIDTH="100%">
+<BR>Questions regarding this trip report should be addressed to Paul Czarapata
+by phone at (630) 840-3106 or by e-mail at <A HREF="mailto:pcceed@fnal.gov">pcceed@fnal.gov</A>.
+<BR>&nbsp;
+<BR>&nbsp;
+
+<P><I><FONT SIZE=-1>Last modified 05/27/98</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</BODY>
+</HTML>

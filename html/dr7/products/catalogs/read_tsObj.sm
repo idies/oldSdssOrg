@@ -1,0 +1,367 @@
+#This SM script will generate a list of unresolved objects from the
+#tsObj files.  This is an example script to illustrate the reading of 
+#tsObj files. 
+
+#Flags for primary target
+define TARGET_QSO_HIZ         0 
+define TARGET_QSO_CAP         1 
+define TARGET_QSO_SKIRT       2 
+define TARGET_QSO_FIRST_CAP   3 
+define TARGET_QSO_FIRST_SKIRT 4
+define TARGET_QSO_MAG_OUTLIER	      25
+define TARGET_GALAXY_RED      5 
+define TARGET_GALAXY          6 
+define TARGET_GALAXY_BIG      7 
+define TARGET_GALAXY_BRIGHT_CORE 8
+define TARGET_ROSAT_A          9
+define TARGET_ROSAT_B          10
+define TARGET_ROSAT_C          11
+define TARGET_ROSAT_D          12
+define TARGET_STBHB          13
+define TARGET_STCARBON       14
+define TARGET_STBROWN_DWARF  15
+define TARGET_STSUB_DWARF    16
+define TARGET_STCATY_VAR     17
+define TARGET_STRED_DWARF    18
+define TARGET_STWHITE_DWARF  19
+define TARGET_SERENDIP_BLUE  20  
+define TARGET_SERENDIP_FIRST 21  
+define TARGET_SERENDIP_RED   22  
+define TARGET_SERENDIP_DISTANT 23
+define TARGET_SERENDIP_MANUAL  24
+
+#Flags for secondary target
+define TTARGET_LIGHT_TRAP     0  
+define TTARGET_REDDEN_STD     1  
+define TTARGET_TEST_TARGET    2  
+define TTARGET_QA_TARGET      3  
+define TTARGET_SKY            4  
+define TTARGET_SPECTROPHOTO_STD 5
+define TTARGET_GUIDE_STAR       6
+define TTARGET_BUNDLE_HOLE      7
+define TTARGET_QUALITY_HOLE     8
+define TTARGET_HOT_STD          9
+
+#Photo's flags
+define OBJ1_CANONICAL_CENTER 0
+define OBJ1_BRIGHT 1
+define OBJ1_EDGE 2
+define OBJ1_BLENDED 3
+define OBJ1_CHILD 4
+define OBJ1_PEAKCENTER 5
+define OBJ1_NODEBLEND 6
+define OBJ1_NOPROFILE 7
+define OBJ1_NOPETRO 8
+define OBJ1_MANYPETRO 9
+define OBJ1_NOPETRO_BIG 10
+define OBJ1_DEBLEND_TOO_MANY_PEAKS 11
+define OBJ1_CR 12
+define OBJ1_MANYR50 13
+define OBJ1_MANYR90 14
+define OBJ1_BAD_RADIAL 15
+define OBJ1_INCOMPLETE_PROFILE 16
+define OBJ1_INTERP 17
+define OBJ1_SATUR 18
+define OBJ1_NOTCHECKED 19
+define OBJ1_SUBTRACTED 20
+define OBJ1_NOSTOKES 21
+define OBJ1_BADSKY 22
+define OBJ1_PETROFAINT 23
+define OBJ1_TOO_LARGE 24
+define OBJ1_DEBLENDED_AS_PSF 25
+define OBJ1_DEBLEND_PRUNED 26
+define OBJ1_ELLIPFAINT 27
+define OBJ1_BINNED1 28
+define OBJ1_BINNED2 29
+define OBJ1_BINNED4 30
+define OBJ1_MOVED 31
+define OBJ1_DETECTED 32
+define OBJ2_DEBLENDED_AS_MOVING 0
+define OBJ2_NODEBLEND_MOVING 1
+define OBJ2_TOO_FEW_DETECTIONS 2
+define OBJ2_BAD_MOVING_FIT 3
+define OBJ2_STATIONARY 4
+define OBJ2_PEAKS_TOO_CLOSE 5
+define OBJ2_MEDIAN_CENTRE 6
+define OBJ2_LOCAL_EDGE 7
+define OBJ2_BAD_COUNTS_ERROR 8
+define OBJ2_BAD_MOVING_FIT_CHILD 9
+define OBJ2_DEBLEND_UNASSIGNED_FLUX 10
+define OBJ2_SATUR_CENTER 11
+define OBJ2_INTERP_CENTER 12
+define OBJ2_DEBLENDED_AT_EDGE 13
+define OBJ2_DEBLEND_NOPEAK 14
+define OBJ2_PSF_FLUX_INTERP 15
+define OBJ2_TOO_FEW_GOOD_DETECTIONS 16 
+define OBJ2_CENTER_OFF_AIMAGE 17 
+define OBJ2_DEBLEND_DEGENERATE 18 
+define OBJ2_BRIGHTEST_GALAXY_CHILD 19 
+define OBJ2_CANONICAL_BAND 20 
+define OBJ2_AMOMENT_FAINT 21 
+define OBJ2_AMOMENT_SHIFT 22 
+define OBJ2_AMOMENT_MAXITER 23 
+define OBJ2_MAYBE_CR 24 
+define OBJ2_MAYBE_EGHOST 25 
+define OBJ2_NOTCHECKED_CENTER 26 
+
+#Flags for object status
+define  AR_OBJECT_STATUS_SET          0
+define  AR_OBJECT_STATUS_GOOD         1
+define  AR_OBJECT_STATUS_DUPLICATE    2 
+define  AR_OBJECT_STATUS_OK_RUN       4
+define  AR_OBJECT_STATUS_RESOLVED     5 
+define  AR_OBJECT_STATUS_PSEGMENT     6 
+define  AR_OBJECT_STATUS_FIRST_FIELD  8
+define  AR_OBJECT_STATUS_OK_SCANLINE  9
+define  AR_OBJECT_STATUS_OK_STRIPE   10
+define  AR_OBJECT_STATUS_SECONDARY   12
+define  AR_OBJECT_STATUS_PRIMARY     13
+define  AR_OBJECT_STATUS_TARGET      14
+
+#Flags for object type
+define TYPE_UNK 0
+define TYPE_CR 1
+define TYPE_DEFECT 2
+define TYPE_GALAXY 3
+define TYPE_GHOST 4
+define TYPE_KNOWNOBJ 5
+define TYPE_STAR 6
+define TYPE_TRAIL 7
+define TYPE_SKY 8
+
+
+#This run is part of the Equatorial stripe in the Northern Galactic
+#Cap.  It was part of the EDR, but has been reprocessed here with the 
+#latest versions of the imaging pipelines.  This assumes the
+#definition of a data directory, assigned to the variable data_dir
+
+define run 756
+define rerun 20
+
+# The following will be used to do aperture photometry based on the
+# measured radial profiles.  The quantity profileRadii is the 
+# outer radius of the radii within which the radial profiles are
+# measured. 
+
+	set profileRadii={0 0.564190 1.692569 2.585442 4.406462 \
+		   7.506054 11.576202 18.584032 28.551561 45.503910 \
+		   70.510155 110.530769 172.493530 269.519104 420.510529 \
+		   652.500061}
+
+	set profileRadii = profileRadii*0.396 #Convert to arcsec
+
+	set ii = 1, (dimen(profileRadii)-1)
+	set area = PI*(profileRadii[ii]**2 - profileRadii[ii-1]**2)
+
+
+    do column = 1, 6 {
+
+	do frame = 11, 800 {
+
+          define run_s (sprintf('%06d',$run)
+          define frame_s (sprintf('%04d',$frame))
+	  define file_name "tsObj-$run_s-$column-$rerun-$frame_s.fit"
+	  table 1 "$!data_dir/$!column/$!file_name"
+
+#The basic command in SM for reading fits binary tables is the
+#following: 'read table'.  See the data model for a full description 
+#of each of the quantities read here.  Note that many of the
+#quantities come in fives, one each for each of the five bands 
+#(u g r i z, corresponding to indices 0 1 2 3 4).  The command here
+#reads in only a small fraction of all the outputs available for each 
+#object.  
+
+	  read table {run rerun camCol field id objc_rowc objc_colc status \ 
+		      rowv rowvErr colv colvErr psfCounts[0-4] psfCountsErr[0-4] \
+                      objc_type objc_flags objc_flags2 flags[0-4] flags2[0-4] \
+		      reddening[0-4] ra dec primTarget secTarget}
+
+#These are the radial profiles, 15 numbers in each of 5 bands.  
+    	  read table {profMean[0-74] profErr[0-74]}
+
+#This calculates aperture magnitudes in the five bins (in this case,
+#going out to the 7th radial bin, i.e., a radius of 7.4 arcsec).  
+	set dimen(apmag) = 5
+	set apmagerr = apmag
+	do band = 0, 4 {
+	   set apmag[$band] = 0
+	   set apmagerr[$band] = 0
+	   do aperture = 0, 6 {
+	   set apmag[$band] = apmag[$band] + \
+                    profMean$(15*$band + $aperture)[jj[0]]*area[$aperture]
+	   set apmagerr[$band] = apmagerr[$band] + \
+                   (profErr$(15*$band + $aperture)[jj[0]]*area[$aperture])**2
+        }}
+	 
+# That result is in maggies.  Here we convert to magnitudes again:
+# (note that this is not expressed in asinh magnitudes; it should be). 
+
+	set apmagerr = 2.5*sqrt(apmagerr)/apmag/ln(10)
+	set apmag = (apmag < 0)?(25.):(-2.5*lg(apmag))
+   
+#The status flag within the tsObj file gives information to allow a
+#unique set of objects to be selected; i.e., objects that are have
+#'primary' status have all the book-keeping of the overlaps between
+#frames, scanlines, runs, and stripes worked out.  In brief, you want
+#to include objects flagged as 'primary'.  Objects flagged as
+#'OK_STRIPE' don't take into account the overlap between adjacent
+#stripes; this may be useful if you are considering one stripe at a
+#time, in particular, at the edge of the DR1 area. 
+#  Note that 'is_set(x,y)' returns a 1 if the y'th bit is set in x,
+#  and 0 otherwise. 
+
+	  set primary = is_set(status,$AR_OBJECT_STATUS_PRIMARY) 
+	  set ok_stripe = is_set(status,$AR_OBJECT_STATUS_OK_STRIPE) 
+	  
+</pre>
+There is a set of all-important flags output by the pipeline that
+describe the processing; <a
+href=http://www-sdss.fnal.gov/sdssdp/dr1web/products/catalogs/flags.html>look
+here</a> for their meaning. 
+<pre>
+# Here we reject objects that are flagged BRIGHT (a duplicate entry in
+# the photo outputs), SATURATED (for which the photometry will clearly 
+# be unreliable, EDGE (i.e., touching the edge of a frame) or BLENDED
+# (we want the child entries).  On the latter, an object can be noted
+# as a composite (BLENDED), but for a variety of reasons, will not be
+# deblended.   Note that some of these cuts are redundant
+# with the status=primary selection above; in particular, no BRIGHT
+# objects are flagged primary.  Note that some of these definitions
+# here use objc_flags (overall flags based on the union of flags from
+# the five bands), and some use flags from one band (i.e., flags3
+# refers to the i-band in this example).  There are enough flag bits
+# that they don't all fit into a single parameter, thus the
+# distinction between objc_flags and objc_flags2, and flags3 and
+# flags23.
+
+	  set bright = is_set(objc_flags,$OBJ1_BRIGHT)
+	  set saturated = is_set(flags3,$OBJ1_SATUR)
+	  set edge = is_set(objc_flags,$OBJ1_EDGE)
+	  set blended = is_set(objc_flags,$OBJ1_BLENDED)
+	  set nodeblend = is_set(objc_flags,$OBJ1_NODEBLEND)
+
+# In the example here, we wish to select a sample of objects observed 
+# at i; we clearly want to confirm that it is detected in i!
+
+	  set detected = is_set(flags3,$OBJ1_BINNED1)
+
+# These are empirical cuts we've found are effective for rejecting
+# small bits of fluff that often appear on deblending large objects;
+# such objects are often assigned strange colors.  These are explained 
+# in more detail in the quasar target selection algorithm paper
+# (Richards et al 2002). 
+
+	  set deblending_problems = (is_set(flags3,$OBJ1_PEAKCENTER)|| \
+				     is_set(flags3,$OBJ1_NOTCHECKED)|| \
+				     is_set(flags23,$OBJ2_DEBLEND_NOPEAK)|| \
+				     psfCountsErr3>0.2)
+	  set interp_problems = (is_set(flags23,$OBJ2_PSF_FLUX_INTERP)|| \
+				(is_set(flags23,$OBJ2_INTERP_CENTER)&&\
+                                 is_set(flags3,$OBJ1_CR))||\
+				is_set(flags23,$OBJ2_BAD_COUNTS_ERROR))
+
+#  Here is a logical variable that is 1 for sources that are clean in
+#  the sense described above. 
+	  set clean = (detected && !edge && !saturated && primary && \
+		!blended && !bright &&!deblending_problems && !interp_problems)
+
+#  Correction for Galactic reddening (following Schlegel, Finkbeiner,
+#  and Davis 1998) is straightforward!
+	  set iMag = psfCounts3 - reddening3
+
+#  Star-galaxy separation is done based on the difference between the
+#  psf and model magnitudes; if this is greater than 0.142 in a given
+#  band, then the quantity 'type' is set to 3; otherwise, it is set to
+#  6.   objc_type is global over the five bands; it is based on the
+#  sum of psf and model fluxes over the five bands. 
+
+	  set star = (objc_type==$TYPE_STAR)
+
+#  This velocity is based on the change in astrometric position
+#  between the five bands (observed in the order r i u z g over a
+#  span of roughly five minutes.  Main-belt asteroids move by several
+#  arcsec in that time; the criteria here is to reject such objects. 
+
+	  set velocity = sqrt(rowv**2 + colv**2)
+	  set velsig = sqrt((rowv/rowvErr)**2 + (colv/colvErr)**2)
+
+	  set moving = (velocity > 0.2 || velsig > 3)
+
+# As described in the quasar target selection paper, there are some 
+# bad columns in the data that never properly got masked, which can
+# give rise to spurious unusual-colored objects.  Here is a filter
+# for rejecting them. 
+
+	  set bad_col = ($column==2&&objc_colc<1461&&objc_colc>1451)||\
+			($column==2&&objc_colc<1388&&objc_colc>1382)||\
+	   	        ($column==5&&objc_colc<1032&&objc_colc>1018)
+ 
+	  set clean = clean&&star&&!moving&&!bad_col
+
+# The following defines some flags related to target selection.  Note
+# that if you are using the BEST tsObj files, this will be based on
+# the current version of the target selection code; some of the
+# targets may not have been flagged for observation with earlier
+# reductions, and therefore will not have spectroscopic observations. 
+
+# The CAP and SKIRT quasar target algorithms are the same; this is a
+# remnant of a time when we thought we would need separate algorithms in
+# regions of high and low stellar density. 
+
+set qso_first = (is_set(primTarget,$TARGET_QSO_FIRST_CAP) || \
+	   is_set(primTarget,$TARGET_QSO_FIRST_SKIRT))
+set qso_loz = (is_set(primTarget,$TARGET_QSO_CAP) || \
+	       is_set(primTarget,$TARGET_QSO_SKIRT))
+set qso_hiz = is_set(primTarget,$TARGET_QSO_HIZ) 
+set qso_optical = (qso_loz || qso_hiz)
+#This is the union of all targetted quasar candidates. 
+set qso = (qso_first || qso_optical)
+
+#The qso_mag_outlier and qso_reject objects are *not* targetted; 
+#these are outliers in the stellar locus that are either outside
+#the quasar magnitude limits, or are in regions with contamination
+from non-quasars (such as white dwarfs). 
+
+set qso_mag_outlier = is_set(primTarget,$TARGET_QSO_MAG_OUTLIER)
+set qso_reject = is_set(primTarget,$TARGET_QSO_REJECT)
+
+#This selects objects targetted as LRG's.  Note that they come in two
+#categories (see Eisenstein et al 2001 for the details). 
+set lrg = (is_set(primTarget,$TARGET_GALAXY_RED) || \
+	   is_set(primTarget,$TARGET_GALAXY_REDII))
+
+#This is the main galaxy sample.  GALAXY_BIG and GALAXY_BRIGHT_CORE
+#objects are very rare; most are not real galaxies. 
+set main_gal = (is_set(primTarget,$TARGET_GALAXY) || \
+	   is_set(primTarget,$TARGET_GALAXY_BIG) || \
+	   is_set(primTarget,$TARGET_GALAXY_BRIGHT_CORE))
+
+#  These are untiled set of targets. 
+set rosat = (is_set(primTarget,$TARGET_ROSAT_A) || \
+	     is_set(primTarget,$TARGET_ROSAT_B) || \
+	     is_set(primTarget,$TARGET_ROSAT_C) || \
+	     is_set(primTarget,$TARGET_ROSAT_D) || \
+	     is_set(primTarget,$TARGET_ROSAT_E))
+set star = (is_set(primTarget,$TARGET_STBHB) || \
+	    is_set(primTarget,$TARGET_STCARBON) || \
+	    is_set(primTarget,$TARGET_STBROWN_DWARF) || \
+	    is_set(primTarget,$TARGET_STSUB_DWARF) || \
+	    is_set(primTarget,$TARGET_STCATY_VAR) || \
+	    is_set(primTarget,$TARGET_STRED_DWARF) || \
+	    is_set(primTarget,$TARGET_STAR_PN))
+
+# These are blank areas of sky, appropriate for placing a sky fiber. 
+set sky = is_set(secTarget,$TTARGET_SKY)
+
+#Various categories of serendipity targets, untiled. 
+set serendip = (is_set(primTarget,$TARGET_SERENDIP_BLUE) || \
+	        is_set(primTarget,$TARGET_SERENDIP_FIRST) || \
+		is_set(primTarget,$TARGET_SERENDIP_RED) || \
+		is_set(primTarget,$TARGET_SERENDIP_DISTANT) || \
+		is_set(primTarget,$TARGET_SERENDIP_MANUAL))
+
+#Various types of standard stars. 
+set standard_star = (is_set(secTarget,$TTARGET_REDDEN_STD) || \
+		is_set(secTarget,$TTARGET_SPECTROPHOTO_STD) || \
+		is_set(secTarget,$TTARGET_HOT_STD))
+

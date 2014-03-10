@@ -1,0 +1,15 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+<h1>
+<center>NGC 3338</center>
+</h1>
+<center><img src="ngc3338.jpg"></center>
+
+<p> 
+The spiral galaxy shown above is NGC 3338, a grand design spiral in the constellation Leo.  Grand design refers to the majestic sweeping arms of the spiral, which remain intact to the inner core of the galaxy.  This image also dramatically demonstrates the impact of stellar age on the colors of a galaxy.  Most galaxies are thought to form from the center outwards, with older stars found closer to the center.  These stars appear redder than their younger, blue counterparts.  Thus, the integrated light of these stellar populations will change with age.
+</p>
+
+<p><strong>(Caption by John Bochanski)</strong></p>
+
+<p><a href="archive.html">Go to the <em>SDSS Image of the Week</em> archive</a></p>
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->

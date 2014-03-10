@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>SDSS DR1 - Algorithms: Morphology/Classification
+</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+<!-- Start page content -->
+
+<a name="top"></a>
+<h1>Morphology/Classification</h1>
+
+<p>This page provides detailed descriptions of various morphological
+outputs of the photometry pipelines. We also provide discussion of
+some methodology; for details of the Photo pipeline processing please
+read the <a href="./edrpaper.html#sw-photo">corresponding EDR paper
+section</a>. <!--visit the <a href="../dataflow/pipelines/photo.html">Photo pipeline
+page</a>--> Other photometric outputs, specifically the various
+magnitudes, are described on the <a href="photometry.html">photometry
+page</a>.</p>
+
+<ul>
+<li><a href="#photo_class">Star/Galaxy Classification</a>
+<li><a href="#photo_fits">Model Fit Likelihoods and Parameters</a>
+<li><a href="#photo_profile">Radial Profiles</a>
+<li><a href="#photo_sb">Surface Brightness & Concentration Index</a>
+<li><a href="#photo_stokes">Ellipticities</a>
+<li><a href="#photo_iso">Isophotal Quantities</a>
+<li><a href="#photo_adapt">Adaptive Moments</a>
+</ul>
+<br><p>
+<a name="photo_class"></a>
+The <a href="../glossary/index.html#frames_pipeline"><b>frames</b></a> pipeline 
+also provides several characterizations of the shape and morphology of an 
+object. 
+<br><p>
+<u><b>Star/Galaxy Classification</b></u><br>
+The <b> frames</b> pipeline 
+provides a simple star/galaxy separator in its 
+<b> type</b>
+parameters (provided separately for each band) and its 
+<b>objc_type</b> parameters 
+(one value per object); these are set to:
+<br>
+<table border=1 align="left">
+<tr><th>Class</th><th>Name</th><th>Code</th></tr>
+<tr><td>Unknown</td><td> UNK</td><td align="center"> 0</td></tr>
+<tr><td>Cosmic Ray</td><td> CR</td><td align="center"> 1</td></tr>
+<tr><td>Defect</td><td> DEFECT</td><td align="center"> 2</td></tr>
+<tr><td>Galaxy</td><td> GALAXY</td><td align="center"> 3</td></tr>
+<tr><td>Ghost</td><td> GHOST</td><td align="center"> 4</td></tr>
+<tr><td>Known object&nbsp;</td><td> KNOWNOBJ&nbsp;</td><td align="center"> 5</td></tr>
+<tr><td>Star</td><td> STAR </td><td align="center"> 6</td></tr>
+<tr><td>Star trail</td><td> TRAIL</td><td align="center"> 7</td></tr>
+<tr><td>Sky</td><td> SKY</td><td align="center"> 8</td></tr>
+</table><br clear="all">
+
+<p>The photometric pipeline version used for DR2 and later data (5_4)
+classifies objects as extended ("galaxy") or point-like ("star") based
+on the difference between the <a
+href="../glossary/index.html#mag_cmodel">cmodel</a> and <a
+href="../glossary/index.html#mag_psf">PSF</a> magnitude. An object is
+classified as extended if</p>
+<div class="equation">
+psfMag - cmodelMag &gt; 0.145.
+</div>
+
+<p>If satisfied, <b> type</b> 
+is set to <b> GALAXY</b> 
+for that band; otherwise, <b> type
+</b> is set to <b> STAR
+</b>.  The global type <b>
+objc_type</b> is set according to the same criterion, applied to the
+summed fluxes from all bands in which the object is detected.</p>
+
+<p> Experimentation has shown that simple variants on this scheme,
+such as defining galaxies as those objects classified as such in any
+two of the three high signal-to-noise ratio bands (namely, <em>g</em>,
+<em>r</em>, and <em>i</em>), work better in some circumstances.  This
+scheme occasionally fails to distinguish pairs of stars with
+separation small enough (&lt;2'') that the deblender does not split
+them; it also occasionally classifies Seyfert galaxies with
+particularly bright nuclei as stars.</p>
+
+<p> Further information to refine the star-galaxy separation further
+may be used, depending on scientific application.  For example,
+Scranton et al. (2001) advocate applying a Bayesian prior to the above
+difference between the PSF and exponential magnitudes, depending on
+seeing and using prior knowledge about the counts of galaxies and
+stars with magnitude.  <br><p> <a name="photo_profile"></a> <a
+href="#top"><img src="../shared_images/backtotop.gif"
+border=0></a><br><p>
+
+<u><b>Radial Profiles</b></u><br>
+The <b> frames</b> pipeline extracts an azimuthally-averaged radial
+surface brightness profile. In the catalogs, it is given as the
+average surface brightness in a series of annuli.  This quantity is in 
+units of
+``maggies'' per square arcsec, where a <em>maggie</em> is a linear
+measure of flux; one maggie has an AB magnitude of 0 (thus a surface
+brightness of 20 mag/square arcsec corresponds to 10<sup>-8</sup> maggies
+per square arcsec).  The number of annuli for which there is a
+measurable signal is listed as <b> nprof</b>, the mean surface
+brightness is listed as <b> profMean</b>, and the error is listed as
+<b> profErr</b>.  This error includes both photon noise, and the
+small-scale ``bumpiness'' in the counts as a function of azimuthal
+angle.
+<br><p>
+When converting the <b> profMean</b> values to a local surface
+brightness, it is <b>not</b> the best approach to assign the mean
+surface brightness to some radius within the annulus and then linearly
+interpolate between radial bins.  Do not use smoothing
+splines, as they will not go through the points in the cumulative
+profile and thus (obviously) will not conserve flux. What <b> frames</b>
+does, e.g., in determining the Petrosian ratio, is to fit a taut spline to the
+<em>cumulative</em> profile and then differentiate that spline fit,
+after transforming both the radii and cumulative profiles with asinh
+functions.  We recommend doing the same here.
+<br>
+The annuli used are:
+<table border=0>
+<tr><th>Aperture</th><th>Radius (pixels)</th><th>Radius (arcsec)</th><th>Area (pixels)</th></tr>
+<tr><td>1</td><td>0.56</td><td>0.23</td><td>1</td></tr>
+<tr><td>2</td><td>1.69</td><td>0.68</td><td>9</td></tr>
+<tr><td>3</td><td>2.58</td><td>1.03</td><td>21</td></tr>
+<tr><td>4</td><td>4.41</td><td>1.76</td><td>61</td></tr>
+<tr><td>5</td><td>7.51</td><td>3.00</td><td>177</td></tr>
+<tr><td>6</td><td>11.58</td><td>4.63</td><td>421</td></tr>
+<tr><td>7</td><td>18.58</td><td>7.43</td><td>1085</td></tr>
+<tr><td>8</td><td>28.55</td><td>11.42</td><td>2561</td></tr>
+<tr><td>9</td><td>45.50</td><td>18.20</td><td>6505</td></tr>
+<tr><td>10</td><td>70.15</td><td>28.20</td><td>15619</td></tr>
+<tr><td>11</td><td>110.50</td><td>44.21</td><td>38381</td></tr>
+<tr><td>12</td><td>172.50</td><td>69.00</td><td>93475</td></tr>
+<tr><td>13</td><td>269.50</td><td>107.81</td><td>228207</td></tr>
+<tr><td>14</td><td>420.50</td><td>168.20</td><td>555525</td></tr>
+<tr><td>15</td><td>657.50</td><td>263.00</td><td>1358149</td></tr>
+</table><br><p>
+
+<a name="photo_sb"></a>
+<a href="#top"><img src="../shared_images/backtotop.gif" border=0></a><br><p>
+
+<u><b>Surface Brightness & Concentration Index</b></u><br>
+The <b>frames</b> pipeline also reports the radii containing 50% and 90% of 
+the Petrosian
+flux for each band, <b> petroR50</b> and <b> petroR90</b> respectively.
+The usual characterization of surface-brightness in the target
+selection pipeline of the SDSS is the mean surface brightness within <b>
+petroR50</b>.
+<br><p>
+It turns out that the ratio of <b> petroR50</b> to <b> petroR90</b>, the
+so-called ``inverse concentration index'', is correlated with
+morphology (Shimasaku et al. 2001, Strateva et al. 2001). Galaxies with a de
+Vaucouleurs profile have an inverse concentration index of around 0.3;
+exponential galaxies have an inverse concentration index of around
+0.43. Thus, this parameter can be used as a simple morphological
+classifier.
+<br><p>
+An important caveat when using these quantities is that they
+are <b>not</b> corrected for seeing.  This causes the surface
+brightness to be underestimated, and the inverse concentration index
+to be overestimated, for objects of size comparable to the PSF.  The
+amplitudes of these effects, however, are not yet well characterized.
+
+<br><p>
+<a name="photo_fits"></a>
+<a href="#top"><img src="../shared_images/backtotop.gif" border=0></a><br><p>
+
+<u><b>Model Fit Likelihoods and Parameters</b></u><br>
+In addition to the model and PSF magnitudes described on the <a href="./photometry.html">photometry page</a>, 
+the likelihoods <b> deV_L</b>, <b> exp_L</b>, and <b> star_L</b> are also
+calculated by <b> frames</b>. These are the probabilities of achieving the
+measured chi-squared for the deVaucouleurs, exponential, and PSF fits,
+respectively. For instance, <b>star_L</b> is the probability that an object would have at least the measured value of chi-squared if it is really well represented by a PSF.
+If one wishes to make use of a trinary scheme to 
+classify objects, calculation of the fractional likelihoods is recommended:
+<br><p>
+<b><em>f</em>(deV_L)=deV_L/[deV_L+exp_L+star_L]</b>
+<br><p>
+and similarly for <b><em>f</em>(exp_L)</b> and <b><em>f</em>(star_L)</b>.  
+A fractional likelihood greater than 0.5 for any of these three profiles
+is generally a good threshold for object classification.  This works
+well in the range 18&lt;<em>r</em>&lt;21.5; at the bright end, the
+likelihoods have a tendency to underflow to zero, which makes them less
+useful.  In particular, <b> star_L</b> is often zero for bright stars. 
+For future data releases we 
+will incorporate improvements to the model fits to give more
+meaningful results at the bright end. 
+<br><p>
+<a name="photo_stokes"></a>
+<a href="#top"><img src="../shared_images/backtotop.gif" border=0></a><br><p>
+
+<u><b>Ellipticities</b></u><br>
+The model fits yield an estimate of the axis ratio and position angle
+of each object, but it is useful to have model-independent measures of
+ellipticity. In the data released here, <b> frames</b> provides two further
+measures of ellipticity, one based on second moments, the other based
+on the ellipticity of a particular isophote.  The model fits do
+correctly account for the effect of the seeing, while the methods
+presented here do not. 
+<br><p>
+The first method measures flux-weighted second moments,
+defined as:<br>
+<em>
+M<sub>xx</sub> = &lt;x<sup>2</sup>/r<sup>2</sup>&gt;<br>
+M<sub>yy</sub> = &lt;y<sup>2</sup>/r<sup>2</sup>&gt;<br>
+M<sub>xy</sub> = &lt;xy/r<sup>2</sup>&gt;<br>
+</em><br>
+
+In the case that the object's isophotes are self-similar ellipses, one
+can show:<br> <em> Q = M<sub>xx</sub> - M<sub>yy</sub> =
+[(a-b)/(a+b)]cos2&phi;<br> U = M<sub>xy</sub> =
+[(a-b)/(a+b)]sin2&phi;<br> </em><br> where <em>a</em> and <em>b</em>
+are the semi-major and semi-minor axes, and &phi; is the position
+angle. <em>Q</em> and <em>U</em> are <b> Q</b> and <b> U</b> in <b> PhotoObj</b> and are referred to as ``Stokes
+parameters.'' They can be used to reconstruct the axis ratio and
+position angle, measured relative to row and column of the CCDs.  This
+is equivalent to the normal definition of position angle (East of
+North), for the scans on the Equator.  The performance of the Stokes
+parameters are not ideal at low S/N.  As of DR1, <b> frames</b> provides measurements of
+adaptive moments which are better shape estimators than the Stokes
+parameters. Read the <a href="./adaptive.html">detailed description of
+adaptive moments</a>.
+
+<br><p>
+<a name="photo_iso"></a>
+<a href="#top"><img src="../shared_images/backtotop.gif" border=0></a><br><p>
+
+<u><b>Isophotal Quantities</b></u><br> A second measure of ellipticity
+is given by measuring the ellipticity of the 25 magnitudes per square
+arcsecond isophote (in all bands).  In detail, <b> frames</b> measures the radius of a
+particular isophote as a function of angle and Fourier expands this
+function.  It then extracts from the coefficients the centroid
+(<b>isoRowC,isoColC</b>), major and minor axis (<b>isoA,isoB</b>), position
+angle (<b>isoPhi</b>), and average radius of the isophote in
+question (<b>Profile</b>). Placeholders exist in the database for
+the errors on each of these quantities, but they are not currently
+calculated.  It also reports the derivative of each of these
+quantities with respect to isophote level, necessary to recompute
+these quantities if the photometric calibration changes.  <br><p>
+
+<a name="photo_adapt"></a> <u><b>Adaptive Moments</b></u><br> The
+adaptive moments are new quantities which were not present in the
+Early Data release. Read the <a href="./adaptive.html">detailed
+description of adaptive moments</a>.  <br><p>
+
+<a href="#top"><img
+src="../shared_images/backtotop.gif" border=0></a><br><p>
+
+<hr>
+<!-- hhmts start -->Last modified: Tue Mar  9 11:50:48 CST 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body></html>

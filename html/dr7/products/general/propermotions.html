@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Proper Motion quality overview -  SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+<h1>Data products: General - Proper Motions</H1>
+
+<p> In DR1, proper motions were calculated by matching SDSS positions
+against USNO-A2.0 (<a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1998yCat.1252....0M">Monet
+et al. 1998</a>).  USNO-A2.0 provides positions at a single epoch; no
+proper motions are provided.  Thus, for each SDSS object, the closest
+matching object in USNO-A2.0 was assumed to be a valid match and the
+proper motion calculated from the pair of detections, with a typical
+time baseline of 50 years.  For motions greater than roughly 40
+mas/year, corresponding to separations between the SDSS and USNO-A2.0
+positions of greater than 2 arcsec, contamination by false matches
+becomes significant and rises with increasing motion/separation.</p>
+
+<p>For DR2/DR3, the SDSS positions were matched against USNO-B1.0 (<a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003AJ....125..984M">Monet
+et al. 2003</a>), which provides positions and proper motions.  Each
+SDSS object is matched to the nearest USNO-B1.0 object within 1
+arcsec, after first converting the USNO-B1.0 positions to the epoch of
+the SDSS observations.  This eliminates nearly all of the false
+matches, yielding much cleaner samples of high proper motion stars.
+The USNO-B1.0 proper motion is then given for each matching SDSS
+object.</p>
+      
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Fri Mar  5 16:46:54 CST 2004
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

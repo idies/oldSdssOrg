@@ -1,0 +1,526 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Photometric Flux Calibration - Algorithms - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Photometric Flux Calibration</h1>
+
+<ul>
+  <li><a href="#introduction">Introduction</a>
+  <li><a href="#overview">Overview of the Photometric Calibration in
+  SDSS</a></li>
+  <li><a href="#assessment">Assessment of Photometric
+  Calibration</a></li>
+  <li><a href="#counts2mag">Converting counts to magnitudes</a></li>
+  <li><a href="#sdss2ab">Converting SDSS magnitudes to AB magnitudes</a></li>
+  <li><a href="#sdss2flux">Converting SDSS magnitudes to physical
+  fluxes</a></li>
+  <li><a href="#ubercal">Improved photometric calibration
+      (&quot;&Uuml;bercal&quot;)</a></li>
+  <li><a href="#caveats">Caveats on photometric calibration</a></li>
+</ul>
+
+<p>There is a separate page describing the <a
+href="./sdssUBVRITransform.html">conversion between SDSS magnitudes
+and UBVR<sub>c</sub>I<sub>c</sub>, and ugriz colors of Vega and the
+Sun</a>.</p>
+ 
+  
+<a name="introduction"></a>
+<h2>Introduction</h2>
+
+<p>The objective of the photometric calibration process is to tie the
+SDSS imaging data to an AB magnitude system, and specifically to the
+"natural system" of the 2.5m telescope defined by the photon-weighted
+effective wavelengths of each combination of SDSS filter, CCD
+response, telescope transmission, and atmospheric transmission at a
+reference airmass of 1.3 as measured at APO (see <a
+href="../instruments/imager/index.html#filters">transmission curves for
+SDSS 2.5m telescope</a>).</p>
+
+<P>The calibration process ultimately involves combining data from three
+telescopes: the USNO 40-in on which our <a
+href="../glossary/index.html#primary_standard">primary
+standards </a> were first measured, the 
+<a href="../glossary/index.html#photo_tel">
+SDSS Photometric Telescope (or PT)</a> , and the SDSS 2.5m telescope.
+At the beginning of the survey it was expected that there would be a
+single <var>u'g'r'i'z'</var> system.  However, in the course of processing the
+SDSS data, the unpleasant discovery was made that the filters in the
+2.5m telescope have significantly different effective wavelengths from
+the filters in the PT and at the USNO.  These differences have been
+traced to the fact that the short-pass interference films on the
+2.5-meter camera live in the same vacuum as the detectors, and the
+resulting dehydration of the films decreases their effective
+refractive index.  This results in blueward shifts of the red edges of
+the filters by about 2.5 percent of the cutoff
+wavelength, and consequent shifts of the <I>effective</I>
+wavelengths of order half that. The USNO filters are in ambient air,
+and the hydration of the films exhibits small temperature shifts; the
+PT filters are kept in stable very dry air and are in a condition
+about halfway between ambient and the very stable vacuum state. The
+rather subtle differences between these systems are describable by
+simple linear transformations with small color terms for stars of
+not-too-extreme color, but of course cannot be so transformed for very
+cool objects or objects with complex spectra. Since standardization is
+done with stars, this is not a fundamental problem, once the
+transformations are well understood.</p>
+
+<P>It is these subtle issues that gave rise to our somewhat awkward
+nomenclature for the different magnitude systems:</p>
+
+<ul>
+<li> magnitudes in the the USNO 40-in system are <i>primed</i> (<var>u'g'r'i'z'</var>)</li>
+<li> magnitudes in the SDSS 2.5m system are <i>unprimed</i> (<var>ugriz</var>)</li>
+<li> magnitudes in the PT system only exist internally within the 
+     <a href="#mtpipe">Monitor Telescope Pipeline (mtpipe)</a> 
+     and have no official designation.</li>
+</ul> 
+
+<P>Previous reductions of the data, including that used in the EDR,
+were based on inconsistent photometric equations; this is why we
+referred to the 2.5m photometry with asterisks: <var>u*g*r*i*z*</var>.  With the
+DR1, the photometric equations are properly self-consistent, and we
+can now remove the stars, and refer to <var>u g r i z</var> photometry with the
+2.5m.</p>
+
+
+
+<a name="overview"></a>
+<h2>Overview of the Photometric Calibration in SDSS</h2>
+
+<p>The photometric calibration of the SDSS imaging data is a multi-step
+process, due to the fact that the images from the 2.5m telescope
+saturate at approximately <var>r</var> = 14, fainter than typical
+spectrophotometric standards, combined with the fact that observing
+efficiency would be greatly impacted if the 2.5m needed to interrupt
+its routine scanning in order to observe separate calibration fields.</p>
+
+<P>The first step involved setting up a <a
+href="./standardstars/index.html">primary standard
+star network</a> of 158 stars distributed around the Northern sky.
+These stars were selected from a variety of sources and span a range
+in color, airmass, and right ascension.  They were observed repeatedly
+over a period of two years using the US Naval Observatory 40-in
+telescope located in Flagstaff, Arizona.  These observations are tied
+to an absolute flux system by the single F0 subdwarf star BD+17_4708,
+whose absolute fluxes in SDSS filters are taken from <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1996AJ....111.1748F">
+Fukugita et al. 1996</a> As noted above, the photometric system
+defined by these stars is called the <var>u'g'r'i'z'</var> system. You
+can look at the <a href="./standardstars/tab08.dat.txt">table containing
+the calibrated magnitudes for these standard stars</a>.</p>
+
+<P>Most of these primary standards have brightnesses in the range <var>r</var> = 8 -
+13, and would saturate the 2.5-meter telescope's imaging camera in
+normal operations.  Therefore, a set of 1520 41.5x41.5
+arcmin<sup>2</sup> transfer fields, called <EM>secondary patches</EM>,
+have been positioned throughout the survey area.  These secondary
+patches are observed with the PT; their size is set by the field of
+view of the PT camera.  These secondary patches are grouped into sets
+of four.  Each set spans the full set of 12 scan lines of a survey
+stripe along the width of the stripe, and the sets are spaced along
+the length of a stripe at roughly 15 degree intervals.  The patches
+are observed by the PT in parallel with observations of the primary
+standards and processed using the Monitor Telescope Pipeline (mtpipe).
+The patches are first calibrated to the USNO 40-in
+<var>u'g'r'i'z'</var> system and then transformed to the 2.5m
+<var>ugriz</var> system; both initial calibration to the
+<var>u'g'r'i'z'</var> system and the transformation to the ugriz
+system occur within mtpipe.  The <var>ugriz</var>-calibrated patches
+are then used to calibrate the 2.5-meter's imaging data via the Final
+Calibrations Pipeline (nfcalib).</p>
+
+<H3><a name=mtpipe>Monitor Telescope Pipeline</a></H3>
+
+<p>The PT has two main functions: it measures the atmospheric extinction
+on each clear night based on observations of primary standards at a
+variety of airmasses, and it calibrates secondary patches in order to
+determine the photometric zeropoint of the 2.5m imaging scans.  The
+extinction must be measured on each night the 2.5m is scanning, but
+the corresponding secondary patches can be observed on any photometric
+night, and need not be coincident with the image scans that they will
+calibrate.</p>
+
+<P>The Monitor Telescope Pipeline (mtpipe), so called for historical
+reasons, processes the PT data.  It performs three basic functions:</p>
+
+<OL>
+<LI>it bias subtracts and flatfields the images, and performs 
+	aperture photometry;</li>
+<LI>it identifies primary standards in the primary standard
+	star fields and computes a transformation from the
+	aperture photometry to the primary standard star <var>u'g'r'i'z'</var> system;</li>
+<LI>it applies the photometric solution to the stars in the 
+	secondary patch fields, yielding <var>u'g'r'i'z'</var>-calibrated
+	patch star magnitudes, and then transforms these <var>u'g'r'i'z'</var> 
+        magnitudes into the SDSS 2.5m <var>ugriz</var> system.</li>
+</OL>
+
+<P>There is a <a
+href="./jeg_photometric_eq_dr1.html">document
+describing photometric equations used in items 2 and 3 in detail </a>.</p>
+
+
+
+
+<H3>The Final Calibration Pipeline</H3>
+
+
+<p>The final calibration pipeline (nfcalib) works much like mtpipe,
+computing the transformation between psf photometry (or other
+photometry) as observed by the 2.5m telescope and the final SDSS
+photometric system.  The pipeline matches stars between a camera
+column of 2.5m data and an overlapping secondary patch.  Each camera
+column of 2.5m data is calibrated individually.  There are of order
+100 stars in each patch in the appropriate color and magnitude range
+in the overlap.</p>
+
+<P>The transformation equations are a simplified form of those used by mtpipe.
+Since mtpipe <i> delivers</i> patch stars already calibrated to the
+2.5m <var>ugriz</var> system, the nfcalib transformation equations have the following
+form:<br />
+<var>
+m<sub>filter_inst</sub>(2.5m) = m<sub>filter</sub>(patch) + a<sub>filter</sub> + k<sub>filter</sub>X,
+</var><br />
+where, for a given filter, <var>m<sub>filter_inst</sub>(2.5m)</var> is the
+instrumental magnitude of the star in the 2.5m data [-2.5 log10(counts/exptime)],
+<var>m<sub>filter</sub>(patch)</var> is the magnitude of the same star in
+the PT secondary patch, <var>a<sub>filter</sub></var> is the photometric
+zeropoint, <var>k<sub>filter</sub></var> is the first-order extinction
+coefficient, and <var>X</var> is the airmass of the 2.5m observation.  The
+extinction coefficient is taken from PT observations on the same
+night, linearly interpolated in time when multiple extinction
+determinations are available.  (Generally, however, mtpipe calculates
+only a single <var>k<sub>filter</sub></var> per filter per night, so
+linear interpolation is usually unnecessary.)  A single zeropoint
+<var>a<sub>filter</sub></var> is computed for each filter from stars
+on all patches that overlap a given CCD in a given run.  Observations
+are weighted by their estimated errors, and sigma-clipping is used to
+reject outliers.  At one time it was thought that a time dependent
+zero point might be needed to account for the fact that the 2.5m
+camera and corrector lenses rotate relative to the telescope mirrors
+and optical structure; however, it now appears that any variations in
+throughput are small compared to inherent fluctuations in the
+calibration of the patches themselves.  The statistical error in the
+zeropoint is usually constrained to be less than 1.35 percent
+in u and z and 0.9 percent in gri.</p>
+
+
+
+<a name="assessment"></a>
+<H2>Assessment of Photometric Calibration</H2>
+
+<p>With Data Release 1 (DR1), we now routinely meet our requirements of
+photometric uniformity of 2% in r, g-r, and r-i and of 3% in u-g and
+i-z (rms).</p>
+
+<P>This is a substantial improvement over the photometric uniformity
+achieved in the Early Data Release (EDR), where the corresponding
+values were approximately 5% in r, g-r, and r-i and 5% in u-g and i-z.</p>
+
+<P>The improvements between the photometric calibration of the EDR and
+the DR1 can be traced primarily to the use of more robust and
+consistent <a href="./jeg_photometric_eq_dr1.html"> photometric
+equations</a> by mtpipe and nfcalib and to improvements to the <a
+href=./dr1changes.html>PSF-fitting algorithm</a> and <a
+href=./flatfield.html>flatfield methodology</a> in the <a
+href="../glossary/index.html#photo">Photometric Pipeline (photo)</a>.</p>
+
+
+<P><strong>Note</strong> that this photometric uniformity is measured based upon 
+relatively bright stars which are no redder than M0; hence, these
+measures do not include effects of the 
+u band red leak <a href="#caveats">(see caveats below)</a> or the 
+<a href="./photometry.html#mag_model">model magnitude bug</a>.</p>
+
+<a name="counts2mag"></a>
+<H2>How to go from Counts in the fpC file to Calibrated
+<var>ugriz</var> magnitudes?</H2>
+
+<p>First, note that all SDSS images (&quot;corrected frames&quot;,
+<code>fpC*.fit</code> files) have a "soft bias" of 1000 data numbers
+(DN) added so they can be stored as unsigned integer. Secondly, since DR1,
+the sky has not been subtracted from the corrected frames, but is
+stored in the header keyword <code>sky</code> in units of DN. The
+<code>tsObj*.fit</code> and related tables and the CAS database store
+sky values as surface brightness (maggies/sq. arcsec., where one
+maggie corresponds to 0 magnitudes/sq. arcsec).</p>
+
+<h3>Asinh and Pogson magnitudes</h3>
+
+<p>All calibrated magnitudes in the <a
+href="../products/catalogs/index.html">photometric catalogs</a> are
+given not as conventional <a
+href="../glossary/index.html#mag_pogson">Pogson</a> astronomical
+magnitudes, but as <a href="./photometry.html#asinh">asinh
+magnitudes</a>. We show how to obtain both kinds of magnitudes from
+observed count rates from the SDSS images and vice versa.</p>
+
+<p>See further down for <a
+href="#sdss2flux">conversion of SDSS magnitudes to physical fluxes</a>.
+For both kinds of magnitudes, there are two ways to obtain the
+zeropoint information for the conversion.</p>
+
+<ol>
+  <li><H4>A little slower, but gives the final calibration and works
+      for all data releases</H4>
+      
+      <p>Here you first need the following information from the tsField
+      files:</p>
+<pre>
+               aa = zeropoint
+               kk = extinction coefficient
+        and    airmass
+</pre>
+      
+      <p>To get a calibrated magnitude, you first need to determine the
+      extinction-corrected ratio of the observed count rate to the
+      zero-point count rate:</p>
+      <ul>
+	<li>Convert the observed
+	    number of counts to a count rate using the exposure time <code>exptime
+	    = 53.907456 sec</code>,</li>
+	<li>correct counts for atmospheric extinction using the
+	    extinction coefficient <code>kk</code> and the
+	    <code>airmass</code>, and </li>
+	<li>divide by the zero-point count rate, which is given by
+	    <code>f<sub>0</sub> = 10<sup>-0.4*aa</sup></code> counts/second
+	    <strong>both for asinh and conventional
+	    magnitudes</strong>.</li>
+      </ul>
+      <dl>
+	<dt>In a single step,</dt>
+	<dd><code>f/f<sub>0</sub> = counts/exptime * 10<sup>0.4*(aa + kk *
+	    airmass)</sup></code>
+	    	</dd>
+      </dl>
+
+      <p>Then, calculate either the conventional ("Pogson") or the SDSS
+      asinh magnitude from <code>f/f<sub>0</sub></code>:</p>
+      <dl>
+	<dt><strong>Pogson</strong></dt>
+	<dd><code>mag = -2.5 * log10(f/f<sub>0</sub>)</code><br />
+	    <code>error(mag) = 2.5 / ln(10) * error(counts) /
+	    counts</code><br />
+	    To get the error on the counts, see the <a href="#counterr">note on computing count
+	    errors</a> below.</dd>
+	<dt><strong>asinh</strong></dt>
+	<dd><code>mag =
+	    -(2.5/ln(10))*[asinh((f/f<sub>0</sub>)/2b)+ln(b)]</code><br />
+	    <code>error(mag) = 2.5 / ln(10) * error(counts)/exptime *
+	    1/2b * <br />
+	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<sup>0.4*(aa + kk *
+	    airmass)</sup> / sqrt(1 + [(f/f<sub>0</sub>)/2b]<sup>2</sup>)</code>,<br />
+	    where <code>b</code> is the <em>softening parameter</em> 
+	    for the photometric band in question and is given in the
+	    <a href="#asinh_table">table of b
+	    coefficients</a> below (for details on the asinh
+	    magnitudes, see the paper by <a
+	    href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1999AJ....118.1406L">Lupton,
+	    Gunn, and Szalay 1999 [AJ 118, 1406]</a>).</dd>
+      </dl>
+
+
+
+      <A NAME="asinh_table"></A>
+      <P>
+      <TABLE border="1" rules="all" cellpadding="8">
+	<caption>asinh Softening Parameters (<var>b</var> coefficients)</caption>
+	<TBODY>
+	<TR><TD align="center" valign="bottom">Band</TD><TD align="center" valign="bottom"><I>b</I></TD><TD align="center" valign="bottom">Zero-Flux Magnitude [<I>m</I>(<I>f</I>/<I>f</I><SUB>0</SUB> = 0)]</TD><TD align="center" valign="bottom"><I>m</I>(<I>f</I>/<I>f</I><SUB>0</SUB> = 10<I>b</I>)</TD></TR>
+	<TR><TD align="left" valign="top"><I>u</I> </TD><TD align="center" valign="top">1.4 &#215; 10<SUP>-10</SUP></TD><TD align="center" valign="top">24.63</TD><TD align="center" valign="top">22.12</TD></TR>
+	<TR><TD align="left" valign="top"><I>g</I> </TD><TD align="center" valign="top">0.9 &#215; 10<SUP>-10</SUP></TD><TD align="center" valign="top">25.11</TD><TD align="center" valign="top">22.60</TD></TR>
+	<TR><TD align="left" valign="top"><I>r</I> </TD><TD align="center" valign="top">1.2 &#215; 10<SUP>-10</SUP></TD><TD align="center" valign="top">24.80</TD><TD align="center" valign="top">22.29</TD></TR>
+	<TR><TD align="left" valign="top"><I>i</I> </TD><TD align="center" valign="top">1.8 &#215; 10<SUP>-10</SUP></TD><TD align="center" valign="top">24.36</TD><TD align="center" valign="top">21.85</TD></TR>
+	<TR><TD align="left" valign="top"><I>z</I> </TD><TD align="center" valign="top">7.4 &#215; 10<SUP>-10</SUP></TD><TD align="center" valign="top">22.83</TD><TD align="center" valign="top">20.32</TD></TR>
+	</TBODY></TABLE>
+
+	<P><strong>Note</strong>: These values of the softening
+	parameter <I>b</I> are set to be approximately 1-sigma of the sky
+	noise; thus, only low signal-to-noise ratio measurements are affected
+	by the difference between asinh and Pogson magnitudes. The final
+	column gives the asinh magnitude associated with an object for which
+	<I>f</I>/<I>f</I><SUB>0</SUB> = 10<I>b</I>; the difference between
+	Pogson and asinh magnitudes is less than 1% for objects brighter than
+	this.</p>
+
+
+	<p>The calibrated asinh magnitudes are given in the <code>tsObj</code>
+	files. To obtain counts from an asinh magnitude, you first need to
+	work out <code>f/f<sub>0</sub></code> by inverting the asinh
+	relation above. You can then determine the number of counts from
+	<code>f/f<sub>0</sub></code> using the zero-point, extinction
+	coefficient, airmass, and exposure time.</p>
+
+      <p>The equations above are exact for DR1 and later
+	releases. Strictly speaking, for EDR photometry, the corrected counts
+	should include a color term <code>cc*(color-color0)*(X-X0)</code> (cf.
+      equation 15 in section 4.5 in the EDR paper), but it turns out
+      that generally, cc*(color-color0)*(X-X0) < 0.01 mag and the
+      color term can be neglected. Hence the calibration looks
+      identical for EDR and DR1.</p>
+  </li>
+  <li><H4>Faster magnitudes via "flux20"</H4>
+      
+      <p>The "flux20" keyword in the header of the corrected frames
+      (fpC files) approximately gives the net number of
+      counts for a 20th mag object.  So instead of using the zeropoint
+      and airmass correction term from the <code>tsField</code> file,
+      you can determine the corrected zero-point flux as</p>
+      <dl>
+	<dd><code>f/f<sub>0</sub> = counts/(10<sup>8</sup> * flux20)</code></dd>
+      </dl>
+      <p>Then proceed with the calculation of a magnitude from
+      <code>f/f<sub>0</sub></code> as above.</p>
+
+      <p>The relation is only approximate because the final calibration
+      information (provided by nfcalib) is not available at the
+      time the corrected frames are generated.  We expect the error
+      here (compared to the final calibrated magnitude) to be of order
+      0.1 mag or so, as estimated from a couple of test cases we have
+      tried out.</p>
+
+
+      Note the counts measured by photo for each object are given
+      in the fpObjc files, as e.g., "psfcounts", "petrocounts", etc.
+
+  </li>
+</ol>
+
+<p>On a related note, <strong>in DR1</strong> one can also use relations
+similar to the above to estimate the sky level in magnitudes per
+sq. arcsec (1 pixel = 0.396 arcsec).  Either use the header keyword
+"sky" in the fpC files, or remember to first subtract "softbias" (=
+1000) from the raw background counts in the fpC files.  Note the sky
+level is also given in the tsField files. <strong>This note only
+applies to the DR1 and later data releases. Note also that the calibrated
+sky brightnesses reported in the <code>tsField</code> values have been
+corrected for atmospheric extinction</strong>.</p>
+
+<a name="counterr"></a>
+<h4>Computing errors on counts (converting counts to photo-electrons)</h4>
+
+<p>The <code>fpC</code> (corrected frames) and <code>fpObjc</code>
+(object tables with counts for each object instead of magnitudes)
+files report counts (or &quot;data numbers&quot;, DN). However, it is
+the number of photo-electrons which is really counted by the CCD
+detectors and which therefore obeys Poisson statistics. The number of
+photo-electrons is related to the number of counts through the gain
+(which is really an inverse gain):</p>
+<pre>
+              photo-electrons = counts * gain
+</pre>
+<p>The gain is reported in the headers of the <code>tsField</code> and
+<code>fpAtlas</code> files (and hence also in the <code>field</code>
+table in the CAS).  The total noise contributed by dark current and
+read noise (in units of DN<sup>2</sup>) is also reported in the
+<code>tsField</code> files in header keyword
+<code>dark_variance</code> (and correspondingly as
+<code>darkVariance</code> in the <code>field</code> table in the CAS),
+and also as <code>dark_var</code> in the <code>fpAtlas</code>
+header.</p>
+
+<p>Thus, the error in DN is given by the following expression:</p>
+<pre>
+              error(counts) = sqrt([counts+sky]/gain + Npix*(dark_variance+skyErr)),
+</pre>
+<p>where <code>counts</code> is the number of object counts,
+<code>sky</code> is the number of sky counts <em>summed over the same
+area as the object counts</em>, <code>Npix</code> is the area covered
+by the object in pixels, <code>gain</code> and
+<code>dark_variance</code> and <code>skyErr</code> are the gain, dark
+variance, and the error on the estimate of the average sky level in
+the frame, respectively, from the corresponding <code>tsField</code>
+file.</p>
+
+
+
+<a name="sdss2ab"></a>
+<h2>Conversion from SDSS <var>ugriz</var> magnitudes to AB
+<var>ugriz</var> magnitudes</H2>
+
+<!--#include virtual="./sdssab.html"-->
+
+<p> We intend to give a fuller report on the SDSS zeropoints, with
+uncertainties, in the near future. Note that our <i>relative</i>
+photometry is quite a bit better than these numbers would imply;
+repeat observations show that our calibrations are better than 2%.</p>
+
+
+<a name="sdss2flux"></a><h2>Conversion from SDSS <var>ugriz</var>
+magnitudes to physical fluxes</h2>
+
+<p>As explained in the preceding section, the SDSS system is nearly an
+AB system. Assuming you know the <a href="#sdss2ab">correction from
+SDSS zeropoints to AB zeropoints (see above)</a>, you can turn the AB
+magnitudes into a flux density using the AB zeropoint flux
+density. The AB system is defined such that every filter has a
+zero-point flux density of 3631 Jy (1 Jy = 1 Jansky = 10<sup>-26</sup>
+W Hz<sup>-1</sup> m<sup>-2</sup> = 10<sup>-23</sup> erg s<sup>-1</sup>
+Hz<sup>-1</sup> cm<sup>-2</sup>).</p>
+
+<dl>
+  <dt>To obtain a flux density from SDSS data, you need to work out
+      <code>f/f<sub>0</sub></code> (e.g. from the asinh magnitudes in
+      the <code>tsObj</code> files by using the inverse of the
+      relations given <a href="#counts2mag">above</a>). This number is
+      then the also the object's flux density, expressed as fraction of the
+      AB zeropoint flux density. Therefore, the conversion to flux
+      density is</dt>
+  <dd><code>S = 3631 Jy *  f/f<sub>0</sub></code>.</dd>
+</dl>
+
+<p>Then you need to apply the correction for the zeropoint offset
+between the SDSS system and the AB system. See the <a
+href="#sdss2ab">description of SDSS to AB conversion</a>
+above.</p>
+
+
+<a name="sdss2UBVRI"></a>
+<h2> Transformation Equations Between SDSS magnitudes and UBVR<sub>c</sub>I<sub>c</sub></h2>
+
+<p>There is a separate page describing the <a
+href="./sdssUBVRITransform.html">conversion between SDSS magnitudes
+and UBVR<sub>c</sub>I<sub>c</sub>, and ugriz colors of Vega and the
+Sun</a>.</p>
+
+<a name="ubercal"></a>
+<h2>Improved photometric calibration (&quot;&Uuml;bercal&quot;)</h2>
+
+<p>Ubercal is an algorithm to photometrically calibrate wide field
+optical imaging surveys, that simultaneously solves for the
+calibration parameters and relative stellar fluxes using overlapping
+observations. The algorithm decouples the problem of <em>relative</em>
+calibrations from that of <em>absolute</em> calibrations; the
+absolute calibration is reduced to determining a few numbers for the
+entire survey. We pay special attention to the spatial structure of
+the calibration errors, allowing one to isolate particular error modes
+in downstream analyses. Applying this to the Sloan Digital Sky Survey
+imaging data, we achieve ~1% relative calibration errors across 8500
+sq.deg. in griz; the errors are ~2% for the u band. These errors are
+dominated by unmodelled atmospheric variations at Apache Point
+Observatory. For a detailed description of ubercal, please see <a
+href="http://adsabs.harvard.edu/abs/2007astro.ph..3454P">the Ubercal
+paper (Padmanabhan et al. 2007, ApJ submitted [astro-ph/0703454])</a>.</p>
+
+<p>This improved calibration is available only through the <a
+href="http://cas.sdss.org/collabdr7/en/help/browser/description.asp?n=UberCal&t=U">ubercal
+table in the CAS</a></p>
+
+<H2><a name=caveats>Caveats</a></H2> 
+
+<!--#include virtual="../products/images/u_redleak.html"-->
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Jun 25 22:01:30 CEST 2007
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

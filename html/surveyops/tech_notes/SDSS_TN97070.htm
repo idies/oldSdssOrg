@@ -1,0 +1,315 @@
+<HTML>
+<HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+   <TITLE>Sloan Digital Sky Survey Glentek Amplifier Packaging</TITLE>
+<X-CLARIS-WINDOW TOP=114 BOTTOM=624 LEFT=16 RIGHT=546>
+<X-CLARIS-TAGVIEW MODE=minimal>
+</head>
+<body>
+
+<h1>SDSS Glentek Amplifier Packaging</h1>
+<i>Sloan Digital Sky Survey Telescope Technical Note 19971113</i><br>&nbsp;
+
+<address>
+<a href="mailto:prieto@fnal.gov">Peter Prieto</a></address>
+<HR>
+
+<P>INTRODUCTION
+
+<P>&nbsp;This note discusses the problems and solutions found during the
+installation of the Glentek amplifiers used in driving the motors controlling
+altitude, azimuth and the instrument rotator for the 2.5 meter telescope.
+
+<P>&nbsp;The amplifier is an H-Bridge push-pull complementary pair, single
+voltage supply linear amplifier. It can source +/- 5 amps continuous and
++/-18 amps peak with a 60 VDC source. The amplifier is made up of two sections:
+the input reference signal and tachometer signal conditioning section;
+and the power section.
+
+<P>&nbsp;Per the specifications received for packaging the amplifiers,
+the signal conditioning section was bypassed and an external section with
+signal driving capabilities was substituted. The output of the new signal
+conditioning circuitry provides the input reference signal to the power
+stage in the Glentek amplifier with a 1V = 10 A scale.
+<BR>&nbsp;
+
+<P>POWER SECTION
+
+<P>Operation of the H-Bridge consists of a complementary transistor pair
+turning on in a linear manner while a second pair is simultaneously turning
+off. The voltage balance at both outputs is 30 VDC when Vref is at zero
+volts, producing a net voltage drop across the motor of zero volts. As
+Vref increases, the base drive for one NPN-PNP pair increases while the
+base drive for second set of NPN-PNP transistors decreases. The voltage
+at one motor lead increases from 30 VDC towards 60 VDC while the voltage
+at the second motor lead decreases from 30 VDC towards 0 VDC.
+
+<P>The amplifier operates in a current mode through current sensing resistors
+and a feedback loop. The external voltage reference is compared with the
+current feedback, and this difference is amplified and used for driving
+the complementary transistor pair.
+<CENTER><IMG SRC="TN97007_19.gif" HEIGHT=294 WIDTH=438></CENTER>
+
+<CENTER>Figure 1. Schematic of the Glentek amplifier power section.</CENTER>
+&nbsp;
+
+<P>CONSTANT CURRENT MODE AMPLIFIER
+
+<P>Design system performance can be achieved by controlling system stability,
+speed of response, and position accuracy. The constant current amplifier
+impacts the speed of response by affecting the delay between the reference
+voltage and desired motor speed.
+
+<P>A DC motor voltage is represented by the motor electrical parameters,
+along with its constant and back EMF:
+
+<P><IMG SRC="TN97007_37.gif" HEIGHT=44 WIDTH=172>
+
+<P>where&nbsp;<IMG SRC="TN97007_38.gif" HEIGHT=41 WIDTH=49>and&nbsp;<IMG SRC="TN97007_39.gif" HEIGHT=25 WIDTH=25>is
+the back EMF constant
+
+<P>The generated motor torque is
+
+<P><IMG SRC="TN97007_40.gif" HEIGHT=25 WIDTH=92>,
+
+<P>where Kt is the motor torque sensitivity constant and the motor moment
+of inertia is related to the applied torque by
+
+<P><IMG SRC="TN97007_41.gif" HEIGHT=41 WIDTH=81>
+
+<P>The current of the amplifier is related to the reference voltage as
+
+<P><IMG SRC="TN97007_42.gif" HEIGHT=25 WIDTH=80>,
+
+<P>where Ka is the amplifier constant.
+
+<P>As the impedance changes, the amplifier maintains a constant current,
+thereby eliminating the first equation and reducing the relationship between
+the current and omega to:
+
+<P><IMG SRC="TN97007_43.gif" HEIGHT=49 WIDTH=76>,
+
+<P>where S is the Laplacian operator
+
+<P><IMG SRC="TN97007_44.gif" HEIGHT=49 WIDTH=156>
+
+<P>The integrating term S introduces a delay betweeen the reference voltage
+and the velocity by producing a constant -90 degree phase shift. The errors
+in position in the current regulated amplifier develop proportional to
+acceleration, and are reduced when the velocity is constant.
+
+<P>&nbsp;
+<BR>AMPLIFIER OSCILLATIONS AND THEIR SOURCES
+
+<P>The Glentek amplifier was characterized in the lab using a 2-ohm, 15
+mH load connected to the output of the amplifier by 75 feet of 16 gauge
+wire. Across the load, MOV’s were used to protect the output of the amplifiers
+due to the inductive kickback when the load-disconnect relays were opened.
+A sawtooth reference signal was used to drive the power stage in order
+to test negative-to-positive amplifier transitions.
+
+<P>Oscillations were measured on each of the amplifiers’ outputs with respect
+to ground. These oscillations lead to amplifier failures over time due
+to increased power dissipation in the transistors. Measured oscillations
+fell into the following frequency ranges.
+<DIR>
+<DIR>
+<DIR>
+<DIR>High frequency&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+250 KHz to 1 Mhz
+
+<P>Medium Frequency&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5 KHz to 70 KHz
+
+<P>Low Frequency&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+15 Hz to 360 Hz
+<BR>&nbsp;</DIR>
+</DIR>
+</DIR>
+</DIR>
+The following traces show the output current and output voltage of amplifier
+driving the test load. The voltage signal has both high frequency and low
+frequency type oscillations.
+<CENTER><IMG SRC="TN97007_28.gif" HEIGHT=182 WIDTH=357></CENTER>
+
+<CENTER>Figure 2. Amplifier output oscillations.</CENTER>
+&nbsp;
+
+<P>The high frequencies measured are emitter-follower oscillations, and
+are the result of cable and load capacitance.
+<CENTER><IMG SRC="TN97007_29.gif" HEIGHT=180 WIDTH=340></CENTER>
+
+<CENTER>Figure 3. High frequency amplifier oscillations.</CENTER>
+&nbsp;
+
+<P>Oscillations were seen when the drive frequency was increased, as shown
+in Figure 3. At frequencies below 10 Hz, the transition from negative to
+positive region, the amplifier was stable. At frequencies above 10 Hz,
+the amplifier current loop could not keep up during the transition from
+the negative to positive region. This resulted in the voltage overdriving
+while trying to make up the current demand, thereby producing overshoots
+with high frequency oscillations. These measurements were done with a shunt
+RC snubber network connected at each of the amplifiers’ output.
+<CENTER><IMG SRC="TN97007_30.gif" HEIGHT=151 WIDTH=225><IMG SRC="TN97007_31.gif" HEIGHT=142 WIDTH=260></CENTER>
+
+<CENTER>Figure 4. Image of output voltage and output current driving the
+2-ohm, 15 mH load.</CENTER>
+
+<CENTER>The output voltage is oscillating at 243 kHz (shown on the right
+hand side).</CENTER>
+
+
+<P>&nbsp;
+<CENTER><IMG SRC="TN97007_32.gif" HEIGHT=143 WIDTH=252></CENTER>
+
+<CENTER>Figure 5. Image showing medium frequency oscillations on the</CENTER>
+
+<CENTER>output voltage of one of the amplifiers’ output terminals.</CENTER>
+&nbsp;
+
+<P>The first solution attempted to eliminate the oscillations was to connect
+a series inductance (500 uH) at the output of the amplifier. This attempted
+to isolate the cable and load impedance from the output stages and the
+current feedback loop. High frequency oscillations were eliminated in most
+amplifiers but not all of the amplifiers. An RC snubber network was added
+which eliminated the remaining high frequency emitter-follower oscillations.
+However, in some amplifiers this network caused the current loop to become
+unstable due to the addition of a circuit that provided a second reference
+to ground within the current loop. These medium frequency oscillations
+were dampened by increasing the capacitance value of the RC snubber to
+2.5 ohm, 8 uF. This larger capacitance further reduced the amplifier gain
+at medium and high frequencies making it stable. The low frequencies were
+a result of line frequency type oscillations and were handled with line
+filtering. Figure 6 shows the addition of the inductors and RC snubber
+network on the output of the amplifier power stage.
+<CENTER><IMG SRC="TN97007_45Rev.gif" HEIGHT=192 WIDTH=546></CENTER>
+
+<CENTER>Figure 6. Inductors and RC snubber network on the amplifier output.</CENTER>
+
+
+<P>&nbsp;
+<CENTER><IMG SRC="TN97007_34.gif" HEIGHT=175 WIDTH=322></CENTER>
+
+<CENTER>Figure 7. Output voltage and current measured at one of the amplifiers’
+terminals</CENTER>
+
+<CENTER>using the RC snubber network and series inductors.</CENTER>
+&nbsp;
+
+<P>AMPLIFIER INSTALLATION AND COMMISSIONING AT APO
+
+<P>Rotator Motor Drive
+
+<P>The seven packaged amplifiers were tested on the instrument rotator
+by driving the rotator clockwise and counterclockwise with a sawtooth signal.
+Initially, the RC snubber was not used, leaving the 500 uH series inductor
+between the amplifier output and the rotator motor leads. The rotator motor
+is a Model RHS 20-3007, rated at 1.9 amps, 4.8 amps peak, with a harmonic
+gear reduction drive connected to the shaft.
+
+<P>At the amplifier output, 120 Hz ripple was measured with 100 mV p-p
+amplitude; the high and medium frequencies were absent. While driving the
+amplifier with a sawtooth signal, oscillations of frequencies close to
+850 Hz were detected. The amplitude was greatest at the motor output, indicating
+the source is from the motor harmonic reducer.
+
+<P>When the snubber RC circuit was added to one of the amplifiers, a 25
+kHz oscillation of 200 mV p-p amplitude was measured. This oscillation
+was eliminated when the snubber RC was removed. Two packaged amplifiers
+were then dedicated to drive the rotator. The amplifier packages contain
+the 500 uH series inductor on each of the output leads of the amplifier,
+but do not contain the RC snubber network.
+
+<P>&nbsp;
+<CENTER><IMG SRC="TN97007_35.gif" HEIGHT=204 WIDTH=535></CENTER>
+
+
+<P>&nbsp;
+<CENTER>Figure 8. Data taken from rotator motor driven by amplifier number
+7. The right image shows the</CENTER>
+
+<CENTER>induced oscillation when the RC snubber was added. The left image
+shows how the oscillations</CENTER>
+
+<CENTER>were eliminated when the RC snubber was removed from the drive
+circuit.</CENTER>
+
+<DIR>
+<DIR>
+<DIR>
+<DIR>&nbsp;</DIR>
+</DIR>
+</DIR>
+</DIR>
+Altitude Motor Drive Measurements
+
+<P>The five remaining packaged amplifiers were tested by driving the two
+altitude motors simultaneously. The altitude motors are Model No. QT 7802,
+permanent magnet brushed DC drive motors, with a nominal DC resistance
+of 2.5 ohms and 6.2 mH inductance, rated at 15.6 amps peak. Each motor
+had an MOV across its leads.
+
+<P>Measurements showed that 2 MHz and 7 MHz frequency oscillations were
+present without the RC snubber networks on two of the five systems tested.
+The shunt RC snubber was added to all five systems and these oscillations
+were reduced to less than 20 mV p-p.
+
+<P>Other frequencies detected were in the 60 Hz to 360 Hz range. These
+line type frequencies had amplitudes ranging from 100 mV p-p to 200 mV
+p-p. Two amplifier packages were connected as altitude drivers. The remaining
+three amplifiers were used to test the azimuth motors.
+<BR>&nbsp;
+
+<P>Azimuth Motor Drive Measurements
+
+<P>The azimuth motors are of the same type as those used on the altitude
+axis. Testing of the remaining packaged amplifiers was carried out with
+the series inductance and the RC snubber network installed in all the remaining
+amplifiers. No high frequencies were detected at the outputs. The altitude
+and the azimuth packaged amplifiers are interchangeable, requiring both
+the series inductors and the RC snubber networks.
+<BR>&nbsp;
+
+<P>NOISE FROM THE WINDSCREEN SERVO SYSTEM
+
+<P>Also detected during the amplifier testing was noise being generated
+on the AC power line by the windscreen motor drives. There was a 25 kHz
+oscillation radiated by the windscreen motor drive through the power line,
+which will be filtered at the windscreen drive using line filters. This
+noise is shown in Figure 9.
+<CENTER><IMG SRC="TN97007_36.gif" HEIGHT=186 WIDTH=322></CENTER>
+
+<CENTER>Figure 9. Oscillations on the amplifier output due to noise on
+the AC line</CENTER>
+
+<CENTER>radiated by the windscreen servo system.</CENTER>
+
+
+<P>COMMENTS
+
+<P>Ideally all seven packaged amplifiers should be the same. The rotator
+amplifiers don’t have the RC snubber network installed. Therefore to use
+the spare rotator amplifier or the altitude/azimuth amplifiers interchangeably,
+users must be aware of the RC snubber network.
+
+<P>The amplifiers cannot be considered unconditionally stable since the
+behavior of the amplifiers when the telescope is fully configured is not
+known. More measurements are required to try and understand why the series
+inductance did not make the amplifiers stable. Also the relationship between
+the RC snubbers and the current loop should be pursued even though there
+is no access in the power section to the actual components.
+
+<P>Also, it is noted that&nbsp; the output of these amplifiers has no short
+circuit protection.
+
+<P>I recommend that new amplifiers be purchased that don’t have the problems
+seen with the Glentek amplifiers.
+<BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this note should be addressed to Peter Prieto by phone at (630) 840-2509 or by e-mail at <A HREF="mailto:prieto@fnal.gov">prieto@fnal.gov</A>.
+<BR>&nbsp;
+
+<P><I><FONT SIZE=-1>Last modified 02/23/99</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</BODY>
+</HTML>

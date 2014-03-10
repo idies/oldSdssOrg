@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="SDSS Redshift Gallery: Galaxies">
+<title>SDSS Redshift Gallery: Galaxies</title>
+</head>
+
+<sdss-page select="gallery">
+
+<h1 align="center">Redshift Gallery: Galaxies</h1>
+
+<p>The following table shows how galaxies at different redshifts appear
+to us.  The redshift (<i>z</i>) of each row of galaxies is listed in the
+leftmost column.
+</p>
+
+<p><em>(This page is image-intensive; please be patient.  Page courtesy
+of Mark Subbarao, University of Chicago)</em></p>
+
+<hr>
+
+<table border="1" width="100%" bgcolor="#000000">
+
+<tr align="center" valign="center">
+<td><b><font color="#FF0000"><font size="+2">0.02</font></font></b></td>
+<td><img src="../data/zgal/gal02a.gif"></td>
+<td><img src="../data/zgal/gal02b.gif"></td>
+<td><img src="../data/zgal/gal02c.gif"></td>
+<td><img src="../data/zgal/gal02d.gif"></td>
+</tr>
+
+<tr align="center" valign="center">
+<td><b><font color="#FF0000"><font size="+2">0.03</font></font></b></td>
+<td><img src="../data/zgal/gal03a.gif"></td>
+<td><img src="../data/zgal/gal03b.gif"></td>
+<td><img src="../data/zgal/gal03c.gif"></td>
+<td><img src="../data/zgal/gal03d.gif"></td>
+</tr>
+
+<tr align="center" valign="center">
+<td><b><font color="#FF0000"><font size="+2">0.05</font></font></b></td>
+<td><img src="../data/zgal/gal05a.gif"></td>
+<td><img src="../data/zgal/gal05b.gif"></td>
+<td><img src="../data/zgal/gal05c.gif"></td>
+<td><img src="../data/zgal/gal05d.gif"></td>
+</tr>
+
+<tr align="center" valign="center">
+<td><b><font color="#FF0000"><font
+size="+2">0.075</font></font></b></td>
+<td><img src="../data/zgal/gal075a.gif"></td>
+<td><img src="../data/zgal/gal075b.gif"></td>
+<td><img src="../data/zgal/gal075c.gif"></td>
+<td><img src="../data/zgal/gal075d.gif"></td>
+</tr>
+
+<tr align="center" valign="center">
+<td><b><font color="#FF0000"><font size="+2">0.10</font></font></b></td>
+<td><img src="../data/zgal/gal1a.gif"></td>
+<td><img src="../data/zgal/gal1b.gif"></td>
+<td><img src="../data/zgal/gal1c.gif"></td>
+<td><img src="../data/zgal/gal1d.gif"></td>
+</tr>
+
+<tr align="center" valign="center">
+<td><b><font color="#FF0000"><font size="+2">0.20</font></font></b></td>
+<td><img src="../data/zgal/gal2a.gif"></td>
+<td><img src="../data/zgal/gal2b.gif"></td>
+<td><img src="../data/zgal/gal2c.gif"></td>
+<td><img src="../data/zgal/gal2d.gif"></td>
+</tr>
+
+<tr align="center" valign="center">
+<td><b><font color="#FF0000"><font size="+2">0.30</font></font></b></td>
+<td><img src="../data/zgal/gal3a.gif"></td>
+<td><img src="../data/zgal/gal3b.gif"></td>
+<td><img src="../data/zgal/gal3c.gif"></td>
+<td><img src="../data/zgal/gal3d.gif"></td>
+</tr>
+
+<tr align="center" valign="center">
+<td><b><font color="#FF0000"><font size="+2">0.40</font></font></b></td>
+<td><img src="../data/zgal/gal4a.gif"></td>
+<td><img src="../data/zgal/gal4b.gif"></td>
+<td><img src="../data/zgal/gal4c.gif"></td>
+<td><img src="../data/zgal/gal4d.gif"></td>
+</tr>
+
+<tr align="center" valign="center">
+<td><b><font color="#FF0000"><font size="+2">0.50</font></font></b></td>
+<td><img src="../data/zgal/gal5a.gif"></td>
+<td><img src="../data/zgal/gal5b.gif"></td>
+<td><img src="../data/zgal/gal5c.gif"></td>
+<td><img src="../data/zgal/gal5d.gif"></td>
+</tr>
+</table>
+
+</sdss-page>
+
+</html>

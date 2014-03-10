@@ -1,0 +1,1490 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+  <title>SDSS Data Processing and Products</title>
+  <style type="text/css">
+table.dasfile {
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 1px;
+	border-style: outset;
+}
+table.dasfile th,  table.dasfile td {
+	border-width: 1px 1px 1px 1px;
+	padding: 1px 1px 1px 1px;
+	border-style: inset;
+}
+td.params {
+        white-space: nowrap;
+}
+
+img.right {
+    float:right;
+    margin-left:10pt;
+    margin-bottom:10pt;
+    max-width:50%;
+    height:auto
+}
+
+table caption {
+    font-size: large;
+    font-weight: bold;
+}
+  </style>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Sloan Digital Sky Survey Data Processing and Products</h1>
+
+<h2 id="resources">Introduction and Resources</h2>
+
+<p>The <a href="http://adsabs.harvard.edu/abs/2002AJ....123..485S">Early
+Data Release (EDR) paper</a> is the fundamental resource for
+understanding the processing and data products from the SDSS,
+describing the pipelines and contents of generated data
+products. Successive data release papers:
+<a href="http://adsabs.harvard.edu/abs/2003AJ....126.2081A">DR1</a>,
+<a href="http://adsabs.harvard.edu/abs/2004AJ....128..502A">DR2</a>,
+<a href="http://adsabs.harvard.edu/abs/2005AJ....129.1755A">DR3</a>,
+<a href="http://adsabs.harvard.edu/abs/2006ApJS..162...38A">DR4</a>,
+<a href="http://adsabs.harvard.edu/abs/2007ApJS..172..634A">DR5</a>,
+<a href="http://adsabs.harvard.edu/abs/2008ApJS..175..297A">DR6</a> and
+<a href="http://adsabs.harvard.edu/abs/2009ApJS..182..543A">DR7</a>,
+describe changes between data
+releases. The <a href="http://adsabs.harvard.edu/abs/2000AJ....120.1579Y">technical
+summary</a> provides more general information on the survey. The 
+<a href="http://das.sdss.org/www/html/documents/PBOOK">SDSS Project Book</a>,
+written for a funding proposal early in the survey, is the most
+exhaustive description of the survey but was last updated in 1997. The 
+<a href="http://www.sdss.org/publications/#technical">SDSS publications web
+page</a> includes a list of additional SDSS technical papers.
+</p>
+
+<p>The <a href="../algorithms/index.html">algorithms
+page</a> includes links to pages describing
+algorithms used by the data reduction pipelines, and
+the <a href="http://das.sdss.org/www/html/manual/das_quickref.html">DAS quick
+reference page</a> has a table of the most commonly useful files in
+the DAS.</p>
+
+<p>The remainder of this page starts with a brief overview of data
+processing, followed by sections that describe the steps in data
+processing in detail. In addition to the more detailed description,
+each detail section privedes references to papers that give additional
+details, and a table of the files associated with that step of the
+pipeline that can be found in the DAS. These tables include links to
+descriptions of the formats of those files and templates that can be
+used to generate DAS URLs for those files. The templates are in "C
+printf" format, and can be used in C, bash, Python, and many other
+languages to automatically generate URLs.</p>
+
+<p>Most of the catalog data (but not the images themselves) have been
+loaded into the <a href="http://cas.sdss.org">Catalog Archive
+Server</a> (CAS) database. Users are often better off obtaining SDSS
+data through a carefully constructed CAS query than they are
+downloading the data files from the DAS. Simple queries can be used to
+select just the objects and parameters of interest, while more complex
+queries can be used to do complex calculations on many objects,
+thereby avoiding the need to download the data on them at all.</p>
+
+<h2 id="overview">Overview</h2>
+<img class="right" src="dpActivityFlow.png" 
+title="SDSS Data Processing top level activity diagram" 
+alt="SDSS Data Processing top level activity diagram"/>
+<dl>
+  <dt><a href="#imobs">Imaging Observing</a></dt>
+    <dd>We used three instruments when collecting imaging data: the
+      <a href="http://adsabs.harvard.edu/abs/1998AJ....116.3040G">imaging
+      camera</a> mounted on
+      the <a href="http://adsabs.harvard.edu/abs/2006AJ....131.2332G">primary
+      2.5m SDSS telescope</a>, which collected the imaging data
+      themselves; the 0.5m photometric telescope, which collected
+      images of photometric standard stars and reference fields; and a
+      <a href="http://adsabs.harvard.edu/abs/1994SPIE.2199..852H">10
+      micron all sky scanner</a> (and later camera), used to detect
+      clouds.</dd>
+  <dt><a href="#imred">Imaging Data Reduction</a></dt>
+    <dd>The SDSS data processing factory used a collection of
+      pipelines to process and calibrate the data from the imaging
+      camera and the photometric telescope, ultimately producing a
+      variety of data products including images with instrumental
+      signatures removed, a photometric solution for the night, and a
+      catalog of objects found in the data.</dd>
+  <dt><a href="#resolve">Resolution and Calibration of Object Catalogs</a></dt>
+    <dd>The resolve step declares one observation on an object the
+    primary observation, and others secondary, thereby avoiding
+    unintentional duplication of objects. This step ultimately
+    produces an astrometrically and photometrically calibrated
+    catalog of objects found in the data from the imaging camera.</dd>
+  <dt><a href="#targ">Selection of Targets for Spectroscopy</a></dt>
+    <dd>The SDSS spectrographs collect spectra through a set of 640
+      fibers plugged into holes in aluminum plates. To prepare for
+      spectroscopy, we used software to select a set of targets from
+      catalogs (generated from the imaging data), design the plates,
+      and drill holes in the aluminum plates.</dd>
+  <dt><a href="#specobs">Spectroscopic Observing</a></dt>
+    <dd>The spectrographs mounted on the primary 2.5m telescope collected
+      spectra from each plate. There were two spectrographs, each of which
+      collected data from 320 fibers. Each spectrograph had two CCDs, so the
+      instrument produced a total of four images for each exposure.</dd>
+  <dt><a href="#specred">Spectroscopic Data Reduction</a></dt>
+    <dd>The spectroscopic pipelines extracted one dimensional spectra
+      from the raw exposures produced by the spectrographs, calibrated
+      them in wavelength and flux, measured features in these spectra,
+      measured redshifts from these features, and classified the
+      objects as galaxies, stars, or quasars.</dd>
+<!--
+  <dt>Loading the Catalog Archive Server</dt>
+    <dd>To load the catalogs into the CAS, we generated CSV files from the
+      FITS tables produced by the data reduction pipelines and imported these
+      into tables in the SQL database used by the CAS.</dd>
+-->
+  <dt><a href="#recalib">Recalibration</a></dt>
+    <dd>Improved astrometric and photometric calibrations became possible at
+      the end of the survey; we re-ran the astrometric pipeline on all
+      data using updated reference catalogs and improved centroiding,
+      and used a separate pipeline to refine the photometric
+    calibrations.</dd>
+</dl>
+
+<p>Data reduction could occur multiple times for both images and spectra.
+Each time we repeated a data reduction, we labeled the output from that
+reduction process with a distinct rerun number.</p>
+
+<p>In the case of imaging rerun numbers, different decades in the rerun
+number designate significant differences in the data reduction software. For
+example, rerun 1 and rerun 2 of a given run would have been processed by
+identical (or at least very similar) versions of the data reduction software,
+while rerun 40 would have been reduced with a significantly different version
+of the pipeline.</p>
+
+<h2 id="imobs">Imaging Observing</h2>
+<dl>
+  <dt>Imager</dt>
+    <dd>The imager collected survey data from the imager in drift scan (also
+      called TDI) mode. We use the term "run" to designate a single scan
+      along a great circle. The data acquisition system system divided the
+      data from each CCD into frames, stored as FITS files; the observatory
+      sent data to be processed as a collection of FITS files, each
+      corresponding to an arc along the great circle 1361 rows (539
+      arcseconds) long from a single CCD. In addition to the images
+      themselves, the data acquisition system also generated a variety of
+      metadata and other engineering files, which included pixel statistics
+      and a catalog of bright stars for each field.
+
+      <table class="dasfile">
+	<caption>DAS files generated in imager data collection</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idReport.html">idReport</a></td>
+            <td>out</td>
+            <td>records runs collected on a night</td>
+            <td>http://das.sdss.org/nightly/%05d/idReport-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idR.html">idR</a></td>
+            <td>out</td>
+            <td>raw imaging frames</td>
+            <td>in http://das.sdss.org/unprocessed/imaging/%d/idR-Run-%d-Fields-%04d-%04d.tar</td>
+            <td>run, run, field<sub>first</sub>, field<sub>last</sub></td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idGang.html">idGang</a></td>
+            <td>out</td>
+            <td>assorted data gathered by the data acquisition system</td>
+            <td>in http://das.sdss.org/unprocessed/imaging/%d/idGang-Run-%d-%s-%d-%d.tar</td>
+            <td>run, run, (rows/cols), start, end</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idFrameLog.html">idFrameLog</a></td>
+            <td>out</td>
+            <td>camera position information for each frame</td>
+            <td>http://das.sdss.org/nightly/%05d/idFrameLog-%06d-%d.par</td>
+            <td>mjd, run, crate</td>
+          </tr>
+          <tr><td><a href="../dm/flatFiles/opCamera.html">opCamera</a></td>
+            <td>out</td>
+            <td>imaging camera geometry</td>
+            <td>http://das.sdss.org/nightly/%05d/opCamera-%05d.par</td>
+            <td>mjd, mjd (of generation)</td>
+          </tr>
+          <tr><td><a href="../dm/flatFiles/opConfig.html">opConfig</a></td>
+            <td>out</td>
+            <td>CCD readout configurations</td>
+            <td>http://das.sdss.org/nightly/%05d/opConfig-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr><td><a href="../dm/flatFiles/opECalib.html">opECalib</a></td>
+            <td>out</td>
+            <td>CCD electronic calibrations</td>
+            <td>http://das.sdss.org/nightly/%05d/opECalib-%05d.par</td>
+            <td>mjd, mjd (of generation)</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+  <dt>Photometric Telescope</dt>
+    <dd>The photometric telescope collected images of standard stars
+      ("primary standards") at a variety of airmasses throughout the night to
+      measure the photometric solution for the night, and images that sample
+      the survey area for each imaging run ("secondary patches") that can be
+      used to calibrate the runs from the imager using photometric solutions
+      generated by the photometric telescope.
+      <table class="dasfile">
+	<caption>DAS files generated in photometric telescope data collection</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/mdReport.html">mdReport</a></td>
+            <td>out</td>
+            <td>records exposures collected on a night</td>
+            <td>http://das.sdss.org/nightly/%05d/mdReport-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </dd>
+  <dt>Infrared All-Sky Camera</dt>
+    <dd>Clouds can be clearly seen at night in a 10 micron all-sky camera. We
+      used two such cameras at different times in the survey to
+      monitor the sky for cloud (and therefore non-photometric
+      conditions).
+
+      <table class="dasfile">
+	<caption>DAS files generated by the infrared all sky camera
+	or scanner</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td>IRSC</td>
+            <td>out</td>
+            <td>A movie of the clouds for the night (original scanner)</td>
+            <td>http://das.sdss.org/nightly/%05d/irsc-%05d.mpg</td>
+            <td class="params">mjd, mjd</td>
+          </tr>
+          <tr>
+            <td>IRCam movie</td>
+            <td>out</td>
+            <td>A movie of the clouds for the night (new camera)</td>
+            <td>http://das.sdss.org/nightly/%05d/ircam-%05d.mpg</td>
+            <td class="params">mjd, mjd</td>
+          </tr>
+          <tr>
+            <td>IRCam plot</td>
+            <td>out</td>
+            <td>A plot of the sky sigma (useful for identifying clouds) with
+              time</td>
+            <td>http://das.sdss.org/nightly/%05d/ircam-%05dgraph.png</td>
+            <td class="params">mjd, mjd</td>
+          </tr>
+          <tr>
+            <td>IRCam data</td>
+            <td>out</td>
+            <td>A log of statistics on ircam frames</td>
+            <td>http://das.sdss.org/nightly/%05d/ircam-%05d.log</td>
+            <td class="params">mjd, mjd</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+  <dt>Other metadata</dt>
+    <dd>The observatory produces an assortment of engineering and other
+      metadata.
+
+      <table class="dasfile">
+	<caption>Other DAS files generated in observing</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td>night log</td>
+            <td>out</td>
+            <td>A prose account of the night</td>
+            <td>http://das.sdss.org/nightly/%05d/nightLog-%05d.txt</td>
+            <td class="params">mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idWeather.html">idWeather</a></td>
+            <td>out</td>
+            <td>A log of weather data</td>
+            <td>http://das.sdss.org/nightly/%05d/idWeather-%05d.par</td>
+            <td class="params">mjd, mjd</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+</dl>
+
+<h2 id="imred">Imaging Data Reduction</h2>
+<dl>
+  <dt>Serial Stamp Collecting Pipeline (<a href="http://das.sdss.org/software/ssc/v5_3_4/">SSC</a>)</dt>
+    <dd>The SSC repackages some of the data produced by the data acquisition
+      system and produces postage stamps of bright reference stars.
+
+      <table class="dasfile">
+	<caption>DAS files read by the SSC pipeline</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/scPlan.html">scPlan</a></td>
+            <td>in</td>
+            <td>the SSC processing plan</td>
+            <td>http://das.sdss.org/imaging/%d/%d/ssc/scPlan-%d.par</td>
+            <td class="params">run, rerun, camcol</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idReport.html">idReport</a></td>
+            <td>in</td>
+            <td>records runs collected on a night</td>
+            <td>http://das.sdss.org/nightly/%05d/idReport-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr><td><a href="../dm/flatFiles/opCamera.html">opCamera</a></td>
+            <td>in</td>
+            <td>imaging camera geometry</td>
+            <td>http://das.sdss.org/nightly/%05d/opCamera-%05d.par</td>
+            <td>mjd, mjd (of generation)</td>
+          </tr>
+          <tr><td><a href="../dm/flatFiles/opConfig.html">opConfig</a></td>
+            <td>in</td>
+            <td>CCD readout configurations</td>
+            <td>http://das.sdss.org/nightly/%05d/opConfig-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr><td><a href="../dm/flatFiles/opECalib.html">opECalib</a></td>
+            <td>in</td>
+            <td>CCD electronic calibrations</td>
+            <td>http://das.sdss.org/nightly/%05d/opECalib-%05d.par</td>
+            <td>mjd, mjd (of generation)</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/opBC.html">opBC</a></td>
+            <td>in</td>
+            <td>CCD bad pixel file</td>
+            <td>http://das.sdss.org/nightly/%d/opBC-%d.par</td>
+            <td class="params">mjd, mjd<sub>bp</sub> (see fpPlan)</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idR.html">idR</a></td>
+            <td>in</td>
+            <td>raw imaging frames</td>
+            <td>in http://das.sdss.org/unprocessed/imaging/%d/idR-Run-%d-Fields-%04d-%04d.tar</td>
+            <td>run, run, field<sub>first</sub>, field<sub>last</sub></td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idGang.html">idGang</a></td>
+            <td>in</td>
+            <td>assorted data gathered by the data acquisition system</td>
+            <td>in http://das.sdss.org/unprocessed/imaging/%d/idGang-Run-%d-%s-%d-%d.tar</td>
+            <td>run, run, (rows/cols), start, end</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/koCat.html">koCat</a></td>
+            <td>in</td>
+            <td>the catalog of known bright stars</td>
+            <td>http://das.sdss.org/imaging/%d/%d/ssc/koCat-%06d.fit</td>
+            <td class="params">run, rerun, run</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+  <dt>Postage Stamp Pipeline (<a href="http://das.sdss.org/software/photo/v5_4_28/">PSP</a>) [<a
+  href="http://adsabs.harvard.edu/abs/2002AJ....123..485S">2002AJ....123..485S</a>,
+  section 4.3]</dt>
+    <dd>The PSP measures the bias and global sky level,
+      and fits a model for the point spread function for each field.
+
+      <table class="dasfile">
+	<caption>DAS files used or generated by the PSP pipeline</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/psParam.html">psParam</a></td>
+            <td>in</td>
+            <td>PSP tunable parameters</td>
+            <td>http://das.sdss.org/imaging/%d/%d/photo/psParam.par</td>
+            <td class="params">run, rerun</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/psPlan.html">psPlan</a></td>
+            <td>in</td>
+            <td>the PSP processing plan</td>
+            <td>http://das.sdss.org/imaging/%d/%d/photo/psPlan-%d.par</td>
+            <td class="params">run, rerun, camcol</td>
+          </tr>
+          <tr><td><a href="../dm/flatFiles/opCamera.html">opCamera</a></td>
+            <td>in</td>
+            <td>imaging camera geometry</td>
+            <td>http://das.sdss.org/nightly/%05d/opCamera-%05d.par</td>
+            <td>mjd, mjd (of generation)</td>
+          </tr>
+          <tr><td><a href="../dm/flatFiles/opConfig.html">opConfig</a></td>
+            <td>in</td>
+            <td>CCD readout configurations</td>
+            <td>http://das.sdss.org/nightly/%05d/opConfig-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr><td><a href="../dm/flatFiles/opECalib.html">opECalib</a></td>
+            <td>in</td>
+            <td>CCD electronic calibrations</td>
+            <td>http://das.sdss.org/nightly/%05d/opECalib-%05d.par</td>
+            <td>mjd, mjd (of generation)</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/opBC.html">opBC</a></td>
+            <td>in</td>
+            <td>CCD bad pixel file</td>
+            <td>http://das.sdss.org/nightly/%d/opBC-%d.par</td>
+            <td class="params">mjd, mjd<sub>bp</sub> (see fpPlan)</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idB.html">idB</a></td>
+            <td>in</td>
+            <td>bias vector</td>
+            <td>http://das.sdss.org/imaging/%d/%d/photo/calib/idB-%06d-%c%d.fit</td>
+            <td class="params">run, rerun, run, filter, camcol</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/exPhotom.html">exPhotom</a></td>
+            <td>in</td>
+            <td>photometric solutions</td>
+            <td>http://das.sdss.org/pt/solutions/%s/exPhotom-%05d.par</td>
+            <td class="params">version, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/kaCalObj.html">kaCalObj</a></td>
+            <td>in</td>
+            <td>calibrated objects</td>
+            <td>http://das.sdss.org/pt/objects/%s/%d/kaCalObj-%08d.fit</td>
+            <td class="params">version, stripe, sequenceId</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/psField.html">psField</a></td>
+            <td>out</td>
+            <td>the initial photometric calibration and point spread
+            function fit by field (see
+            the <a href="../products/images/read_psf.html">extracting
+            PSF images</a> page) </td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/%d/psField-%06d-%d-%04d.fit</td>
+            <td class="params">run, rerun, camcol, run, camcol, field</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+  <dt>Astrometric Pipeline (<a href="http://das.sdss.org/software/astrom/v3_8g/">astrom</a>) [<a
+  href="http://adsabs.harvard.edu/abs/2003AJ....125.1559P">2003AJ....125.1559P</a>]</dt>
+    <dd>The astrometric pipeline calculates the astrometric solution. The <a
+      href="astrometry.html">astrometry</a> and <a
+      href="../products/general/astrometry.html">astrometry QA</a> web pages
+      provide more information on the algorithms used and the proper
+      interpretation of the output.
+
+      <table class="dasfile">
+	<caption>DAS files used or generated by the astrom pipeline</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/asParam.html">asParam</a></td>
+            <td>in</td>
+            <td>astrom tunable parameters</td>
+            <td>http://das.sdss.org/imaging/%d/%d/astrom/asParam.par</td>
+            <td class="params">run, rerun</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/asPlan.html">asPlan</a></td>
+            <td>in</td>
+            <td>the astrom processing plan</td>
+            <td>http://das.sdss.org/imaging/%d/%d/astrom/asPlan.par</td>
+            <td class="params">run, rerun</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/opConfig.html">opConfig</a></td>
+            <td>in</td>
+            <td>CCD configuration, specifying the readout characteristics for each CCD</td>
+            <td>http://das.sdss.org/nightly/%d/opConfig-%d.par</td>
+            <td class="params">mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/opCamera.html">opCamera</a></td>
+            <td>in</td>
+            <td>positions of the CCDs in the camera</td>
+            <td>http://das.sdss.org/nightly/%d/opCamera-%d.par</td>
+            <td class="params">mjd, mjd<sub>cam</sub></td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idReport.html">idReport</a></td>
+            <td>in</td>
+            <td>records runs collected on a night</td>
+            <td>http://das.sdss.org/nightly/%05d/idReport-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idWeather.html">idWeather</a></td>
+            <td>in</td>
+            <td>A log of weather data</td>
+            <td>http://das.sdss.org/nightly/%05d/idWeather-%05d.par</td>
+            <td class="params">mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/asTrans.html">asTrans</a></td>
+            <td>out</td>
+            <td>tranformation coefficients from row, column to great circle
+              coordinates</td>
+            <td>http://das.sdss.org/imaging/%d/%d/astrom/asTrans-%06d.fit</td>
+            <td class="params">run, rerun, run</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+
+  <dt>Frames Pipeline (<a href="http://das.sdss.org/software/photo/v5_4_28/">frames</a>) [<a
+  href="http://adsabs.harvard.edu/abs/2002AJ....123..485S">2002AJ....123..485S</a>,
+  section 4.4]</dt>
+    <dd>The frames pipeline applies flat field and bias corrections to
+      each frame, and interpolates values for pixels in bad columns
+      and bleed trails and those corrupted by cosmic rays to produce a
+      "corrected frame" (fpC file). It then detects bright objects and
+      estimates the varying sky background, detects fainter objects,
+      and measures a variety of properties for each object. Several
+      algorithms pages describe details of the processing performed by frames.
+      <ul>
+        <li><a href="../algorithms/photometry.html">Measures
+          of flux and magnitudes</a> discribes the variety of methods
+          frames uses to measure the magnitude of each object,
+          including
+	  <a href="../algorithms/photometry.html#photo_profile">radial
+	    profiles</a>,
+	  <a href="../algorithms/photometry.html#mag_fiber">fiber</a>,
+	  <a href="../algorithms/photometry.html#mag_model">model</a>,
+	  <a href="../algorithms/photometry.html#cmodel">cModel</a>,
+	  <a href="../algorithms/photometry.html#mag_petro">Petrosian</a> and 
+	  <a href="../algorithms/photometry.html#mag_psf">PSF</a>
+	  magnitudes and
+	  <a href="../algorithms/photometry.html#which_mags">when to use each</a>.
+	</li>
+        <li><a href="../algorithms/classify.html">Classification
+          and Morphology</a> describes other measurements of objects,
+          including
+	  <a href="../algorithms/classify.html#photo_class">star/galaxy separation</a>,
+	  <a href="../algorithms/classify.html#photo_fits">model fits</a>,
+	  <a href="../algorithms/classify.html#photo_sb">surface brightnesses</a>,
+	  <a href="../algorithms/classify.html#photo_stokes">ellipticities</a>,
+	  <a href="../algorithms/classify.html#photo_adapt">adaptive
+	  moments</a> and
+	  <a href="../algorithms/classify.html#photo_iso">isophotal quantities</a>.
+	</li>
+        <li><font color="red">IMPORTANT!</font> <a href="../products/catalogs/flags.html">Photometric
+          processing flags</a> describes the variety of flags frames
+          sets for each object, essential for properly interpreting
+          the catalog.</li>
+	<li><a href="../algorithms/flatfield.html">Flat
+	field creation and quality</a></li>
+	<li><a href="../algorithms/sky.html">Sky measurement</a></li>
+	<li><a href="../algorithms/deblend.html">Deblending</a>
+	describes how the frames pipeline decides if an initial single
+	detection is in fact a blend of multiple overlapping objects,
+	and, if so, how it separates (or "deblends") them.</li>
+	<li><a href="../algorithms/masks.html">Creation
+	of imaging masks</a></li>
+      </ul>
+
+      <table class="dasfile">
+	<caption>DAS files used or generated by the frames pipeline</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpParam.html">fpParam</a></td>
+            <td>in</td>
+            <td>frames tunable parameters</td>
+            <td>http://das.sdss.org/imaging/%d/%d/photo/fpParam.par</td>
+            <td class="params">run, rerun</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpPlan.html">fpPlan</a></td>
+            <td>in</td>
+            <td>frames precessing plan</td>
+            <td>http://das.sdss.org/imaging/%d/%d/photo/fpPlan-%d.par</td>
+            <td class="params">run, rerun, camcol</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idReport.html">idReport</a></td>
+            <td>out</td>
+            <td>records runs collected on a night</td>
+            <td>http://das.sdss.org/nightly/%05d/idReport-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/koCat.html">koCat</a></td>
+            <td>in</td>
+            <td>the catalog of known bright stars</td>
+            <td>http://das.sdss.org/imaging/%d/%d/ssc/koCat-%06d.fit</td>
+            <td class="params">run, rerun, run</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/opConfig.html">opConfig</a></td>
+            <td>in</td>
+            <td>CCD configuration, specifying the readout characteristics for each CCD</td>
+            <td>http://das.sdss.org/nightly/%d/opConfig-%d.par</td>
+            <td class="params">mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/opECalib.html">opECalib</a></td>
+            <td>in</td>
+            <td>CCD calibration file, specifying the electronic characteristics (read noise, gain, full-well, bias level, and linearity corrections) for each CCD</td>
+            <td>http://das.sdss.org/nightly/%d/opECalib-%d.par</td>
+            <td class="params">mjd, mjd<sub>cal</sub> (see fpPlan)</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/opBC.html">opBC</a></td>
+            <td>in</td>
+            <td>CCD bad pixel file</td>
+            <td>http://das.sdss.org/nightly/%d/opBC-%d.par</td>
+            <td class="params">mjd, mjd<sub>bp</sub> (see fpPlan)</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idB.html">idB</a></td>
+            <td>in</td>
+            <td>bias vector</td>
+            <td>http://das.sdss.org/imaging/%d/%d/photo/calib/idB-%06d-%c%d.fit</td>
+            <td class="params">run, rerun, run, filter, camcol</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/psField.html">psField</a></td>
+            <td>in</td>
+            <td>the initial photometric calibration and point spread function fit by field</td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/%d/psPlan-%06d-%d-%04d.fit</td>
+            <td class="params">run, rerun, camcol, run, camcol, field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/asTrans.html">asTrans</a></td>
+            <td>in</td>
+            <td>tranformation coefficients from row, column to great circle
+              coordinates</td>
+            <td>http://das.sdss.org/imaging/%d/%d/astrom/asTrans-%06d.fit</td>
+            <td class="params">run, rerun, run</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpFieldStat.html">fpFieldStat</a></td>
+            <td>out</td>
+            <td>field statistics</td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/fpFieldStat-%06d-%d-%04d.fit</td>
+            <td class="params">run, rerun, run, camcol, field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpObjc.html">fpObjc</a></td>
+            <td>out</td>
+            <td>the (uncalibrated) object catalog</td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/fpObjc-%06d-%d-%04d.fit</td>
+            <td class="params">run, rerun, run, camcol, field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpC.html">fpC</a></td>
+            <td>out</td>
+            <td>the image itself, bias subtracted, flat fielded, and with bad pixels replaced by interpolated values (the "corrected frame")</td>
+            <td>http://das.sdss.org/imaging/%d/%d/corr/fpC-%06d-%c%d-%04d.fit</td>
+            <td class="params">run, rerun, run, filter, camcol, field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpBIN.html">fpBIN</a></td>
+            <td>out</td>
+            <td>a 4x4 binned version of the corrected image after
+            masking of objects and subtraction of sky, an image of the
+            estimate of the sky, an image of the uncertainty in the
+            sky estimate, and a table of bright star wings</td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/fpBIN-%06d-%c%d-%04d.fit</td>
+            <td class="params">run, rerun, run, filter, camcol, field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpM.html">fpM</a></td>
+            <td>out</td>
+            <td>the frame masks (read using <a href="http://das.sdss.org/software/readAtlasImages/">readAtlasImages</a>)</td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/fpM-%06d-%c%d-%04d.fit</td>
+            <td class="params">run, rerun, run, filter, camcol, field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpAtlas.html">fpAtlas</a></td>
+            <td>out</td>
+            <td>the atlas images for all objects detected (read using <a href="http://das.sdss.org/software/readAtlasImages/">readAtlasImages</a>)</td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/fpAtlas-%06d-%d-%04d.fit</td>
+            <td class="params">run, rerun, run, camcol, field</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </dd>
+  <dt>Monitor Telescope Pipeline (<a href="http://das.sdss.org/software/mt/v8_3/">mtpipe</a>) [<a
+  href="http://adsabs.harvard.edu/abs/2006AN....327..821T">2006AN....327..821T</a>]</dt>
+    <dd>On nights the primary SDSS telescope collects imaging data,
+    the photometric telescope (PT), a second telescope at the same
+    site, collects images of two types of standard star fields:
+    primary and secondary. The primary fields contain standard stars
+    with well established magnitudes, and are used to determine a
+    photometric solution for the night.  Secondary fields contain
+    stars that overlap imaging runs, and allow calibration of those
+    runs.
+    (The survey originally planned to use a 0.6m telescope, the
+    Monitor Telescope (MT), for these observations. We replaced the MT
+    with a 0.5m telescope before the start of data collection. We
+    called this new telescope the photometric telescope (PT) to
+    distinguish it from the original 0.6m MT, but most of the
+    reduction software, file formats and file name standards remained
+    the same, and retained their original names.)
+      <table class="dasfile">
+	<caption>DAS files used or generated by the mtpipe pipeline</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/mdReport.html">mdReport</a></td>
+            <td>in</td>
+            <td>records exposures collected on a night</td>
+            <td>http://das.sdss.org/nightly/%05d/mdReport-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/metaFC.html">metaFC</a></td>
+            <td>in</td>
+            <td>table of reference standard stars</td>
+            <td>http://das.sdss.org/pt/metaFC.fit</td>
+            <td class="params">(none)</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/exPhotom.html">exPhotom</a></td>
+            <td>out</td>
+            <td>photometric solutions</td>
+            <td>http://das.sdss.org/pt/solutions/%s/exPhotom-%05d.par</td>
+            <td class="params">version, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/kaCalObj.html">kaCalObj</a></td>
+            <td>out</td>
+            <td>calibrated objects in the PT images</td>
+            <td>http://das.sdss.org/pt/objects/%s/%d/kaCalObj-%08d.fit</td>
+            <td class="params">version, stripe, sequenceId</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+
+
+  <dt>"Final" Calibration Pipeline (<a href="http://das.sdss.org/software/nfcalib/v2_2/">nfcalib</a>) [<a
+  href="http://adsabs.harvard.edu/abs/2002AJ....123..485S">2002AJ....123..485S</a>,
+  section 4.5.3]</dt>
+    <dd>fcalib generates the photometric calibration for a run
+    based on photometric telescope data (the output of the monitor
+    telescope pipeline). This was originally considered the "final"
+    calibration of a run, but now the <a href="#ubercal">"ubercal"
+    calibrations</a> supersede these "final" calibrations.
+      <p>The <a href="../algorithms/fluxcal.html">photometric
+      flux calibration algorithms page</a> describes the calibration
+      and use of calibrated quantities in more detail, and includes
+      sections on 
+	<a href="../algorithms/fluxcal.html#assessment">assessment of
+	  photometric calibration</a>,
+	<a href="../algorithms/fluxcal.html#counts2mag">converting SDSS counts to
+	    SDSS (asinh) magnitudes</a> (and <em>vice versa</em>),
+	<a href="../algorithms/fluxcal.html#sdss2ab">converting SDSS to AB
+	  magnitudes</a>, and
+	<a href="../algorithms/fluxcal.html#sdss2flux">converting SDSS
+	  asinh magnitudes to fluxes.</a> 
+	<a href="../algorithms/sdssUBVRITransform.html">Another
+	page</a> describes conversion between SDSS magnitudes and
+	UBVR<sub>c</sub>I<sub>c</sub>, and ugriz colors of Vega and
+	the Sun.
+      </p>
+
+	<p>You can determine which version of the mt calibrations (the
+	"version" parameters in the formats in the table describing
+	the monitor telescope pipeline outputs) by looking at the
+	mtVerPhotom parameter of the fpPlan file, below.</p>
+      <table class="dasfile">
+	<caption>DAS files used or generated by the nfcalib pipeline</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/nfpParam.html">nfpParam</a></td>
+            <td>in</td>
+            <td>fcalib tunable parameters</td>
+            <td>http://das.sdss.org/imaging/%d/%d/nfcalib/fpParam.par</td>
+            <td class="params">run, rerun</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpPlan.html">fpPlan</a></td>
+            <td>in</td>
+            <td>fcalib processing plan</td>
+            <td>http://das.sdss.org/imaging/%d/%d/nfcalib/fpPlan-%d.par</td>
+            <td class="params">run, rerun, camcol</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idReport.html">idReport</a></td>
+            <td>in</td>
+            <td>records runs collected on a night</td>
+            <td>http://das.sdss.org/nightly/%05d/idReport-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/asTrans.html">asTrans</a></td>
+            <td>in</td>
+            <td>tranformation coefficients from row, column to great circle
+              coordinates</td>
+            <td>http://das.sdss.org/imaging/%d/%d/astrom/asTrans-%06d.fit</td>
+            <td class="params">run, rerun, run</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/exPhotom.html">exPhotom</a></td>
+            <td>in</td>
+            <td>photometric solutions</td>
+            <td>http://das.sdss.org/pt/solutions/%s/exPhotom-%05d.par</td>
+            <td class="params">version, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/kaCalObj.html">kaCalObj</a></td>
+            <td>in</td>
+            <td>calibrated objects</td>
+            <td>http://das.sdss.org/pt/objects/%s/%d/kaCalObj-%08d.fit</td>
+            <td class="params">version, stripe, sequenceId</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpObjc.html">fpObjc</a></td>
+            <td>in</td>
+            <td>the (uncalibrated) object catalog</td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/fpObjc-%06d-%d-%04d.fit</td>
+            <td class="params">run, rerun, run, camcol, field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fcPCalib.html">fcPCalib</a></td>
+            <td>out</td>
+            <td>the photometric calibration of a run</td>
+            <td>http://das.sdss.org/imaging/%d/%d/nfcalib/fcPCalib-%06d-%d.fit</td>
+            <td class="params">run, rerun, run, camcol</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </dd>
+
+  <dt>Imaging Quality Assurance
+    <dd>
+      The <a href="../products/qa/index.html">imaging QA algorithms page</a> describes
+      imaging quality assurance performed on the outputs of the
+      imaging pipeline.
+    </dd>
+
+
+</dl>
+
+<h2 id="resolve">Resolve Multiple Detections and Produce Calibrated Catalogs</h2>
+
+<p>
+A given area on the sky may be observed by multiple runs. The final
+calibrated catalogs contain a field declaring whether the the specific observation
+of the object is "primary," and the canonical measurement of the
+object, or "secondary," a duplicate. These catalogs are generated
+twice, once based on the single run in isolation by exportChunk, and
+again in the resolve step. The catalogs produced by exportChunk
+declare an object primary or secondary based on position alone,
+introducing the possibility of inconsistencies due to errors in position; it is
+possible, for example, that two separate observation of an object be
+declared primary if the position measured for the object is slightly
+different in each detection.</p>
+
+<p>
+The catalog generated by the resolve step, on the other hand, uses an
+operational database to search for other detections, and guarantees
+that one and only one detection be declared primary.</p>
+
+<p>
+The catalogs produced by exportChunk can be found in the run directory
+of each run:
+<table class="dasfile">
+  <caption>DAS files used or generated by the exportChunk</caption>
+  <tbody>
+    <tr>
+      <th>File Type</th>
+      <th>in/out</th>
+      <th>Description</th>
+      <th>DAS URL format</th>
+      <th>format parameters</th>
+    </tr>
+    <tr>
+      <td><a href="../dm/flatFiles/tsObj.html">tsObj</a></td>
+      <td>out</td>
+      <td>the calibrated object catalogs</td>
+      <td>http://das.sdss.org/imaging/%d/%d/calibChunks/%d/tsObj-%06d-%d-%d-%04d.fit</td>
+      <td class="params">run, rerun, camcol, run, camcol, rerun,
+        field</td>
+    </tr>
+    <tr>
+      <td><a href="../dm/flatFiles/tsField.html">tsField</a></td>
+      <td>out</td>
+      <td>the calibrated field statistics</td>
+      <td>http://das.sdss.org/imaging/%d/%d/calibChunks/%d/tsField-%06d-%d-%d-%04d.fit</td>
+      <td class="params">run, rerun, camcol, run, camcol, rerun,
+        field</td>
+    </tr>
+  </tbody>
+</table>
+The catalogs produced by the resolve step are completed during target
+selection, and the table in <a href="#targ">target selection</a>
+section gives their location. Note that the catalogs produced by
+target selection includes fields that flag which objects were
+selected for spectroscopy and why, while those generated by
+exportChunk do not.</p>
+
+See <a href="http://adsabs.harvard.edu/abs/2002AJ....123..485S">the
+  EDR paper, 2002AJ....123..485S</a>, section 4.7 for details on how
+  objects are resolved.
+
+<h2 id="targ">Selection of Targets for Spectroscopy and Tiling</h2>
+
+<p>The <a href="../algorithms/target.html">target
+    selection algorithms page</a> describes how the pipeline performs
+    target selection, including selection of 
+  <a href="../algorithms/target.html#main">Main Galaxy Sample</a>,
+  <a href="../algorithms/target.html#lrg">Luminous Red Galaxies (LRG)</a>,
+  <a href="../algorithms/target.html#qso">Quasars</a>,
+  <a href="../algorithms/target.html#stars">Stars</a>,
+  <a href="../algorithms/target.html#ROSAT">ROSAT All-Sky Survey sources</a>,
+  <a href="../algorithms/target.html#serendip">Serendipity</a>,
+  and 
+  <a href="../algorithms/target.html#SEGUE">SEGUE</a>
+  targets. The target selection pipeline extracts calibrated catalogs
+  of objects and corresponding field by field statistics from the
+  operations database (which is itself loaded with data from the
+  imaging data reduction pipelines):
+</p>
+
+<table class="dasfile">
+  <caption>DAS files used or generated by the target selection pipeline</caption>
+  <tbody>
+    <tr>
+      <th>File Type</th>
+      <th>in/out</th>
+      <th>Description</th>
+      <th>DAS URL format</th>
+      <th>format parameters</th>
+    </tr>
+    <tr>
+      <td><a href="../dm/flatFiles/tsObj.html">tsObj</a></td>
+      <td>out</td>
+      <td>the calibrated object catalogs</td>
+      <td>http://das.sdss.org/imaging/inchunk_%s/stripe%d_mu%d_%d/%d/tsObj-%06d-%d-%d-%04d.fit</td>
+      <td class="params">(target or best), stripe, start mu, rerun type, camcol, run, camcol, rerun, field</td>
+    </tr>
+    <tr>
+      <td><a href="../dm/flatFiles/tsField.html">tsField</a></td>
+      <td>out</td>
+      <td>the calibrated field statistics</td>
+      <td>http://das.sdss.org/imaging/inchunk_%s/stripe%d_mu%d_%d/%d/tsField-%06d-%d-%d-%04d.fit</td>
+      <td class="params">(target or best), stripe, start mu, rerun type, camcol, run, camcol, rerun,
+        field</td>
+    </tr>
+  </tbody>
+</table>
+<p>The "rerun type" is 1 for best, 0 for target.</p>
+
+<p>
+The <a href="../algorithms/tiling.html">tiling
+algorithms page</a> describes the process by which the spectroscopic
+plates are designed and placed relative to each other.
+</p>
+
+<h2 id="specobs">Spectroscopic Observing</h2>
+<dl>
+  <dt>Plate Plugging (plug)</dt>
+    <dd>When the observatory is ready to observe a plate, the
+    observatory staff plugs optical fibers into the holes drilled
+    into the plates, and maps which fiber correponds to which hole
+    (and therefor which object) by shining light through each fiber.
+      <table class="dasfile">
+	<caption>DAS files generated in plate plugging</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/plPlugMap.html">plPlugMapM</a></td>
+            <td>out</td>
+            <td>records which fiber corresponds to which hole in a
+            plate (and therefore objects, and what coordinates on the sky)</td>
+            <td>http://das.sdss.org/spectro/1d_%d/%04d/1d/plPlugMapM-%04d-%d-%02d.par</td>
+            <td class="params">rerun, plate, plate, mjd, plugging index</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+  <dt>Data Collection</dt>
+    <dd>Observers mount cartridges containing the drilled, plugged
+    plates on the telescope, and collected exposures on each plate
+    until it reached a threshold estimated signal to noise and at
+    least three exposures had been collected.
+      <table class="dasfile">
+	<caption>DAS files generated in spectroscopic data collection</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/sdReport.html">sdReport</a></td>
+            <td>out</td>
+            <td>records exposures collected on a night</td>
+            <td>http://das.sdss.org/nightly/%05d/sdReport-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/sdR.html">sdR</a></td>
+            <td>out</td>
+            <td>raw spectroscopic data frames</td>
+            <td>http://das.sdss.org/unprocessed/spectro/%d/sdR-%c%d-%08d.fit.gz</td>
+            <td>mjd, CCD (r or b), camera, exposure id</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </dd>
+</dl>
+
+<h2 id="specred">Spectroscopic Data Reduction</h2>
+<dl>
+  <dt>Two-dimensional Pipeline (spectro2d, also called <a href="http://das.sdss.org/software/idlspec2d/v5_3_12/">idlspec2d</a>) [<a
+  href="http://adsabs.harvard.edu/abs/2002AJ....123..485S">2002AJ....123..485S</a>,
+  section 4.10.1]</dt>
+    <dd>The spectro2d pipeline reads science and calibration exposures
+    from the spectrographs, reduces and calibrates the science
+    exposures, extracts the one dimensional spectra from the two
+    dimensional exposures, stacks multiple exposures into combined
+    spectra, and produces corresponding masks and noise
+    estimates.
+      <table class="dasfile">
+	<caption>DAS files used or generated by the spectro2d pipeline</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spPlan.html">spPlan</a></td>
+            <td>in</td>
+            <td>the spectro2d processing plan</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spPlan-%04d-%d.par</td>
+            <td class="params">rerun, plate, plate, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spPlancomb.html">spPlancomb</a></td>
+            <td>in</td>
+            <td>the processing plan for combining spectra</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spPlancomd-%04d-%d.par</td>
+            <td class="params">rerun, plate, plate, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/plPlugMap.html">plPlugMapM</a></td>
+            <td>in</td>
+            <td>records which fiber corresponds to which hole in a
+            plate (and therefore objects, and what coordinates on the sky)</td>
+            <td>http://das.sdss.org/spectro/1d_%d/%04d/1d/plPlugMapM-%04d-%d-%02d.par</td>
+            <td class="params">rerun, plate, plate, mjd, plugging index</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/sdReport.html">sdReport</a></td>
+            <td>in</td>
+            <td>records exposures collected on a night</td>
+            <td>http://das.sdss.org/nightly/%05d/sdReport-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/sdR.html">sdR</a></td>
+            <td>in</td>
+            <td>raw spectroscopic readouts</td>
+            <td>in http://das.sdss.org/spectro/%d/spectroRaw.%d.tar</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spCFrame.html">spCFrame</a></td>
+            <td>out</td>
+            <td>calibrated spectra for a single CCD and exposure</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spCFrame-%c%d-%08d.par</td>
+            <td class="params">rerun, plate, CCD (r or b), camera,
+            exposure id</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spPlate.html">spPlate</a></td>
+            <td>out</td>
+            <td>the 640 combined flux- and wavelength-calibrated
+            spectra over all exposures (potentially spanning multiple
+            nights) for a given mapped plate</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spPlate-%04d-%d.par</td>
+            <td class="params">rerun, plate, plate, mjd</td>
+          </tr>
+        </tbody>
+      </table>
+      The idlspec2d product
+      incorporates <a href="../algorithms/redshift_type.html#specBS">
+      specBS (also called the Princeton-1D pipeline)</a>, an
+      alternative to the standard spectro1d pipeline. specBS produces
+      the following files:
+      <table class="dasfile">
+	<caption>DAS files generated by the specBS</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spZline.html">spZline</a></td>
+            <td>out</td>
+            <td>emission line fits</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spZline-%04d-%d.par</td>
+            <td class="params">rerun, plate, plate, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spZall.html">spZall</a></td>
+            <td>out</td>
+            <td>all spectroscopic classifications and redshifts</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spZall-%04d-%d.par</td>
+            <td class="params">rerun, plate, plate, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spZbest.html">spZbest</a></td>
+            <td>out</td>
+            <td>spectroscopic classifications and redshifts</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spZbest-%04d-%d.par</td>
+            <td class="params">rerun, plate, plate, mjd</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+
+  <dt>One-dimensional Pipeline (<a href="http://das.sdss.org/software/spectro/v5_14/">spectro1d</a>) [<a
+  href="http://adsabs.harvard.edu/abs/2002AJ....123..485S">2002AJ....123..485S</a>,
+  section 4.10.2]</dt>
+    <dd>The spectro1d pipeline measures emission and absorption
+    lines and classifies the objects based on the spectrum; algorithms
+    web pages describe 
+    the <a href="../algorithms/speclinefits.html">emission
+    and absorption line fitting</a> and 
+    <a href="../algorithms/redshift_type.html">the
+    spectral type and redshift measurement</a> algorithms. The 
+    <a href="../algorithms/spectemplates/index.html">redshift
+    templates</a> page provides the template spectra used for redshift measurement.
+      <table class="dasfile">
+	<caption>DAS files used or generated by the spec1d pipeline</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spPlan1d.html">spPlan1d</a></td>
+            <td>in</td>
+            <td>spectro1d processing plan</td>
+            <td>http://das.sdss.org/spectro/1d_%d/%d/spPlan1d-%d-%04d.par</td>
+            <td class="params">rerun, plate, mjd, plate</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spParam1d.html">spParam1d</a></td>
+            <td>in</td>
+            <td>tunable software parameters for the spectro1d pipeline</td>
+            <td>http://das.sdss.org/spectro/1d_%d/%d/1d/spParam1d-%d-%04d.par</td>
+            <td class="params">rerun, plate, mjd, plate</td>
+          </tr>
+          <tr>
+            <td>spManLog</td>
+            <td>in</td>
+            <td>a record of which classifications were corrected by hand</td>
+            <td>http://das.sdss.org/spectro/1d_%d/%d/1d/spManLog-%d-%04d.par</td>
+            <td class="params">rerun, plate, mjd, plate</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spPlate.html">spPlate</a></td>
+            <td>in</td>
+            <td>the 640 combined flux- and wavelength-calibrated
+            spectra over all exposures (potentially spanning multiple
+            nights) for a given mapped plate</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spPlate-%04d-%d.par</td>
+            <td class="params">rerun, plate, plate, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/plPlugMap.html">plPlugMapM</a></td>
+            <td>in</td>
+            <td>records which fiber corresponds to which hole in a
+            plate (and therefore objects, and what coordinates on the sky)</td>
+            <td>http://das.sdss.org/spectro/1d_%d/%04d/1d/plPlugMapM-%04d-%d-%02d.par</td>
+            <td class="params">rerun, plate, plate, mjd, plugging index</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spDiag.html">spDiag</a></td>
+            <td>in</td>
+            <td>spectro1d diagnostics</td>
+            <td>http://das.sdss.org/spectro/1d_%d/%d/1d/spDiag-%d-%04d.par</td>
+            <td class="params">rerun, plate, mjd, plate</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spSpec.html">spSpec</a></td>
+            <td>out</td>
+            <td>line measurements and redshift determinations, as well
+            as the spectrum, for a single object, summing over all of
+            its exposures through a given mapped plate</td>
+            <td>http://das.sdss.org/spectro/1d_%d/%d/1d/spSpec-%d-%04d-%03d.par</td>
+            <td class="params">rerun, plate, mjd, plate, fiber</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </dd>
+  <dt>Stellar Parameters Pipeline (<a href="http://das.sdss.org/software/sspp/v7_2/">sspp</a>) [<a
+  href="http://adsabs.harvard.edu/abs/2007arXiv0710.5645L">2007arXiv0710.5645L</a> <a
+  href="http://adsabs.harvard.edu/abs/2007arXiv0710.5778L">2007arXiv0710.5778L</a> <a
+  href="http://adsabs.harvard.edu/abs/2007arXiv0710.5780A">2007arXiv0710.5780A</a>]</dt>
+    <dd>The SEGUE stellar parameters pipeline produces a number of
+    files, stored together:
+      <table class="dasfile">
+	<caption>DAS files used or generated by the SSPP pipeline</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td>sspp gzipped tar files</a></td>
+            <td>out</td>
+            <td>Output of the sspp pipeline</td>
+            <td>http://das.sdss.org/spectro/sspp_%d/%04d-%05d.tgz</td>
+            <td class="params">rerun, plate, mjd</td>
+          </tr>
+        </tbody>
+      </table>      
+    </dd>
+</dl>
+
+<h2 id="recalib">Recalibration</h2>
+<dl>
+  <dt>Astrometric Recalibration</dt>
+    <dd>We recalibrated the astrometry for the final data release,
+    using updated reference catalogs and improved centroiding:
+      <table class="dasfile">
+	<caption>DAS files used or generated in astrometric recalibration</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/asParam.html">asParam</a></td>
+            <td>in</td>
+            <td>astrom tunable parameters</td>
+            <td>http://das.sdss.org/imaging/%d/%d/fastrom/asParam.par</td>
+            <td class="params">run, rerun</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/asPlan.html">asPlan</a></td>
+            <td>in</td>
+            <td>the astrom processing plan</td>
+            <td>http://das.sdss.org/imaging/%d/%d/fastrom/asPlan.par</td>
+            <td class="params">run, rerun</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/opConfig.html">opConfig</a></td>
+            <td>in</td>
+            <td>CCD configuration, specifying the readout characteristics for each CCD</td>
+            <td>http://das.sdss.org/nightly/%d/opConfig-%d.par</td>
+            <td class="params">mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/opCamera.html">opCamera</a></td>
+            <td>in</td>
+            <td>positions of the CCDs in the camera</td>
+            <td>http://das.sdss.org/nightly/%d/opCamera-%d.par</td>
+            <td class="params">mjd, mjd<sub>cam</sub></td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idReport.html">idReport</a></td>
+            <td>in</td>
+            <td>records runs collected on a night</td>
+            <td>http://das.sdss.org/nightly/%05d/idReport-%05d.par</td>
+            <td>mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/idWeather.html">idWeather</a></td>
+            <td>in</td>
+            <td>A log of weather data</td>
+            <td>http://das.sdss.org/nightly/%05d/idWeather-%05d.par</td>
+            <td class="params">mjd, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/asTrans.html">asTrans</a></td>
+            <td>out</td>
+            <td>tranformation coefficients from row, column to great circle
+              coordinates</td>
+            <td>http://das.sdss.org/imaging/%d/%d/fastrom/asTrans-%06d.fit</td>
+            <td class="params">run, rerun, run</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+  <dt id="ubercal">Photometric Recalibration (Ubercal) [<a
+  href="http://adsabs.harvard.edu/abs/2008ApJ...674.1217P">2008ApJ...674.1217P</a>]</dt>
+    <dd>
+      The "ubercal" recalibration recalibrates the survey by simultaneously solving for the
+      calibration parameters and relative stellar fluxes using
+      overlapping observations. The algorithm used decouples the problem of
+      relative calibrations from that of absolute calibrations; the
+      absolute calibration is reduced to determining a few numbers for
+      the entire survey.
+      See the <a href="../algorithms/fluxcal.html#ubercal">ubercal
+      section</a> of the photometric calibration algorithms page.
+      <table class="dasfile">
+	<caption>DAS files generated in photometric recalibration</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/drObj.html">drObj</a></td>
+            <td>out</td>
+            <td>the final "ubercal" and astrometrically recalibrated
+            object catalogs</td>
+            <td>http://das.sdss.org/imaging/%d/%d/dr/%d/drObj-%06d-%d-%d-%04d.fit</td>
+            <td class="params">run, rerun, camcol, run, camcol, rerun,
+            field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/drField.html">drField</a></td>
+            <td>out</td>
+            <td>the final "ubercal" field statistics</td>
+            <td>http://das.sdss.org/imaging/%d/%d/dr/%d/drField-%06d-%d-%d-%04d.fit</td>
+            <td class="params">run, rerun, camcol, run, camcol, rerun,
+            field</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+  <dt>SuperNova Photometric Calibration [follows method of <a
+  href="http://adsabs.harvard.edu/abs/http://adsabs.harvard.edu/abs/2008MNRAS.386..887B">2008MNRAS.386..887B</a>]</dt>
+    <dd>
+      <table class="dasfile">
+	<caption>DAS files generated in photometric
+	calibration of SuperNova data</caption>
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>in/out</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/tsObj.html">tsObj</a></td>
+            <td>out</td>
+            <td>the calibrated object catalogs</td>
+            <td>http://das.sdss.org/imaging/%d/%d/calibChunks/%d/tsObj-%06d-%d-%d-%04d.fit</td>
+            <td class="params">run, rerun, camcol, run, camcol, rerun,
+            field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/tsField.html">tsField</a></td>
+            <td>out</td>
+            <td>the calibrated field statistics</td>
+            <td>http://das.sdss.org/imaging/%d/%d/calibChunks/%d/tsField-%06d-%d-%d-%04d.fit</td>
+            <td class="params">run, rerun, camcol, run, camcol, rerun,
+            field</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+</dl>
+
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+</html>

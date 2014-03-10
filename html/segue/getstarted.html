@@ -1,0 +1,669 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+<!--#include virtual="segueheader.html"-->
+<html>
+<head>
+<meta name="Author" content="segue-webmaster@sdss.org">
+
+<meta name="Keywords" content="SEGUE, Milky Way, stars, stellar parameters, 
+SDSS, Sloan, get, started, help,
+digital, survey, galaxy, galaxies, quasar, universe, telescope, 
+astronomy, astrometry,
+spectroscopy, cosmology, large-scale structure, observatory,
+observatories, big bang, redshift, map">
+
+<meta name="Description" content="SEGUE Getting Started">
+
+<title>SEGUE Getting Started</title>
+<link rel=StyleSheet href=".//includes/sdss.css" type="text/css" media=screen>
+
+</head>
+
+<body>
+
+<!-- Overall table structure - 3x3 -->
+
+<table width="100%" height="100%" border="0" cellspacing="0" 
+cellpadding="0" style="padding:0px; margin:0px; border:0px"> <tr>
+
+<!-- Header -->
+
+</tr>
+
+<tr>
+<!-- Body -->
+
+<td valign="top" width="100%" height="100%" bgcolor="#FFFFFF" 
+style="padding:15px;">
+<div align="left">
+
+<title>SEGUE Getting Started</title>
+
+
+
+<h1> Getting Started:<br>
+Accessing the SEGUE spectra 
+and associated imaging </h1>
+
+<b>Important note about linking SEGUE imaging and spectra in the CAS</b>
+
+<p>The SEGUE spectra count as <a
+href="../dr7/products/spectra/special.html">special-plate</a> spectra in
+the CAS and are <strong>not</strong> considered to be
+&quot;scienceprimary&quot;. Therefore, they are <em>not</em> linked to the
+photometry in the usual way, e.g., they do not appear in the object
+browser's default view like galaxy, quasar and stellar spectra from
+the legacy survey. With DR7, all SEGUE spectra and imaging are in the
+<code>BESTDR7</code> database.
+See the <a href="getstarted.html#ex4">SEGUE sample SQL
+query for instructions on joining SEGUE imaging and
+spectroscopy</a>.</p>
+
+<p>Here are some walk-through examples of how to access the SEGUE spectra
+and associated imaging for your research.
+</p>
+<h3><a href="#ex1">Example 1: Stellar Parameters of Globular Cluster stars
+</a></h3>
+<h3><a href="#ex2">Example 2: List of SEGUE Plates
+</a></h3>
+<h3><a href="#ex3">Example 3: High Confidence Low metal stars  
+</a></h3>
+<h3><a href="#ex4">Example 4: Photometry connected to plate centers 
+SDSS and SEGUE 
+</a></h3>
+<h3><a href="#ex5">Example 5: Matching to Target photometry 
+</a></h3>
+
+<hr>
+
+<h2><a name="ex1"> Example 1: Stellar Parameters of Globular Cluster stars
+</a></h2> 
+
+This example demonstrates how to check the parameters of some SEGUE spectra of 'known objects' 
+against values found in the literature.   We will check the Radial Velocities,
+Metalicities [Fe/H], and stellar surface gravities of some stars
+in the Hercules Globular Cluster (M 13 = NGC6205) with their cataloged 
+values in the <a href=http://www.physics.mcmaster.ca/~harris/mwgc.dat>W. Harris catalog</a>:
+
+
+<pre>
+	To select star around M13 we need to know the position of
+	M13 on the sky, which is (alpha,delta) = (16 41 41.5 , +36 27 37)
+	or (l,b) = (59.01,40.91).  
+	We convert the H:M:S, D:M:S notation for (alpha,delta) (J2000)
+	to decimal degrees for the database:
+	(alpha,delta) = (16:41:41.5 , +36:27:37) = (250.42292,36.46028)
+
+	Let's use the stellar parameters table in the DR7 database to
+	select stars with spectra near (within 1 degree, globular
+	clusters have diameter generally much smaller than 1 degree) of this 
+	position on the sky.
+
+	We recommend the <a href=http://cas.sdss.org/casjobs>CASJOBS</a> interface for SQL database searches 
+        of the SDSS/SEGUE data.All who are interested may sign up for 
+        a free account under CASJOBs. CASJOBS has the all the advantages 
+        of the regular skyserver SQL <a href=http://cas.sdss.org/astro/en/tools/search/sql.asp>ASTRO</a> along with a 'batch processing' 
+        system for submitting long (up to 8 hours, with up to 500MB worth of 
+        output) and complex queries to the database server for later retrieval 
+	and cross-reference (through the MyDB system of user databases
+	with intermediate results).  The output of CASJOBS queries may
+	be downloaded to your home machine in CSV (comma-separated-value)
+	ASCII text file format for uploading to EXCEL or further manipulation
+	and plotting by the software package of your choice.
+
+	The CASJOBS interface has on its 'Query' page a 'Context' menu,
+	which indicates the database you will be searching in.
+	You should use the 'DR7' context. This, by default, searches
+	the 'BESTDR7' database which contains the SDSS imaging tables
+	and the SDSS and SEGUE spectroscopic catalog tables.
+	There is additionally a database called 'SEGUEDR7' which contains
+	imaging catalogs for areas of the SEGUE <a href=../dr7/seguephoto_big.gif>Footprint</a> not in the 
+        regular SDSS survey <a href=../dr7/dr7photo_big.gif>Footprint</a>.
+
+	If you wish to determine whether or not a specific coordinate
+	is in either the SDSSDR7 or SEGUEDR7 footprint, you may feed a
+	list of (RA,DEC) coordinates into the SDSS DAS <a href=http://das.sdss.org/www/html/post_coords.html>coordinate search</a> form,
+	or follow the "alternatives" instructions on that page for long 
+	lists of coordinates.
+
+</pre>
+	The names of the key tables you will be interested in searching
+	for SEGUE catalog information are:
+
+	<pre>
+	Context  tablename (case insensitive) what
+	-----------------------------
+	DR7	sppParams   Radial Velocities, 
+			    de-reddened PSF magnitudes and colors, 
+			    '[Fe/H]' metalicity estimates,
+			    log g surface gravity indictors (used to
+					tell a Red Giant from a Red Dwarf)
+			    effective temperature (correlated with color)
+			    proper motion information on star,
+			    stellar classification information
+
+	DR7     Star	    Full photometric information for all point
+			    sources in the SDSS Legacy and SEGUE footprints.
+			    Includes ugriz PSF magnitudes,
+			    reddening information,  (colors may be calculated)
+			    RA,DEC position information
+
+	DR7	SpecObjAll	Spectroscopic information for objects in
+				SDSS+SEGUE.  Note that the subset table
+				'SpecObj' doesn't contain SEGUE spectra,
+				only 'main survey' SDSS spectra (mostly
+				galaxies).  
+
+	DR7    PlateX		Metadata information about plates (which
+				contain 640 spectra each) in the  SDSS+SEGUE
+				surveys.  The information here (specificially 
+				the 'programname' field) can be used to 
+				distinguish SDSS (galaxy+qso+star) plates 
+				(programname like 'chunk%')
+				from SEGUE (all star) plates
+				(programname like 'seg%').
+				
+
+	DR7    PhotoObj        Full photometric object information for 
+			       all primary and secondary
+				sources 
+				(including extended objects such as galaxies), 
+				in the DR7 SDSS+SEGUE footprints, a superset of
+				'star'.
+
+	DR7    PhotoObjAll     Full photometric information for all sources
+				(including duplicates) in the DR7 footprint.
+				A superset of 'photoobj'.
+
+
+	DR7    propermotions   Propermotion information for 205M stars.
+				
+	</pre>
+
+
+
+	Let's return to the example of searching for SEGUE information about 
+	stars in the globular cluster M13.
+<pre>
+	We'll select all stars within about 1 degree
+	of the known center of the cluster at (ra,dec) [J2000] = 
+		(250.42292, 36.46028).
+
+	The RA coordinate has a cos(DEC) 'shrinkage' in it,
+	so to get stars in a box 1 degree on a side, we wish
+	to search +/- 0.5/cos(DEC) degrees away in RA, but
+	the standard +/- 0.5 degrees away in DEC:
+
+</pre>
+	Thus cut and paste this query to the DR7 context of Casjobs 'query' 
+	window:
+
+<pre>
+
+	select count(*) from sppParams where
+	ra between 250.42292-cos(36.46*3.14159/180) 
+		and 250.42292+cos(36.46*3.14159/180) 
+	and dec between 36.46 -0.5 and 36.46 + 0.5
+
+</pre>
+
+	and hit the 'Quick' button.  In a few seconds it should return
+	a number like '1044', the number of stars which meet these
+	conditions.
+	
+	You may return all the known information, including the
+	12 measures of [Fe/H] and the 9 measures of log g
+	for these stars with a query like:
+
+<pre>
+	select * from sppParams where
+        ra between 250.42292-cos(36.46*3.14159/180) 
+                and 250.42292+cos(36.46*3.14159/180) 
+        and dec between 36.46 -0.5 and 36.46 + 0.5
+</pre>
+<p>
+	However, that table is a bit hard to parse.
+	Instead, let's select specific columns we wish to return
+	from the complete list of all columns in 
+	the <a href=http://www.sdss.org/dr7/products/spectra/spectroparameters.html>sppParams</a> table.
+</p>
+<p>
+	We'll also restrict to objects which have 'good quality' measurements
+	of [Fe/H] (we pick the 'adopted' measure of [Fe/H] named: 'feha'),
+	by requiring that the error (fehaerr) on the measure is greater
+	than 0 but less than 0.7 dex.  We'll also restrict to objects with 
+	errors (elodierverr) on their radial velocity (elodierv) of 20 km/s or less:
+</p>
+<pre>
+	select plate,mjd,fiberid,brun,brerun,bcamcol,bfield,bobj,
+	       elodierv,elodierverr,feha,fehaerr,fehan,logga,loggaerr,loggan,
+	       targettype,sptypea,hammersptype,flag,g0,umg0,gmr0,
+	       ra,dec,l,b,chiHK,chiGband,teffa,teffaerr from sppParams
+	    where
+		 ra between 250.42292-cos(36.46*3.14159/180)
+                and 250.42292+cos(36.46*3.14159/180)
+	        and dec between 36.46 -0.5 and 36.46 + 0.5
+		and fehaerr between 0.01 and 0.7 
+		and elodierverr between 0.01 and 20
+
+</pre>
+
+<p>	Instead of entering this as a 'Quick' query, hit the 'Submit'
+	button instead.  Though the query only takes a few seconds
+	to run, this will save the output of your query as a named
+	table in your 'MyDB', for instance MyTable_21 (your exact table
+	name will vary depending on your query history, and it
+	may be manually named to whatever you like).
+
+</p>
+<p>
+	After the query runs (hit 'History' repeatedly to check if it
+	succeeded, you may also choose receive an email
+	when the query is done), go to 'MyDB' and find your 'MyTable_21'.
+	It should have about 779 rows and take up 500 Kbytes of space
+	in your MyDB area.  
+
+</p>
+<p>Click on the table and select 'Download',
+	then click on 'Go' to reformat your table as a 'CSV' file.
+	Then go to 'Output' and click repeatedly until the reformatted table 
+	is available for 'Download'.  Click 'Download' to put the table on
+	your local box.  Now you may use a variety of tools (Excel spreadsheet,
+	AWK, TCL) to manipulate and plot your data.
+</p>
+<p>
+  The columns of your output file (based on what you 'select'ed above) 	are:
+</p>
+<pre>
+	 0 plate
+	 1 mjd
+	 2 fiberid
+	 3 brun
+	 4 brerun
+	 5 bcamcol
+	 6 bfield
+	 7 bobj
+         8 elodierv
+	 9 elodierverr
+	 10 feha
+	 11 fehaerr
+	 12 fehan
+	 13 logga
+	 14 loggaerr
+	 15 loggan
+         16 targettype
+	 17 sptypea
+	 18 hammersptype
+	 19 flag 
+	 20 g0
+	 21 umg0
+	 22 gmr0
+         23 ra
+	 24 dec
+	 25 l
+	 26 b
+	 27 chiHK
+	 28 chiGband
+	 29 teffa
+	 30 teffaerr
+
+</pre>
+	
+	Here are some plots you should be able to easily reproduce:
+
+<pre>
+
+	1. Plot of gmr0 on the X-axis (limits -1 to 2.0) vs. g0 on
+		the Y-axis (limits 21 to 12).
+	   This is a classical <a href=m13cmd.gif>Color Magnitude Diagram</a>
+
+		You will notice that the 'top' of this diagram is not
+		populated, i.e. the Red Giant Branch. Photometry of 
+		these stars saturated the regular SDSS 2.5m imaging camera
+		(stars brighter than about with g=14 do this).
+
+		We have obtained limited amounts of spectra of such stars,
+		however their magnitudes are not cataloged in all cases
+		(see example #XXX, below).
+
+
+	2.  Plot a histogram of rva, the radial velocity, with limits
+		from about -500 to 500 km/s.  
+		The catalog heliocentric RV of M13 is
+			-245.6 km/s, does your plot look like <a href=m13rv.gif>this</a>.
+
+
+	Based on the above plot number of of RVs, let's subselect only stars 
+	near the RV peak of the cluster, say with RV between -300 and -200 km/s.  
+	Then histogram the Metalicities (histogram fehr from -4 to 0) of these:
+
+	3. Do you get something like <a href=m13feh.gif>this</a>?
+
+	Let's look at the surface gravity now.  Subselect those stars with RV between
+	-300 and -200 that have small errors on the surface gravity, i.e. 
+	loggerr between 0 and 0.5.  Then make a faux Hertzsprung-Russell diagram
+	for the cluster by plotting Teff (teffa) on the x axis from 10000 to 3000 (K) and
+	log g (Luminosity indicator) on the y axis from 6 to 0.
+
+	4. This color vs. surface gravity <a href=m13logg.gif>plot</a> for a cluster is one 
+	step closer to a 'physical' Hertzsprung-Russell diagram (usually plotted as 
+	Teff vs. Luminosity) as opposed 
+	to an observed parameter (color vs. magnitude) diagram.
+
+	We see from this plot that some red giant branch stars have appeared. These had
+	non-SEGUE photometry and so their g, g-r values were 0 in the inital selection.
+	We may be able to find some indication of their magnitudes by looking at other
+	magnitude indicators available.
+
+	There are also a few BHB stars apparent at the hot (high Teff) left edge of the
+	diagram. Let's examine the individual spectra for these stars:
+</pre>
+<p>	In particular, let's look at examples of a <b>K-giant</b>, and an <b>F turnoff star</b>.
+</p>
+<p>
+	To find them, even though we don't know the g-r, g for the brighter objects,
+	let's select on T<sub>eff</sub>, log g.
+</p>
+	<h4>K-giant:</h4>
+
+<pre>	select teffa between 5000 and 5200, log g between 1.8 and 2,
+	RV between -300 and -200, [Fe/H] between -1.8 and -1.3,
+	extract the plate,mjd,fiberid triplet.
+
+	There are two objects selected:
+	plate/mjd/fiberid = 2174/53521/167
+	and
+	plate/mjd/fiberid = 2255/53565/518
+
+	Browse these spectra by going to the link for the <a href="http://das.sdss.org/www/html/spectro/programs-26.html#segue">DR7 plate list</a> 
+	and (scrolling down to the globular cluster section of plates near 
+	the bottom) click on the link for plate <a href="http://das.sdss.org/www/html/spectro/plate-2147-53491-26.html">2174</a>, (mjd = 53521) then in 
+	the menu on the left, click on the link for fiberid = 167.  Nice spectrum!
+
+	Note the weak Mg triplet at 5100-5200A, indicating a low surface gravity
+	of a giant star.
+
+	Also note that the photometry for this star is a 'place-holder' (it's 
+	bogus). The photo catalogs info for this object, with run =0 indicates a 
+	manually selected target not deblended or saturated in this crowded field 
+	by the photo software.  Other information on this well-known object 
+	(an M13 giant branch star) may be found in the literature by using the 
+	RA,DEC information presented.
+
+	Also examine the bright red giant on plate <a href="http://das.sdss.org/www/html/spectro/plate-2255-53565-26.html">2255</a>, fiberid= 518.
+	The spectrum of this object is clearly a red giant, with very 
+	weak Mg 5100-5200, however,the astrometry on this object is 
+	special, it is a 'shifted' plate, used to obtain spectra of 
+	very bright stars. Thus, don't trust the RA,DEC for this star, 
+	for reference in the literature until we post an updated version.
+	(plate 2255 is the only one of a very small number of segcluster plates
+	with this issue in DR7 SEGUE plates).
+</pre>
+
+<h4>	F-turnoff:</h4>
+<pre>
+
+	select gmr0 between 0.2 and 0.3, log g between 1.8 and 2,
+	RV between -300 and -200, [Fe/H] between -1.8 and -1.3,
+	extract the plate,mjd,fiberid triplet. There are about 18,
+	so sort by mag, take the brightest,
+	which is:
+
+	2185/53532/500 = plate/mjd/fiberid.
+	Examine plate <a href="http://das.sdss.org/www/html/spectro/plate-2185-53532-26.html">2185</a>, fiberid = 500. 
+	It's a blue thing, with narrow balmer lines, pretty typical (early?) F star.
+
+	If you'd like to grab more than just the picture of a spectrum, 
+	but are interested in examining the spectrum in more detail,
+	you can fetch this object from the DAS, with a 'wget' style 
+	command like so:
+
+	wget http://das.sdss.org/spectro/1d_26/2185/1d/spSpec-53532-2185-500.fit
+
+	(you may grab it in your browser and download it, an rsync 
+	interface is available for bulk downloads).
+
+	Note that the plate number is padded with leading 0's to 
+	four places and the fiberid to three places, thus 371/52078/1 
+	would be: 
+
+	wget http://das.sdss.org/spectro/1d_26/0371/1d/spSpec-52078-0371-001.fit
+
+
+	Any available individual spectrum may be so obtained.
+
+
+	This FITS file may be read into IRAF or any other imaging processing program.
+	The data model for the contents of the spSpec files is given <a href=../dr7/dm/flatFiles/spSpec.html>here</a>.
+
+	If you wish to retrieve all spectra for a given plate in one big FITS file,
+	they are available from the DAS as spPlate* files.
+
+	For plate 2185, this wget will retrieve the (typically 60MB) file:
+
+	wget http://das.sdss.org/spectro/2d_26/2185/spPlate-2185-53532.fits
+
+	The data model for spPlate files, in order that you may examine them
+	with IRAF or another processing package is <a href=../dr7/dm/flatFiles/spPlate.html>here</a>.
+
+	Any other plate may be retrieved the same way.
+</pre>
+<hr>	
+
+<h2><a name="ex2">Example 2: List of SEGUE Plates</a></h2>
+
+	A query to list all SEGUE plates with their (RA,DEC) centers in the CAS database:
+
+	<pre>
+
+	select plate,mjd,ra,dec,programname from plateX where programname like 'segue%'
+
+	</pre>
+
+	If you wish to find the cluster plates (M15, M13, NGC2420, etc),
+	try this:
+
+	<pre>
+	
+	select plate,mjd,ra,dec,programname from plateX where programname like 'segcluster%'
+	</pre>
+
+	Other special segue plate programname categories 
+	are 'segpointed%' (stream targeted plates),
+	'segtest%' (test plates), and 'seglow%' (low latitude targeting
+	algorithm).
+
+<hr>
+
+<h2><a name="ex3"> Example 3: High Confidence Low metal stars</a></h2>
+<p>
+	A query to select objects with very high quality spectra that have very low estimated
+	metalicity ([Fe/H] less than one-thousandth of solar).
+
+</p>
+<p>	We use the  chiHK, chiMg, chiGband indicators and require that they
+	give values between 0 and 2; also that the feha indicator has an error of no more than
+	0.5 and that the number of different reliably [Fe/H] estimation methods (fehan) is greater 
+	than 3 and that the S/N ratio of the object is greater than 20.
+</p>
+	<pre>
+	select plate,mjd,fiberid,flag,ra,dec,g0,umg0,gmr0,rmi0,imz0,
+		feha,fehaerr,fehan,elodierv,elodierverr,chihk,chigband,sna,
+		targettype from
+	   sppParams where 
+		feha between -9 and -3 and 
+		chihk between 0.01 and 2 and 
+		chigband between 0.01 and 2 and 
+		sna > 20 and fehan > 3 and fehaerr between 0.01 and 0.5
+	</pre>
+
+	135 stars are returned in DR7, all with [Fe/H] ~ -3, here are 4:
+
+	<pre>
+		plate/mjd/fiberid RA  (J2000)   DEC
+		--------------------------------------------
+		2401/53768/322 138.3556061	31.0887051
+		1711/53535/285 219.1344604	9.3087473
+		1049/52751/126 226.1047211	46.3891373	
+		2327/53710/166 9.0451527	7.1922379
+	</pre>
+
+<p>	Only the first and last are SEGUE_LOWMETAL targeted stars, 
+	the other two are main Survey spectrophotometric 
+	standard stars targets (for which the sppParams table 
+	is also available).
+</p>
+<p>
+	To browse these stars, use the skyserver interface, or download the 
+	spSpec file and examine the spectra with IRAF.
+</p>
+
+        i.e. for the second spectrum
+<pre>
+	wget http://das.sdss.org/spectro/1d_26/1711/1d/spSpec-53535-1711-285.fit
+</pre>
+<p>
+	A skyserver link to these objects looks like the following:<br>
+
+	<a href="http://cas.sdss.org/astro/en/tools/explore/obj.asp?ra=219.134&dec=9.308">http://cas.sdss.org/astro/en/tools/explore/obj.asp?ra=219.1344&dec=9.308</a>
+<p>
+	 Click on all spectra and the spectrum id for a picture of the spectrum.
+	
+	This uses the RA DEC to look up the objects in the skyserver; you may
+	also lookup by plate/mjd/fiberid.
+</p>	
+<hr>
+
+<h2><a name="ex4"> Example 4: Photometry connected to plate centers 
+SDSS and SEGUE </a></h2>
+<p>
+	It is often desirable to select stars from an area of sky where
+	not every star has a spectrum.  The ugriz photometry alone for
+	a deep sample of stars is often enough to do significant Galactic
+	Structure science.  In addition, it is often desirable to determine
+	the 'selection function' of a set of spectra determined with some
+	possibly not well known target selection algorithm.  For this 	
+	reason one often wishes to select imaging from an area of sky
+	where one has spectra, including objects for which no spectra
+	exist in the same part of sky.
+</p>
+<p>
+	All of the spectra reside in the CAS specobjall database,
+	including both SDSS main survey footprint spectra and SEGUE
+	spectra (along with assorted other spectra).
+</p>
+<p>
+	Due to the difficulty in processing and interpreting highly
+	reddened low-latitude, crowded stellar field imaging with the standard
+	SDSS photo pipeline (which was designed for galaxy photometry in
+	uncrowded fields), the SEGUE imaging for DR7 has been a special
+	rerun number (648)
+</p>
+<p>
+	In order to match a SEGUE spectrum with its full photometric 
+	information (i.e. fields beyond that in the sppParams table, 
+	which is often but not always enough), one simply
+	joins the DR7 sppParams table with the specobjall table
+	with the photoobjall table using 
+	the bestobjid in the specobjall table to join to the
+	objid in the photoobjall table, which the sppParams table
+	and the specobjall table join on specobjid. 
+</p>
+<p>
+	Thus, to match a SEGUE spectrum from the specobjall table
+	with its corresponding photometric information,
+	one should do this query:
+</p>
+<pre>
+
+        select top 10 s.plate,s.mjd,s.fiberid,sp.psfmag_g,s.mag_1,
+	spp.elodierv
+	from specobjall s, photoobjall sp, sppParams spp where 
+	s.specobjid = spp.specobjid and sp.objid = s.bestobjid
+	and s.specclass in (1,6) and elodierverr > 0
+
+</pre>
+
+<p>	To query for imaging information around a given (ra,dec):
+</p>
+<pre>	
+	To find objects in the plate 1880 field, centered at
+	(RA,DEC) = (358.26,36.40) 
+	one may perform one query as follows to select
+	all stellar photometry:
+</pre>
+<pre>
+
+	(done on the DR7 context of Casjobs):
+
+	select run,rerun,camcol,field,obj,ra,dec,
+		psfmag_u,psfmag_g,psfmag_r,psfmag_i,psfmag_z,extinction_u,
+		extinction_g,extinction_r,extinction_i,extinction_z
+           from star 
+	    where ra between 358.26-1.5/cos(36.4*3.14159/180) and 358.26+1.5/cos(36.4*3.14159/180) 
+		and dec between 36.40 -1.5 and 36.4 + 1.5
+		and psfmag_g < 22
+		
+
+
+</pre>
+
+	This query returns a large number (54,301) objects, and you may
+	need to 
+	'Submit' it rather than running it as a 'Quick' query (in casjobs).
+
+	Once you download the output you may further subselect to
+	only get objects within 1.49 degrees of (ra,dec) = (358.26,36.4)
+	and you may with to add in cuts on color or magnitude,
+	for instance, throw out objects fainter than 20.5, which
+	is the faint limit of the spectrscopic sample.
+	
+	Then, if you are, for instance, examining spectroscopic completeness
+	of the F subdwarf sample, you may further select objects with
+	(g-r)_0 between 0.1 and 0.4 and compare the density of photometric
+	objects as a function of magnitude with the spectroscopic sample
+	of F stars on plates 1880 and 1881.
+
+	In this fashion, one may obtain photometric information for	
+	all SEGUE plates.  And dervive empirical selection functions
+	based on the photometry with the same color cuts as the spectroscopy.
+</pre>
+<hr>
+
+<h2><a name="ex5"> Example 5: Matching to Target photometry </a></h2>
+
+<p>
+This is best done in a two step process, where one first
+'uploads' a set of id,ra,dec triplets for objects in question
+into a MyDb, say mytable_14 in this example.
+</p>
+<p>
+Then one connects to the TARGETDR7 context and matches 
+the target photometry information to each id,ra,dec in the
+list, using a position match.
+</p>	
+<pre>
+SELECT myid, ra,dec, dbo.fGetNearestObjIdEqtype(ra,dec,1.2,6) as objId into #x
+FROM mydb.mytable_14  
+
+select n.myid,n.ra as inra,n.dec as indec,s.objid,s.run,s.rerun,s.camcol,s.field
+,s.obj,s.ra,s.dec,s.psfmag_u,s.psfmag_g,s.psfmag_r,s.psfmag_i,s.psfmag_z ,s.type
+from star s,
+#x as N where s.objid = n.objid
+
+</pre>
+
+	
+
+
+
+<!-- Body -->
+
+</span>
+</center>
+
+</td></tr></table>
+
+</body>
+</html>
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->

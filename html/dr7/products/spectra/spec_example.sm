@@ -1,0 +1,236 @@
+# Plot spectra and do simple labeling and measuring. Type 'h' for help list.
+    # Written by Dan Vanden Berk, Oct 1999 -- present
+    # Modified Jan 2001 by sjnk (Scot Kleinman) for use at APO
+    # July/August 2002 - added 1dm, 1fm, m, v, dd, ff, uz, iam, and i  - sjnk
+    # Sept 2002 -some fixes to above by Hugh Harris
+    # A few more changes to 1dm and 1fm (can enter MPF, PMF, or PFM)    # cleaned things up and added specfile and first command.- Mar2003 sjnk
+    # subset of routines extracted for sm example on dr1web  April 2003 MUS
+pttypes # set primTarget flag values
+        set QSO_HIZ              =  0x1
+        set QSO_CAP              =  0x2
+        set QSO_SKIRT            =  0x4
+        set QSO_FIRST_CAP        =  0x8
+        set QSO_FIRST_SKIRT      =  0x10
+        set QSO_FAINT            =  0x2000000
+        set GALAXY_RED           =  0x20
+        set GALAXY_RED_II        =  0x4000000
+        set GALAXY_GALAXY        =  0x40
+        set GALAXY_BIG           =  0x80
+        set GALAXY_BRIGHT_CORE   =  0x100
+        set ROSAT_A              =  0x200
+        set ROSAT_B              =  0x400
+        set ROSAT_C              =  0x800
+        set ROSAT_D              =  0x1000
+        set ROSAT_E              =  0x8000000
+        set STAR_BHB             =  0x2000
+        set STAR_CARBON          =  0x4000
+        set STAR_BROWN_DWARF     =  0x8000
+        set STAR_SUB_DWARF       =  0x10000
+        set STAR_CATY_VAR        =  0x20000
+        set STAR_RED_DWARF       =  0x40000
+        set STAR_WHITE_DWARF     =  0x80000
+        set SERENDIP_BLUE        =  0x100000
+        set SERENDIP_FIRST       =  0x200000
+        set SERENDIP_RED         =  0x400000
+        set SERENDIP_DISTANT     =  0x800000
+        set SERENDIP_MANUAL      =  0x1000000
+
+1d 3	# plots the 1d spectrum on mjd $1, plate $2, fiber $3
+	# Used with 'n', the spectra can be plotted in series.
+	#
+    define rootdir ({./})
+    define mjd $1
+    define plt $2
+    define fbr $3
+    define plate (sprintf('%04d',$plt))
+    define fiber (sprintf('%03d',$fbr))
+    define mjd (sprintf('%5d',$mjd))
+	define specfile (sprintf('%s',{spSpec-$mjd-$plate-$fiber.fit}))
+	define spectrum ({$rootdir""$specfile})
+	# load the primtarget types
+	pttypes
+	# echo $spectrum
+	define fluxflag 1
+	spec $spectrum
+	#
+	# initialize user redshift flag to "no"
+	set userz = 0
+    define displaytype "1d"
+
+spec 1  # plots wl vs flux for a spectrum ($1)
+        # retains wl, flux, errors, bin widths, limits, for other plot macros
+	# vector names kept: wl; fl; er; dwl; xlo, xhi, ylo, yhi; z, z_err;
+	#                    em_lines; mask
+        #
+        set lastspecfile = '$specfile'
+        #define sfile ""$!1""
+        define sfile ({$1})
+	#
+        # Use the following lines when reading 1dspec fits tables
+	specmerge_image $1 wl fl er z z_err em_lines mask class
+        #
+        # Find the plot limits
+        vecminmax wl xlo xhi
+        vecminmax fl ylo yhi
+        define yhi (1.10 * $yhi)
+        #define ylo (0)
+        #
+        # Plot the spectrum
+        erase
+	expand 0.80
+        ltype 0
+        lweight 2
+        ctype 0
+        limits $xlo $xhi $ylo $yhi
+        box
+        xla Wavelength ({Ang})
+        yla Flux (10^{-17} ergs/s/cm^{2}/{Ang})
+        toplabel $specfile
+        hi wl fl
+        1dinfo
+        #
+        # define array of bin sizes, saved in variable dwl
+        #        dl
+        #
+        # delete some unneeded variables
+	foreach _def (wllo wlhi i) {define $_def delete}
+        define _def delete
+        # initialize user redshift flag to "no"
+        set userz = 0
+	set smoothed = 0
+
+specmerge_image 9 ## Reads final 1d spectra output from spectro1d
+	## This macro is called by others and generally not used by itself.
+	## Modified from M. Strauss' specmerge_image.
+	## 
+	## specmerge_image [file] lambda counts err z z_err emlines mask class
+	## specmerge_image   $1     $2     $3   $4 $5   $6    $7     $8   $9
+	##
+	# set the verbosity to low
+	verbose 0
+	# First read in the spectrum itself
+	delete $3 # Since it may already be defined
+	define file_type fits
+	define table_type bintable
+	image "$!1"
+	# Extract the spectral information and measured quantities
+	foreach q (Z Z_ERR Z_CONF Z_STATUS SPEC_CLN NAXIS1 COEFF0 COEFF1 \
+          RAOBJ DECOBJ PRIMTARG SECTARGE MAG OBSERVER) {
+	  define $q delete
+	}
+	#define Z image
+	#define Z_ERR image
+	#define Z_CONF image
+	#define Z_STATUS image
+	#define SPEC_CLN image
+	#define NAXIS1 image
+	#define COEFF0 image
+	#define COEFF1 image
+	foreach q (Z Z_ERR Z_CONF Z_STATUS SPEC_CLN NAXIS1 COEFF0 COEFF1 \
+	  RAOBJ DECOBJ PRIMTARG SECTARGE MAG OBSERVER) {
+	  define $q image
+	}
+	define $5 (sprintf('%8.5f',$Z))	# spectro1d redshift
+	define $6 (sprintf('%8.5f',$Z_ERR))	# spectro1d redshift error
+	define status ($Z_STATUS)	# spectro1d redshift status
+	define $9 ($SPEC_CLN)		# spectro1d spectral classification
+	set _i = 0, $($NAXIS1 - 1)
+	set $2 = $COEFF0 + $COEFF1*_i
+	set $2 = 10.0**($2)		# lambda
+	set $3 = image[_i,0]		# counts
+	set $4 = image[_i,2]		# count uncertainty
+	set $8 = image[_i,3]		# lambda mask
+	# Read in list of measured emission lines
+	# Doesn't work yet
+	# table 1 "$!1"
+	# define NAXIS2 image
+	# if ($NAXIS2 == 0) {
+	#   delete $7
+	# } else {
+	#   read table 'byname' {wave}
+	#   set $7 = wave
+	# }
+	#
+	# reset other parameters read from the header
+	define pt ($PRIMTARG)
+	define st ($SECTARGE)
+	#
+	# reset the verbosity
+	verbose 1
+1dinfo	# displays the 1d spectral info to screen
+	# Report the spectral quantities
+        # class: 0=star, 1-gal, 2=qso, 3=unknown
+        if ($class == 0) {define cls star}
+        if ($class == 1) {define cls galaxy}
+        if ($class == 2) {define cls QSO}
+        if ($class == 3) {define cls unknown}
+        echo ""
+        echo ""
+        echo ""
+        echo $specfile:
+        echo  class=$cls, z=$z, z_err=$z_err, z_status=$status
+        if ($status == 0) {echo   z_status: not_measured}
+        if ($status == 1) {echo   z_status: measurement failed}
+        if ($status == 2) {echo   z_status: xcorr and emz inconsistent}
+        if ($status == 3) {echo   z_status: xcorr plus consistent emz}
+        if ($status == 4) {echo   z_status: xcorr with high confidence}
+        if ($status == 5) {echo   z_status: xcorr with low confidence}
+        if ($status == 6) {echo   z_status: emz plus consistent xcorr}
+        if ($status == 7) {echo   z_status: emz with high confidence}
+        if ($status == 8) {echo   z_status: emz with low confidence}
+        if ($status == 9) {echo   z_status: manual with high confidence}
+        if ($status == 10) {echo   z_status: manual with low confidence}
+        if ($status == 11) {echo   z_status: xcorr when WE(4000break)>0.95}
+        pt $PRIMTARG
+        uz
+uz # write mag 
+    ### why is MAG truncated?  - bug in sm, but patch is available
+    echo "  u g r i z magnitudes:"
+    echo $MAG
+    echo Observer: $OBSERVER
+pt 1    # Returns a list of target types given a primTarget flag $1.
+        #
+        set type = {QSO_HIZ QSO_CAP QSO_SKIRT QSO_FIRST_CAP QSO_FIRST_SKIRT \
+          QSO_FAINT GALAXY_RED GALAXY_RED_II GALAXY_GALAXY GALAXY_BIG \
+          GALAXY_BRIGHT_CORE ROSAT_A ROSAT_B ROSAT_C ROSAT_D ROSAT_E \
+          STAR_BHB STAR_CARBON STAR_BROWN_DWARF STAR_SUB_DWARF \
+          STAR_CATY_VAR STAR_RED_DWARF STAR_WHITE_DWARF \
+          SERENDIP_BLUE SERENDIP_FIRST SERENDIP_RED \
+          SERENDIP_DISTANT SERENDIP_MANUAL}
+        #
+        # for some reason, sm can only handle strings with <= 39 chars!
+        set prmt = ''
+        foreach t type {
+          set l = strlen(prmt)
+          if ($1 & $t && l <= 30) {
+            set prmt = prmt + ' ' + '$t'
+          }
+          if ($1 & $t && l > 30) {
+            set prmt = prmt + ' ...'
+          }
+        }
+        define primt (prmt[0])
+	echo $primt
+h	# prints out a help list 
+	echo 1d 3 	-- plots flambda for mjd "$1", plate "$2", fiber "$3";
+	echo 1dinfo	-- print info from 1d spectral file to screen
+	echo s          -- boxcar smooth the plot by "$1" pixels
+s 1	# boxcar smooth the plot by $1 pixels
+	smooth fl flsmooth $1
+	#
+        erase
+        limits $xlo $xhi $ylo $yhi
+        box
+        xla Wavelength ({Ang})
+        IF($fluxflag == 1) {
+        yla Flux (10^{-17} ergs/s/cm^{2}/{Ang})
+	}
+        IF($fluxflag == 2) {
+        yla Flux (10^{-28} ergs/s/cm^{2}/hz)
+	}
+        toplabel $specfile
+        #
+        hi wl flsmooth
+	#
+	set smoothed = 1
+

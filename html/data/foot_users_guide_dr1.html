@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>FOOT User's Guide</title>
+  </head>
+
+  <body>
+    <h1>FOOT User's Guide</h1>
+
+<b>Use the Footprint Server to create JPEG finder charts
+   and/or search for GIF spectrograms for a list of 
+   sky positions (RA, DEC in J2000).</b>
+
+<HR>
+
+<P>
+Table of contents:
+<UL>
+<LI><a href="#ListofCoordinates">List of Coordinates</a>
+<LI><a href="#OutputContent">Output Content</a>
+<LI><a href="#OutputFormat">Output Format</a>
+</UL>
+<P>
+<hr>
+<P>
+
+<h1><a name="ListofCoordinates">List of Coordinates</a></h1>
+<P>
+<i>Provide a list of coordinates for which you want JPEG finder charts
+and/or GIF spectrograms.</i>
+<P>
+The list can be either entered directly into the webform box uploaded
+as a file from your machine.  In either case, it must be a comma
+separated list containing fields for ra and dec.
+The <i>order</i> of these fields in the list is unimportant, 
+but the first line of the list must contain the order
+of the fields in comma-separated format; e.g.:
+<pre>
+ra,dec
+</pre>
+<P>
+Valid formats (J2000):
+<LI> ra in decimal degrees (D.ddddd) 
+     or in sexagesimal hours, minutes, seconds (HH:MM:SS.ss or HH MM SS.ss)
+<LI> dec in decimal degrees (+/-DD.ddddd) 
+     or in sexagesimal degrees, arcminutes, arcseconds (+/-DD:MM:SS.s or +/-DD MM SS.s)
+
+
+
+<hr>
+
+<P>
+<P>
+<h1><a name="OutputContent">Output Content</a></h1>
+<i> Indicate what content you want outputted by your query.</i>
+<P>
+<LI><b>Imaging (target version) run/rerun/camcol/field/rowc/colc</b>:
+    create a JPEG finder chart image based upon the target version of
+    the imaging data
+<LI><b>Imaging (best version) run/rerun/camcol/field/rowc/colc</b>:
+    create a JPEG finder chart image based upon the best version of
+    the imaging data
+<LI><b>Spectroscopy plate/mjd/fiberid/sep:</b>
+    find the GIF spectrogram of an object (if any) near to the given ra, dec
+
+<hr>
+
+<P>
+<P>
+<h1><a name="OutputFormat">Output Format</a></h1>
+<i> Indicate what format you want your query's output to be in.</i>
+<P>
+<LI><b>Standard:</b>
+    Tabulate information on matches using HTML with links to the images
+<LI><b>Image Cutouts Inline:</b>
+    Tabulate information on matches using HTML with image cutouts included
+<LI><b>Stream Output</b>:
+    Tabulate information on matches using plain text; no links to images 
+
+<P>
+
+<hr>
+
+<address><a href="mailto:sdss-helpdesk@fnal.gov">sdss-helpdesk@fnal.gov</a></address>
+
+</body>
+</html>

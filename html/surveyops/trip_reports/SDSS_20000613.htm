@@ -1,0 +1,324 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Generator" content="Microsoft Word 97">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (WinNT; I) [Netscape]">
+   <title>&lt;-html></title>
+</head>
+<body>
+
+<div align="left">
+  <h1><b><font size=+2>Telescope Servo System Work At Apache Point</font></b>
+    <br>
+      <b><font size=+1>June 13-16, 2000</font></b></h1>
+  <p><em>Sloan Digital Sky Survey Technical Note 20000613</em> </p>
+</div>
+<em>Craig Drennan</em>, Fermi National Accelerator Laboratory Batavia, IL USA
+<hr WIDTH="100%">
+<br><br>
+<font size=-1>On Tuesday, June 13 our original flight to El Paso Texas
+was canceled, but we were booked on another flight through Dallas to El
+Paso later in the afternoon. We were not able to begin work on the telescope
+until Wednesday morning.</font>
+<br>&nbsp;
+<br>&nbsp;
+<p><b><i><font size=+0>TPM Logging Utility</font></i></b>
+<p><font size=-1>Wednesday, June 21 I took time learning to use the MCP
+interface to control the telescope servo systems. Bill Boroski worked with
+Peregrine McGehee over the telephone to create a version of the TPM logger
+which logged the nine parameters listed below at a 200 Hz sample rate.
+Peregrine also passed on to us the simple procedures for starting and stopping
+a TPM session, using the Real-Time TPM strip chart display, and loading
+and unloading different versions of the TPM program</font>
+<br>&nbsp;
+<table BORDER CELLPADDING=7 WIDTH="571" >
+<tr>
+<td VALIGN=TOP WIDTH="16%"><font size=-1>TPM Variable Name</font></td>
+
+<td VALIGN=TOP WIDTH="36%"><font size=-1>Description</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-1>Units</font></td>
+
+<td VALIGN=TOP WIDTH="39%"><font size=-1>Conversions</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%"><font size=-1>ALENC1F</font></td>
+
+<td VALIGN=TOP WIDTH="36%"><font size=-1>Altitude Encoder #1</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-1>Counts</font></td>
+
+<td VALIGN=TOP WIDTH="39%"><font size=-1>0.0140091448584 ArcSec / Count</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%"><font size=-1>ALERRF</font></td>
+
+<td VALIGN=TOP WIDTH="36%"><font size=-1>Altitude MEI Control Error</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-1>Counts</font></td>
+
+<td VALIGN=TOP WIDTH="39%"><font size=-1>0.0140091448584 ArcSec / Count</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%"><font size=-1>ALMTRC1F</font></td>
+
+<td VALIGN=TOP WIDTH="36%"><font size=-1>Altitude Drive Motor #1 Current</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-1>ADC Counts</font></td>
+
+<td VALIGN=TOP WIDTH="39%"><font size=-1>(help!) Amps / Count</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%"><font size=-1>AZENC1F</font></td>
+
+<td VALIGN=TOP WIDTH="36%"><font size=-1>Azimuth Encoder #1</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-1>Counts</font></td>
+
+<td VALIGN=TOP WIDTH="39%"><font size=-1>0.0140167104063 ArcSec / Count</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%"><font size=-1>AZERRF</font></td>
+
+<td VALIGN=TOP WIDTH="36%"><font size=-1>Azimuth MEI Control Error</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-1>Counts</font></td>
+
+<td VALIGN=TOP WIDTH="39%"><font size=-1>0.0140167104063 ArcSec / Count</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%"><font size=-1>AZMTRC1F</font></td>
+
+<td VALIGN=TOP WIDTH="36%"><font size=-1>Azimuth Drive Motor #1 Current</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-1>ADC Counts</font></td>
+
+<td VALIGN=TOP WIDTH="39%"><font size=-1>(help!) Amps / Count</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%"><font size=-1>ROENCF</font></td>
+
+<td VALIGN=TOP WIDTH="36%"><font size=-1>Rotator Encoder #1</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-1>Counts</font></td>
+
+<td VALIGN=TOP WIDTH="39%"><font size=-1>0.0213157852666 ArcSec / Count</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%"><font size=-1>ROERRF</font></td>
+
+<td VALIGN=TOP WIDTH="36%"><font size=-1>Rotator MEI Control Error</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-1>Counts</font></td>
+
+<td VALIGN=TOP WIDTH="39%"><font size=-1>0.0213157852666 ArcSec / Count</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%"><font size=-1>ROMTRCF</font></td>
+
+<td VALIGN=TOP WIDTH="36%"><font size=-1>Rotator Drive Motor #1 Current</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-1>ADC Counts</font></td>
+
+<td VALIGN=TOP WIDTH="39%"><font size=-1>(help!) Amps / Count</font></td>
+</tr>
+</table>
+
+<p><b><i><font size=+0>Telescope Oscillations at Zenith</font></i></b>
+<p><font size=-1>French Leger demonstrated the oscillations that occurred
+when the telescope altitude was at 90 degrees and the rotator and azimuth
+axes were set in motion. Carlos Gonzalez, helped me find my way around
+and assisted me in the tests. Carlos and I determined the test points for
+monitoring the outputs of the servo controllers (input control voltage
+of the Glentek servo drive amplifiers). We monitored these voltages with
+an oscilloscope throughout our tests. Whenever the physical vibrations
+from the Azimuth drive system began, the control voltage input to the azimuth
+servo drive amplifiers was observed to be a 800 mVp-p sine wave at approximately
+43 Hz.</font>
+<p><font size=-1>We first attempted to reduce the proportional gain of
+the controller by 50%. This had no effect on our problem. We then set the
+proportional gain to its original setting and reduced the derivative gain
+from a setting of 1500 to 700. With this setting the vibrations did not
+begin and the 43 Hz oscillations were not present (very infrequent and
+small) in the control voltage input to the azimuth servo drive. Further
+tests were performed with increasing values for the derivative gain between
+700 and 1500. As the gain was increased the 43 Hz content of the control
+voltage during the slew in azimuth would increase.</font>
+<p><font size=-1>It was noted that the 43 Hz oscillation seems to be inherent
+in the rotator motion when slewing. The tuning of the rotator could be
+explored in the future. When the altitude of the telescope is above 80
+degrees the acceleration and torques associated with the rotator couple
+into the dynamics of the azimuth servo controls. It is the azimuth loops
+response to the 43 Hz coupled in from the rotator that has been modified
+to solve our oscillation problem.</font>
+<p><font size=-1>During the day shift we would run our slew tests using
+the MCP Menu controls. During the night shift the observers would slew
+the telescope using the TCC interface. With the derivative gain at 700,
+running the telescope from the TCC resulted in a 43 Hz signal component
+8 times that of identical motion commanded from the MCP Menu. The oscillation
+in either case remained less than 15mVp-p. I suspect that the TCC implements
+a closed-loop correction based on a readback of the current position in
+its computation of the Position / Velocity / Time vectors that it feeds
+to the MEI controller. This would increase the gain of the closed-loop
+between the setpoint entered into the TCC and the actual position / velocity.
+If such a correction scheme is actually in place we will need to be sure
+to use the TCC when tuning the servo loops. The particular implementation
+of this correction and the effect of this correction on the baseline tuning
+should be noted so that we can understand how the tuning of the servo loops
+may change should the TCC software be revised.</font>
+<p><font size=-1>After the derivative gain was changed to 700 the telescope
+was exercised to verify that the performance of the telescope servo controls
+was within specification. First the telescope, at a variety of altitude
+angles, was slewed in azimuth while the rotator was being slewed. The telescope
+was found to be stable in each of these tests. Second, the azimuth and
+rotator were driven at tracking speeds to ensure that the tracking error
+was still within specification. Preliminary results of these tests were
+viewed using the real-time TPM strip chart graph utility. From "eyeballing"
+these graphs the error appeared to remain within specification. A more
+detailed analysis of the error will be made from the TPM logs.</font>
+<p><b><i><font size=+0>Altitude Encoder #1 Direction Switch</font></i></b>
+<p><font size=-1>Previously Altitude Encoder #1 would decrement in count
+when Altitude Encoder #2 was incrementing in count. This was corrected
+by swapping the Va, Vb differential signals for Encoder #1 in the interlock
+rack. There was some confusion, as to which encoder was which. I may actually
+still be confused. I am sure that the encoder input we modified was the
+encoder that was not being used for control at that time. Some effort will
+soon be going into the documentation and labeling in this area. Documentation
+in general does appears to be in good shape.</font>
+<p><b><i><font size=+0>Noisy Azimuth Encoder #2</font></i></b>
+<p><font size=-1>We inserted resistor leads for use as test points into
+the interface module in the interlock rack for the signals from Azimuth
+Encoder #2. Using an oscilloscope we monitored the four voltages, (Va+,
+Va-) and (Vb+, Vb-). We first noted that Vb+ was not toggling, as it should.
+We found that the insulation had been pinched in the interface module terminal
+and the conductor was not making contact. This may have been an existing
+condition or we created the problem when we inserted the resistor lead
+test point.</font>
+<p><font size=-1>After correcting the Vb+ connection we slew the telescope
+in azimuth only and monitored both Azimuth Encoder #1 and Azimuth Encoder
+#2 with the real-time TPM strip chart graph utility. We noted that each
+trace was as noise free as the other at the scale we observed them in.
+We will be examining the TPM logs to characterize the noise levels on these
+signals more closely. We did note that the scale factor for Azimuth Encoder
+#2 was approximately twice that of Azimuth Encoder #1.</font>
+<p><font size=-1>We ran out of time before we could investigate the problem
+further. We left the encoder connected and we should be able to have Carlos
+or French exercise it more and then have a look at the TPM log from Fermilab.
+We need to drive all the axes to see when noise is produced. We also need
+to determine where the difference in scale needs to be adjusted.</font>
+<p><b><u><font size=+2>EXTRA NOTES</font></u></b>
+<p><b><font size=+1>Software Utilities</font></b>
+<p><u><font face="Courier New"><font size=+0>Machine names:</font></font></u>
+<p><u>sdsshost.apo.nmsu.edu</u>
+<p><u>sdsscommish.apo.nmsu.edu</u>
+<p><u>sdssmcp.apo.nmsu.edu</u>
+<p><b><i><u>Start / Stop TPM Logging</u></i></b>
+<p><font face="Courier New"><font size=-1>sdsshost-> telnet tpm</font></font>
+<p><font face="Courier New"><font size=-1>sdsshost-> tpm</font></font>
+<p><font face="Courier New"><font size=-1>sdsshost-> list</font></font>
+<dir>
+<dir>
+<dir>
+<dir><font face="Courier New"><font size=-1>^-- produces a list of commands
+that can be used.</font></font>
+<dir>
+<dir>&nbsp;</dir>
+</dir>
+</dir>
+</dir>
+</dir>
+</dir>
+<font face="Courier New"><font size=-1>sdsshost-> start "filename"</font></font>
+<dir>
+<dir>
+<dir>
+<dir>
+<dir>
+<dir>
+<dir>
+<dir><font face="Courier New"><font size=-1>^-- enter the name for the
+log file.</font></font></dir>
+</dir>
+</dir>
+</dir>
+</dir>
+</dir>
+</dir>
+</dir>
+<font face="Courier New"><font size=-1>sdsshost-> quit</font></font>
+<dir>
+<dir>
+<dir>
+<dir><font face="Courier New"><font size=-1>^-- exits tpm but the logging
+continues.</font></font></dir>
+</dir>
+</dir>
+</dir>
+<font face="Courier New"><font size=-1>sdsshost-> tpm</font></font>
+<dir>
+<dir>
+<dir>
+<dir><font face="Courier New"><font size=-1>^-- re-enter the tpm program</font></font></dir>
+</dir>
+</dir>
+</dir>
+<font face="Courier New"><font size=-1>sdsshost-> stop</font></font>
+<dir>
+<dir>
+<dir>
+<dir><font face="Courier New"><font size=-1>^-- stops the logging</font></font></dir>
+</dir>
+</dir>
+</dir>
+<font face="Courier New"><font size=-1>sdsshost-> quit</font></font>
+<p><b><i><font face="Courier New"><font size=+0>Run the Real-Time TPM Monitor</font></font></i></b>
+<p><font face="Courier New"><font size=-1>sdsshost-> setup tpm</font></font>
+<p><font face="Courier New"><font size=-1>sdsshost-> dm tpm.dl &amp;</font></font>
+<p><b><i><font face="Courier New"><font size=+0>Extract Data from the TPM
+Log into ASCII Files</font></font></i></b>
+<p><font face="Courier New"><font size=+0>Detailed instructions can be
+found in the paper</font></font>
+<p><font face="Courier New"><font size=+0>XarrWish - Data Archive Extensions
+to Tcl, Peregrine M. McGehee, 2 June 2000</font></font>
+<p><font face="Courier New"><font size=+0>=========================================================</font></font>
+<p><font face="Courier New"><font size=-1>>ssh -l "account name" sdsscommish.apo.nmsu.edu</font></font>
+<p><font face="Courier New"><font size=-1>^-- lowercase L.</font></font>
+<p><font face="Courier New"><font size=-1>sdsscommish-> bash</font></font>
+<p><font face="Courier New"><font size=-1>bash-> cd $XARRWISH</font></font>
+<p><font face="Courier New"><font size=-1>bash-> xarrwish -f servo.tcl</font></font>
+<p><font face="Courier New"><font size=-1>Name of TPM log file: /mcptpm/"log
+file name"</font></font>
+<p><font face="Courier New"><font size=-1>Does this file predate April
+2000 bright time &lt;1=Yes>? 0</font></font>
+<p><font face="Courier New"><font size=-1>Select a subinterval (1=Yes)?
+0</font></font>
+<p><font face="Courier New"><font size=-1>Enter channel name, 0 to Quit,
+or List: list</font></font>
+<p><font face="Courier New"><font size=-1>Channel names:</font></font>
+<p><font face="Courier New"><font size=-1>ALMTRC1 AZERR ALENC1 ALMTRC2
+AZMTRC1 ...</font></font>
+<p><font face="Courier New"><font size=-1>Enter channel name, 0 to Quit,
+or List: ALMTRC1</font></font>
+<p><font face="Courier New"><font size=-1>... enter the other channel names.</font></font>
+<p><font face="Courier New"><font size=-1>Enter channel name, 0 to Quit,
+or List: 0</font></font>
+<p><font face="Courier New"><font size=-1>Each output file will be named
+&lt;run ID>_&lt;channel name>.dat</font></font>
+<p><font face="Courier New"><font size=-1>Please enter run ID: demo</font></font>
+<p><font face="Courier New"><font size=-1>Creating demo_ALMTRC1.dat</font></font>
+<p><font face="Courier New"><font size=-1>Other selected channels are written
+to a file.</font></font>
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

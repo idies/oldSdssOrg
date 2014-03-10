@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Tiling - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+<h1>Tiling: determining survey completeness</h1>
+
+Up: <a href="../index.html">Data Products</a> Sections: <a
+href="../images/index.html">Images</a> - <a
+href="../catalogs/index.html">Object lists</a> - <a
+href="../spectra/index.html">Spectra</a> - Tiling
+
+<p>When you are given a set of spectra from any survey, and you want to
+ask statistical questions about them, the first thing you should ask
+is "How were these objects selected?" The SDSS is designed such that
+you can answer this question easily for the <a
+href="../../glossary/index.html#tilable"> tilable target</a>s
+(for the most part QSOs, Main Sample galaxies, and Luminous Red
+Galaxies). The answer has
+several steps:</p>
+<ol>
+<li> Photometric detection (requires understanding the <a
+href="../images/use_masks.html"> photometric imaging mask</a>) 
+<li> Target selection (requires understanding the <a
+href="../../algorithms/target.html"> target selection
+algorithms</a>)
+<li> Tiling (the algorithm is described in <a
+href="../../algorithms/tiling.html"> a separate document</a>)
+<li> Spectroscopic completeness (whether or not <a href="../spectra/index.html">
+a spectrum successfully yields a classification</a>)
+</ol>
+This section addresses the second and third aspects: how <a
+href="../../glossary/index.html#tilable"> tilable target</a>s
+are selected and assigned to each <a
+href="../../glossary/index.html#tile">tile</a>.
+<br><P>
+The way to understand the tiling window is as follows. In each
+direction of the sky we can ask two questions:
+<ol>
+<li> what version of <a href="../../algorithms/target.html"> the
+target algorithm</a> was used in this direction (for example,
+to determine the flux limit in the targeted data)?
+<li> what set of tiles had the opportunity to put a fiber on a target
+in this direction? 
+</ol>
+Once you can answer these two questions, one can define a complete
+spectroscopic sample from the SDSS.
+The second question, in detail, is not the same as asking whether the
+direction in question is within 1.49 deg of the tile center in
+question.  This is because tiles near edges of tiling regions (that
+is, virtually all tiles) extend beyond the tiling region area. In some
+cases, the survey then later observed and targeted 
+the adjacent area. This fact, and the generally complex geometry which results
+from the survey configuration, make the expression of the window
+function nontrivial.
+In practice, we have solved these geometric problems and with the data
+release are giving you tools to answer these two questions.
+<br><P>
+To demonstrate the SDSS procedure, consider the following few figures,
+which represent how targets were selected and tiles defined along a
+section of the SDSS near the Northern Celestial Equator. The region
+shown was successively targeted in Tile Region 4, Tile Region 5 and
+Tile Region 14. The images show: 
+<ol>
+<IMG SRC="dr1_polygons0.gif"
+width=383 height=378 alt="Tile Region 4">
+<li> The area targeted (in dark grey) by Tile Region 4 and the boundaries
+of the defined tiles. 
+<IMG SRC="dr1_polygons1.gif"
+width=383 height=378 alt="Tile Region 4">
+<li> The area targeted (in dark grey) by Tile Region 5 and the boundaries
+of the defined tiles, plus (in lighter tones) the geometry of Tile
+Region 4. Note that there exist areas in Tile Region 5 which are
+within the boundaries of tiles from Tile Region 4; however, those old
+tiles could not have been assigned targets in Tile Region 5.
+<IMG SRC="dr1_polygons2.gif"
+width=383 height=378 alt="Tile Region 4">
+<li> The area targeted (in dark grey) by Tile Region 14 and the boundaries
+of the defined tiles, plus (in lighter tones) the geometry of Tile
+Regions 4 and 5. The same issue of overlapping tiles exists in this
+case.
+<IMG SRC="dr1_polygons3.gif"
+width=383 height=378 alt="Polygons">
+<li> The full area covered by the targeting and all of the relevant
+Tile Region and tile boundaries. One can divide this region into
+all the disjoint polygons defined by these boundaries (for example
+using <a href="http://casa.colorado.edu/~ajsh/mangle/	"> Andrew
+Hamilton's Mangle software</a>). 
+<IMG SRC="dr1_polygons4.gif"
+width=383 height=378 alt="Sectors">
+<li> One can ask for each disjoint polygon what tiles cover it. A
+unique set of tiles covering any area of sky is known as a "sector" or
+sometimes "overlap region." The last figure colors shows the same set
+of disjoint polygons but colors each one according to its sector. Note
+that sectors can consist of more than one polygon.
+</ol>
+Since the SDSS is so complete, the details of exactly which set of
+tiles covered any given region would not be important, except that in
+certain cases there are resulting gaps, which are important to track. 
+<br><P>
+
+<!--
+In order to interpret the details of the above geometry, we release the
+following geometric files:
+<ol> 
+<li> <a href="dr1_tileFull.par"> dr1_tileFull.par</a>: The
+list of tiles in the DR1 chunks (regardless of whether a corresponding
+plate was released) <a href="tileFullPlate.html"> [details]</a>.
+<li> <a href="dr1_tilingBoundary.par">
+dr1_tilingBoundary.par</a>: Description of area of rectangular
+boundaries for each tiling region 
+<a href="tilingBoundary.html"> [details]</a>.
+<li> <a href="dr1_tilingMask.par"> dr1_tilingMask.par</a>: Description
+of excluded areas for each tiling region <a href="tilingBoundary.html"> [details]</a>.
+<!-- <li> <a href="dr1_sdss_sectorList.par"> dr1_sdss_sectorList.par</a>:
+List of sectors, with which tiles overlap and approximate areas <a
+href="sectorList.html"> [details]</a>.
+<li> <a href="dr1_sdss_tiling_geometry.ply">
+dr1_sdss_tiling_geometry.ply</a>:
+List of polygons, with which sectors and boundaries it is in <a
+href="sdss_tiling_geometry.html"> [details]</a>. 
+<li> 
+<a href="dr1_sdss_tiling_geometry.fits"> dr1_sdss_tiling_geometry.fits</a>:
+List of sectors, with which tiles overlap and approximate areas <a
+href="sdss_tiling_geometry.html"> [details]</a>. 
+</ol>
+-->
+
+<p>The <a href="../../access/index.html#CAS">Catalog Archive
+Server</a> provides all tiling information needed to interpret the
+details of the above geometry.</p>
+
+<P>The tiling window describes only how <a
+href="../../algorithms/tiling.html"> tiling</a> treated the geometry for the
+relevant set of data released here. It does not account for decisions
+about the photometric window released here or for fields identified as
+bad since the era of targeting.
+So in addition to the tiling window, one needs to also account for:</p>
+<ol>
+<li> the fact that targets 100 arcsec from the tile center are excluded
+<li> the photometric window (including bad fields) of the data release
+<li> which tiles had corresponding plates released 
+</ol>
+<p>This information can be acquired elsewhere in this data release
+documentation, as referenced at the beginning of this page. </p>
+
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Thu Mar  4 20:38:21 CST 2004
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>
+
+

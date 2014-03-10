@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Astrometry quality overview - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+<H1>Data products: General - Astrometry quality overview</H1>
+
+<p>A detailed description of the astrometric calibration and the the
+resultant accuracy of the astrometry is given in
+<a href="http://www.journals.uchicago.edu/AJ/journal/issues/v125n3/202156/202156.html">Pier et al. (2003)</a>
+(AJ, or <a href="http://xxx.lanl.gov/abs/astro-ph/0211375">astro-ph/0211375</a>).
+Portions of that discussion are summarized here, and
+on the <a href="../../algorithms/astrometry.html">astrometry algorithm
+page</a>.</p>
+
+<H2> Overall Accuracy </H2>
+
+The <var>r</var> photometric CCDs serve as the astrometric reference CCDs for the SDSS.
+That is, the positions for SDSS objects are based on the <var>r</var> centroids and
+calibrations.  The <var>r</var> CCDs are calibrated by matching up bright stars detected
+by SDSS with one of two existing astrometric reference catalogs:
+
+<ol>
+<li> Whenever possible, stars detected on the <var>r</var> CCDs are matched
+     directly with stars in the 
+     <a href="http://ad.usno.navy.mil/ucac/">United States Naval Observatory CCD
+     Astrograph Catalog</a>
+     (UCAC, <a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2000AJ....120.2131Z">Zacharias et al. 2000</a>), an (eventually)
+     all-sky astrometric catalog with a precision of 70 millarcsec (mas)
+     at its catalog limit of <var>r</var> = 16, and systematic errors of less than 30 mas.
+     For DR2/DR3, stripes 9-13, 76, 82, and 86 used UCAC.
+<li> If a scan is not covered by the current version of UCAC, then it is
+     reduced against Tycho-2
+     (<a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2000A%26A...355L..27H">Hog et al. 2000</a>), an all-sky astrometric catalog
+     with a median precision of 70 mas at its catalog limit of
+     V<sub>T</sub> = 11.5, and
+     systematic errors of less than 1 mas.
+     For DR2/DR3, stripes 30-43 used Tycho-2.
+</ol>
+
+For point sources brighter than <var>r</var> = 20, the errors in the calibrations dominate
+the centroiding errors.
+The accuracy of the calibrations using UCAC are of order 45 mas rms per
+coordinate (all errors in this section are quoted as rms per coordinate), with
+an additional systematic error of up to 30 mas (due primarily
+to systematic errors in UCAC).  The accuracy of calibrations using Tycho-2 are
+of order 75 mas rms with an additional systematic error of order 20 mas
+(due to CTE effects in the astrometric CCDs).  The rms errors are dominated
+by Gaussian distributions of systematic errors which vary on time scales of
+one to a few tens of minutes due to anomalous refraction,
+and by random errors in the primary reference catalogs.
+The accuracy of the relative astrometry of the
+u, <var>g</var>, <var>i</var>, and z filters versus the <var>r</var> filter is of order 25 mas rms
+for the <var>g</var>, <var>i</var>, and z filters, and 35 mas rms
+for the u filter.  Systematic errors with magnitude, color, or CCD column
+are typically less than 10 mas.
+At the survey limit (r = 22), the astrometric accuracy is limited by
+photon statistics to approximately 100 mas rms for typical seeing.
+
+<H2> Calculating Errors for Individual Objects </H2>
+
+The calibrations are performed in great circle coordinates.
+The estimated errors in the calibrations are given on a per-frame
+basis.  The calibration errors in great circle longitude and latitude are
+given by the attributes <em>muErr</em> and <em>nuErr</em>, respectively
+(in arcseconds).  These are in the <em>tsField</em> files in the DAS.
+ These should be added in quadrature with the
+centroiding errors for individual objects to give the estimated total error
+in the position of a given object.  The centroiding errors in great circle
+longitude and latitude are given by the attributes <em>objc_rowcErr</em> and
+<em>objc_colcErr</em>, respectively (in pixels; these should be multiplied by
+the focal plane scale of 0.396 arcseconds/pixel to convert to arcseconds).
+These attributes are in the <em>tsObjc</em> files in the DAS.
+
+
+<H2><a name="calibrationEquations">Calibration Equations</a></H2>
+      
+<p>Astrometric calibrations are generated as a separate set of equations for
+each frame, converting frame row (x), frame column (y), and
+star color to catalog mean place great circle longitude (&mu;) and latitude (&nu;),
+in degrees:
+<pre>
+for color < (color)<sub>0</sub>:
+
+   x' = x + g<sub>0</sub> + g<sub>1</sub> y + g<sub>2</sub> y<sup>2</sup> + g<sub>3</sub> y<sup>3</sup> + p<sub>x</sub> color
+   y' = y + h<sub>0</sub> + h<sub>1</sub> y + h<sub>2</sub> y<sup>2</sup> + h<sub>3</sub> y<sup>3</sup> + p<sub>y</sub> color
+
+for color > (color)<sub>0</sub>:
+   x' = x + g<sub>0</sub> + g<sub>1</sub> y + g<sub>2</sub> y<sup>2</sup> + g<sub>3</sub> y<sup>3</sup> + q<sub>x</sub>
+   y' = y + h<sub>0</sub> + h<sub>1</sub> y + h<sub>2</sub> y<sup>2</sup> + h<sub>3</sub> y<sup>3</sup> + q<sub>y</sub>
+
+&mu; = a + b x' + c y'
+&nu; = d + e x' + f y'
+</pre>
+
+The transformation from (x, y) to (x', y') corrects for optical
+distortions (which, in TDI mode, are a function of column
+only) and differential chromatic refraction (DCR).  For u and
+g frames, DCR is modeled as a linear function of color (u-g for u
+frames, g-r for g frames) for blue stars
+[(color)<sub>0</sub> = (u-g)<sub>0</sub> = 3.0 for u frames,
+(color)<sub>0</sub> = (g-r)<sub>0</sub> = 1.5 for g frames],
+and a constant for redder stars. For <var>r</var>, <var>i</var>, and z frames,
+DCR is modeled as a linear function of color (r-i) for all stars
+[(color)<sub>0</sub> = (r-i)<sub>0</sub> >> 1].
+(The DCR corrections are mis-stated in Pier et al. [2003], where
+[r-i]<sub>0</sub> appears in the equations rather than the correct
+[color]<sub>0</sub>, and where the wrong value for
+[color]<sub>0</sub> is given for u frames.)
+The corrected frame coordinates (x', y') are then transformed to catalog mean
+place great circle coordinates (&mu;, &nu;) using an affine
+transformation.</p>
+
+<p>The calibration coefficients may be found in the <code>tsField</code> files in
+the DAS<!--  , and the "field????" object in the CAS -->, where the attribute names are
+different than given in the transformation equations above;  (color)<sub>0</sub>
+is called <em>riCut</em>;
+g<sub>0</sub>, g<sub>1</sub>, g<sub>2</sub>, and
+g<sub>3</sub> are called <em>dRow0</em>, <em>dRow1</em>, <em>dRow2</em>,
+and <em>dRow3</em>, respectively;
+h<sub>0</sub>, h<sub>1</sub>, h<sub>2</sub>, and
+h<sub>3</sub> are called <em>dCol0</em>, <em>dCol1</em>, <em>dCol2</em>,
+and <em>dCol3</em>, respectively;
+p<sub>x</sub> and p<sub>y</sub> are called <em>csRow</em> and <em>csCol</em>,
+respectively; and
+q<sub>x</sub> and q<sub>y</sub> are called <em>ccRow</em> and <em>ccCol</em>,
+respectively.</p>
+
+<H2><a name="gcToEq">Transformation from Great Circle Coordinates to J2000 Celestial Coordinates</a></H2>
+
+The calibration equations above yield catalog mean place in great circle
+coordinates.  To convert these to J2000 celestial coordinates you need to know
+the right ascension and inclination of the ascending node of the scan great
+circle with respect to the J2000
+celestial equator.  These are given as the header keywords "NODE" and "INCL",
+respectively, in the PDU of the "tsField" file.  The celestial coordinates are
+then
+<pre>
+   tan(&alpha;<sub>2000</sub> - &alpha;<sub>0</sub>) = [sin(&mu; - &alpha;<sub>0</sub>)cos &nu; cos <em>i</em> - sin &nu; sin <em>i</em>]/[cos(&mu; - &alpha;<sub>0</sub>)cos &nu;]
+   sin &delta;<sub>2000</sub> = sin(&mu; - &alpha;<sub>0</sub>)cos &nu; sin <em>i</em> + sin &nu; cos <em>i</em>
+</pre>
+where <em>&mu;</em> and <em>&nu;</em> are great circle longitude and latitude,
+<em>&alpha;<sub>0</sub></em> and <em>i</em> are the right ascension and
+inclination of the ascending node of the great circle with respect to the J2000
+celestial equator, and <em>&alpha;<sub>2000</sub></em> and
+<em>&delta;<sub>2000</sub></em> are J2000 right ascension and declination.
+
+
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Wed Apr  2 18:26:56 CST 2003
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

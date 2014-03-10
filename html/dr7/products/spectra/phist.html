@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Pat Hall's tools for displaying individual spectra files (spSpec files)
+in IRAF - SDSS DR3</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<!-- Start page content -->
+<h1>Pat Hall's IRAF tasks for displaying SDSS spectra</h1>
+
+<P>Pat Hall has written an IRAF package, PHIST, for displaying SDSS
+spectra. The task list is as follows:
+<pre>
+  dec2seg - convert decimal coordinates to sexigesimal
+    doigi - run existing IGI script
+ hexprint - convert a decimal number to hexadecimal
+   ionlte - calculate LTE ratios of MgI-III,AlI-IV,FeI-IV for given n_e,T ranges
+   lplots - overplot wavelengths of emission / absorption lines for given z
+  lplots2 - 2-panel lplots
+mkfitsobs - make coadded FITS and text spectrum
+    mkobs - make text spectrum from FITS spectrum
+    sbqgr - sample task for converting GR's SX .tbl output to formatted ASCII
+    sbqsx - sample task for converting SX .tbl output to formatted ASCII
+   sbqsx2 - another task for converting SX .tbl output to formatted ASCII
+  seg2dec - convert sexigesimal coordinates to decimal
+   spdata - get objid,mags,ra,dec,objtype from spectrum (plate,mjd,fiber)
+    splat - interactively SPLOT a specific observation (plate+mjd+fiber) 
+    splet - non-interactively SPECPLOT an observation and its error spectrum 
+ unredden - deredden spectrum using SMC or LMC extinction curve
+    vcalc - calculate velocity offset in quasar rest frame
+    vplot - overplot wavelengths of emission / absorption lines in velocity space
+   vplots - multiple vplot
+    wcalc - calculate vacuum wavelength from air wavelength
+    zplot - plot spectrum in the rest frame at the specified z
+</pre>
+Here's the README file on how to retrieve & install the package for version v.2 (December 2001): 
+
+<pre>
+        PHIST -- Pat Hall's IRAF SDSS Tasks
+
+v.2     011207  Read "phist.hlp" ("phelp phist opt=sys" in IRAF) for an
+        introduction.  Entire package available as a compressed tarfile
+        from <a
+href="http://www.yorku.ca/phall/HOME/phist2.tar.gz">http://www.yorku.ca/phall/HOME/phist2.tar.gz</a>
+        To install, enter the proper pathnames in "phist.cl" and
+        "phist.hd", load the IRAF "softools" package, and type
+        "mkhelpdb root.hd helpdb.mip", deleting the old helpdb.mip
+        if necessary.  See "phist.hlp" for how to include
+        the package in your default IRAF startup.
+</pre>
+</P>
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar  8 17:29:53 CST 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

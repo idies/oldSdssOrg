@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+  <title>Instruments - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" lang="en">
+<!--#include virtual="../includes/header_layer2.html"-->
+<!-- Start page content -->
+
+<h1>Survey instruments</h1>
+
+<p>The Sloan Digital Sky Survey Technical Summary <a
+href="http://xxx.lanl.gov/abs/astro-ph/0006396">(York et al 2000)</a>,
+available in html both at <a href="technicalPaper/index.html">this site</a>
+and <a
+href="http://www.journals.uchicago.edu/AJ/journal/issues/v120n3/200050/200050.html">that
+of the AJ</a>,  is the essential reference for survey instrumentation; we
+present only a brief overview with important parameters here. Further
+documentation can be found in the <a
+href="http://www.astro.princeton.edu/PBOOK/welcome.htm">SDSS Project
+Book</a>.</p>
+<dl>
+ <h2> <dt><a href="http://adsabs.harvard.edu/abs/2006AJ....131.2332G">Telescope</a></dt></h2>
+    <dd>The SDSS uses a dedicated 2.5 m f/5 modified Ritchey-Chretien
+      altitude-azimuth telescope located at <a
+      href="http://www.apo.nmsu.edu/">Apache Point Observatory</a>, in south
+      east New Mexico (Latitude 32&deg; 46' 49.30" N, Longitude 105&deg; 49'
+      13.50" W, Elevation 2788m). A 1.08 m secondary mirror and two corrector
+      lenses result in a 3&deg; distortion-free field of view. </dd>
+  <h2><dt><a href="./imager/index.html">Imaging Camera</a></dt></h2>
+    <dd>The imaging camera collects photometric imaging data using an array
+      of 30 SITe/Tektronix 2048 by 2048 pixel CCDs arranged in six columns of
+      five CCDs each, aligned with the pixel columns of the CCDs themselves.
+      SDSS <i>r</i>, <i>i</i>, <i>u</i>, <i>z</i>, and <i>g</i> filters cover
+      the respective rows of the array, in that order. The survey operates
+      the instrument in a drift scan mode: the camera slowly reads the CCDs
+      as the data is being collected, while the telescope moves along great
+      circles on the sky such that images of objects move along the columns
+      of the CCDs at the same rate the CCDs are being read. As an image of an
+      object moves along the column of the CCDs, a CCD in each row collects
+      data on that object. Therefore, the camera produces five images of a
+      given object, all from the same column of CCDs, one from each CCD in
+      that column. It takes an object 54 seconds to move from the beginning
+      of a CCD to the end, so the effective exposure time in each filter is
+      54 seconds. Because there is some space between the rows of CCDs it
+      takes an image 71.7 seconds to move from the beginning of one row to
+      the next. Each row corresponds to a different filter, so each object
+      has one image in each filter, taken at 71.7 second intervals.
+      <p>An additional 24 CCDs placed before and after the photometric CCDs
+      collect astrometric data. Neutral density filters cover these CCDs, and
+      allow collection of data on bright reference stars without
+      saturation.</p>
+      <p>Because there is space between the columns of CCDs, two passes along
+      a great circle are required to obtain a solid area. The second pass is
+      offset from the first such that the area that fell between columns in
+      the first pass is images in the center of the columns in the second
+      pass.</p>
+    </dd>
+  <h2><dt><a href="./spectrographs/index.html">Spectrographs</a></dt></h2>
+    <dd>The SDSS uses two spectrographs, each of which has a blue channel and
+      a red channel separated by a dichroic filter. 640 fibers (320 fibers
+      per spectrograph) feed light from the focal plane into the
+      spectrographs. A total of four 2048 &times; 2048, SITe/Tektronix CCDs (one
+      for each channel of each spectrograph) collect the spectra.</dd>
+  <h2><dt>Photometric Telescope (PT)</dt></h2>
+    <dd>A single SITe/Tektronix 2048 by 2048 pixel CCD mounted on a separate
+      telescope with a 20" aperture provides the data necessary for
+      photometric calibration. Two corrector lenses expand the field of view
+      of this classical Cassegrain telescope to almost a full degree. The PT
+      has an effective focal ratio of f/8.8. The attached camera has a pixel
+      scale of  1.15 arcseconds/pixel, and a field of view 39.2 arcminutes on
+      a side. The photometric telescope periodically observes fields
+      containing <a
+      href="../glossary/index.html#primary_standard">primary
+      standards</a> throughout a night of observing, providing a photometric
+      solution for the night. The remaining time is used to observe <a
+      href="../glossary/index.html#secondary_patch">secondary
+      patches</a>.</dd>
+</dl>
+<!-- end page content-->
+
+<hr>
+<!-- hhmts start -->
+ Last modified: 2003-03-19<!--#include virtual="../includes/footer.html"-->
+</body>
+</html>

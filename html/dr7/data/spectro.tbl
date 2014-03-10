@@ -1,0 +1,9 @@
+#XSTART ASCII 
+# 3
+# "plate" "mjd" "fiberID"
+# int int int
+# %d %d %d
+513 51989 300
+513 51989 312
+513 51989 618
+513 51989 638

@@ -1,0 +1,24 @@
+NGC 5746 is a classic spiral galaxy, located in the nearby Virgo cluster of
+galaxies.It has a distinct spiral disk and a large "peanut bulge" core.
+The peanut bulge is thought to be a thickened bar structure within the
+disk of the galaxy, so that the galaxy would be classified as a barred spiral
+if viewed face-on.
+
+Object Information from <a href="http://nedwww.ipac.caltech.edu">NED</a>:
+
+Object: NGC 5746 (UGC 09499)
+Type: Galaxy
+
+Longitude: 221.232792 degrees
+Latitude: 1.954722 degrees
+
+RA: 14:44:55.87
+Dec: +01 degrees 57:17.0
+(J2000 Equatorial)
+
+Distance: 24 Mpc
+Radial Velocity: 1724 km/s
+Redshift: .005751
+Diameters: 7.4 x 1.3 arcmin
+Magnitude: 11.29
+Classifications: SAB(rs)b? sp

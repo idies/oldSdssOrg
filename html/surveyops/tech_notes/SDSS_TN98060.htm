@@ -1,0 +1,169 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+   <TITLE>MCP Menu documentation</TITLE>
+<X-CLARIS-WINDOW TOP=114 BOTTOM=624 LEFT=16 RIGHT=546>
+<X-CLARIS-TAGVIEW MODE=minimal>
+</head>
+<body>
+
+<h1>Instructions for using Menu-driven
+Axis Control Software for the SDSS 2.5-meter Telescope</h1>
+<i>Sloan Digital Sky Survey Telescope Technical Note 19980624</i><br>&nbsp;
+<address>
+<A HREF="mailto:briegel@fnal.gov">Charlie Briegel</A><BR></address>
+<HR>
+
+
+
+
+
+<BR>The following steps will aid in controlling all three axes of telescope
+motion control system through direct access into the Motion Control Processor
+(MCP).
+<OL>
+<LI>
+Login into <B>sdssmcp</B> by executing one of the following:</LI>
+
+
+<P>a. telnet into port server - <B>telnet t-g-sdds-2 -3700</B>; enables
+a telnet into the processor to take over control.
+
+<P>b. telnet into vxWorks processor - <B>telnet sdssmcp</B>; prevents a
+telnet into the port server to take control<B>.</B>
+
+<P>Note that only one login is allowed at a time.&nbsp;<BR>
+<BR>
+<LI>
+At the <B>MCP-></B> prompt, type <B>Menu.</B><BR>
+<BR></LI>
+
+<LI>
+The following screen will be displayed:<BR>
+<BR></LI>
+
+<OL>&nbsp;<IMG SRC="MCP_menu.gif" HEIGHT=393 WIDTH=448>
+<BR>&nbsp;</OL>
+
+<LI>
+Type <B>?</B> for help and the extended help screen will be displayed as
+below:</LI>
+
+<OL>&nbsp;<IMG SRC="MCP_help_screen.gif" HEIGHT=443 WIDTH=578></OL>
+
+<LI>
+&nbsp;IMPORTANT: If the processor needs to be rebooted, one of the telescope
+emergency stop buttons should be pushed to prevent stray DAC voltages from
+energizing the amplifiers. There is a solution, but it is not connected
+at this time.<BR>
+<BR></LI>
+
+<LI>
+Select the axis of choice: <B>z</B> for Az, <B>l</B> for Alt, or <B>r</B>
+for Rot. Then use <B>j</B> or <B>k</B> to move. Use <B>i</B> to change
+the increment value.<BR>
+<BR></LI>
+
+<LI>
+The rotator uses the tachometer as feedback and the setting is in velocity
+of the tachometer. The tachometer is clipped at +/- 2000. Altitude and
+azimuth axes use position feedback and the setting is in counts per second
+times 10. The positional change is clipped at +/-50000 counts per second.<BR>
+<BR></LI>
+
+<LI>
+Use <B>h</B> to hold a position. Either the motion will start with a velocity
+of zero or the motion will decelerate to zero. The brakes can be on at
+the time of this command, but as soon as the velocity is increased or decreased
+the brakes for the corresponding axis must be off. This command only applies
+to the azimuth and altitude axis.<BR>
+<BR></LI>
+
+<LI>
+Use <B>s</B> to stop. In all cases the closed loop is turned off since
+the motion is in velocity and not to a given position. The position may
+move after the motion is stopped since nothing is actively holding it.<BR>
+<BR></LI>
+
+<LI>
+Use <B>p</B> to set a position for the selected axis. After typing p, specify
+the position in the same form as the display such as 1:2:3:4 for 1 degree,
+2 minutes, 3 arcseconds, 4 milli-arcseconds. The position will be reset
+for the corresponding specified position.<BR>
+<BR></LI>
+
+<LI>
+Use <B>b</B> to set the brakes and use <B>c</B> to clear the brakes for
+the corresponding axis, either azimuth or altitude. The axis must be either
+stopped or at zero velocity from the hold command or returning the velocity
+to zero.<BR>
+<BR></LI>
+
+<LI>
+Use <B>v</B> to set the velocity for the corresponding axis; either azimuth
+or altitude. The move or gang move command utilizes this parameter.<BR>
+<BR></LI>
+
+<LI>
+Use <B>d</B> to set the absolute position destination in deg:min:sec:mas
+for the corresponding axis; either azimuth or altitude. The move or gang
+move command utilizes this parameter.<BR>
+<BR></LI>
+
+<LI>
+Use <B>o</B> to set the relative position destination in deg:min:sec:mas
+for the corresponding axis; either azimuth or altitude. The move or gang
+move command utilizes this parameter.<BR>
+<BR></LI>
+
+<LI>
+Use <B>a</B> to set the absolute position destination in encoder counts
+for the corresponding axis; either azimuth or altitude. The move or gang
+move command utilizes this parameter. This is primarily useful for testing.<BR>
+<BR></LI>
+
+<LI>
+Use <B>m</B> to move to the previously specified position and velocity
+for the corresponding axis; either azimuth or altitude. The position will
+continue to be maintained until a stop command is issued.<BR>
+<BR></LI>
+
+<LI>
+Use <B>g</B> to move to the previously specified position and velocity
+for both the azimuth and altitude axis. These positions will continue to
+be maintained until a stop command is issued. Both movements will occur
+simultaneously.<BR>
+<BR></LI>
+
+<LI>
+Use <B>w</B> to move all counterweights to the position for the specified
+instrument. The positions are specified in software outside of the Menu
+program.<BR>
+<BR></LI>
+
+<LI>
+<B>!</B>, <B>@</B>, <B>#</B>, and <B>$</B> are used to move corresponding
+1, 2, 3, and 4 counterweight motors to a specified position in inches.
+<B>%</B> is used to stop counterweight motion.<BR>
+<BR></LI>
+
+<LI>
+<B>t</B> is for engineering use only to capture the motion parameters selected.<BR>
+<BR></LI>
+
+<LI>
+Press the spacebar to reset the display.</LI>
+</OL>
+
+<BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this note should be addressed to Charlie Briegel phone at (630) 840-4510 or by e-mail at <A HREF="mailto:briegel@fnal.gov">briegel@fnal.gov</A>.
+
+
+<P><I><FONT SIZE=-1>Last modified 03/09/99</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+
+</BODY>
+</HTML>

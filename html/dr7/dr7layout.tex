@@ -1,0 +1,105 @@
+\documentclass{article}
+\title{Proposed layout for DR7.2 - the legacy release}
+\author{Sebastian Jester}
+\begin{document}
+\maketitle
+\setcounter{section}{-1}
+
+\section{Rules for the new web page}
+\begin{itemize}
+\item There shall be section numbers to the necessary hierarchy level
+\item The nav-bar shall show clearly where in the hierarchy the
+  current page is
+\item The ``up'', ``next'', ``previous'' menubar items available in
+  some browsers shall be usable for navigating the site
+\item New top-level section names shall make it easy to find
+  information already on DR6 page
+\item Perhaps we should call this the Sloan Digital Sky Survey\textbf{s}?
+\end{itemize}
+
+\section{Overview \& other information}
+This section introduces all top-level concepts and terms to give a
+broad overview, and so that we can refer to all important terms
+before they get explained in detail (e.g. CAS, spectroscopic samples,
+etc.).
+
+Not sure if we still need ``where to start'' as we are trying to be
+comprehensive here. We do, however, need to list all the technical and
+data release papers, and at the beginning is a good place.
+
+\section{Surveys and coverage}
+
+SDSS-I and SDSS-II, which actually contains 3 surveys:
+\begin{enumerate}
+\item Legacy -- the completion of SDSS-I imaging and
+  spectroscopy. Includes ``special-plate'' spectroscopy in the
+  southern galactic cap.
+\item SEGUE -- the galactic-structure extension of SDSS-I. Some SEGUE
+  imaging and spectra were taken as part of SDSS-I.
+\item Supernova survey -- repeat scans under any conditions
+\end{enumerate}
+
+Now follows one subsection per survey, which explains:
+\begin{itemize}
+\item Motivation, scope
+\item Survey contents, strategy, quality criteria (including top-level
+  description of data products, i.e. imaging, spectra,
+  calibrations...)
+\item Sky and time coverage
+\end{itemize}
+
+\section{Instruments}
+
+Pretty much as the existing one.
+
+\section{Pipelines, algorithms \& products}
+
+This again has one subsection per survey, since they are by now
+sufficiently different from each other. Each explains which pipelines
+there are, and what they do.
+\begin{itemize}
+\item Data flow overview
+\item Photometry
+  \begin{itemize}
+  \item photo -- find objects and their properties in counts and
+    pixels
+  \item calibration pipelines and methods
+    \begin{itemize}
+    \item PSF
+    \item photometric, flat-fielding, ubercal
+    \item astrometric
+    \end{itemize}
+  \item Target selection, resolve concept of legacy, ``Primary''
+    \begin{itemize}
+    \item All the spectro surveys
+    \end{itemize}
+  \item tiling, masks
+  \end{itemize}
+\item Data model for each pipeline (though this is starting to get
+  into data-access land); TARGET and BEST; we need to document all the
+  flaws that appear somewhere in TARGET photometry!
+\end{itemize}
+
+\section{Data access}
+
+As now
+
+\section{Known unfixed problems}
+
+As now, except that it's only a clearinghouse list with pointers to
+detailed information further up -- doesn't need to be numbered,
+though?
+
+\section{Tutorials}
+
+As now -- except with heavy updating!
+
+\section{Help}
+
+As now -- doesn't need to be numbered, though?
+
+\section{Search}
+
+As now -- doesn't need to be numbered, though?
+
+\end{document}

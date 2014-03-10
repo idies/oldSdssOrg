@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Reading individual spectra files (spSpec files) - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<!-- Start page content -->
+<h1>Reading individual spectrum files</h1>
+
+<p>Every SDSS spectrum is stored in a so-called spSpec file.  This file contains the spectrum
+along with derived quantities such as redshift,  classification, tables of line fits and line indices, etc..
+The spSpec naming convention is
+ spSpec-<I>mmmmm</i>-<i>pppp</i>-<i>fff</i>.fit, where <i>mmmmm</i>
+refers to the mjd of observation, <i>pppp</i> the plate number and
+<i>fff</i> the fiber number.  There are 1987 different <a
+href="../../coverage/alldr7spectro.par"> plate/mjd
+combinations </a> in the DR7 data, while the fiber numbers runs from
+from 1 to 640. Note that the same object is usually on the same plate
+in all data releases, but the MJD and fiber number may change from
+release to release (if better data become available).</p>
+
+<p>The spSpec file is a fits image with binary table extensions.  Here
+we provide a overview of the contents of an spSpec file; please
+consult the <a href="../../dm/flatFiles/spSpec.html">spSpec data
+model</a> page for complete details.</p>
+
+
+<p>The spSpec file's header contains several parameters such as object
+identification and coordinates, observing information, spectral
+classification, redshift, etc..  The fits image contains a 4x(roughly
+4000) image whose first row is the spectrum, second the continuum
+subtracted spectrum, third the error, and forth a bitmask.  Notice
+that the wavelength vector is not contained in the image, but must be
+generated from parameters in the header. SDSS spectra are binned in
+constant Log(<Img Src="../../shared_images/lambda.gif" Border="0"
+Alt="&Lambda;" Align="Baseline"> ) and the wavelength can be obtained
+from the header parameters COEFF0 and COEFF1 (or alternatively CRVAL1
+and CD1_1) as follows:<p> <Img Src="../../shared_images/lambda.gif"
+Border="0" Alt="&Lambda;" Align="Baseline"> = 10<small><sup>(COEFF0 +
+COEFF1*<i>i</i>)</sup></small>, where <i>i</i> denotes the (zero
+indexed) pixel number.</p>
+
+<p> Remember that these are <a href="./vacwavelength.html">vacuum
+wavelengths</a>.  Six binary tables are included, most importantly HDU
+2 which contains a table of gaussian fits to line positions, and HDU 3
+which contains a table on line index parameters.  Also included, but
+of less general interest, are: HDU 1 which contains line parameters
+used in the emission-line redshift determination; HDU 3 which
+contains information on emission-line redshifts; HDU 4 which contains
+a table of cross-correlation redshifts with all the templates, and HDU
+6 which has additional mask information as well as the spectral
+resolution as a function of wavelength.</p>
+
+<p> One can read them using <a
+href="http://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html">standard
+FITS IO libraries</a>.  Alternatively, one can use routines in IDL,
+SM, MIDAS, and IRAF to read them.  
+<!--
+Additionally the Space Telescope
+Science Institute's <a href="http://www.stsci.edu/resources/software_hardware/specview/">SpecView
+utility </a> is capable of displaying spSpec files. 
+-->
+You can also use
+<a href="./phist.html">Pat Halls' IRAF routines for displaying SDSS spectra</a>.</p>
+
+
+<p>We provide <a href="./spec_example.sm">example SM code which plots a spectrum and lists some information contained in the
+spSpec file</a> (see
+the <a href="http://www.astro.princeton.edu/~rhl/sm/">SM homepage</a>
+if you don't have SM). Here is <A HREF="irafview.html">a page on
+how to display SDSS spectra with IRAF</A>.</p>
+
+<hr>
+<!-- hhmts start -->Last modified: Thu Jun 14 16:35:46 CEST 2007
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

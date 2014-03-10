@@ -1,0 +1,206 @@
+id: first_light
+aka: 98_694D
+title: First Light Image
+caption: \
+A small section of the first-light image obtained by the Sloan Digital \
+Sky Survey on the night of May 27-28, 1998.  The overall image is over \
+5,000 times larger than this small piece of the constellation Serpens. \
+The photo was assembled from digital scans taken through separate \
+filters.  (The individual colors provide valuable information for \
+identifying the objects.)  It also shows stars in our own galaxy (the \
+brighter ones are recognizable by the cross pattern), a half-dozen \
+distant galaxies near enough to show morphological features like disks \
+and rings, and many fainter and farther galaxies, distinguished from \
+stars by their slightly fuzzy appearance.
+category: data
+credit: SDSS Collaboration
+distributor: Fermilab Visual Media Services
+
+id: ngc6070
+aka: 98_746D
+title: NGC 6070
+caption: \
+The large bright galaxy, called NGC 6070, lies in the constellation of \
+Serpens.  It is receding from the Earth with a velocity of about 2000 \
+kilometers per second and is at a distance of over 100 million light \
+years.  The blue light in the galaxy comes from recently formed hot \
+stars; the yellowish light comes from cooler, older stars.  Several \
+other galaxies are also visible.  The point-like images are stars in \
+our own Milky Way Galaxy.
+category: data
+credit: SDSS Collaboration
+distributor: Fermilab Visual Media Services
+
+id: pal5
+title: Palomar 5
+caption: \
+This is the globular cluster Palomar 5, which is a cluster \
+of stars orbiting the Milky Way at a distance of 210 thousand light \
+years.  Most of the fainter stars in the picture belong the to cluster; \
+the brighter stars are foreground stars elsewhere in the Milky Way.
+category: data
+credit: SDSS Collaboration
+
+id: mosaic
+caption: \
+This is a mosaic of a region of the sky 2.5 degrees on a side.  Two \
+separate sweeps of the sky were made on successive nights with the \
+2.5-meter telescope and its mosaic camera.  The 6 columns of CCDs in the \
+camera collect data from 6 scanlines on the sky separated by small \
+gaps.  By offseting the telescope a small amount between the two runs, \
+the scanlines from the two runs can be interleaved to form a seamless \
+map of a complete section of the sky.</p> \
+<p> \
+While this image may look small and unimpressive, consider that the \
+width of the \
+<a href="http://www.sdss.org/news/releases/19980608.fl.img1.html">\
+first light image</a> is about the same as the width of one of those 12 \
+vertical strips.</p> \
+<p>This image is also available as a \
+<a href="http://www.sdss.org/data/mosaic/frame.html">clickable, \
+zoom-in map.</a>
+category: data
+credit: Stephen Kent/SDSS Collaboration
+
+id: dust
+title: Interstellar Dust
+caption: \
+This image has been contrast-enhanced to reveal fainter features. \
+The mottled background is due to starlight reflecting off \
+interstellar dust in the Milky Way.  The patchy appearance is due \
+to the fact that the dust has a irregular distribution.
+category: data
+credit: Robert Lupton/SDSS Collaboration
+
+id: 98_1447D
+title: Redshift 5.0 Quasar
+caption: \
+The arrow in this image points out the record-breaking redshift 5.0 \
+quasar discovered by the Sloan Digital Sky Survey.  That faint red dot \
+of light represents an object that is actually a hundred times as \
+luminous as a typical galaxy.  Sky Survey astronomers identified this \
+object as a possible high-redshift quasar on the basis of its \
+exceptionally red color compared to ordinary stars and galaxies. \
+Followup spectroscopy with the ARC 3.5-meter telescope confirmed that \
+this unassuming speck was indeed the most distant quasar known to date.
+category: data
+credit: SDSS Collaboration
+distributor: Fermilab Visual Media Services
+
+id: 98_1448D
+title: Redshift 4.9 Quasar
+caption: \
+This newly-discovered redshift 4.9 quasar was "only" the runner-up to \
+the title of most distant quasar ever found (the previous non-SDSS \
+title holder was announced in 1991).  However, it demonstrates the \
+excellent performance of the Sky Survey's data analysis pipelines. \
+These automated algorithms can accurately distinguish the light of the \
+faint quasar from the foreground galaxy that can be seen only five \
+arcseconds away.
+category: data
+credit: SDSS Collaboration
+distributor: Fermilab Visual Media Services
+
+id: 98_1449D
+title: Redshift 4.75 Quasar
+caption: \
+While this redshift 4.75 quasar may not be the most distant quasar \
+known, it was first among its high-redshift brethren to be identified by \
+Sloan Digital Sky Survey researchers.  This photometric image from \
+September can't reveal the most remarkable feature of the quasar, \
+namely that the Lyman-alpha and Carbon-IV spectral emission peaks are \
+unusually narrow compared to an average quasar.
+category: data
+credit: SDSS Collaboration
+distributor: Fermilab Visual Media Services
+
+id: 98_1450D
+title: Spiral Galaxy NGC 1087 (6.7 arcmin x 4.8 arcmin)
+caption: \
+The spiral galaxy NGC 1087 is found in the constellation Cetus, and has \
+a recession velocity of about 1520 kilometers per second.  This galaxy's \
+most notable physical feature is a short rotating bar-like structure of \
+bright stars straddling the galactic center.  Although it has a \
+comparatively low surface brightness, the galaxy shone just a bit more \
+brilliantly in August 1995 when one of its massive stars exploded into a \
+Type II supernova.
+category: data
+credit: SDSS Collaboration
+distributor: Fermilab Visual Media Services
+
+id: 98_1451D
+title: M78 Nebula (12.0 arcmin x 8.8 arcmin)
+caption: \
+NGC 2068 (also known as M78) is a reflection nebula in the Orion \
+constellation.  Hot young stars in the nebula's center illuminate and \
+(to a much lesser extent) ionize the surrounding gas.  Further out, dark \
+clouds of dust prevent much of the scattered light from reaching us, \
+creating a complex pattern of light and shadow.  This star-forming \
+region is only about 100,000 years old.
+category: data
+credit: SDSS Collaboration
+distributor: Fermilab Visual Media Services
+
+id: 98_1452D
+title: Spiral Galaxy UGC 03214 (12.3 arcmin x 8.8 arcmin)
+caption: \
+The constellation of Orion is home to the edge-on spiral galaxy UGC \
+03214, which is receding from us at the rate of 4840 kilometers per \
+second (about one-sixtieth the speed of light).  The brilliant central \
+bulge stands in stark contrast to the light-absorbing bands of dust \
+clouds in the disk.  When interpreting observations, astronomers often \
+need to account for the obscuring and reddening effects of similar dust \
+clouds in our own galaxy.
+category: data
+credit: SDSS Collaboration
+distributor: Fermilab Visual Media Services
+
+id: qso5
+title: Spectrum of Redshift 5.0 Quasar
+caption: \
+This graph shows part of the spectrum of the record-breaking quasar with \
+a redshift of 5.0.  One of the identifying characteristics of quasars is \
+the large Lyman-alpha emission peak, a feature that would appear in the \
+ultraviolet part of the spectrum if the source were not redshifted.  For \
+this particular quasar, the peak lies in the near infrared just beyond \
+the range of human vision -- a factor of six increase in the wavelength. \
+Aside from this extreme redshift, the spectrum otherwise is very similar \
+to those of more nearby quasars.
+category: data
+credit: SDSS Collaboration
+
+id: qso582
+title: Redshift 5.74 Quasar
+caption: \
+The arrow in this image points a record-shattering redshift of 5.74. SDSS astronomers identified \
+this faint speck of light as a possible quasar based on its distinctive \
+red color. A spectrum of this object, obtained with the 10-meter Keck \
+telescope in Hawaii, showed that this was indeed a quasar with a most \
+impressive redshift.
+category: data
+credit: Stephen Kent, SDSS Collaboration
+
+id: qso582_spec
+title: Redshift 5.8 Quasar Spectrum
+caption: \
+This graph shows part of the spectrum of the most distant quasar \
+currently known, with a redshift of 5.8. The large peak is called the \
+Lyman-alpha emission peak, and is a distinguishing feature of quasar \
+spectra. This spectral feature would normally appear in the ultraviolet, \
+with a wavelength of about 1200 Angstroms. For this quasar, the \
+Lyman-alpha peak appears in the infrared around 8300 Angstroms, \
+representing a nearly sevenfold increase in the wavelength due to the \
+expansion of the universe.
+category: data
+credit: Richard White, Space Telescope Science Institute
+
+id:qso64
+title: Redshift 6.4 Quasar
+caption: \
+The red dot in this picture is the most distant quasar ever \
+discovered (at least as of October 2003). The redshift 6.4 quasar is seen at a \
+time when the universe was just 800 million years old. The \
+light-travel time from this object to us is about 13 billion years. 
+category: data
+credit: Sloan Digital Sky Survey at Apache Point Observatory 
+

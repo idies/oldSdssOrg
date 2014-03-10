@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Algorithms: Resolving Multiple Detections and Defining Samples - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+<!-- Start page content -->
+<h1>Resolving Multiple Detections and Defining Samples</h1>
+
+<p>In addition to reading this section, we recommend that users
+familiarize themselves with the <a
+href="../products/catalogs/flags_detail.html#status">status flags</a>,
+which indicate what happened to each object during the Resolve
+procedure.</p>
+
+<p>SDSS scans overlap, leading to duplicate detections of objects in
+the overlap regions.  A variety of unique (i.e., containing no
+duplicate detections of any objects) well-defined (i.e., areas with
+explicit boundaries) samples may be derived from the SDSS database.
+This section describes how to define those samples.  The <a
+href="./resolve.eps">resolve figure</a> is a useful visual aid for the
+discussion presented below.</p>
+
+<p>Consider a single drift scan along a stripe, called a <em>run</em>.
+The camera has six columns of CCDs, which scan six swaths across the
+sky.  A given camera column is referred to throughout with the
+abbreviation <em>camCol</em>.  The unit for data processing is the
+data from a single camCol for a single run.  The same data may be
+processed more than once; repeat processing of the same run/camCol is
+assigned a unique <em>rerun</em> number.  Thus, the fundamental unit of
+data process is identified by run/rerun/camCol.</p>
+
+<p>While the data from a single run/rerun/camCol is a <em>scan
+line</em> of data 2048 columns wide by a variable number of rows
+(approximately 133000 rows per hour of scanning), for purposes of data
+processing the data is split up into frames 2048 columns wide by 1361
+rows long, resulting in approximately 100 frames per scan line per
+hour of scanning.  Additionally, the first 128 rows from the next
+frame is added to the previous frame, leading to frames 2048 columns
+wide by 1489 rows long, where the first and last 128 rows overlap the
+previous and next frame, respectively.  Each frame is processed
+separately.  This leads to duplicate detections for objects in the
+overlap regions between frames.  For each frame, we split the overlap
+regions in half, and consider only those objects whose centroids lie
+between rows 64 and 1361+64 as the unique detection of that object for
+that run/rerun/camCol.  These objects have the OK_RUN bit set in the
+"status" bit mask.  Thus, if you want a unique sample of all objects
+detected in a given run/rerun/camCol, restrict yourself to all objects
+in that run/rerun/camCol with the OK_RUN bit set.  The boundaries of
+this sample are poorly defined, as the area of sky covered depends on
+the telescope tracking.  Objects must satisfy other criteria as well
+to be labeled OK_RUN; an object must not be flagged BRIGHT (as there
+is a duplicate ``regular'' detection of the same object); and must not
+be a deblended parent (as the children are already included); thus it
+must not be flagged BLENDED unless the NODEBLEND flag is set.  Such
+objects have their <em>GOOD</em> bit set.</p>
+
+<p>For each stripe, 12 non-overlapping but contiguous <em>scan lines</em> are
+defined parallel to the stripe great circle (that is, they are bounded by two
+lines of constant great circle latitude).  Each scan line is 0.20977 arcdegrees
+wide (in great circle latitude).  Each run/camCol scans along one
+of these scan lines, completely covering the extent of the scan line in
+latitude, and overlapping the adjacent scan lines by approximately 1 arcmin.
+Six of these scan lines are covered when the "north" strip of the stripe is
+scanned, and the remaining six are covered by the "south" strip.
+The fundamental unit for defining an area of the sky considered as observed
+at sufficient quality is the <em>segment</em>.  A segment consists of all
+OK_RUN objects for a given run/rerun/camCol contained within a rectangle
+defined by two lines of constant great circle longitude (the east and west
+boundaries) and two lines of constant great circle latitude (the north and
+south boundaries, being the same two lines of constant great circle latitude
+which define the scan line).  Such objects have their OK_SCANLINE bit set in
+the status bit mask.  A segment consists of a contiguous set of fields, but
+only portions of the first and/or last field may be contained within the
+segment, and indeed a given field could be divided between two adjacent
+segments.
+If an object is in the first field in a segment, then its FIRST_FIELD bit is
+set, along with the OK_SCANLINE bit; if its not in the first field in the
+segment, then the OK_SCANLINE bit is set but the FIRST_FIELD bit is not set.
+This extra complication is necessary for fields which are split between two
+segments; those OK_SCANLINE objects without the FIRST_FIELD bit set would
+belong to the first segment (the segment for which this field is the last
+field in the segment), and those OK_SCANLINE objects with the FIRST_FIELD
+bit set would belong the the second segment (the segment for which this field
+is the first field in the segment).</p>
+
+<p>A <em>chunk</em> consists of a non-overlapping contiguous set of segments
+which span a range in great circle longitude over all 12 scan lines for a
+single stripe.  Thus, the set of OK_SCANLINE (with appropriate attention to
+the FIRST_FIELD bit) objects in all segments for a given chunk comprises
+a unique sample of objects in an area bounded by two lines of constant great
+circle longitude (the east and west boundaries of the chunk) and two lines of
+constant great circle latitude (+- 1.25865 degrees, the north and south
+boundaries of the chunk).</p>
+
+<p> Segments and chunks are defined in great circle coordinates along their given
+stripe, and contain unique detections only when limited to other segments and
+chunks along the same stripe.  Each stripe is defined by a great circle, which
+is a line of constant latitude in survey coordinates (in survey coordinates,
+lines of constant latitude are great circles while lines of constant longitude
+are small circles, switched from the usual meaning of latitude and longitude).
+Since chunks are 2.51729 arcdegrees wide, but stripes are separated by 2.5
+degrees (in survey latitude), chunks on adjacent stripes can overlap (and
+towards the poles of the survey coordinate system chunks from more than two
+stripes can overlap in the same area of sky).  A unique sample of objects
+spanning multiple stripes may then be defined by applying additional cuts in
+survey coordinates.  For a given chunk, all objects that lie within +- 1.25
+degrees in survey latitude of its stripe's great circle have the OK_STRIPE
+bit set in the "status" bit mask.  All OK_STRIPE objects comprise a unique
+sample of objects across all chunks, and thus across the entire survey area.
+The southern stripes (stripes 76, 82, and 86) do not have adjacent stripes,
+and thus no cut in survey latitude is required;  for the southern stripes
+only, all OK_SCANLINE objects are also marked as OK_STRIPE, with no additional
+survey latitude cuts.</p>
+
+<p>Finally, the official survey area is defined by two lines of constant survey
+longitude for each stripe, with the lines being different for each stripe.
+All OK_STRIPE objects falling within the specified survey longitude boundaries
+for their stripe have the PRIMARY bit set in the "status" bit mask.  Those
+objects comprise the unique SDSS sample of objects in that portion of the
+survey which has been finished to date.  Those
+OK_RUN objects in a segment which fail either the great circle latitude cut for
+their segment, or the survey latitude or longitude cut for their stripe, have
+their SECONDARY bit set.  They do not belong to the primary sample, and
+represent either duplicate detections of PRIMARY objects in the survey area,
+or detections outside the area of the survey which has been finished to date.</p>
+
+<p>Objects that lie close to the bisector between frames, scan lines, or chunks
+present some difficulty. Errors in the centroids or astrometric calibrations
+can place such objects on either side of the bisector. A resolution is
+performed at all bisectors, and if two objects lie within 2 arcsec of each
+other, then one object is declared OK_RUN/OK_SCANLINE/OK_STRIPE (depending on
+the test), and the other is not.</p>
+
+
+<hr>
+<!-- hhmts start -->Last modified: Thu Apr  3 19:32:53 CST 2003
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

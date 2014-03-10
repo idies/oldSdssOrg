@@ -1,0 +1,483 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Sky coverage - SDSS DR7</title>
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Sky coverage</h1>
+
+<p>The DR7 contains that part of the SDSS imaging and spectroscopy
+taken through July 14, 2008. Here we give coverage plots and the
+detailed <a href="#tables">coverage tables</a> from which they were
+constructed, though excluding the supplemental imaging scans released
+through <a href="../start/aboutdrsup.html">DRsup</a>. Further below, we
+outline the <a href="#future">future sky coverage of SDSS</a>.  The
+survey terms are explained in the sections on <a
+href="#imaging">imaging coverage</a> and <a
+href="#spectro">spectroscopic coverage</a> below.</p>
+
+
+<p>For data interfaces, see the <a href="../access/index.html">data
+access</a> page.</p>
+
+<p><h4> Anomalies in the DR7 Footprint</h4><p> Several stripes, when
+examined in detail, have anomalies (or errors) in the definition of the
+PRIMARY (mode = 1) footprint.  Usually objects which should be in the
+primary footprint are missing.  The links
+here provide a guide to the anomalies on a stripe-by-stripe basis, and
+in most cases, show sample SQL query clauses in which may be executed
+on the RunsDB database in order to recover objects uniquely 
+within the full DR7 footprint.
+ <p>
+
+Known anomalies in stripe:
+ <a href="s26.html">26</a>
+ <a href="anomalies/s1100.html">1100</a>
+ <a href="anomalies/s1100-79.html">1100-79</a>
+ <a href="anomalies/s1100-82.html">1100-82</a>
+ <a href="s1140-72.html">1140-72</a>
+ <a href="anomalies/s1188.html">1188-72</a>
+ <a href="anomalies/s1220-72.html">1220-72</a>
+ <a href="anomalies/s1260-72.html">1260-72</a>
+ <a href="anomalies/s1260-76.html">1260-76</a>
+ <a href="anomalies/s1300-76.html">1300-76</a>
+ <a href="anomalies/s1356-72.html">1356-72</a>
+ <a href="anomalies/s1356-86.html">1356-86</a>
+
+<p>
+<h4> Anomalies in the Astrometry </h4>
+<p>
+The quoted astrometric errors for SDSS are about 100 mas per coordinate or
+better, on average, around the sky.   To check this, we have compared
+the positions of objects between the SDSS catalog and the 2MASS catalog, 
+adn between the SDSS and the USNO-NOMAD catalogs, and we find a few
+positions within the SDSS footprint, especially some scans at high 
+declination, where the errors are larger than the nominal values.
+In the following link we provide are some information about these 
+astrometry anomalies, and how to find them.  <p>
+<a href="anomalies/astrometry.html">Anomalies</a> 
+<p>
+<p>
+ <h4>SDSS DR7 Footprint Summary</h4>
+<p>
+ <table> <tr align="center">
+<td></td><td align="center" colspan="2"> Full Footprint with Stripe
+Labels</td></tr>
+  <tr>
+    <td><strong>Equatorial</strong></td>
+    <td colspan="2"><a href="stripemap.gif"><img
+	src="stripemapsmall.gif" alt="all stripes"
+	 align="top"></a></td>
+  </tr>
+  <tr align="center">
+    <td></td>
+    <td colspan="2"><a href="stripemap.gif">Imaging</a> <a
+href="stripemap.ps">(ps)</a></td>
+  </tr>
+  <tr>
+
+<tr align="center"> <td></td><td align="center" colspan="2">Legacy
+Footprint</td></tr>
+  <tr align="center">
+    <td><strong>Equatorial</strong></td>
+    <td><a href="../dr7photo_big.gif"><img
+	src="../dr7photo.gif" alt="imaging"
+	 align="top"></a></td>
+    <td><a href="../dr7spectro_big.gif"><img
+	src="../dr7spectro.gif" alt ="spectroscopy" align="top"></a></td>
+  </tr>
+  <tr align="center">
+    <td></td>
+    <td><a href="../dr7photo_big.gif">Imaging</a> <a href="../photodr7.ps">(ps)</a></td>
+    <td><a href="../dr7spectro_big.gif">Spectroscopy</a> <a href="../dr7spectro.ps">(ps)</a></td>
+  </tr>
+  <tr align="center">
+    <td><strong>Galactic</strong></td>
+    <td><a href="../dr7photogal_big.gif"><img src="../dr7photogal.gif" alt="imaging coverage" width="272" align="top"></a></td>
+    <td><a href="../dr7spectrogal_big.gif"><img src="../dr7spectrogal.gif" alt ="spectroscopy coverage" width="272" align="top"></a></td> </tr>
+  <tr align="center">
+    <td></td>
+    <td><a href="../dr7photogal_big.gif">Imaging</a> <a href="../photogaldr7.ps">(ps)</a></td>
+    <td><a href="../dr7spectrogal_big.gif">Spectroscopy</a> <a href="../dr7spectrogal.ps">(ps)</a></td>
+  </tr>
+	<br>
+<tr align="center"> <td></td><td align="center" colspan="2">SEGUE Footprint</td></tr>
+  <tr align="center">
+    <td><strong>Equatorial</strong></td>
+    <td><a href="../seguephoto_big.gif"><img src="../seguephoto.gif" alt="imaging" align="top"></a></td>
+    <td><a href="../seguespectro_big.gif"><img
+	src="../seguespectro.gif" alt ="spectroscopy" align="top"></a></td>
+  </tr>
+  <tr align="center">
+    <td></td>
+    <td><a href="../seguephoto_big.gif">Imaging</a> <a href="../seguephotodr7.ps">(ps)</a></td>
+    <td><a href="../seguespectro_big.gif">Spectroscopy</a> <a href="../seguespectro.ps">(ps)</a></td>
+  </tr>
+  <tr align="center">
+    <td><strong>Galactic</strong></td>
+    <td><a href="../seguephotogal_big.gif"><img src="../seguephotogal.gif" alt="imaging coverage" width="272" align="top"></a></td>
+    <td><a href="../seguespectrogal_big.gif"><img src="../seguespectrogal.gif" alt ="spectroscopy coverage" width="272" align="top"></a></td> </tr>
+  <tr align="center">
+    <td></td>
+    <td><a href="../seguephotogal_big.gif">Imaging</a> <a href="../seguephotogaldr7.ps">(ps)</a></td>
+    <td><a href="../seguespectrogal_big.gif">Spectroscopy</a> <a href="../seguespectrogal.ps">(ps)</a></td>
+  </tr>
+</table>
+
+<h2>Additional Contents</h2>
+
+<h3>Open and Globular Clusters</h3>
+
+DR7 includes spectroscopy of stars in 12 open and globular clusters
+to calibrate the measurements of stellar parameters in SEGUE (Lee
+et al. 
+2008<a href="http://adsabs.harvard.edu/abs/2008AJ....136.2022L">a</a>,<a href="http://adsabs.harvard.edu/abs/2008AJ....136.2050L">b</a>).  
+Many of these clusters are sufficiently close that
+the giant branches are brighter than the photometric saturation limit
+of SDSS, so the targets for these plates were selected from the
+literature.  Indeed, the spectrographs would saturate as well with our
+standard 15-minute exposures, so these observations had individual
+exposure times as short as one or two minutes. Without proper flux
+calibrators or exposure of bright sky lines to set the zeropoint of
+the wavelength scale, the spectrophotometry and wavelength calibration
+of the spectra on these plates are often quite inferior to that of the
+main survey, and these plates are available only in the DAS, not the
+CAS.
+
+<h3>Repeat scans of the Celestial Equator</h3>
+
+The 2.5&ordm; stripe centered on the Celestial Equator (stripe 82) was
+imaged multiple times throughout SDSS and SDSS-II.  Each 2.5&ordm;
+wide stripe is observed by a pair of offset strips to cover the full
+width. DR7 contains data from the individual runs, including those
+taken under non-ideal conditions, and a deep coadd of a subset of the
+equatorial runs.
+
+<a name="tables"></a><h2>Coverage tables</h2>
+
+<p>For reference, the coverage tables describe the sky coverage in
+terms of survey coordinates. To translate the sky coverage into
+celestial coordinates, please refer to the <a
+href="../products/general/edr_html/node26.html#SECTION00032200000000000000">coordinates
+section of the EDR paper</a> and the description below.</p>
+
+<p><strong>Note:</strong> The coverage tables, and a number of other
+files we distribute, are given as <a
+href="../data/parfiles.html">ASCII parameter (.par) files</a>.</p>
+
+<table border="1">
+  <tr>
+    <th>SDSS stripes</th>
+    <td><a href="./atStripeDef.par">atStripeDef.par</a> (survey coordinates) Including SEGUE stripe defs</td> 
+  </tr>
+</table>
+<p>
+<table border="1">
+  <tr>
+    <th>All imaging runs</th>
+    <td><a href="allrunsalldbs.par">DR7,Stripe82,Runs CAS + DAS Runs</a>  Table of all the imaging
+  </tr>
+  <tr>
+    <th>DR7 CAS Runs</th>
+    <td><a href="allrunsdr7db.par">allrunsdr7db.par</a>  Table of all runs in the DR7 CAS (Legacy and SEGUE)
+  </tr>
+  <tr>
+    <th>DAS only runs</th>
+    <td><a href="dasonly.par">DAS only RUNS</a>  Table of runs only available in the DAS (not in the CAS)
+  </tr>
+  <tr>
+    <th>Stripe 82 Runs</th>
+    <td><a href="allrunsstripe82db.par">allRunsStripe82DB.par</a> Table of Stripe 82 CAS DB runs, including coadd; see <a href="./sndr7.html">SN DR7</a>
+  </tr>
+  <tr>
+    <th> RunsDB Table</th>
+    <td><a href="allrunsrunsdb.par">allRunsRunsDB.par</a>  Table of Runs in the RunsDB CAS
+  </tr>
+  <tr>
+    <th>Runs in CAS only</th>
+    <td><a href="casonly.par">CASonly.par</a>  Table of run/reruns which are in one of the 3 CAS DBs only (i.e. no in the DAS) 
+  </tr>
+  <tr>
+    <th>Special Scans</th>
+    <td><a href="tssup.html">Special/Supplemental</a>  Table of Special/Supplemental Runs in the CAS and DAS
+  </tr>
+</table>
+<p>
+<table border="1">
+  <tr>
+    <th>DR7 DAS</th>
+    <td><a href="http://das.sdss.org/www/html/imaging/dr-byRun-99.html">All DAS Runs</a>  Link to all runs in the DR7 DAS
+  </tr>
+  <tr>
+    <th>DR7 CAS</th>
+    <td><a href="./AllCASRuns.dr7.par">AllCASRuns.dr7.par</a>  All scanline segments in the DR7 CAS
+  </tr>
+  <tr>
+    <th>Legacy Best</th>
+    <td><a href="./tsChunk.dr7.best.par">tsChunk.dr7.best.par</a> (great circle
+	coordinates) - see <a href="#targetbest"><em>Target</em> and
+	<em>Best</em></a> below</td>
+  </tr>
+  <tr>
+    <th>Legacy Target</th>
+    <td><a href="./tsChunk.dr7.target.par">tsChunk.dr7.target.par</a> (great circle
+	coordinates) - see <a href="#targetbest"><em>Target</em> and
+	<em>Best</em></a> below</td>
+  </tr>
+  <tr>
+    <th>SEGUE DR7</th>
+    <td><a href="./SEGUERuns.dr7.par">SEGUERuns.dr7.par</a>  List of SEGUE scanline segments 
+  </tr>
+  <tr>
+    <th>Stripe 82</th>
+    <td><a href="./Stripe82.dr7.par">Stripe82.dr7.par</a> Stripe 82 scanline segments; see <a href="./sndr7.html">SN DR7</a>
+  </tr>
+  <tr>
+    <th>Runs DB</th>
+    <td><a href="./RunsDB.dr7.par">RunsDB.dr7.par</a>  List of scanline segments in Runs DB 
+  </tr>
+<p>
+  <tr>
+    <th>Spectroscopy</th>
+	
+    <td>DR7 contains additional plates beyond the main survey plates:
+	&quot;extra&quot; plates which are reobservations of main survey
+	plates; &quot;special&quot; plates which take spectra beyond the
+	main survey targets, and &quot;extraspecial&quot; reobservations of
+	special plates. There is a separate page descriging the <a
+	href="../products/spectra/special.html">special plates.</a>There are
+	5 coverage files: one for all the plates, and 4 for each of the
+	categories.<br /> The coverage files give plate centers by plate
+	number and MJD of observation.
+	<table>
+	  <tr>
+	    <td>All plates</td><td><a
+		href="./alldr72spectro.par">alldr72spectro.par</a></td>
+	  </tr><tr>
+	    <td>Main survey plates</td>
+	    <td><a
+		href="./maindr72spectro.par">maindr72spectro.par</a></td>
+	  </tr><tr>
+	    <td>Extra plates</td>
+	    <td><a
+		href="./extradr72spectro.par">extradr72spectro.par</a></td>
+	  </tr><tr>
+	    <td>SEGUE/Special plates</td>
+	    <td><a
+		href="./specialdr72spectro.par">specialdr72spectro.par</a></td>
+	  </tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+<p>Note also the list of <a href="./holes.html">list of quality
+"holes"</a> (small areas of bad seeing etc.) and <a
+href="./missingdata.html">missing data</a>, the <a
+href="./camcoldiffs.html">list of fields which are missing only
+apparently</a> (e.g., data from different runs were used in target and
+best) and the <a href="./targetvbest.html">list of differences in sky
+coverage between target and best</a>.</p>
+
+<a name="imaging"></a><h2>Imaging coverage: stripes, runs, reruns</h2>
+
+<p>The survey coverage is defined in <a
+href="../glossary/index.html#survey_coords">survey
+coordinates</a>, as described in the <a
+href="../products/general/edr_html/node26.html#SECTION00032200000000000000">coordinates
+section of the EDR paper</a>. For detailed astrometry please see the
+following <a href="./runs_with_different_node.html">note about parts
+of the survey which have a slightly different survey coordinate system
+from the rest</a>.</p>
+
+<a name="stripe"></a>
+<h3><em>Stripes</em></h3>
+
+<p>The imaging survey scans the sky along great circles, which are
+circles of constant survey latitude <em>eta</em>. Scans are obtained
+along <em>stripes</em> spaced 2.5&deg; in survey latitude. Each stripe
+has an integer stripe number <em>n</em> such that the inclination of a
+stripe with respect to the celestial equator is -25&deg; + 2.5&deg;
+&times; <em>n</em>.  The boundaries of the region eventually to be
+surveyed by the SDSS are defined in terms of survey longitude
+<em>lambda</em> in <a
+href="./atStripeDef.par">atStripeDef.par</a>.</p>
+
+<a name="runs"></a>
+<h3><em>Runs</em> cover <em>strips</em>, two <em>strips</em> cover a <em>stripe</em></h3>
+
+<p>An imaging <em>run</em> designates a continuous scan of the imaging
+telescope. The survey camera's focal plane has six
+columns of CCDs, so that a single run consists of six <em>camera
+columns (camcols)</em> (see the <a
+href="../instruments/index.html">instrument descriptions</a>). The
+camera columns have a gap which is filled by an offset second run.  The
+six <em>camcols</em> taken together are called a <em>strip</em>. Thus
+to completely cover the two <em>strips</em> making up one
+<em>stripe</em>, at least two <em>runs</em> are required. The imaging
+data reduction is done on a run-by-run basis, hence the imaging data in our <a
+href="../data/index.html">Data Archive</a> are accessible by run
+number.
+
+<h3>Great circle coordinates</h3>
+
+<p>Every stripe has its own <a
+href="../glossary/index.html#great_circle_coords">great circle
+coordinate system</a>. The coordinate along a great circle is called
+<em><a href="../glossary/index.html#mu">mu</a></em>. The range of data
+actually obtained for a given <em>stripe</em> is reported in terms of
+a range in great circle <em>mu</em> along that <em>stripe</em> as
+<span class=".eqn">startMu</span> and <span class=".eqn">endMu</span>
+in the coverage tables above.  Both <span class=".eqn">startMu</span>
+and <span class=".eqn">endMu</span> are given in integer
+arcseconds.</p>
+
+<p>The calibrated object lists are accessible in the archive by stripe
+number and startMu on that stripe.</p>
+
+<p>For historical reasons, DR1 contained both photometric and
+spectroscopic data which lay outside the official survey limits, i.e.,
+the <em>startMu/endMu</em> for some runs extend beyond the
+<em>lambda</em> limits for the <em>stripes</em> they cover. Since DR3,
+only the <code>target</code> data in those areas are still marked
+non-primary, but the <code>best</code> data <em>are</em> primary. Please
+refer to this <a href="./data_outside_survey.html">note about DR7 data
+outside the SDSS survey area</a> for details on how to retrieve
+these.</p>
+
+<h3>Fields</h3>
+
+<p>A <em>run</em> is divided into images 2048 pix &times; 1361 pix
+which are called <em>fields</em>. Each field then has the first 128
+rows of the following field attached to it, so that all survey images
+actually have a size of 2048 pix &times; 1489 pix.</p>
+
+<p>Object detection, photometry and classification are done field by
+field.  In particular, the <a
+href="../products/catalogs/index.html">calibrated object lists</a> and
+survey <a href="../products/images/index.html">images</a> are
+distributed separately for each field. To account for the overlap, object
+detection is not performed on the first 64 rows or the last 64 rows of
+each corrected frame.</p>
+
+<p><strong>Note</strong> that one therefore should use only objects in
+the <a href="../glossary/index.html/#primary">"primary"</a> area of
+each survey field, in order to avoid duplicate area and duplicate
+object detections. Near the center of a stripe, the primary area will
+be the full 2048 pix &times; 1361 pix, but frames overlap near the
+ends of stripes, reducing the primary area there. Please refer to how
+<a href="../products/catalogs/flags.html#status"> "primary" is set in
+the "status" flag of an object</a> and please also see the details of
+<a href="../algorithms/resolve.html"> how overlapping areas are
+resolved</a>. The primary area of each field is recorded as entry
+<code>stripeArea</code> in the <a
+href="../dm/flatFiles/tsField.html">tsField*.fit</a> file</p>
+
+
+<h3>Reruns</h3>
+
+<p>Every time we (re)process our imaging data, we assign the outputs a
+new <em>rerun</em> number. <strong>Thus, a rerun does not imply
+re-observation, but is simply a re-reduction of the same run.</strong>
+The re-reduction can use more recent software or calibrations than a
+previous rerun, or both.  Across runs, the rerun is an arbitrary
+index, so the same rerun of different runs does not have to be
+produced with the same software or calibrations.</p>
+
+<a name="targetbest"></a>
+<h3><em>Target</em> and <em>Best</em></h3>
+
+We publish two <em>reruns</em> for each <em>run</em>:
+<ol>
+  <li>A <em>target</em> rerun, which is the reduction used to select
+      targets for the spectroscopic survey. This is referred to as
+      <strong>skyVersion = 0</strong>.
+  </li>
+  <li>A <em>best</em> rerun, which is the best available
+      reduction. This is usually a different rerun from the
+      <em>target</em> version, since our photometric pipelines have
+      been evolving. The <em>best</em> rerun is referred to as
+      <strong>skyVersion = 1</strong>. All <em>best</em> reruns
+      have <var>rerun &gt;=</var>40.</li>
+</ol>
+
+There is one coverage table each for the target and best version. The
+tables contain the following information:
+<ul>
+  <li>The survey area on the sky, given as a <em>stripe number</em>
+      and a range for the <em>mu</em> coordinate (<code>startmu</code>
+      &lt;= <em>mu</em> &lt;= <code>endmu</code>).  These were used
+      to create the plots above.</li>
+  <li>The <em>runs</em> and <em>reruns</em> and the range of
+      <em>fields</em> which cover the given area.  This is the
+      information needed to find data for a given part of the sky in
+      the <a href="../data/index.html">Data archive</a>.</li>
+</ul>
+
+Notes
+<ul>
+  <li>In general, the <em>target</em> and <em>best</em> version of a
+particular region of the sky come from the same run. However, there
+are some exceptions which are explained in the <a
+href="./targetvbest.html">list of runs differing for target and
+best</a>.</li>
+  <li>If it seems that other data are missing from some run, look at
+      the <a href="./camcoldiffs.html">list of fields which are meant
+      to be missing</a>.</li>
+</ul>
+
+<a name="spectro"></a><h2>Spectroscopy</h2>
+
+The spectrograph's 640 fibers are distributed on a plug plate of
+roughly 3&deg; diameter (7 square degree area) projected on
+sky. Spectroscopic coverage is given in terms of the plate centers.
+Plates are identified by a unique number assigned during targetting
+and the MJD on which they were observed, to distinguish
+re-observations of the same plate.
+
+<a name="past"></a>
+<h2>Incremental sky coverage of SDSS</h2>
+
+<p>A map of the incremental coverage of the numbered Data Releases (i.e.,
+excluding the EDR) by DR number.</p>
+
+<h3>Imaging</h3>
+
+<div class="fig">
+<img src=dr7Imaging.gif>
+</div>
+
+<h3>Spectroscopy</h3>
+<div class="fig">
+<img src=dr7Spectro.gif>
+</div>
+
+<a name="future"></a>
+<h2>Future sky coverage of SDSS</h2>
+
+<p>Imaging of the Southern Galactic hemisphere and further spectroscopy
+is continuing as part of 
+<a href="http://www.sdss3.org">SDSS-3.</a> 
+</p>
+
+<hr>
+
+<a name="footnotes"></a>
+<hr />
+<p><font size="-2">*Text and figures on this page come from an author-created, un-copyedited 
+version of the SDSS Data Release 7 paper, an article <!--accepted for publication in-->submitted 
+to <i>Astrophysical Journal Supplements</i>. IOP Publishing Ltd is not responsible for any errors 
+or omissions in this version of the manuscript or any version derived from it.<!--The definitive publisher authenticated version 
+is available online at [insert DOI].--> <a href="http://adsabs.harvard.edu/abs/2009ApJS..182..543A">A preprint of the 
+DR7 paper</a> is available from the arXiv preprint server.</font></p>
+
+
+
+<address></address>
+<!-- hhmts start -->Last modified: Sat Sep 15 01:51:39 CEST 2007
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

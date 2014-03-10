@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Check Data Reliability - SDSS DR7</title>
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<div id="pdflink">
+  <a href="flags.swf" target="text" onmouseover="this.T_WIDTH=320;this.T_BGCOLOR='#FFFFFF';return escape('Get text as Flash paper document (opens in new window)')">
+     <img src="../../images/swf_icon.jpg" alt="Get text as Flash paper document" />
+  </a>
+  &nbsp;&nbsp;&nbsp;  
+  <a href="flags.pdf" target="text" onmouseover="this.T_WIDTH=270;this.T_BGCOLOR='#FFFFFF';return escape('Get text as PDF document (opens in new window)')">
+     <img src="../../images/pdf_icon.gif" alt="Get text as PDF document (opens in new window)" />
+  </a>
+
+</div>
+
+
+<h2>How do I...</h2>
+
+<h2>Find out if SDSS's imaging data for an object are reliable?</h2>
+
+Jump to:
+<table width="100%" border="0">
+  <tr>
+    <td align="center"><a href="#single">Flags for a single object</a></td>
+    <td align="center"><a href="#interpret">Interpret Flags</a></td>
+    <td align="center"><a href="#query">Flags in a Query</a></td>
+    <td align="center"><a href="#sql">Flags with SQL</a></td>
+    <td align="center"><a href="#clean">Clean Photometry</a></td>
+  </tr>  
+</table>
+
+<hr />
+
+<p>The SDSS does automatic processing to determine the reliability of the imaging data 
+   for each of the 300 million objects that it has seen. The reliability data are referred to as 
+   <em>flags</em>. You can view flags for any object through the SDSS's <a href="http://cas.sdss.org/astro">Catalog 
+   Archive Server (CAS)</a>; the flags are stored in the PhotoObj table in the CAS database. Understanding the 
+   flags is <b>extremely</b> important for doing science, so that you can understand what data are reliable.</p>
+   
+<p>By using several flags together, you can search for only objects that have clean photometry. 
+   (<a href="#clean">skip to clean photometry search guide)</a></p>   
+
+<p>Flags are yes/no parameters. If a certain flag (such as <i>Saturated</i>) is present for an object, 
+   the object possesses that characteristic (i.e. its image is saturated). To save space in the database, the 
+   flags are stored as zeros (absent) or ones (present). Each object has a long bitwise number 
+   associated with it, where each set of digits corresponds to one flag. The CAS database includes 
+   functions that translate back and forth between the binary numbers and the flag names.</p>
+
+<p>You can view flag names directly with the <a href="http://cas.sdss.org/astro/en/tools/explore/obj.asp" target="tools">
+   Explore</a> tool (link opens in new window), but to work with flags in search results, you will 
+   need to know how to use the translate functions.</p>
+
+
+
+<hr />
+
+
+<a name="single"></a>
+<h4>Get flags for a single object (<a href="http://cas.sdss.org/astro/en/tools/explore/obj.asp" target="tools">open Explore in new window</a>)</h4>
+
+<ol class="tut">
+
+<li>Use the <a href="http://cas.sdss.org/astro/en/tools/explore/obj.asp" target="tools">Explore</a> tool (link opens in a new 
+    window) to look at a single object. See the <a href="../getimage/index.html">How do I get an image of my favorite object?</a> tutorial to learn how to use the Explore tool.</li>
+
+<li>Look at <b>flags</b>, the third row of data just below the object's coordinates. You will see the 
+       object's flags listed, one after the other with one space in between. See the list of flags in the 
+       <a href="http://cas.sdss.org/astro/en/help/browser/browser.asp" target="help">Schema Browser</a> for what they mean. Instructions 
+       for using the Schema Browser are in the next section, <a href="#interpret">Interpret Flags</a>.</li>
+
+</ol>
+
+
+<hr />
+
+<a name="interpret"></a>
+<h4>Interpret Flags (<a href="http://cas.sdss.org/astro/en/help/browser/browser.asp" target="help">open Schema Browser in new window</a>)</h4>
+
+<ol class="tut">
+
+<li>Use the <a href="http://cas.sdss.org/astro/en/help/browser/browser.asp" target="help">Schema Browser</a> (link opens in a new 
+    window) to study the list of the SDSS's flags.</li>
+       
+<li>Type <b>flags</b> into the <b>Search</b> window and click <b>Go</b>.</li>  
+
+<li>Results of your search will show up in the right-hand window of the Schema Browser. Click on the 
+       very first <b>PhotoObj</b> link, next to the name <b>flags</b>. You will go to the schema browser 
+       entry for the PhotoObj view.</li>     
+
+<li>The 13<sup>th</sup> entry in the table is <b>flags</b>. Click on the 
+        <img src="http://cas.sdss.org/astro/en/help/docs/images/info.gif" alt="Link to PhotoFlags" border="0" />
+       link to the right of <b>flags</b>. </li>
+       
+<li>The <em>Data Values</em> table shows the name, value, and description of each flag. <em>Name</em> is the 
+       name of the flag; this is what you will see in the Explore tool. <em>Value</em> is the bitmask value 
+       for the flag. <em>Description</em> is a short description of what the flag means.</li>
+       
+<li>The <em>Access Functions</em>, <span class="sml">fPhotoFlags</span> and <span class="sml">fPhotoFlagsN</span>, 
+       are needed to use the flag names in SQL queries.</li>       
+
+</ol>
+
+
+<hr />
+
+<a name="query"></a>
+<h4>Search for Flags in a Query</h4>
+
+<p>You can search through flags as part of your searches with the <a href="http://cas.sdss.org/astro/en/tools/search/iqs.asp" target="tools">Imaging 
+   Query Form</a> (link opens in a new window). You can request that the tool return only objects that possess one or more flags, such as 
+   searching for moving objects by looking for the <i>MOVED</i> flag. Or you can search for only those objects that 
+   do not possess certain flags, such as searching for unsaturated objects by checking that the <i>SATURATED</i> 
+   flag is off.</p>
+   
+<ol class="tut">
+
+<li>Go to the <a href="http://cas.sdss.org/astro/en/tools/search/iqs.asp" target="tools">Imaging Query Form</a>. From the astronomers' 
+       main page, look under <b>Search Tools</b>. For more on how to use the Imaging Query Form, see the guide 
+       <a href="../getdata/index.html">How do I find data for all objects in a given RA/Dec/Magnitude/Absolute Magnitude 
+       range?</a></li>
+       
+<li>Select any parameters you like on the form, then look at the <b>Obj Flags</b> drop-down menus at the 
+       bottom of the form.</li>
+       
+<li>To guarantee that your results will possess a certain flag, select the flag from the <i>At least one of 
+       these flags ON</i> menu. To select more than one flag to check, hold down the CTRL key while selecting.</li>       
+       
+<li>To guarantee that your results will not possess a certain flag, select the flag from the <i>All of these flags 
+       OFF</i> menu. To select more than one flag to check, hold down the CTRL key while selecting.</li>       
+
+<li>The flags will not show up in the search results unless you specifically request them in the 
+       <i>Imaging</i> menu of the <b>Parameters to Return</b> section above. But the flags will be searched, and the 
+       search will return only objects that meet your flag criteria.</li>
+       
+<li>Click <b>Submit Request</b> to send your query to the database.</li>      
+
+</ol>
+
+
+<hr />
+
+<a name="sql"></a>
+<h4>Search for Flags with SQL</h4>
+
+<p>You can also search through flags as part of your searches using SQL. SQL searches will search for and 
+   return flags as long decimal numbers that have been converted from binary - but you translate between these 
+   numbers and the flag names with the functions <span class="sml">dbo.fPhotoFlags</span> and <span class="sml">dbo.fPhotoFlagsN</span>.</p>
+
+<ol class="tut">
+
+<li>Go to the <a href="http://cas.sdss.org/astro/en/tools/search/sql.asp" target="tools">SQL Search</a> tool (opens in new window), under the 
+       <b>Search</b> menu. To get there from the astronomers' main page, look under <b>Search Tools</b>. To 
+       get there from the public main page, look for <b>Search</b> under <b>SkyServer tools</b>.</li>
+       
+<li>To constrain your search based on flags, add one of the following to the WHERE block of your query:</p>
+
+        <ol>
+           <li>To find only objects for which a certain flag is present:</p>
+               <code>WHERE (p.flags & dbo.fPhotoFlags('<i>flag</i>')) > 0</code>
+               <p>Replace <i>flag</i> with the name of the flag you want to search.</p>
+               <p>For example, this query will find IDs and positions of objects that have 
+		       been flagged as having moved:</p>
+		       <table width="100%">
+		         <tr>
+		           <td><code>SELECT objid, ra, dec</code></td>
+		         </tr>
+		         <tr>
+		           <td><code>FROM photoTag</code></td>
+		         </tr>
+		         <tr>
+		           <td><code>WHERE (flags & dbo.fPhotoFlags('MOVED')) > 0</code></td>
+		         </tr>
+		       </table><br />
+		   </li>
+
+           <li>To find only objects for which a certain flag is absent:</p>
+               <p class="code">WHERE (p.flags & dbo.fPhotoFlags('flag')) = 0</p>
+               <p>Replace <i>flag</i> with the name of the flag you want to search.</p>
+               <p>For example, this query will screen out IDs and positions of objects that have 
+		       been flagged as not being saturated:</p>
+		       <table class="code" width="100%">
+		         <tr>
+		           <td><code>SELECT objid, ra, dec</code></td>
+		         </tr>
+		         <tr>
+		           <td><code>FROM photoTag</code></td>
+		         </tr>
+		         <tr>
+		           <td><code>WHERE (flags & dbo.fPhotoFlags('SATURATED')) = 0</code></td>
+		         </tr>
+		       </table><br />
+		   </li>
+		           
+        </ol>
+    </li>       
+            
+</ol>
+ 
+ 
+<hr />
+
+
+<a name="clean"></a>
+<h4>Search for Objects with Clean Photometry</h4>
+
+
+<p>By using several flags together, you can limit your searches to return only objects that have clean 
+   photometry, thereby ensuring that you have a good sample. The flags you use differ depending on whether you 
+   are looking at stars or extended objects.</p>
+
+<p>The queries below run slowly. These are test versions that use <b>TOP 10</b> to return only the first 10 
+   matching objects. To return all matching objects, remove the top 10 and use the <a href="http://casjobs.sdss.org/casjobs/" target="tools">CasJobs</a> 
+   batch query system (link opens in a new window), which lets you run queries that take up to 8 hours. 
+   Also, note that lines that start with "--" are comments that are not executed as SQL statements.</p>
+
+<p>For stars, use the following query to return IDs, positions, colors, and flags:</p>
+
+		       <table width="100%">
+		         <tr>
+		           <td><code>SELECT TOP 10 objid, ra, dec, u, g, r, i, z,</code></td>
+		         </tr>
+		         <tr>
+		           <td><code>dbo.fPhotoFlagsN(flags) as flags</code></td>
+    	         </tr>
+   		         <tr>
+		           <td></td>
+		         </tr>
+
+		         <tr>
+		           <td><code>FROM star</code></td>
+		         </tr>
+		         		         
+    	         <tr>
+		           <td></td>
+		         </tr>
+
+		         <tr>
+		         <td><code>WHERE ((flags & 0x10000000) != 0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- detected in BINNED1</code></td>
+		         </tr>
+		         <tr>
+		           <td></td>
+		         </tr>
+		         <tr>
+		           <td><code>AND ((flags & 0x8100000c00a4) = 0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- not EDGE, NOPROFILE, PEAKCENTER,</code></td>
+		         </tr>
+		         <tr>
+		            <td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- NOTCHECKED, PSF_FLUX_INTERP, SATURATED, or BAD_COUNTS_ERROR</code></td>
+		         </tr>
+		         <tr>
+		           <td></td>
+		         </tr>
+		         <tr>
+		           <td><code>AND (((flags & 0x400000000000) = 0) or (psfmagerr_g <= 0.2))</code></td>
+		         </tr>
+		         <tr>
+		           <td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- not DEBLEND_NOPEAK or small PSF error</code></td>		           
+		         </tr>
+		         <tr>
+		           <td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- (substitute psfmagerr in other band as appropriate)</code></td>
+		         </tr>
+		         <tr>
+		           <td></td>
+		         </tr>
+		         <tr>
+		           <td><code>AND (((flags & 0x100000000000) = 0) or (flags & 0x1000) = 0)</code></td>
+		         </tr>
+		       </table>
+		       
+		       <p>&nbsp;</p>
+		       
+		       <p>For extended objects, use the following query to return IDs, positions, colors, and flags:</p>
+
+		       <table width="100%">
+		         <tr>
+		           <td><code>SELECT TOP 10 objid, ra, dec, u, g, r, i, z,</code></td>
+		         </tr>
+		         <tr>
+		           <td><code> dbo.fPhotoFlagsN(flags) as flags</code></td>
+    	         </tr>
+   		         <tr>
+		           <td></td>
+		         </tr>
+
+		         <tr>
+		           <td><code>FROM galaxy</code></td>
+		         </tr>
+		         		         
+    	         <tr>
+		           <td></td>
+		         </tr>
+
+		         <tr>
+		         <td><code>WHERE ((flags & 0x10000000) != 0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- detected in BINNED1</code></td>
+		         </tr>
+		         <tr>
+		           <td></td>
+		         </tr>
+		         <tr>
+		           <td><code>AND ((flags & 0x8100000c00a0) = 0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- not NOPROFILE, PEAKCENTER,</code></td>
+		         </tr>
+		         <tr>
+		            <td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- NOTCHECKED, PSF_FLUX_INTERP, SATURATED, or BAD_COUNTS_ERROR</code></td>
+		         </tr>
+		         <tr>
+		            <td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- if you want to accept objects with interpolation problems for PSF mags,</code></td>
+		         </tr>
+		         <tr>
+		            <td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- change this to: AND ((flags & 0x800a0) = 0)</code></td>
+		         </tr>		         
+		         <tr>
+		           <td></td>
+		         </tr>
+		         <tr>
+		           <td><code>AND (((flags & 0x400000000000) = 0) or (psfmagerr_g <= 0.2))</code></td>
+		         </tr>
+		         <tr>
+		           <td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- not DEBLEND_NOPEAK or small PSF error</code></td>		           
+		         </tr>
+		         <tr>
+		           <td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- (substitute psfmagerr in other band as appropriate)</code></td>
+		         </tr>
+		         <tr>
+		           <td></td>
+		         </tr>
+		         <tr>
+		           <td><code>AND (((flags & 0x100000000000) = 0) or (flags & 0x1000) = 0)</code></td>
+		         </tr>
+		         <tr>
+		           <td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- not INTERP_CENTER or not COSMIC_RAY – omit this AND clause if you</code></td>
+		         </tr>
+		         <tr>
+		           <td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- want to accept objects with interpolation problems for PSF mags.</code></td>
+		         </tr>
+		         
+		       </table>
+
+
+<h4><a href="../index.html">Back to Tutorials index</a></h4>
+
+<!-- end page content-->
+
+<hr />
+
+<!--#include virtual="../../includes/footer.html"-->
+</body> </html>

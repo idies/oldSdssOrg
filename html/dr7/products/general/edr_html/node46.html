@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Monitor Telescope Pipeline</TITLE>
+<META NAME="description" CONTENT="Monitor Telescope Pipeline">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html626" HREF="node47.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html624" HREF="node44.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html618" HREF="node45.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html627" HREF="node47.html">The Final Calibration Pipeline</A>
+<B>Up:</B> <A NAME="tex2html625" HREF="node44.html">Photometric Calibration</A>
+<B> Previous:</B> <A NAME="tex2html619" HREF="node45.html">Overview of the Photometric </A>
+<BR> <P>
+<H3><A NAME="SECTION00045200000000000000">Monitor Telescope Pipeline</A></H3>
+<P>
+<A NAME="swphotocalmtpipe">&#160;</A>
+<P>
+The PT has two main functions: it measures the atmospheric
+extinction on
+each clear night based on observations of primary standards at a
+variety of airmasses, and it calibrates secondary patches in order to
+determine the photometric zeropoint of the 2.5m imaging scans.  The
+extinction must be measured on each night the 2.5m is scanning, but
+the corresponding secondary patches can be observed on any photometric
+night, and need not be coincident with the image scans that they will
+calibrate.
+<P>
+The Monitor Telescope Pipeline (<TT>mtpipe</TT>; tucker01), so
+called for historical reasons, processes the PT data.
+It performs three basic functions: 
+<UL>
+<LI> it bias subtracts and flatfields the images, and performs 
+	aperture photometry;
+<LI> it identifies primary standards in the primary standard
+	star fields and computes a transformation from the
+	aperture photometry to the primary standard star system;
+<LI> it applies the photometric solution to the stars in the 
+	secondary patch fields.
+</UL>
+<P>
+The transformation equation between the instrumental aperture photometry
+<IMG WIDTH=31 HEIGHT=28 ALIGN=MIDDLE ALT="tex2html_wrap_inline3219" SRC="img117.gif"> and the reduced magnitude <I>u</I>' is given by:
+<BR><A NAME="eqmtpipe1">&#160;</A><IMG WIDTH=570 HEIGHT=48 ALIGN=BOTTOM ALT="eqnarray894" SRC="img118.gif"><BR>
+and similarly in <I>g</I>', <I>r</I>', <I>i</I>', and <I>z</I>' (both <I>i</I>' and <I>z</I>' use
+<I>i</I>'-<I>z</I>' as the fiducial color in the equations).
+Here, <I>a</I> is the zero point,
+<I>k</I> is the primary extinction coefficient, <I>X</I> is the airmass,
+<I>b</I> is the first order color term coefficient,
+<I>c</I> is the second-order extinction term coefficient,
+<IMG WIDTH=76 HEIGHT=23 ALIGN=MIDDLE ALT="tex2html_wrap_inline3247" SRC="img119.gif"> is a reference air mass, and <IMG WIDTH=78 HEIGHT=28 ALIGN=MIDDLE ALT="tex2html_wrap_inline3249" SRC="img120.gif"> is a
+reference color.
+The values for these last two parameters are
+chosen to keep the ``<I>c</I>'' term small, and  
+are defined to be the estimated average airmass of the survey,
+<IMG WIDTH=73 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3253" SRC="img121.gif">, and the ``cosmic color'', respectively, as listed in
+Table&nbsp;<A HREF="node65.html#tblcosmiccolor">23</A>.  The cosmic color values are the mean
+colors of 4428
+objects with <IMG WIDTH=95 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3255" SRC="img122.gif"> in survey run 752, camera column 3,
+fields 11-100.  This area is on the celestial equator at a Galactic latitude
+of about 42<IMG WIDTH=5 HEIGHT=6 ALIGN=BOTTOM ALT="tex2html_wrap_inline3257" SRC="img123.gif">.
+<P>
+For the calibrations presented in the SDSS EDR, the
+values for the instrumental (``<I>b</I>'') coefficients have been set to
+zero, and the values for the second-order extinction (``<I>c</I>'')
+coefficients have been set to the global values derived in the initial
+setup of the <I>u</I>'<I>g</I>'<I>r</I>'<I>i</I>'<I>z</I>' primary standard star network
+(Table&nbsp;<A HREF="node65.html#tblcterms">24</A>) smith01.  For each filter, a single
+value for the photometric zeropoint (``<I>a</I>'') is solved for each
+night, but typically a separate value <I>k</I> is determined
+for each three-hour block throughout the night. Typical values are
+given in Table&nbsp;<A HREF="node65.html#tblcterms">24</A>. 
+The net effect of forcing the <I>b</I> terms to 0 is that the secondary patches
+are calibrated on the natural system of the PT, except that the zero points
+in each filter are slightly offset from a true AB system.  The offset
+for the <I>u</I>' band is given approximately given by <IMG WIDTH=67 HEIGHT=28 ALIGN=MIDDLE ALT="tex2html_wrap_inline3273" SRC="img124.gif">,
+where the quantity in brackets is the mean color of all standard stars
+observed on a given night; offsets for other bands are given by
+similar expressions.  These offsets amount to at most a couple of
+percent, and are not applied to the EDR data.
+<P>
+<HR><A NAME="tex2html626" HREF="node47.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html624" HREF="node44.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html618" HREF="node45.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html627" HREF="node47.html">The Final Calibration Pipeline</A>
+<B>Up:</B> <A NAME="tex2html625" HREF="node44.html">Photometric Calibration</A>
+<B> Previous:</B> <A NAME="tex2html619" HREF="node45.html">Overview of the Photometric </A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

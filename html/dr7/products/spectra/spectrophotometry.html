@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+
+<title>Data products: Spectra - Quality of spectrophotometry - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+ 
+<h1>The Quality of the Spectrophotometry</h1>
+   <!-- Author: M. C. Tremonti March 26 2003 -->
+
+<p>Obtaining accurate spectrophotometry for fiber spectra is a
+challenging task due to the small size of the fibers relative to the
+science targets. The SDSS employs some unique techniques which are
+described on the <a href="../../algorithms/index.html">algorithms
+page</a>. There have been substantial improvements to the algorithms
+which photometrically calibrate the spectra published in DR6 and
+beyond which are also described in detail on that page.</p>
+
+<p>We have quantified the improvements in the spectrophotometry from
+DR5 to DR6 and beyond in two ways.  The net effect of these changes to
+the <code>Spectro2d</code> pipeline is a substantial improvement in
+the spectrophotometric quality of both point and extended sources.  We
+have evaluated this in two ways: by comparing <var>r</var> magnitudes
+synthesized from the spectra to <code>photo</code> fiber magnitudes,
+and by comparing eigendecompositions of quasar spectra to the original
+spectra.</p>
+
+
+<div class="cfig"> <img class="cfig" src="newspectro_coldiffhisto.png"> <p
+class="cfig"><strong>Top 3 rows:</strong> the distribution of differences between
+<var>r</var>-band photometry synthesized from SDSS spectra, and PSF
+and fiber magnitudes, for stars and galaxies; results are shown for
+DR6 (left-hand panel) and the previous version of the calibration
+available in DR5 (right-hand panel). Only objects with PSF magnitude
+brighter than 19 are shown. The most important difference is the
+offset of 0.35 magnitudes between the two, due to the change in
+calibration from fiber to PSF photometry. Each panel includes the mean
+and standard deviation of the best-fit Gaussian, as well as the number
+of objects lying beyond 3&sigma; (as a measure of the non-Gaussianity
+of the tails). Results are shown for <var>r</var> band, but
+<var>g</var> and <var>i</var> band results are very
+similar. <strong>Bottom 2 rows:</strong> as top 3 rows, but for the
+colours shown.</p></div>
+
+<div class="cfig"> <img class="cfig" src="spectrophotometry5.gif"> <p
+class="cfig">The median, and 25% and 75% quartiles, of the ratio of
+observed quasar spectra to eigenspectra fits to them. This quantifies
+the wavelength dependence of systematic errors in the
+spectrophotometric calibration. The features at Ca H and K, and at Na
+D, are probably due to absorption from the interstellar medium.</p>
+</div>
+
+
+
+         
+<hr> <!-- hhmts start -->Last modified: Thu Jun 28 13:54:07 CEST 2007
+<!-- hhmts end -->
+  <!--#include virtual="../../includes/footer_layer3.html"--> <br>
+ <br>
+<br>
+</body></html>

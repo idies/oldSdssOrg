@@ -1,0 +1,154 @@
+body 	{
+	color: #000000;
+	margin: 0;
+	background-color: #ffffff;
+	}
+
+a	{
+	text-decoration: none;
+	}
+
+a:hover	{
+	text-decoration: underline;
+	}
+
+td.header {
+	padding-left:0px;
+	background-image:  url(images/header_bkgd.gif);
+	background-repeat: repeat-x 
+	}
+
+td.nav	{
+	background-color: #D3D3D3;
+	padding-left: 15px;
+	margin: 0px;
+	border-top: 1px solid #FFFFFF;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	}
+
+td.nav_last {
+	background-color: #D3D3D3;
+	padding-left: 15px;
+	margin: 0px;
+	border-top: 1px solid #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+	border-left: 0px;
+	border-right: 0px;
+	}
+
+a.nav_menu {
+	font-size: 14px;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	color: #006666;	
+	font-weight: bold;
+	}
+
+a.nav_menu:hover {
+	font-size: 14px;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	color: #20B2AA;	
+	font-weight: bold;
+	}
+	
+td.menu_section {
+	background-color: #D3D3D3;
+	padding-top: 10px;
+	padding-left: 5px;
+	border: 0px;
+	}
+
+td.menu_section_contact {
+	background-color: #D3D3D3;
+	padding-top: 10px;
+	padding-left: 5px;
+	border-bottom: 1px solid #FFFFFF;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	}
+
+.menu_section {
+	color: #000000;	
+	font-size: 17px;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	}
+
+a.menu_section {
+	color: #006666;	
+	font-size: 17px;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	}
+
+a.menu_section:hover {
+	color: #20B2AA;	
+	font-size: 17px;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	}
+
+td.rightbar {
+	background-color: #FFFFFF;
+	padding: 7px;
+	border: 1px solid #336666
+	}
+
+.footer {
+        font-family: Verdana, Arial, sans-serif;
+        font-size: 11px;
+        color: #FFFFFF;  
+        padding: 0px;   
+        }
+
+h1.rightbar {
+	color: #003333;	
+	font-size: 17px;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	}
+
+li.rightbar {
+	color: #000000;	
+	font-size: 13px;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	}
+
+a.rightbar {
+	font-size: 13px;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	}
+
+a.rightbar:hover {
+	font-size: 13px;
+	text-decoration: underline;
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	}
+
+table.topnav {
+	padding-left: 35px;
+	padding-right: 35px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	border: solid 1px #999999;
+	}
+
+td.org	{
+	text-align: center;
+	padding: 10px;
+	background-color: #EEDDFF;
+	border: solid 2px #000000;
+	}

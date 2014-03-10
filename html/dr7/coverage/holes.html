@@ -1,0 +1,707 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Data Quality and Holes - SDSS DR7</title>
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Quality of SDSS coverage (including 'holes')</h1>
+
+<p>The following is a reference note on quality of fields, including
+hole</em> fields in the SDSS data set.</p>
+
+<p>Since DR4, the CAS has a field quality table, called <code>RunQA</code>, which 
+provides information relevant to the average data quality for the objects in
+each field of SDSS.  In DR5, there is also a <code>TargRunQA</code>
+table for the 'target' data. In the CAS, an SQL query 
+such as 'select top 10 * from RunQA' will show 
+ sample entries for this table.  This table may be joined to rest of your 
+query to sub-select only fields of the very highest quality, for instance,
+with seeing below a certain threshold, if that is desired.
+<p>
+If you wish just one number which describes the overall quality of a field,
+we recommend you look at the FieldQall number (0=bad, 1=acceptable, 2=good, 3=excellent).
+<p>
+This overall quality determination, FieldQAll, is based on the (dereddened) 
+principal colors of all the stars in the 
+field vs. the Galactic value of this quantity, the PSF quality, 
+the difference between Aperture and PSF magnitudes for
+the same stars in the field, and the seeing.
+<p>
+Principal colors of stars are linear combinations of
+the SDSS colors u-g, g-r, r-i, i-z which align 
+perpendicular to the stellar locus of stars
+with F thru K spectral types.  The position of the locus in color space
+of the Milky Way's stars (suitablely dereddened), does not appear
+to change by more than 1% or so toward most high latitude lines of sight, and
+so, assuming this locus to be fixed, the value of the principal colors 
+is then an excellent measure of the absolute photometric calibration of 
+the data.
+<p>
+A shift of more than about 1% from the cosmic (Milky Way) values of the 
+colors perpendicular to the stellar locus indicates a 
+possible mis-calibration of the data.  
+<p>
+The width of the stellar locus in principal value colors is also
+a good indication of the quality of the data, in particular
+of the relative photometry of stars.
+<p>
+The individual principal colors (averaged over the field, along
+with rms widths of the distribution), are available 
+in this runQA table, along with Aperture-PSF magnitudes
+and widths.
+<p>
+
+The information in the RunQA table is as follows:
+<pre>
+Column of RunQA table:  Description
+==================================================
+
+ FieldID:  64-bit unique fieldID identifier f(skyversion,firstfield?,run,rerun,camcol,field)
+
+ skyVersion: 0=target, 1=best, the DR5 CAS contains both a runQA table
+                               for the 'best' skyVersion and a
+                               TargRunQA table for 'target'
+
+ First:  is this field the first in a segment?  0=no 1=yes
+
+ Run: 	Run number
+
+ Rerun:  Rerun processing number
+
+ CamCol: Camera Col 1-6
+
+ Field:  Field within a run
+
+ FieldQAll:  Overall Field Quality measure:  0=BAD, 1=ACCEPTABLE, 2=GOOD, 3=EXCELLENT
+
+ OPDBQ:      Operations Database quality measure:  0=UNDETERMINDED, 1=BAD, 2=ACCEPTABLE, 3=GOOD, 4=MISSING (unused),
+				 5=HOLE
+
+ APPSFQ:  Aperture magnitude - PSF magnitude difference quality measure: 1=GOOD 0=BAD
+ PCMEDQ:  Principal color analysis median shift from nominal cosmic (Galactic) value: 1=GOOD, 0=shift too big
+ PCRMSQ:  Principal color analysis RMS spread in colors vs. nomial: 1=GOOD, 0=Spread too big
+ PSFWCONDQ: PSF width quality: 1=GOOD, 0=BAD 
+
+ PC_S:    average principal color s=-0.249u+0.794g-0.555r+0.234 for stars in field.
+ PC_W:    average principal color w=-0.227g+0.792r-0.567i+0.05 for stars in field.
+ PC_X:    average principal color x=0.707g-0.707r-0.988 for stars in field
+ PC_Y:    average principal color y=-0.27r+0.8i-0.534z+0.054 for stars in field.
+		 Where u,g,r,i,z are the dereddened PSF magnitudes of the stars in SDSS filters.
+
+ rmsPC_s: rms width of the s color (mags)
+ rmsPC_w: rms width of the w color (mags)
+ rmsPC_x: rms width of the x color (mags)
+ rmsPC_y: rms width of the y color (mags)
+
+ medAp7mPSF_u:  median difference between the PSF mag and the 7-bin summed aperture mag in u band (mags).
+ medAp7mPSF_g:  median difference between the PSF mag and the 7-bin summed aperture mag in g band (mags).
+ medAp7mPSF_r:  median difference between the PSF mag and the 7-bin summed aperture mag in r band (mags).
+ medAp7mPSF_i:  median difference between the PSF mag and the 7-bin summed aperture mag in i band (mags).
+ medAp7mPSF_z:  median difference between the PSF mag and the 7-bin summed aperture mag in z band (mags).
+
+ rmsAp7mPSF_u:  rms scatter inthe difference between the PSF mag and the 7-bin aperture mag in u (mags).
+ rmsAp7mPSF_g:  rms scatter inthe difference between the PSF mag and the 7-bin aperture mag in g (mags).
+ rmsAp7mPSF_r:  rms scatter inthe difference between the PSF mag and the 7-bin aperture mag in r (mags).
+ rmsAp7mPSF_i:  rms scatter inthe difference between the PSF mag and the 7-bin aperture mag in i (mags).
+ rmsAp7mPSF_z:  rms scatter inthe difference between the PSF mag and the 7-bin aperture mag in z (mags).
+
+ seeing_u:     average measure of the FWHM seeing (arcsec) in the u band for the field.
+ seeing_g:     average measure of the FWHM seeing (arcsec) in the g band for the field.
+ seeing_r:     average measure of the FWHM seeing (arcsec) in the r band for the field.
+ seeing_i:     average measure of the FWHM seeing (arcsec) in the i band for the field.
+ seeing_z:     average measure of the FWHM seeing (arcsec) in the z band for the field.
+</pre>
+
+
+<p> 
+<p>
+<p>Each SDSS <a href="../glossary/index.html#field">field</a> has a
+<em>quality</em> set by the operations database (OPDBQ above).  This quality is determined 
+by the seeing of the field, the tracking of the stripe, the cloudiness of the data
+(photometric or not), and whether or not the photometric pipeline timed out
+while processing.</p>
+
+<p>This OPDB quality is designated by an integer from 0-5, and is stored in
+the <code>quality</code> parameter of the <a
+href="../dm/flatFiles/tsField.html">tsField*.fit</a> file for
+each field.  Here's a key to what that quality means.</p>
+
+<pre>
+ 0=UNDETERMINED,   // The data has been obtained, however its
+                   // quality has not yet been determined.
+ 1=BAD,            // Bad data.  Don't bother with it.
+ 2=ACCEPTABLE,     // The data is acceptable for the survey, but we would
+                   // like to improve on it.
+ 3=GOOD,           // The data is fully acceptable for the survey, and
+                   // there is no need to improve it.
+ 4=MISSING,        // The data is missing, but we include the area of
+                   // sky associated with the data as a hole in the
+                   // survey.
+ 5=HOLE            // The data is unacceptable, but we include the area
+		   // of sky associated with the data as a hole in the
+		   // survey.
+</pre>
+
+<p>Also in the <code>tsField</code> file are more details on exactly why quality was set to
+what it was.</p>
+
+<p>For instance, if the tsField file has a
+<code>frames_status</code> value of <code>3 = FIELD_TOO_LONG</code>,
+meaning the field timed out during processing, this results in a
+<code>quality = 5 (HOLE)</code> for the overall field quality.</p>
+
+<p>The <codel>psp_status</code> is also available in the tsField file,
+as are the <code>culled, badmask,acceptablemask,goodmask</code> and
+<code>holemask</code> masks.</p>
+
+<p>The quality holes are areas of sky where no objects are cataloged,
+and researchers interested in structure statistics of galaxy or star
+distributions may wish to mask out these holes from their coverage
+map.  Roughly half of these fields include a very bright star
+(generally <var>r</var> &lt; 5 or a very large galaxy or globular
+cluster, causing the object deblending in the photometric pipeline to
+time out.  While no catalog information is available for these fields,
+the corrected image is available.  Data of sufficiently poor quality
+can also be marked as a hole (where the <code>frames_status</code> is
+0): very poor seeing (significantly worse than 2&prime;&prime; FWHM),
+glitches in the telescope tracking, and non-photometric data.  There
+are also a few small gaps, also marked as holes, which fall between
+two adjacent SDSS scans.</p>
+
+<p>We note that there are different holes in the <a
+href="../glossary/index.html#best">best</a> version of sky than the <a
+href="../glossary/index.html#target">target</a> version. This is due
+to the photometric pipeline timing out for a number of fields
+processed with pipeline version v5_4, where earlier versions did not
+time out.  In other words, if we had let the photometric processing
+run longer, they may have finished successfully.  Future data releases
+will include these data.</p>
+
+<p>Fields which are marked as <code>hole</code> will show up as holes
+in the large scale structure masks; objects detected in those fields
+are not included in the data release. The following table lists the
+holes in the DR4 fields.</p>
+
+<h2>Target skyVersion holes</h2>
+
+<pre>
+run rerun camcol fieldstart-end 'quality (5=hole)' 'frames_status (3=timeout,0=ok)'
+-------------------------------------------------------------------------</p>
+1737 0 6 30 5 3
+1739 0 2 31 3 3
+1739 0 2 160 3 3
+1889 1 4 42 5 3
+1895 0 1-6 170-185 5 0
+1895 0 1-6 268-285 5 0
+1992 0 1 141 5 3
+1992 0 1 168 5 0
+1992 0 2 130 5 3
+2074 0 5 174 5 3
+2126 0 4 278 5 3
+2126 0 6 341 5 3
+2248 0 1-6 186-196 5 2
+2328 0 1 77 5 3
+2566 0 3 108 2 3
+2566 0 4 330 2 3
+2566 0 6 64-65 2 3
+2566 0 6 220 2 3
+2583 0 1 44 3 3
+2583 0 2 136 2 3
+2662 0 1 38 3 3
+2777 0 4 253-254 5 0
+2822 0 3 35 3 3
+2822 0 6 108 3 3
+2825 0 1 44 5 0
+2826 20 2 290-291 5 3
+2864 0 5 237 2 3
+2964 20 3 453 5 3
+3015 0 1 105-125 5 0
+3015 0 1 156 5 0
+3015 0 1 159 5 0
+3015 0 1 161-162 5 0
+3015 0 1 195-215 5 0
+3015 0 1 275 5 0
+3015 0 1 283 5 0
+3015 0 1 287-288 5 0
+3031 20 1 407 5 3
+3031 20 3 81 5 3
+3031 20 4 63 5 3
+3031 20 5 78 5 3
+3180 0 1 72-73 5 0
+3180 0 1 78-81 5 0
+3180 0 1 85 5 0
+3180 0 1 90-91 5 0
+3187 20 1 180 5 3
+3225 20 2 299 5 3
+3225 20 3 71 5 3
+3225 20 4 264-265 5 3
+3225 20 4 310 5 3
+3225 20 6 184 5 3
+3225 20 6 195 5 3
+3226 20 5 127 5 3
+3462 20 2 202 5 3
+3462 20 3 286 5 3
+3462 20 3 287 5 3
+3462 20 6 141 5 3
+3478 20 4 103 5 3
+3518 20 3 63 5 3
+3525 20 5 108 5 3
+3530 20 2 155 5 3
+3530 20 3 240 5 3
+3530 20 4 189 5 3
+3538 20 1 91-92 5 3
+3538 20 1 162 5 3
+3538 20 4 184 5 3
+3538 20 5 135 5 3
+3560 20 1 231 5 3
+3560 20 2 216 5 3
+3605 20 1 23 5 3
+3606 20 1 107 5 3
+3606 20 6 100 5 3
+3630 20 2 237 5 3
+3630 20 4 193 5 3
+3631 40 2 237-238 5 3
+3631 40 3 66 5 3
+3631 40 3 238 5 3
+3631 40 3 401-402 5 3
+3631 40 4 178 5 3
+3631 40 4 221 5 3
+3631 40 5 97 5 3
+3631 40 5 138 5 3
+3631 40 6 346 5 3
+3635 40 4 145 5 3
+3647 40 6 29-30 5 3
+3698 40 5 131-132 5 3
+3699 40 5 219-220 5 3
+3699 40 6 100 5 3
+3704 40 2 41-42 5 3
+3704 40 5 158 5 3
+3704 40 6 169 5 3
+3705 20 1 333-334 5 3
+3705 20 2 236 5 3
+3712 20 1 120-121 5 3
+3716 41 2 120 5 3
+3716 41 3 37 5 3
+3716 41 3 78 5 3
+3723 40 4 48 5 3
+3723 40 5 13 5 3
+3723 40 6 67-68 5 3
+3804 41 6 59 5 3
+3805 41 1 117 5 3
+3813 40 2 158 5 3
+3813 40 4 83 5 3
+3813 40 4 123-124 5 3
+3813 40 5 144 5 3
+3818 40 5 25 5 3
+3818 40 5 198 5 3
+3818 40 6 86 5 3
+3838 41 1 68-69 5 3
+3840 40 1 192 5 3
+3840 40 1 214 5 3
+3841 41 1 37 5 3
+3841 41 6 198-199 5 3
+3893 40 3 411 5 3
+3893 40 5 344 5 3
+3893 40 6 277 5 3
+3894 40 3 258 5 3
+3900 41 2 640 5 3
+3900 41 3 715 5 3
+3900 41 6 801 5 3
+3909 40 1 190 5 3
+3909 40 4 166 5 3
+3909 40 4 270-271 5 3
+3910 40 3 183 5 3
+3918 41 1 100 5 3
+3918 41 1 389 5 3
+3918 41 3 279 5 3
+3918 41 5 316 5 3
+3919 40 2 40 5 3
+3919 40 3 101 5 3
+3919 40 4 44 5 3
+3927 40 1 85 5 3
+3927 40 3 11 5 3
+3927 40 3 39 5 3
+3964 41 1 228 5 3
+3964 41 3 133 5 3
+3965 40 3 55 5 3
+3972 40 5 65 5 3
+3992 40 4 123 5 3
+3996 40 4 253 5 3
+3997 40 1 28 5 3
+4002 40 1 103 5 3
+4002 40 1 195 5 3
+4002 40 2 49 5 3
+4002 40 2 50 5 3
+4002 40 2 157 5 3
+4002 40 2 232 5 3
+4002 40 2 268 5 3
+4002 40 3 147 5 3
+4002 40 4 263-264 5 3
+4010 40 4 102 5 3
+4010 40 6 158 5 3
+4010 40 6 231 5 3
+4204 40 2 236 5 3
+4208 40 2 237 5 3
+4264 40 5 177-178 5 3
+4294 40 5 153 5 3
+4380 40 2 75 5 3
+4381 40 2 114 5 3
+4382 40 1 57 5 3
+4392 40 1 114 5 3
+4392 40 3 77 5 3
+4470 40 2 142 5 3
+4504 40 5 256-257 5 3
+4512 40 3 229 5 3
+4550 40 1 85 5 3
+4569 40 5 56 5 3
+4571 40 2 17 5 3
+4576 40 2 688 5 3
+4576 40 4 817 5 3
+4623 40 1 324 5 3
+4623 40 4 83 5 3
+4632 40 3 180-182 5 3
+4646 40 3 81-82 5 3
+4649 40 1 416 5 3
+4649 40 4 146 5 3
+4670 40 4 261 5 3
+4674 40 1 241 5 3
+4678 40 4 249 5 3
+4682 40 6 208 5 3
+5061 40 2 115 5 3
+5071 40 2 112 5 3
+5071 40 2 215 5 3
+5071 40 6 229 5 3
+5080 41 1 138 5 3
+5080 41 2 269 5 3
+5087 40 6 292 5 3
+5115 40 5 102 5 3
+5140 40 1 113 5 3
+5140 40 6 85 5 3
+5183 40 2 406 5 3
+5194 40 2 645-646 5 3
+5194 40 6 700 5 3
+5224 40 1 108 5 3
+5225 41 4 85 5 3
+5225 41 6 32 5 3
+5308 40 3 111-112 5 3
+5308 40 5 192 5 3
+5313 40 5 116-117 5 3
+5323 40 3 136 5 3
+5327 40 3 54 5 3
+5390 40 6 162 5 3
+
+</pre>
+
+<h2>Best skyVersion holes</h2>
+
+<pre>
+run rerun camcol fieldstart-end 'quality (5=hole)' 'frames_status (3=timeout,0=ok)'
+-------------------------------------------------------------------------</p>
+752 40 2 205 5 3
+752 40 2 276-277 5 0
+752 40 5 692 5 3
+752 40 6 660 5 3
+756 44 2 587 5 3
+756 44 3 338 5 3
+1035 40 6 112-113 5 3
+1043 40 6 149 5 3
+1140 40 6 250-251 5 3
+1231 40 6 141-142 5 3
+1345 41 2 607 5 3
+1359 40 3 60 5 0
+1412 40 1 233 5 3
+1412 40 3 315 5 3
+1458 40 3 646 5 3
+1458 40 4 674 5 3
+1458 40 6 525 5 3
+1462 40 5 88 5 3
+1462 40 6 399 5 3
+1462 40 6 458 5 3
+1729 40 3 195-196 5 3
+1729 40 4 387 5 3
+1737 40 6 30 5 3
+1739 40 2 31 5 3
+1739 40 2 160 5 3
+1739 40 3 24 5 3
+1739 40 5 175 5 3
+1740 40 2 95 5 3
+1740 40 2 135 5 3
+1740 40 6 54 5 3
+1889 40 4 42 5 3
+1895 41 1-6 270-280 5 0
+1904 42 4 172 5 3
+1992 40 2 130 5 3
+2076 40 1 140-141 5 3
+2125 40 1 132 5 3
+2126 41 4 126 5 3
+2126 41 4 278 5 3
+2126 41 6 341 5 3
+2131 40 6 25 5 3
+2131 40 6 26 5 3
+2137 40 2 279-280 5 3
+2137 40 3 243 5 3
+2137 40 6 183 5 3
+2189 40 3 57 5 3
+2190 40 1 144 5 3
+2243 40 1 130 5 3
+2243 40 3 75-77 5 0
+2243 40 4 73-77 5 0
+2243 40 4 131 5 3
+2243 40 5 71-75 5 0
+2243 40 6 70-72 5 0
+2247 41 6 145 5 3
+2299 41 1 300 5 3
+2305 40 3 38-39 5 3
+2326 41 2 309-310 5 3
+2328 40 1 77-78 5 3
+2328 40 1 122 5 3
+2328 40 2 175 5 3
+2328 40 4 38 5 3
+2379 40 2 130 5 3
+2566 40 2 83 5 3
+2566 40 3 108 5 3
+2566 40 4 330 5 3
+2566 40 6 64-65 5 3
+2566 40 6 219-220 5 3
+2583 40 1 44 5 3
+2583 40 2 136 5 3
+2662 40 1 38 5 3
+2662 40 2 257 5 3
+2662 40 3 130 5 3
+2662 40 3 141 5 3
+2662 40 4 183 5 3
+2662 40 5 84 5 3
+2735 40 5 114-115 5 3
+2738 40 4 155 5 3
+2738 40 4 184 5 3
+2738 40 4 280 5 3
+2740 40 1 225 5 3
+2740 40 4 163 5 3
+2777 40 4 53 5 3
+2822 40 1 49 5 3
+2822 40 3 34 5 3
+2822 40 3 35 5 3
+2822 40 3 52 5 3
+2822 40 6 108 5 3
+2825 40 1 45-46 5 3
+2825 40 6 208 5 3
+2826 40 4 223 5 3
+2826 40 4 224 5 3
+2830 41 1 68 5 3
+2830 41 4 252 5 3
+2863 40 6 101 5 3
+2864 40 2 40 5 3
+2864 40 2 61 5 3
+2864 40 5 186 5 3
+2864 40 5 237 5 3
+2883 40 5 212 5 3
+2887 40 6 43 5 3
+2888 40 5 45 5 3
+2964 40 1 57 5 3
+2964 40 6 22 5 3
+2986 40 1 173 5 3
+3015 40 1 333 5 3
+3015 40 4 348 5 3
+3015 40 6 121 5 3
+3015 40 6 133 5 3
+3031 40 1 407 5 3
+3031 40 3 81 5 3
+3031 40 4 63 5 3
+3031 40 5 78 5 3
+3103 40 1 130-131 5 3
+3130 40 6 50 5 3
+3177 40 2 229 5 3
+3177 40 2 255 5 3
+3180 40 4 65 5 3
+3180 40 6 42 5 3
+3180 40 6 76 5 3
+3185 40 1 44 5 3
+3187 40 1 180 5 3
+3187 40 4 82 5 3
+3225 40 2 299 5 3
+3225 40 2 355 5 3
+3225 40 2 356 5 3
+3225 40 3 71 5 3
+3225 40 4 264 5 3
+3225 40 4 265 5 3
+3225 40 4 310 5 3
+3225 40 6 184 5 3
+3225 40 6 195 5 3
+3226 40 1 88 5 3
+3226 40 5 127 5 3
+3325 41 1 430 5 3
+3325 41 4 99 5 3
+3325 41 5 345 5 3
+3388 40 3 128-129 5 3
+3388 40 4 167 5 3
+3462 40 2 202 5 3
+3462 40 3 286 5 3
+3462 40 3 287 5 3
+3462 40 6 141 5 3
+3478 40 4 102 5 3
+3478 40 4 103 5 3
+3518 40 3 63 5 3
+3518 40 4 117 5 3
+3518 40 4 118 5 3
+3525 40 5 108 5 3
+3530 42 2 155 5 3
+3530 42 3 240 5 3
+3530 42 4 189 5 3
+3538 40 1 91-92 5 3
+3538 40 4 184 5 3
+3538 40 5 135 5 3
+3538 40 1-6 291-310 1 0 : This is declared bad in error - to be fixed
+3560 40 1 231 5 3
+3560 40 2 216 5 3
+3560 40 6 130 5 3
+3605 40 1 23 5 3
+3606 40 1 107 5 3
+3606 40 4 18 5 3
+3630 40 4 193 5 3
+3631 40 2 237 5 3
+3631 40 2 238 5 3
+3631 40 3 66 5 3
+3631 40 3 238 5 3
+3631 40 3 401-402 5 3
+3631 40 4 178 5 3
+3631 40 4 221 5 3
+3631 40 5 97 5 3
+3631 40 5 138 5 3
+3631 40 6 346 5 3
+3635 41 4 145 5 3
+3647 41 6 29 5 3
+3664 40 2 156 5 3
+3698 41 5 131-132 5 3
+3698 41 5 132 5 3
+3699 41 5 219-220 5 3
+3699 41 6 100 5 3
+3704 40 2 41-42 5 3
+3704 40 5 158 5 3
+3704 40 6 169 5 3
+3705 40 1 333-334 5 3
+3705 40 2 236 5 3
+3712 40 1 120-121 5 3
+3712 40 1 166 5 3
+3716 42 3 37 5 3
+3716 42 3 78 5 3
+3716 42 6 117 5 3
+3723 40 4 48 5 3
+3723 40 5 13 5 3
+3723 40 6 67-68 5 3
+3804 41 6 59 5 3
+3805 41 1 117 5 3
+3813 41 4 83 5 3
+3813 41 4 124 5 3
+3813 41 5 144 5 3
+3813 41 5 257 5 3
+3818 41 5 25 5 3
+3818 41 6 86 5 3
+3838 41 1 68-69 5 3
+3840 41 1 192 5 3
+3840 41 1 214 5 3
+3841 41 1 37 5 3
+3841 41 6 198-199 5 3
+3893 41 3 411 5 3
+3893 41 5 344 5 3
+3893 41 6 277 5 3
+3894 40 3 258 5 3
+3900 41 2 640 5 3
+3900 41 3 715 5 3
+3900 41 6 801 5 3
+3909 40 1 190 5 3
+3909 40 4 166 5 3
+3909 40 4 270-271 5 3
+3910 40 3 183 5 3
+3918 41 1 100 5 3
+3918 41 1 389 5 3
+3918 41 3 279 5 3
+3918 41 5 316 5 3
+3919 40 2 40 5 3
+3919 40 3 101 5 3
+3919 40 4 44 5 3
+3927 40 1 85 5 3
+3927 40 3 11 5 3
+3927 40 3 39 5 3
+3964 41 1 228 5 3
+3964 41 3 133 5 3
+3965 40 3 55 5 3
+3972 40 5 65 5 3
+3992 40 4 123 5 3
+3996 40 4 253 5 3
+3997 40 1 28 5 3
+4002 40 1 103 5 3
+4002 40 1 195 5 3
+4002 40 2 49 5 3
+4002 40 2 50 5 3
+4002 40 2 157 5 3
+4002 40 2 232 5 3
+4002 40 2 268 5 3
+4002 40 3 147 5 3
+4002 40 4 263-264 5 3
+4002 40 2 158-325 5 0: This hole is too big - to be fixed
+4002 40 3 147-325 5 0: This hole too big - to be fixed
+4010 40 4 102 5 3
+4010 40 6 158 5 3
+4010 40 6 231 5 3
+4204 40 2 236 5 3
+4208 40 2 237 5 3
+4264 40 5 177-178 5 3
+4294 40 5 153 5 3
+4380 40 2 75 5 3
+4381 40 2 114 5 3
+4382 40 1 57 5 3
+4392 40 1 114 5 3
+4392 40 3 77 5 3
+4470 40 2 142 5 3
+4504 40 5 256-257 5 3
+4512 40 3 229 5 3
+4550 40 1 85 5 3
+4569 40 5 56 5 3
+4571 40 2 17 5 3
+4576 40 2 688 5 3
+4576 40 4 817 5 3
+4623 40 1 324 5 3
+4623 40 4 83 5 3
+4632 40 3 180-181 5 3
+4646 40 3 81-82 5 3
+4649 40 1 416 5 3
+4649 40 4 146 5 3
+4670 40 4 261 5 3
+4674 40 1 241 5 3
+4678 40 4 249 5 3
+4682 40 6 208 5 3
+5061 40 2 115 5 3
+5071 40 2 112 5 3
+5071 40 2 215 5 3
+5071 40 6 229 5 3
+5080 41 1 138 5 3
+5080 41 2 269 5 3
+5087 40 6 292 5 3
+5115 40 5 102 5 3
+5140 40 1 113 5 3
+5140 40 6 85 5 3
+5183 40 2 406 5 3
+5194 40 2 645-646 5 3
+5194 40 6 700 5 3
+5224 40 1 108 5 3
+5225 41 4 85 5 3
+5225 41 6 32 5 3
+5308 40 3 111-112 5 3
+5308 40 5 192 5 3
+5313 40 5 116-117 5 3
+5323 40 3 136 5 3
+5327 40 3 54 5 3
+5390 40 6 162 5 3
+
+
+</pre>
+
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Wed Jun 21 19:21:56 BST 2006
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

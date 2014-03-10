@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <META NAME="Template" CONTENT="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+   <TITLE>SDSS New Rotator Motor</title>
+</HEAD>
+<BODY LINK="#0000FF" VLINK="#800080">
+
+<DIV ALIGN=right>TR98070</DIV>
+
+<CENTER><B>SDSS Trip Report</B></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Install and Wire New Rotator Motor</FONT></B></CENTER>
+
+<CENTER><B>October 8 to 14, 1998</B><BR>
+<BR></CENTER>
+
+<div align="center"><A HREF="mailto:rivetta@fnal.gov">Claudio Rivetta</A>, Particle Physics Division</div>
+
+<div align="center">Fermi National Accelerator Laboratory</div>
+
+<div align="center">Batavia, IL&nbsp;&nbsp; USA&nbsp;&nbsp;&nbsp; 60510</div>
+
+<HR SIZE="4" WIDTH="100%">
+
+<p><b>INTRODUCTION</b></p>
+
+<p>The original harmonic drive motor assembly for the instrument rotator contained a built-in tachometer.  In order to improve the performance of the rotator servo control loop, the original drive assembly was replaced with a unit that contained a built-in encoder.  The new harmonic drive assembly is a direct replalcement for the original; the difference is the encoder vs. tachometer option.  The model number for the replacement harmonic drive unit is RHS-20-3007-E100AL, manufactured by HD Systems, Inc., Hauppauge, NY></p>
+
+<p>The first task was to install the new drive assembly.  Once the new harmonic drive was installed and the preloads adjusted, we began working with the servo system to tune the control loop for the rotator axis.</p>
+
+<br><br>
+
+<p><b>WORK ACTIVITIES</b></p>
+
+<P><b>Thursday 8</b></P>
+
+<P>Steve, Jon Davis and I installed the new rotator motor and wired it.</P>
+<BR>
+
+<P><b>Friday 9</b></P>
+
+<P>The program to control the rotator was modified and the rotator run
+closing the loop using the encoder attached to the motor. (Similar
+configuration that before using the tachometer). At about 6:30 pm we put
+the telescope at the sky. No big problems where reported except a
+oscillation in altitude. (The problem was addressed on Saturday)</P>
+<BR>
+
+<P><b>Saturday 10</b></P>
+
+<P>We start tunning the parameters of the rotator. We have similar problems
+that before with the 'fake encoder'. It is impossible to use the same set
+of coefficient for slew and tracking. We have acceptable tracking up to
+20000 counts/sec (about 8 time siderial rate) then we have to switch
+parameters to make the rotator stable.</P>
+
+<P>We found the oscillation in altitude. It is no related with the control
+parameters but what happens is the following: when you are holding a
+position and you put the brake you disable the amplifiers but when you
+put clear the brake sometime one altitude amplifier trips and the altitude
+is driven by one motor. I, still do not understand why the axis
+oscillates.</P>
+<BR>
+
+<P><b>Sunday 11</b></P>
+
+<P>Two set of coefficients in the PID controller are necessary to move the
+rotator at tracking and slew velocities. We use the friction
+feed-forward term in the controller to compesate the friction and avoid
+saturation of the integral term.</P>
+<BR>
+
+<P><b>Monday 12</b></P>
+
+<P>Charlie starts testing the TCC interface. The rotator was set to move up
+to 2 degree/sec. A new set of coefficient was tested to control the
+rotator at low speed (less than 100 counts/sec = 1.5 arcsec/sec). </P>
+<br>
+
+<P><b>Tuesday 13</b></P>
+
+<P>Charlie worked on the TCC interface.</P>
+<BR>
+
+<P><b>Wednesday 14</b></P>
+
+<P>I worked all day tunning the parameters of the rotator. The rotator can
+point and move between 1.5arcsec/sec and 2 deg/sec. The speed range
+between 0 and 1.5 arcsec/sec was not implemented because the change of
+parameters 'on fly' introduce some transients and they can perturbate the
+image quality. It has to be address in the future. </P>
+
+<br><br>
+<p><b>SUMMARY</b></p>
+
+<p>The original harmonic drive unit for the instrument rotator was replaced with a harmonic drive unit that contained a built-in encoder.  Once the new motor was in place and preloads adjusted, the servo loop parametes for the rotator were adjusted to improve servo performance.  It appears that two sets of PID coefficients will be necessary to achieve tracking performance at low and high velocities.  PID coefficients to move the rotator over the velocity range from 1.5 asec/sec to 2 deg/sec have been set in the control loop.  PID coefficients for the low-velocity range still need to be set. The transition between the sets of coefficients also has to be fine-tuned to avoid perturbating the system during the change.</p>
+
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this trip report should be addressed to Claudio Rivetta
+ by phone at (630) 840-8035 or by e-mail at <A HREF="mailto:rivetta@fnal.gov">rivetta@fnal.gov</A>.
+<BR>&nbsp;
+
+<P><I><FONT SIZE=-1>Last modified 02/23/99</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</body>
+</html>

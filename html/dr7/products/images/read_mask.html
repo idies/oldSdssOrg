@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Data products: Extracting Mask Images - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<h1>Extracting Mask Images</h1>
+
+<p>We have created a standalone code that serves to both extract masks and as
+a template library for inclusion in other codes. The code is available as: <a
+href="readAtlasImages-v5_4_11.tar.gz">readAtlasImages-v5_4_11.tar.gz.</a></p>
+
+<h2>Compiling</h2>
+
+<p>1. % make clean</p>
+
+<p>2. % make</p>
+
+<p>If you are on a big-endian machine, remove -DSDSS_LITTLE_ENDIAN from
+CFLAGS in the Makefile.</p>
+
+<h2>Using</h2>
+<pre>% read_mask -h</pre>
+<pre>Usage: read_mask [options] input-file hdu output-file
+The HDU may be a number (&gt;= 1), or a name such as CR or INTERP
+If -p is absent, the output-file will be a 8-bit FITS image;
+If -p is specified, the output-file will be a list of vertices.
+
+Your options are:
+       -?      This message
+       -h      This message
+       -p      Calculate polygonal approximations (if so compiled)
+       -i      Print an ID string and exit
+       -v      Turn up verbosity (repeat flag for more chatter)
+</pre>
+
+<p>To reconstruct the z INTERP mask from run 1336, column 2, field 51 you'd
+say:</p>
+<pre>%  read_mask fpM-001336-z2-0051.fit 1 foo.fit </pre>
+
+<p>The resulting file (foo.fit) would be a char FITS file, with a 1 in each
+pixel that was interpolated. The bitplanes are:
+ </p>
+<pre>  typedef enum {
+      S_MASK_INTERP = 0,           /* pixel's value has been interpolated */
+      S_MASK_SATUR,                /* pixel is/was saturated  */
+      S_MASK_NOTCHECKED,           /* pixel was NOT examined for an object */
+      S_MASK_OBJECT,               /* pixel is part of some object */
+      S_MASK_BRIGHTOBJECT,         /* pixel is part of bright object */
+      S_MASK_BINOBJECT,            /* pixel is part of binned object */
+      S_MASK_CATOBJECT,            /* pixel is part of a cataloged object */
+      S_MASK_SUBTRACTED,           /* model has been subtracted from pixel */
+      S_MASK_GHOST,                /* pixel is part of a ghost */
+      S_MASK_CR,                   /* pixel is part of a cosmic ray */
+      S_NMASK_TYPES                /* number of types; MUST BE LAST */
+   } S_MASKTYPE;
+</pre>
+
+<p>with HDU _one_ corresponding to plane _zero_ (INTERP).  You can specify
+these HDUs by name (e.g. OBJECT) or number (4).  With the -p flag, instead of
+generating a FITS file, a description of each mask object as a set of convex
+polygons is written in ascii to the output file; the format should be
+obvious.  One caveat: the vertices of the polygons are the pixel indices, so
+the boundaries pass _through_ the edge pixels, and the quoted areas are not
+quite the areas of the polygons that include all of the area.  </p>
+
+<p>The current version of this polygonal approximation code in fact generates
+exactly one polygon per photo object, the convex hull. </p>
+
+<h2>Developer Comments</h2>
+
+<p>The standalone programs read_atlas_image (reads fpAtlas files) and
+read_PSF (reads fpField files) are similar.  All three are built by
+the same 'make' command.</p>
+
+<p>I don't expect that many users will actually want to use the
+read_mask executable (although it is perfectly functional). The main
+use of the product will probably be to link into custom built executables
+that need to process atlas image data. I believe that the code should be
+easily reused for this purpose.</p>
+
+<p></p>
+<hr>
+<!-- hhmts start -->Last modified: Fri Jun 23 14:01:34 BST 2006
+<!-- hhmts end -->
+ <!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+<P><FONT size=5><STRONG>    
+</STRONG></FONT>&nbsp;</P>
+<P><FONT size=5><STRONG>SDSS Astrometric Requirements and 
+Performance</STRONG></FONT><BR><BR>Jeffrey R. Pier, U.S. Naval Observatory <BR>  July 5, 2000</P>
+<P> </P>
+<P><BR><FONT size=4><STRONG>Contents </STRONG></FONT> </P>
+<P>
+<A href="#SECTION0200"> Overview of SDSS Astrometry </A><br> 
+<A href="#SECTION0300"> Astrometric Requirements </A> <br>
+<A href="#SECTION0301"> Requirements on Absolute Astrometry </A><BR>
+<A href="#SECTION0302"> Requirements on Relative Astrometry </A><br>
+<A href="#SECTION0400"> Absolute Astrometry Performance </A> <br>
+<A href="#SECTION0500"> Relative Astrometry Performance </A> <br>
+<A href="#SECTION0600">     Prospects for Improvements </A></P>
+
+<P>&nbsp;</P>
+<P><FONT size=4><A NAME="SECTION0200"><STRONG>Overview of SDSS Astrometry </STRONG>    </A></FONT></P>
+<P>The key task of SDSS astrometry is to ensure that the positions of the holes 
+drilled for spectroscopic fibers are sufficiently accurate that spectroscopic 
+targets are well-centered on the fibers. For a variety of reasons (see the 
+Astrometry Chapter of the SDSS Project Book for details), this means that SDSS 
+must determine the absolute positions of objects detected by the imaging camera. 
+(While the key science drivers for SDSS are clearly driven by the spectroscopy, 
+the imaging part of the Survey will result in a large database which will be a 
+significant resource for decades to come. Obviously, we would like the positions 
+of all detected objects to be determined as accurately as feasible.) </P>
+<P>Spectroscopic targets are chosen from objects detected by the main 
+(photometric) array of CCDs in the imaging camera, which saturate for 
+point-source objects brighter than about 14th magnitude. Sufficiently accurate 
+all-sky astrometric catalogs are not available for stars fainter than about 12th 
+magnitude. Consequently the imaging camera was designed with a second 
+(astrometric) array of CCDs. These astrometric CCDs precede and trail the 
+photometric CCDs in camera columns. The bandpass of the astrometric CCDs is 
+similar to the SDSS photometric r' bandpass, but the saturation level is about 
+5.5 magnitude brighter. Objects on the sky pass down a camera column as the 
+telescope is driven along a great circle and the CCDs are read-out synchronously 
+in drift-scan mode. Hence an object will pass through, in sequence, the imaging 
+area of the leading astrometric CCD, then the five photometric CCDs (in order 
+r', i', u', z', g'), and finally, the trailing astrometric CCD. </P>
+<P>Stars detected by the astrometric CCDs span a range of magnitudes from about 
+8.5 to nearly 17 while those on the photometrics reach from about 14th magnitude 
+to beyond 20th (depending on the bandpass). Thus the astrometric CCDs can detect 
+and measure not only bright stars from an astrometric catalog (currently 
+Tycho-2), but also a significant number of stars between 14th and 17th magnitude 
+which also appear on the photometric CCDs. The brighter reference stars are 
+mapped onto the fainter stars and a transformation from photometric device 
+coordinates (CCD row, column) to celestial coordinates is derived. 
+</P>
+<P>&nbsp;</P>
+<P><FONT size=4><A name="SECTION0300"><STRONG>Astrometric Requirements </STRONG>  </A></FONT></P>
+<P>There are two categories of requirements for SDSS astrometric performance. 
+One stipulates how well the survey must do in the determination of absolute 
+positions on the sky (as measured in the r' band) of point-source objects 
+brighter than r' = 19, and the other how well the relative positions of objects 
+measured in the four band passes (u', g', i',z') must match up with the r' 
+position. </P>
+<P>Each astrometric requirement is expressed as an rms figure per coordinate in 
+units of milli-arcseconds (hereinafter mas) along a great circle. The 
+requirements apply to objects with ``normal'' spectral distributions (e.g. stars 
+of spectral type O5 through M0). Extremely blue or red objects and/or 
+emission-line objects will occasionally fail to meet the requirements due to 
+chromatic differential refraction (DCR). It is expected that the requirements 
+herein will be satisfied for each ``acceptable imaging run.'' Here an acceptable 
+imaging run is a scan of length no less than 20 minutes (exclusive of 
+``ramp-up'' frames), airmass less than or equal to 2.0, and seeing less than or 
+equal to 1.5 arcsec (FWHM), with the absolute telescope pointing error no worse 
+than 3 arcsec rms (2-D on the sky) and relative telescope tracking error no 
+worse than 50 mas (1-D on the sky) on time scales of 1-10 minutes. 
+</P>
+<P>&nbsp;</P>
+<P><FONT size=4><A NAME="SECTION0301"><STRONG>Requirements on Absolute Astrometry </STRONG></A></FONT></P>
+
+<P>There are three different levels of requirement for absolute astrometry: </P>
+<OL>
+  <LI>The <EM>Drop-Dead  </EM>requirement - if the astrometry does not meet 
+  this, the run will be deemed unacceptable since core survey science would be 
+  jeopardized: <BR><BR><STRONG>The absolute astrometry on the sky should be no 
+  worse than 180 mas. <BR></STRONG>
+  <LI>&nbsp;The <EM>Science Goals </EM>requirement - the astrometry should 
+  routinely meet this requirement to enable non-core science: 
+  <BR><BR><STRONG>The absolute astrometry on the sky should be no worse than 100 
+  mas. <BR></STRONG>
+  <LI>The <EM>Enhanced Goal</EM> requirement - if all goes well (i.e., the 
+  telescope tracks well, the atmosphere (seeing, anomalous refraction) are 
+  favorable, the catalog density is at or above 10 stars/deg2) the astrometry 
+  should be limited by the atmosphere: <BR><BR><STRONG>Reasonable effort should 
+  be expended to attain absolute astrometry on the sky of 60 mas. </STRONG>(N.B. 
+  - the number that appears here is really no more than an educated guess about 
+  the properties of the atmosphere.) </LI></OL>
+<P>&nbsp;</P>
+<P><FONT size=4><STRONG><A NAME="SECTION0302">Requirements on Relative Astrometry </STRONG></FONT></P>
+<P>There are also three different levels of requirement for relative astrometry: 
+</P>
+<OL>
+  <LI>The <EM>Drop-Dead </EM>  requirement - if the relative astrometry does not meet 
+  this, the run will be deemed unacceptable since core survey science would be 
+  jeopardized: <BR><BR><STRONG>The relative astrometry between adjacent colors 
+  should be no worse than 180 mas on the time-scale over which the relative 
+  astrometry is determined.&nbsp;<BR></STRONG>
+  <LI>The <EM>Science Goals </EM>   requirement - the relative astrometry should 
+  routinely meet this requirement to enable non-core science: 
+  <BR><BR><STRONG>The relative astrometry between adjacent colors should be no 
+  worse than 100 mas. <BR></STRONG>
+  <LI>The <EM>Enhanced Goal</EM>   requirement. <BR><BR><STRONG>Reasonable effort 
+  should be expended to attain relative astrometry between adjacent colors of 40 
+  mas. </STRONG></LI></OL>
+<P>&nbsp;</P>
+<P><FONT size=4><STRONG><A NAME="SECTION0400">Absolute Astrometry Performance </A></STRONG></FONT></P>
+<P>The ideal, direct way to determine astrometric performance is simply to 
+compare star positions determined with SDSS with those determined externally. 
+Since positions of objects in the r' photometric bandpass are required, it is 
+necessary to compare positions of stars which are fainter than 14th magnitude 
+(and indeed down to 19th to fully satisfy the requirement). There are no 
+wide-area astrometric catalogs available for stars fainter than 14th which are 
+accurate enough to verify SDSS astrometry. </P>
+<P>However, the Naval Observatory is presently constructing 
+an all-sky CCD catalog (The USNO Astrometric Catalog or <EM>UCAC</EM>          
+      ) which reaches fainter than 16th 
+magnitude. At present, the survey is underway in the Southern hemisphere. Some 
+of the UCAC observations now reach to the southernmost SDSS survey regions. </P>
+<P>Some of the SDSS equatorial scans covered regions where UCAC observations 
+have been made. For example Run 745 was an equatorial parked scan conducted UT 
+March 20, 1999. SDSS positions were matched against the UCAC preliminary catalog 
+and the results are shown in the following figure: </P>
+<DIV align=center>
+<HR align=center style="HEIGHT: 2px; WIDTH: 628px">
+&nbsp;</DIV>
+<P align=center><IMG SRC="/surveyops/dp-review-700/dp-review-docs/astromreq/ucac745.gif"></P>
+<DIV align=center>
+<HR align=center style="HEIGHT: 2px; WIDTH: 628px">
+&nbsp;</DIV>
+<P>These results are extremely encouraging, but we should realize that such a 
+run represents a best-case scenario for the following reasons: </P>
+<P>* The telescope was parked and clamped on the equator at the meridian during 
+the observations so that no telescope motion was involved: telescope pointing or 
+tracking errors were not a consideration. <BR>* A number of astrometric calibration fields lie along the 
+equator (so-called FASTT fields, dense astrometric grids of stars produced by 
+the USNO for the purpose of calibrating the SDSS imaging camera geometry), so 
+that a well-calibrated focal-plane model, generated from the very data being 
+reduced, was available to be used for the <STRONG>astrom</STRONG>     
+          
+             
+           
+              
+ pipeline reductions. </P>
+<P>For a worst-case scenario, we turn to Run 1449, which 
+was observed recently (UT May 3, 2000) on SDSS' southern-most stripe (Stripe 1). 
+A comparison of astrometry from that run with 5555 UCAC star positions show a 
+mean offset in RA of -11 mas, rms of 119 mas, and in DEC, 7 mas +/- 139 mas. 
+Frankly, this run was not particularly good from an astrometric viewpoint. The 
+atmosphere was particularly troublesome. This is probably due to how far south 
+the stripe is (DEC of -22.5), which means that the observations must be 
+conducted at an airmass of 2.0. The following figure shows data from one of six 
+Camera Columns for Run 1449. Note the significant excursions traced by the 
+astrometric residuals. We believe that these are due to atmospheric 
+fluctuations. The grossest such excursions are fitted and removed by the 
+<STRONG>astrom</STRONG>             
+             
+               
+                   
+          
+             
+             
+              
+           
+           
+          pipeline, and the 
+points here show the residuals after such fitting.</P>
+<P>A possible further contributing factor with run 1449 is that the telescope 
+was required to track a great circle which changed very little in azimuth or 
+elevation during the run. The altitude axis rate ranged from only -0.1 
+arcsec/sec to 1.5 arcsec/sec, while the azimuth axis rate ranged from 1.3 to 1.4 
+arcsec/sec. Such slow rates may be difficult to sustain uniformly.</P>
+<P>The next figure shows the residuals in RA and DEC from one r' CCD (13) from 
+Run 1449. There are significant systematic swings in the residuals along the 
+scan. We've assumed that these are due to atmospheric effects. More is said 
+about this below in the following section. </P>
+<HR align=center style="HEIGHT: 2px; WIDTH: 628px">
+
+<P align=center><IMG SRC="/surveyops/dp-review-700/dp-review-docs/astromreq/abs1449.gif"></P>
+<HR align=center style="HEIGHT: 2px; WIDTH: 628px">
+<P>We expect that the absolute astrometry may also suffer when the 
+telescope is required to track at very high axis rates (i.e. near the zenith). 
+In such circumstances, it is difficult to keep the instrument rotator positioned 
+so that stars track straight down the camera CCD columns. Unfortunately there 
+are no calibrated astrometric catalogs above the equator which reach faint 
+enough magnitudes yet, and so we cannot do a direct comparison. </P>
+<P>We can, however, compare SDSS-determined positions of stars which appear 
+within the overlap regions of adjacent or interleaved strips. Run 1345 is 
+notorious (at least among the astrometrists) for its high tracking rates (the 
+azimuth rate exceeded 50 arcsec/sec at the beginning of the run). Comparing the 
+positions of 953 stars from this run with matching positions from Run 1331 (an 
+interleaved strip of the same Great Circle) yields a mean error in RA of -22 mas 
++/- 103, and in DEC of 60 +/- 120. </P>
+<P>In summary, the absolute astrometry consistently meets 
+the <STRONG>Drop-Dead </STRONG>requirement, surpasses the <STRONG>Science Goals 
+</STRONG>Requirement when extreme conditions are not being encountered, and 
+approaches the <STRONG>Enhanced Goals </STRONG> requirement under ideal conditions. </P>
+
+<P><FONT size=4><STRONG><A NAME="SECTION0500">Relative Astrometry Performance </A></STRONG></FONT></P>
+<P>The relative astrometry between bands currently being delivered consistently 
+betters both the Drop-Dead and Science Goals requirements and is flirting with 
+the Enhanced Goals requirement in all but the u' band, even for the 
+aforementioned run 1449, as shown in the following table. (The numbers here are 
+taken directly from the calibrated object files for stars brighter than 19th 
+magnitude.) Relative (CCD-to-CCD) Astrometry&nbsp;</P><EM>
+<HR align=center style="HEIGHT: 2px; WIDTH: 628px">
+
+<P>     &nbsp; 
+</EM><EM>Run 1449: Relative (CCD-to-CCD) Astrometry (mas) 
+</EM></P>
+<P>
+<table width="100%" border="2" valign="center" align="center">
+<tr>
+	<td valign="center" align="middle"> Camera </td>
+	<td valign="center" align="middle" colspan="2">r'-u'</td> 
+	<td valign="center" align="middle" colspan="2">r'-g'</td>
+	<td valign="center" align="middle" colspan="2">r'-i'</td>
+	<td valign="center" align="middle" colspan="2">r'-z'</td> 
+</tr>
+<tr>
+	<td valign="center" align="middle">Column</td>
+	<td valign="center" align="middle">RA</td> 
+	<td valign="center" align="middle">Dec </td>
+	<td valign="center" align="middle">RA</td> 
+	<td valign="center" align="middle">Dec</td>
+	<td valign="center" align="middle">RA</td>
+	<td valign="center" align="middle">Dec</td>
+	<td valign="center" align="middle">RA</td>
+	<td valign="center" align="middle">Dec</td>
+</tr>
+<tr>
+	<td valign="center" align="middle">1</td>
+	<td valign="center" align="middle">+4.2 +/- 48.8</td>
+	<td valign="center" align="middle">19.0 +/- 75.3</td>
+	<td valign="center" align="middle">+5.3 +/- 62.3</td>
+	<td valign="center" align="middle">-26.6 +/- 54.4</td>
+	<td valign="center" align="middle">+5.4 +/- 34.6</td>
+	<td valign="center" align="middle">-5.6 +/- 46.9</td>
+	<td valign="center" align="middle">-11.0 +/- 48.5</td>
+	<td valign="center" align="middle">14.8 +/- 49.5</td>
+</tr>
+<tr>
+	<td valign="center" align="middle">2</td>
+	<td valign="center" align="middle">-4.9 +/- 53.1</td>
+	<td valign="center" align="middle">18.7 +/- 75.3</td>
+	<td valign="center" align="middle">-9.1 +/- 65.3</td>
+	<td valign="center" align="middle">-22.1 +/- 58.5</td>
+	<td valign="center" align="middle">-0.6 +/- 41.6</td>
+	<td valign="center" align="middle">-2.7 +/- 52.1</td>
+	<td valign="center" align="middle">-13.3 +/- 52.2</td>
+	<td valign="center" align="middle">13.6 +/- 56.4</td>
+</tr>
+<tr>
+	<td valign="center" align="middle">3</td>
+	<td valign="center" align="middle">-1.1 +/- 46.4</td>
+	<td valign="center" align="middle">11.1 +/- 66.0</td>
+	<td valign="center" align="middle">-9.8 +/- 42.3</td>
+	<td valign="center" align="middle">-15.4 +/- 51.3</td>
+	<td valign="center" align="middle">-4.4 +/- 34.1</td>
+	<td valign="center" align="middle">-0.6 +/- 48.2</td>
+	<td valign="center" align="middle">-5.6 +/- 34.8</td>
+	<td valign="center" align="middle">11.5 +/- 52.3</td>
+</tr>
+<tr>
+	<td valign="center" align="middle">4</td>
+	<td valign="center" align="middle">0.1 +/- 51.4</td>
+	<td valign="center" align="middle">-2.1 +/- 66.1</td>
+	<td valign="center" align="middle">-9.5 +/- 58.0</td>
+	<td valign="center" align="middle">-15.6 +/- 52.0</td>
+	<td valign="center" align="middle">-9.3 +/- 38.5</td>
+	<td valign="center" align="middle">3.1 +/- 46.4</td>
+	<td valign="center" align="middle">-10.9 +/- 46.7</td>
+	<td valign="center" align="middle">8.5 +/- 49.1</td>
+</tr>
+<tr>
+	<td valign="center" align="middle">5</td>
+	<td valign="center" align="middle">6.9 +/- 48.1</td>
+	<td valign="center" align="middle">-8.4 +/- 66.3</td>
+	<td valign="center" align="middle">-3.9 +/- 61.0</td>
+	<td valign="center" align="middle">-22.6 +/- 65.6</td>
+	<td valign="center" align="middle">-3.0 +/- 35.8</td>
+	<td valign="center" align="middle">1.2 +/- 47.2</td>
+	<td valign="center" align="middle">-3.4 +/- 49.2</td>
+	<td valign="center" align="middle">8.5 +/- 57.4</td>
+</tr>
+<tr>
+	<td valign="center" align="middle">6</td>
+	<td valign="center" align="middle">8.4 +/- 43.8</td>
+	<td valign="center" align="middle">5.0 +/- 73.6</td>
+	<td valign="center" align="middle">-4.1 +/- 35.4</td>
+	<td valign="center" align="middle">-27.1 +/- 51.5</td>
+	<td valign="center" align="middle">-6.8 +/- 34.7</td>
+	<td valign="center" align="middle">-1.9 +/- 50.1</td>
+	<td valign="center" align="middle">0.1 +/- 34.1</td>
+	<td valign="center" align="middle">-1.9 +/- 52.3</td>
+</tr>
+</table>       
+</P>
+<HR align=center style="HEIGHT: 2px; WIDTH: 628px">
+
+<P>It is worth noting, however, that while these formal results are encouraging, 
+they hide much that is interesting if not troubling. The next figure shows the 
+distribution of offsets in Right Ascension and Declination between the r' and g' 
+CCDs in column 3 for run 1449. The distribution of errors appears to be nicely 
+behaved. </P>
+<P>
+<HR align=center style="HEIGHT: 2px; WIDTH: 628px">
+
+<P></P>
+<P align=center><IMG SRC="/surveyops/dp-review-700/dp-review-docs/astromreq/relBox1449-rg.gif"></P>
+<P>
+<HR align=center style="HEIGHT: 2px; WIDTH: 628px">
+
+<P></P>
+
+<P>However, the next figure shows the same offsets as a function of RA for about 
+one degree (in RA) of the scan. While Run 1449 was observed on a great circle 
+with a modest amount of inclination to the equator (22.5 degrees), changes in RA 
+correspond quite closely to changes in clock time at nearly a sidereal rate (1 
+degree of RA is nearly 4 minutes of scanning). Note the swings on the order of 
++/- 100 mas over short time scales. We believe, though are not 100% convinced, 
+that this is the atmosphere at work. We continue to investigate these problems. 
+</P>
+<HR align=center style="HEIGHT: 2px; WIDTH: 628px">
+
+<P align=center><IMG SRC="/surveyops/dp-review-700/dp-review-docs/astromreq/relZoom1449-rg.gif"></P>
+<HR align=center style="HEIGHT: 2px; WIDTH: 628px">
+<P></P>
+<P><FONT size=4><STRONG><A NAME="SECTION0600">Prospects for Improvement</A></STRONG></FONT></P>
+<P>The astrometric solution is modeled as a linear transformation from pixel 
+coordinates to celestial coordinates, one transformation per CCD per frame. 
+High-order terms model optical distortions (as a function of column) and 
+differential chromatic refraction (DCR, as a function of color). Various 
+systematic effects cannot be completely removed by the adopted model. Typical 
+seeing introduces systematics of order 20-50 mas. The rms error measure is, in 
+fact, dominated by systematic errors due to seeing. DCR in the g' filter can 
+introduce systematic errors of up to 20 mas with color. Optical distortions can 
+also introduce systematics of the same order. CCD charge transfer inefficiencies 
+are also problematic and are currently under active investigation. We are 
+currently considering whether it would be worthwhile to adopt a non-linear 
+transformation to cope with these systematics. </P>
+<P>When faint, all-sky astrometric catalogs, such as UCAC, become available, it 
+will be possible to determine the transformation from photometric CCD 
+(row,column) to celestial coordinates directly, by-passing the mapping step from 
+astrometric CCDs to photometric. At present, it is the astrometric CCD mapping 
+which is the largest contributor to the error budget. There are at least two 
+reasons for this: </P>
+<UL>
+  <LI>The density of stars increases dramatically with 
+  magnitude so that the new catalog will contain many times the number of 
+  reference stars and, 
+  <LI>The integration time for the astrometric CCDs is only 10.5 seconds, not 
+  really enough time to average out short time-scale atmospheric fluctuations 
+  (photometric CCDs have an integration time of 54 seconds). </LI></UL>
+<P>When UCAC is completed in the Northern hemisphere (this should happen in 
+2003), it will be a straight-forward exercise to re-derive the astrometric 
+transformations from the new catalog (software is already in the pipeline to do 
+this). Since the positions of objects in the databases are stored in device (CCD 
+row,column) coordinates, it is a simple matter to generate new celestial 
+coordinates by merely changing the transformation coefficients which are applied 
+to (row,column) to generate celestial coordinates. </P></A>
+
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

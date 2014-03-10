@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Calibration Targets</TITLE>
+<META NAME="description" CONTENT="Calibration Targets">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html730" HREF="node57.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html728" HREF="node51.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html722" HREF="node55.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html731" HREF="node57.html">Target Culling</A>
+<B>Up:</B> <A NAME="tex2html729" HREF="node51.html">Target Selection</A>
+<B> Previous:</B> <A NAME="tex2html723" HREF="node55.html">Other Science Targets</A>
+<BR> <P>
+<H3><A NAME="SECTION00048500000000000000">Calibration Targets</A></H3>
+<P>
+<A NAME="swtargetcalib">&#160;</A>
+<P>
+In addition to science targets, about 50 fibers out of each plate of 640
+are assigned by <TT>target</TT> for calibration spectra.  Since
+spectroscopy requires good sky subtraction, 32 of these calibration
+fibers are assigned to regions where the photometric pipeline detects
+no objects (in fact, the photometric pipeline outputs several such
+``sky objects'' in each frame for this purpose).  These sky fibers are
+distributed so that each bundle of 20 fibers contains one; this
+ensures that the sky fibers are reasonably uniformly distributed
+around the plate.  In addition, 18 fibers per plate are assigned to
+standard stars of various sorts; eight are spectrophotometric
+standards, chosen to be F dwarfs, eight are reddening standards,
+chosen to be F subdwarfs, and two are hot subdwarfs
+(Table&nbsp;<A HREF="node65.html#tblfiberallocation">26</A>).  The spectrophotometric standards
+are also used in correcting the strong telluric water absorption bands
+in the red end of the science target spectra (the smoothness of the F
+subdwarf spectra make them ideal for this purpose).  Conversely, the
+hot subdwarfs are useful for calibrating the blue end of the science
+target spectra.  Finally, as their name implies, the reddening
+standards will be used for determining the reddening of our Galaxy.
+<P>
+Further details of the spectroscopic calibration process are discussed in
+&#167;&nbsp;<A HREF="node60.html#swspectro2d">4.10.1</A>.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

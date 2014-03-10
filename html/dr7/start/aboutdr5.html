@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>About DR5 - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>The SDSS Data Release 5 (DR5)</h1>
+
+<p>The journal reference for the Fifth Data Release is
+<a href="./dr5.pdf">J. Adelman-McCarthy et al. 2007, 
+submitted to ApJ Supplements</a> (follow the link for a pdf 
+of the manuscript of this paper as submitted to the journal).
+This manuscript has not yet been refereed.</p>
+
+<h2>Contents</h2>
+
+<ul>
+  <li><a href="#dr5cont">What DR5 contains</a></li>
+  <li><a href="#imcaveat">Caveats for imaging data</a></li>
+  <li><a href="#speccaveat">Caveats for spectroscopic data</a></li>
+  <li><a href="#dr5temp">Advanced features not yet available in DR5</a></li>
+</ul>
+      
+<a name="dr5cont"></a>
+<h2>What DR5 contains</h2>
+
+<p>The DR5 imaging data cover about 8000 square degrees, and include
+information on roughly 215 million objects.  The DR5 spectroscopic
+data include data from 1278 main survey plates of 640 spectra each,
+and cover 5600 square degrees. In addition, DR5 
+contains 361 &quot;extra&quot; and &quot;special&quot; plates:</p>
+<ul>
+  <li>62 &quot;extra&quot; plate/MJD combinations which are repeat
+      observations of 53 distinct main survey plates,</li>
+  <li>289 distinct &quot;special&quot; plates, which are observations
+      of spectroscopic targets, mostly in the southern galactic cap, which
+      were selected by the collaboration for a series of specialized science
+      programs (note that some of these plates are outside of the DR5
+      imaging area),</li>
+  <li>and 10 &quot;extraspecial&quot; repeat observations of
+      &quot;special&quot; plates.</li>
+</ul>
+
+<p>There is a separate page describing <a
+href="../products/spectra/special.html">the special plates in
+DR5</a> </p>
+
+<p>The DR5 footprint is defined by all non-repeating survey-quality
+imaging runs within the a priori defined elliptical survey area in the
+Nothern Galactic Cap, and three stripes in the Southern Galactic Cap
+obtained prior to 1 July 2005, and the spectroscopy associated with
+that area as well as the <em>extra</em> and <em>special</em> plates
+obtained before that date.  In fact, 34 square degrees of imaging data
+in the Nothern Galactic Cap lie outside this ellipse.  While the DR5
+scans do not repeat a given area of sky, they do overlap to some
+extent, and the data in the overlaps are included in earlier releases
+as well. The sky coverage of the imaging and spectroscopic data that
+make up DR5 are given on the <a href="../coverage/index.html">coverage
+page</a>.  The natural unit of imaging data is a run; the DR5 contains
+data from (about) 240 runs in the best database, and (about) 242 runs
+in the target database.</p>
+
+<p>A total of 183 square degrees of sky are different runs between target
+and best, the majority along the Equatorial Stripe in the Fall sky.</p>
+
+<p>We also make available images and associated catalogs from
+three categories of special runs as a 
+<a href="http://www.sdss.org/dr5/start/aboutdrsup.html">DRsup</a> 
+(supplemental) DAS-only data release.  They are: 
+  <ul>
+  <li>A series of repeat scans of the Equatorial Stripe in the Southern
+     Galactic Cap (Stripe 82);</li>
+  <li>Scans through M31 and the Perseus Cluster;</li>
+  <li>Scans taken at low Galactic latitude as part of the SEGUE project;
+    these runs were used to target stars on <a
+    href=http://www.sdss.org/dr5/products/spectra/special.html>
+    special plates</a>.</li>
+  </ul>
+</p>
+
+<p>Except for the sky coverage, the pipelines and databases are
+identical in DR5, DR4, DR3 and DR2.  Thus, DR5 is (very nearly) a proper
+superset of DR4, which is a superset of DR3, which is a superset of DR2.  
+The DR2 included reprocessing of all data included in DR1, and 
+those data in EDR that pass our data-quality criteria for 
+the official survey.  For details
+about what changed from DR3 to DR4, please refer to <a
+href="http://www.sdss.org/DR4/start/aboutdr4.html">About DR4</a> on
+the DR4 web site.</p>
+
+<p>There is a table <code>photoAuxAll</code> in the <a
+href="../access/index.html#CAS">CAS</a> that contains errors and
+covariances for the right ascension and declination as well as
+galactic coordinates for all objects.  See the <a
+href="http://cas.sdss.org/astro/en/help/browser/description.asp?n=PhotoAuxAll&t=U">CAS
+Schema Browser entry for photoAuxAll</a> and the <a
+href="../algorithms/astrometry.html#errors">astrometry algorithms
+description for the calculation of RA, DEC errors</a>.</p>
+
+<h3>New for DR5</h3>
+
+<!-- M31/southern scans sentence -->
+
+<ul> <li><strong>Photometric redshifts for galaxies</strong> The DR1
+    <a href="../access/index.html#CAS">Catalog Archive Server</a> had
+    a table with photometric redshifts for galaxies, including
+    galaxies fainter than those in the spectroscopic survey. The
+    redshifts have now been computed and loaded into the database for
+    DR5; there are now two different tables of photometric redshifts
+    provided by two different groups within SDSS.  See the <a
+    href="http://skyserver2.fnal.gov/test/en/help/docs/algorithm.asp?key=photoz">Skyserver
+    documentation of the photometric redshift tables photz and
+    photoz2</a>.  <li><strong>Coverage masks</strong> Detailed
+    coverage masks which allow large-scale structure resarchers to
+    easily calculate power spectrum and related quantities, and which
+    allow the computation of the area covered by statistical samples
+    such as the quasar sample are now in the DR5 CAS. See the <a
+    href="http://cas.sdss.org/astro/en/help/docs/realquery.asp#qcomplete">CAS
+    sample queries on generating a uniform quasar sample</a>.</li>
+    <li>The <strong>runQA</strong> bug of using only the <var>s</var>
+    color in the determination of a run's summary quality is now fixed
+    and the proper colors are used in all quality determinations.  In
+    addition, runQA is now also available for the <em>target</em> 
+    photometry in a new CAS table <code>targRunQA</code>, in addition
+    to the <em>best</em>-era information in the <code>runQA</code> table.</li>
+  </ul>
+
+<h3>Not entirely new, but still noteworthy</h3>
+
+<h4>Stetson and RC3 catalogs are in CAS</h4>
+
+<p>There are two tables <code>stetson</code> and <code>RC3</code> in
+the holding photometric catalogs. <code>stetson</code> includes
+stellar B, V, R, and I Kron-Cousins photometry with an accuracy of
+0.02 mag or better from <a
+href="http://cdsaas.u-strasbg.fr:2001/cgi-bin/link_ADS?2000PASP..112..925S">Stetson
+(2000)</a>, as downloaded from the <a
+href="http://cadcwww.dao.nrc.ca/standards">Canadian Astronomy Data
+Centre photometric standards Web site</a>. <code>RC3</code> contains
+data from the <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1991trcb.book.....D&amp;db_key=AST">Third
+Reference Catalog of Galaxies (de Vaucouleurs et al. 1991)</a>. Both
+are included in the CAS to allow cross-reference to SDSS data.</p>
+
+<h4>Photometric transformations between SDSS and Kron-Cousins systems</h4>
+
+<p>There is a long page describing <a
+href="../algorithms/sdssUBVRITransform.html">transformations between
+SDSS (ugriz) and Kron-Cousins (UBVR<sub>c</sub>I<sub>c</sub>) photometry</a>.</p>
+
+<a name="imcaveat"></a>
+<h2>Imaging caveats</h2>
+
+<p>The following caveats apply unchanged to DR5.</p>
+
+<h3>Overestimation of sky levels in the vicinity of bright
+objects</h3>
+
+<p>A study of weak lensing in the SDSS imaging data <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2005astro.ph..1201M">(Mandelbaum
+et al.  2005)</a> found a systematic, 5% decrease in the number
+density of faint objects within 90&prime;&prime; of bright
+(<var>r</var> &lt; 18) galaxies.  This was found to be due to a
+systematic overestimation of the sky levels in the vicinity of bright
+objects, which of course will affect all the measured photometric
+quantities of faint objects, including the classification as stars and
+galaxies.  The brighter the object, the larger the overestimation of
+sky; indeed, restricting to foreground galaxies brighter than
+<var>r</var> = 16, the number density of fainter galaxies is 10% below
+the mean.  The effect is due to the way in which the sky levels are
+estimated in the SDSS; they can be biased upward by the faint outer
+isophotes of a bright galaxy (see the <a
+href="../algorithms/edrpaper.html">EDR paper</a> [<a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123..485S">Stoughton
+et al. 2002</a>]; see also the discussion in <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....124.1810S">Strauss
+et al. 2002</a>).  Closer than 40&prime;&prime; to the bright objects,
+the intrinsic clustering of galaxies makes it difficult to assess the
+problem.  This problem is most relevant for applications that involve
+correlating positions of bright objects with faint ones, yielding a
+spurious anti-correlation on the affected scales.  We are currently
+investigating changes to the imaging pipeline to address this problem.</p>
+
+
+<h3>Red leak to the <var>u</var> filter and very red objects</h3>
+
+<!--#include virtual="../products/images/u_redleak.html"-->
+
+<h3>Bias in sky determination</h3>
+
+<!--#include virtual="../products/images/u_sky.html"-->
+
+<h3>Zeropoint of the photometric system</h3>
+
+<!--#include virtual="../algorithms/sdssab.html"-->
+
+<h3>Holes in the imaging data</h3>
+
+<p>About 0.3% of the DR5 imaging footprint area 
+(about 10/square degree) for DR5 are marked as
+<em>holes</em>.  These are indicated in the CAS by setting
+<code>quality=5 (HOLE)</code> in the <code>tsField</code> file and
+<code>field</code> table and given in the <a
+href="../coverage/holes.html">list of quality holes</a>, which
+contains further details about the holes and quality flags, including
+a information about a table in the CAS which allows
+one to query for quality information about each field of data.</p>
+
+<h3>Problems with one <var>u</var> chip</h3>
+
+<p>The <var>u</var> chip in the third column of the camera is read out
+on two amplifiers.  On occasion, electronic problems on this chip
+caused one of the two amplifiers to fail, meaning that half the chip
+has no detected objects on it.  This was a problem for only two of the
+105 imaging runs included in DR5: run 2190, which includes a total of
+360 frames in two separate contiguous pieces on strip 12N (centered
+roughly at delta = +5 degrees in the North Galactic Cap; NGC), and run
+2189, which includes 76 frames on stripe 36N near the northern
+boundary of the contiguous area in the NGC.  The relevant frames are
+flagged as bad in the <code>quality</code> flag; in addition,
+individual objects in this region have the <var>u</var> band flagged
+as <code>NOTCHECKED_CENTER</code> (or, for objects which straddle the
+boundary between the two amplifiers, <code>LOCAL_EDGE</code>).  <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2945R">Richards
+et al (2002)</a> describe how the quasar selection algorithm handles
+such data; the net effect is that no quasars are selected by the
+<var>ugri</var> branch of the algorithm for these data.</p>
+
+<a name="speccaveat"></a>
+<h2>Spectroscopy caveats</h2>
+
+<h3>Zero equivalent width of emission lines, especially H alpha</h3>
+
+<!--#include virtual="../products/spectra/zeroEW.html"-->
+
+<h3>Main survey spectra which are not marked <code>sciencePrimary =
+1</code> in CAS</h3>
+
+<p>Due to a bug in the pipelines, there are no <a
+href="../dm/flatFiles/tsTargets.html">tsTargets*.fits</a> files for
+plates 1617-1620, 1623, and 1652. As a consequence, the objects from
+these plates do not have entries in the <code>target</code> and
+<code>targetInfo</code> tables in the CAS.  Hence they are not marked
+<code>sciencePrimary = 1</code> and do not appear in the default
+<code>specObj</code> and <code>specPhoto</code> views, which provide a
+filtered set of unique science spectra and form the basis of all
+query interfaces. Use the <code>specObjAll</code> and and
+<code>specPhotoAll</code> tables to access spectra from these plates
+in the CAS.</p>
+
+<h3>Note about galactic extinction correction</h3>
+
+<!--#include virtual="../products/spectra/galextinction.html"-->
+
+
+<h3>Problematic plates</h3>
+
+<p>A small number of plates suffered from a variety of minor problems
+affecting the quality of the spectrophotometry (but not of
+redshifts). See the list under <a
+href="../products/spectra/index.html#badplates">Plates with
+problematic spectrophotometry</a> on the data products page for
+spectra.</p>
+
+<h3>Mismatches between the spectroscopic and imaging data</h3>
+
+<p>For various reasons, a small fraction of the spectroscopic objects
+do not have a counterpart in the <code>best</code> object catalogs. In
+addition, the DR5 does not contain photometric information for some of
+the <a href="../products/spectra/special.html">special plates</a>, and
+the retrieval of photometric data from the CAS database requires
+special care for objects from the special plates.  See the caveat
+about <a
+href="../products/spectra/index.html#specphotmismatch">mismatches
+between spectra and images</a> on the data products page for
+spectra.</p>
+
+<a name="dr5temp"></a>
+<h2>Advanced features not yet available in DR5</h2>
+
+<p>There are a number of advanced features or data products that are
+not yet available in DR5, but will be in the near future.</p>
+
+<ul>
+  <li><strong>IQS/SQS</strong> The <a
+      href="http://cas.sdss.org/astro/en/tools/search/IQS.asp">Imaging
+Query Server (IQS)</a> and <a
+href="http://cas.sdss.org/astro/en/tools/search/SQS.asp">Spectro
+      Query Server (SQS)</a> form interfaces have been re-enginered to
+      use a faster database.  They currently do not provide a direct
+      link to the <a href="http://das.sdss.org/DR5-cgi-bin/DAS">DAS data
+      download form</a>; users need to save .csv files with the
+      necessary information and upload these by hand to the DAS form.</li>
+</ul>
+
+<hr>
+<!-- hhmts start -->Last modified: Wed Jun 21 15:55:18 BST 2006
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

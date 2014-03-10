@@ -1,0 +1,44 @@
+#use "sdss_macros.wml"            
+<html>
+<head>
+<title>Image of the Week</title>
+</head>
+<sdss-page>
+<h1>
+<center>Image of the Week</center>
+</h1>
+<center><img src="ngc3359.gif"></center>
+<align=left>
+<BR>
+<p>
+NGC 3359 is a spiral galaxy with an open spiral pattern.  The strong blue
+color indicates that vigorous star formation is still occurring in the galaxy.
+(Picture caption by Stephen Kent and Mark Schaffer).
+</p>
+Object Information from <a href="http://nedwww.ipac.caltech.edu">NED</a>:<BR>
+<BR>
+Object: NGC 3359 <BR>
+Type: Spiral Galaxy<BR>
+Constellation: Ursa Major <BR>
+<BR>
+Longitude: 161.652917<BR>
+Latitude: 63.224167<BR>
+<BR>
+RA:10:46:36.70<BR>
+Dec: +63 degrees 13:27.0<BR>
+(J2000 Equatorial)<BR>
+<BR>
+Distance: 15 Mpc<BR>
+Radial Velocity: 1014 km/s<BR>
+Redshift: 0.003382<BR>
+Diameters: 7.2 x 4.4<BR>
+Magnitude: 11.03<BR>
+Classifications: SB(rs)c<BR>
+
+<BR>
+<text-navbar>
+<sdss-address>
+
+</sdss-page>
+
+</html>

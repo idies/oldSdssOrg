@@ -1,0 +1,90 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="William N. Boroski">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <TITLE>Telescope Motion and Lift Tests</TITLE>
+</HEAD>
+<BODY LINK="#0000FF" VLINK="#800080">
+
+<DIV ALIGN=right>TR97020</DIV>
+
+<CENTER><B>SDSS Trip Report</B></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Telescope Motion and Lift Tests</FONT></B></CENTER>
+
+<CENTER><B>July 23 to 27, 1997</B><BR>
+<BR></CENTER>
+
+<div align="center"><A HREF="mailto:briegel@fnal.gov">Charlie Briegel</A></div>
+
+<div align="center">Fermi National Accelerator Laboratory</div>
+
+<div align="center">Batavia, IL&nbsp;&nbsp; USA&nbsp;&nbsp;&nbsp; 60510</div>
+
+
+<HR SIZE=4 WIDTH="100%">
+
+
+<body>
+
+<p><u>APO Work Summary</u></P>
+<OL type="1">
+<LI>Telescope motion tests
+	<OL type="a">
+      <LI>Moved rotator with VME-PC via offset and PID
+
+      <LI>We thought we had found some good coefficients for the PID loop, but could not reproduce 
+	  	good motion after breaking for a cup of coffee.  It appeared as if the friction in the 
+		drive had changed.
+
+      <LI>Drove rotator with VME-MCP via offset and PID, but PID 
+               oscillated.  Smoked Sten's power amplifier before I could dampen the
+               rotator oscillations with different coefficients.  Smoked the amp
+               by trying to turn it off with the electrical strip...
+               cycled the power.
+       <LI>Sten and Claudio made some good measurements on all three axes.
+	 </OL>
+	 
+	 <BR><BR>
+	 
+<LI>Instrument Lift
+	<OL type="a">
+       <LI>Tested motion similar to FNAL test with additions such as 
+               backoff from out of tolerance force.
+       <LI>Noticed VME crate power off causes all outputs to go active...
+               result of active low logic.
+       <LI>Ron Miksa believes the lift requires a minimal amount of weight from
+               the base weight to enable motion with hand held.  noticed
+               no manual control due to strain gage reading low.  Let the
+               unit rest a day and then was able to move it manually.
+       <LI>ADC ground is evidently not the same as the separate ground wire
+               run to the DIO.
+	</OL>
+	 <BR><BR>	 
+<LI>NBS pulse installed on new IP DID48 accurate to 14 usecs which is the 
+       resolution of the signal, &plusmn;9V square wave.  Currently interrupting
+       on level twice per second, but ignoring low level interrupt.
+	 <BR><BR>	   
+<LI>I think it was a productive trip.  As soon as Peter Pietro's Glen-Tek amplifiers are installed,
+       I'll be looking for another opportunity for testing at APO.  This trip provided feedback
+       for what is needed for monitoring and diagnostics for telescope
+       motion.  Also, on the way home, I visited the Very Large Array (VLA) to make 
+	   a contact and obtain information.
+
+</OL>
+
+
+
+<BR clear="all">&nbsp;
+<BR>&nbsp;
+<BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this trip report should be addressed to Charlie Briegel
+ by phone at (630) 840-4510 or by e-mail at <A HREF="mailto:briegel@fnal.gov">briegel@fnal.gov</A>.
+<BR>&nbsp;
+
+<P><I><FONT SIZE=-1>Last modified 02/23/99</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</body>
+</html>

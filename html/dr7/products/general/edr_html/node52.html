@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Galaxies</TITLE>
+<META NAME="description" CONTENT="Galaxies">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html690" HREF="node53.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html688" HREF="node51.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html682" HREF="node51.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html691" HREF="node53.html">Luminous Red Galaxies</A>
+<B>Up:</B> <A NAME="tex2html689" HREF="node51.html">Target Selection</A>
+<B> Previous:</B> <A NAME="tex2html683" HREF="node51.html">Target Selection</A>
+<BR> <P>
+<H3><A NAME="SECTION00048100000000000000">Galaxies</A></H3>
+<P>
+<A NAME="swtargetgalaxies">&#160;</A>
+<P>
+Images of galaxies are distinguished from images of stars by morphology.  As
+described above (&#167;&nbsp;<A HREF="node42.html#swphotomeasureshape">4.4.6</A>), we separate stars from
+galaxies using the difference between the PSF and model magnitude in <IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline2863" SRC="img21.gif">.
+Galaxy target selection requires a difference greater than 0.3 mag.  During
+commissioning, we changed the magnitude limit of the sample several times
+(Table&nbsp;<A HREF="node65.html#tbltargetcriteria">29</A>), and experimented with a fuzzy limit, whereby the
+probability that a galaxy be selected was a declining function of <IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline2863" SRC="img21.gif"> over a
+range of 0.1 magnitudes.  For the EDR, a sharp magnitude cut of
+<IMG WIDTH=123 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3357" SRC="img139.gif"> yields a
+complete sample of galaxies, with a surface density of order 90 galaxies per
+square degree (see the discussion in &#167;&nbsp;<A HREF="node58.html#swplate">4.9</A>).
+<P>
+All magnitudes are corrected for extinction following
+schlegel98.  Objects with fiber magnitudes brighter than 15 in <IMG WIDTH=15 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline2829" SRC="img10.gif">
+or <IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline2863" SRC="img21.gif">, or brighter than 14.5 in <IMG WIDTH=12 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3201" SRC="img110.gif"> are rejected, to avoid problems with
+fiber cross-talk in the spectrographs, for <TT>target</TT> v2.7, runs 94 and 125,
+as indicated in Table&nbsp;<A HREF="node65.html#tbltargetcriteria">29</A>.
+We also reject objects with <TT>
+SATUR</TT> set, which unfortunately rejects galaxies blended with
+saturated stars.  Finally, the more recent versions of <TT>target</TT>
+reject objects with <TT>PetroR50</TT> &lt; 2'', brighter than <IMG WIDTH=69 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3367" SRC="img140.gif"> (v2.7)
+and 15.0 (v2.13.8), to cut down on contamination from very bright
+stars.
+<P>
+We have found that galaxy targets of very low surface brightness are often not
+real objects, but are due to very low-level scattered light within the camera.
+We therefore put in an explicit surface brightness cut.  A <EM>Petrosian
+half-light surface brightness</EM> is defined as the mean surface brightness
+within the radius, <TT>PetroR50</TT>, which includes half the Petrosian flux.
+All objects with Petrosian surface brightness fainter than the value
+listed in Table&nbsp;<A HREF="node65.html#tbltargetcriteria">29</A> are not targeted (the
+surface brightness limit of 30.0 for v2.5 indicates that in effect, no
+surface brightness cut was applied).
+<P>
+For <TT>target</TT> v2.13.8, we check that for faint objects, the local sky
+value in <I>r</I> is sensible.  Objects with surface brightness between 23.0 and
+24.5 are only selected if the value of the sky determined locally (i.e., on
+scales of <IMG WIDTH=12 HEIGHT=5 ALIGN=BOTTOM ALT="tex2html_wrap_inline3371" SRC="img141.gif"> 2&nbsp;arcmin, <TT>sky</TT> in class <TT>PhotoObj</TT>) and that on a
+frame (10&nbsp;arcmin scales, <TT>sky</TT> in class <TT>Field</TT>) are within 0.05 asinh
+mag per square arcsec of one another; the local sky of a child includes the
+contribution of its siblings, so this cut discriminates against pieces of
+fluff inadvertently deblended from bright galaxies.  These objects are flagged
+both <TT>TARGET_GALAXY</TT> and <TT>TARGET_GALAXY_BIG</TT>.
+<P>
+Finally, galaxies with fiber magnitude brighter than <IMG WIDTH=56 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3373" SRC="img142.gif"> that
+don't otherwise make the surface brightness cut are targeted.  These are
+flagged <TT>TARGET_GALAXY_BRIGHT_CORE</TT>.  Such objects are quite rare.
+<P>
+The resulting sample is contaminated at the <IMG WIDTH=40 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3375" SRC="img143.gif"> level by close
+double stars that are not separated by the deblender. The details of the
+galaxy target selection, and the tests to show that it works, are described in
+strauss01.
+<P>
+<HR><A NAME="tex2html690" HREF="node53.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html688" HREF="node51.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html682" HREF="node51.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html691" HREF="node53.html">Luminous Red Galaxies</A>
+<B>Up:</B> <A NAME="tex2html689" HREF="node51.html">Target Selection</A>
+<B> Previous:</B> <A NAME="tex2html683" HREF="node51.html">Target Selection</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

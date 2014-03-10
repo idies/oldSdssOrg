@@ -1,0 +1,617 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<div class=Section1>
+<center><b>Operational Readiness Review for SDSS Data Processing Pipeline</b></center>
+
+
+<p class="MsoNormal"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+<center>
+<p><b>Fermilab&nbsp;<span style='mso-tab-count:1'></span>13-October 1998</b></center>
+
+
+<p class="MsoNormal"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+<br>&nbsp;
+
+<p class="MsoNormal">Review committee:
+
+<p class="MsoNormal">Todd Boroson – NOAO
+
+<p class="MsoNormal">Liz Buckley Geer – FNAL/CDF
+
+<p class="MsoNormal">Roc Cutri – IPAC, Chair
+
+<p class="MsoNormal">Mike Diesberg – FNAL/DO
+
+<p class="MsoNormal">Rodger Doxsey - STScI
+
+<p class="MsoNormal">Mark Fischler – FNAL/PAT
+<br>&nbsp;
+
+<p class="MsoNormal"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><b>I.&nbsp;<span style='mso-tab-count:1'></span>&nbsp;
+General Comments</b>
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">The Review Board is extremely
+impressed with the work that has gone into the development of the pipelines
+to date.<span style="mso-spacerun: yes"></span>&nbsp; The advanced level
+of the Photometric Pipeline and its readiness for transition into operational
+mode is particularly noted from the preliminary scientific analysis that
+have been carried out on the photometric data (i.e. color-color plots).<span 
+
+
+
+style="mso-spacerun: yes"></span>&nbsp;
+The current state of the Imaging Pipeline is particularly advanced, and
+that test data from the telescope was able to be run through the pipeline
+with essentially no problems is very encouraging and a testament to the
+readiness of the system.<span style="mso-spacerun: yes"></span>&nbsp; It
+is recognized that other aspects of the pipeline, such as the spectroscopy
+portion, lags behind in development consistent with the schedule of delivery
+of the instruments.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">The Board also commends the
+Project for moving to address two other key issues:
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l0 level1 lfo1;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>1.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>The
+hiring of a Survey Operations Director.<span 
+
+
+
+style="mso-spacerun: yes"></span>&nbsp;
+A widely distributed project such as the SDSS very much needs direction
+from a single person who is directly responsible for monitoring the survey
+schedule and budget.<span style="mso-spacerun: yes"></span>&nbsp; He or
+she must be able to make critical decisions, in the context of the main
+Scientific Requirements of the Survey.<span style="mso-spacerun: yes"></span>&nbsp;
+Having a single director will also allow expedient arbitration in the event
+that critical decisions must be made and there are conflicting opinions
+among the Science Team.<span style="mso-spacerun: yes"></span>&nbsp; The
+Board hopes that the partner institutions agree to cede the authority to
+the Operations Director to carry out these tasks.<span style="mso-spacerun: yes"></span>
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l0 level1 lfo1;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>2.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>The
+board strongly urges the completion and adoption of a well-defined set
+of Science Requirements for the Survey.<span 
+
+
+
+style="mso-spacerun: yes"></span>&nbsp;
+It is absolutely essential to have such Requirements to provide engineering
+and scientific “targets” for hardware and software development.<span style="mso-spacerun: yes"></span>&nbsp;
+The Requirements should allow formation of metrics against which to judge
+progress of the survey, and to form the basis for critical Science Team
+decisions.<span 
+
+
+
+style="mso-spacerun: yes"></span>&nbsp; Achievement
+of the Science Requirements provides the context for most decisions in
+the Survey.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1;
+
+
+
+tab-stops:22.5pt list 40.5pt"><b>II.<span style='mso-tab-count:1'></span>&nbsp;
+The section below contains responses to the specific questions regarding
+the data processing effort put forth in the charge for the review committee.</b>
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>1.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>
+Has the Project properly scoped the work?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">Basically yes.&nbsp; The
+one processing effort that has probably been underestimated is in the area
+of quality assurance.&nbsp; The SDSS data comes from several different
+instruments and will be fairly complex, requiring an appropriate set of
+automated and human support quality review tools.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>2.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Resources
+- is the staffing plan adequate for the scope of work?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">The general feeling among
+the Board is that the staffing plan is marginally adequate.<span style="mso-spacerun:
+
+
+
+yes"></span>&nbsp;
+As a baseline, we note that the data processing staffing estimates are
+comparable in number of FTEs to that of the 2MASS effort.<span 
+
+
+
+style="mso-spacerun: yes"></span>&nbsp;
+However, the SDSS data processing task is inherently more complex, involving
+three completely different pipelines dealing with data from three very
+different instruments.<span style="mso-spacerun:
+
+
+
+yes"></span>&nbsp;
+One advantage the SDSS effort has is that considerable software development
+is being supplied by the partner institutions.<span style="mso-spacerun: yes"></span>
+<div class="MsoNormal" style="tab-stops:22.5pt">&nbsp;</div>
+
+<div class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p></div>
+
+<div class="MsoNormal" style="tab-stops:22.5pt">The board feels that the
+needs for Quality Assurance in particular have been seriously underestimated.<span 
+
+
+
+style="mso-spacerun: yes"></span>&nbsp;
+Experience with the 2MASS pipeline operations indicates that this is a
+time-intensive process that benefits from human intervention.<span style="mso-spacerun: yes"></span>&nbsp;
+The need to identify unforeseen problems in the data as quickly as possible,
+having either a hardware or software origin, is very strong especially
+early in the survey.</div>
+
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>3.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Is
+the skill mix matched to the scope of the work?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The Board suggests that
+the Project consider making more use of skilled non-Ph.D. personnel for
+tasks that do not require scientific judgements.&nbsp; This can include
+pipeline operators, integration testing and repetitive data analysis.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt">However, there are key tasks
+that require judgements having ramifications in the validity of the resulting&nbsp;
+science products that require trained a trained scientist.&nbsp; It is
+also recognized that Ph.D. astronomers and physicists bring considerable
+"value added" benefits to the project.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The Board is somewhat concerned
+with the operational plan that requires the intervention of a scientist
+at each intermediate step of the pipeline.<span style="mso-spacerun: yes"></span>&nbsp;
+This makes the processing rate and efficiency strongly dependent on the
+availability and schedule of the scientists.<span style="mso-spacerun: yes"></span>&nbsp;
+It is recognized that this configuration will be necessary at the beginning
+of operations, but the Project should consider moving toward a more “hands-off”
+pipeline system if it is deemed possible after some experience with operations
+has been had.<span 
+
+
+
+style="mso-spacerun: yes"></span>(i.e. the Test
+Year)
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The Board recommends that
+the project consider moving quickly to a full end-to-end test of the processing
+system as soon as possible during the test year operations.<span 
+
+
+
+style="mso-spacerun: yes"></span>&nbsp;
+The test should include everything from shipping tapes from the observatory,
+processing, quality assurance, loading into the archive, and feedback to
+the observatory.<span style="mso-spacerun:
+
+
+
+yes"></span>&nbsp; Such a
+test should be repeated as often as necessary during the test year to optimize
+the pipeline operations.<span style="mso-spacerun: yes"></span>&nbsp; Tests
+of the Imaging, Calibration, and Spectroscopic pipelines can be performed
+separately.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>4.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>What
+deficiencies are seen in the Operational Plan?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The description of the
+staffing plan (XX FTEs at YY%) is somewhat confusing.<span style="mso-spacerun: yes"></span>&nbsp;
+The project would benefit from a clear organization chart and clear reporting
+hierarchy.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- Need a more clear description
+of the divisions of labor and assignments of tasks.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The board strongly recommends
+a single operations manager to manage the survey schedule and make top
+level task assignments.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- Recommend firming up the
+support that will be provided by the partner institutions.<span style="mso-spacerun:
+
+
+
+yes"></span>
+The Board recognizes that there are practical limitations to the number
+of staff that can be stationed at FNAL and at partner institutions.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>5.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Is
+the operational/implementation schedule reasonable?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- A formal schedule was not
+presented at the review.<span style="mso-spacerun: yes"></span>&nbsp; It
+was not clear what is the timetable to take all sections of the pipeline
+to level 2b.<span 
+
+
+
+style="mso-spacerun: yes"></span>&nbsp; Specific
+schedule goals should be defined for getting the pieces to 2b.<span style="mso-spacerun: yes"></span>&nbsp;
+Will Survey operations start when only the photometric pipeline reaches
+level 2b?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The Board suggests that
+the project decide soon if the Imaging phase of the survey can begin soon,
+and if it is possible to live with a ~1 year delay in the start of the
+Spectroscopic phase of the survey.<span style="mso-spacerun: yes"></span>&nbsp;
+This scenario will likely result in a much more efficient use of resources
+and the best chance of completing the survey in an acceptable period of
+time.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The Project would do well
+to allow for schedule contingency for software that must be made in response
+to hardware changes/improvements.<span style="mso-spacerun: yes"></span>&nbsp;
+This will probably be most critical early in operations while instruments
+are still essentially in shake-down.<span style="mso-spacerun: yes"></span>&nbsp;
+However, changes to hardware can occur any time during the survey.<span 
+
+
+
+style="mso-spacerun: yes"></span>&nbsp;
+(e.g. An array may have to be replaced, so time will be needed to recharacterize
+and modify pipeline parameters if necessary)
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>6.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Is
+the existing hardware, with planned upgrades, sufficient for the task?
+<div class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>7.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Are
+the throughput and reprocessing margin adequate?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- Marginal.<span style="mso-spacerun:
+
+
+
+yes"></span>&nbsp;
+Need better benchmarks.<span style="mso-spacerun: yes"></span>&nbsp; Perhaps
+the best assessment<span style="mso-spacerun: yes"></span>&nbsp; will come
+with the recommended end-to-end tests.<span style="mso-spacerun: yes"></span>&nbsp;
+Time sinks are often found in the least expected places.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The Board was somewhat
+concerned by the apparent lack of contingency in disk space that would
+be necessary as buffer space while waiting for QA review.<span style="mso-spacerun: yes"></span>&nbsp;
+It will prove very inefficient to have to spool processed data to tape
+in order to avoid holding up the pipeline processing.</div>
+
+<div class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p></div>
+
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- Is there a budget/schedule
+for upgrades to the hardware system?<span style="mso-spacerun: yes"></span>&nbsp;
+Should a data analysis system be added to the hardware plan?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- Consider plan for hardware
+back-up.<span style="mso-spacerun: yes"></span>&nbsp; Also, make sure that
+the observatory can operate autonomously while waiting for the processing
+system to come back on line.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- Reprocessing margin seems
+adequate.<span style="mso-spacerun: yes"></span>&nbsp; However, the Board
+recommends that the project consider more efficient piping of individual
+pieces of the pipelines to minimize need for human intervention.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>8.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Is
+the methodology for software maintenance sound?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The configuration control
+plan should be in place before the start of operations.<span style="mso-spacerun:
+
+
+
+yes"></span>&nbsp;
+How will changes be approved?<span style="mso-spacerun: yes"></span>&nbsp;
+Will there be a change control board?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- Need to design a strategy
+for upgrading software.<span style="mso-spacerun: yes"></span>&nbsp; When
+will new versions be created?<span style="mso-spacerun: yes"></span>&nbsp;
+What circumstances will require deliveries of new software versions?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- Recommend developing Regression
+Test Baseline (RTB) data sets as soon as possible to validate software
+modifications..<span style="mso-spacerun: yes"></span>&nbsp; Current test
+data is probably suitable for photometric pipeline.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- Which person on the staffing
+chart is responsible for integration testing for pipeline software.<span 
+
+
+
+style="mso-spacerun: yes"></span>&nbsp;
+If it is B.1.1. (0.1 FTE), then it is probably underscoped.<span style="mso-spacerun: yes"></span>&nbsp;
+As the project moves into the operational phase, changes will likely come
+fast and furious, so there is a need to test modifications rapidly.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>9.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Are
+plans for communications between APO and Fermilab sufficient?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The Project should consider
+development of some rapid response tools to monitor the health of the telescope
+and instruments.<span style="mso-spacerun: yes"></span>&nbsp; These can
+deal with quick-look data.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>10.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Is
+the management approach sensible?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The board recommends that
+the project consider appointing a single point of contact responsible for
+oversight<span style="mso-spacerun: yes"></span>&nbsp; of the data processing
+effort.<span style="mso-spacerun: yes"></span>&nbsp; This person would
+report to the Survey Operations Director, and would be the key contact
+point for all matters dealing with data processing.<span style="mso-spacerun: yes"></span>&nbsp;
+They should manage the schedule for software milestones, and be responsible
+for prioritizing software development, following the Survey Director and
+Science Team recommendations.<span style="mso-spacerun: yes"></span>&nbsp;
+Having a single person responsible for this will focus interactions regarding
+the pipeline development and will minimize distractions of the software
+engineers.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>11.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Survey
+Operations Director
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">See note above.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l2 level1 lfo2;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>12.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Database/Archive
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The Board was concerned
+that there did not appear to be a good way to scope the hardware and software
+requirements of the archive.<span style="mso-spacerun: yes"></span>&nbsp;
+The project might consider building a simulated database that can be tested
+on the project hardware and software platforms.<span style="mso-spacerun: yes"></span>&nbsp;
+Query performance can then be tested explicitly.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">- The project scientists
+should outline a set of standard sample queries based on some of the key
+science drivers of SDSS.<span style="mso-spacerun: yes"></span>&nbsp; These
+queries can in essence become the Archive RTB.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1;
+
+
+
+tab-stops:22.5pt"><b>III.<span style='mso-tab-count:1'></span>&nbsp;
+Miscellaneous Comments</b>
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l1 level1 lfo3;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>1.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Quality
+Assurance<span style="mso-spacerun: yes"></span>&nbsp; - Need well defined
+and agreed upon set of Science Requirements to provide metrics for Quality
+Assurance.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l1 level1 lfo3;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>2.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Tape
+Operations – Consider implementing tape compacting procedure to control
+tape costs.<span style="mso-spacerun: yes"></span>&nbsp; Also, review archiving
+procedures.
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="margin-left:0in;text-indent:0in;mso-list:l1 level1 lfo3;
+
+
+
+tab-stops:22.5pt"><![if !supportLists]>3.&nbsp;<span style='font:7.0pt "Times New Roman"'></span><![endif]>Operations
+– There is a lot in the operations plan that requires JIT (Just In Time)
+decision and action.<span style="mso-spacerun:
+
+
+
+yes"></span>&nbsp; What
+will happen if FNAL goes to a no-weekend support schedule?
+<br>&nbsp;
+
+<p class="MsoNormal" style="tab-stops:22.5pt"><![if !supportEmptyParas]><![endif]><o:p></o:p>
+
+<p class="MsoNormal" style="tab-stops:22.5pt">4.<span style='mso-tab-count:1'></span>&nbsp;
+Don’t preclude the possibility of ever making the full image data available
+to the public.<span style="mso-spacerun: yes"></span>&nbsp; That is, don’t
+do anything now that would make it impossible to retrieve those data.</div>
+
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

@@ -1,0 +1,130 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+<title> Overview of Pipeline Integration at Fermilab </title>
+<h1> Overview of Pipeline Integration at Fermilab </h1>
+
+<ul>
+<hr>
+<li><b> Tools and mechanisms for integration </b>
+<hr>
+<ol>
+<li> Data model and FITS/ASCII parameter file standard --
+	Web page with exact:
+<ul>
+<li>  Header keywords
+<li> Table fields and format
+<li> Documentation on meaning of keywords and field contents
+<li> File naming conventions
+<li> Usage (who creates the file, who uses the file)
+</ul>
+<li> Source code control software: "CVS"
+<ul>
+<li>  Public domain -- multi-platform support
+<li>  Complete logging of changes -- ability to revert if bugs introduced
+<li>  Branching capability -- however branch should be used only in certain
+situations as appears to take expert users talking to each other to work
+without confusion  
+</ul>
+<li> UPS/UPD binary distribution control
+<ul>
+<li> Controls naming of executables on all supported platforms
+<li> Allows easy distribution of executables on all supported platforms
+<li> Initial setup/configuration of UPS/UPD system itself is somewhat difficult
+</ul>
+<li> Tags in headers / filenames indicate version of software used and software 
+	dependencies  
+	<ul>
+	<li> Which version of software was run on this input/output file
+	<li> Example -- Apply Calibrations, need inputs from photo, astrom,
+		mtpipe  -- outputs: tsObj files
+	<li>  The 'rerun' tag
+	</ul>
+<li> Interface change mechanism
+<li> Multi-platform UNIX code compilation / execution
+<li> Bug Database 'Gnats'
+	<ul>
+	<li> Excellent overall control of local bugs and enhancement requests
+	<li> Difficult to track 'cross system bugs' or 'bugs of unknown origin'
+	<li> Old change requests and non-critical bugs tend to pile up
+	</ul>
+<li> Regression Tests -- Testbed data
+<ul>
+<li> Ensures that when pipelines are updated things don't break
+<li> As bugs are fixed a test can be added to ensure that they stay fixed
+<li> Hard work to add them -- so not always done
+</ul>
+</ol>
+<hr>
+<li> <b>How Processed Data Gets into the OPDB </b>
+<hr>
+<ol>
+<li> Upstream Imaging Processing:  Ops-prepare, MTPIPE, Stamp Collection, Astrometry, PSP, Frames, Photometric Calibration pipelines run, individual pipeline Q/A checks pass. 
+<li> Outputs of pipeline (but not corrected frames, atlas images, binned sky, masks) are stuffed into OPDB. (1.5 day per nights' data)
+<li> Merge with existing overlapping runs (2 hours per nights' data)
+<li> Cross run Q/A checks run (2 hours)
+<li> Completed rectangular chunks on sky 'resolved' for Target Selection (4 hours)
+<li> Target Selection Run -- handed to plates (6 hours)
+<li> Imaging data files exported for import into SX. (6 hours)
+<li> Upstream Spectroscopy Processing:  Ops-prepare, Spectro-2D, spectro-1D pipelines Run
+<li> Links made in OPDB between object spectrum and identical imaging object.  (2 hours)
+<li> Spectro objects exported to SX (science archive).
+</ol>
+<hr>
+<li> <b>Human Intervention Steps</b>
+<hr>
+<ol>
+<li> Q/A at end of each pipeline
+<li> During Final photometric calibrations/MTpipe reductions (hope to reduce)
+<li> Q/A during overlapping runs
+<li> Reprocessing of old data which no longer conforms to current data model
+<li> Feedback to mountain
+<ul>
+<li>  File/Tape format problems, iop
+<li>  Calibration files
+<li>  Confirmation of 'done' for imaging stripe or plate -- There is a lag
+</ul>
+<li> Feedback to pipeline developers
+<ul>
+<li> Bug reports, wish requests, file format problems
+</ul>
+<li> Feedback to future observing schedulers
+<ul>
+<li> Which data is really really good, which needs to be redone
+<li> Imaging: Which sections of which stripes ok  -- Time Lag
+<li> Spectroscopy: Which plates are complete -- Time Lag
+</ul>
+</ol>
+<hr>
+<li> <b>How Data is determined to be Good</b>
+<hr>
+<ol>
+	<li> Imaging -- 1.5'' seeing, matchups between columns
+		(but in practice, put everything through to FWHM 3'',
+		crashes if sky is too variable)
+	<li> Spectroscopy -- On mountain S/N per fiber plot 
+</ol>	
+<hr>
+<li> <b> Move data to the output 'Data Products' </b>
+<hr>
+<ol>
+<li>  Creation of preliminary 'calibration object files' tsObj files for
+	early science and early problem diagnosis on FNAL machines
+<li>  SCP/FTP shove of tsObj files to collaboration members (data volume, disk on remote end, version control)
+<li>  Loading of SX with preliminary 'calibrated object catalog' -- No atlas yet -- calibrated version control
+<li> Success judged number of quality science papers written and by feedback
+of important bugs to pipeline developers
+<li> Creation of 'final' 'calibrated object files'
+<li> SCP shove of final calibrated object files
+<li> Loading of SX with final calibrated object catalog, access to atlas images and related spectra
+<li> Creation of general public distribution CD-ROMs and/or Internet access site.
+<ul>
+<li> Example: large area color GIF image maps  -- also used internally
+</ul>
+<li> Corrected frames moved to tape and/or tape robot, as are data which cannot be kept spinning for lack of disk space
+</ol>
+</ul>
+
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

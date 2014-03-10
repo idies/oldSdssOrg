@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Data products: QA: summaryQA - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+<h1>summaryQA</h1>
+
+<a href="./singlerunQA.html">Over to single-run QA</a> - <a
+href="./index.html">Up to Photometry QA</a>
+
+<h2>Summary QA quantities</h2>
+
+<p>The SDSS imaging data are taken as a series of <i>runs</i>
+(typically indicated by a four-digit number).  Each run is made up of
+six parallel <i>scanlines</i>, and each scanline is divided up further
+into 10'x13' <i>frames</i>.  Global photometric quality assurance is
+done both on individual frames, and on each run.  These global
+quantities are based on the detailed quality assurance tests carried
+out in <a href="./singlerunQA.html">single-run QA</a>.</p>
+
+<h3>Summary Run quality assurance</h3>
+
+<p>This is summarized in the third table in <a
+href="http://das.sdss.org/imaging/QA/summaryQA_analyzePC.html">a
+summary of the SDSS run quality assurance results</a> (the DRsupplemental
+list is available <a href="http://das.sdss.org/imaging/QA/summaryQA_analyzePC.html">here</a>).  This includes
+links to the single-run QA for each of the imaging runs.  The
+following is a description of the method used to assign an overall
+quality to the run.</p>
+
+<p>Each field has four <a
+href="./singlerunQA.html#principal">principal colors</a> determined
+from the locus of stars in color-color space; these principal colors
+are normalized to average to zero over the survey.  The median value
+of the principal colors in each camera column gives a measure of the
+quality of the photometric calibration of that camera column. The
+following table shows how the run quality is determined.<p>
+
+<table border="1">
+  <tr>
+    <th>Quality</th>
+    <th>All four abs(median color) are at most...</th>
+    <th>...in at least this many camera columns</th>
+  </tr>
+  <tr>
+    <td>SUPERB</td>
+    <td>0.01</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <td>EXCELLENT</td>
+    <td>0.02</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <td>GOOD</td>
+    <td>0.03</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <td>ACCEPTABLE</td>
+    <td>0.03</td>
+    <td>1</td>
+  </tr>
+</table>
+
+<p>To give an impression of how common each value is, he following
+table shows the distribution of field quality values in DR4.</p>
+
+<table border="1">
+  <tr>
+    <th>QUALITY</th>
+    <th># of fields</th>
+    <th>%</th>
+    <th># of fields this good or better</th>
+    <th>%</th>
+  </tr>
+  <tr>
+    <td>EXCELLENT</td>
+    <td>147001</td>
+    <td>58</td>
+    <td>147001</td>
+    <td>58</td>
+  </tr>
+  <tr>
+    <td>GOOD</td>
+    <td>67196</td>
+    <td>26</td>
+    <td>214197</td>
+    <td>84</td>
+  </tr>
+  <tr>
+    <td>ACCEPTABLE</td>
+    <td>32980</td>
+    <td>13</td>
+    <td>247177</td>
+    <td>97</td>
+  </tr>
+  <tr>
+    <td>BAD</td>
+    <td>7990</td>
+    <td>3</td>
+    <td>255167</td>
+    <td>100</td>
+  </tr>
+</table>
+
+<p>To within the accuracy given here, the fractional distribution of
+field quality was identical in DR3 and DR4 (with about 201,000 and
+255,000 fields, respectively).</p>
+
+<p>There are separate criteria on the quality of each field based on
+the seeing and the quality of the PSF determination, as explained in
+detail <a href="./singlerunQA.html#quality">in the quality section of
+the single-run QA page</a>; the summary  
+<a href="http://das.sdss.org/imaging/QA/summaryQA_analyzePC.html">table</a> also indicates the fraction of fields in each run of different 
+quality by these criteria.</p>
+
+<h3>Summary Field quality assurance</h3>
+
+<p>At a finer level, the quality of each of the hundreds of thousands
+of fields in the SDSS imaging data is assessed, and is summarized in a
+<a
+href="http://das.sdss.org/imaging/QA/summaryQA_FieldPhotomQuality.dat">very
+large ascii file</a>.  The following description of the assignment of
+quality flag is taken straight from the <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2005AJ....129.1755A">SDSS
+DR3 paper</a>.</p>
+
+<p>This flag is based on five attributes:</p>
+
+<ul>
+  <li>The seeing in the <i>r</i> band</li>
+  <li>As a diagnostic of errors in the determination of the Point
+      Spread Function (PSF) magnitude, the difference between aperture and
+      PSF magnitude for bright stars on the 
+      frame, as described <a href="./singlerunQA.html#PSF">in the PSF
+      section of the single-run QA page</a></li>
+  <li>Systematic offsets of the stellar locus in color space, and/or
+      increased width of the stellar locus, using the <a
+      href="./singlerunQA.html#principal">principal colors</a></li>
+  <li>Finally, the initial processing of the data itself can indicate
+      problems: the photometric pipeline can time-out in processing, the
+      telescope tracking can be poor, etc. </li>
+</ul>
+
+<p>Based on these quantities, we assign a field quality for each field
+as follows:</p>
+<ul>
+  <li> By default, the field in question is assigned quality 
+    ACCEPTABLE.</li>
+  <li> If the absolute value of the median PSF-aperture difference is
+    greater than 0.05 magnitudes in any of the five bands, or if the
+    absolute value of the <i>s</i> color median is larger than 0.05
+    magnitudes, or if the <i>s</i> color distribution width is 2.5 times
+    larger than its median value for the whole run, or if the <i>r</i>-band
+    seeing is worse than 3 arcseconds, or if the initial processing
+    indicates severe problems with the data, the field in question is
+    downgraded  to BAD. </li>
+  <li> If the absolute median PSF-aperture difference is smaller than 0.03
+        magnitudes in all five bands, and if the absolute value
+        of the <i>s</i> color median is smaller than 0.03 mag, and if the
+        <i>s</i> color distribution width is smaller than twice
+        its median value for the whole run, the field in question is
+        upgraded to GOOD.</li>
+  <li> If the median PSF-aperture difference is smaller than 0.02
+        magnitudes in all five bands, and if the absolute value
+        of the <i>s</i> color median is smaller than 0.02 mag, and if the
+        <i>s</i> color distribution width is smaller than 1.5 times
+        its median value for the whole run, and the $r$-band seeing
+        is better than 2 arcseconds, the field in question is
+        upgraded to EXCELLENT.</li>
+</ul>
+
+
+
+<hr>
+<!-- hhmts start -->Last modified: Wed Jun 21 18:43:25 BST 2006
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

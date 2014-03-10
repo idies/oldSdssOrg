@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Data products: Reading Atlas Images - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<h1>Reading Atlas Images</h1>
+
+<p>The atlas images are in a binary heap format that is not easily readable
+by normal humans; think soft encryption.</p>
+
+<p>We have created a standalone code that serves to both read them and as a
+template library for inclusion in other codes. The code is available as: <a
+href="readAtlasImages-v5_4_11.tar.gz">readAtlasImages-v5_4_11.tar.gz</a>.</p>
+
+<h2>Compiling</h2>
+
+<p>1. % make clean</p>
+
+<p>2. % make</p>
+
+<p>If you are on a big-endian machine, remove -DSDSS_LITTLE_ENDIAN from
+CFLAGS in the Makefile.</p>
+
+<h2>Using</h2>
+<pre>% read_atlas_image -h
+Usage: read_atlas_image [options] input-file row output-file
+Your options are:
+       -?      This message
+       -b #    Set background level to #
+       -c #    Use color # (0..ncolor-1; default 0)
+       -h      This message
+       -i      Print an ID string and exit
+       -v      Turn up verbosity (repeat flag for more chatter)
+</pre>
+
+<p>If one wanted to read the r-band atlas image of an object with id=432 in
+run 752, rerun 20, camcol 3, field 177, one would say:</p>
+<pre>% read_atlas_image -c 2 fpAtlas-000752-3-0177.fit 432  myAtlasImage.fits</pre>
+
+<p>where one should know the code that filters u,g,r,i,z are 0,1,2,3,4
+respectively. The background level is an artifical offset added to all
+pixels. The SDSS convention is 1000..</p>
+
+<h2>Developer Comments</h2>
+
+<p>I don't expect that many users will actually want to use the
+read_atlas_image executable (although it is perfectly functional). The main
+use of the product will probably be to link into custom built executables
+that need to process atlas image data. I believe that the code should be
+easily reused for this purpose.</p>
+
+<p>If you look at the code you'll see that it actually manipulates a type
+called an ATLAS_IMAGE.  This contains a field called a master_mask that
+contains inter alia the bounding box of the atlas image ([rc]{min,max}) in
+the r band, and offsets to that band (d{row,col}).</p>
+
+<p>The standalone programmes read_mask (reads fpM files) and read_PSF (reads
+psField files) are similar; all three are built by the same 'make' command.</p>
+
+<p></p>
+<hr>
+<!-- hhmts start -->Last modified: Fri Jun 23 13:59:50 BST 2006
+<!-- hhmts end -->
+ <!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

@@ -1,0 +1,768 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+  <title>Missing Data - SDSS DR7</title>
+ </head>
+ <body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+  <!--#include virtual="../includes/header_layer2.html"-->
+
+  <h1>Missing Data</h1>
+
+  <p>
+   This page provides a list of small regions of data missing from the nominal
+   coverage of each data release.
+   The list is cumulative, i.e., missing DR1 data are still missing in DR5.
+   Except where noted, even if some files are missing from the 'target'
+   version of sky, the 'best' version of sky contains a complete,
+   reprocessed version of the data.
+  </p>
+  <p>
+   NOTE: These tables also note missing fpFieldStat files.
+   Although these are not used in the DAS, their absence is reported for
+   completeness.
+   These entries are noted in <span class="xtra"><i>italics</i></span> where applicable.
+  </p>
+  <table border="1" cellpadding="2" cellspacing="1">
+   <tr>
+    <th colspan="9" align="center"><h1>Missing Best Data</h1></th>
+   </tr>
+   <tr>
+    <th>DR<br>Intro</th>          <!-- COL 1 -->
+    <th>Run</th>                   <!-- COL 2 -->
+    <th>Rerun</th>                 <!-- COL 3 -->
+    <th>DAS<br>sub dir    </th>    <!-- COL 4 -->
+    <th>CamCols<br>[123456]</th>   <!-- COL 5 -->
+    <th>Files<br>Named</th>        <!-- COL 6 -->
+    <th>Filters<br>[giruz]</th>    <!-- COL 7 -->
+    <th>Fields</th>                <!-- COL 8 -->
+    <th>Target Data<br>Exists</th> <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center" rowspan="3">  DR4</td> <!-- COL 1 -->
+    <td align="center" rowspan="3"> 4508</td> <!-- COL 2 -->
+    <td align="center" rowspan="3">   40</td> <!-- COL 3 -->
+    <td align="center" rowspan="3">objcs</td> <!-- COL 4 -->
+    <td align="center" rowspan="3">  123</td> <!-- COL 5 -->
+    <td rowspan="1" >fpAtlas</td>  <!-- COL 6 Row 1 of 3 -->
+    <td align="center">   NA</td>  <!-- COL 7 Row 1 of 3 -->
+    <td align="center" rowspan="3">46-50</td> <!-- COL 8 -->
+    <td align="center" rowspan="3" class="warn">NO</td> <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td>fpBin</td>                <!-- COL 6 Row 2 of 3 -->
+    <td align="center">giruz</td> <!-- COL 7 Row 2 of 3 -->
+   </tr>
+   <tr>
+    <td>fpM</td>                  <!-- COL 6 Row 3 of 3 -->
+    <td align="center">giruz</td> <!-- COL 7 Row 3 of 3 -->
+   </tr>
+  </table>
+  <p>
+   &nbsp;<br>
+  </p>
+  <table border="1" cellpadding="2" cellspacing="1">
+   <tr>
+    <th colspan="9" align="center"><h1>Missing Target Data</h1></th>
+   </tr>
+   <tr>
+    <th>DR<br>Intro</th>         <!-- COL 1 -->
+    <th>Run</th>                 <!-- COL 2 -->
+    <th>Rerun</th>               <!-- COL 3 -->
+    <th>DAS<br>sub dir    </th>  <!-- COL 4 -->
+    <th>CamCols<br>[123456]</th> <!-- COL 5 -->
+    <th>Files<br>Named</th>      <!-- COL 6 -->
+    <th>Filters<br>[giruz]</th>  <!-- COL 7 -->
+    <th>Fields</th>              <!-- COL 7 -->
+    <th>Best Data<br>Exists</th> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">   DR1</td>   <!-- COL 1 -->
+    <td align="center">    94</td>   <!-- COL 2 -->
+    <td align="center">     4</td>   <!-- COL 3 -->
+    <td align="center"> objcs</td>   <!-- COL 4 -->
+    <td align="center">123456</td>   <!-- COL 5 -->
+    <td align="center">   fpC</td>   <!-- COL 6 -->
+    <td align="center"> giruz</td>   <!-- COL 7 -->
+    <td align="center">   545</td>   <!-- COL 8 -->
+    <td align="center" class="warn"> <!-- COL 9 -->
+     NA<br><i>not in best</i>
+    </td>
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR1</td> <!-- COL 1 -->
+    <td align="center">   1140</td> <!-- COL 2 -->
+    <td align="center">      1</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center"> 123456</td> <!-- COL 5 -->
+    <td align="center">psField</td> <!-- COL 6 -->
+    <td align="center">     NA</td> <!-- COL 7 -->
+    <td align="center">120-323</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR1</td> <!-- COL 1 -->
+    <td align="center">   1231</td> <!-- COL 2 -->
+    <td align="center">      1</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center"> 123456</td> <!-- COL 5 -->
+    <td align="center">psField</td> <!-- COL 6 -->
+    <td align="center">     NA</td> <!-- COL 7 -->
+    <td align="center"> 11-213</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="2">  DR1</td>  <!-- COL 1 -->
+    <td align="center" rowspan="2"> 1345</td>  <!-- COL 2 -->
+    <td align="center" rowspan="2">    4</td>  <!-- COL 3 -->
+    <td align="center" rowspan="2">objcs</td>  <!-- COL 4 -->
+    <td align="center" rowspan="2">   56</td>  <!-- COL 5 -->
+    <td align="center">fpAtlas</td> <!-- COL 6 Row 1 of 2 -->
+    <td align="center">NA</td>      <!-- COL 7 Row 1 of 2 -->
+    <td align="center" rowspan="2">            <!-- COL 8 -->
+     380-519<br><i>and</i><br>526-695
+    </td>
+    <td align="center" rowspan="2">YES</td>    <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">psField</td> <!-- COL 6 Row 2 of 2 -->
+    <td align="center">NA</td>      <!-- COL 7 Row 2 of 2 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="6">   DR1</td> <!-- COL 1 -->
+    <td align="center" rowspan="6">  1412</td> <!-- COL 2 -->
+    <td align="center" rowspan="6">     5</td> <!-- COL 3 -->
+    <td align="center" rowspan="6"> objcs</td> <!-- COL 4 -->
+    <td align="center" rowspan="6">    2</td>  <!-- COL 5 -->
+    <td align="center">fpAtlas</td> <!-- COL 6 Row 1 of 6 -->
+    <td align="center">NA</td>      <!-- COL 7 Row 1 of 6 -->
+    <td align="center">64-95</td>   <!-- COL 8 Row 1 of 6 -->
+    <td align="center" rowspan="6">YES</td>    <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 2 of 6 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 2 of 6 -->
+    <td align="center">64-95</td>   <!-- COL 8 Row 2 of 6 -->
+   </tr>
+   <tr>
+    <td align="center" class="xtra"><i>fpFieldStat</i></td> <!-- COL 6 Row 3 of 6 -->
+    <td align="center" class="xtra"><i>NA</i></td>          <!-- COL 7 Row 3 of 6 -->
+    <td align="center" class="xtra"><i>63-94</i></td>       <!-- COL 8 Row 3 of 6 -->
+   </tr>
+   <tr>
+    <td align="center">fpM</td>     <!-- COL 6 Row 4 of 6 -->
+    <td align="center">rug</td>     <!-- COL 7 Row 4 of 6 -->
+    <td align="center">64-95</td>   <!-- COL 8 Row 4 of 6 -->
+   </tr>
+   <tr>
+    <td align="center">fpM</td>     <!-- COL 6 Row 5 of 6 -->
+    <td align="center">iz</td>      <!-- COL 7 Row 5 of 6 -->
+    <td align="center">63-94</td>   <!-- COL 8 Row 5 of 6 -->
+   </tr>
+   <tr>
+    <td align="center">fpObjc</td>  <!-- COL 6 Row 6 of 6 -->
+    <td align="center">NA</td>      <!-- COL 7 Row 6 of 6 -->
+    <td align="center">64-95</td>   <!-- COL 8 Row 6 of 6 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="6">   DR1</td>  <!-- COL 1 -->
+    <td align="center" rowspan="6">  1458</td>  <!-- COL 2 -->
+    <td align="center" rowspan="6">     2</td>  <!-- COL 3 -->
+    <td align="center" rowspan="6"> objcs</td>  <!-- COL 4 -->
+    <td align="center" rowspan="5">  456</td>   <!-- COL 5 Rows 1-5 of 6 -->
+    <td align="center">fpAtlas</td> <!-- COL 6 Row 1 of 6 -->
+    <td align="center">NA</td>      <!-- COL 7 Row 1 of 6 -->
+    <td align="center" rowspan="6">358-692</td> <!-- COL 8 -->
+    <td align="center" rowspan="6">YES</td>     <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 2 of 6 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 2 of 6 -->
+   </tr>
+   <tr>
+    <td align="center" class="xtra"><i>fpFieldStat</i></td> <!-- COL 6 Row 3 of 6 -->
+    <td align="center" class="xtra"><i>NA</i></td>          <!-- COL 7 Row 3 of 6 -->
+   </tr>
+   <tr>
+    <td align="center">fpM</td>     <!-- COL 6 Row 4 of 6 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 4 of 6 -->
+   </tr>
+   <tr>
+    <td align="center">fpObjc</td>  <!-- COL 6 Row 5 of 6 -->
+    <td align="center">NA</td>      <!-- COL 7 Row 5 of 6 -->
+   </tr>
+   <tr>
+    <td align="center">  5</td>     <!-- COL 5 Row 6 of 6 -->
+    <td align="center">psField</td> <!-- COL 6 Row 6 of 6 -->
+    <td align="center">NA</td>      <!-- COL 7 Row 6 of 6 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="5">   DR1</td>  <!-- COL 1 -->
+    <td align="center" rowspan="5">  1659</td>  <!-- COL 2 -->
+    <td align="center" rowspan="5">     1</td>  <!-- COL 3 -->
+    <td align="center" rowspan="5"> objcs</td>  <!-- COL 4 -->
+    <td align="center" rowspan="5">   56</td>   <!-- COL 5 -->
+    <td align="center">fpAtlas</td> <!-- COL 6 Row 1 of 5 -->
+    <td align="center">NA</td>      <!-- COL 7 Row 1 of 5 -->
+    <td align="center" rowspan="5">25-157<br><i>and</i><br>292-296</td> <!-- COL 8 -->
+    <td align="center" rowspan="5">YES</td>     <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 2 of 5 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 2 of 5 -->
+   </tr>
+   <tr>
+    <td align="center" class="xtra"><i>fpFieldStat</i></td> <!-- COL 6 Row 3 of 5 -->
+    <td align="center" class="xtra"><i>NA</i></td>          <!-- COL 7 Row 3 of 5 -->
+   </tr>
+   <tr>
+    <td align="center">fpM</td>     <!-- COL 6 Row 4 of 5 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 4 of 5 -->
+   </tr>
+   <tr>
+    <td align="center">fpObjc</td>  <!-- COL 6 Row 5 of 5 -->
+    <td align="center">NA</td>      <!-- COL 7 Row 5 of 5 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR1</td> <!-- COL 1 -->
+    <td align="center">   1737</td> <!-- COL 2 -->
+    <td align="center">      0</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center">      6</td> <!-- COL 5 -->
+    <td align="center">  fpBIN</td> <!-- COL 6 -->
+    <td align="center">  giruz</td> <!-- COL 7 -->
+    <td align="center">     30</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR1</td> <!-- COL 1 -->
+    <td align="center">   1739</td> <!-- COL 2 -->
+    <td align="center">      0</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center">      2</td> <!-- COL 5 -->
+    <td align="center">  fpBIN</td> <!-- COL 6 -->
+    <td align="center">  giruz</td> <!-- COL 7 -->
+    <td align="center">30, 160</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR1</td> <!-- COL 1 -->
+    <td align="center">   1889</td> <!-- COL 2 -->
+    <td align="center">      1</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center">      4</td> <!-- COL 5 -->
+    <td align="center">  fpBIN</td> <!-- COL 6 -->
+    <td align="center">  giruz</td> <!-- COL 7 -->
+    <td align="center">     42</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="2">  DR1</td>  <!-- COL 1 -->
+    <td align="center" rowspan="2"> 1992</td>  <!-- COL 2 -->
+    <td align="center" rowspan="2">    0</td>  <!-- COL 3 -->
+    <td align="center" rowspan="2">objcs</td>  <!-- COL 4 -->
+    <td align="center">    1</td>   <!-- COL 5 Row 1 of 2 -->
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 1 of 2 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 1 of 2 -->
+    <td align="center">  141</td>   <!-- COL 8 Row 1 of 2 -->
+    <td align="center" rowspan="2">YES</td>    <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">    2</td>   <!-- COL 5 Row 2 of 2 -->
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 2 of 2 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 2 of 2 -->
+    <td align="center">  130</td>   <!-- COL 8 Row 2 of 2 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR1</td> <!-- COL 1 -->
+    <td align="center">   2074</td> <!-- COL 2 -->
+    <td align="center">      0</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center">      5</td> <!-- COL 5 -->
+    <td align="center">  fpBIN</td> <!-- COL 6 -->
+    <td align="center">  giruz</td> <!-- COL 7 -->
+    <td align="center">    174</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="2">  DR1</td>  <!-- COL 1 -->
+    <td align="center" rowspan="2"> 2126</td>  <!-- COL 2 -->
+    <td align="center" rowspan="2">    0</td>  <!-- COL 3 -->
+    <td align="center" rowspan="2">objcs</td>  <!-- COL 4 -->
+    <td align="center">    4</td>   <!-- COL 5 Row 1 of 2 -->
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 1 of 2 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 1 of 2 -->
+    <td align="center">  278</td>   <!-- COL 8 Row 1 of 2 -->
+    <td align="center" rowspan="2">YES</td>    <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">    6</td>   <!-- COL 5 Row 2 of 2 -->
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 2 of 2 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 2 of 2 -->
+    <td align="center">  341</td>   <!-- COL 8 Row 2 of 2 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR1</td> <!-- COL 1 -->
+    <td align="center">   2190</td> <!-- COL 2 -->
+    <td align="center">      1</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center">      5</td> <!-- COL 5 -->
+    <td align="center">  fpBIN</td> <!-- COL 6 -->
+    <td align="center">      i</td> <!-- COL 7 -->
+    <td align="center">    286</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="3">   DR1</td>  <!-- COL 1 -->
+    <td align="center" rowspan="3">  2248</td>  <!-- COL 2 -->
+    <td align="center" rowspan="3">     0</td>  <!-- COL 3 -->
+    <td align="center" rowspan="3"> objcs</td>  <!-- COL 4 -->
+    <td align="center" rowspan="3">123456</td>  <!-- COL 5 -->
+    <td align="center">fpAtlas</td>  <!-- COL 6 Row 1 of 3 -->
+    <td align="center">   NA</td>    <!-- COL 7 Row 1 of 3 -->
+    <td align="center" rowspan="3">186-196</td> <!-- COL 8 -->
+    <td align="center" rowspan="3">YES</td>     <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 2 of 3 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 2 of 3 -->
+   </tr>
+   <tr>
+    <td align="center">  fpM</td>   <!-- COL 6 Row 3 of 3 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 3 of 3 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR1</td> <!-- COL 1 -->
+    <td align="center">   2305</td> <!-- COL 2 -->
+    <td align="center">      0</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center">      4</td> <!-- COL 5 -->
+    <td align="center">  fpBIN</td> <!-- COL 6 -->
+    <td align="center">      u</td> <!-- COL 7 -->
+    <td align="center">26, 30, 36, 50, 56-63</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="3">  DR2</td>  <!-- COL 1 -->
+    <td align="center" rowspan="3"> 2566</td>  <!-- COL 2 -->
+    <td align="center" rowspan="3">    0</td>  <!-- COL 3 -->
+    <td align="center" rowspan="3">objcs</td>  <!-- COL 4 -->
+    <td align="center">    3</td>   <!-- COL 5 Row 1 of 3 -->
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 1 of 3 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 1 of 3 -->
+    <td align="center">  108</td>   <!-- COL 8 Row 1 of 3 -->
+    <td align="center" rowspan="3">YES</td>    <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">    4</td>   <!-- COL 5 Row 2 of 3 -->
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 2 of 3 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 2 of 3 -->
+    <td align="center">  330</td>   <!-- COL 8 Row 2 of 3 -->
+   </tr>
+   <tr>
+    <td align="center">    6</td>   <!-- COL 5 Row 3 of 3 -->
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 3 of 3 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 3 of 3 -->
+    <td align="center">64, 65, 220</td> <!-- COL 8 Row 3 of 3 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="2">  DR2</td>  <!-- COL 1 -->
+    <td align="center" rowspan="2"> 2583</td>  <!-- COL 2 -->
+    <td align="center" rowspan="2">    0</td>  <!-- COL 3 -->
+    <td align="center" rowspan="2">objcs</td>  <!-- COL 4 -->
+    <td align="center">    1</td>   <!-- COL 5 Row 1 of 2 -->
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 1 of 2 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 1 of 2 -->
+    <td align="center">   44</td>   <!-- COL 8 Row 1 of 2 -->
+    <td align="center" rowspan="2">YES</td>    <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">    2</td>   <!-- COL 5 Row 2 of 2 -->
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 2 of 2 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 2 of 2 -->
+    <td align="center">  136</td>   <!-- COL 8 Row 2 of 2 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR2</td> <!-- COL 1 -->
+    <td align="center">   2662</td> <!-- COL 2 -->
+    <td align="center">      0</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center">      1</td> <!-- COL 5 -->
+    <td align="center">  fpBIN</td> <!-- COL 6 -->
+    <td align="center">  giruz</td> <!-- COL 7 -->
+    <td align="center">     38</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="5">  DR2</td>  <!-- COL 1 -->
+    <td align="center" rowspan="5"> 2821</td>  <!-- COL 2 -->
+    <td align="center" rowspan="5">    0</td>  <!-- COL 3 -->
+    <td align="center" rowspan="5">objcs</td>  <!-- COL 4 -->
+    <td align="center" rowspan="5">    2</td>  <!-- COL 5 -->
+    <td align="center">fpAtlas</td> <!-- COL 6 Row 1 of 5 -->
+    <td align="center">   NA</td>   <!-- COL 7 Row 1 of 5 -->
+    <td align="center">196-197</td> <!-- COL 8 Row 1 of 5 -->
+    <td align="center" rowspan="5">YES</td>    <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 2 of 5 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 2 of 5 -->
+    <td align="center">196-197</td> <!-- COL 8 Row 2 of 5 -->
+   </tr>
+   <tr>
+    <td align="center" class="xtra"><i>fpFieldStat</i></td> <!-- COL 6 Row 3 of 5 -->
+    <td align="center" class="xtra"><i>NA</i></td>          <!-- COL 7 Row 3 of 5 -->
+    <td align="center" class="xtra">196-197</td>            <!-- COL 8 Row 3 of 5 -->
+   </tr>
+   <tr>
+    <td align="center">fpM</td>     <!-- COL 6 Row 4 of 5 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 4 of 5 -->
+    <td align="center">196-197</td> <!-- COL 8 Row 4 of 5 -->
+   </tr>
+   <tr>
+    <td align="center">fpObjc</td>  <!-- COL 6 Row 5 of 5 -->
+    <td align="center">   NA</td>   <!-- COL 7 Row 5 of 5 -->
+    <td align="center">  197</td>   <!-- COL 8 Row 5 of 5 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="2">  DR2</td>  <!-- COL 1 -->
+    <td align="center" rowspan="2"> 2822</td>  <!-- COL 2 -->
+    <td align="center" rowspan="2">    0</td>  <!-- COL 3 -->
+    <td align="center" rowspan="2">objcs</td>  <!-- COL 4 -->
+    <td align="center">    3</td>   <!-- COL 5 Row 1 of 2 -->
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 1 of 2 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 1 of 2 -->
+    <td align="center">   35</td>   <!-- COL 8 Row 1 of 2 -->
+    <td align="center" rowspan="2">YES</td>    <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">    6</td>   <!-- COL 5 Row 2 of 2 -->
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 2 of 2 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 2 of 2 -->
+    <td align="center">  108</td>   <!-- COL 8 Row 2 of 2 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="12">  DR2</td>  <!-- COL 1 -->
+    <td align="center" rowspan="12"> 2831</td>  <!-- COL 2 -->
+    <td align="center" rowspan="12">    0</td>  <!-- COL 3 -->
+    <td align="center" rowspan="12">objcs</td>  <!-- COL 4 -->
+    <td align="center">     1</td>  <!-- COL 5 Row 1 of 12 -->
+    <td align="center">fpAtlas</td> <!-- COL 6 Row 1 of 12 -->
+    <td align="center">   NA</td>   <!-- COL 7 Row 1 of 12 -->
+    <td align="center">15, 18, 25, 27-28, 33, 35, 37</td> <!-- COL 8 Row 1 of 12 -->
+    <td align="center" rowspan="12">YES</td> <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">      1</td>  <!-- COL 5 Row 2 of 12 -->
+    <td align="center">  fpBIN</td>  <!-- COL 6 Row 2 of 12 -->
+    <td align="center">      g</td>  <!-- COL 7 Row 2 of 12 -->
+    <td align="center">              <!-- COL 8 Row 2 of 12 -->
+     14-16, 18, 24-26, 33, 36              <!-- EMPTY FILES -->
+    </td>
+   </tr>
+   <tr>
+    <td align="center">      1</td>  <!-- COL 5 Row 3 of 12 -->
+    <td align="center">  fpBIN</td>  <!-- COL 6 Row 3 of 12 -->
+    <td align="center">      i</td>  <!-- COL 7 Row 3 of 12 -->
+    <td align="center">              <!-- COL 8 Row 3 of 12 -->
+     15-16, 22, 24, 26, 33-34      <!-- EMPTY FILES -->
+    </td>
+   </tr>
+   <tr>
+    <td align="center">      1</td>  <!-- COL 5 Row 4 of 12 -->
+    <td align="center">  fpBIN</td>  <!-- COL 6 Row 4 of 12 -->
+    <td align="center">      r</td>  <!-- COL 7 Row 4 of 12 -->
+    <td align="center">              <!-- COL 8 Row 4 of 12 -->
+     14-16, 18, 24-25, 27-28, 33, 35-36    <!-- EMPTY FILES -->
+    </td>
+   </tr>
+   <tr>
+    <td align="center">      1</td>  <!-- COL 5 Row 5 of 12 -->
+    <td align="center">  fpBIN</td>  <!-- COL 6 Row 5 of 12 -->
+    <td align="center">      u</td>  <!-- COL 7 Row 5 of 12 -->
+    <td align="center">              <!-- COL 8 Row 5 of 12 -->
+     16, 18, 26-28, 33                     <!-- EMPTY FILES -->
+    </td>
+   </tr>
+   <tr>
+    <td align="center">      1</td>  <!-- COL 5 Row 6 of 12 -->
+    <td align="center">  fpBIN</td>  <!-- COL 6 Row 6 of 12 -->
+    <td align="center">      z</td>  <!-- COL 7 Row 6 of 12 -->
+    <td align="center">              <!-- COL 8 Row 6 of 12 -->
+     14-15, 23, 25, 27, 34-35              <!-- EMPTY FILES -->
+    </td>
+   </tr>
+   <tr>
+    <td align="center">     3</td>   <!-- COL 5 Row 7 of 12 -->
+    <td align="center">fpAtlas</td>  <!-- COL 6 Row 7 of 12 -->
+    <td align="center">     NA</td>  <!-- COL 7 Row 7 of 12 -->
+    <td align="center">16, 17, 19, 26-29, 35-37</td> <!-- COL 8 Row 7 of 12 -->
+   </tr>
+   <tr>
+    <td align="center">      3</td>  <!-- COL 5 Row 8 of 12 -->
+    <td align="center">  fpBIN</td>  <!-- COL 6 Row 8 of 12 -->
+    <td align="center">      g</td>  <!-- COL 7 Row 8 of 12 -->
+    <td align="center">              <!-- COL 8 Row 8 of 12 -->
+     17, 26, 28-29, 36-39                  <!-- EMPTY FILES -->
+    </td>
+   </tr>
+   <tr>
+    <td align="center">      3</td>  <!-- COL 5 Row 9 of 12 -->
+    <td align="center">  fpBIN</td>  <!-- COL 6 Row 9 of 12 -->
+    <td align="center">      i</td>  <!-- COL 7 Row 9 of 12 -->
+    <td align="center">              <!-- COL 8 Row 9 of 12 -->
+     15, 17, 25-26, 28-29, 36-39           <!-- EMPTY FILES -->
+    </td>
+   </tr>
+   <tr>
+    <td align="center">      3</td>  <!-- COL 5 Row 10 of 12 -->
+    <td align="center">  fpBIN</td>  <!-- COL 6 Row 10 of 12 -->
+    <td align="center">      r</td>  <!-- COL 7 Row 10 of 12 -->
+    <td align="center">              <!-- COL 8 Row 10 of 12 -->
+     16, 18-19, 27, 35                      <!-- EMPTY FILES -->
+    </td>
+   </tr>
+   <tr>
+    <td align="center">      3</td>  <!-- COL 5 Row 11 of 12 -->
+    <td align="center">  fpBIN</td>  <!-- COL 6 Row 11 of 12 -->
+    <td align="center">      u</td>  <!-- COL 7 Row 11 of 12 -->
+    <td align="center">              <!-- COL 8 Row 11 of 12 -->
+     15, 18-19, 25-27                       <!-- EMPTY FILES -->
+    </td>
+   </tr>
+   <tr>
+    <td align="center">      3</td>  <!-- COL 5 Row 12 of 12 -->
+    <td align="center">  fpBIN</td>  <!-- COL 6 Row 12 of 12 -->
+    <td align="center">      z</td>  <!-- COL 7 Row 12 of 12 -->
+    <td align="center">              <!-- COL 8 Row 12 of 12 -->
+     18-19, 27, 35                          <!-- EMPTY FILES -->
+    </td>
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR2</td> <!-- COL 1 -->
+    <td align="center">   2864</td> <!-- COL 2 -->
+    <td align="center">      0</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center">      5</td> <!-- COL 5 -->
+    <td align="center">  fpBIN</td> <!-- COL 6 -->
+    <td align="center">  giruz</td> <!-- COL 7 -->
+    <td align="center">    237</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="2">  DR2</td> <!-- COL 1 -->
+    <td align="center" rowspan="2"> 2883</td> <!-- COL 2 -->
+    <td align="center" rowspan="2">    0</td> <!-- COL 3 -->
+    <td align="center" rowspan="2">objcs</td> <!-- COL 4 -->
+    <td align="center" rowspan="2">    6</td> <!-- COL 5 -->
+    <td align="center">  fpBIN</td>  <!-- COL 6 Row 1 of 2 -->
+    <td align="center">      u</td>  <!-- COL 7 Row 1 of 2 -->
+    <td align="center">     72</td>  <!-- COL 8 Row 1 of 2 --> <!-- EMPTY FILE -->
+    <td align="center" rowspan="2">  YES</td> <!-- COL 9 -->
+   <tr>
+    <td align="center">    fpM</td>  <!-- COL 6 Row 2 of 2 -->
+    <td align="center">      u</td>  <!-- COL 7 Row 2 of 2 -->
+    <td align="center">    233</td>  <!-- COL 8 Row 2 of 2 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR2</td> <!-- COL 1 -->
+    <td align="center">   2986</td> <!-- COL 2 -->
+    <td align="center">      0</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center">      3</td> <!-- COL 5 -->
+    <td align="center">    fpM</td> <!-- COL 6 -->
+    <td align="center">      z</td> <!-- COL 7 -->
+    <td align="center">     98</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR2</td> <!-- COL 1 -->
+    <td align="center">   3185</td> <!-- COL 2 -->
+    <td align="center">      0</td> <!-- COL 3 -->
+    <td align="center">  objcs</td> <!-- COL 4 -->
+    <td align="center">      1</td> <!-- COL 5 -->
+    <td align="center">fpAtlas</td> <!-- COL 6 -->
+    <td align="center">     NA</td> <!-- COL 7 -->
+    <td align="center">    111</td> <!-- COL 8 -->
+    <td align="center">    YES</td> <!-- COL 9 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center">    DR3</td> <!-- COL 1 -->
+    <td align="center">   3518</td> <!-- COL 2 -->
+    <td align="center">     20</td> <!-- COL 3 -->
+    <td align="center">   corr</td> <!-- COL 4 -->
+    <td align="center"> 123456</td> <!-- COL 5 -->
+    <td align="center">    fpC</td> <!-- COL 6 -->
+    <td align="center">  giruz</td> <!-- COL 7 -->
+    <td align="center">142-143</td> <!-- COL 8 -->
+    <td align="center" class="warn">NA<br>       <!-- COL 9 -->
+     <i>not in best</i>
+    </td>
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="6">  DR3</td>  <!-- COL 1 -->
+    <td align="center" rowspan="6"> 3813</td>  <!-- COL 2 -->
+    <td align="center" rowspan="6">   40</td>  <!-- COL 3 -->
+    <td align="center" rowspan="6">objcs</td>  <!-- COL 4 -->
+    <td align="center" rowspan="6">  123</td>  <!-- COL 5 -->
+    <td align="center">fpAtlas</td> <!-- COL 6 Row 1 of 6 -->
+    <td align="center">   NA</td>   <!-- COL 7 Row 1 of 6 -->
+    <td align="center" rowspan="6">            <!-- COL 8 -->
+     61-70, 121-130, 151-160, 211-220, 241-250, 281-290,
+     301-310, 341-350, 371-380, 391-400, 431-440, 461-470
+    </td>
+    <td align="center" rowspan="6">YES</td>    <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td align="center">fpBIN</td>   <!-- COL 6 Row 2 of 6 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 2 of 6 -->
+   </tr>
+   <tr>
+    <td align="center" class="xtra"><i>fpFieldStat</i></td> <!-- COL 6 Row 3 of 6 -->
+    <td align="center" class="xtra"><i>NA</i></td>          <!-- COL 7 Row 3 of 6 -->
+   </tr>
+   <tr>
+    <td align="center">fpM</td>     <!-- COL 6 Row 4 of 6 -->
+    <td align="center">giruz</td>   <!-- COL 7 Row 4 of 6 -->
+   </tr>
+   <tr>
+    <td align="center">fpObjc</td>  <!-- COL 6 Row 5 of 6 -->
+    <td align="center">   NA</td>   <!-- COL 7 Row 5 of 6 -->
+   </tr>
+   <tr>
+    <td align="center">psField</td> <!-- COL 6 Row 6 of 6 -->
+    <td align="center">   NA</td>   <!-- COL 7 Row 6 of 6 -->
+   </tr>
+   <!-- ---------------- NEW RUN ------------------ -->
+   <tr>
+    <td align="center" rowspan="3">  DR4</td> <!-- COL 1 -->
+    <td align="center" rowspan="3"> 4508</td> <!-- COL 2 -->
+    <td align="center" rowspan="3">   40</td> <!-- COL 3 -->
+    <td align="center" rowspan="3">objcs</td> <!-- COL 4 -->
+    <td align="center" rowspan="3">  123</td> <!-- COL 5 -->
+    <td rowspan="1" >fpAtlas</td>  <!-- COL 6 Row 1 of 3 -->
+    <td align="center">NA</td>     <!-- COL 7 Row 1 of 3 -->
+    <td align="center" rowspan="3">46-50</td> <!-- COL 8 -->
+    <td align="center" rowspan="3" class="warn">NO<br>
+     <i>best is same rerun</i>
+    </td> <!-- COL 9 -->
+   </tr>
+   <tr>
+    <td>fpBin</td>                <!-- COL 6 Row 2 of 3 -->
+    <td align="center">giruz</td> <!-- COL 7 Row 2 of 3 -->
+   </tr>
+   <tr>
+    <td>fpM</td>                  <!-- COL 6 Row 3 of 3 -->
+    <td align="center">giruz</td> <!-- COL 7 Row 3 of 3 -->
+   </tr>
+  </table>
+
+<!--<tr><th colspan="9"> ========================= UP TO HERE CONVERTING AND UPDATING TABLE ==========================</th></tr>-->
+
+  <p>
+   Additional Information:
+   <ul>
+    <li>DR1 Run 2248 rerun 20 has fields 197-274 for cols 1-5 and fields 197-275 for col 6.</li>
+   </ul>
+  </p>
+  <h2>Fields that are not in DR1 because we used data from a different run for target</h2>
+  <ul>
+   <li>
+    Run 2075 Rerun 0
+    <ul>
+     <li>Column 2 &amp; 3 fields 30-39, 68-69</li>
+    </ul>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    Run 1889 Rerun 1
+    <ul>
+     <li>Col 1, 4-6 Fields 123-131</li>
+    </ul>
+   </li>
+  </ul>
+  <h2>Fields that are not in DR1 because we used data from a different run for best</h2>
+  <ul>
+   <li> Run 1045 Rerun 20
+    <ul>
+     <li>Col 1 Fields 11-40</li>
+     <li>Col 2 Fields 11-84</li>
+    </ul>
+   </li>
+  </ul>
+  <ul>
+   <li>Run 1458 Rerun 20
+    <ul>
+     <li>Col 5 Fields 301-357</li>
+    </ul>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    Run 1869 Rerun 21
+    <ul>
+     <li>Col 2-6 Fields 70-79</li>
+    </ul>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    Run 1893 Rerun 20
+    <ul>
+     <li>Col 1, 3-6 Fields 49-123</li>
+    </ul>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    Run 1907 Rerun 21
+    <ul>
+     <li>Col 1-5 Fields 195-214</li>
+    </ul>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    Run 1992 Rerun 20
+    <ul>
+     <li>Col 1-4 Fields 134-190</li>
+     <li>Col 6 Fields 12-31, 134-190</li>
+    </ul>
+   </li>
+  </ul>
+  <hr>
+  <address></address>
+This page was last modified on $Date: 2008/06/22 22:48:37 $ (UT).
+  <!--#include virtual="../includes/footer.html"-->
+ </body>
+</html>

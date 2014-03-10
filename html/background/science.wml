@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="SDSS Information: The Science of the Survey">
+<title>SDSS Information: The Science of the Survey</title>
+</head>
+
+<sdss-page select="background">
+
+<h2>The Science of the SDSS</h2>
+
+<p><img src="../photos/bubble.gif" alt="Soap bubbles" width="100"
+height="108" border="0" hspace="5" align="right">
+The universe today is filled with sheets of galaxies curving through
+mostly empty space.  Like soap bubbles in a sink, they form voids and
+come together along lines that form dense filaments.  Our best model for
+how the universe began, the Big Bang, gives us a picture of a universe
+filled with a hot, uniform soup of fundamental particles.  Somehow,
+between the time when the universe began and today, gravity has pulled
+together the matter into regions of high density, leaving behind empty
+voids.  What triggered this change from uniformity to structure?
+Understanding the origin of the structure that we see in the universe
+today is a crucial part of reconstructing our cosmic history.</p>
+
+<p>The quest is made more difficult because the luminous stars and
+galaxies that we see are only a small part of the total material in the
+universe.  The nature, amount and distribution of the "dark matter" are
+among the most important questions in astrophysics.  How has the gravity
+from dark matter influenced the visible structures?  Or, put another
+way, by careful mapping of the positions and motions of galaxies, we can
+reconstruct the distribution of the gravitating mass, and from that find
+clues about dark matter.</p>
+
+<h3>A Map of the Universe</h3>
+
+<p>One of the difficulties in studying the entire universe is the
+problem of getting enough information to assemble a global picture.
+Astronomers designed the Sloan Digital Sky Survey to address this
+problem in a direct and ambitious way, by gathering a body of data large
+and accurate enough to be useful in addressing a broad range of
+astronomical questions.</p>
+
+<p>The Sky Survey will obtain high-resolution pictures of one quarter of
+the entire sky in five different colors.  From these pictures, advanced
+image processing software will measure the shape, brightness, and color
+of hundreds of millions of astronomical objects including stars,
+galaxies, quasars (compact yet ultraluminous objects thought to be
+powered by material falling into giant black holes), and an array of
+other celestial exotica.  Selected galaxies and quasars will be observed
+using an instrument called a spectrograph to determine accurate
+distances to a million galaxies and 100,000 quasars, and to provide a
+wealth of information about the individual objects.  These data will
+give the astronomical community one of the things it most needs: a
+comprehensive catalog of the constituents of a representative part of
+the universe.</p>
+
+<p>The Sloan Digital Sky Survey will map the three-dimensional
+distribution of matter through a volume about a hundred times bigger
+than the volume explored so far.  This map will reveal how big the
+largest structures in our universe are, and what they look like.  It
+will help us understand the mechanisms that converted a uniform
+"primordial soup" into a frothy network of galaxies.</p>
+
+<div align="center">
+<img src="../images/oval_stars.jpg" alt="Stars" width="180"
+height="54" border="0" vspace="5">
+</div>
+
+<h3>An Intergalactic Census</h3>
+
+<p>The U.S. Census Bureau collects statistical information about how
+many people live in the U.S., where they live, their race, their family
+income, and other characteristics.  The Census becomes a primary source
+of information for people trying to understand the nation.  In a sort of
+celestial census, the Sloan Digital Sky Survey will gather information
+about how many galaxies and quasars there are in the universe, how they
+are distributed, their individual properties, and how bright they are.
+Astronomers will use this information to study questions such as why
+flat spiral galaxies are found in less dense regions of the universe
+than football-shaped elliptical galaxies, or how the enigmatic quasars
+have changed during the history of the universe.</p>
+
+<p>The Sky Survey will also collect information about the Milky Way
+galaxy and even about our own solar system.  The wide net cast by the
+Sky Survey telescope will sweep up as many stars as galaxies, and as
+many asteroids in our solar system as quasars in the universe.
+Knowledge of these objects will help us learn how stars are distributed
+in our galaxy, and where asteroids fit into the history of our solar
+system.</p>
+
+<h3>Needles in a Haystack, Lighthouses in the Fog</h3>
+
+<p>Rare objects, almost by definition, are scientifically interesting.
+By sifting through the several hundred million objects recorded by the
+Sky Survey, scientists will be able to construct entire catalogs of the
+most distant quasars, the rarest stars, and the most unusual galaxies.
+The most unusual objects in the catalog will be about a hundred times
+rarer than the rarest objects now known.  For example, stars with a
+chemical composition very low in metals like iron are the oldest in the
+Milky Way.  They can therefore tell us about the formation of our
+galaxy.  However, such stars are also extremely rare, and only a
+wide-field deep sky survey can find enough of them to form a coherent
+picture.</p>
+
+<p>Because they are so far away, quasars can serve as probes for
+intergalactic matter throughout the visible universe.  In particular,
+astronomers can identify and study galaxies by the way they block
+certain wavelengths of light emitted by a quasar.  Using the light from
+quasars, the Sky Survey will detect tens of thousands of galaxies in the
+initial stages of formation.  These galaxies are typically too faint and
+too diffuse to be detected in their own light by even the largest of
+telescopes.  Quasar probes will also allow scientists to study the
+evolution of the chemistry of the universe throughout its history.</p>
+
+<h3>The Telescope as a Time Machine</h3>
+
+<p>Peering into the universe with a telescope allows us to look not only
+out into space, but also back in time.  Imagine intelligent beings in a
+planetary system around a star 30 light years away.  Suppose these
+beings pick up a stray television transmission from Earth.  They would
+see events now 30 years past on earth, and might, for instance, view a
+newscast covering the construction of the foundation of the Sears Tower.
+While today we see the tower as a completed work, they might see workmen
+pouring the tower's foundation.  We think of light as traveling
+extremely fast, but the universe is a very big place.  In fact,
+astronomers routinely look at quasars that are so far away that it takes
+billions of years for the light they produce to reach us.  When we look
+at galaxies or quasars that are billions of light-years away, we are
+seeing them as they were billions of years ago.</p>
+
+<p>By looking at galaxies and quasars at different distances,
+astronomers can see how their properties change with time.  The Sky
+Survey will measure the "local" distribution of galaxies, allowing
+comparison with more distant samples now being obtained by the new
+generation of instruments like the Hubble Space Telescope and the Keck
+Telescope.  Because quasars are very bright, the Sky Survey will allow
+astronomers to study their evolution through more than 90 percent of the
+history of the universe.</p>
+
+<h3>Measuring Distance and Time: Red Shift</h3>
+
+<p><img src="../photos/bread.jpg" alt="Raisin bread" width="159"
+height="122" border="0" hspace="5" align="right">
+Think of the universe as a loaf of raisin bread rising in an oven.
+The universe is expanding in the same way as the rising loaf.  Now pick
+any raisin, and imagine it's our own Milky Way galaxy.  No matter how
+you look at it, as the bread rises, all the other raisins are moving
+away from our raisin.  The farther away another raisin is from our
+raisin, the faster it is moving away.  In the same way, all the other
+galaxies are moving away from ours as the universe expands.  And because
+the universe is uniformly expanding, the farther a galaxy is from Earth,
+the faster it is receding from us.</p>
+
+<p>The light coming to us from these distant objects is shifted toward
+the red end of the electromagnetic spectrum, in much the same way the
+sound of a train whistle changes as a train leaves or approaches a
+station, compared to the way the pitch is perceived when the train is in
+the station.  The faster a distant object is moving, the more it is
+red-shifted.  Astronomers measure the amount of red shift in the spectrum
+of a galaxy to figure out how far away it is from us.</p>
+
+<p>By measuring the red shift of a million galaxies, the Sloan Digital
+Sky Survey will provide a three-dimensional picture of our local
+neighborhood of the universe.</p>
+
+<div align="center">
+<img src="../images/slice.gif" alt="Survey slice" width="216"
+height="118" border="0" vspace="5">
+</div>
+
+</sdss-page>
+
+</html>

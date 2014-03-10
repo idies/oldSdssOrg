@@ -1,0 +1,27 @@
+Sextans B is a relatively nearby irregular galaxy just beyond the
+Local Group that contains our Milky Way.  The galaxy is close enough that
+the brightest blue and red stars are easily visible, along with numerous
+star clusters.
+
+(Caption by Stephen Kent and Mark Schaffer).
+
+Object Information from <a href="http://nedwww.ipac.caltech.edu">NED</a>:
+
+Object: Sextans B (UGC 5373)
+Type: Irregular Galaxy
+
+Longitude: 150.000417 degrees
+Latitude: 5.332222 degrees
+
+RA: 10:00:00.1
+Decl: +05 degrees 19:56
+(J2000 Equatorial)
+
+Distance: 1.2 Mpc
+Radial Velocity: 301 km/s
+Redshift:  0.001004
+Diameters: 5.1 x 3.5 arcmin
+Magnitude: 11.85
+Classifications: ImIV-V 
+
+   

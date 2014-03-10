@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Data Acquisition</TITLE>
+<META NAME="description" CONTENT="Data Acquisition">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html414" HREF="node30.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html412" HREF="node22.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html408" HREF="node28.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html415" HREF="node30.html">Software</A>
+<B>Up:</B> <A NAME="tex2html413" HREF="node22.html">Hardware</A>
+<B> Previous:</B> <A NAME="tex2html409" HREF="node28.html">Photometric Telescope</A>
+<BR> <P>
+<H2><A NAME="SECTION00035000000000000000">Data Acquisition</A></H2>
+<P>
+<A NAME="hwda">&#160;</A>
+<P>
+The data acquisition system petravick94 records information
+from the imaging 
+camera, spectrographs, and photometric telescope.  Data are
+transferred via magnetic tape, with critical, low-volume samples sent
+over the internet.  Each system uses report files to track the
+observations.
+<P>
+Data from the imaging camera are collected in the Time Delay
+Integration (TDI, or Drift Scan) mode.  We treat the data from each
+imaging camera column of 5 photometric and 2 astrometric CCDs as a
+<EM>scan line</EM>.  For convenience, data from each CCD are broken into
+<EM>frames</EM> containing 1361 lines.  Before processing, the 128 rows from
+the next frame are added to the top of each frame, so that the pipelines
+work on 2048<IMG WIDTH=9 HEIGHT=16 ALIGN=MIDDLE ALT="tex2html_wrap_inline2843" SRC="img14.gif">1489 images. The resulting overlap
+between reduced frames (128 rows) is roughly the same as the number of
+columns that overlap with the other strip of a stripe. Some objects
+are detected in more than one frame, but when loading the databases we
+mark one of these detections as the ``primary'' detection (see the
+discussion in &#167;&nbsp;<A HREF="node50.html#swresolve">4.7</A> below). The frames which correspond to
+the same sky location in each of the five filters are grouped together
+for processing as a <EM>field</EM>.  Frames from the astrometric CCDs are
+not saved, but rather stars from them are detected and measured in
+real time to provide feedback on telescope tracking and focus.  These
+measurements are also written to magnetic tape.  This same analysis is
+done for the photometric CCDs, and we save these results along with
+the actual frames. Each night, a special bias run is taken to monitor
+the bias levels on CCD amplifiers.
+<P>
+Data from the spectrographs are read from the four CCDs (one red channel
+and one blue channel in each of the two spectrographs) after each
+exposure.  A complete set of exposures includes bias, flat, arc,
+smear, and science exposures taken through the fibers, as well as
+a uniformly illuminated flat to take out pixel-to-pixel variations.
+<P>
+Data from the photometric telescope include bias frames, dome and
+twilight flats for each filter, measurements of primary standards in
+each filter, and measurements of our secondary calibration patches in
+each filter.
+<P>
+All of these systems are supported by a common set of observers
+programs, with observer interfaces customized for each system to
+optimize our observing efficiency.
+<P>
+<HR><A NAME="tex2html414" HREF="node30.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html412" HREF="node22.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html408" HREF="node28.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html415" HREF="node30.html">Software</A>
+<B>Up:</B> <A NAME="tex2html413" HREF="node22.html">Hardware</A>
+<B> Previous:</B> <A NAME="tex2html409" HREF="node28.html">Photometric Telescope</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

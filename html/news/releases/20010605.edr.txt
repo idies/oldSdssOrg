@@ -1,0 +1,197 @@
+SDSS 01-01                                        
+For release after 9:15 a.m. PDT, June 5, 2001
+High-resolution images at http://www.sdss.org/
+
+Early results from the Sloan Digital Sky Survey: From under our nose to
+the edge of the universe
+
+Pasadena, Calif. -- Scientists of the Sloan Digital Sky Survey today
+(June 5) presented results based on early data from the project. The
+first glimpses of what will ultimately be the most comprehensive and
+fully digital map of the sky included identification of the two most
+distant objects ever observed; new light on asteroids; and the first
+SDSS results on the large-scale distribution of galaxies.
+
+Sky Survey collaborators also announced the release to the worldwide
+astronomy community of the first large piece of the digital sky.
+
+Quasar Record-Breakers
+
+Dr. Donald Schneider of the Pennsylvania State University described the
+observation of two quasars with respective redshifts of 6.0 and 6.2, the
+most distant objects ever observed in the universe. The two new quasars
+break the previous distance record established by last year's SDSS
+discovery of a quasar at redshift 5.8. The data presented today also
+reveal still another quasar of redshift 5.8. The redshift of an object
+directly indicates the relative size of the universe when the light was
+emitted: light from a redshift 6.2 quasar left that object when the
+universe was 7.2 times smaller than it is today.
+
+"Quasars are precocious galaxies whose massive black holes began
+accreting matter, lighting them up when the universe was less than 800
+million years old," said Dr. Xiaohui Fan of the Institute for
+Advanced Study in Princeton, New Jersey, who led the team that
+identified the quasars. "They allow us to study the birth of
+galaxies, and the first supermassive black holes."
+
+The SDSS's goal is the observation of 100,000 quasars. To date,
+collaborators have discovered over 13,000, including the four most
+distant objects yet seen, and 26 of the 30 most distant quasars. The
+intervening material between us and a distant quasar absorbs some of the
+quasar light and leaves its imprint in the quasar's spectrum that is
+observed by the SDSS, explained Dr. Donald York of the University of
+Chicago, the Sky Survey's founding director.
+
+"In much the same way an x-ray reveals the inside of the human body,"
+York said, "this spectrum reveals a line of sight across the universe,
+sometimes passing through hundreds of galaxies.  With the SDSS spectrum
+of a single quasar we can study hundreds of distant galaxies, some of
+which are just forming." 
+
+The key to SDSS's success in quasar spotting is precision digital data
+in five colors, allowing astronomers to distinguish quasars from more
+common faint stars, explained Dr. Wei Zheng of the Johns Hopkins
+University, who helped develop the color-tagging technique. 
+
+SDSS scientists follow up identified high-redshift quasar candidates on
+larger telescopes to confirm their spectra. Astronomers took the spectra
+of the two record-breakers with the Astrophysical Research Consortium's
+3.5 m telescope, located at the Apache Point Observatory in New Mexico,
+also the site of the SDSS telescope. 
+
+"The discovery demonstrates the power of the 2.5 m special-purpose SDSS
+telescope working in tandem with the larger 3.5 m general-purpose
+telescope," York said. "It is exciting to see this partnership work just
+the way we dreamed it would." 
+
+Asteroids
+
+The SDSS collaborators presented the first clear evidence for chemical
+segregation in the belt of asteroids between Mars and Jupiter.
+
+By viewing the asteroids in five color bands, explained Dr. Tom Quinn of
+the University of Washington, the SDSS survey can reliably separate
+individual asteroids into two main classes, rocky silicate asteroids and
+more primitive carbonaceous asteroids.
+
+"The SDSS observations also showed that the two types of asteroids are
+spatially separated," Quinn said, "with the inner belt of rocky
+asteroids centered at about 2.8 AU from the sun and the outer belt of
+carbonaceous asteroids centered at about 3.2 AU. This distribution has
+important implications for unraveling how the solar system formed and
+suggests that planet migrations that seem to be common in other
+planetary systems have not occurred in ours."
+
+One astronomical unit, or AU, corresponds to the distance from the sun
+to the earth.
+
+The SDSS asteroid sample also turned up another surprise.
+
+"There appear to be fewer asteroids smaller than about 4 km in diameter
+in the asteroid belt than we previously thought,"  said Dr. Zeljko
+Ivezic of Princeton University, the leader of the SDSS asteroid
+team. "Since the asteroid belt is believed to be the reservoir for
+Earth-crossing asteroids, the new SDSS observations suggest that future
+asteroid collisions with Earth may be less likely than previously
+believed."
+ 
+The SDSS scanning technique allows only five minutes to follow celestial
+objects as they move across the field of view, said Dr. Robert Lupton of
+Princeton University.  During this time asteroids appear to move a
+distance just 1/1000th the size of the moon, relative to the distant
+stars.
+
+"Nevertheless," Lupton said, "we can reliably detect their tiny motions
+and even determine their orbital motions around the sun."
+
+The asteroid observations rely on precision position-finding software
+developed by SDSS collaborators at the US Naval Observatory.
+
+Large-Scale Galaxy Distribution
+
+The early SDSS results for distribution of matter in the universe
+reinforce the current model of a low-density universe whose expansion is
+accelerating, announced Dr. Alex Szalay of the Johns Hopkins University.
+
+"Our results fit with the distribution of matter inferred from
+measurements of the cosmic microwave background radiation," Szalay said.
+
+Dr. Josh Frieman of the University of Chicago and Fermi National
+Accelerator Laboratory said that SDSS observations together with recent
+measurements of the cosmic microwave background radiation have now
+pinned down the distribution of matter from the relatively small scale
+of galaxies all the way to the limits of the observable universe.
+
+"Our observations are consistent with the idea that our universe
+underwent a burst of enormous expansion when it was a fraction of a
+second old," Frieman said. 
+
+The SDSS sample has also begun to answer longstanding questions about
+the origins of galaxy types, the so-called "nature vs. nurture" debate.
+
+"Our data show that different kinds of galaxies cluster differently,
+indicating that galaxies are influenced by their environment," said
+Professor David Weinberg of the Ohio State University.
+
+The quality of the SDSS digital data supersedes that of previous
+surveys, which enables collaborators to make precise measurements of
+large-scale structure even though they are using only a few percent of
+the ultimate Survey data, explained Ryan Scranton, a graduate student at
+the University of Chicago who played a key role in the analysis.
+
+Large-Scale Data Distribution
+
+In a major milestone for astronomy, SDSS collaborators announced the
+release to the worldwide astronomy community of the Survey's early
+data. The release includes 500 square degrees of the sky, 500 Gigabytes
+of images, precision measurements of some 14 million objects, and
+spectra of 50,000 galaxies and 5,000 quasars. Ultimately, the SDSS plans
+to release to astronomers and the public all the data from the five-year
+Survey. This enormous data release--the biggest ever in astronomy--will
+reside in archives at both Fermilab and the Space Telescope Science
+Institute in Baltimore, MD.
+
+"I expect that the discoveries by astronomers outside the SDSS
+collaboration, using the data archive, will ultimately dwarf those
+produced by the collaboration itself," said Dr. Marc Postman, of the
+Space Telescope Science Institute, who helped develop the archive
+interface.  
+
+Dr. Chris Stoughton of Fermilab explained that the software that
+produced the data involved more than a million lines of code written by
+the SDSS scientists.
+
+"This early data release represents the work of dozens of astronomers,
+computer scientists and programmers working over the last decade,"
+Stoughton said.
+
+The key to accessing the data is the SkyServer, an interactive interface
+developed with the help of Dr. Jim Gray of Microsoft's Bay Area Research
+Center, said Hopkins' Szalay.
+
+"With the SkyServer and the early Sloan data, any astronomer can
+navigate the universe and access data for over 10 million objects," 
+Szalay said.
+
+A version of the SkyServer designed for students and the general public
+is currently in development.
+
+While the main science goal of the survey is a three-dimensional map of
+the universe constructed from the positions of a million galaxies, the
+SDSS will be the field guide to the heavens for decades, according to
+Dr. John Peoples Jr., the project's director.
+
+"When it is complete, the sky will be open to professional astronomers,
+schoolchildren and the general public alike, day or night, rain or
+shine," Peoples said.
+
+Funding for the Sloan Digital Sky Survey (SDSS) has been provided by the
+Alfred E. Sloan Foundation, the participating institutions, the National
+Aeronautics and Space Administration, The National Science Foundation,
+the U.S. Department of Energy, the Japanese Monbukagakusho, and the Max
+Planck Society. The SDSS is a joint project of The University of
+Chicago, Fermilab, the Institute for Advanced Study, the Japan
+Participation Group, The Johns Hopkins University, the
+Max-Planck-Institute for Astronomy (MPIA), the Max-Planck-Institute for
+Astrophysics (MPA), New Mexico State University, Princeton University,
+the United States Naval Observatory and the University of Washington.

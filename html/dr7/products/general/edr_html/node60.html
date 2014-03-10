@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Extraction and Calibration of Spectra</TITLE>
+<META NAME="description" CONTENT="Extraction and Calibration of Spectra">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html771" HREF="node61.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html769" HREF="node59.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html763" HREF="node59.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html772" HREF="node61.html">Measuring Spectra</A>
+<B>Up:</B> <A NAME="tex2html770" HREF="node59.html">Spectroscopic Pipelines</A>
+<B> Previous:</B> <A NAME="tex2html764" HREF="node59.html">Spectroscopic Pipelines</A>
+<BR> <P>
+<H3><A NAME="SECTION000410100000000000000">Extraction and Calibration of Spectra</A></H3>
+<P>
+<A NAME="swspectro2d">&#160;</A>
+<P>
+The <TT>spectro2d</TT> pipeline works in two stages.  First, it reduces
+the data from each chip from each fifteen-minute exposure separately,
+and then it combines the results from each exposure.
+<P>
+After bias subtraction, each raw image is divided by a uniformly
+illuminated flat to take out pixel-to-pixel variations.  The
+flat-field spectra (i.e., the flat-field observed through the fibers)
+are then traced on the CCD: for each
+fiber, the flat-field image centroid in column position is fit by a
+polynomial in row number. 
+The flat-field spectra are optimally extracted, assuming a
+Gaussian profile for each one, simultaneously fitting a low-order
+polynomial to scattered light.  These fits will also be used for
+the first-order object extraction of the science and arc frames,
+allowing for small offsets.
+The arc lamp spectra are extracted as well and centroids of the lines
+are measured, to which we fit a fifth-order Legendre polynomial.
+<P>
+The flat-field spectra
+are then wavelength-calibrated, normalized, and combined to form a
+``superflat'' for each spectrograph camera, by
+stacking the 320 normalized flat-field spectra and performing an
+iterative least-squares bspline fit with outlier rejection on this
+<IMG WIDTH=80 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline3515" SRC="img180.gif"> oversampled dataset to obtain an effectively continuous
+function. For each fiber, the superflat is resampled at every pixel
+and divided into the extracted flat-field spectrum to form the ``fiber
+flat.''  In this way, flat-field variations between fibers are
+removed, as are small-scale features in the wavelength dependence of
+the system response.
+<P>
+For the science exposures, the object and sky fibers are spatially
+traced, with tweaking from the flat-field trace, and optimally
+extracted.  In the extraction, the Gaussian fiber profile fitting can
+also be tweaked from the fiber-flat image. Scattered light is removed by 
+a fourth order Chebyshev polynomial
+fit. Outlying pixels are rejected and masked.  The extracted spectra
+are then flat-fielded by
+dividing by the fiber flats, and the wavelength solution is applied,
+using a vacuum wavelength scale, adjusting slightly to match the known
+positions of certain sky lines, and correcting to the heliocentric
+frame.  The wavelength calibration is accurate to of order 10
+km s<IMG WIDTH=16 HEIGHT=9 ALIGN=BOTTOM ALT="tex2html_wrap_inline2861" SRC="img20.gif"> or better.
+<P>
+As with the flats, an oversampled  ``supersky'' is constructed from
+the 32 sky fibers per plate.  
+For each fiber, the supersky is resampled
+at every pixel in the object spectrum and subtracted.
+<P>
+Telluric absorption in four wavelength regions in the red spectra is removed 
+using spectrophotometric and reddening standard stars: these are
+used to construct four ``superTelluric'' spectra using the bspline
+fitting procedure.
+<P>
+Next, <TT>spectro2d</TT> performs a spectrophotometric flux calibration
+of the individual exposures: the counts in each exposure are placed on
+the same scale, and the wavelength scale is rebinned to a simple
+polynomial in log <IMG WIDTH=8 HEIGHT=12 ALIGN=BOTTOM ALT="tex2html_wrap_inline2921" SRC="img35.gif">.
+<P>
+If a smear exposure exists, the counts in each exposure are corrected
+to match a low-order fit to the smear counts; this corrects for light
+which falls outside the 3'' fiber aperture because of seeing,
+guiding errors, and atmospheric refraction.  However, 
+since the smear exposure procedure was implemented part
+way through commissioning, many of the plates included in the EDR do
+not have smear exposures (see Table&nbsp;<A HREF="node65.html#tbledrspectra">4</A>).
+<P>
+Next, the spectra are flux-calibrated by matching the counts
+in the mean of the high S/N spectra of the spectrophotometric and
+reddening standards on the plate, and equating this to the synthetic
+composite F8 subdwarf spectrum from Pickles (1998).  This is placed on an
+absolute scale by matching the synthesized <IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline2863" SRC="img21.gif"> fiber magnitudes of
+these stars to the SDSS photometry<A NAME="tex2html14" HREF="footnode.html#1261"><IMG  ALIGN=BOTTOM ALT="gif" SRC="../../../images/foot_motif.gif"></A>.
+This procedure removes the instrument response as a function of
+wavelength in each spectrograph camera.  The absolute accuracy of the
+spectrophotometry is not well-measured at this point, but can probably
+be trusted to 20% for point sources when smear exposures are
+available.  Note that for <EM>extended</EM> sources (galaxies), the smear
+technique effectively corrects the spectrophotometry to a <IMG WIDTH=53 HEIGHT=28 ALIGN=MIDDLE ALT="tex2html_wrap_inline2959" SRC="img51.gif"> aperture; in the presence of spectral gradients (e.g., nuclear
+emission lines), the results may be difficult to interpret.
+<P>
+Finally, for each object, the individual science frames, both red and
+blue halves, are stacked and fit with the iterative bspline, with
+inverse variance weighting. In the process, outliers due to cosmic
+rays are rejected and masked, and errors in the fluxes estimated. The
+combined, merged spectra are 
+resampled in constant velocity pixels (<IMG WIDTH=34 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline3527" SRC="img181.gif">), with a pixel
+scale of 69&nbsp;km&nbsp;sec<IMG WIDTH=16 HEIGHT=9 ALIGN=BOTTOM ALT="tex2html_wrap_inline2861" SRC="img20.gif">. If possible, exposures on multiple nights are
+combined. If a plate is re-plugged, however, only the exposures with a
+given plugging are combined.
+<P>
+Mask bits are set for each pixel of the reduced spectra, as described
+in Table&nbsp;<A HREF="node65.html#tblspectromask">13</A>.   Two masks are given for the final
+combined spectra, the bits in the <TT>OR</TT> mask
+set if the relevant flag was set in any of the individual exposures
+entering the combination, while the <TT>AND</TT> mask indicates that the
+flag was set in all of the exposures for that pixel.  For most
+purposes, one should examine the <TT>OR</TT> mask to be safe. 
+Pixels flagged <TT>FULLREJECT, NOSKY, NODATA</TT>,
+or <TT>BRIGHTSKY</TT>, or those with error set to identically zero are
+likely to be corrupted.  Many of these are due to bad columns on the
+CCD's, or cross-talk from <EM>very</EM> bright objects in neighboring
+fibers (see the flag <TT>NEARWHOPPER</TT>).
+<P>
+  On occasion, the spectra exhibit unphysical wiggles due to problems
+in the spectrophotometry, especially in the region of the dichroic
+split (<IMG WIDTH=51 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3533" SRC="img182.gif">&#197;); this will be improved in future releases.
+<P>
+<HR><A NAME="tex2html771" HREF="node61.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html769" HREF="node59.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html763" HREF="node59.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html772" HREF="node61.html">Measuring Spectra</A>
+<B>Up:</B> <A NAME="tex2html770" HREF="node59.html">Spectroscopic Pipelines</A>
+<B> Previous:</B> <A NAME="tex2html764" HREF="node59.html">Spectroscopic Pipelines</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

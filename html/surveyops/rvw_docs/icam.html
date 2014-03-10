@@ -1,0 +1,615 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+<center><i><FONT size=2><h4> Sloan Digital Sky Survey<BR>Review of Observing Systems and Survey Operations </i></FONT></H4> 
+</center>
+<P align=center><FONT size=5><STRONG>Imaging Camera 
+Overview <BR></STRONG></FONT><FONT size=2>Connie Rockosi<BR>April 11, 
+2000</FONT></P>
+<br>
+<P align=center>
+
+<P></P>
+<HR id=HR1 style="HEIGHT: 6px">
+
+<H3><FONT size=3>Introduction</FONT></H3>
+<br>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P><FONT size=2>
+The SDSS imaging camera was delivered to APO in October 1997 and
+completely reassembled in the clean room in December of that year.  It
+saw its first light on the 2.5m in May 1998.  We have since fixed the
+cause of a few electronics problems that showed up in the original
+data, and have tried to make the instrument as it is installed at the
+telescope easy to care for and robust.  A technical description of the
+design of instrument is far outside the scope of this review, and can
+be found in Gunn et al.  (AJ 116, 3040. 1998).<br>
+<br></P>
+<br></FONT></BLOCKQUOTE>
+<h3><FONT size=3>Operational Description </FONT>   </h3>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P>
+<br><FONT size=2>
+The CCDs are mounted off the back side of the second imaging corrector
+lens, and that lens is carried mechanically by a stainless steel ring
+that attaches to the telescope on kinematic mounts.  The CCD
+electronics and liquid nitrogen cooling system and the rest of the
+support electronics are back behind the CCDs within the circumference
+of the steel ring.  The whole instrument is roughly cylindrical with a
+diameter of about a meter and a depth 2/3 that at the high point of
+the back cover, and weighs approximately 700lbs.  Surrounding the
+camera is an open rectangular structure we call the saddle which is
+mounted to the telescope independently from the camera and carries the
+weight of the 400lbs of powersupplies and liquid nitrogen supply
+resevoirs that are connected to the camera through cables and
+vacuum-jacketed hoses.  The imager is mounted to the telescope on the
+central rotator bearing when it is taking data and is stored on its
+cart in a small enclosure on the telescope's rotating floor when it is
+not.  <a href = "/surveyops/obsysreview400/25rotat.jpg"> Figure 1 </a> shows the imager mounted on the back of the telescope,
+between the two green spectrograph bodies.  The back cover is off,
+exposing some of its maze of plumbing and cables.  <br>
+<br>
+The 54 CCDs in the imager are housed in eight independent dewars, each
+with its own LN2 resevoir, autofill plumbing, powersupply and data
+output to the DA system.  The dewars are evacuated to a few 10^-7 Torr
+when cold and contain the CCDs mounted on their optical benches,
+preamplifier and signal-conditioning circuitry for the CCD clocking
+signals and a 200ml LN2 resevoir and the associated thermal regulation
+system for the detectors.  The double-correlated sampling and 16-bit
+digitization circuitry for each CCD is mounted in an enclosure on the
+back of its dewar, and the parallelized data for all the CCDs in a
+dewar is brought out on fiber.  All the CCDs are clocked
+synchronously, and the clock waveforms are derived from a master 8MHz
+clock.  The digital signals are carried around the instrument on RS485
+busses, and converted to and if necessary retransmitted from 5V CMOS
+where they are used.  <a href = "/surveyops/obsysreview400/camassy.ps">Figure 2 </a> is a schematic diagram of the focal
+plane layout.  <a href = "/surveyops/obsysreview400/dewar_sketch.ps">Figure 3 </a> is a drawing of a single dewar, showing the
+detectors on their optical benches, the associated signal-processing
+electronics in their chassis on the back, and the LN2 resevoir in the
+center.<br>
+<br>
+
+Each dewar runs from a set of power supplies kept in the chassis on
+the saddle, and the voltages they generate are monitored in hardware
+for under- or overvoltage conditions.  If a supply is 10% beyond its
+nominal value the entire set of supplies for that dewar is shut down
+and must be swapped out or otherwise tended to.  Operating procedure
+is to swap out the module if the problem is in the supply, with more
+detailed debugging done off-line during the day<br>
+<br>
+
+Everything in the instrument is controlled by Forth code running on a
+Hitachi H8/532-based microcontroller made by Triangle Digital Systems,
+Ltd.  Communication to the outside world is over a 9600-baud RS232
+serial connection.  The microcontroller manages the configuration of a
+slave exactly like itself that is busy full-time generating the
+clocking signals for the CCDs.  Through its I/O ports the micro also
+controls the shutter and the LN2 autofill, sets the DACs that control
+the 21 operating voltages for each CCD, and monitors the state of the
+instrument.  The health and safety monitoring is quite extensive and
+is an integral part of the instrument's robustness and safety; it will
+be discussed below.  The Forth code is put in an EPROM on the
+microcontroller, and the code is kept under version control.  The
+micro can return the value of a version string stored in the EPROM,
+and the same string is the tag used to retrieve the corresponding
+Forth source from the Survey's CVS repository.<br>
+<br>
+
+The CCDs are thermally connected to the LN2 resevoirs through
+conductive straps that bring them to thermal equilibrium somewhat
+below their desired operating temperature.  A proportional control loop
+uses a temperature sensor and heater resistor to keep each CCD at its
+operating temperature.  The LN2 resevoirs will hold for about two
+hours, and are filled once an hour from the 10L intermediate storage
+dewars on the saddle on command from the microprocessor.  The autofill
+system runs on pressure gradients, and the LN2 system is kept at about
+10psi.  To fill the resevoirs in the dewars, solenoid valves open on
+the vent side of each resevoir's plumbing and LN2 flows down the
+pressure gradient and into the resevoirs.  If the microprocessor for
+some reason does not properly control the fill system, the low-level
+control electronics automatically triggers a fill if a resevoir goes
+empty.  The 10L dewars are filled on the same principle from a
+standard 180L 22psi supply dewar on the rotating floor.  The control
+is less sophisticated and is not done through the microprocessor.  A
+180L dewar lasts 24 to 36 hours.<br>
+<br>
+
+The optical benches that mount all the CCDs in each dewar are located
+in the focal plane on kinematic mounts.  The mounts work by allowing
+titanium balls to roll along stainless steel rods in each corner of
+the rectangular optical benches.  By changing the relative rotation of
+the stainless steel rails between the corners, the optical benches are
+constrained in all dimensions.  The mounts are accurate and
+repeatable, but because the contact area between the balls and rods is
+small they are susceptible to damage from the forces transmitted to
+them during normal handling of the instrument.  For this reason, the
+optical benches are latched away from the kinematic mounts when the
+camera is not observing.  The motion toward and away from the focal
+plane is accomplished by inflating or contracting a set of bellows in
+each dewar, and control is through a valve that switches the hoses for
+the bellows between high-purity 40psi N2 to inflate them and a source
+of vacuum to contract them.  Moving the mechanical benches on and off
+the kinematics is part of the process of instrument change for the
+imager.  <a href = "/surveyops/obsysreview400/bench.ps"> Figure 4</a> is a photograph of one dewar's CCD mounting
+hardware.  The optical bench is face-up on the left.  The rods for the
+kinematic mounts are visible in the four corners, and at the bottom
+the picture is looking down on one of the latches that holds the bench
+off the kinematics for handling.<br>
+<br>
+
+Because of design constraints this motion will only work if the
+instrument is vertical, and it is possible to damage the kinematic
+mounts if the optical benches are moved with gravity pulling them
+toward the ends of the dewars.  It is thus very important that the
+optical benches be properly on their kinematic mounts when the imager
+is on the telescope and it is slewed away from zenith, and that they
+are latched off their kinematic mounts when the imager is taken off
+the telescope before it is rolled back into its enclosure.<br>
+<br>
+
+Because the imager does not know its own orientation, the
+microprocessor does not have control over the motion of the optical
+benches.  Instead, there is four-signal interface between the the PLC
+and the hardware in the imager that controls the valves for the
+bellows.  Two signals come from the PLC to the imager to command
+motion and two signals are returned to the PLC from the imager to
+report status.  The PLC can command the optical benches to be either
+on the kinematic mounts (unlatched) for observing or latched away for
+safe handling of the camera, and the PLC interlock logic will only
+pass this request if the telescope altitude is above 88 degrees.  The
+bellows valve controller can measure the pressure in each dewar's
+bellows hose and compare it against the supply sources of 40psi N2 and
+vacuum, and knows which one it expects to match given the commanded
+position.  If the pressure for all the dewars matches the correct
+supply, then the control hardware will claim to believe the optical
+benches are latched or unlatched and assert the appropriate status
+line to the PLC.  The microprocessor can see both status signals and
+report them through its RS232 interface.  There is an additional check
+on the instrument's orientation from a tiltmeter mounted inside the
+camera.  It produces a binary output which changes state when it moves
+through an angle 2 degrees from vertical.  This output is incorporated
+into the bellows valve control logic, and a latch or unlatch command
+will be refused if the tiltmeter indicates that the instrument is not
+vertical.  The micro has access to this bit so it can be interrogated
+if a latch command fails.  The micro can also report the values of the
+bellows pressure for all eight dewars, and the value of the absolute
+pressure in the vacuum supply.<br>
+<br>
+
+All this information, plus gauge readings of the supplies and a gauge
+mounted on the side of the imager that reads the pressure in one
+dewar's bellows hose directly, can be made available during instrument
+change.  There is a toggle-switch control box that can be plugged into
+the control cable in place of the PLC interface to move the optical
+benches directly.  As a last resort there is a ball valve that can
+switch the source of the 40psi N2 supply hose between 40psi and
+vacuum.  This can be used to move the optical benches by taking
+advantage of the fact that with the control cable disconnected the
+bellows valves will always switch the hoses to the 40psi supply input
+to the camera.  This behavior of the valves is a precaution to keep
+the optical benches from moving if the instrument should lose power
+while pointed at an arbitrary position on the sky.<br>
+<br>
+
+There is a single cable bundle that goes to the imager which remains
+attached when the instrument is on the telescope and in its enclosure.
+It carries AC UPS power, LN2 from the 180L supply dewar, water-glycol
+for the heat exchangers, compressed air for the shutter actuators, N2
+for the autofill pressurization, vacuum and high-grade N2 for the
+optical bench bellows motion, the signals from the PLC to control the
+optical bench motion, the optical fibers that carry the RS232
+communication with the camera and the 10 optical fibers that bring the
+digitized pixel data out to the data acquisition system.  Any signal
+brought to the instrument on copper originates at the imager's
+rotating rack and is carefully referenced to the instrument's master
+ground.  The run from the rack up to the instrument is as short as is
+practical for both noise and lightning safety considerations.<br>
+<br>
+<br></P>
+<br></FONT></BLOCKQUOTE>
+<h3><FONT size=3>Health and Safety Monitoring </FONT>    </h3>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px"><FONT size=2>
+
+The imager is kept ready to take data at all times so that it can
+always take advantage of good observing conditions.  It is also an
+essential part of the Survey and as such it should be as difficult as
+possible for any harm to come to it.  It is also important that it not
+require an inordinate amount of attention from the observers and APO
+staff so that they do not spend too much of their time and energy on
+hardware support, and so that the instrument will be safe over long
+periods of inattention when blizzards, dust storms, overturned trucks
+on the Sunspot Highway, etc., keep its normal caretakers from their
+rounds.<br>
+<br>
+
+The microcontroller that runs the imager has access to the important
+information about every subsystem.  All the voltage levels are brought
+to a 10-bit A/D converter built into the Hitachi processor through an
+analog multiplexor, and the CMOS binary status information is all
+available on the micro's input ports.  The micro runs a continuous
+background process that loops through the subsystems and looks at each
+piece of status information.  It compares its measurement against a
+nominal value and tolerance, if applicable, and if it is outside the
+acceptable range a corresponding error flag is set.  There is a Forth
+command that has the micro go through the list of error flags and
+return a list of all the errors and some information on why the flags
+were set.  This list of errors is available all the time, updated
+roughly every four minutes as the micro cycles through its list of
+things to be checked.  We have tried to make the list exhaustive so
+that any failure mode that can adversely effect the data or harm the
+instrument will be caught by the micro and made available to the
+outside world through a single command.  The micro will not volunteer
+any information as a safeguard against clogging RS232 communication,
+and to cut down on chatter will return only the standard Forth "ok" if
+it does not detect any errors.  There are other commands to return the
+values of status measurements that the micro records as it goes
+through the monitoring loop, and these are designed to provided
+long-term performance monitoring of the instrument.  A complete list
+of everything checked by the micro is appended to the end of this
+document.<br>
+<br>
+
+For most error conditions that the micro can see, it is sufficient
+that it report the error when it is asked.  The data may be junk or
+the instrument out of service for a day or two if it goes undetected,
+but there is no threat of permanent harm to the instrument.  There is
+a subset of error conditions, however, that if unrectified could result
+in damage to the imager.  Since it is impossible to require that there
+always be someone on-site to handle such situations the imager
+responds to these on its own, whether or not its error status is ever
+queried.  It does so by doing the only thing that is guaranteed to be
+safe, which is to shut itself off.  It does so by allowing a watchdog
+timer to expire, which in turn opens a relay contact to cut off
+incoming AC power and turns the instrument off.  Normally the imager
+resets this timer every time it executes the monitoring process after
+checking that none of the designated errors are present.  The
+monitoring loop is done as part of the high-level functioning of the
+microprocessor, so if it hangs or crashes and stays down the watchdog
+timer will run out.  This is alleviated by a second watchdog with a
+much shorter timeout that the micro must actively reset in the same
+monitoring process; when this timer expires it executes a cold reset
+of the micro which should reboot it and restart the monitoring process
+before the instrument power shuts off.<br>
+<br>
+
+The following errors will result in the watchdog timer shutting down
+power to the instrument:<br>
+<br>
+
+-- Any of the CCD amplifier VDD voltages too high<br>
+<br>
+
+-- No flow in the water-glycol input lines to the imager from the
+chiller.  This is measured by closure of a switch contact in a flow
+sensor mounted in the input line to the instrument.<br>
+<br>
+
+-- Saddle powersupply chassis temperature above 45 C.  This is quite
+possible to reach if the chiller is not running.<br>
+<br>
+
+-- CCD temperatures above 40 degrees C.  They can (and will) get there
+if the detectors start at room temperature and are clocked
+continuously for an hour or so with the LN2 system not running.<br>
+<br>
+
+-- Instrument air or outer chassis temperature above 40 C.<br>
+<br>
+<br>
+<br></FONT></BLOCKQUOTE>
+<h3><FONT size=3>Current status </FONT> </h3>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P><FONT size=2>
+
+The last piece of functionality that has not yet been implemented is
+the PLC and IOP interface for controlling the optical benches.  We
+have so far left the control cable unplugged and positioned the
+optical benches by using the valve in the rack to force them to move.
+The imager's side of the control electronics for the bellows valves,
+the micro's access to the status bits and tiltmeter and the optical
+isolation and surge suppression for the signals in the PLC interface
+were finished before the instrument was shipped.  They have been
+tested and used to some limited extent while we worked in the clean
+room at Princeton and at APO, and exercised with the beginnings of the
+PLC interface in the last few months.  The imager is otherwise a
+reasonably self-contained system, but the optical bench control
+requires the coordination of many normally-independent parts of 2.5m
+operations so there are sure to be software and perhaps hardware
+modifications to the imager necessary to make the process work
+smoothly and transparently.<br>
+<br>
+
+The only outstanding problem preventing the imager from taking good
+data that that we would like to keep for the Survey is an intermittent
+noise problem with the u' CCD in dewar 2.  Other problems that need to
+be addressed as soon as possible are a recent problem in the leading
+astrometric dewar that causes CCD heater power supplies to trip their
+monitor circuits, and some bug or leak in the Forth code that
+occasionally crashes the imager which has begun to show up more often
+and less predictably now that we leave the instrument running all the
+time between dark runs.<br>
+<br>
+
+The scientific requirements document states the design goals of the
+instrument, and we have some of the data to see how well those goals
+are met.<br>
+<br>
+
+There are requirements on the FWHM across the array for a given
+free-air seeing and on the magnitude of a 5-sigma point source in all
+5 bandpasses, but these are difficult to assign entirely to the imager
+since they depend so heavily on the imager quality delivered by the
+telescope.  It is clear that we have to be sure that the alignment of
+the detectors in the focal plane is not a significant contribution to
+the image widths either from focus mismatch or distortion.<br>
+<br>
+
+There is a QE/throughput requirement specified on the minimum number
+of electrons that the imager should measure from a 20th magnitude
+object, and that is straightfoward to look at.  The requirements are:
+1300 e- in u', 9000 e- in each of r' and g', 6500 e- in i' and 1500 e-
+in z'; these are 75% of the predicted values.  The initial flux
+calibration done by the reduction pipelines is output as the flux in
+DN that would be measured from a 20th magnitude object in each frame
+in each detector.  From the reduction of some data taken in February
+2000 and multiplying by the gains to get electrons, the mean value for
+this 20th magnitude flux parameter for each CCD is listed below.  The
+dispersion around this mean is negligible.<br>
+<br>
+<br>
+<table cellpadding=2 cellspacing=2 width=15 style="HEIGHT: 209px; WIDTH: 697px" 
+ >
+    <TBODY>
+<tr>
+<td><FONT size=2>u1 1820 </FONT>   </td>		
+<td><FONT size=2>g1 10128 </FONT>   </td>         
+<td><FONT size=2>r1 9405 </FONT>   </td>	  
+<td><FONT size=2>i1 7281 </FONT>   </td>     
+<td><FONT size=2>z1 1484 </FONT>   </td>
+
+<tr> 
+<td><FONT size=2>u2 1796 </FONT>   </td>		
+<td><FONT size=2>g2 10185 </FONT>   </td>        
+<td><FONT size=2>r2 9171 </FONT>   </td>     
+<td><FONT size=2>i2 7981 </FONT>   </td>     
+<td><FONT size=2>z2 1531 </FONT>   </td>
+
+<tr>
+<td><FONT size=2>u3 1909 </FONT>   </td>		
+<td><FONT size=2>g3 10404 </FONT>   </td>        
+<td><FONT size=2>r3 9977 </FONT>   </td>     
+<td><FONT size=2>i3 7478 </FONT>   </td>     
+<td><FONT size=2>z3 1323 </FONT>   </td>
+
+<tr>
+<td><FONT size=2>u4 1830 </FONT>   </td>           
+<td><FONT size=2>g4 10922 </FONT>   </td>       
+<td><FONT size=2>r4 9587 </FONT>   </td>    
+<td><FONT size=2>i4 7530 </FONT>   </td>     
+<td><FONT size=2>z4 1281 </FONT>   </td>
+
+<tr>
+<td><FONT size=2>u5 1938 </FONT>   </td>           
+<td><FONT size=2>g5 10643 </FONT>   </td>
+<td><FONT size=2>r5 9705 </FONT>   </td>
+<td><FONT size=2>i5 6775 </FONT>   </td>
+<td><FONT size=2>z5 1522 </FONT>   </td>
+
+<tr>
+<td><FONT size=2>u6 1771 </FONT>   </td> 
+<td><FONT size=2>g6 10821 </FONT>   </td>
+<td><FONT size=2>r6 9698 </FONT>   </td>
+<td><FONT size=2>i6 7211 </FONT>   </td>
+<td><FONT size=2>z6 1411 
+</FONT>   </td></tr></TBODY>
+</table>
+      <P>
+                                   <br>
+
+This is not yet coallated for commissioning data to check for
+long-term effects, but we are easily meeting the minimum requirement
+in all but z', and not missing to badly in most cases.<br>
+<br>
+<br></P>
+      <P></P>
+      <BLOCKQUOTE></BLOCKQUOTE>
+<br></FONT>
+<h3><FONT size=3>Work To Do </FONT>    </h3>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P><FONT size=2>
+
+The PLC interface to the optical bench control is well underway and
+will be commissioned as part of the MCP-controlled instrument change.
+The direct gauge reading of the pressure to one dewar's bellows gives
+anyone working with the new interface a double-check that the optical
+benches are in the correct configuration to safely move the instrument
+and/or the telescope.  This should make it possible to debug the new
+optical bench control system with minimum chance of damage to the
+instrument.<br>
+<br>
+
+The noise problem in CCD u2 and the source of the microprocessor
+crashes need to be understood and fixed as soon as possible.  <br>
+<br>
+
+We are still finding little details that need to be worked out in the
+monitoring system, though it has worked quite well and done its job of
+saving the instrument from its builders on more than one occasion.  We
+have twice now had the camera shut itself off and warm up, taking it
+out of commission for several days, for an error that went away before
+it could do any harm.  The chiller and pumps that send water-glycol to
+the heat exchangers in the instrument are not run off a UPS and there
+is a delay of many minutes between the loss of utility power at the
+observatory and when the generator switches on.  If the
+microprocessor's monitor process checks the flow in the coolant lines
+in that interval, it will right now declare that a dangerous error
+condition exists and allow the watchdog timer to run out and shut down
+the instrument.  The micro will announce this fact if asked before the
+timer runs out, but the last several power failures have come in bad
+weather when no-one who would normally catch the problem was on site.
+It will take some time for the instrument to get dangerously hot with
+the chiller off so it seems reasonable to give the generator a little
+breathing space and change the coolant flow error to be an error only
+if there is no coolant flow for some predetermined amount of time.
+This should be safe particularly given that so many of the other
+errors that cause the imager to shut itself down are also related to
+thermal monitoring.<br>
+<br>
+<br></P></BLOCKQUOTE>
+<br></FONT>
+
+<h3><FONT size=3>Long-Term Robustness </FONT>  </h3>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P><FONT 
+size=2>
+
+The primary function of the imager is to produce good data for the
+survey, and one piece of monitoring and checkout code that has yet to
+be implemented is something that will look at the performance of the
+detectors and decide if the camera is giving acceptable data.  We have
+access to the statistical information for each frame that is provided
+by the on-line analysis code running in the DA system and this would
+allow performance monitoring to go on as a normal part of observing.
+We could also, if necessary, write special code that looked in detail
+at designated bias data and perform some tests.  We know the nominal
+readnoise and other characteristics of the detectors and can compare
+new data against these to look for any discrepancies.  Automated
+procedures for checking the CCD data would make testing the imager
+after it was worked on much easier and more reliable, and will
+hopefully prevent any data getting to FNAL that later had to be
+rejected because of some problem with the instrument.  <br>
+<br>
+
+The process by which a new version of the Forth code for the micro is
+accepted needs to be specified more concretely, probably by a set of
+commands that will exhaustively check the imager's normal functions so
+that the observers can be certain that it will be able to take data.
+The current procedure is for someone knowledgeable to install the new
+firmware and exercise the changes and be available when the imager is
+run in case problems are uncovered; hardly a long-term solution to the 
+problem.<br>
+<br>
+
+Mamoru Doi of the University of Tokyo and some of his colleagues built
+a monochrometer to measure and track the absolute quantum efficiency
+and other characteristics of the imager as part of the calibration of
+Survey photometry.  It is housed on top of the imager's enclosure and
+provides a means of illuminating the CCDs to check things like gain
+and linearity, though taking the data for such tests is right now very
+time-consuming and can only be done sporadically.  Once the
+calibration system gives us this detailed information about the
+imager's performance it will be incumbent on us to make use of it to
+be sure that the instrument takes uniform data over the length of the
+Survey.<br>
+<br>
+
+The CCDs were originally grouped in independent dewars partly as a
+precaution so that a catastrophic problem with the vacuum in one of
+the dewars would only effect a subset of the detectors.  However, the
+dewars all behaved quite poorly when we tried to leave them evacuated
+and the detectors cold for more than about two weeks.  This would have
+been unacceptable for Survey operations since the camera can usefully
+take data for most of a lunar cycle.  After finally deciding that the
+problem was not a leak, an ion pump was installed in the camera last
+summer.  It is mounted on a manifold that connects all eight dewars in
+the camera and the pump is left on and open to the dewars at all
+times.<br>
+<br>
+
+The eight dewars are now all part of the same, much larger vacuum
+system, and the ion pump turns out to have altered its characteristics
+enough that we need to go back and make sure that it is as we want it
+and fix it where necessary.  It is possible that we trap in the getter
+and on the cold outside of the LN2 resevoirs quite a lot of the debris
+that we want to take out with the ion pump.  If enough gas remains in
+the dewars there is significant danger to the CCDs as the instrument
+warms up, since the CCDs remain cold long after the LN2 resevoirs and
+the getter come back to room temperature and release all the gas they
+collected while they were cold.  The return to room temperature can be
+controlled to eliminate danger to the CCDs, but the instrument was
+designed to be safe when it is turned off unattended so that the
+microprocessor's control of the watchdog timer can be used to respond
+to dangerous error conditions.  We need to be sure that it is not now
+just as dangerous for the instrument to turn itself off.<br>
+<br>
+<br></P></BLOCKQUOTE>
+<br></FONT>
+<h3><FONT size=3>Maintenance </FONT>  </h3>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P><FONT size=2>
+
+The imager needs a new full 180L dewar every 24 to 36 hours.  Things
+like the 40psi supply pressure and vacuum for the optical bench motion
+are checked as part of setup for normal observing, and can be
+maintained by the daystaff or by the observers if necessary.<br>
+<br>
+
+If it turns out that running for long periods with the ion pump on
+leaves a substantial amount of gas trapped in the instrument, then it
+will be necessary to warm up the imager during full moon and put it on
+the vacuum pump to clean it up.  This is somewhat complicated by the
+fact that it can only be done with the imager on the back of the
+telescope, immobilizing it for of order 24 hours.<br>
+<br>
+
+The vacuum-jacketed lines need to be pumped when they begin to reduce
+the efficiency of LN2 transfer.  It looks like it will have to be done
+three or four times per year.<br>
+<br>
+
+We will have to decide what to do about changing the getter in the
+dewars now that the ion pump is installed.  Previously it looked like
+it would have to be changed once a year during the summer monsoon
+season.  <br>
+<br>
+
+It is expected that any in-depth repair or maintenance work on the
+imager will be done by its builders with support from the Survey staff
+at APO.<br>
+<br>
+<br></P></BLOCKQUOTE>
+<br></FONT>
+<h3><FONT size=3>Appendix: List of information monitored by 
+the imager's microprocessor </FONT>         </h3>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P><FONT size=2>
+
+The value of the 23 clock, amplifier and signal-processing voltages for
+    each of the 54 CCDs in the imager.  <br>
+
+Temperature sensor readings for each CCD <br>
+
+Voltage put across the heater resistor used to regulate the CCD 
+    temperature for 24 of the 30 photometric CCDs <br>
+Temperature of the LN2 resevoir for each dewar <br>
+Temperature in both power supply chassis on the saddle <br>
+Temperature of the air inside the instrument <br>
+Temperature of the main steel ring supporting the corrector and the 
+    rest of the camera <br>
+Current position of the optical benches as reported by the control 
+    hardware <br>
+Pressure in the hose that goes to each of the eight dewars' bellows <br>
+Pressure of the vacuum source for the optical bench system <br>
+Current position of the shutter blades and an error if they are not open 
+    if they have been commanded open.<br>
+Pressure in both 10L autofill supply dewars on the saddle<br>
+Success or failure in setting the DACs that control the CCD voltages<br>
+Whether or not the micro has rebooted since the the last acknowledged reboot
+Successful or unsuccessful completion of the last scheduled fill of the 
+          dewar resevoirs<br>
+Empty condition in one or more of the dewar LN2 resevoirs<br>
+Tiltmeter output status, vertical or 
+  not.</FONT></P>
+  <P><FONT size=2>
+     <br>&nbsp;</P></BLOCKQUOTE>
+<P></FONT>
+<hr id=HR1 style="HEIGHT: 6px">
+<BR><FONT size=2><EM><STRONG>Review of Observing Systems and Survey 
+Operations<BR></STRONG>Apache Point Observatory<BR>April 25-27, 
+2000</EM></FONT>
+<P></P>
+<P>&nbsp;</P></TR></TBODY>
+  <P></P></BLOCKQUOTE>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

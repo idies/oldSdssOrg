@@ -1,0 +1,181 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+<!--#include virtual="segueheader.html"-->
+<html>
+<head>
+<meta name="Author" content="segue-webmaster@sdss.org">
+
+<meta name="Keywords" content="SEGUE, Milky Way, stars, stellar parameters, 
+SDSS, Sloan, 
+digital, survey, galaxy, galaxies, quasar, universe, telescope, 
+astronomy, astrometry,
+spectroscopy, cosmology, large-scale structure, observatory,
+observatories, big bang, redshift, map">
+
+<meta name="Description" content="SEGUE Radial Velocities">
+
+<title>SEGUE</title>
+<link rel=StyleSheet href="../includes/sdss.css" type="text/css" media=screen>
+
+</head>
+
+<body>
+
+<!-- Overall table structure - 3x3 -->
+
+<table width="100%" height="100%" border="0" cellspacing="0" 
+cellpadding="0" style="padding:0px; margin:0px; border:0px"> <tr>
+
+
+</tr>
+
+<tr>
+<!-- Body -->
+
+<td valign="top" width="100%" height="100%" bgcolor="#FFFFFF" 
+style="padding:15px;">
+
+<div align="center">
+
+<h1>Radial Velocities</h1>
+<div align="left">
+<h3>The Adopted Radial Velocities Used by the SSPP</h3>
+<p>
+The <i>spZbest</i> fits file, which is generated from the SDSS spectroscopic
+reduction pipeline, provides two estimated radial velocities. One is an
+absorption-line redshift derived from a cross-correlation procedure using
+templates that were obtained from SDSS commissioning spectra (Stoughton et al.
+2002). Another estimate comes from performing a "best-match" procedure that
+compares the observed spectra with externally measured templates (in this case,
+the ELODIE library high-resolution spectra, as described by Prugniel &
+Soubiran 2001 and Moultaka et al. 2004), degraded to the resolving power of 
+SDSS spectra.
+</p>
+<p>
+Previous experience with the analysis of SDSS stellar spectra suggested 
+that the
+radial velocity estimated from the ELODIE template matches is often the best
+available estimate, in the sense that it is the most repeatable based on 
+spectra
+of "quality assurance'' stars with multiple determinations. However, there are
+some cases where the quoted error of an ELODIE spectral match velocity is 
+larger than expected, so we also make use of the cross-correlation radial 
+velocity, in
+the following manner:
+<ol>
+<li>If the velocity determined by comparison with the ELODIE
+templates has a reported error of 20 km s<sup>-1</sup> or less, 
+then this velocity is
+adopted and the radial velocity flag is set to `RVOK(20)'. 
+<li>If the error from the
+ELODIE template comparison is larger than 20 km s<sup>-1</sup> and the relative
+difference between the two reported radial velocities is less than 40 km
+s<sup>-1</sup>, then we take an average of the two techniques, and the radial 
+velocity flag is set to `RVOK(40) '. 
+<li>If the error in the reported ELODIE velocity is
+larger than 20 km s<sup>-1</sup>, and the difference of between the 
+two estimates is between 40 and 100 km s<sup>-1</sup>, we take an average 
+of the two and the radial velocity flag is set to `RVOK(100)'.
+<li>If none of the above conditions are satisfied (which happens only 
+rarely, and
+mainly for quite low S/N spectra, or for hot/cool stars without adequate
+templates), then we obtain an independent estimate of the radial velocity based
+on our own IDL routines. The calculation of the radial velocity is carried out
+by determining wavelength shifts for several strong absorption line features 
+(Ca II K, Ca II H, H&delta;, Ca I, H&gamma;, H&beta;, Na I, H&alpha;, the Ca~II
+triplet). After ignoring the calculated velocity above +500 km s<sup>-1</sup> 
+or below
+-500 km s<sup>-1</sup> from the individual lines (which are very often 
+spurious), we
+obtain a 3&sigma; clipped average of the remaining radial velocities. If this
+computed average falls between -500 km s<sup>-1</sup> and 
++500 km s<sup>-1</sup>, we take
+the calculated radial velocity as the adopted radial velocity and set 
+the radial
+velocity flag to `RVCALOK'.
+</ol>
+</p>
+<p>
+It should be noted that many of the techniques used for atmospheric parameter
+estimation in the SSPP work well even when the velocity determination for a
+given star has errors of up to 100 km s<sup>-1</sup> or more. 
+Hence, we choose not to
+ignore spectra with high velocity errors, but rather simply indicate caution
+with the appropriate radial velocity flag.
+</p>
+<p>
+If none of the above methods yield an acceptable estimate of radial 
+velocity, or
+if the reported velocity is apparently spurious (greater than 1000 
+km s<sup>-1</sup>
+or less than -1,000 km s<sup>-1</sup>), we simply ignored the 
+spectrum of the star in
+our subsequent analysis, and set the radial velocity flag to `RVNOTOK'.
+</p>
+
+<h3>Checks on Radial Velocities &minus; Zero Points and Scatter</h3>
+<p>
+To check on the accuracy of the SSPP radial velocities, we compared with the
+sample of over 150 high-resolution spectra of SDSS-I/SEGUE stars that have been
+obtained in order to calibrate and validate the stellar atmospheric parameters
+obtained by the SSPP.
+</p>
+<p>
+After rejecting problematic spectra (e.g., low S/N high-resolution spectra, 
+or stars that appear to be spectroscopic binaries at high spectral resolution),
+137 stars remain to compare with the radial velocity results obtained for the
+medium-resolution SDSS spectra with the SSPP. A consistent offset of 
+about -6.6 km s<sup>-1</sup> (with a standard deviation of 5.2 km 
+s<sup>-1</sup>) is obtained from a Gaussian fit to the
+residuals; this offset appears constant over the color range 0.1 &le: g-r &le;
+0.9. 
+</p>
+<p>An additional comparison with the radial velocity distribution of likely
+member stars in the Galactic globular clusters M~15 and M~13 reveals similar
+offsets (-6.8 km s<sup>-1</sup> and -8.6 km s<sup>-1</sup>, respectively; see 
+<a href="documents/ms0627.pdf">Lee et al.
+2007</a> for a more detailed analysis). 
+</p>
+<p>
+The origin of this velocity offset has not
+yet been identified, but we expect that it may be tied to the wavelength
+solutions obtained for the individual fibers. However, in order to account for
+its presence, we apply an empirical +7.3 km s<sup>-1</sup> shift 
+(the mean of the
+offsets from analysis of the high-resolution and the globular-cluster data), to
+each radial velocity obtained by the SSPP. For the time being, we conclude that
+the zero-point uncertainties in the corrected radial velocities determined by
+the SSPP (and the SDSS spectroscopic reduction pipeline it depends on) 
+should be close to zero, with scatter on the order of 5 km s<sup>-1</sup>. 
+</p>
+<p>
+Note that the scatter in the determination of radial velocities, 
+based on the average displacements of
+the `quality assurance' stars with multiple measurements, varies from 3.5 km
+s<sup>-1</sup> (for brighter stars) to 20 km s<sup>-1</sup> 
+(for fainter stars).
+</p>
+
+
+
+<br clear=all>
+<img src="images/dot_clear.gif" width="90%" height="5"><br>
+
+
+<tr>
+
+<td height="30" bgcolor="#000000" width="132">
+&nbsp;
+</td>
+
+
+
+</span>
+</center>
+
+</td></tr></table>
+
+</body>
+</html>
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->
+

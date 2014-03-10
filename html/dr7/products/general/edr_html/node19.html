@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Spectroscopy Files</TITLE>
+<META NAME="description" CONTENT="Spectroscopy Files">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html311" HREF="node20.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html309" HREF="node17.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html305" HREF="node18.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html312" HREF="node20.html">User Support</A>
+<B>Up:</B> <A NAME="tex2html310" HREF="node17.html">Access to Files</A>
+<B> Previous:</B> <A NAME="tex2html306" HREF="node18.html">Imaging Files</A>
+<BR> <P>
+<H3><A NAME="SECTION00025200000000000000">Spectroscopy Files</A></H3>
+<P>
+Spectroscopy files are available from the main Data Archive Server page.  Data
+for individual plates are in subdirectories specified by <TT>$plate/$mjd</TT>,
+where valid <TT>$plate/$mjd</TT> combinations are in Table&nbsp;<A HREF="node65.html#tbledrspectra">4</A>.
+<P>
+Calibrated spectra which have been extracted from the spectroscopic
+frames with the <TT>spectro2d</TT> pipeline (&#167;&nbsp;<A HREF="node60.html#swspectro2d">4.10.1</A>)
+are available under the root URL via
+<PRE>2d_10/$plate/2dmerge/spMerge2d-$mjd-$plate-$fiber.fit,</PRE>
+where <TT>$plate</TT> is the plate number (four digits, zero padded),
+<TT>$mjd</TT> is the date observations were completed
+(Table&nbsp;<A HREF="node65.html#tbledrspectra">4</A>), and <TT>$fiber</TT> is the fiber number
+(three digits, zero padded).
+<P>
+Calibrated spectra, with information from the <TT>spectro1d</TT> pipeline
+(&#167;&nbsp;<A HREF="node61.html#swspectro1d">4.10.2</A>), such as redshift and identification, are
+available under this root URL via 
+<PRE>1d_10/$plate/1d/spSpec-$mjd-$plate-$fiber.fit.</PRE>
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

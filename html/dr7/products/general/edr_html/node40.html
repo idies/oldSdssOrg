@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Moving Objects</TITLE>
+<META NAME="description" CONTENT="Moving Objects">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html564" HREF="node41.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html562" HREF="node36.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html556" HREF="node39.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html565" HREF="node41.html">Measurements of Flux</A>
+<B>Up:</B> <A NAME="tex2html563" HREF="node36.html">The Frames Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html557" HREF="node39.html">Deblending of Objects</A>
+<BR> <P>
+<H3><A NAME="SECTION00044400000000000000">Moving Objects</A></H3>
+<P>
+<A NAME="swphotomoving">&#160;</A>
+<P>
+Main-belt asteroids have a proper motion of several arcsec in the roughly 5
+minutes it takes for an object to cross the imaging camera.  This means that
+they will have a different centroid in the different photometric bands.  If
+not taken into account, this could mean that they would be deblended into
+separate objects of unusual color, playing havoc with the target selection
+algorithms (&#167;&nbsp;<A HREF="node51.html#swtarget">4.8</A>).  Thus the deblender checks every object for
+consistency with uniform proper motion between the filters.  In the <TT>
+PhotoObj</TT> class (Table&nbsp;<A HREF="node65.html#tblphoto">6</A>) the quantities <TT>colv</TT> and <TT>
+rowv</TT> (and their associated errors), give the resulting proper motion (along
+the columns and rows of the CCDs respectively) in units of degrees per day.
+The PSF photometry in each band is done on the object center, taking the
+motion into account, and therefore is properly measured
+ivezic01.
+<P>
+Flag bit values listed in Table&nbsp;<A HREF="node65.html#tblflag">9</A> describe this
+processing.  The <TT>MOVED</TT> flag indicates that the deblender
+considered whether to deblend the object as moving; it is not very
+useful.  If the deblender actually deblended the object as moving, the
+flag <TT>DEBLENDED_AS_MOVING</TT> is set; otherwise the flag <TT>
+NODEBLEND_MOVING</TT> is set.  Note that an object can have a
+statistically significant motion without being deblended as such if
+the motion is small enough that the photometry would be fine without
+taking it into account.  An object whose motion is not statistically
+significant is flagged <TT>STATIONARY</TT>, while an object whose motion
+is inconsistent with a straight line is flagged <TT>
+BAD_MOVING_FIT</TT>.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,303 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<CENTER><B><I><FONT SIZE=+1>Sloan Digital Sky Survey</FONT></I></B></CENTER>
+
+<CENTER><B><I><FONT SIZE=+1>Review of Data Processing Operations</FONT></I></B><BR>
+<BR></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Status of Data Processing and Distribution Systems
+as of July 2000</FONT></B></CENTER>
+
+<CENTER>Stephen Kent</CENTER>
+
+<CENTER>July 5, 2000</CENTER>
+
+
+<P>
+<HR style="HEIGHT: 6px">
+
+<P>We present in this document a brief description of the
+major components of the date processing and distribution systems,
+their status as of
+July 2000, tasks yet to be done,
+and a brief description of recent progress and activities.
+<BR>&nbsp;
+<h3>I. Requirements</h3>
+The top level science and functional requirements are defined by two
+documents:
+<p>
+<dir>
+<li><a
+ href="http://www-sdss.fnal.gov:8000/requirements/doc/www/scireq/scireq.html">
+Science Requirements</a>
+<li><a
+ href="http://www-sdss.fnal.gov:8000/requirements/doc/www/softreq/softreq.html">
+Software requirements</a></li>
+</dir>
+<p>
+In cases that the two disagree, the former has precedence.
+<p>
+<H3>II. FUNCTIONS</H3>
+An overview of the data flow is shown in the following figure:
+<p>
+<IMG src="system.gif">
+<p>
+The data flow logically breaks into 4 categories:
+<p>
+<ol><li><b>Imaging Processing:</b>
+A single night of imaging observations produce 8 DLT 4000
+tapes: 6 with full frame imaging data from the 2.5m camera, 1 with log data
+and ancillary astrometric data from the 2.5m camera, and 1 with data
+from the 0.5m photometric telescope (200 GB total).  The tapes
+are shipped via express courier to Fermilab.  The data are processed through
+a series of pipelines: MT, SSC, Astrometric, Postage Stamp, Photometric,
+and Final Calibration pipelines. The outputs consist of calibrations,
+corrected frames, object lists, and various reduced versions
+of the image frames (atlas images, etc.)  The object lists are
+written to the Operational Database (which uses Objectivity) in the form
+of instrumental quantities plus calibrations.
+<p></p>
+<li><b>Survey Planning &amp; Target Selection:</b> Once more plates are needed for
+observing at APO, the accumulated imaging data that are acceptable and
+cover sky available for observing in the next few months are
+fed through a series of programs that merge the overlapping object lists
+to make a unique catalog, select targets in a number of categories,
+lay out a set of overlapping "tiles" on the sky to cover the targets,
+assign targets to the tiles, and design plates (with drilling plans)
+for those tiles.  The designs are sent to UW for actual fabrications of the
+plates and to APO for use in observations.
+<p>
+Once a month, a plan for which areas of sky to image next is computed
+based on the accumulated imaging data in hand plus a strategy for minimizing
+the time to completion of the survey.  Additionally, feedback is provided
+on which plates observed are "done" and which need reobserving.
+<p></p>
+<li><b>Spectroscopic Processing:</b> A single night of spectroscopic
+observations produces 1 DLT 4000 tape.  In practice, the data are also
+copied via network back to Fermilab for processing.  The data are fed
+through a 2-stage spectroscopic pipeline.  The outputs are 1-d spectra
+plus redshifts and other parameters.
+<p></p>
+<li><b>Data distribution:</b> The 
+  data products are produced in the form of flat files (FITS or ascii) plus 
+  object catalogs in the operational database. The latter are calibrated and 
+  exported as another set of flat files. A subset of the files are sent via 
+  network to each of the collaborating institutions. (Tapes are written for 
+  shipment to Japan). The object catalogs and ancillary information are also 
+  written to the Science Database (SX).</li>        
+           
+           
+               
+         
+          
+  
+</ol>
+<p>
+<h3>III. Status</h3>
+<p>
+<ol>
+<li><b>Data Acquisition System:</b> These systems were reviewed at the
+APO operations meeting.  They are listed here as a reminder that the
+same group that operated the data processing systems also maintains the
+DA systems.
+<p></p>
+<li><b>Data Processing Pipelines:</b> With a few exceptions, all data
+processing pipelines meet their basic functional requirements.  The major
+work remaining involves testing the pipelines on real data that span the
+full range of observing conditions encountered during the survey,
+enhancing the pipelines to deal with artifacts introduced in the data by
+the telescope or instruments, adding QA tests, fixing bugs and otherwise
+cleaning up the code, and documenting the code and operations procedures.  
+Particularly troublesome areas include:
+<p>
+<OL>
+  
+  <LI>The photometric calibrations have been troublesome, in particular
+   various 
+   problems existed with detector contamination, inadequate telescope 
+   baffling, and variations in filter transmission curves
+   that affected the accuracy of the calibration. We think the 
+  problems  are solved, and some testing has been done  that shows this, 
+  but addtional verification is needed. The details of the  transfer of 
+  photometric calibrations from the PT to the 2.5 m will change  and will 
+  change the photometric zero-points slightly.  Testing has also not been
+   thoroughly done on scans that cover the full range of observing conditions
+   and telescope motion.  The MT pipeline is known to require additional
+   code to remove fringing in the <i>i'</i> and <i>z'</i> bands.
+  
+  <LI>The target selection algorithms, while close to completion, are not 
+  absolutely  finished and fully verified. The galaxy selection algorithm is 
+  the most  advanced, and aside from possible shifts in the photometric 
+  zero-point,  it is thought to be done the remaining work to be done is 
+  verification.  The quasar algorithm is 90% complete, but much testing and 
+  running of the  algorithms on a variety of data remain. It will be 
+  finalized by this  summer. The remaining algorithms are in various states 
+  of completion but  they have less impact because they are used for 
+  categories that not intended  to be complete surveys.  There is an
+   unresolved question about whether "fuzzy" boundaries are to be retained.
+   The software at present does not adequately implement them.
+  
+  <LI>The criteria for acceptance or rejection of data are not fully defined, 
+   most importantly criteria on image quality. The current spec would cause 
+   rejection of virtually all data taken to date. 
+  
+  <LI>The survey strategy process, which provides observing plans to APO,  
+  is still done by hand, and there is currently only crude feedback from  
+  the results  of data processing to determine which areas of the sky are 
+  completed  or in need of reobserving. Since we have so much new sky  
+  to observe, this is not a major problem at the moment, but will become  so 
+  in a year. 
+
+  <li>A problem with telescope tracking in certain parts of the sky
+   complicates the astrometric calibrations and slightly affects image
+   quality.
+
+  <li>The various camera and DA systems are producing several artifacts
+   intermittently, including variations in the bias patterns, noise in
+   at least one CCD, and dropped pixels.  Most of these are removable in
+   software, but require writing additional code and inserting by hand
+   into the data processing pipelines.
+
+  <LI>There are still planned enhancements to the 
+    photometric pipeline that might affect which objects are targeted. 
+ 
+
+  <li>Many more global QA tests need to be implemented, 
+    e.g., comparing results of overlapping image runs, or repeat spectroscopic 
+    observations of the same object.</li>          
+           
+      
+  </OL>
+<p></p>
+<li><b>Infrastructure:</b> The infrastructure consists of a shared toolkit
+("Dervish" and "astrotools") used by most of the pipelines, a code
+repository, a product versioning system, a bug tracking system,
+web sites, automated mailing lists, and other miscellaneous products.  This
+infrastructure is largely in maintenance mode.  There is much cleanup work
+that could be done but is put off as being of lower priority.  The list
+includes:
+<ol>
+<li>CVS (Code repository): Upgrade versions as necessary.  Implement more
+secure operation.
+<li>Astrotools: Fix numerous inconsistencies in ephemeris routines.
+<li>Dervish: Clean up makefiles.  Upgrade TCL to 8.0.
+<li>All code: Port all products to latest Linux kernel 
+    &amp; libraries.</li>          
+</ol>
+
+<p></p>
+<li><b>Data Processing:</b>
+ The mechanical aspects of data processing are largely in place. Data 
+tapes are express shipped to Fermilab the critical data processing 
+pipelines for the PT and 2.5 m imaging data are fully functional and are 
+largely automated. Procedures exist for spooling input data, running jobs, 
+collating and assessing the quality of the output data, writing the object 
+catalogs to a database and bulk data to tape, and documenting the process. 
+Similar procedures exist to handle the spectroscopic data, although they are 
+less mature. The processing resources (CPU, disk, and tape) are in place 
+and are adequate to handle the volume of data received to date. We are 
+planning to upgrade the CPU and disk this fiscal year. The target selection 
+and plate design pipelines are currently run interactively. Plate design 
+files are distributed via a web site and are used by UW and APO. Processed 
+data is being distributed routinely to the collaboration. To date we have 
+processed of order 3 terabytes of raw imaging, data, designed over 240 plug 
+plates, and processed 44 good spectroscopic plates (26,000 spectra).
+
+Troublesome areas include:
+<ol>
+  <LI>The goal for turning around the imaging data through plate design  is 
+  1 month, not the 2 being  achieved at present. Since spectroscopic 
+  observing is not consuming  plates at the maximum expected rate, the 2 
+  month turnaround is not yet a serious problem. Minor formatting problems 
+  with data being delivered  from APO need to be resolved. Recently,
+  correcting data for artifacts has slowed processing considerably.
+   The planned omputing hardware upgrade will quadruple the processing
+   power, reducing the turnaround time. 
+
+   <li>Data are processed through current versions of each 
+    pipeline, and since the pipelines evolve, no single homogeneous set of 
+    processed data exists. This slows testing. It also means that target lists 
+    generated from earlier data processing runs will not match lists that would 
+    be generated from a more recent processing. However, there will be 
+    motivation to retain the spectra observed from the earlier target lists, 
+    with some process for reconciling the disparity in target lists. Our 
+    software and databases are not prepared to handle arbitrary decision trees 
+    of this sort.</li>         
+             
+            
+           
+              
+             
+            
+              
+          
+
+</ol>
+
+<p></p><li><b>Data Distribution:</b> The process by which data are pushed
+to the collaboration is crude.  Not all data products are easily accessible
+at Fermilab; some are online, some are backed up to a tape robot, some are
+only available on tape offline, some are available but in a compressed format.
+<p>
+The SX database is still being developed.  New tools are needed to ease
+access by members of the collaboration.
+<p>
+The SDSS is committed to a base level data release to the astronomical
+community in which the object catalogs are distributed via CDROM.
+The software needed to assemble the CDROMs exists as a prototype only; it
+was used to create a sampler CDROM in 1998.  A full system will be
+developed at the time of the first full data release.
+<p>
+An enhanced data release plan has been developed for 
+  putting additional datasets online, but this plan has not been approved or 
+  fully scoped.</p></li>
+          
+           
+</ol>
+<p>
+<h3>Resources and Management</h3>
+
+The software development, maintenance, and operations are shared amongst
+several institutions in the collaboration (approximately 17 FTEs total).
+At each institution the work
+is directed by one or more "PI's".  The following table lists
+the institutions with significant responsibilities.
+<ol>
+<li>Fermilab: Management, MT pipe, target selection, final calibration, operational database,
+spectro (2D), infrastructure, all data processing operations,
+DA maintenance, data distribution to collaboration.
+<li>Princeton: Photometric pipelines, spectro (2D), photometric calibrations,
+mailing lists, bug database.
+<li>USNO: Astrometric calibrations, operational database.
+<li>U. of Chicago: Spectroscopic Pipelines.
+<li>JHU: Photometric calibrations, Science Database.</li>    
+</ol>
+In addition, various scientists around the project contribute on an ad hoc
+basis.
+<p>
+Decision making occurs as follows:
+<ol>
+<li>The PIs direct the work and set priorities at their own institutions,
+with the proviso that support for data processing has high priority.
+<li>Change requests or tasks that involve two or more pipelines or institutions
+are coordinates via weekely phone conferences, lead by Head of Data Processing
+and Distribution.  Resolution is usually achieved by consensus.
+<li>Decisions that impact the science of the survey or 
+  require specific test data to be obtained are elevated to the Head of Science 
+  Direction, Technical Director or the Change Control board as appropriate.</li>           
+       
+          
+ 
+</ol>
+Known problems:
+<ol>
+<li> We are short on FTE's.  We make up in part by depriving scientists of
+research time.
+<li> Change control board is cumbersome and has not yet 
+  met.</li>          
+</ol>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

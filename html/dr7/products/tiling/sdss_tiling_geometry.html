@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- This template is for "3rd level", 2 directories below DR1/doc -->
+
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Tiling geometry files</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<!-- Start page content -->
+<h1>Tiling geometry files</h1>
+
+<HR>
+
+<p> The sdss_tiling_geometry files contain the information describing
+the geometry of each spherical polygon with respect to J2000
+Equatorial coordinates, which sector it is a part of, and which tiling
+boundary region it is a part of. This allows you to determine the flux
+limit and the sampling fraction in each such region. </p>
+
+<p> Two versions are given in two formats:
+<ol>
+<li> <b>sdss_tiling_geometry.ply</b> the format used by <a
+href="http://casa.colorado.edu/~ajsh/mangle/ "> Andrew Hamilton's
+Mangle software</a> (the "polygon" format described on that
+page). Each polygon is specified by a block of lines of the form:
+<pre>
+polygon                      0 ( 4 caps,     1.0000000 weight,   0.0000000000000000 str):
+  0.0000000000000000   0.0000000000000000   1.0000000000000000   1.0219544779343330
+ -0.9861304360790540   0.1659470297746836   0.0028890045854533  -0.0003381215107566
+ -0.9811639210200757   0.1931769878587968  -0.0001070061362354  -0.0003381215107566
+ -0.9840373658242012   0.1766602503941010  -0.0214853110859650   0.0000091016275849
+</pre>
+<li>  <b>sdss_tiling_geometry.fits</b>a FITS format which contains the <b>x</b> and <b>cm</b> values
+for each cap (as defined by Mangle), as well as integers <b>SECTOR</b>
+and <b>FIRSTBOUNDARY</b> giving which sector number and which boundary
+number (the zero-indexed line in the tilingBoundary file). For
+reference, the header reads
+<pre>
+XTENSION= 'BINTABLE'           /Binary table written by MWRFITS v1.1            
+BITPIX  =                    8 /Required value                                  
+NAXIS   =                    2 /Required value                                  
+NAXIS1  =                  324 /Number of bytes per row                         
+NAXIS2  =                 2328 /Number of rows                                  
+PCOUNT  =                    0 /Normally 0 (no varying arrays)                  
+GCOUNT  =                    1 /Required value                                  
+TFIELDS =                    8 /Number of columns in table                      
+COMMENT                                                                         
+COMMENT  *** End of mandatory fields ***                                        
+COMMENT                                                                         
+COMMENT                                                                         
+COMMENT  *** Column names ***                                                   
+COMMENT                                                                         
+TTYPE1  = 'XCAPS   '           /                                                
+TTYPE2  = 'CMCAPS  '           /                                                
+TTYPE3  = 'NCAPS   '           /                                                
+TTYPE4  = 'WEIGHT  '           /                                                
+TTYPE5  = 'STR     '           /                                                
+TTYPE6  = 'USE_CAPS '          /                                                
+TTYPE7  = 'SECTOR  '           /                                                
+TTYPE8  = 'FIRSTBOUNDARY '     /                                                
+COMMENT                                                                         
+COMMENT  *** Column formats ***                                                 
+COMMENT                                                                         
+TFORM1  = '27D     '           /                                                
+TFORM2  = '9D      '           /                                                
+TFORM3  = 'J       '           /                                                
+TFORM4  = 'D       '           /                                                
+TFORM5  = 'D       '           /                                                
+TFORM6  = 'K       '           /                                                
+TFORM7  = 'J       '           /                                                
+TFORM8  = 'J       '           /                                                
+COMMENT                                                                         
+COMMENT  *** Column dimensions (2 D or greater) ***                             
+COMMENT                                                                         
+TDIM1   = '( 3, 9) '           /                                                
+COMMENT                                                                         
+COMMENT  *** Unsigned integer column scalings ***                               
+COMMENT                                                                         
+TSCAL6  =                    1 /                                                
+TZERO6  =  9223372036854775808 /                                                
+END                                                                             
+</pre>
+</ol>
+</p>
+
+<p> IDL tools to read and manipulate the FITS files can be found in
+<b>idlutils</b>, which can be checked out of an <a
+href="http://spectro.princeton.edu/idlspec2d_install.html"> anonymous
+CVS
+repository</a>.
+
+<!-- end page content-->
+
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar  3 15:22:59 CST 2003
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

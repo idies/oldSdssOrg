@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Imaging camera description - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Imaging camera parameters and description</h1>
+
+<h2>Introduction</h2>
+
+<p>A detailed description of the imager can be found in <a
+href="http://xxx.lanl.gov/abs/astro-ph/9809085">Gunn et al. (1998)</a> and in
+the <a href="http://www.astro.princeton.edu/PBOOK/camera/camera.htm">project
+book</a>. This page summarizes the most important information needed to
+understand the data it produces:</p>
+<ul>
+  <li><a href="#parameters">imaging camera parameters</a></li>
+  <li><a href="#filters">filter curves</a></li>
+  <li><a href="#arrangement">arrangement of CCDs on the imaging
+  camera</a></li>
+  <li><a href="./nonlinearity.html">CCD nonlinearity</a></li>
+</ul>
+
+<h2><a name="parameters">Imaging camera parameters</a></h2>
+
+<table border="1">
+  <caption></caption>
+  <tbody>
+    <tr>
+      <td>Photometric CCDs</td>
+      <td>30 2048 &times; 2048 SITe/Tektronix 49.2 mm square CCDs, arranged in 6
+        columns parallel to the scan direction and 5 rows perpendicular to
+        the scan direction</td>
+    </tr>
+    <tr>
+      <td>CCD read noise</td>
+      <td>&lt; 5e<sup>-</sup> pixel<sup>-1</sup> (overall system is sky
+        limited)</td>
+    </tr>
+    <tr>
+      <td>Image frame size</td>
+      <td>2048 &times; 1361 pixels (13.51 &times; 8.98 arcminutes)</td>
+    </tr>
+    <tr>
+      <td>Image column separation</td>
+      <td>25.17 arcminutes</td>
+    </tr>
+    <tr>
+      <td>Detector separation along column</td>
+      <td>17.98 arcminutes</td>
+    </tr>
+    <tr>
+      <td>Focal-plane image scale</td>
+      <td>3.616 mm arcmin<sup>-1</sup></td>
+    </tr>
+    <tr>
+      <td>Detector image scale</td>
+      <td>3.636 mm arcmin<sup>-1</sup></td>
+    </tr>
+    <tr>
+      <td>Pixel size and scale</td>
+      <td>24 &#956;m; 0.396 arcseconds pixel<sup>-1</sup></td>
+    </tr>
+    <tr>
+      <td>Filters</td>
+      <td><i>r i u z g</i> scanned in that order, 71.7 seconds apart</td>
+    </tr>
+    <tr>
+      <td>Integration time</td>
+      <td>54 s</td>
+    </tr>
+    <tr>
+      <td>Operating mode</td>
+      <td>drift scan</td>
+    </tr>
+    <tr>
+      <td>Field distortion</td>
+      <td>&lt;0.1 arcseconds over the entire field</td>
+    </tr>
+    <tr>
+      <td>Field size</td>
+      <td>2<sup>&deg;</sup>.5</td>
+    </tr>
+    <tr>
+      <td>Flux calibration</td>
+      <td>Standard-star fields at 15<sup>&deg;</sup> intervals along scans,
+        tied to BD + 17<sup>&deg;</sup> 4708, atmospheric extinction
+        determined by the PT</td>
+    </tr>
+    <tr>
+      <td>Astrometric CCDs</td>
+      <td>22, 0.25 &times; 2 inches, above and below CCD columns; r filter plus 3
+        mag neutral density filter, 10.5 second integration time</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><a name="filters">Transmission curves</a></h2>
+
+<p>The <a href="../../algorithms/fluxcal.html">photometric flux
+calibration web page</a> is essential reading for those wishing to
+understand the SDSS photometric system. There is a long page describing <a
+href="../../algorithms/sdssUBVRITransform.html">transformations between
+SDSS (ugriz) and Kron-Cousins (UBVR<sub>c</sub>I<sub>c</sub>) photometry</a>.</p>
+
+
+<table border="1">
+  <caption>Average wavelengths of SDSS filters</caption>
+  <tr>
+    <td><var>u</var></td>
+    <td><var>g</var></td>
+    <td><var>r</var></td>
+    <td><var>i</var></td>
+    <td><var>z</var></td>
+  </tr>
+  <tr>
+    <td>3551&Aring;</td>	
+    <td>4686&Aring;</td>
+    <td>6165&Aring;</td>
+    <td>7481&Aring;</td>
+    <td>8931&Aring;</td>
+  </tr>
+</table>
+
+<h3>SDSS system response plot</h3>
+
+<p>The solid response curves show the througput defining the survey's
+photometric system, which includes extinction through an airmass of
+1.3 at Apache Point Observatory.  For reference, the dashed curves do
+not include any atmospheric extinction. These are sometimes loosely
+referred to as &quot;filter curves&quot; although they do include the
+full system response from atmosphere to detector.</p>
+
+<p><img alt="filter curves for ugriz filter set"
+src="filters/filterCurves.png"></p>
+
+<p>Repeat photometry of most stars in stripe 82 is stable
+with time by 0.01 mag (Doi et al. 2010, <a href="http://arxiv.org/abs/1002.3701">
+arXiv:1002.3701</a>). <a href="http://www.ioa.s.u-tokyo.ac.jp/~doi/sdss/SDSSresponse.html">
+The response of each CCD and filter</a> is also available.</p>
+
+<h3>Tables</h3>
+
+<p>Tables of camera sensitivity through each filter are available as <a
+href="./filters/index.html">html tables</a> and as ASCII tables: <a
+href="./filters/u.dat">u.dat</a> <a href="./filters/g.dat">g.dat</a> <a
+href="./filters/r.dat">r.dat</a> <a href="./filters/i.dat">i.dat</a> <a
+href="./filters/z.dat">z.dat</a></p>
+
+<p>The columns of the table represent:</p>
+<ol>
+  <li>wavelength</li>
+  <li>on the sky sensitivity looking through 1.3 airmasses at APO for a point
+    source. <strong>These define the survey's photometric system.</strong></li>
+  <li>sensitivity under these conditions for very large sources (size greater
+    than about 80 pixels) for which the infrared scattering is
+    negligible (the infrared scattering only affects the thinned
+    detectors used for <var>ugri</var> and among these, it is
+    negligible for <var>ug</var>; hence this column is different from
+    column 1 only for <var>ri</var>)</li>
+  <li>the response of the third column with no atmosphere</li>
+  <li>assumed atmospheric transparency at one airmass at Apache Point
+    Observatory
+  </li>
+</ol>
+
+<h3>Variation</h3>
+
+<p>
+The response functions of the SDSS imager as a function of wavelength
+have been monitored throughout the survey.  The <i>griz</i> responses were
+stable over time, although very small seasonal (i.e., temperature)
+variations were observed, at a level well below our typical
+photometric errors.  However, we have found a relatively large change
+in both the amplitude and shape of the u-band response, which is
+likely due to a degradation of the UV enhanced coating of the u-band
+CCD.  
+This change in instrumental zero-point is effectively corrected by the 
+photometric calibration for objects near the mean color of the standard 
+stars, and, in fact, the repeat photometry of stars in stripe 82 is stable 
+with time for stars with -0.5<g-r<1.5 (Bramich et al. 2008; Ivezic
+et al. 2007).  However, the observed  
+response changes involve a roughly 30 &#197; redward shift in the effective 
+wavelengths of the u filters over the lifetime of the survey, so one 
+would expect significant changes in the measured colors of objects of 
+extreme color over the period, and this is being investigated. 
+
+<h2><a name="arrangement">Arrangement of CCDs on the camera</a></h2>
+
+<p><img alt="Arrangement of CCDs on the imager" src="camassy2.gif"> <img
+alt="photo of the imager CCD arrangement" src="faceplat.gif"></p>
+</body>
+</html>
+<!-- end page content-->
+
+<a name="footnotes"></a>
+<!--#include virtual="../../dr7link.html"-->
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Apr 10 21:31:08 BST 2006
+<!-- hhmts end -->
+ <!--#include virtual="../../includes/footer_layer3.html"-->
+ 

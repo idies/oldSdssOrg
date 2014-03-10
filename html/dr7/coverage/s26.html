@@ -1,0 +1,41 @@
+<html>
+<h3>Stripe 26 Footprint Anomaly</h3>
+
+There is a defect in the footprint along stripe 26 from
+254 > RA > 219 and  15 < DEC < 35 where Primary objects are missing
+in Camcols 2 and 3 of the Northern Strip of Stripe 26 in DR7.
+<p>
+<img src=s26global.png>
+<p>
+These objects may be recovered from the RunsDB (select RunsDB as your
+context in the CasJobs query menu):
+<p>
+<img src=s26ra232-227.png>
+<p>
+<h3> Here is a possible SQL for recovering these objects : </h3>
+<p>
+<p>
+Select p.run,p.rerun,p.camcol,p.field,p.obj,p.ra,p.dec,g,mode,p.status,stripe,strip
+<p>
+From
+Photoobjall p,field f,segment s
+<p>
+Where
+Ra between 270 and 210 and
+<p>
+Dec between 5 and  35 and
+<p>
+G between 18 and 18.2  and
+<p>
+p.fieldid = f.fieldid and f.segmentid = s.segmentid
+<p>                          
+( and mode = 1 for dr7 )
+<p>
+<p>
+<h3> With this, we can select the right data in Runsdb with : </h3>
+<p>
+<p>
+$11 == 26 && ( $3 == 2 || $3 == 3) && $12 == 1
+<p>
+The North strip of Stripe 26 from the runsdb consists of objects from run 4002.
+</html>

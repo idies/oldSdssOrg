@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>ASCII parameter files - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Description of ASCII Parameter Files</h1>
+
+<p>Most simple ASCII data files used in the SDSS are formatted as
+"ASCII parameter files".  Examples of this are the <a
+href="../coverage/atStripeDef.par">endpoints of survey stripes</a>
+(with <a href="../glossary/index.html#stripe">stripe number</a>, 
+<a href="../glossary/index.html#eta">eta</a>,
+minimum <a href="../glossary/index.html#lambda">lambda</a>, 
+and maximum <a href="../glossary/index.html#lambda">lambda</a>) 
+and the list
+of stripe segments in SDSS data (listing run, rerun, camcol, field0,
+nFields, etc - see this <a
+href="http://das.sdss.org/imaging/inchunk_best/stripe09_mu614999_1/tsChunk-09-614999-1.par">tsChunk.par
+example</a>).  This file format is described here.</p>
+
+<p>Format ASCII parameter files contain two elements, keyword/value
+pairs and tables.</p>
+
+<h2>Keyword/value pairs</h2>
+
+<p>	A line in the file line may contain a keyword/value pair. The first
+	token is the keyword. The remainder of the line, up to a
+	comment-delimiting '#' sign, is the value of the keyword. In
+	the following example, the value '51256' is assigned to the
+	keyword 'MJD', and the value 'u g r i z' is assigned to the
+	keyword 'filters':
+<pre>mjd	51256		# MJD day number of observations
+filters u g r i z
+</pre>
+</p>
+
+<h2>Tables</h2>
+
+<p>	Tables of data are given by first defining a C-like structure
+	which defines the table format. Then, any lines in the file
+	whose first token is the name of the structure are considered
+	to contain the data for a single entry in the table. The
+	tokens in each line are in the same order as in the
+	structure. Arrays are contained within '{ }' and array
+	elements are whitespaced-separated. Lines may be continued
+	using a backslash (\) as the last character. For example, a
+	simple weather table containing four different temperatures
+	stored as an array along with a single pressure, humidity, and
+	time stamp might look like:
+<pre>typedef struct {
+   double mjd;
+   double humidity;
+   double pressure;
+   double temperature[4];
+} WEATHER;
+
+WEATHER 52191.300 0.23 75.21 {10.4 10.7 10.6 10.7}
+WEATHER 52191.310 0.24 75.26 {10.3 10.6 10.5 10.7}
+WEATHER 52191.320 0.23 75.28 {10.2 10.6 10.4 10.5}
+WEATHER 52191.330 0.23 75.30 {10.2 10.5 10.3 10.3}
+</pre>
+	The keyword names (mjd, humidity, etc. in the above example)
+	are case sensitive (except for the IDL format in which they are not).
+	The data model defines whether the variable that
+	describes, for example, the camera column, is camCol, CamCol,
+	camcol, or CAMCOL.<p>
+
+<p>	The name of the structure (WEATHER in the above example) must
+	be in ALL CAPS in the structure definition, but is
+	case-insensitive in the table entries.</p>
+
+<p>	Standard (allowed) datatypes are:</p>
+<table>
+  <tr><td><code>float </code></td><td>4-byte floating-point</td></tr>
+  <tr><td><code>double</code></td><td>8-byte floating-point</td></tr>
+  <tr><td><code>short </code></td><td>2-byte integers    (signed short assumed)</td></tr>
+  <tr><td><code>int   </code></td><td>4-byte integers    (signed int assumed)</td></tr>
+  <tr><td><code>enum  </code></td><td>enumerated types   (as in the C language)</td></tr>
+  <tr><td><code>char[N]</code></td><td>character string  (N must be explicitly specified
+   and must be the sum of '1' plus the length of the longest char string contained in the param file
+   <i>NOTE: length is ignored in IDL</i>)
+   </td></tr>
+</table>
+
+<p>One dimensional fixed length arrays of the above types are supported.</p>
+
+For example here is a complete param file, mystruct.par:
+<pre>
+typedef struct {
+	float mag[5];
+	char b[5][20];
+	double c;
+	int flags[2];
+} MYSTRUCT;
+
+mystruct {17.5 17.546 17.4 16.1 16.0} {the rain in "spain is" wet} 1.24345567 {123123 1231213}
+mystruct {17.5 17.446 17.4 16.1 16.0} {the snow in chile "is dry"} 7.24345567 {123123 0}
+</pre>
+
+<p>As mentioned, a backslash (\) may be used as a line continuation
+character for long table or header entries.</p>
+
+
+<h3>Note on character string length in tables:</h3>
+<pre>    char      program[20];    # Identifying name for CCD program.</pre>
+
+<p>	The length of the string is defined in square brackets after
+	the variable name. The actual length (20 in this case) is
+	defined by the data model for the structure or file you are
+	writing. No 'program' string in the table section of the
+	corresponding ASCII param file in this example then should
+	exceed 19 characters (1 extra for the C termination).</p>
+
+<h3>Enums</h3>
+
+<p>You may also use an enum to define an enumerated data type.
+	These are similar to C-language enums, in that one lists a
+	comma-separated list of identifying tags in a multi-line
+	typedef statement which are internally stored as ints, 0, 1,
+	2, 3, etc, but which are referenced by the tag for mnemonic
+	convenience or documentation purposes. 
+
+The tags should start
+	with a letter, and be alphanumeric, like a variable-name in
+	C. Underscores are permitted in the tag name, i.e. <code>START_RUN,
+	END_RUN</code>.	
+
+By convention enum values (i.e. <code>START,END</code>) are all-caps and
+	newlines separate the comma-separated entries in the typedef
+	definition of the enum.</p>
+
+	<p>For example, to track the starting or ending a series of runs in a table,
+        an enum such as the following can be defined at the top of the param file:
+
+<pre># Entry written at start or end of run
+
+typedef enum {
+        START,
+        END
+} RUNMARK;
+
+#and a structure and table with the attribute defined using this enum looks like this:
+
+typedef struct {
+	int run;	      # Run number
+	RUNMARK   mark;       # Entry written at start or end of run.
+	double mjd;	      # time of START or END of run
+} NEWSTRUCT;
+
+NEWSTRUCT 712 START 51876.1
+NEWSTRUCT 712 END 51876.123
+
+NEWSTRUCT 722 START 51878.1
+NEWSTRUCT 722 END 51879.123
+</pre>
+</p>
+
+	<p>For this example, each table entry has either <code>START</code> or <code>END</code> for
+	its <code>RUNMARK</code> field value. The enum definition needs to appear
+	in the file before a typedef that uses that enumerated type.</p>
+
+<h3>Multiple Tables/Structures in a single ASCII file</h3>
+
+	<p>A given file may contain any number of keyword/value lines and
+	any number of tables.</p>
+
+<h3>Reading and Writing:</h3>
+
+Users of param files should find the reading/writing of these files
+straightforward and non-ambiguous via a simple script of the users'
+design, suited to their own purposes.
+
+<hr>
+<!-- hhmts start -->Last modified: Tue Jun 20 20:06:25 BST 2006
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

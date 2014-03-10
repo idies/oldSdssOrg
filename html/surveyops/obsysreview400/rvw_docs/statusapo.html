@@ -1,0 +1,713 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<CENTER><B><I><FONT SIZE=+1>Sloan Digital Sky Survey</FONT></I></B></CENTER>
+
+<CENTER><B><I><FONT SIZE=+1>Review of Observing Systems and Survey Operations</FONT></I></B><BR>
+<BR></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Status of the SDSS Project at APO as of April
+2000</FONT></B></CENTER>
+
+<CENTER>J. E. Gunn</CENTER>
+
+<CENTER>April 11, 2000</CENTER>
+
+
+<P>
+<HR style="HEIGHT: 6px">
+
+<P><FONT SIZE=-1>We present in this document a brief description of the
+major components of the project at APO, their status as of the middle of
+April 2000, tasks yet to be done, and a brief description of recent progress.</FONT>
+<BR>&nbsp;
+<H4>
+I. INTRODUCTION</H4>
+<FONT SIZE=-1>The scientific and commissioning exercise was going exceedingly
+well this fall, particularly in the October dark run, when we had quite
+good weather, and we obtained a lot of good data. It was unfortunately
+discovered just after the end of that run that the secondary mirror was
+broken, and we had, as you all know, to go down for about three months
+for repairs. We will discuss the secondary in more detail later, but the
+bottom line is that the secondary mirror has been repaired, aluminized,
+was reinstalled in the telescope in the early new year and was found to
+have suffered negligible optical degradation.</FONT>
+
+<P><FONT SIZE=-1>We spent much of the fall quarter scrambling to recover
+from this, which required a new secondary support, thoroughgoing revision
+of our engineering review procedures, and detailed preparations for testing
+the mirror upon reinstallation. Other parts of the project used the delay,
+during which there were, of course, no observations, to great advantage
+to bring several software and hardware products to or much nearer completion.</FONT>
+
+<P><FONT SIZE=-1>The enclosure, which had been our engineering nemesis
+for some years, was finally modified in the fall so that we could move
+the telescope to the zenith inside it. Those modifications, which were
+scheduled for completion in early November, were beset with delivery problems
+on the rather specialized siding/roofing, and ran significantly and dangerously
+late, well into the bad-weather period in December. We prepared for this
+eventuality by constructing a strong but simple metal-framed fabric enclosure
+for the telescope, which, despite a few scares during high winds, both
+survived itself and protected the telescope quite adequately. We assumed
+occupancy of the building in middle December, and finished the few remaining
+detail items in the first week of January. We can now move the telescope
+to the zenith for work on it and the instruments inside, and already the
+enormous positive impact of this ability is being felt in the work schedule.</FONT>
+
+<P><FONT SIZE=-1>We will address the various systems one by one, starting
+with the hardware and advancing to the software, fininshing with some of
+the most significant scientific results emerging from the initial data.</FONT>
+<BR>&nbsp;
+<H4>
+II. OBSERVING SYSTEMS</H4>
+<FONT SIZE=-1>&nbsp;The telescope and instruments are all essentially complete,
+working, and demonstrated to be capable of taking high-quality data. This
+is not to imply that all the qualification testing is complete, nor that
+all the detail required to operate them at full efficiency has been implemented,
+but everything works and, with the possible exception of the telescope
+optics, we BELIEVE works to specification.</FONT>
+<BR><B>&nbsp;</B>
+<H4>
+II.1 THE 2.5-METER TELESCOPE</H4>
+
+<H4>
+&nbsp;II.1.1 The Optics</H4>
+<FONT SIZE=-1>The optical design is a more-or-less classical Ritchey, with
+a final corrector close to the focal plane for the imaging configuration
+which corrects simultaneously for distortion (necessary because of the
+TDI scanning mode we employ) and for lateral color, and one for the spectroscopic
+configuration which corrects exquisitely for lateral color and has rather
+small longitudinal color errors.</FONT>
+
+<P><FONT SIZE=-1>The major optical components have by now all been in place
+for a year, all but the spectroscopic final corrector for three years.
+The secondary, of course, was broken last fall. A roughly circular piece
+of the faceplate about 8 inches in diameter was pushed out of the center.
+This broken piece was surgically removed at SOML and a meniscus which was
+made to the correct radius and very accurately centered and made tangential
+to the mirror surface was cemented on. We appear to have dodged that bullet
+completely; the image quality appears qualitatively and quantitatively
+no different after the secondary accident than before, except that the
+collimation has improved to the point that the asymmetry of the image quality
+across the focal plane has almost entirely disappeared. This in turn was
+made possible by the incorporation in the meniscus of a very accurate collimation
+target. The area covered by the meniscus is not used optically owing to
+the large central obscuration in the telescope, and the stresses released
+by the breakage do not cause any significant surface errors in the part
+of the mirror which is used optically.</FONT>
+
+<P><FONT SIZE=-1>We were plagued at the beginning with uncertainties associated
+with collimation, to which this very wide-field telescope is much more
+sensitive than most telescopes, and were unable to achieve the design image
+quality at large field angles. This has improved with better collimation
+techniques, and we are convinced now that collimation is no longer a problem,
+but we still do not meet our stringent requirements for image quality at
+the edges of the field.</FONT>
+
+<P><FONT SIZE=-1>The center-to-edge degradation is calculated to be about
+0.30 arcsec^2 from the design; the observations give a number close to
+0.70 arcsec^2. This difficulty, along with evidence that the site (at least
+in the last three years) very seldom produces as good seeing as we had
+hoped, may drive us to relax our requirements on image quality, at least
+temporarily, from 1.2 to 1.5 arcseconds FWHM. This change is contingent
+on reassuring ourselves (as seems likely from extant data) that this will
+have negligible impact on our spectroscopic target selection.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+II.1.2 Secondary Mirror Support System</H4>
+<FONT SIZE=-1>It is perhaps worth spending a few sentences on the philosophy
+of the secondary support system. There is no cell; the three actuators
+which control piston and tilt transmit motion to the mirror through three
+whiffletrees attached directly to the backplate of the Hextek secondary
+mirror. The central support, which has had to be redesigned completely
+to accomodate the broken mirror, makes use of a linear bearing which supports
+the mirror slightly ahead of the backplate (when we had a faceplate in
+the center it supported the mirror at its CG). This makes for a system
+with minimum mass and obscuration, but clearly implies that enormous caution
+needs to be exercised in such matters as forces and clearances.</FONT>
+
+<P><FONT SIZE=-1> It was discovered in early December that the secondary
+had been broken because of a dimension error in the newly-installed piezoelectric
+controllers for the secondary, which in turn caused an interference which
+resulted in very large axial forces and the subsequent breakage. A rather
+complex new support system based entirely on flexures was well into the
+final design phase at this time, but the conclusion of a very successful
+review of the problem and the new design was that the old system was not
+of its nature responsible for the accident at all, and that it seemed,
+in fact, best to return to a slightly modified version of the old design
+in the interest of time. (The old design in detail would no longer work
+because the broken mirror could not be supported in the same way as the
+old, completely intact one.) We set about doing this, and had the design
+done and most of the parts fabricated or modified as required by the first
+of the year. Major enhancements were the addition  of safety switches
+which stop motion if excessive forces are applied to the mirror and much
+more positive stops to prevent the mirror from undergoing excessive and
+dangerous motion. A much more careful review process was also instituted
+to prevent the kind of error which had been made which was responsible
+for the accident originally. The new flexure support system will still
+be implemented, but the one in place now will serve adequately until we
+can finish the new one at a somewhat more deliberate pace.</FONT>
+
+<P><FONT SIZE=-1>The system in its current incarnation employs Heidenhain
+linear gauges with 5 nm resolution and screw actuators in series with very
+small-range piezoelectric stacks. We are not yet using the piezos actively,
+and have achieved reasonably satisfactory performance, but will install
+new circuitry which does make use of the piezos later this spring. The
+factory-supplied servo electronics dissipate too much heat to be used in
+the secondary cage and could not be stabilized with the low (~20 Hz) resonant
+frequency of the secondary structure in piston/tilt.</FONT>
+<H4>
+&nbsp;</H4>
+
+<H4>
+&nbsp;II.1.3. Primary Mirror Support System</H4>
+<FONT SIZE=-1>The primary mirror support system makes use of bellofram
+pistons and a 4-axis pneumatic analog PID servo system controlling three
+segments in piston/tilt and one system for transverse motion. The system
+works quite well, but we have run into a few problems. We discovered in
+the fall that we were having serious problems with the pneumatic servos
+because of water in the system. The system is basically closed but is supplied
+with makeup air from the mountain compressed air distribuion system, and
+that air is certified very clean and VERY dry. We now believe that the
+water is introduced via blowby on the rocking-piston pumps on the vacuum
+leg of the system, but we have thus far been unable to find satisfactory
+replacements. In the meantime, driers and filters have been installed in
+the system itself, and once the water was removed from the system (a rather
+difficult and haphazard operation) it appears to be performing well. The
+replacement of the pumps remains a high-priority goal.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+II.1.4 The Telescope Structure</H4>
+<FONT SIZE=-1>&nbsp;The telescope proper (The OSS—optical support structure)
+is a by-now standard lightweight structure very much like the 3.5-meter
+telescope and WIYN. One departure we made is the use of graphite-epoxy
+for the upper truss tubes, which helps both with balance and with thermal
+expansion properties. The structure is both very stiff and very light,
+and performs well.</FONT>
+
+<P><FONT SIZE=-1>The OSS is supported by a fork mount with the elevation
+motion implemented by means of dual friction capstan drives, the capstans
+being driven directly by large DC servo motors as is the current fashion.
+The elevation bearings are large angular-contact ball bearings, which after
+some problems with initial alignment at L&amp;F have performed well. The
+fork is supported on a tall cone with a spherical roller thrust bearing
+at the bottom supporting all the weight, and a 2.5-meter drive disk just
+beneath the fork with two servomotor/capstan units and two idlers for drive
+and angular location. The cone and support rollers are located by means
+of a hollow concrete pier which carries the fixed part of the thrust bearing
+and the tension frame which carries the capstans and rollers. We have had
+the (expected) difficulty with differential expansion in height between
+the concrete and steel, but the effects appear to be relatively benign.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+II.1.5 The Drives</H4>
+<FONT SIZE=-1>The drives for all three axes (elevation, azimuth, and instrument
+rotator) are implemented with identical DC servo motors and very similar
+capstan/idler drive assemblies. The motors are driven by Glentek DC servo
+amplifiers via MEI digital DSP-based servo controllers. We achieve servo
+errors of order 60 milliarcseconds on the telescope axes, much smaller
+averaged over the integration time of the camera.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+II.1.6 The Encoders</H4>
+<FONT SIZE=-1>The position of the telescope is determined by means of friction
+roller-driven Heidenhain rotary encoders with a stepsize of about 13 mas.
+These perform adequately, but we have had some problem with hysteresis
+associated with large moves, particularly in elevation, in which errors
+of a few arcseconds can accumulate during a night’s observing. The absolute
+position is obtained by ‘fiducials’ implemented as segments of Heindenhain
+encoder tape at roughly 15 degree intervals, and when this system is finally
+completely understood the encoders will rezero during any slew which crosses
+a fiducial. The rotator uses a relatively small- diameter Heidenhain tape
+loop both for encoding and fiducials. The angular resolution is not so
+high as for the telescope axes, but is more than adequate for this application.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+II.1.7 The Windbaffle</H4>
+<FONT SIZE=-1>The enclosure of the telescope rolls completely away, and
+the telescope is protected from lights and the wind by a windbaffle which
+is supported separately from the telescope pier and is servoed to the telescope
+and moves with it. This results in a very thermally responsive structure
+and was probably cheaper than a conventional dome, but is not an unmixed
+blessing. The windbaffle is a relatively crude structure driven by powerful
+(to be able to deal with wind loads) servomotors which if anything goes
+wrong can bang into the relatively delicate OSS with great velocity and
+force. We have had several accidents and many more near-misses with the
+system, but it is clear that as our understanding of the system increases
+and we finally get all the safety interlocks implemented it will turn out
+to be as beneficial as its designers hoped.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+II.1.8 The Enclosure</H4>
+<FONT SIZE=-1>The enclosure is a rollaway structure with roll-up doors
+at each end, powered by variable-frequency DC motors. An addition was finished
+late last year which allows the telescope to be moved to the zenith inside
+the building, which alleviated an intolerable situation which had existed
+previously—namely that in bad weather, during which one wants to be able
+to do engineering, one could not because the telescope had to be outside
+to reach instruments or to check anything to do with the drives. In any
+case it was necessary to get the telescope out of the sun relatively early
+in order to secure adequate performace from the optics early in the evening.</FONT>
+
+<P><FONT SIZE=-1>The modifications also included the installation of a
+relatively powerful HVAC system, so that it will be possible to refrigerate
+to expected opening temperatures a few hours before opening. "Will be"
+rather than "is" because the system is not yet working to spec.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<H4>
+II.2. THE PHOTOMETRIC CAMERA</H4>
+<FONT SIZE=-1> The camera covers a field about 2.5 degrees square and
+uses 30 SITe 2048x2048 CCDs in the main photometric array and 24 more
+2048x400 chips in the leading and trailing astrometric/focus arrays. The
+photometric array consists of 6 columns of five chips each, each with its own
+filter and field flattener. The camera is used in TDI, with the star images
+travelling along the columns in such a way that the effective exposure time for
+each photometric device is 55 seconds, 11 for each astrometric. The five
+chips in each photometric column each have a different filter covering our
+five bands: r', effective wavelength about 6200A, i', about 7600, u',
+about 3550A, z', about 9100A, and g', about 4800. The five bands thus cover
+the wavelength range from the UV atmospheric cutoff to the silicon cutoff
+in the near infrared. We use three kinds of CCDs in the photometric
+array: the u' chips are&nbsp;thinned with a special UV coating, the g', r', and i'
+ones thinned with a standard visual AR coating, and the z' ones are
+thick. The astrometric and focus chips are thick.</FONT>
+
+<P><FONT SIZE=-1>The camera is constructed using the thick quartz distortion
+corrector as a substrate, and the invar CCD optical benches are registered
+directly to the back surface of this lens. The dewars seal to the back
+surface and are not in rigid contact with the optical benches at all. The
+cooling is via liquid nitrogen fed by an automatic system and the vacuum
+in the rather busy small-volume dewar space is maintained by a largish
+ion pump.</FONT>
+
+<P><FONT SIZE=-1>The instrument comes on and off the telescope by means
+of an operations cart which is lifted by a hydraulic lift. It lives in
+an enclosure (the "doghouse") permanently affixed to the rotating windbaffle
+floor, and enters and leaves this enclosure on the cart which moves on
+fixed rails.</FONT>
+
+<P><FONT SIZE=-1>The camera has been on the mountain for two and a half
+years and except for some work on the vacuum system and electronics has
+been functional for the whole of that time. Except for some work to make
+it possible to monitor the vacuum remotely and to enhance the safety measures
+in place in case of unforseen power outages or other failures, it is finished.</FONT>
+<H4>
+&nbsp;</H4>
+
+<H4>
+II.3. THE SPECTROGRAPHIC SYSTEM</H4>
+
+<H4>
+&nbsp;</H4>
+
+<H4>
+II.3.1. The Spectrographs</H4>
+<FONT SIZE=-1>There are two spectrographs, each a dual-channel instrument
+with two immersion transmission gratings/cameras covering the range 3900-6000
+and 6000-9000 A, respectively. The resolving power is about 2000 across
+the spectrum, and the throughput is very high, peaking at about 20 percent
+in the blue and 30 percent in the red. Each spectrograph is fed by 320
+fibers, so we obtain 640 spectra at a time. The spectrographs are permanently
+mounted on the instrument rotator and ride with the telescope; the fibers
+are quite short (~2 meters), and their configuration does not change as
+the telescope and instrument rotator move. The detectors are the same thinned,
+coated 2048^2 SITE CCDs as used in the g’, r’, and i’ bands in the camera,
+and the electronics and control circuitry are the same insofar as is possible
+as those for the camera.</FONT>
+
+<P><FONT SIZE=-1>The second spectrograph was installed in September, and
+there have been a large number of relatively minor problems with them,
+all of which we believe we have now solved. We consider them fully operational
+at this point, and the only work to be done is to finish an autofill system
+for the 10-liter dewars from which the small camera dewars currently autofill.
+This is a convenience and reliability issue, since the 10-liter intermediates
+last an observing night at this point.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+II.3.2. The Cartridges</H4>
+<FONT SIZE=-1>The fiber slits are mounted on cartridges which also carry
+the multifiber drilled plugplates, so the plate/fiber/cartridge/slit assembly
+is installed as a unit. We have nine such cartridges, so that a night’s
+observations can be prepared for during the previous day.</FONT>
+
+<P><FONT SIZE=-1>The drilled spectroscopic plates are bent by precisely
+machined conical rings mounted in the cartridges. These edge moments plus
+an adjustable central constraint bring the plates into conformance with
+the focal surface with an accuracy of better than 100 microns, corresponding
+to an FWHM degradation of of less than 14 microns, or about 0.25 arcsec.
+The fiber cores themselves are 180 microns, 3 arcseconds, diameter.</FONT>
+
+<P><FONT SIZE=-1>The cartridges also carry 11 coherent fibers which are
+rounted to a small CCD camera and are used for guiding; holes otherwise
+identical to the ‘science’ fiber holes are used drilled at the locations
+of relatively bright ( &lt; 14 magnitude) stars.</FONT>
+
+<P><FONT SIZE=-1>All nine cartridges are at the mountain and finished.
+In the last dark run eight were equipped with locating collars for the
+guide fibers, which establish their rotation with respect to the plate.
+With this addition those cartridges are finished.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+II.3.3 The Plate/Cartridge handling system</H4>
+<FONT SIZE=-1>The logistics for loading the plates, plugging the fibers,
+mapping the locations of the fibers (so we know which fiber belongs with
+which object on the sky), transporting the cartridges to/from the telescope,
+and installing the cartridges on the telescope is fairly complex and involves
+a fair amount of specialized machinery, which we review here.</FONT>
+
+<P><FONT SIZE=-1>The cartridges are stored in a special three-wide-three-high
+rack on a hydraulic lift in a garage on the outer wall of the SDSS utility
+building. There are handling fixtures, which are basically captive fork
+lifts, on the inside wall, which has a rollup door, and on the outside
+wall, likewise equipped. During the day, the inside door is open to facilitate
+cartridge handling and plugging, and at night the inside door is closed
+and the outside one opened so that the cartridges can equilibrate and so
+they are easily accessible for transport the the telescope.</FONT>
+
+<P><FONT SIZE=-1>To plug a cartridge, the inside handling fixture is used
+to place a cartridge on the plugging station, where the new plate is installed,
+bolted down, and the central restraint adjusted. An electronic profilometer
+is then used along several radii to check the form of the bent plate and
+make sure it is satisfactorily close to the focal surface. The cartridge
+is supported on two gimbals near its CG, and the plugging station allows
+the cartridge to be flipped upside down about those gimbals to allow access
+for two people to plug the fibers.</FONT>
+
+<P><FONT SIZE=-1>The fibers are grouped into sets of 32 sets of 20, and
+before the plate is installed, it is marked, using a dedicated overhead
+projector and computer-prepared transparencies, to delineate allowable
+areas for each group of 20 fibers. This step is necessary because not all
+fibers can safely reach all parts of the plate. It is NOT necessary for
+the plugger to plug a fiber into a specific hole, just to be sure that
+the sets are in their proper regions.</FONT>
+
+<P><FONT SIZE=-1>The cartridge is then uprighted and transferred to the
+mapping station, where twin laser carriages move along the fiber slit,
+illuminating the fibers one by one. The plate is watched by a TV camera
+running into a frame grabber on a PC, and the locations of the illuminated
+fibers recorded as the laser progresses. In this way a correspondence of
+a hole on the plate with a fiber in the slit is made, and this file goes
+with the data, so we know which object is in which hole.</FONT>
+
+<P><FONT SIZE=-1>The cartridgeis then put back on the rack, waiting for the
+night’s observing. When it is needed, it is transferred to a cart which can
+hold two cartridges (the one just used and the one just to be used) and
+pushed to the telescope. A hydraulic lift whose axis is concident with the
+azimuth axis lifts the cartridge into place. It is located via a set of
+trefoil kinematic mounts on the instrument rotator and held into place with
+overcenter pneumatic latches. The same system is used to mount and dismount
+the camera. The final spectroscopic corrector lens must also be removed
+to mount the camera, and is carried by a cartridge for installation/removal from
+the telescope. The handling of this lens is at the moment a risky and
+time-consuming process, but a special enclosure (the ‘cathouse’) and handling
+fixture for the lens will soon be built and encorporated into the
+moving building, so that the lens will not have to be handled by the cartridge
+system (for which the latter was not  designed) and the lens
+will be much closer to the telescope.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+II.3.4 The Spectroscopic Calibration System</H4>
+<FONT SIZE=-1>Attached to the front of the telescope is a set of eight
+lightweight aluminum honeycomb petals which are opened and closed by DC
+motors. These serve as a sort of dust cover for the telescope, and when
+closed present a flat diffusive surface with excellent UV reflectivity.</FONT>
+
+<P><FONT SIZE=-1>This surface is illuminated with filtered quartz-halogen
+lamps for spectroscopic flat-field calibration and a set of neon and mercury-cadmium
+lamps for wavelength calibration. There are twelve lamps in all, four of
+each kind, which illuminate the screen via small projectors to produce
+an illuminated annulus very near the pupil of the telescope, so that the
+optical path of the calibrating radiation is very nearly the same as that
+of starlight.</FONT>
+
+<P><B>&nbsp;</B>
+
+<P><B>II.4 THE PHOTOMETRIC TELESCOPE</B>
+
+<P><FONT SIZE=-1>Because the 2.5 meter telescope is used in TDI mode in
+imaging and because its camera detectors saturate at relatively faint levels
+(14<SUP>th</SUP> magnitude), we cannot use it easily to observe ordinary
+photometric standards or to monitor extinction. We want to achieve 1 percent
+photometry eventually, so it is certainly necessary to use great care in
+estabishing the photometric system and in monitoring the photometric quality
+of the night. This is aided by a ten-micron cloud camera, which is very
+effective for detecting clouds, but quantitatively this need is addressed
+by a special-purpose 0.5-meter telescope with a UV sensitive SITE 2048^2
+CCD which is used to establish and monitor a set of relatively bright primary
+standard stars, to transfer the photometric system to a set of much fainter
+stars along the camera TDI stripes, and to monitor the atmospheric extinction.</FONT>
+
+<P><FONT SIZE=-1>We have had great difficulty in making this system work
+properly, due to a set of unforseen problems of varying seriousness, including
+vacuum contamination which affected the CCD surface, trouble with the closed-cycle
+refrigerator chosen in lieu of an LN2 cooling system, improper baffling
+at several levels, software troubles, flat-fielding problems, and others,
+but these were mostly successfully dealt with by the beginning of the year,
+and the system seems now to work very well. The lateness of GETTING it
+working has made itself felt in our efforts to calibrate the 2.5-meter
+imaging data, which is not yet in nearly as good shape as we would like
+it to be.</FONT>
+
+<P><B><I>&nbsp;</I></B>
+<H4>
+III. DATA ACQUISITION AND CONTROL SYSTEMS</H4>
+
+<H4>
+&nbsp;</H4>
+
+<H4>
+III.1 THE DA SYSTEM</H4>
+<FONT SIZE=-1>The data from the science CCDs, which all have identical
+readout electronics, come from the telescopes to the operations building
+on FOXI fibers, one for the PT (one CCD, one fiber), one for each spectrograph
+(two CCDs each on two fibers), one for each photometric dewar (5 CCDs each
+on 6 fibers), and two for each astrometric dewar (6 CCDs each on 4 fibers),
+59 chips in all. The guider and a small CCD in an engineering camera built
+around a spare cartridge casting use proprietary commercial controllers
+and come via fiber-carried Ethernet. Each fiber goes to a board called
+a VCI+ which receives the data and parallelizes it. The data are received
+by a single-board 68040-based MVME167 VME computer, which performs several
+tasks. In the case of the camera, it histograms the background column by
+column, finds, centroids, and measures widths and crude fluxes for stars,
+and prepares from these simple QA data. For the PT and spectrographs, they
+simply receive the data. Each MVME167 has a disk which spools the data
+and a DLT tape drive (in the case of the camera boards) which takes data
+from the disk pool and archives it. The VME backplanes have interfaces
+which talk to SGI Challenge computers, and there is software to pull data
+from the disk pool to the SGI Unix host computer. In the case of the spectrographs
+and PT, the data are archived by the host, but as mentioned before, the
+camera VME boards do their own archiving; the overhead of transferring
+ALL the camera data to the host is too large.</FONT>
+
+<P><FONT SIZE=-1>The camera system, which is by far the busiest, has given
+us a lot of trouble, centering around tape drive unreliabiliy (we have
+just replaced ALL the drives with more modern, more capacious ones AND
+increased the size of the pool disk so that the disks can store a whole
+night’s data), the SGI-VME interface, which is slow and somewhat capricious,
+and the VME SCSI tape controllers, which have subtle firmware problems.
+We have either fixed or found workarounds for all the known problems, and
+have had in the last couple of runs very little problem with the DA.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+III.2. THE TCC</H4>
+<FONT SIZE=-1>The pointing, slewing, tracking, and timekeeping computations
+are handled by the Telescope Control Computer, the TCC. This is a DEC Alpha
+machine running Fortran code under VMS and is a essentially a copy both
+in hardware and software of the 3.5-meter system. The system for that telescope
+is one in which the TCC talks directly to a set of very low-level microcontrollers
+on the axes of the telescope. Essentially the same commands are issued
+for the 2.5-meter, but there is another layer here, a fairly complex machine
+with other duties called the MCP. The TCC is a fairly mature system, having
+been in use on the 3.5 meter for some years, and is pretty reliable.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+III.3. THE MCP AND TPM</H4>
+<FONT SIZE=-1>The telescope MEI digital servo boards are controlled by
+yet another VME computer, an MVME162, the Motion Control Processor (MCP).
+This computer takes the detailed (and complex) data describing the tracks
+in elevation and azimuth the telescope must move along to describe a great
+circle on the celestial sphere for the camera (or just to track a star
+for the spectrographs) which are generated by the TCC and converts them
+to commands for the MEI servo boards. The MCP is also the general telescope
+housekeeping computer, which controls the flatfield screen, the lamps,
+eventually the instrument lift, interfaces with the interlock PLC system,
+and will enventually control the automated instrument change system. We
+have had some difficulty with the MCP software, though thanks to agressive
+action this fall and winter it is now a much more stable and robust system,
+and little time has been lost in recent runs to its problems.</FONT>
+
+<P><FONT SIZE=-1>There is in the same rack with the MCP another MVME162,
+the Telescope Performance Monitor, which logs many, many channels of data
+pertaining to telescope performance, including the mirror positions, the
+servo errors, the interlock PLC state, etc. We have recently developed
+an EPICS interface for these logs and the real-time data which makes them
+easy to access. The lack of such an interface and various problems with
+communication meant that the TPM was not much use to us during the difficult
+early commissioning phases, but now that we are terribly interested in
+assessing detailed performance will, I believe, prove very valuable indeed.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+III.4. THE INTERLOCK SYSTEM</H4>
+<FONT SIZE=-1> In a system as complex as this, with hydraulic lifts
+used routinely a couple of times an hour at night, the powerful windbaffle
+servo, a rollaway building, and countless other potentially very dangerous
+pieces of hardware which must be exercised almost continuously during a
+night, it is essential that interlocks be in place to insure both human and
+equipment safety, and, insofar as possible, safeguard the integrity of the
+data. These tasks are implemented by a commercial PLC system which is
+closely integrated with the telescope hardware via sensors, limit switches,
+and the like. The PLC logic is implemented in firmware and is monitored
+by a software system which allows graphical display of the state of the
+interlocks to allow speedy diagnosis of problems. Aside from occasional failures
+of sensors and switches, the system has been exceedingly robust and
+effective. Most of the accidents we have had have been caused by conditions
+either unrecognized as candidates for interlocks or because particular interlocks
+had not been yet implemented. The system has grown somewhat because of
+slowly added functionality, but has never seemed stretched.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+III.5. THE INSTRUMENT CHANGE SYSTEM</H4>
+<FONT SIZE=-1>As described above, the instruments (camera, cartridges,
+spectrographic corrector) are moved onto and off the telescope by carts
+and a hydraulic lift. This is a complex and accident-prone procedure and
+is lengthy if sufficient care is taken, dangerous if not. It is intended
+in the near future to implement a computer-AIDED system in which an observer
+will interact closely with a program which either makes moves or reminds
+her to do so and checks on such things as lift position and force and the
+state of latches. The conceptual design and all the hardware hooks are
+in place, but the PLC code and the MCP code to implement the system have
+not yet been written. We hope to have the system working before summer,
+and expect it to bring about a substantial increase in efficiency.</FONT>
+
+<P><B><I>&nbsp;</I></B>
+<H4>
+IV. THE OPERATIONS SOFTWARE</H4>
+<FONT SIZE=-1>The instruments are operated by a set of three programs,
+largely implemented in TCL, which interact with the micros on the instruments
+and with the DA. They are IOP, the imager operator’s program, SOP, the
+spectrographic operators program, and MOP, the monitor operator’s program,
+which controls the photometric (nee’ monitor) telescope. They are all built
+on the IOP skeleton, which controls interaction with the DA, though the
+top layer which talks the the individual instruments is very different
+for each one. These are all very evolutionary products, with conveniences
+and functionality and logging facilities and helps for efficiency being
+added constantly. This evolution has been necessary but somewhat confusing;
+it has been controlled by fairly rigid version control measures, and seems
+to be progressing satisfactorily.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+IV.1. IOP</H4>
+<FONT SIZE=-1>IOP controls the camera and monitors its state and health.
+It issues commands to control the shutters and the CCD readout, and collects
+the data being serially produced by the camera during a scan, recording
+the many CCD voltages, temperatures, pressures, and other engineering data.
+It collects the QA data produced by astroline, the real-time code running
+on the DA computers, and supervises data transfer between the DA computers
+and their SGI Unix host. It supervises the tape archiving process and prepares
+the log files. It interfaces to the Watcher, described below, which allows
+the observers easily to keep track of the health of all the systems. At
+the end of the night it prepares all the summary files, generates shipping
+instructions for the tapes, and prepares a set of files which are transferred
+to Fermilab the next day to aid in data tracking and reduction. It is a
+very complex piece of code with very many conditional paths and as such
+has had its share of troubles, but we have, in fact, lost rather little
+observing time to its bugs. There are still significant enhancements to
+be made before we will be able to use the camera with full efficiency,
+but the progress is satisfactory. Missing yet are integration of the tactical
+databases into the code, integration of several of the utilities discussed
+below into the code, and the full implementation of real-time QA monitoring
+and log generation.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+IV.2. SOP</H4>
+<FONT SIZE=-1>SOP controls the spectrographs, the guider, and the calibration
+system. It aids in field acquisition (difficult because nine of the guide
+fibers have 7 arcsecond fields and two 11 arcseconds; the pointing needs
+to be very good and the peaking-up strategy excellent to efficiently acquire
+the field), controls the shutters and hartmann focussing screens in the
+spectrographs, and controls the CCD readout. There are no tape drives on
+the spectrograph DA computers, and all the data are transferred to the
+unix host and tapes written there; SOP supervises this as well. Still to
+be fully implemented are, again, integration with the tactical databases
+and real-time QA including cumulative signal-to-noise monitoring to set
+exposure times and predict data quality.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+IV.3 MOP</H4>
+<FONT SIZE=-1>MOP interacts with the other data-taking almost not at all,
+and has its own unix host, sdssmth (SOP and IOP share one, sdsshost). It
+controls the PT camera, the filter wheel, the telescope pointing and tracking,
+and the PT dome, and gathers and transmits to the Watcher information about
+the health of the PT camera. It also handles archiving of the PT data frames.
+It is fully operational, but it is intended that the PT act as an automated
+telescope carrying out a night’s observations essentially autonomously,
+and that functionality is not presently fully implemented. Nor, presently,
+is integration with the tactical databases—this last is especiallty important
+for MOP because of the necessity to keep ahead of the camera in order that
+2.5-meter data not wait for PT observations for reduction.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+IV.4 THE WATCHER</H4>
+<FONT SIZE=-1>The Watcher is a program which runs collecting data from
+all the instruments, the MCP, the TCC, the TPM, and the DA. Its interface
+with the observers is through a GUI which implements lights and buttons
+which allow very quick access to increasingly detailed information about
+any subsystem. Trouble is signalled by a button on the main control panel
+turning red, and in the course of a few navigational steps the problem
+can be identified and diagnosed. In the case of very serious problems the
+program sends mail notifying a set of responsible individuals that the
+problem exists. They can then tend to them or contact someone on the mountain
+who can.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+IV.5 THE TACTICAL DATABASES</H4>
+<FONT SIZE=-1>These are databases which keep track of what has been done
+and give short lead-time guidance of what is to be done. They track plate
+usage, which plates have been plugged, whether a plate is finished and
+can be unplugged, sky coverage with the camera and quality of the data,
+patches observed with MOP and quality of those data, etc. The plate database
+is finished and operational, the others in various stages of development,
+but all should be operational by summer; in the meantime these things are
+tracked by hand, which is barely satisfactory now and will become impossibly
+onerous before too long.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+IV.6 THE STRATEGY TOOLS</H4>
+<FONT SIZE=-1>This code is for longer-range planning, the hope being that
+we can order our lives in such a way that the normal very slow progress
+at the end of the survey because of spotty sky coverage and concentration
+of unobserved fields in ‘difficult’ areas can be obviated. We have such
+a tool for imaging, though it has not been extensively exercised, but as
+yet do NOT have one for spectroscopy. Ideally we would have an integrated
+one. This code will probably NOT mostly be run on the mountain, but the
+observers need to be familiar with it. It takes as input the data in the
+tactical databases to track progress.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+IV.7 THE EPICS INTERFACE TO THE TPM</H4>
+<FONT SIZE=-1>There has recently been written and implemented an EPICS
+system which allows the observers to access easily the logs generated by
+the TPM in order to debug hardware problems or assess telescope performance;
+the same code is used to monitor these same quantities in real time.</FONT>
+
+<P><B>&nbsp;</B>
+<H4>
+IV.8 UTILITIES</H4>
+<FONT SIZE=-1>&nbsp;There are several utility programs, including Tccmon,
+a program which presents fundamental telescope pointing and tracking information,
+Skygang, which reads the Gang files, files with summary data produced by
+the DA which include star centroids, and matches catalogs to ensure correct
+pointing of the (blind) camera stripes</FONT>
+
+<P>
+<HR style="HEIGHT: 6px" SIZE=4 width="100%">
+
+<P>&nbsp;<B><I><FONT SIZE=-1>Review of Observing Systems and Survey Operations</FONT></I></B>
+<BR><I><FONT SIZE=-1>Apache Point Observatory</FONT></I>
+<BR><I><FONT SIZE=-1>April 25-27, 2000</FONT></I>
+<BR>&nbsp;</P>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

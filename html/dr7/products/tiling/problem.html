@@ -1,0 +1,17 @@
+<html>
+<body>
+Each tiling region is a union of rectangles on the sky in great circle or
+survey coordinates.   There is one known bug in DR4 and DR5 in that
+tileRun 60, along the far end of stripe 82, has incorrect boundaries in
+the CAS database.   The correct values for tileRun 60 are: 
+
+(lambdamu_0, lambdamu_1, etanu_0, etanu_1, lambdaLimit_0,lambdaLimit_1) = 
+      (56.5088888889,58.45,-1.2586466,1.2586466,-9999,-9999)
+
+This bug will be corrected in DR6, it only slightly affects calculations
+of total area coverage for the imaging and spectroscopy in DR5.  The
+amount of difference bay be ignored for most purposes.
+
+
+</body>
+</html>

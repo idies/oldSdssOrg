@@ -1,0 +1,177 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<CENTER><I><FONT SIZE=-1>Sloan Digital Sky Survey<BR>
+Review of Observing Systems and Survey Operations&nbsp;<BR>
+<BR>
+</FONT></I><B><FONT SIZE=+2>Configuration Management for the Operational Systems<BR>
+</FONT></B>Ellyne Kinney<BR>
+April 19, 2000</CENTER>
+
+<HR id=HR1 style="HEIGHT: 6px">
+<BR>&nbsp;
+
+
+<P><FONT SIZE=-1>The Configuration Management procedures for the operational 
+systems have
+evolved over the past year from a rather unstructured environment that
+optimized developer convenince, to a more formal environment that includes
+formal tracking, handover and testing of each software package. Currently
+testing is planned for 3 nights before each dark run with occasional testing
+during the dark run when needed to test critcal bug fixes.  As development
+and bug fixes wind down it is anticipated that testing can be reduced to only
+1 night per dark run, and that bug fixes and testing during the dark run would 
+be extremely rare.</FONT>
+<BR>&nbsp;
+
+<CENTER><P><B><FONT SIZE=+2>Configuration Management Tools</FONT></B></CENTER>
+
+<P><B><FONT SIZE=+1>Source Code Control System</FONT></B>
+
+
+<P><FONT SIZE=-1>All software developed at Fermi Lab and most of the code 
+developed at other Sloan Institutions is stored and tracked in a source code 
+control system.  The system in use for Sloan is CVS (Concurrent Version System.
+Each software package is stored as a separate module in a central source code 
+repository located on a computer a Fermi Lab.  The CVS system allows us to 
+create a stable release of a software package by creating a branch in the 
+repository for that software modules.  Branches are typically tagged with a 
+version number and only bug fixes for this version of the software module are 
+made on this branch.  After a few test and bug fix cycles on this branch a 
+stable version of the software module should develop.  Meanwhile enhancements 
+and ongoing development of the software module can continue in the main line 
+of the repository.  The branch and the main line are periodically merged by 
+the developer so that the bug fixes make it into the enhanced versions of the
+software module.</FONT>
+<BR>&nbsp;
+
+<P><B><FONT SIZE=+1>Product Database</FONT></B>
+
+<P><FONT SIZE=-1>CVS does a good job of tracking changes to flat ASCII 
+files such as source
+code, but is award to use for tracking compiled binary sources or for
+switching between different versions of software packages.  For this task
+we use a Fermi Lab developed database and tracking tool called UPS (Unix
+Products Services).  In the UPS system each software package/module is
+called a product.  All products in the UPS are cataloged in a simple ASCII
+database and are stored in a special Unix file partition (/p).  Each 
+product has a sub-directory in the /p partition, where several complete
+versions of each product can be stored.  This database makes it straight
+forward to switch between different versions of a product and to track the
+software dependencies for products.</FONT>
+<BR>&nbsp;
+
+<P><B><FONT SIZE=+1>Problem Report Database</FONT></B>
+
+<P><FONT SIZE=-1>All Problem Reports (PRs) for both Software and 
+Hardware are tracked
+using a Web-based Problem Report System called GNATS.  PRs in GNATS can be
+classified as critical, serious or non-critical.  Critical software bugs
+are defined as a problem that prevents telescope operations or  makes
+reducing the data impossible.  All critical bugs are fixed immediately
+and the fixes are tested right away.  Serious bugs are problems or bugs in
+important telescope commands or operational tools, but for which there is
+a known work-around.  These bugs are fixed in time for the next dark run.
+Non-critical bugs are defined as enhancements to the current software
+package or are reports about annoying features. Non-critical problem
+reports are typically resolved in a 1-3 month period.  Change requests are
+also filed in the GNATS system and are flagged as change requests.  In the
+event there is a disagreement between the development team and the
+observing team about change requests or the classification of a
+serious/critical bug.  Chris Stoughton will take input from both teams and
+make a recommendation to Bill Boroski and Jim Gunn who will make the final
+decision.</FONT>
+<BR>&nbsp;
+
+<CENTER><P><B><FONT SIZE=+2>Basic Procedures</FONT></B></CENTER>
+
+<P><B><FONT SIZE=+1>Upgrading Software on the Operational Computers</FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;
+For mature software that is not under active development and has only 
+occasional releases due to minor bug fixes, the developers at FNAL compile
+the code at FNAL and install the software into a UPS database on a FNAL 
+computer.  The observers can then install the software to the local UPS
+database via a simple install script.  Software packages that follow this
+upgrade strategy include dervish, astroda, and murmur.  For the TCC, which
+runs under OpenVMS on dec Alphas, the developer takes care of the installation
+for the observing team, but coordinates his upgrades with our Bright Time/
+Dark Run cycles.  For software packages that are still under development, 
+such as IOP/SOP and the MCP/TPM we have developed the following hand off
+strategy
+</FONT>
+
+
+<P><FONT SIZE=-1>&nbsp;When the programmer has some changes that need to be 
+tested, the
+software module is checked into the source code repository, and tagged
+with a version number.  E-mail is then sent to the observers with the
+version number and release notes that explain the changes that have
+been made to the software module.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;A branch in the source code repository is created. Bug fixes to the
+software module are made on the branch and the programmer can continue to
+work on other development on the mainline of the source code repository.
+This will allow development to continue even if the new software module 
+right away cannot be tested right away.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;The software module on the branch of the source code repository will be
+checked out by an observer and compiled.  The software module will then be
+declared to the local UPS database as a test version.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;The observers test the software module.  The release
+notes help the observers determine what is most important to test.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;If there are bugs found in the software module, the programmer will be
+notified of the problem though the problem report database.  Code changes
+to fix the bugs will be made on the branch in the source code repository. 
+Once the bugs are shaken out of the test version, the branch in the source
+code repository will be merged back into the mainline in the repository.
+A new version of the program will be declared as current to the UPS
+database and an e-mail sent to a general mailing list about the change.</FONT>
+
+
+<P><B><FONT SIZE=+1>Monthly Cycle for Software Upgrades</FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;1-2 days after a Dark Run the Observers, the Developers
+and the Data Processing team will meet to discuss problems that were 
+encountered during the Dark Run and to set priorities fixes and enhancements 
+to the software.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;During Bright Time there will be some opportunity for 
+the development team to troubleshoot and test the development version of the 
+software packages on the operational system.  Arrangements should be made 
+ahead of time with the observing team for testing support.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;3 days before the Dark Run shakedown testing begins.  
+In the source code repository a branch will be made for any software module 
+requiring bug fixes.  All bug fixes are made on this branch.  The goal is to 
+find as many bugs as possible during this time.  The most stable version of 
+each software module will be made current in the UPS database at the end of
+the shakedown tests.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;uring the Dark Run all operationally critical software 
+will be frozen. This means we will only run with the tested current versions 
+of the software in the UPS database. If a critical bug is found in a software
+module it will be fixed on the branch of the source code repository and tested 
+before science observing resumes.  The new software module with the bug fix 
+will be made the current version of the software module in the UPS database 
+once the module passes testing.  If a bug is found that is serious or 
+non-critical it will be fixed on the main line of the source code repository.  
+Further development of the software may also continue in the main line of the 
+source code repository.  Bug fixes made on a branch on the source code 
+repository will be merged into the main line periodically by the developer.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;Sometime during the last 1-2 nights of the Dark Run the 
+observers may be available to test new versions of software modules while the 
+moon is up.  </FONT>
+
+<HR id=HR1 style="HEIGHT: 6px">
+
+<P><FONT SIZE=-1>&nbsp;<B><I>Review of Observing Systems and Survey Operations</I></B></FONT>
+<BR><I><FONT SIZE=-1>Apache Point Observatory</FONT></I>
+<BR><FONT SIZE=-1><I>April 25-27, 2000</I></FONT>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

@@ -1,0 +1,1346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Data products: Spectra: Special plates - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Special plates</h1>
+
+<a href="./index.html">Back to spectra</a>
+
+<h2>Overview table of special programs</h2>
+
+<p><strong>Note</strong> that querying special-plate spectra and
+joining them to their photometry data requires special care. See <a
+href="./index.html#specialquery">special-query
+caveat</a> and the <a
+href="../../../segue/getstarted.html#ex4">SEGUE sample SQL
+query</a>.</p>
+
+<p>The <strong>Programname</strong> is stored in the
+<code>platex</code> table in the CAS.  See the <a
+href="http://cas.sdss.org/astro/en/help/docs/realquery.asp#repeatz">SQL
+sample query showing how to use the extra spectra</a> and the <a
+href="http://cas.sdss.org/astro/en/help/docs/realquery.asp#fstars">sample
+query for special spectra</a>. The links in the
+<strong>Program</strong> column point to the tables below describing
+individual target flags and targeting criteria.</p>
+
+<table border="1">
+  <tr>
+    <th>Programname</th>
+    <th>Plates</th>
+    <th>Program</th>
+    <th>Comments</th>
+  </tr>
+  <tr>
+  <td>baotest157</td>
+  <td>2634-2636,2638</td>
+  <td>BAO test plates</td>
+  <td>Fainter Galaxies</td>
+  </tr>
+  <tr>
+  <td>segue98, seguefaint98, segue101, seguefaint102, 
+      segue104, seguefaint105, segue106, seguefaint107,
+      segue117, seguefaint118, segue121, seguefaint122, segue124,
+      seguefaint125, segue126, seguefaint127, segue128, seguefaint129,
+      segue33, seguefaint134, segue146, seguefaint147,segue148,
+      seguefaint149,segue154,seguefaint155,segue161,segue162,
+      segue163</td>
+  <td>1880-1903, 1906-1913, 1916, 1918-1919, 1960 (M15), 1961
+      (M2), 1962(M15), 2038, 2040-2046, 2048-2050, 2052-2054, 2056,
+      2058, 2062-2064, 2066, 2068-2069, 2072, 2074, 2076, 2078, 2079,
+      2174 (M13) , 2176, 2181, 2183-2184, 2185 (M13), 2187, 2192-2195,
+      2248-2261, 2299-2304, 2306-2317, 2319-2332, 2334-2337, 2339-2340, 
+      2378-2384, 2386, 2390, 2393, 2397-2404, 2406-2407, 2409-2410, 2413,
+      2417, 2441-2444, 2449, 2452, 2457, 2464, 2467, 2534, 2536-2540,
+      2542, 2544-2545, 2547-2548, 2550, 2554-2560, 2564, 2567-2569,
+      2622, 2629, 2667-2674, 2676-2678, 2680, 2683, 2689-2690,
+      2694, 2696, 2698, 2701, 2707, 2714 </td>
+    <td><a href="#seguetest">SEGUE</a></td>
+    <td>Imaging available in CAS, either in <code>BESTDR6</code> or
+	<code>SEGUEDR6</code> (see <a
+	href="../../../segue/getstarted.html#ex4">SEGUE sample SQL
+	query)</a></td>
+  </tr><tr>
+    <td>seguetest83, seguetest96</td>
+    <td>1660-1664,1857</td>
+    <td><a href="#seguetest">SEGUE test</a> </td>
+    <td>Imaging available in CAS, either in <code>BESTDR6</code> or
+	<code>SEGUEDR6</code> (see <a
+	href="../../../segue/getstarted.html#ex4">SEGUE sample SQL
+	query)</a></td>
+  </tr><tr>
+    <td>seguetest84</td>
+    <td>1665-1666</td>
+    <td>Perseus-Pisces <a href="#fstars">F stars</a> and <a href="#ppgals">galaxies</a></td>
+    <td>Imaging  available only in <a
+href="http://das.sdss.org">DAS</a></td>
+  </tr><tr>
+    <td>fstar72</td>
+    <td>1468,1471,1472 </td>
+    <td><a href="#fstars">F stars</a>, <a href="#M31QSO">quasars</a> in M31</td>
+    <td>Imaging available only in the <a
+href="http://das.sdss.org">DAS</a>.</td>
+  </tr><tr>
+    <td>fstar51</td>
+    <td> 1149,1150,1152-1155</td>
+    <td><a href="#fstars">F stars</a></td>
+    <td>Double-length exposures </td>
+  </tr><tr>
+    <td>fstar29</td>
+    <td>797</td>
+    <td><a href="#fstars">F stars</a></td>
+    <td>Imaging not available</td>
+  </tr><tr>
+    <td>lowz45, lowz52, lowz62, lowz74, lowz97</td>
+    <td> 1021-1037, 1156, 1157, 1243, 1538, 1539, 1541-1543, 1551, 1555-1566, 1859 </td>
+    <td><a href="#lowzgals">Low-z galaxies</a>, <a href="#deepLRG">Deep LRG</a>, <a href="#BCGs">BCGs</a></td>
+    <td>Double-length exposures </td>
+  </tr><tr>
+    <td>merged73</td>
+    <td>1473-1476, 1485-1502, 1504-1518,1521-1523,1529</td>
+    <td><a href="#completemaingal">Complete Main</a>, <a
+	href="#ubandgal"><var>u</var>-band galaxies</a>, <a
+	href="#SoE">Spectra of Everything</a>, <a
+	href="#variability">Variability</a>, <a href="#highpm">High
+	Proper motion stars</a>, <a href="#faintLRG">Fainter
+	LRG</a></td>
+    <td>Standard merged program</td>
+  </tr><tr>
+    <td>merged48</td>
+    <td>1062-1096, 1101, 1103-1108, 1114-1117</td>
+    <td><a href="#completemaingal">Complete Main</a>, <a href="#ubandgal"><var>u</var>-band galaxies</a>, <a href="#DRAGN">Double-lobed
+	radio sources</a>, <a href="#faintQSO">faint quasars</a>, <a href="#SoE">Spectra of Everything</a></td>
+    <td>Standard merged program</td>
+  </tr><tr>
+    <td>rockosi50</td>
+    <td>1133-1135,1137,1143</td>
+    <td><a href="#msturnoff">MS Turnoff stars</a></td>
+    <td></td>
+  </tr><tr>
+    <td>munn49</td>
+    <td>1118-1132</td>
+    <td><a href="#thickdisk">Thick and thin disk</a></td>
+    <td></td>
+  </tr><tr>
+    <td>photoz21, photoz29, photoz79</td>
+    <td>669-672, 807-810, 1629, 1632-1636</td>
+    <td><a href="#photoz">photo-z</a> </td>
+    <td></td>
+  </tr><tr>
+    <td>loveday29</td>
+    <td>811</td>
+    <td><a href="#lowzgals">low-z galaxies</a> </td>
+    <td></td>
+  </tr><tr>
+    <td>annis29</td>
+    <td>802-806</td>
+    <td><a href="#lowzgals">low-z galaxies</a> </td>
+    <td></td>
+  </tr><tr>
+    <td>south22</td>
+    <td>673-714</td>
+    <td>Main Extension: <a href="#mainextgals">Galaxies</a>, <a href="#mainextQSO">Quasars</a></td>
+    <td>Extensions of standard algorithms</td>
+  </tr><tr>
+    <td>Schlegel/Locus</td>
+    <td>323-324</td>
+    <td><a href="#stellarlocus">Stellar locus</a></td>
+    <td></td>
+  </tr>
+</table>
+
+
+<h2>Descriptions of individual programs and primtarget categories</h2>
+
+<p><strong>Note</strong> The descriptions on this page pertain to
+<em>targeting</em> cateogries, i.e., the way in which objects where
+selected from the photometry catalog.  Before using these spectra, you
+need to check both the spectral classification (<code>specClass</code>
+in the CAS, <code>spec_cln</code> in the <a
+href="../../dm/flatFiles/spSpec.html">spSpec*.fits primary header</a>)
+and the <a href="./index.html#zstatus">redshift status</a> (as for all
+SDSS spectra).</p>
+
+<a name="galkin"></a>
+<h3>Galactic kinematic programs</h3>
+
+<a name="fstars"></a>
+<h4>F stars</h4>
+
+<p>F stars are numerous in the Galaxy, have sharp spectral features
+allowing accurate radial velocities to be measured, are approximate
+standard candles if the stars are on the main sequence, and are of
+high enough luminosity that they can be seen to great distances.  This
+program aims to use F star radial velocities to understand the
+kinematics of the outer parts of the Milky Way.  Most of these plates
+were in the Southern Galactic Cap Equatorial Stripe, but there are
+also three plates in the vicinity of M31, and another two plates
+centered roughly on the Perseus cluster.  The M31 (e.g., <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2004ApJ...612L.117Z">Zucker
+et al.  2004a</a> and <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2004ApJ...612L.121Z">Zucker
+et al.  2004b</a>) and Perseus imaging data are <em>not yet</em> included
+in DR5, but will be included soon.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>seguetest84, fstar72, fstar51, fstar29</td>
+    <td>F stars</td>
+    <td><code>0x80002000</code></td>
+    <td>6050</td>
+    <td>Stellar objects with -0.3 &lt; <var>(g-r)</var> &lt; 0.3 and
+	19.0 &lt; <var>g</var> &lt; 20.5</td>
+  </tr>
+</table>
+
+<a name="msturnoff"></a>
+<h4>Main sequence turnoff</h4>
+
+<p>This program was designed to study the kinematics and metallicities
+of high-latitude thick disk and halo stars.  One of the plates
+overlaps with the area of the Thick/Thin disk program described below
+and uses the extra color cut <var>i-z</var>&gt;0.2 to avoid overlap
+with that program. The DR4 spectra from this program are a random
+subset of all the objects identified by the selection algorithm.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>rockosi50</td>
+    <td>Main-sequence turnoff</td>
+    <td><code>0x80002000</code></td>
+    <td>2947</td>
+    <td>(l,b) near (64&deg;,-45&deg;): <var>r</var> &lt; 19.15,
+  <var>g-r</var> &lt; 0.8<br />
+	(l,b) near (114&deg;,-62&deg;): <var>r</var> &lt; 19.15,
+  <var>g-r</var> &lt; 0.8, <var>i-z</var> &gt; 0.2</td>
+  </tr>
+</table>
+
+<a name="thickdisk"></a>
+<h4>Thick/thin disk stars</h4>
+
+<p>A third program was focused on the kinematics on the thin and thick
+disks, targeting a complete sample of 8880 bright, red stars in three
+adjacent spectroscopic tiles centered at high Galactic latitude.  It
+provides an in situ sample of thin and thick disk stars with radial
+velocities, proper motions, and spectroscopic metallicity
+determinations, densely sampling a single line of sight out to 2 kpc
+above the Galactic plane.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>munn49</td>
+    <td>Thick/thin disk</td>
+    <td><code>0x80040000</code></td>
+    <td>8859</td>
+    <td><var>i</var> &lt; 18.26, <var>i-z</var> &gt; 0.2<br />
+    near (<var>l</var> = 123&deg;, <var>b</var> = -63&deg;)</td>
+  </tr>
+</table>
+
+<a name="seguetest"></a>
+<h4>SEGUE and SEGUE test plates</h4>
+
+<p><a href="../../../segue/index.html">SEGUE</a> (&quot;Sloan
+Extension for Galactic Understanding and Exploration&quot;) is part of
+a follow-on project to the SDSS, emphasizing spectra of stars to study
+stellar populations and Galactic structure.  The targets on the SEGUE
+test plates in DR4 and DR5 are Galactic stars of a variety of colors
+and magnitudes, meant to sample the range of available spectral types
+and to test the reproducibility of radial velocity measurements at
+faint magnitudes.  SEGUE aims to probe the structure of the Milky Way
+by sampling Horizontal Branch, F turnoff, G dwarf and K dwarf and
+giant stars, representing a variety of distances in the disk and halo.
+These plates are being used to refine target selection for the SEGUE
+program itself.</p>
+
+<p>The SEGUE test plates use dereddened PSF magnitudes in their
+selection. Most selection categories use a color and/or magnitude
+weighting to get a more even sampling of the color/magnitude
+distribution where the number counts rise steeply with color or
+magnitude.</p>
+
+<p><strong>NOTE</strong> Among the SEGUE plates, plate 1664 is a
+special radial-velocity standards plate which targets F, G and K stars
+(mostly dwarfs). It includes very faint stars and has been observed
+twice to explore the accuracy of radial velocity determinations at
+faint magnitudes. Thus, the table below does not include counts for
+objects from plate 1664 with its fainter magnitude limits.</p>
+
+<p>In addition, not all plates from the SEGUE test chunks have been
+observed, so that some targeting categories do not have any spectra.
+There are SEGUE special plates which inadvertently do not have any
+corresponding imaging in the CAS.  This imaging is now available
+in the <a href="http://das.sdss.org">DAS</a>
+(see <a href="../../start/aboutdrsup.html">About DRsup</a>).  Imaging
+is currently available for all SEGUE and special plate spectra taken
+on the southern equator (stripe 82) and all regular sdss stripes
+(10-37).  Much SEGUE imaging occurs at low-latitudes, in quite crowded
+fields.  The photometry of this imaging is subject to greater than
+normal systematic errors because the processing code used in these is
+currently not adapted for crowded fields.  In addition the reddening
+and associated extinction in these areas is often quite high and
+variable. Thus users of optical band imaging photometry in these areas
+are cautioned to take care when analyzing the data. </p>
+
+<p><strong>Important!</strong> Since the SEGUE spectra count as
+special plates in the CAS, they are <strong>not</strong> considered to
+be &quot;scienceprimary&quot;. Therefore, they are <em>not</em> linked
+to the photometry in the usual way, e.g., they do not appear in the
+object browser's default view like galaxy, quasar and stellar spectra
+from the legacy survey. 
+See the <a
+href="../../../segue/getstarted.html#ex4">SEGUE sample SQL
+query for instructions on joining SEGUE imaging and
+spectroscopy</a>.</p>
+
+<p> SEGUE data obtained prior to the start of SDSS-II (July 1, 2005)
+is being made available to general users as part of the SDSS-I data
+release on a limited basis as effort permits.  SEGUE was given a head
+start, and a number of SEGUE program plates were observed during
+SDSS-I, which are being released now to the public.  A more detailed
+explaination of targeting is linked from the <a
+href="../../algorithms/target.html#SEGUE">SEGUE section of the target
+selection algorithms page</a>.  SEGUE stellar spectroscopy does not
+fill the sky.  The full three year program will distribute approx. 200
+pointings around approx. 2pi steradians, sampling the Galaxy's halo
+and disks at a spacing with approximately 10 to 20 degree separations.
+Each of the 200 pointings will have a pair of 640 fiber plates
+observed, with 550 brighter (13 < g < 18) and 550 fainter (18 < g <
+20) stars targeted in each pointing.  The approximate number of
+targets in each stellar category, as well as approximate color cuts
+for these categories, are tabulated below.  The colors are dereddened;
+the s-color is a linear combination of (u-g), (g-r), (r-i) which runs
+parallel to the stellar locus from F5-M0; p1(s) is a color
+perpendicular to s (and thus the stellar locus).  </p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr><tr>
+    <td>seguetest83, seguetest96, segue98, seguefaint98, segue101, seguefaint102, segue104, seguefaint105, segue106, seguefaint107, segue117, seguefaint118</td>
+    <td>White dwarfs</td>
+    <td><code>0x80080000</code></td>
+    <td>25</td>
+    <td><var>g</var> &lt; 20.3, -1 &lt;  <var>g-r</var> &lt; -0.2, -1
+  &lt; <var>u-g</var> &lt; 0.5<br />
+	color weighting</td>
+  </tr><tr>
+    <td></td>
+    <td>Cool White dwarfs</td>
+    <td><code>0x80020000</code></td>
+    <td>10</td>
+    <td>15 &lt; <var>r</var> &lt; 20, -0.1 &lt; <var>g-r</var> &lt; 1.1,
+  <var>g-r</var> &gt; 2.4*(r-i)+0.5, <var>i-z</var> &lt; 0<br />
+	color weighting</td>
+  </tr><tr>
+    <td></td>
+    <td>A/BHB stars</td>
+    <td><code>0x80002000</code></td>
+    <td>150</td>
+    <td>g &lt; 20.5, 0.5 &lt; <var>u-g</var> &lt; 1.4, -0.8 &lt;
+	<var>g-r</var> &lt; 0.2, <var>s</var>-color &lt; -0.065<br />
+	color weighting</td>
+  </tr><tr>
+    <td></td>
+    <td>F turnoff and sub-dwarfs</td>
+    <td><code>0x80100000</code></td>
+    <td>150</td>
+    <td>-0.7 &lt; p1(s) &lt; -0.3, 0.4 &lt; <var>u-g</var> &lt; 1.7,
+	-0.3 &lt; <var>g-r</var> &lt; 3, <var>g</var> &lt; 20.3<br />
+	color and magnitude weighting</td>
+  </tr><tr>
+    <td></td>
+    <td>G stars</td>
+    <td><code>0x80040000</code></td>
+    <td>375</td>
+    <td>14.2 &lt; <var>r</var> &lt; 20.2, 0.50 &lt; <var>g-r</var>
+	&lt; 0.55<br />
+	random weighting</td>
+  </tr><tr>
+    <td></td>
+    <td>K Giants</td>
+    <td><code>0x80004000</code></td>
+    <td>100</td>
+    <td>r &lt; 20.2, 0.7 &lt; <var>u-g</var> &lt; 4.0 , 0.40 &lt;
+	<var>g-r</var> &lt; 1.2, 0.15 &lt; <var>r-i</var> &lt; 0.6,
+	<var>l</var>-color &gt; 0.1, proper_motion &lt; 15
+	arcsec/century (intended to be 1.5 arcsec/century)<br />
+	color weighting</td>
+  </tr><tr>
+    <td></td>
+      <td>Low metallicity</td>
+      <td><code>0x80010000</code></td>
+      <td>150</td>
+      <td>r &lt; 20.2, 0.3 &lt; <var>u-g</var> &lt; 3.0, -0.5 &lt; <var>g-r</var> &lt; 0.9, <var>l</var>-color &gt; 0.15<br />
+	  color weighting</td>
+    </tr><tr>
+      <td></td>
+      <td>K dwarfs</td>
+      <td><code>0x80008000</code></td>
+      <td>125</td>
+      <td>14.5 &lt; <var>r</var> &lt; 19.5, <var>g-r</var> &gt; 0.7,
+	  <var>r-i</var> &lt; 0.8<br />
+	  random weighting</td>
+    </tr><tr>
+      <td></td>
+      <td>M dwarfs</td>
+      <td><code>0x80200000</code></td>
+      <td>50</td>
+      <td>regular M dwarfs: <var>r-i</var> &gt; 0.3, 14.5 &lt;
+	  <var>r</var> &lt; 19.0 (N=12)<br />
+	  color weighting<br />
+	  Not sure if the <var>r-i</var> cut is correct (0.7-0.8?)<br />
+	  sub-dwarf cands: <var>u-g</var> &gt; 1.8, <var>g-r</var>
+	  &gt; 0.8, 0.5 &lt; <var>r-i</var>, 14.5 &lt; <var>r</var> &lt; 19
+	  (N=15)<br />
+	  color weighting<br />
+	  high-velocity M dwarfs: <var>r-i</var> &gt; 0.3, 14.5 &lt; <var>r</var> &lt; 19.3, velocity proxy 
+	  &cong; 100 km/s (N=25)<br />
+	  velocity and color weighting</td>
+    </tr><tr>
+      <td></td>
+      <td>AGB candidates</td>
+      <td><code>0x80800000</code></td>
+      <td>10</td>
+      <td>14.5 &lt; <var>r</var> &lt; 19.5, 2.5 &lt; <var>u-g</var>
+	  &lt; 3.5, 0.9 &lt; <var>g-r</var> &lt; 1.3, <var>s</var>-color &lt;
+	  -0.07<br />
+	  color weighting</td>
+    </tr>
+</table>
+
+<h3>Other stellar/point-source target selection algorithms</h3>
+
+<a name="SoE"></a>
+<h4>Spectra of Everything</h4>
+
+<p> As part of an exploration of the full stellar locus, as well as a
+search for unusual objects of all sorts, we carried out a survey of
+all stellar objects (&quot;Spectra of Everything&quot;), which was
+used as a filler for a series of so-called merged program plates,
+which included a mixture of mostly extragalactic targets.  In 2002
+(chunk <code>merged48</code>), this included a random sampling of all
+point sources with clean photometry (see the discussion of fatal and
+non-fatal flags in <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2945R">Richards
+et al. 2002</a>) with reddening-corrected <var>i</var>-band PSF
+magnitudes brighter than 19.1.  Not surprisingly, the vast majority of
+the targets were chosen from the densest core of the stellar locus in
+color-color space.</p>
+
+<p>In an attempt to put greater weight on the wings of the stellar
+locus, we revised the selection algorithm slightly for chunk
+<code>merged73</code>. We defined a distance from the ridge of the
+stellar locus, by asking for the median and standard deviation
+<var>u-g</var>, <var>g-r</var>, and <var>i-z</var> of stars in narrow
+bins of <var>r-i</var>.  Having tabulated these, we calculated a crude
+&chi;<sup>2</sup>-like quantity:</p>
+
+<pre>L = 1/3 Sum_{u-g,g-r,i-z} ((color-median color)/(standard deviation))<sup>2</sup></pre>
+
+<p>75% of all stars had <var>L</var> &lt; 1.  We gave all stars with
+<var>L</var> &gt; 1 highest priority, and for <var>L</var> &lt; 1, the
+priority decreased smoothly with <var>L</var>.</p>
+
+<p>These spectra were used for a determination of the completeness of
+the quasar target selection algorithm <a
+href="http://adsabs.harvard.edu/cgi-bin/bib_query?bibcode=2005AJ....129.2047V">(Vanden
+Berk et al. 2005)</a>.  The overwhelming majority of these objects are
+confirmed to be stars; only 10 of the 19,543 of the Spectra of
+Everything targets analyzed in that paper are quasars not previously
+targeted as such.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>merged48</td>
+    <td>Spectra of everything</td>
+    <td><code>0xA0000000</code></td>
+    <td>14779</td>
+    <td>Point sources at <var>i</var><sub>PSF dered</sub> &lt; 19.1</td>
+  </tr>
+  <tr>
+    <td>merged73</td>
+    <td>Spectra of everything</td>
+    <td><code>0x80000001</code></td>
+    <td>3934</td>
+    <td>Point sources at <var>i</var><sub>PSF dered</sub> &lt; 19.1
+	<var>L</var> &gt; 1</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Spectra of everything</td>
+    <td><code>0x80000002</code></td>
+    <td>5478</td>
+    <td>Point sources at <var>i</var><sub>PSF dered</sub> &lt; 19.1,
+	<var>L</var> &lt; 1</td>
+  </tr>
+</table>
+
+<a name="highpm"></a>
+<h4>High proper motion</h4>
+
+<p>A sample of high proper motion stars was defined using proper
+motions determined using the methods of <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2004AJ....127.3034M">Munn
+et al. (2004)</a>, where a consistent astrometric solution was found
+matching USNO-B data <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003AJ....125..984M">(Monet
+et al. 2003)</a> with SDSS. There were two cuts:</p>
+<ol>
+  <li>A simple cut of proper motion &mu; &gt; 100 mas/y</li>
+  <li>Cuts using reduced proper motion <var>H</var><sub>r</sub>
+      defined by:
+<pre>      <var>H</var><sub>r</sub> = <var>r</var> + 5 log<sub>10</sub> &mu; + 5</pre>
+      The sample was defined by:
+<pre>        <var>g-i</var> &lt; 2      <var>H</var><sub>r</sub> &gt; 16
+    2 &lt; <var>g-i</var> &lt; 2.375  <var>H</var><sub>r</sub> &gt; 8 + 4 (<var>g-i</var>)
+2.375 &lt; <var>g-i</var>          <var>H</var><sub>r</sub> &gt; 17.5</pre>
+      
+  </li>
+</ol>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>merged73</td>
+    <td>High proper motion</td>
+    <td><code>0x80010000</code></td>
+    <td>966</td>
+    <td>Cuts on proper motion, or reduced proper motion together with
+  <var>g-i</var> color (described above)</td>
+  </tr>
+</table>
+
+<a name="stellarlocus"></a>
+<h4>Stellar locus</h4>
+
+<p>For plates 323 and 324, stellar targets were chosen from SDSS
+imaging data, randomly sampling the stellar locus in color space, in
+order to explore the full range of stellar spectra.  In particular,
+grids of width 0.04 magnitude in the (<var>u-g</var>),(<var>r-i</var>)
+and (<var>r-i</var>),(<var>i-z</var>) color planes were set down, and
+where they existed, a single star was selected in each grid.  The
+process was iterated until about 600 targets on each plate had been
+assigned.</p>
+
+
+
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>Schlegel/Locus</td>
+    <td>Stellar locus</td>
+    <td><code>0x2000</code></td>
+    <td>1188</td>
+    <td>Grid of objects in the <var>u-g,r-i</var> and <var>r-i, i-z</var> planes</td>
+  </tr>
+</table>
+
+<a name="lowzgal"></a>
+<h3>Galaxies at low redshifts</h3>
+
+<a name="mainextgals"></a>
+<h4>Main extension: galaxies</h4>
+
+<p>In Chunk 22, observed in Fall 2001, we used direct extensions of
+the main survey target selection algorithms.  In particular, the <strong>main
+galaxy sample</strong> <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....124.1810S">(Strauss
+et al. 2002)</a> was modified only slightly, by removing the cut on
+objects with half-light Petrosian <var>r</var> band surface brightness
+&mu;<sub>50,<var>r</var></sub> below 24.5 mag/arcsec<sup>2</sup>.  This adds
+less than one object per square degree.</p>
+
+<p>For <strong>LRGs</strong>, the sample was changed to probe about
+0.3 mag fainter than for the main survey selection described by <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2001AJ....122.2267E">Eisenstein
+et al (2001)</a>.  In particular, the cuts that were used garner about
+40 objects/deg<sup>2</sup>:</p>
+
+<pre>        <var>r</var> &lt; 19.5
+        <var>r</var> &lt; 13.4 + c<sub>||</sub>/0.3
+    &mu;<sub>50,<var>r</var></sub> &lt; 25
+     |<var>c</var><sub>&perp;</sub>| &lt; 0.4</pre>
+for Cut I, and
+<pre>        <var>r</var> &lt; 19.5
+      <var>g-r</var> &gt; 1.65 - c<sub>&perp;</sub>
+    &mu;<sub>50,<var>r</var></sub> &lt; 25
+    <var>r</var><sub>PSF</sub><var>-r</var><sub>model</sub> &gt; 0.3</pre>
+for Cut II, with
+<pre>        <var>c</var><sub>||</sub> = 0.7(<var>g-r</var>) + 1.2(<var>r-i-0.18</var>)
+        <var>c</var><sub>&perp;</sub> = (<var>r-i</var>) - (<var>g-r</var>)/8</pre>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>south22</td>
+    <td>Main extension: galaxies</td>
+    <td>Regular <code>primtarget</code> and <code>sectarget</code> flags, with bit <code>0x80000000</code> set</td>
+    <td>8986</td>
+    <td>See text above</td>
+  </tr>
+</table>
+
+
+<a name="completemaingal"></a>
+<h4>Complete main galaxies</h4>
+
+<p>The main galaxy sample, as described by <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....124.1810S">(Strauss
+et al. 2002)</a> is as complete as we can make it.  However, the
+subset for which we actually obtain a spectrum is only about 90%.
+This incompleteness has several causes, including the fact that two
+spectroscopic fibers cannot be placed closer than 55&prime;&prime; on
+a given plate, possible gaps between the plates, fibers that fall out
+of their holes, and so on.  This program aims to observe the remaining
+10\% of galaxy targets in order to have a region of sky with truly
+complete galaxy spectroscopic coverage.  This is particularly
+important for studies of galaxy pairs, which are by definition
+strongly affected by the 55&prime;&prime; rule.  The target selection
+algorithm is simple: all galaxies selected by the algorithm described
+in <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....124.1810S">(Strauss
+et al. 2002)</a> in the Southern Equatorial Stripe, minus those
+galaxies that actually have a successfully measured redshift in
+routine targeting.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>merged73</td>
+    <td>Complete MAIN galaxies</td>
+    <td>Regular <code>primtarget</code> and <code>sectarget</code> flags</td>
+    <td>2020</td>
+    <td>Additional fibers for MAIN survey galaxies</td>
+  </tr>
+  <tr>
+    <td>merged48</td>
+    <td>Complete MAIN galaxies</td>
+    <td>Regular <code>primtarget</code> and <code>sectarget</code> flags</td>
+    <td>1605</td>
+    <td>Additional fibers for MAIN survey galaxies</td>
+  </tr>
+</table>
+
+<a name="ubandgal"></a>
+<h4><var>u</var>-band galaxies</h4>
+
+<p>The main galaxy target selection is carried out in the <var>r</var>
+band, and is flux-limited at <var>r</var> = 17.77.  The bluest
+galaxies have $u-r \approx 0.6$, thus a magnitude-limited in the $u$
+band corresponds to $u \approx 18.4$.
+
+In order to explore the <var>u</var>-band luminosity density of the
+universe, and explore the recent history of star formation in the
+universe, we carried out a <var>u</var>-band survey of galaxies in the
+SDSS. <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2005MNRAS.358..441B">Baldry
+et al. (2005)</a> describe the sample in detail and present the
+resulting <var>u</var>-band luminosity function.</p>
+
+<p>In the selection criteria below, we use a (dereddened)
+&quot;Pseudo-Petrosian&quot; <var>u</var>-band magnitude</p>
+<pre>        <var>u</var><sub>select</sub> = <var>u</var><sub>model</sub> - <var>r</var><sub>model</sub> + <var>r</var><sub>Petro</sub>.</pre>
+
+<p>Note that the objects targeted in this program do not include
+objects with spectroscopic observations already in hand.  Thus one
+needs to combine objects from various programs to define a complete
+sample.  See the discussion in <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2005MNRAS.358..441B">Baldry
+et al. (2005)</a> for determination of the completeness of the
+resulting sample.</p>
+
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>merged73</td>
+    <td>u-band galaxies: priority</td>
+    <td><code>0x80000040</code></td>
+    <td>765</td>
+    <td><var>u</var><sub>select</sub> &lt; 19.8<br />
+	<var>g</var><sub>Petro</sub> &lt; 20.5<br />
+	17.5 &lt; <var>r</var><sub>Petro</sub> &lt; 20.5<br />
+	&mu;<sub>50,<var>r</var></sub> &lt; 24.5<br />
+	<var>r</var><sub>PSF</sub><var>-r</var><sub>model</sub> &gt; 0.2</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>u-band galaxies: extra</td>
+    <td><code>0x800000c0</code></td>
+    <td>2128</td>
+    <td><var>u</var><sub>select</sub> &lt; 20.3 or
+	<var>u</var><sub>model</sub> &lt; 19.8 or
+	<var>u</var><sub>Petro</sub> &lt; 19.5<br />
+	<var>g</var><sub>Petro</sub> &lt; 19.5<br />
+	17.3 &lt; <var>r</var><sub>Petro</sub> &lt; 20.7<br />
+	&mu;<sub>50,<var>r</var></sub> &lt; 24.7<br />
+	<var>r</var><sub>PSF</sub><var>-r</var><sub>model</sub> &gt; 0.15</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>u-band galaxies: extra2</td>
+    <td><code>0x80000140</code></td>
+    <td>2108</td>
+    <td><var>u</var><sub>select</sub> &lt; 20.3<br />
+	<var>g</var><sub>Petro</sub> &lt; 20.5<br />
+	17.5 &lt; <var>r</var><sub>Petro</sub> &lt; 20.5<br />
+	&mu;<sub>50,<var>r</var></sub> &lt; 24.5<br />
+	<var>r</var><sub>PSF</sub><var>-r</var><sub>model</sub> &gt; 0.2</td>
+  </tr>
+  <tr>
+    <td>merged48</td>
+    <td>u-band galaxies</td>
+    <td><code>0x80000040</code></td>
+    <td>3426</td>
+    <td><var>u</var><sub>select</sub> &lt; 19.8<br />
+	<var>g</var><sub>Petro</sub> &lt; 20.5<br />
+	17.5 &lt; <var>r</var><sub>Petro</sub> &lt; 20.5<br />
+	&mu;<sub>50,<var>r</var></sub> &lt; 24.5<br />
+	<var>r</var><sub>PSF</sub><var>-r</var><sub>model</sub> &gt; 0.2</td>
+  </tr>
+</table>
+
+<a name="lowzgals"></a>
+<h4>Low-redshift galaxies</h4>
+
+<p>We have carried out a survey of low-redshift galaxies to 2
+magnitudes fainter than the SDSS main sample limit in order to add
+more low-luminosity galaxies to the sample.  Our redshift selection
+used photometric redshifts derived from second-order polynomial fits
+to observed Petrosian <var>r</var> magnitudes and model colors, with
+separate fits done in bins of model <var>g-r</var> color.  For Chunks
+45, 52, and 62, we used the SDSS EDR photometry and spectroscopy then
+available to derive photometric redshifts, while for Chunks 74 and 97,
+we were able to derive improved photometric redshifts using
+catalog-coadded Stripe 82 SDSS photometry, combined with all available
+SDSS redshift data on the Southern Equatorial Stripe as of 11 July
+2003.  This included much of the data taken for the express purpose of
+calibrating the photometric redshift relation in the SDSS photometric
+system.</p>
+
+<p>Galaxies were then chosen for observations based on their
+photometric redshift <var>z</var><sub>p</sub> and Petrosian magnitude
+<var>r</var><sub>Petro</sub>.  In particular, the aim was to target as
+complete a sample as possible for 17.77 &le; <var>r</var> &lt; 19.0
+and true redshift below 0.15, and sparse samples to higher redshifts,
+as well as at fainter magnitudes 19.0 &le; <var>r</var> &lt; 19.5.
+The specific target categories, in order of highest to lowest priority
+for fiber assignment, are listed in the table below. As there are many
+more such targets than available fibers, the available targets were
+sampled sparsely.  The sparse sampling fraction values were chosen to
+get reasonable distributions of objects over the target categories and
+to keep approximately similar target distributions from chunk to
+chunk, which resulted in somewhat different sampling fractions for
+each of the five chunks in which this algorithm was used.</p>
+
+<table border="1">
+  <caption>Sparse sampling fractions</caption>
+  <tr>
+    <th>magnitudes</th>
+    <th>redshift</th>
+    <th>Chunk 45</th>
+    <th>Chunk 52</th>
+    <th>Chunk 62</th>
+    <th>Chunk 74</th>
+    <th>Chunk 97</th>
+  </tr><tr>
+    <td> 17.77 &le; r &lt; 19.0 </td><td> 0.00 &le; <var>z</var><sub>p</sub> &lt; 0.15 </td><td> 1.0 </td><td> 0.85 </td><td> 0.7 </td><td>1.0 </td><td> 1.0</td>
+  </tr><tr>
+    <td>   17.77 &le; r &lt; 19.0 </td><td> 0.15 &le; <var>z</var><sub>p</sub> &lt; 0.20 </td><td> 0.15</td><td> 0.1275</td><td>  0.105 </td><td>0.15 </td><td> 0.3 </td>
+  </tr><tr>
+    <td>   17.77 &le; r &lt; 19.0 </td><td> 0.20 &le; <var>z</var><sub>p</sub> &lt; 0.25 </td><td> 0.15</td><td> 0.1275</td><td>  0.105 </td><td>0.15 </td><td> 0.3 </td>
+  </tr><tr>
+    <td>   19.0  &le; r &lt; 19.5 </td><td> 0.00 &le; <var>z</var><sub>p</sub> &lt; 0.15 </td><td> 0.25</td><td> 0.2</td><td>  0.15</td><td>0.25 </td><td> 0.3</td>
+  </tr><tr>
+    <td>   19.0  &le; r &lt; 19.5 </td><td> 0.15 &le; <var>z</var><sub>p</sub> &lt; 0.20 </td><td> 0.25</td><td> 0.16</td><td>  0.1 </td><td>0.25 </td><td> 0.3</td>
+  </tr><tr>
+    <td>   19.0  &le; r &lt; 19.5 </td><td> 0.20 &le; <var>z</var><sub>p</sub> &lt; 0.25 </td><td> 0.25</td><td> 0.18</td><td>  0.15</td><td>0.25 </td><td> 0.3</td>
+  </tr><tr>
+    <td>   17.77 &le; r &lt; 19.0 </td><td> 0.25 &le; <var>z</var><sub>p</sub> </td><td> 0.015</td><td> 0.015</td><td>  0.015</td><td>0.17 </td><td> 0.3</td>
+  </tr><tr>
+    <td>   17.77 &le; r &lt; 19.0 </td><td> <var>z</var><sub>p</sub> &lt; 0.0  </td><td> 0.65</td><td> 0.65</td><td>  0.65 </td><td>0 </td><td> 0</td>
+  </tr><tr>
+    <td>   19.0  &le; r &lt; 19.5 </td><td> 0.25 &le; <var>z</var><sub>p</sub> </td><td> 0.005</td><td> 0.005</td><td>  0.005</td><td>0.15 </td><td> 0.3</td>
+  </tr><tr>
+    <td>   19.0  &le; r &lt; 19.5 </td><td> <var>z</var><sub>p</sub> &lt; 0.00 </td><td> 1.0 </td><td> 1.0</td><td>  1.0 </td><td>0 </td><td> 0</td>
+  </tr>
+</table>
+
+<p>A <strong>caveat</strong> to note is that Chunk 45 used the
+star/galaxy separation criteria of the SDSS photometric pipeline to
+select galaxies, and this resulted in noticeable contamination of
+stars in several of the Chunk 45 plates located at lower galactic
+latitudes.  The other chunks used the star/galaxy cut employed by the
+SDSS main sample target selection algorithm
+(<var>r</var><sub>PSF</sub> - <var>r</var><sub>model</sub> &ge; 0.3 or
+0.24, depending on the version of the photometric pipeline), which is
+more conservative for selecting galaxies.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>lowz45, lowz52, lowz62, lowz74, lowz97</td>
+    <td>low-z</td>
+    <td><code>0x80000040</code></td>
+    <td>14210</td>
+    <td>Photometric redshift, sparse sampling as given in table above</td>
+  </tr>
+  <tr>
+    <td>loveday29</td>
+    <td>low-z</td>
+    <td><code>0x80000040</code></td>
+    <td>570</td>	
+    <td>EDR photometric redshift from <a
+	href="http://adsabs.harvard.edu/cgi-bin/bib_query?bibcode=2003AJ....125..580C">Csabai
+	et al. (2003)</a> &gt; 0.003,<br />
+	<var>r</var><sub>Petro</sub> &lt; 20,<br />
+	estimated M<sub><var>r</var></sub> &gt; -18</td>
+  </tr>
+  <tr>
+    <td>annis29</td>
+    <td>low-z</td>
+    <td><code>0x80000040</code></td>
+    <td>2849</td>
+    <td><var>i</var><sub>Petro</sub> &le; 20,<br />
+	<var>i</var><sub>Petro</sub> + (<var>r-i</var>)<sub>model</sub> &ge;
+	17.75,<br />
+	<var>z</var><sub>p</sub> &le; 0.17-0.19, chosen plate-by-plate
+	to give enough targets to match the available number of fibers</td>
+  </tr>
+</table>
+
+
+
+
+
+<a name="photoz"></a>
+<h3>Galaxy target selection for calibration of photometric
+redshifts</h3>
+
+<p>The SDSS five-band photometry goes substantially fainter than does the
+spectroscopy, suggesting the opportunity to derive photometric
+redshifts for vastly more objects than have spectroscopy (see, for
+example, <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003AJ....125..580C">Csabai
+etal 2003</a>).  Calibrating the photometric redshift relation
+requires a training sample exploring the same range of apparent
+magnitudes and colors as the objects for which photometric redshifts
+will eventually be derived.  The SDSS LRG sample <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2001AJ....122.2267E">(Eisenstein
+et al. 2001)</a> obtains spectra for red faint (<var>r</var> &lt;
+19.5) galaxies; photometric redshifts of this relatively uniform
+population (e.g., <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003ApJ...585..694E">Eisenstein
+et al. 2003</a>) are fairly robust (e.g., <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2005MNRAS.359..237P">Padmanabhan
+et al.  2005</a>).  However, we do not have a corresponding sample of
+faint blue galaxies for the calibration of photometric redshifts.
+Therefore, a series of spectroscopic plates was designed to obtain
+redshifts for the blue end of the galaxy color distribution at the
+faint end.</p>
+
+<pre>
+ 0.40 + 0.6(<var>u-g</var>) &lt; <var>g-r</var> &lt; 1.7 - 0.1(<var>u-g</var>)
+            -0.5 &lt; <var>u-g</var> &lt; 3.0 
+               0 &lt; <var>g-r</var> &lt; 1.8 
+            -0.5 &lt; <var>r-i</var> &lt; 1.5 
+              -1 &lt; <var>i-z</var> &lt; 1.5 
+            18.0 &lt; <var>u</var>   &lt; 24.0 
+            18.0 &lt; <var>g</var>   &lt; 21.5 
+            17.8 &lt; <var>r</var>   &lt; 19.5 
+            16.5 &lt; <var>i</var>   &lt; 20.5 
+            16.0 &lt; <var>z</var>   &lt; 20.0 
+              &sigma;<sub><var>u</var></sub> &lt; 0.6
+        &sigma;<sub><var>g,r,i,z</var></sub> &lt; 0.25</pre>
+
+<p>For objects that satisfied the above cuts, the quantity
+exp[<var>c</var>((<var>g-r</var>) - (0.40 +0.6(<var>u-g</var>)))] was
+calculated; if it was larger than a random number chosen between zero
+and one, the object was targeted for spectroscopy.  The coefficient
+<var>c</var>=0.1411 was chosen to obtain an appropriate density of
+targets.  Note that plates 672 and 809 have the same center, and some
+of the same objects were inadvertently observed twice.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>photoz21, photoz29, photoz79</td>
+    <td>photo-z</td>
+    <td><code>0x80000040</code></td>
+    <td>4526</td>
+    <td>See text above</td>
+  </tr>
+</table>
+
+<a name="ppgals"></a>
+<h4>Perseus-Pisces galaxies</h4>
+
+<p>Imaging scans were taken centered roughly on the Perseus cluster at
+<var>z</var> &cong; 0.018, and were used to target galaxies.  The
+double exposure plates 1665, 1666 targeted, and obtained redshifts
+for, approximately 400 galaxies as faint as
+<var>r</var><sub>fiber</sub> = 18.8 in a region centered on the
+cluster at (&alpha;,&delta;) = (49.96&deg;, 41.53&deg;).  The
+majority of the galaxies are associated with the cluster, although
+there are 50 objects in a background overdensity at
+<var>z</var>&cong;0.05 <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1999A%26AS..139..141B">(Brunzendorf
+&amp; Meusinger 1999)</a>.  These plates also included approximately
+300 <a href="#fstars">foreground F-stars</a>.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>seguetest84</td>
+    <td>Perseus-Pisces galaxies</td>
+    <td><code>0x80000040</code></td>
+    <td>787</td>
+    <td>MAIN galaxy target selection</td>
+  </tr>
+</table>
+
+
+<a name="hizgal"></a>
+<h3>Higher-redshift galaxies</h3>
+
+<a name="deepLRG"></a>
+<h3>Deep LRG exposures</h3>
+
+<p>The SDSS LRG sample <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2001AJ....122.2267E">(Eisenstein
+et al. 2001)</a> targets high-redshift (0.2 &lt; <var>z</var> &lt;
+0.55), luminous galaxies by their colors and magnitudes.  As part of
+Southern targeting, we have explored this algorithm in several ways.
+The first, the Deep LRG sample, uses double-length spectroscopic
+exposures to get higher S/N spectra of LRGs with <var>z</var> &gt;
+0.25 which satisfied the Cut I criteria from Eisenstein et al. 2001.
+These serve two purposes: first, to obtain measurements of velocity
+dispersion for galaxies where the current, single-pass spectroscopy is
+only &quot;good enough for a redshift&quot;.  Second, given the
+discontinuity in targeting algorithm at <var>z</var> &cong; 0.4 (the
+distinction between Cut I and Cut II; see <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2001AJ....122.2267E">Eisenstein
+et al. 2001</a>) higher S/N spectra allow the exploration of possible
+spectroscopic differences at this transition, implying differences in
+stellar populations. XXX This sounds a bit rough.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>lowz45, lowz52, lowz62, lowz74, lowz97</td>
+    <td>Deep LRG, Cut I</td>
+    <td><code>0x80000020</code></td>
+    <td>1230</td>
+    <td>LRG Cut I</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Deep LRG, Cut I</td>
+    <td><code>0x80000020</code></td>
+    <td>205</td>
+    <td>LRG Cut II</td>
+  </tr>
+</table>
+
+<a name="faintLRG"></a>
+<h3>Faint LRGs</h3>
+
+<p>The LRG Cut II sample aims for a flux-limited sample of LRG with
+redshifts roughly between 0.40 and 0.55.  We also experimented with an
+extension of this cut, going substantially fainter.</p>
+
+<pre>        17.5 &lt; <var>i</var><sub>deV</sub> &lt; 20
+      <var>i</var><sub>Petro</sub> &lt; 19.1 
+         0.5 &lt; <var>g-r</var>  &lt; 3.0      
+         0.0 &lt; <var>r-i</var>  &lt; 2.0 
+         c<sub>||</sub> = 0.7(<var>g-r</var>) + 1.2(<var>r-i</var>-0.18)
+             &gt; 1.6
+         c<sub>&perp;</sub> = (<var>r-i</var>) - (<var>g-r</var>)/8
+             &gt; 0.5 </pre>
+
+<p>Here, <code>deV</code> refers to deVaucouleurs model magnitude,
+<code>Petro</code> to Petrosian magnitude, and all colors are based
+on model magnitudes (see <a
+href="../../algorithms/photometry.html#which_mags">Which magnitudes
+should I use?</a>)</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>merged73</td>
+    <td>Faint LRG</td>
+    <td><code>0x840000a0</code></td>
+    <td>2301</td>
+    <td>See text above</td>
+  </tr>
+</table>
+
+<a name="BCGs"></a>
+<h4>Brightest Cluster Galaxies (BCGs)</h4>
+
+<p> A separate program explicitly targeted the brightest galaxies in
+clusters.  While LRGs are often the brightest galaxies in their
+clusters, they need not be.  The so-called MaxBCG method described by
+<a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003ApJS..148..243B">Bahcall
+et al. (2003)</a> searches for galaxies with the apparent magnitudes
+and colors of LRGs, together with a red sequence of fainter
+ellipticals in the vicinity (cf., <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2000AJ....120.2148G">Gladders
+&amp; Yee 2000</a>).  The BCG program targeted BCG candidates found
+with this method, with estimated redshifts in the range 0.4 &lt;
+<var>z</var> &lt; 0.7.  The MaxBCG algorithm was run on photometry
+derived from co-adding the detections (at the catalog level) of
+multiple scans of the Southern Equatorial Stripe.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>lowz74, lowz97</td>
+    <td>BCGs</td>
+    <td><code>0x80000100</code></td>
+    <td>439</td>
+    <td>See text above</td>
+  </tr>
+</table>
+
+<a name="quasars"></a>
+<h3>Quasar and variability target selection</h3>
+
+<a name="mainextQSO"></a>
+<h4>Main extension: quasars</h4>
+
+<p> In Chunk 22, the quasar target selection algorithm (<a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2945R">Richards
+et al. 2002</a>) was extended as follows.  For objects selected from
+the <var>ugri</var> color cube, the magnitude limit was changed from
+<var>i</var> = 19.1 to 19.9, while for the <var>griz</var> color cube
+(where high-redshift quasars are selected), we changed the limit from
+<var>i</var> = 20.2 to 20.4.</p>
+
+<p>As <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2945R">Richards
+et al. (2002)</a> describe, there are regions outside the stellar
+locus that are heavily contaminated by hot white dwarfs, M dwarf-white
+dwarf pairs <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2004ApJ...615L.141S">(Smolcic
+et al. 2004)</a>, and other non-quasars.  These regions are explicitly
+excluded from quasar target selection in the main survey; however, in
+the extension, they are allowed back in.  Similarly, there is a region
+of color space where <var>z</var> &cong; 2.7 quasars intersect the
+stellar locus.  In the main survey, objects falling in this region are
+sparse-sampled to 10% (to reduce the number of stars); in the
+extension, all objects falling in the mid-z box defined in Richards et
+al. (2002) are targeted.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>south22</td>
+    <td>Main extension: quasars</td>
+    <td>Regular <code>primtarget</code> and <code>sectarget</code> flags, with bit <code>0x80000000</code> set</td>
+    <td>8030</td>
+    <td>See text above</td>
+  </tr>
+</table>
+
+<a name="faintQSO"></a>
+<h4>Faint quasars</h4>
+
+<p>The quasar target selection was further modified for the faint
+quasar targets on the merged plates on Chunk 48.  In particular, the
+following are the changes over the standard quasar target selection
+algorithm described in <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2945R">Richards
+et al. 2002</a>:</p>
+
+<ul>
+  <li>The magnitude limit is set to <var>i</var>= 20.1, rather than
+      <var>i </var>= 19.1 for the <var>ugri</var> color cube; </li>
+  <li>The magnitude limit for optical counterparts to FIRST sources is
+      set to <var>i </var>= 20.65, rather than <var>i </var>=
+      19.1;</li>
+  <li>The standard quasar target selection algorithm requires that the
+      estimated PSF magnitude errors in <var>u</var> and <var>g</var>
+      both be less than 0.1 for UV excess sources
+      (<var>u-g</var>&lt;0.6).  This limit is now set to 0.2. </li>
+  <li>For UV excess objects with 19.1 &le; <var>i </var> &lt; 20.1,
+      we add a requirement that <var>g - r </var>&lt; 0.7 to minimize
+      stellar contamination. </li>
+  <li>Objects in the &quot;mid-z box&quot; are excluded altogether. </li>
+  <li>In addition to the usual &quot;distance from the stellar locus&quot;
+      algorithm used to target quasars, in the main sample there are
+      hard color cuts used to select high-redshift quasars in the
+      <var>griz</var> color cube.  These color cuts are not used in
+      the Southern targeting. </li>
+  <li>Finally, there were additional color cuts to reject unphysical
+      objects affected by bad CCD columns; we required <var>g-r</var>&gt;-0.5,
+      r-i&gt;-0.5, and <var>i-z</var>&gt;-0.6.</li>
+</ul>    
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>merged48</td>
+    <td>Faint quasars</td>
+    <td>Regular <code>primtarget</code> flags, with bit <code>0x80000000</code> set</td>
+    <td>6655</td>
+    <td>See text above</td>
+  </tr>
+</table>
+
+<a name="M31QSO"></a>
+<h4>M31 Quasars</h4>
+
+<p>Low-redshift quasars were targeted on the M31 imaging data (Chunk
+72) using the standard quasar selection algorithm (<a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2945R">Richards
+et al. 2002</a>), but excluding the high-redshift candidates selected
+from the <var>griz</var> cube.  The confirmed quasars can be used to
+probe gas in the halo of M31.  The plates used for this program also
+included <a href="#fstars">F star targets</a>.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>fstar72</td>
+    <td>Quasars</td>
+    <td><code>0x80000004</code></td>
+    <td>174</td>
+    <td>Regular <var>ugri</var> quasar target selection</td>
+  </tr>
+</table>
+
+<a name="DRAGN"></a>
+<h4>Double-lobed radio sources</h4>
+
+<p>Quasar target selection targets unresolved optical counterparts to
+FIRST radio sources, while &quot;serendipity&quot; target selection
+(see <a
+href="http://adsabs.harvard.edu/cgi-bin/bib_query?2002AJ....123..485S">the
+EDR paper, Stoughton et al. 2002</a>; we also provide this <a
+href="../../algorithms/edrpaper.html">html version of the EDR
+paper</a>) selects FIRST sources with extended optical counterparts.
+This works fine for compact or core-dominated radio sources, but is
+less effective for double-lobed radio sources, in which the optical
+counterpart is associated with a point between the two.  An algorithm
+was developed to find these double-lobed sources, including allowing
+for the more challenging case of <em>bent</em> double sources.  In
+particular, pairs of FIRST sources separated by 90&prime;&prime; or
+less without SDSS optical counterparts were identified.  Given the
+distance <var>d</var> between the centers of these two sources, a
+rectangle is drawn centered at the midpoint between the sources, with
+dimensions 0.57<var>d</var>, 1.33<var>d</var>, with the short axis
+parallel to the line connecting the two sources.  This box size was
+chosen empirically to include the core of a sample of bent double
+sources compiled by E. Blanton (see <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2001AJ....121.2915B">Blanton
+et al. 2001</a>).  Optical counterparts with <var>r</var> &lt; 19.8
+that fell into the box were selected as bent double counterparts.  A
+subset of those objects, which fell into a 12 arcsec square centered
+on the midpoint between the sources, were selected as straight double
+counterparts.</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>merged48</td>
+    <td>Bent double-lobed radio sources</td>
+    <td><code>0x80200000</code></td>
+    <td>97</td>
+    <td>See text</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Straight double-lobed radio sources</td>
+    <td><code>0x80000010</code></td>
+    <td>13</td>
+    <td>See text</td>
+  </tr>
+</table>
+
+<a name="variability"></a>
+<h4>Variability</h4>
+
+<p>As discussed above, the Southern Equatorial Stripe has been imaged
+multiple times in the course of the SDSS, allowing photometric
+variability to be studied.  Variable sources were selected for
+follow-up spectroscopy using pairs of observations of unique
+unsaturated point sources with <var>i</var> &lt; 21, and requiring
+that the changes in the <var>g</var> and <var>r</var> bands exceed 0.1
+mag, and are at least 3 sigma significant (using error estimates
+computed by the photometric pipeline). The time difference between the
+two observations varied from 56 days to 1212 days.</p>
+
+<p>This target selection produced targets over the Southern Equatorial
+stripe with a surface density of about 10 objects
+deg<sup>-2</sup>. The majority of these targets have colors consistent
+with <var>z</var> &lt; 2 (UV excess) quasars and RR Lyrae stars,
+classifications confirmed by the spectroscopy.  Out of these, 978 have
+been observed on DR4 special plates (as for other special plates,
+objects which had already been observed on regular survey plates were
+not reobserved).</p>
+
+<table border="1">
+  <tr>
+    <th>Chunk</th>
+    <th>Target category</th>
+    <th><code>primtarget</code></th>
+    <th># of targets</th>
+    <th>Selection</th>
+  </tr>
+  <tr>
+    <td>merged73</td>
+    <td>Variability: high priority</td>
+    <td><code>0x81000000</code></td>
+    <td>318</td>
+    <td>See text, and <var>i</var> &lt; 19.5</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Variability: low priority</td>
+    <td><code>0x80800000</code></td>
+    <td>660</td>
+    <td>See text, and 19.5 &le; <var>i</var> &lt; 21</td>
+  </tr>
+</table>
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Jul 16 11:06:17 CEST 2007
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

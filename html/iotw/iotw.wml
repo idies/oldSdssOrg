@@ -1,0 +1,42 @@
+#use "sdss_macros.wml"            
+<html>
+<head>
+<title>Image of the Week</title>
+</head>
+<sdss-sub>
+<h1>
+<center>Image of the Week:Face on Spiral Galaxy NGC60</center>
+</h1>
+<center><img src="ngc60.jpg"></center>
+Located in the constellation of Pisces, at a red shift of
+0.039, the spiral Galaxy NGC60 reveals large 
+extended spiral arms extending much further out than as 
+expected on the first glance.  The low surface
+brightness of the spiral arms makes it difficult 
+to detect them against the light of the sky background.
+In order to reveal this structures six exposures in a individual
+color band of the SDSS-2.5m telescope were added and 
+thereby reducing the noise in the background. <BR>
+
+The striking kink located roughly 17 kpc away from the 
+center of the galaxy is most probably a star burst triggered 
+from gravitational interaction with a neighboring galaxy. 
+With a scale length of the disk of approximately 14 kpc, the galaxy 
+is nearly three times the spatial size as the Milky way.<BR>
+
+Also visible in the image are two asteroids 
+in rainbow like colors moving close to the ecliptic.<BR>
+
+<strong>(Caption by Hubert Lampeitl)</strong>
+<text-navbar>
+<sdss-address>
+</sdss-sub>
+</html>
+
+
+
+
+
+
+
+

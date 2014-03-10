@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Deblending of Objects</TITLE>
+<META NAME="description" CONTENT="Deblending of Objects">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html554" HREF="node40.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html552" HREF="node36.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html546" HREF="node38.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html555" HREF="node40.html">Moving Objects</A>
+<B>Up:</B> <A NAME="tex2html553" HREF="node36.html">The Frames Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html547" HREF="node38.html">Outline of frames</A>
+<BR> <P>
+<H3><A NAME="SECTION00044300000000000000">Deblending of Objects</A></H3>
+<P>
+<A NAME="swphotodeblend">&#160;</A>
+<P>
+Once objects are detected, they are deblended by identifying
+individual peaks within each object, merging the list of peaks across
+bands, and adaptively determining the profile of images associated
+with each peak, which sum to form the original image in each band. The
+originally detected object is referred to as the ``parent'' object and
+has the flag <TT>BLENDED</TT> set if multiple peaks are detected; the
+final set of sub-images of which the parent consists are referred to
+as the ``children'' and have the flag <TT>CHILD</TT> set. Note that all
+quantities in class <TT>PhotoObj</TT> (Table&nbsp;<A HREF="node65.html#tblphoto">6</A>) are
+measured for <EM>both</EM> parent and child.  For each child, <TT>parent</TT> gives the <TT>id</TT> of the parent (for parents
+themselves or isolated objects, this is set to the <TT>id</TT> of the
+<TT>BRIGHT</TT> counterpart if that exists; otherwise it is set to -1);
+for each parent, <TT>nchild</TT> gives the number of children an object
+has.  Children are assigned the <TT>id</TT> numbers immediately after the
+<TT>id</TT> number of the parent. Thus, if object with <TT>id</TT> 23 is set
+as <TT>BLENDED</TT> and has <TT>nchild</TT> equal to 2, objects 24 and 25
+will be set as <TT>CHILD</TT> and have <TT>parent</TT> equal to 23.
+<P>
+The list of peaks in the parent is trimmed to combine peaks (from
+different bands) that are too close to each other (if this happens,
+the flag <TT>
+PEAKS_TOO_CLOSE</TT> is set in the parent).  If there are more than 25
+peaks, only the most significant are kept, and the flag <TT>
+DEBLEND_TOO_MANY_PEAKS</TT> is set in the parent.
+<P>
+In a number of situations, 
+the deblender decides not to process a <TT>BLENDED</TT> object; in this
+case the object is flagged as <TT>NODEBLEND</TT>. Most objects with <TT>
+EDGE</TT> set are not deblended. The exceptions are when the object is big
+enough (larger than roughly an arcminute) that it will most likely not be completely included in the
+adjacent scanline either; in this case, <TT>DEBLENDED_AT_EDGE</TT> is
+set, and the deblender gives it its best shot. When an object is
+larger than half a frame, the deblender also gives up, and the object
+is flagged as <TT>TOO_LARGE</TT>. Other intricacies of the deblending
+results are recorded in flags listed in Table <A HREF="node65.html#tblflag">9</A>; see lupton01b for a complete description.
+<P>
+On average, about 15-20% of all detected objects are blended, and many of these
+are superpositions of galaxies which the deblender successfully treats
+by separating the images of the nearby objects. Thus, usually it is
+the childless (not <TT>BLENDED</TT>) objects which are of most interest
+for science applications. However, the versions of the pipelines
+used for the EDR occasionally deblends complex galaxies with large
+angular size, such as nearby face-on spiral galaxies, in a way which
+the human eye would tend not to. Thus, some care is required in the
+analysis of samples of bright and/or large objects in the survey. 
+Later versions of the deblender handle these cases much more
+gracefully, and future data releases will incorporate these
+improvements.
+<P>
+<HR><A NAME="tex2html554" HREF="node40.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html552" HREF="node36.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html546" HREF="node38.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html555" HREF="node40.html">Moving Objects</A>
+<B>Up:</B> <A NAME="tex2html553" HREF="node36.html">The Frames Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html547" HREF="node38.html">Outline of frames</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

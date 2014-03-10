@@ -1,0 +1,37 @@
+<!-- for virtual #inclusion in other html files -->
+
+<p>A comparison of SDSS catalogs has shown that high proper motion
+stars from Sebastien Lepine's database (SUPERBLINK) are not registered
+as high proper motion stars in the DR6. For those stars, the <a
+href="http://cas.sdss.org/astrodr6/en/help/browser/description.asp?n=ProperMotions&t=U">ProperMotions
+table</a> lists <var>pm</var>=0.0. The reason their motion is not
+registered in DR6 is because of the incompleteness of the USNO-B
+catalog, from which the DR6 proper motions are derived. Areas where
+the imcompleteness is particularly severe include regions where there
+are bad SERC-I or POSS-II N plates (open squares, list from
+J. Munn).</p>
+
+<p>If one tries to select off nearby stars with e.g. a
+<var>pm</var>&lt;0.75 mas/yr proper motion cutoff, then the sample
+will be contaminated with these &quot;<var>pm</var>=0&quot; high
+proper motion stars. The plot shows the stars with
+<var>pm</var>&gt;100 mas/yr, which are relatively rare, but I suspect
+that a similar fraction of 10 mas/yr &lt; <var>pm</var> &lt; 100
+mas/yr stars will be similarly unregistered in the DR6, which can add
+up a lot of foreground contaminants.</p>
+
+<div class="cfig">
+<!-- check where we're including from and insert the proper relative -->
+<!-- path to the image -->
+<!--#set var="myuri" value="$DOCUMENT_URI" -->
+<!--#if expr="$myuri = /products\/catalogs\/index.html/" -->
+<img class="cfig" src="./DR6_missinghighpmstars.jpg">
+<!--#else -->
+<img class="cfig" src="../products/catalogs/DR6_missinghighpmstars.jpg">
+<!--#endif -->
+<p class="cfig">Top panel: high proper motion stars from the
+Superblink survey that are missing in DR6. Bottom panel: High proper
+motion stars recovered by SDSS.</p></div>
+
+<p>At the moment, the only mitigation strategy is to avoid the regions
+where contamination will be most severe.</p>

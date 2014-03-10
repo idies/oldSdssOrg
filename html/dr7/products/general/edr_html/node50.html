@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Resolving Multiple Detections</TITLE>
+<META NAME="description" CONTENT="Resolving Multiple Detections">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html664" HREF="node51.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html662" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html656" HREF="node49.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html665" HREF="node51.html">Target Selection</A>
+<B>Up:</B> <A NAME="tex2html663" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html657" HREF="node49.html">Imaging Data Quality Assessment</A>
+<BR> <P>
+<H2><A NAME="SECTION00047000000000000000">Resolving Multiple Detections</A></H2>
+<P>
+<A NAME="swresolve">&#160;</A>
+<P>
+For each stripe, 12 non-overlapping but contiguous scan lines are
+defined parallel to the stripe great circle.  Six of these scan lines
+are covered when the ``north'' strip of the stripe is scanned, and the
+remaining six are covered by the ``south'' strip.  Each scan line is
+<IMG WIDTH=63 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3343" SRC="img136.gif"> wide and overlaps its neighbor by <IMG WIDTH=12 HEIGHT=9 ALIGN=BOTTOM ALT="tex2html_wrap_inline2799" SRC="img3.gif"> 1&nbsp;arcmin.
+Each overlap region is bisected by a line of constant <IMG WIDTH=8 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline2951" SRC="img48.gif">.  Objects
+in overlap regions can have a detection in each of the scan lines, and
+we assign one of the scan lines to have the <EM>primary detection</EM>
+based upon which side of the bisecting line it falls.  Many queries
+want to consider only these objects, so we have constructed the 
+<TT>Primary</TT> class in the catalog archive server.  The classes <TT>
+Star</TT>, <TT>Galaxy</TT>, <TT>Sky</TT>, and <TT>Unknown</TT> are inherited from
+<TT>Primary</TT>.  Other object detections are (usually) in the <TT>
+Secondary</TT> class, with its inherited classes <TT>StarSecondary</TT>, <TT>
+GalaxySecondary</TT>, <TT>SkySecondary</TT>, and <TT>UnknownSecondary</TT>.  Two
+kinds of objects are not in the <TT>Primary</TT> or <TT>Secondary</TT>
+classes, and we put them in the <TT>Family</TT> class: objects which are
+tagged as <TT>BRIGHT</TT> (Table&nbsp;<A HREF="node65.html#tblflag">9</A>); and parent objects
+which have been successfully deblended.
+<P>
+Object detections in
+the area that overlaps adjacent stripes which we have not yet observed are in
+the <TT>Secondary</TT> class.  These may be recovered by using the <TT>status</TT>
+flag in Table&nbsp;<A HREF="node65.html#tblphoto">6</A>.  The flag bits <TT>AR_STATUS_OK_SCANLINE</TT>
+and <TT>AR_STATUS_OK_STRIPE</TT> of <TT>status</TT> are set for all objects that
+are within one stripe.
+<P>
+Objects that lie close to the bisector between scan lines present some
+difficulty.  Errors in the centroids or astrometric calibrations can place
+such objects on either side of the bisector.  A resolution is performed at all
+bisectors, and if two objects which are a <EM>primary detection</EM> lie within
+2&nbsp;arcsec of each other, then one object is declared primary and the other
+secondary.
+<P>
+In the EDR, most data are taken along stripes that are isolated.  Runs 752 and
+756 cover stripe 10, and we plan to observe the stripes adjacent to it.
+Therefore, only objects which do not fall in an area that will overlap with
+the adjacent stripes may be marked as <TT>Primary</TT> detections.  Runs 94 and
+125 cover stripe 82, in the southern Galactic hemisphere.  We do not plan to
+observe the stripes adjacent to stripe 82, so all objects may be marked as
+<TT>Primary</TT> detections.
+<P>
+Objects must satisfy other criteria as well to be labeled primary; an object
+must not be flagged <TT>BRIGHT</TT> (as there is a duplicate ``regular''
+detection of the same object; &#167;&nbsp;<A HREF="node38.html#swphotoprocedure">4.4.2</A>), and must not be a
+deblended parent (as the children are already included); thus it must not be
+flagged <TT>BLENDED</TT> unless the <TT>NODEBLEND</TT> flag is set.  These are put
+in the <TT>Family</TT> class.
+<P>
+The set of all <EM>primary detections</EM> from interleaving strips
+comprise a complete object catalog.
+<P>
+<HR><A NAME="tex2html664" HREF="node51.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html662" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html656" HREF="node49.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html665" HREF="node51.html">Target Selection</A>
+<B>Up:</B> <A NAME="tex2html663" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html657" HREF="node49.html">Imaging Data Quality Assessment</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

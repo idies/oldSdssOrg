@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Seeing and sky brightness - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<h1>Seeing and sky brightness</h1>
+
+<p>Seeing and sky brightness affect both the <a
+href="completeness.html">completeness</a> of the SDSS and the accuracy
+of its <!-- <a href="stargalsep.html"> -->star/galaxy separation.<!--
+</a> --> Seeing is defined here as the effective width of the point
+spread function (see <a
+href="../../algorithms/edrpaper.html#psfWidth">section 4.3 of the EDR
+paper</a>).  The following plots show the fraction of DR1 fields
+exceeding a given seeing and sky brightness. <!-- (Note that SDSS corrects -->
+<!-- the sky brightness for atmospheric extinction in the same way as -->
+<!-- calibrated object magnitudes in the catalogs to facilitate conversion -->
+<!-- of object and sky brightnesses back to counts. This implies that the -->
+<!-- reported brightness values are in fact too bright by a typical -->
+<!-- extinction correction.) --></p>
+
+<table>
+  <tr><th>Seeing</th><th>Sky brightness</th></tr>
+  <tr><td><a href=psfhist.ps><img src="seeing.jpg"></a></td>
+  <td><a href="skyhist.ps"><img src="skybrightness.jpg"></a></td></tr>
+</table>
+
+<p>These are the r-band quartiles:</p>
+
+<table border="1">
+  <tr>
+    <th>Parameter</th>
+    <th> Lower quartile </th>
+    <th> Median </th>
+    <th> Upper quartile </th>
+  </tr>
+  <tr>
+    <td>PSF width</td>
+    <td align="center">1.58"</td>
+    <td align="center">1.43"</td>
+    <td align="center">1.30"</td>
+  </tr>
+  <tr>
+    <td>Sky brightness</td>
+    <td align="center">20.70 mag</td>
+    <td align="center">20.86 mag</td>
+    <td align="center">21.03 mag</td>
+  </tr>
+</table>
+<hr>
+<!-- hhmts start -->Last modified: Tue Feb 17 18:41:43 CST 2004
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+
+</html>

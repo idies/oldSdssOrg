@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="SDSS Image Gallery: Data">
+<title>SDSS Image Gallery: Data</title>
+</head>
+
+<sdss-page select="gallery">
+
+<h1 align="center">Image Gallery: SDSS Sky Images</h1>
+
+<p>This is a collection of images of the night sky, observed with the
+SDSS telescope.  Click on any of the links below to download a larger
+version of the image thumbnails.
+</p>
+
+<p>
+Also available is a <a href="../data/artclick/artframe.htm">collection
+of clickable "art shots"</a> assembled by Steve Kent.  <em>You will need
+Javascript and frames capabilities to make full use of that area.</em>
+</p>
+
+<hr>
+
+<: 
+require 'gallery.pl';
+print_gallery('../data');
+:>
+
+</sdss-page>
+
+</html>

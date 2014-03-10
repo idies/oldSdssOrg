@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="SDSS Information: Data Processing">
+<title>SDSS Information: Data Processing</title>
+</head>
+
+<sdss-page select="background">
+
+<h2>Processing the SDSS Data</h2>
+
+<p>On a clear, dark night, light that has traveled through space for a
+billion years touches a mountaintop in southern New Mexico.  At that
+moment, photons that left their source when algae were the only life on
+earth enter the Sloan Digital Sky Survey's 2.5-meter telescope and yield
+to the telescope's sophisticated instrumentation the cargo of
+information they have carried across the universe.  They cease to exist
+as photons, but the data within them live on as digital images recorded
+on magnetic tape, each image composed of myriad pixels (or picture
+elements), and each pixel capturing the brightness from each tiny point
+in the sky.</p>
+
+<p>But the sky is not made of pixels; stars and galaxies are real
+objects.  The task of data management for the Sloan Digital Sky Survey
+is to take the digitized data, the pixels electronically encoded on the
+mountaintop in New Mexico, and turn them into real information about
+real things.  Astronomers process the digitized data to produce
+information that they can use to identify and measure the properties of
+stars and galaxies.  They must be able to find, distinguish, and measure
+the brightness of celestial objects from the imaging pixel data, and
+then collect these stars and galaxies and quasars into a catalog.</p>
+
+<p>Computing experts describe the project as something like creating the
+Manhattan phone book, for the heavens.  Each star is like a person in
+the phone book, with a name and address.  There is even a Yellow Pages
+in the celestial directory, a section containing a smaller number of
+entries for which the Survey will provide still more information in the
+form of spectra.  For these objects, digitized data yield information
+about their velocity as they move away from the Earth, from which we can
+calculate how far away they are.</p>
+
+<p>Scientists must initially process the data very quickly (within about
+a week) because Sky Survey astronomers need the information in order to
+configure their telescope's instrumentation for best use of the
+instrument during the next dark phase of the moon.  If too much time
+goes by, the target objects will set as the season passes.</p>
+
+<p>Scientists at <a href="../members/fermi.html">Fermilab</a> are
+leading the effort to develop what the Sky Survey calls data-processing
+pipelines.  A pipeline is a computer program that processes the
+digitized data in order to extract from it certain types of information.
+The term pipeline connotes the automated nature of the data processing;
+the data "flow" through the pipelines with little human intervention.
+The astrometric pipeline, built by computer scientists at the <a
+href="../members/usno.html">U.S. Naval Observatory</a>, for example,
+determines the precise absolute two-dimensional position of stars and
+galaxies in the sky.  In this case, digitized data from photons reaching
+the 2.5-meter telescope go in one end of the astrometric pipeline, and
+star positions come out the other. In between, along the length of the
+pipeline, is the software that changes pixels into real information.</p>
+
+<p>The data pipelines are a collaborative effort.  <a
+href="../members/princeton.html">Princeton University</a> scientists
+built the photometric pipeline, and <a href="../members/uchicago.html">
+University of Chicago</a> experts created the spectroscopic pipeline.
+Fermilab's contributions include the monitor-telescope pipeline and the
+pipeline for selection of candidates for spectroscopy.  Fermilab also
+coordinates the smooth operation of all the pipelines.</p>
+
+<p>Information processing for the Sky Survey begins with data
+acquisition.  Photons from the stars hit the telescope's detectors, and
+CCDs collect them.  Charge "buckets" are then converted to digitized
+signals and written to tape on the mountain.  The data travel from <a
+href="../members/apo.html">Apache Point</a> to Fermilab via express
+courier.  The tapes go to Fermilab's Feynman Computing Center and thence
+into the various pipelines: spectrographic data into the spectrographic
+pipeline; monitor data into the monitor pipeline; and imaging data into
+the astrometric, photometric, target selection and two other pipelines.
+Out of the pipelines comes information about the stars, galaxies and
+quasars, for inclusion in the Operations Database, written at Fermilab
+and at the Naval Observatory, which collates the information to keep the
+Sky Survey running.</p>
+
+<p>Eventually, experimenters will pass the information in the Operations
+Database "over the firewall" to the science data base developed by
+scientists at <a href="../members/jhu.html">Johns Hopkins
+University</a>.  It will operate as a query engine to make the data
+readily usable by scientists on the project.</p>
+
+<p>The form in which we realize the sky is necessarily governed by the
+available technology.  Surveys conducted 50 years ago stored imaging data
+in the form of photographic plates, and catalogs in the form of printed
+books.  Today, we store images in digitized form on magnetic tape or
+hard disks, and catalogs are digital databases. But whatever the
+age and with whatever technology, we still look up, and the sky is full
+of stars.</p>
+
+</sdss-page>
+
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>About DR7 - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+
+<h1>The SDSS Data Release 7 (DR7)</h1>
+
+<p>The Sloan Digital Sky Survey (SDSS) consists of a series of three 
+interlocking imaging and spectroscopic surveys, carried out over an eight-year 
+period with a dedicated 2.5m telescope located at Apache Point Observatory in
+Southern New Mexico. This seventh data release (DR7) from the SDSS
+represents the completion of this project.</p>
+
+<p>The three surveys that make up the SDSS are:</p>
+
+<ul class="pad">
+<li><a href="../../legacy/"><b>Legacy</b></a>, an imaging survey in five bands over a contiguous
+7646 deg<sup>2</sup> high-latitude elliptical region in the Northern Galactic
+Cap, plus an additional 750 deg<sup>2</sup> in the Southern
+Galactic Cap, together with spectroscopy of complete samples of
+galaxies and quasars covering about 8200 square degrees.  
+The total imaging area in the Legacy survey is 8423 square degrees.</li>
+
+<li><a href="../../segue/"><b>SEGUE</b></a> (Sloan Extension for Galactic Understanding and Exploration), 
+additional imaging of 3240 deg<sup>2</sup> of sky at lower Galactic latitudes, 
+together with spectroscopy of 240,000 stars towards 200 sightlines covering 
+1400 square degrees (spread throughout the Legacy and SEGUE 
+imaging footprints), to study the structure of the Milky Way.</li>
+
+<li><a href="../../supernova/aboutsupernova.html"><b>Supernova</b></a>, The equivalent of about 80 repeated imaging scans of the Southern
+Equatorial Stripe (ra &gt; 310 or ra &lt; 59; -1.25 &gt; dec &lt; 1.25) obtained
+in variable weather conditions (some clouds) to search for 
+supernovae in the redshift range 0.1 &lt; z &lt; 0.4.</li>
+</ul>
+
+<p>The catalog derived from the images includes more than 350 million
+celestial objects, and spectra of 930,000 galaxies, 120,000
+quasars, and 460,000 stars. The data are fully calibrated and reduced,
+carefully checked for quality, and publically accessible through
+efficient databases. The data have been publicly released in a series of
+annual data releases, culminating in the final data release, DR7.</p>
+
+
+<h2>Contents</h2>
+
+<ul>
+  <li><a href="#dr7cont">What DR7 contains</a></li>
+  <li><a href="#dr7new">What's new in DR7</a></li>
+  <li><a href="#imcaveat">Caveats for imaging data</a></li>
+  <li><a href="#speccaveat">Caveats for spectroscopic data</a></li>
+</ul>
+      
+
+<a name="dr7new"></a>
+<h3>New for DR7</h3>
+
+<ul class="pad">
+  <li>The <a href="http://das.sdss.org">Data Archive Server (DAS)</a> for DR7 has a new interface, offering users the ability to browse all the imaging
+runs and spectra by run or plate number.  Color (g-r-i) pictures of 1.3M 
+imaging fields and wavelength-flux plots of each of 1.6M spectra are available.
+Bulk download access to over 70TB of raw and processed data are
+available via wget or rsync interfaces.  
+
+  <li>DR7 contains 577 new plates of spectra beyond DR6 (277 new Legacy, 285 SEGUE, 15 other) for a total of 2564 plates and 1,640,960 spectra (including
+sky and unidentified objects). All SDSS spectroscopic plates are available from the 
+<a href="http://das.sdss.org/www/html/spectro/allPlates-26.html">Spectroscopic Plates</a> page of the DAS.</li>
+
+  <li>DR7 contains 3240 square degrees of SEGUE lower-latitude and Southern imaging. SEGUE imaging is available as FITS files 
+  from the <a href="http://das.sdss.org/www/html/">Data Archive Server</a>; you can upload a list of coordiantes and download the appropriate files.</li>
+
+  <li>DR7 contains the complete Legacy and SEGUE imaging catalogs in the same CAS SQL database as all the Legacy and SEGUE spectra, 
+  simplifying cross-id searches. All these catalog data are available from the <a href="http://cas.sdss.org/astro/en/">Catalog Archive Server</a> (CAS).</li>
+
+
+  <li>DR7 CAS contains 'propermotions' table with information for over 205M
+	Legacy and SEGUE objects, derived from the UCAC-2 and UCAC-3 USNO astrometric catalogs,
+	with the alignment re-calibrated against the SDSS imaging positions. The parameters stored in this table are available in the 
+	CAS Schema Browser entry for the <a href="http://cas.sdss.org/dr7/en/help/browser/browser.asp?n=ProperMotions&t=U">propermotions table</a>.</li>
+
+   <li>DR7 CAS contains updated (from DR6) <a href="../algorithms/astrometry.html">astrometry solutions</a> for most objects, using the UCAC-3 
+   catalog when available, and replacing most Tycho-2-based solutions with UCAC-based solutions, which have more matches and include fainter 
+   objects. The rms difference in coordinate positions is less than 20 mas for nearly all imaging fields.</li>
+	
+  <li>DR7 CAS contains an all new sppParams table with updated radial velocities of over 460,000 stars and estimates of [Fe/H], log g 
+  (surface gravity), effective temperature and stellar type classification information for over 300,000 stellar spectra 
+  (<a href="http://cas.sdss.org/dr7/en/help/browser/browser.asp?n=sppParams&t=U">sppParams table entry in the CAS 
+  Schema Browser</a>).</li>
+	
+   <li>DR7 CAS and DAS contains "<a href="http://devel.sdss.org/dr7/algorithms/fluxcal.html#ubercal">ubercalibrated</a>" magnitudes for all
+    objects as the default magnitude selection (psfmag_[ugriz], petromag_[ugriz], etc). The target version of the calibrated magnitudes are 
+    still available in a separate table.</li>		
+   
+   <li>DR7 CAS contains the imaging RUNS database, separate from the DR7 (Legacy + SEGUE) database.  This database contains 530 imaging scans, some 
+of which are not present in the main DR7 database, and thousands of imaging fields from the beginnings and ends of DR7 strip scans, which did not 
+resolve into a complete rectangular stripe on the sky. All photometry from the RUNS database is available in the 
+<a href="http://cas.sdss.org/runs/en/">RUNS Catalog Archive Server</a> (RUNS CAS).</li>
+   
+   <li>DR7 CAS contains the Stripe82 database, distinct from the DR7 and RUNS databases, containing all imaging from SDSS stripe 82 along 
+   the Celestial Equator in the Southern Galactic Cap (<em>Stripe 82</em>).  Subsets of the 303 individual stripe 82 scans were made public 
+   in previous data releases, but with DR7, we now make a coaddition of about 47 South strip and 55 North strip scans into a scan in which 
+   objects are detected and cataloged about 2 magnitudes deeper than in any individual stripe82 scan. It includes a total of 303 runs (plus 
+   2 coadd runs), covering any given piece of the  approx. 270 deg<sup>2</sup> area approximately 80 times. All 303 runs covering Stripe 82 
+   are part of the <em>Stripe 82 database</em>, which can be queried to search for variability (and propermotion, with a bit more effort). 
+   Only about one-quarter of the Stripe 82 scans were obtained in photometric conditions, the rest were taken under variable clouds and often 
+   poorer than normal seeing. For those runs which are non-photometric, an approximate calibration, using the photometric frames as reference, 
+   is derived and available in the <a href="http://cas.sdss.org/stripe82/">CAS stripe82 database</a>, for objects with RA > 310 or RA < 59 degrees.</li>
+
+<li>For DR7, as part of the SEGUE effort, <a href="../../segue/stellarpars.html">the spectroscopic pipeline was enhanced</a> to obtain more 
+accurate radial velocities of stellar objects. The plate-to-plate systematic velocity variations are approximately 2 km/s. Including random 
+scatter and systematics, the overall velocity accuracy of stars has a sigma of 5.5 km/s at g=18.5 mag, degrading to about 10 km/s at g=19.5 
+and 20 km/s at SEGUE's limit of g=20.3. Over-zealous cosmic ray rejected removed some real emission line features in spectra of narrow emission 
+line galaxies in DR6. This effect has largely been corrected in DR7. <a href="../algorithms/spectrophotometry.html">Spectrophotometry has been 
+recalculated for all objects in DR7</a>, and is good to levels of 10% or better over the full spectral coverage range of 3900-9100 &Aring;ngstroms. 
+The accurate spectrophotometric calibration is a unique feature of the SDSS and SEGUE spectroscopic surveys, present in no other large spectroscopic 
+dataset.</li>
+   
+<li>With SEGUE's addition of several thousand square degrees of low-latitude (|b| < 30 deg) imaging, the standard high-latitude object detection 
+and measurement code was tested in very crowded fields. In these regions, the standard PHOTO pipeline was augmented by a version of the 
+PanSTARRS object detection pipeline. PanSTARRS-assisted PHOTO also was optimized for stellar PSF measurement and object deblending in 
+low-latitude SEGUE fields. The accuracy of the crowded field photometry approached that of the Legacy survey area, except in regions of 
+extreme crowding (such as the cores of globular clusters). Catalogs of objects processed with this special code are marked in the database 
+with a rerun number of 648 and are available in the <a href="http://cas.sdss.org/astro/en/">DR7 CAS</a> and the <a href="http://das.sdss.org">DR7 DAS</a>.
+</li>
+       
+    <li>Updated photo-zs are available in the 
+    <a href="http://cas.sdss.org/astro/en/help/browser/browser.asp?n=Photoz&t=U">PhotoZ</a> tables of the CAS. The photoz table is current through DR7,
+using ubercalibrated magnitudes, and it contains information on nearest neighbor galaxies in a volume to allow analysis of photometric redshift 
+statistics. The <a href="http://cas.sdss.org/astro/en/help/browser/browser.asp?n=Photoz2&t=U">PhotoZ2</a> table, an independent method of deriving 
+photometric redshifts, is up to date through DR6.</li>
+
+<li>DR7 CAS contains a number of plates of spectra targeted on known globular and open clusters. The spectra on these plates identified with 
+programnames in the plateX table of the form '<a href="http://das.sdss.org/www/html/spectro/programs-26.html#seguecluster">segcluster%</a>' and are 
+used to calibrate the SSPP (SEGUE stellar parameter pipeline) code that derives [Fe/H], log g, and Teff for each star.</li>
+
+   
+</ul>
+
+
+<p> Except for the addition of new data and the changes in the 
+spectroscopic, imaging, and sspp pipelines described above, the pipelines 
+and databases are essentially identical in 
+DR7, DR6, DR5, DR4, DR3 and DR2.  Thus, DR7 is a proper 
+superset of DR6, which is a
+superset of DR5, etc.  The DR2 included reprocessing of all data
+included in DR1, and those data in EDR that pass our data-quality
+criteria for the official survey.</p>
+
+<a name="dr7cont"></a>
+<h2>What DR7 contains</h2>
+
+<p>The DR7 imaging data cover about 8423 square degrees of
+&quot;legacy&quot; sky, with information on roughly 230 million
+distinct photometric objects, and about  3240 square degrees of SEGUE
+sky, with about 127 million distinct objects (including many stars
+at low latitude).  The DR7 spectroscopic data
+include data from 1802 main survey plates of 640 spectra each, and
+cover 8200 square degrees. In addition, DR7 contains 762
+&quot;extra&quot; and &quot;special&quot; plates:</p>
+
+<ul>
+  <li>86 &quot;extra&quot; plate/MJD combinations which are repeat
+      observations of 77 distinct main survey plates</li>
+  <li>676 distinct &quot;special&quot; plates, which includes 410
+      SEGUE plates, and about 270 plates with 
+      observations of spectroscopic targets, mostly in the southern galactic cap, which
+      were selected by the collaboration for a series of specialized science
+      programs.  A few of these plates are outside of the
+      regular DR7 imaging area.</li>
+  <li>15 &quot;extraspecial&quot; repeat observations of
+      &quot;special&quot; plates (7 of SEGUE plates, and 8 of other
+      special plates)</li>
+</ul>
+
+<p>There is a separate page describing <a
+href="../products/spectra/special.html">the special plates in
+DR7</a> </p>
+
+<p>The DR7 footprint is defined by all non-repeating survey-quality
+imaging runs within the a priori defined elliptical survey area in the
+Nothern Galactic Cap, and three stripes in the Southern Galactic Cap
+obtained prior to 14 July 2008, and the spectroscopy associated with
+that area as well as the <em>extra</em> and <em>special</em> plates
+obtained before that date.  
+In fact, about 34 square degrees of imaging data
+in the Nothern Galactic Cap lie outside this ellipse.  
+While the DR7 scans do not repeat a given area of sky, they do 
+overlap to some extent, and the data in the overlaps are included in 
+earlier releases as well. The sky coverage of the imaging and 
+spectroscopic data that
+make up DR7 are given on the <a href="../coverage/index.html">coverage
+page</a>.  The natural unit of imaging data is a run; the DR7 contains
+data from 362 runs in the best database, 530 in the RunsDB,
+and 305 runs in the Stripe82DB, including 2 coadd runs 106 and 206 
+(the coadd is the co-addition of about 50 repeated North and 50 South scans of stripe 82).</p> 
+
+
+<p>A total of 183 square degrees of sky are different runs between target
+and best, the majority along the Equatorial Stripe in the Fall sky.</p>
+
+<p>We also make available images and associated catalogs from
+three categories of special runs in the DAS only. A subset of runs in  
+<a href="http://das.sdss.org/www/html/imaging/dr-byRun-99.html">DAS ALL imaging</a> contains the DAS-only data release, and catalogs are not present in the
+DR7 CAS, though some (not all) are available in the RUNS CAS database.  
+These runs are indicated by a non-standard stripe 
+number, such as 100, 205, 61, 62, 301, or 293, 90.  In DR6, this
+data was referred to as DR supplemental.
+They are: </p>
+  <ul>
+  <li>Scans through or near M31 (run 3366,3367, stripe 293) and the Perseus Cluster (stripes 61,62);</li>
+  <li> Sagittarius tidal stream scans (stripe 205) and scans near the South Galactic Pole (stripe 90); </li>
+  <li>Scans taken at low Galactic latitude as part of the SEGUE project (plate 797, stripe 301, stripe 100); these runs were used to target stars on <a
+      href=http://www.sdss.org/dr7/products/spectra/special.html>
+      special plates</a>.</li>
+</ul>
+</p>
+
+<a name="imcaveat"></a>
+<h2>Imaging caveats</h2>
+
+<h3>The following caveat is new to DR7</h3>
+
+<p><b>Systematic errors in the photometry of bright galaxies</b></p>
+
+<p>There is a subtle systematic effect present in the photometry of 
+faint galaxies in the wings of very bright extended galaxies.
+The effect is due to the way the DR7 version of the PHOTO treats 
+sky subtraction; in particular, the binning of sky over large regions 
+affected by extended wings of low-surface-brightness galaxies.
+This effect has been carefully documented, and it can be removed 
+in a statistical sense for weak-lensing and other galaxy clustering
+studies. See the Imaging Caveat on 
+<a href="../products/images/index.html#skylev">Overestimation of sky 
+levels near bright galaxies</a> for more detail.</p>
+
+<h3>The following caveats apply unchanged to DR7</h3>
+
+<p><b>Red leak to the <var>u</var> filter and very red objects</b></p>
+
+<!--#include virtual="../products/images/u_redleak.html"-->
+
+<p><b>Bias in sky determination</b></p>
+
+<!--#include virtual="../products/images/u_sky.html"-->
+
+<p><b>Zeropoint of the photometric system</b></p>
+
+<!--#include virtual="../algorithms/sdssab.html"-->
+
+<p><b>Holes in the imaging data</b></p>
+
+<p>About 0.3% of the DR7 imaging footprint area 
+(about 25 square degrees) for DR7 are marked as
+<em>holes</em>.  These are indicated in the CAS by setting
+<code>quality=5 (HOLE)</code> in the <code>tsField</code> file and
+<code>field</code> table and given in the <a
+href="../coverage/holes.html">list of quality holes</a>, which
+contains further details about the holes and quality flags, including
+a information about a table in the CAS which allows
+one to query for quality information about each field of data.</p>
+
+<p><b>Problems with one <var>u</var> chip</b></p>
+
+<p>The <var>u</var> chip in the third column of the camera is read out
+on two amplifiers.  On occasion, electronic problems on this chip
+caused one of the two amplifiers to fail, meaning that half the chip
+has no detected objects on it.  This was a problem for only two of the
+105 imaging runs included in DR5: run 2190, which includes a total of
+360 frames in two separate contiguous pieces on strip 12N (centered
+roughly at delta = +5 degrees in the North Galactic Cap; NGC), and run
+2189, which includes 76 frames on stripe 36N near the northern
+boundary of the contiguous area in the NGC.  The relevant frames are
+flagged as bad in the <code>quality</code> flag; in addition,
+individual objects in this region have the <var>u</var> band flagged
+as <code>NOTCHECKED_CENTER</code> (or, for objects which straddle the
+boundary between the two amplifiers, <code>LOCAL_EDGE</code>).  <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2945R">Richards
+et al (2002)</a> describe how the quasar selection algorithm handles
+such data; the net effect is that no quasars are selected by the
+<var>ugri</var> branch of the algorithm for these data.</p>
+
+<a name="speccaveat"></a>
+<h2>Spectroscopy caveats</h2>
+
+<h3>The following caveats from DR6 have been corrected in DR7</h3>
+
+<ul>
+
+<li>Over-zealous cosmic ray rejected removed some real emission 
+line features in spectra of narrow emission line galaxies in DR6. 
+This effect has largely been corrected in DR7; see the caveat on 
+<a href="../products/spectra/index.html#clipped">Clipped Spectral 
+Lines</a> on the Spectra page for more information.</li>
+
+<li>In DR6, 28 plates, had a flux scale offset due to replacement of
+fiber magnitudes by psf magntidues.  This problem has been corrected in DR7.</li>
+
+<li>In DR6 CAS, the mag_0, mag_1, and mag_2 values in the specobjall
+table were incorrectly pointing to the u, g, and r respective band 
+synthetic magnitudes for each spectrum.  u synthetic magnitude are meaningless
+since the spectral coverage does not include the u band.
+In DR7 CAS, these values have been updated to point to the (correct) g, r and i 
+respective synthetic magnitudes.</li>
+
+<li>An instability in the spectroscopic flatfields was found in some spectra prior to DR7; 
+this effect has been corrected in DR7. Details on the correction are available in the 
+<a href="../algorithms/spectrophotometry.html#flats">Spectrophotometry Algorithms</a> page.</li>
+
+</ul>
+
+<h3>The following caveats and notes are new to DR7</h3>
+
+<ul>
+
+<li>DAS Only Plates: A few Legacy and SEGUE plates did not have sufficient exposure time to reach 
+their target S/N in order to be declared 'done'. Also, in the case of SEGUE, 3 plates 
+have bright but not faint equivalents (or vice-versa). These plates do not appear in 
+the CAS or in the list of all plates; however, they are available in the DAS. The 
+plate-mjd numbers for these plates are:
+
+<pre>
+ plate-mjd      Why not in CAS platex table:
+ -----------------------------------------------------------------------
+ 0356-51779    S/N too low -- plate not done (not enough exposure)
+ 1112-53180    S/N too low -- plate not done
+ 1858-53271    SEGUE test plate, high DEC, never made it to CAS
+ 2309-54441    S/N too low -- SEGUE plate
+ 2333-53676    M71 very bright plate, lots of saturation, only 320/640 done
+ 2535-54632    SEGUE bright, faint matching plate not done 
+ 2640-54474    BAOTest plate, test plate for SDSS-III 
+ 2716-54629    SEGUE bright, faint matching plate not done
+ 2851-54485    SEGUE dup pointing of plate 2045.
+ 2962-54578    don't have correct tsObj file, Low S/N, plate not done
+</pre>
+</li>
+
+<li>Some very strong emission lines appear clipped due to saturated pixels, but were not 
+flagged as such. This occurs very rarely, but the user should be aware of the possibility of 
+objects with extremely strong emission lines and unusual line ratios. Details on this caveat 
+are available under <a href="../products/spectra/index.html#clipped">Clipped Spectral Lines</a> 
+on the Spectra page.</li>
+
+</ul>
+
+<h3>The following caveats are unchanged from DR6</h3>
+
+<p>A small number of plates suffered from a variety of minor problems
+affecting the quality of the spectrophotometry (but not of
+redshifts). See the list under <a
+href="../products/spectra/index.html#badplates">Plates with
+problematic spectrophotometry</a> on the data products page for
+spectra.</p>
+
+<p><b>Zero equivalent width of emission lines, especially H alpha</b></p>
+
+<!--#include virtual="../products/spectra/zeroEW.html"-->
+
+<p><b>Note about galactic extinction correction</b></p>
+
+<!--#include virtual="../products/spectra/galextinction.html"-->
+
+
+<p><b>Mismatches between the spectroscopic and imaging data</b></p>
+
+<p>For various reasons, a small fraction of the spectroscopic objects
+do not have a counterpart in the <code>best</code> object catalogs. In
+addition, the DR7 does not contain photometric information for some of
+the <a href="../products/spectra/special.html">special plates</a>, and
+the retrieval of photometric data from the CAS database requires
+special care for objects from the special plates, and even more care
+for SEGUE spectra.  See the caveat
+about <a
+href="../products/spectra/index.html#specphotomismatch">mismatches
+between spectra and images</a> on the data products page for
+spectra.</p>
+
+
+<hr>
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

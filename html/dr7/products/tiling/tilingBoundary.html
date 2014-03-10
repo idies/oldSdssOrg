@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- This template is for "3rd level", 2 directories below DR1/doc -->
+
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>tilingBoundary files</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<!-- Start page content -->
+<h1>tilingBoundary files</h1>
+
+<HR>
+
+<p>
+Tiling boundary files are parameter files containing structures of the form:
+</p>
+<pre>
+typedef struct {
+   int chunk;
+   int primTargetMask;
+   int secTargetMask;
+   int stripe;
+   char NSBX;
+   int coordType;
+   double lambdamu[2];
+   double etanu[2];
+   char targetVersion[30];
+   double firstArea;
+} TIBOUNDARYFULL;
+</pre>
+<p>Each element represents a rectangle on the sky (or something close to
+a rectangle); depending on which file it is in, it can represent a
+region to include (a boundary) or to exclude (a mask). The boundaries
+can overlap; an object is always said to belong in the *first*
+boundary which contains it. The specification of the rectangle goes as
+follows:</p>
+<ul>
+<li> <b>chunk</b>: The spectroscopic survey has been broken up into "Chunks" on
+       which the target/tile pipelines have been run. This parameter
+       indicates which chunk the rectangle belongs to. Masks in a
+       specific Chunk apply *only* to boundaries in that chunk; masks
+       with the chunk specification "-1" apply to all chunks.
+<li> <b>primTargetMask/secTargetMask</b>: The targets flags to which the boundary or
+       mask applies (ie. include such and so objects in this region,
+       or only exclude such and so objects).
+<li> <b>stripe</b>: The survey stripe which the rectangle is near. The survey
+       10 represents the equator; it is at survey "latitude"
+       eta=-32.5. The centers of the stripes are at
+       eta=stripe*2.5-57.5
+<li> <b>NSBX</b>:  If 'B', the area is actually the intersection of the rectangle
+       with the official survey stripe limits (note the dependence on
+       differing North and South stripe limits). If 'X' the full
+       rectangle is used.
+<li> <b>coordType</b>: The coordinates in which the region is a rectangle. 
+<ul>
+               <li> '0' indicates ra/dec. 
+               <li> '1' indicates eta/lambda
+               <li> '2' indicates nu/mu Great Circle coordinates (inclination
+                     set according to "stripe")
+               <li> '3' indicates eta/mu coordinates (ie. it is *not* a
+                     rectangle in any coordinates; it is defined by
+                     the intersection of the constant-eta great
+                     circles and the constant-mu great circles)
+</ul>
+<li> <b>lambdamu</b>: The bounding ra/lambda/mu values in degrees (depending on coordType)
+<li> <b>etanu</b>: The bounding dec/eta/nu values in degrees (depending on coordType)
+<li> <b>targetVersion</b>: The version of target used in this region (appropriate
+       for boundaries but not masks). The parameter files for all
+       target versions are stored in the ../target directory.
+<li> <b>firstArea</b>: The area associated with this region in square degrees;
+       this is the area covered by the boundary which was not assigned
+       to boundaries earlier in the list.
+</ul>
+
+<p>
+The imaging survey geometry can then be expressed as:
+</p>
+<pre>
+\sum_{chunk} ( Boundary_{chunk} - Mask_{chunk} - Mask_{-1} )
+</pre>
+where the sum over the chunks indicates a union, and the minus signs
+indicate that you extract from the boundary the *intersection* of the
+boundary and the mask.
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar  3 15:22:59 CST 2003
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Coverage: runs with different survey coordinate system - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Runs in SDSS with slightly different survey coordinates</h1>
+
+<p>A few runs in the SDSS were taken with the telescope parked and
+scanning along the equator at the sidereal rate. These runs have a
+different node and inclination from the survey's default node of
+95&deg; and inclination increasing in steps of 2.5&deg; from stripe to
+stripe.</p>
+
+<table border="1">
+  <caption>Runs with non-standard node, inclination</caption>
+  <tr>
+    <th>"Target" data</th>
+    <td>94, 125, 745, 752, 756</td>
+  </tr>
+  <tr>
+    <th>"Best" data</th>
+    <td>745, 752, 756</td>
+  </tr>
+</table>
+
+<p>To obtain the correct astrometrical transformations for these runs,
+you need to use the node/inclination given in the fits header of the
+<strong>tsField</strong> files, instead of the node and inclination
+used in the equations given in the <a
+href="../products/general/edr_html/node26.html#SECTION00032200000000000000">coordinates
+section of the EDR paper</a>.</p>
+
+<!-- end page content-->
+
+<hr>
+<!-- hhmts start -->Last modified: Fri Apr  4 18:45:20 CST 2003
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

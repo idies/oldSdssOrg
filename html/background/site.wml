@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="SDSS Information: Apache Point Observatory">
+<title>SDSS Information: Apache Point Observatory</title>
+</head>
+
+<sdss-page select="background">
+
+<p><a href="../images/nm_map.gif"><img src="../images/nm_map_sm.gif" 
+alt="New Mexico map" width="100" height="100" border="2"
+align="right"></a>
+<font size="+2"><a href="../members/apo.html">Apache Point
+Observatory</a>, </font>in Sunspot, New Mexico, is owned and operated by
+the Astrophysical Research Consortium, a not-for-profit consortium of
+seven research institutions whose mission is to develop and operate
+astronomical research facilities for scientists affiliated with the
+member institutions and their collaborators. Principal projects at the
+site are a 3.5-meter telescope and the Sloan Digital Sky Survey.
+
+<p>The multi-purpose 3.5-meter telescope provides astronomers data to
+develop and refine theories on how planets, stars, nebulae and other
+celestial objects form and evolve. The telescope boasts several
+innovative features including remote control, rapid instrument change
+capability, light-weight construction, and unique sky-monitoring
+capabilities. The ability to operate remotely allows several astronomers
+to share the telescope on a given night, using whichever arrays of the
+telescope's different instruments best suit their needs.
+
+<p>Apache Point also provides support for <a
+href="http://charon.nmsu.edu">New Mexico State University</a>'s
+1.0-meter telescope, operated for research and graduate
+instruction. Using design features from the 3.5-meter telescope, the
+smaller telescope is computer controlled, either from the site or from
+NMSU's campus.
+
+<p>The site's support facilities include an operations building housing
+work areas for telescopes and instruments, as well as computer control
+rooms for each telescope. A modest machine shop handles small-scale
+onsite projects, and a suite of dormitory rooms houses overnight
+visitors.
+
+<p>Apache Point Observatory provides premier facilities and superior
+climatic conditions for the Sloan Digital Sky Survey.  The site is
+surrounded by scenic Lincoln National Forest in the Sacramento Mountains
+of south-central New Mexico. At 9200 feet, the atmosphere contains
+little water vapor and few contaminants to degrade celestial
+images. APO's night sky is among the darkest in the United States,
+because of the site's clean air and distance from large cities. Such
+conditions contribute to optimum seeing for astronomers.
+
+<p>Conducting the Sky Survey required the construction of two telescopes
+and a survey support building, as well as modification of the existing
+operations buildings.  With major support from the seven collaborating
+ARC institutions, APO staff and others, engineering and scientific
+collaborations have undertaken the myriad construction, installation,
+and commissioning tasks for the telescopes, supporting instruments and
+infrastructure.
+
+<p>Observatory staff operate and maintain the telescopes, instruments
+and infrastructure for the Sky Survey, including preparation of the plug
+plates for spectroscopic surveys.
+
+<p>Apache Point Observatory is operated for ARC by New Mexico State
+University.
+
+</sdss-page>
+
+</html>

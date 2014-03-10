@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Data products: Images - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Images</h1>
+Up: <a href="../index.html">Data Products</a> Sections: Images - <a
+href="../catalogs/index.html">Object lists</a> - <a
+href="../spectra/index.html">Spectra</a> - <a
+href="../tiling/index.html">Tiling</a>
+
+<h2>Getting and using images</h2>
+
+<p>The Data Archive Server provides the survey images, called
+"corrected frames", as <code>fpC*.fits</code> files. See the <a
+href="../../dm/flatFiles/fpC.html">fpC data model</a>.</p>
+
+<p>The <a href="../../access/index.html#CAS">Catalog Archive
+Server</a> serves 3-color jpeg images generated from the <var>g, r,
+i</var> images as finding charts, cutouts for object lists and for
+point-and-click navigation of the sky.</p>
+
+<p>The <a href="../../access/">data access</a> page contains various
+query forms to get images by coordinates, or to search for
+objects from the imaging and spectroscopic catalogs by redshift,
+object magnitude, color etc., and to retrieve the corresponding
+data from the archive.</p>
+
+<p>There is a separate set of <a
+href="../../dm/flatFiles/fpAtlas.html"><code>fpAtlas*.fits</code></a>
+files, containing the "postage-stamp" images for individual objects
+from the <a href="../catalogs/index.html">photometric object
+lists</a>. See <a href="read_atlas.html">how to read an atlas
+image</a>.</p>
+
+<ul>
+  <li>We provide a tutorial describing <a
+      href="../../tutorials/retrieveFITS.html">how to retrieve
+      fits images for a set of objects</a>. </li>
+  <li><a href="read_psf.html">How to reconstruct the PSF at an arbitrary
+      position in a frame</a></li>
+  <li><a href="read_mask.html">How to read fpM*.fits image masks</a>
+      These are the full binary mask files provided by the imaging
+       pipeline.</li>
+  <li><a href="../../algorithms/fluxcal.html#counts2mag">How to
+      apply the photometric calibration</a> to images, which are
+      in counts.
+  </li>
+  <li><a
+      href="../general/astrometry.html#calibrationEquations">How
+      to apply the astrometric calibration (beyond the WCS in the
+      fits files)</a>
+  </li>
+</ul>
+<!--    <li><h3>Supplementary info:</h3> -->
+<!--      <ol> -->
+<!--        <li>How to reconstruct the sky that we subtracted <font color="red"> RHL! -->
+<!--          see PR <a -->
+<!--          href="http://www.astro.princeton.edu/cgi-bin/gnatsweb.pl?cmd=view&amp;database=sdss&amp;pr=4399">PR -->
+<!--          4399</a></font></li> -->
+<!--      </ol> -->
+<!--    </li> -->
+
+<h2>New for DR7: Runs and Stripe 82 Databases</h2>
+
+<p>The DR7 <a href="http://cas.sdss.org/astro">Catalog Archive Server</a> contains the imaging 
+RUNS database, separate from the DR7 (Legacy + SEGUE) database. This database contains 530 
+imaging scans, some of which are not present in the main DR7 database, and thousands imaging
+fields from the beginnings and ends of DR7 strip scans which did not resolve into a complete 
+rectangular stripe on the sky.</p>
+   
+<p>The DR7 <a href="http://cas.sdss.org/astro">Catalog Archive Server</a> contains the Stripe82 
+database, distinct from the DR7 and RUNS databases, containing all imaging from SDSS stripe 82 
+along the Celestial Equator in the Southern Galactic Cap (<em>Stripe 82</em>). Subsets of the 303
+individual stripe 82 scans were made public in previous data releases, but with DR7, we now make 
+a coaddition (<em>the Stripe 82 coadd</em>) of about 47 South strip and 55 North strip scans into 
+a scan in which objects are detected and cataloged about 2 magnitudes deeper than in any 
+individual stripe82 scan. It includes a total of 303 runs (plus 2 coadd runs), covering any 
+given piece of the  approx. 270 deg<sup>2</sup> area approximately 80 times.</p>
+
+<p>All 303 runs covering Stripe 82 are part of the <em>Stripe 82 database</em>, which can 
+be queried to search for variability (and propermotion, with a bit more effort).  Only about 
+one-quarter of the Stripe 82 scans were obtained in photometric conditions, the rest were taken under
+variable clouds and often poorer than normal seeing. For those runs which are non-photometric, an 
+approximate calibration, using the photometric frames as reference, is derived and available in the CAS
+stripe82 database, for objects with RA > 310 or RA < 59 degrees.</p>
+
+<h2>Caveats</h2>
+<ul>
+  <li><a name="skylev"></a><h4>Overestimation of sky levels near
+      bright galaxies</h4>
+<!--#include virtual="../catalogs/brightgalsky.html"--></li>
+
+  <li><a name="badcol"></a><h4>Bad CCD columns</h4> Some chips have bad CCD columns
+      which get interpolated over by the photometric pipeline, leading
+      to noticeably correlated noise. The bad columns for each run are
+      currently available in <a
+      href="../../dm/flatFiles/fpM.html">fpM*.fits</a>.  These files can be
+      found on the Data Archive Server in the <code>objcs</code>
+      subdirectory of each <code>run/rerun</code> directory (e.g., <a
+      href="http://das.sdss.org/imaging/1740/40/objcs/1/">http://das.sdss.org/imaging/1740/40/objcs/1/</a>. See
+      <a href="../products/images/read_mask.html">how to read fpM*.fits
+      image masks</a>.</li>
+  <li><a name="redleak"></a><h4>Very red objects</h4>
+      <!--#include virtual="./u_redleak.html"-->
+  </li>
+  <li><a name="usky"></a><h4>u-band sky</h4>
+      <!--#include virtual="./u_sky.html"-->
+  </li>
+  <li><a name="u3bad"></a><h4>u3 half-bad for runs 2188,2189,2190</h4>
+		In early 2001, the u band CCD of CamCol 3 suffered
+		from an electronics problem in its 'left' amplifier,
+		resulting in missing u band data in half the u-band
+		CCD in CamCol 3 (only) for runs 2188, 2189, 2190 (only).
+		The problem was then corrected.   This data remains
+		missing.  The problem can be seen by downloading
+		a u3 fpC or drC corrected frame from 
+		the <a href="http://das.sdss.org">DAS</a> from one of 
+		these runs.  There is no work around other than
+		not using the u-band data in this region.
+  </li>
+</ul>
+
+<a name="footnotes"></a>
+<!--#include virtual="../../dr7link.html"-->
+
+<!-- end page content-->
+
+<hr>
+<!-- hhmts start -->Last modified: Thu Oct 18 09:21:04 CEST 2007
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

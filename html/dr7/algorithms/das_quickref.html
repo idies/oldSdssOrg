@@ -1,0 +1,164 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>SDSS Data Archive Server Quick Reference</title>
+  <meta name="generator" content="amaya 8.7, see http://www.w3.org/Amaya/" />
+  <style type="text/css">
+table.dasfile {
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 1px;
+	border-style: outset;
+}
+table.dasfile th,  table.dasfile td {
+	border-width: 1px 1px 1px 1px;
+	padding: 1px 1px 1px 1px;
+	border-style: inset;
+}
+td.params {
+        white-space: nowrap;
+}
+  </style>
+</head>
+
+<body>
+<h1>SDSS Data Archive Server Quick Reference</h1>
+
+<h2 id="greatesthits">Most Commonly Useful Files</h2>
+
+<h3 id="imaginghits">Imaging</h3>
+
+      <table class="dasfile">
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpC.html">fpC</a></td>
+            <td>the image itself, bias subtracted, flat fielded, and with bad pixels replaced by interpolated values (the "corrected frame")</td>
+            <td>http://das.sdss.org/imaging/%d/%d/corr/fpC-%06d-%c%d-%04d.fit</td>
+            <td class="params">run, rerun, run, filter, camcol, field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/drObj.html">drObj</a></td>
+            <td>the final "ubercal" and astrometrically recalibrated
+            object catalogs</td>
+            <td>http://das.sdss.org/imaging/%d/%d/dr/%d/drObj-%06d-%d-%d-%04d.fit</td>
+            <td class="params">run, rerun, camcol, run, camcol, rerun,
+            field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/drField.html">drField</a></td>
+            <td>the final "ubercal" field statistics</td>
+            <td>http://das.sdss.org/imaging/%d/%d/dr/%d/drField-%06d-%d-%d-%04d.fit</td>
+            <td class="params">run, rerun, camcol, run, camcol, rerun,
+            field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/tsObj.html">tsObj</a></td>
+            <td>the calibrated object catalogs (as used for targeting)</td>
+            <td>http://das.sdss.org/imaging/%d/%d/calibChunks/%d/tsObj-%06d-%d-%d-%04d.fit</td>
+            <td class="params">run, rerun, camcol, run, camcol, rerun,
+            field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/tsField.html">tsField</a></td>
+            <td>the calibrated field statistics (as used for targeting)</td>
+            <td>http://das.sdss.org/imaging/%d/%d/calibChunks/%d/tsField-%06d-%d-%d-%04d.fit</td>
+            <td class="params">run, rerun, camcol, run, camcol, rerun,
+            field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/asTrans.html">asTrans</a></td>
+            <td>tranformation coefficients from row, column to great circle
+              coordinates</td>
+            <td>http://das.sdss.org/imaging/%d/%d/astrom/asTrans-%06d.fit</td>
+            <td class="params">run, rerun, run</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpBIN.html">fpBIN</a></td>
+            <td>a 4x4 binned version of the corrected image after
+            masking of objects and subtraction of sky, an image of the
+            estimate of the sky, an image of the uncertainty in the
+            sky estimate, and a table of bright star wings</td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/fpBIN-%06d-%c%d-%04d.fit</td>
+            <td class="params">run, rerun, run, filter, camcol, field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpM.html">fpM</a></td>
+            <td>the frame masks (read using <a href="http://das.sdss.org/software/readAtlasImages/">readAtlasImages</a>)</td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/fpM-%06d-%c%d-%04d.fit</td>
+            <td class="params">run, rerun, run, filter, camcol, field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/fpAtlas.html">fpAtlas</a></td>
+            <td>the atlas images for all objects detected (read using <a href="http://das.sdss.org/software/readAtlasImages/">readAtlasImages</a>)</td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/fpAtlas-%06d-%d-%04d.fit</td>
+            <td class="params">run, rerun, run, camcol, field</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/psField.html">psField</a></td>
+            <td>the initial photometric calibration and point spread function fit by field</td>
+            <td>http://das.sdss.org/imaging/%d/%d/objcs/%d/psField-%06d-%d-%04d.fit</td>
+            <td class="params">run, rerun, camcol, run, camcol, field</td>
+          </tr>
+        </tbody>
+      </table>
+
+<h3 id="spectrohits">Spectroscopy</h3>
+
+      <table class="dasfile">
+        <tbody>
+          <tr>
+            <th>File Type</th>
+            <th>Description</th>
+            <th>DAS URL format</th>
+            <th>format parameters</th>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spPlate.html">spPlate</a></td>
+            <td>the 640 combined flux- and wavelength-calibrated
+            spectra over all exposures (potentially spanning multiple
+            nights) for a given mapped plate</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spPlate-%04d-%d.par</td>
+            <td class="params">rerun, plate, plate, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spSpec.html">spSpec</a></td>
+            <td>line measurements and redshift determinations, as well
+            as the spectrum, for a single object, summing over all of
+            its exposures through a given mapped plate</td>
+            <td>http://das.sdss.org/spectro/1d_%d/%d/1d/spSpec-%d-%04d-%03d.par</td>
+            <td class="params">rerun, plate, mjd, plate, fiber</td>
+          </tr>
+          <tr>
+            <td>sspp gzipped tar files</a></td>
+            <td>Output of the SEGUE stellar parameters pipeline</td>
+            <td>http://das.sdss.org/spectro/sspp_%d/%04d-%05d.tgz</td>
+            <td class="params">rerun, plate, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spZline.html">spZline</a></td>
+            <td>the emmission line fits from the Princeton-1D code, specBS</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spZline-%04d-%d.par</td>
+            <td class="params">rerun, plate, plate, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spZall.html">spZall</a></td>
+            <td>all spectroscopic classifications and redshifts from the Princeton-1D code, specBS</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spZall-%04d-%d.par</td>
+            <td class="params">rerun, plate, plate, mjd</td>
+          </tr>
+          <tr>
+            <td><a href="../dm/flatFiles/spZbest.html">spZbest</a></td>
+            <td>spectroscopic classifications and redshifts from the Princeton-1D code, specBS</td>
+            <td>http://das.sdss.org/spectro/2d_%d/%04d/spZbest-%04d-%d.par</td>
+            <td class="params">rerun, plate, plate, mjd</td>
+          </tr>
+        </tbody>
+      </table>
+
+</body>
+</html>

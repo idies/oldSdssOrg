@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Measurements of Shape and Morphology</TITLE>
+<META NAME="description" CONTENT="Measurements of Shape and Morphology">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html584" HREF="node43.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html582" HREF="node36.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html576" HREF="node41.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html585" HREF="node43.html">Known Problems in frames</A>
+<B>Up:</B> <A NAME="tex2html583" HREF="node36.html">The Frames Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html577" HREF="node41.html">Measurements of Flux</A>
+<BR> <P>
+<H3><A NAME="SECTION00044600000000000000">Measurements of Shape and Morphology</A></H3>
+<P>
+<A NAME="swphotomeasureshape">&#160;</A>
+<P>
+The <TT>frames</TT> pipeline also provides several characterizations of the shape and
+morphology of an object.
+<P>
+<TT>frames</TT>'s ``Type'' Determination
+<A NAME="swphotomeasuretypes">&#160;</A>
+<P>
+The <TT>frames</TT> pipeline provides a simple star/galaxy separator in its <TT>type</TT>
+parameters (provided separately for each band) and its <TT>
+objc_type</TT> parameters (one value per object); these are set to 3
+(galaxy) or 6 (star). 
+In particular, lupton01a show that the following simple cut
+works at the 95% confidence level for our data to <IMG WIDTH=55 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3155" SRC="img99.gif"> and even
+somewhat fainter: 
+<BR><IMG WIDTH=500 HEIGHT=17 ALIGN=BOTTOM ALT="equation772" SRC="img100.gif"><BR>
+If satisfied, <TT>type</TT> is set to <TT>GALAXY</TT> for that band;
+otherwise, <TT>type</TT> is set to <TT>STAR</TT>.  The global type <TT>
+objc_type</TT> is set according to the same criterion, applied to the
+summed fluxes from all bands in which the object is detected.
+<P>
+Experimentation has showed that simple variants on this scheme, such
+as defining galaxies as those objects classified as such in any two of
+the three high signal-to-noise ratio bands (namely, <I>g</I>, <I>r</I>, and
+<I>i</I>), work better in some 
+circumstances.  This scheme occasionally fails to distinguish pairs of
+stars with separation small enough (&lt;2'') that the deblender does
+not split them; it also occasionally classifies Seyfert galaxies with
+particularly bright nuclei as stars.
+<P>
+Further information to refine the star-galaxy separation further may
+be used, depending on scientific application.  For example,
+scranton01 advocate applying a Bayesian prior to the above
+difference between the PSF and exponential magnitudes, depending on
+seeing and using prior knowledge about the counts of galaxies and
+stars with magnitude.
+<P>
+Radial Profile
+<A NAME="swphotomeasureradprofile">&#160;</A>
+<P>
+The <TT>frames</TT> pipeline extracts an azimuthally-averaged radial
+surface brightness profile. In the catalogs, it is given as the
+average surface brightness in a series of annuli (whose outer radii
+are listed in Table&nbsp;<A HREF="node65.html#tblradii">7</A>).  This quantity is in units of
+``maggies'' per square arcsec, where a <EM>maggie</EM> is a linear
+measure of flux; one maggie has an AB magnitude of 0 (thus a surface
+brightness of 20 mag/square arcsec corresponds to <IMG WIDTH=33 HEIGHT=17 ALIGN=BOTTOM ALT="tex2html_wrap_inline3163" SRC="img101.gif"> maggies
+per square arcsec).  In the class <TT>Profile</TT>
+(Table&nbsp;<A HREF="node65.html#tblphoto">6</A>), the number of annuli for which there is a
+measurable signal is listed as <TT>nprof</TT>, the mean surface
+brightness is listed as <TT>profMean</TT>, and the error is listed as
+<TT>profErr</TT>.  This error includes both photon noise, and the
+small-scale ``bumpiness'' in the counts as a function of azimuthal
+angle.
+<P>
+When converting the <TT>profMean</TT> values to a local surface
+brightness, it is <EM>not</EM> the best approach to assign the mean
+surface brightness to some radius within the annulus and then linearly
+interpolate between radial bins.  Do not use smoothing
+splines, as they will not go through the points in the cumulative
+profile and thus (obviously) will not conserve flux. What <TT>frames</TT>
+does, e.g., in determining the Petrosian ratio, is to fit a taut spline to the
+<EM>cumulative</EM> profile and then differentiate that spline fit,
+after transforming both the radii and cumulative profiles with asinh
+functions.  We recommend doing the same here.
+<P>
+Surface Brightness and Inverse Concentration Index
+<A NAME="swphotomeasureconcentration">&#160;</A>
+<P>
+The <TT>frames</TT> pipeline also reports the radii containing 50% and 90% of the Petrosian
+flux for each band, <TT>petroR50</TT> and <TT>petroR90</TT> respectively.
+The usual characterization of surface-brightness in the target
+selection pipeline of the SDSS is the mean surface brightness within <TT>
+petroR50</TT>.
+<P>
+It turns out that the ratio of <TT>petroR50</TT> to <TT>petroR90</TT>, the
+so-called ``inverse concentration index'', is correlated with
+morphology shimasaku01,strateva01. Galaxies with a de
+Vaucouleurs profile have an inverse concentration index of around 0.3;
+exponential galaxies have an inverse concentration index of around
+0.43. Thus, this parameter can be used as a simple morphological
+classifier.
+<P>
+An important caveat when using these quantities is that they
+are <EM>not</EM> corrected for seeing.  This causes the surface
+brightness to be underestimated, and the inverse concentration index
+to be overestimated, for objects of size comparable to the PSF.  The
+amplitudes of these effects, however, are not yet well characterized.
+<P>
+Model Fit Likelihoods and Parameters
+<A NAME="swphotomeasuremodels">&#160;</A>
+<P>
+In addition to the model and PSF magnitudes described above, 
+the likelihoods <TT>deV_L</TT>, <TT>exp_L</TT>, and <TT>star_L</TT> are also
+calculated by <TT>frames</TT>. These are the probabilities of achieving the
+measured <IMG WIDTH=17 HEIGHT=33 ALIGN=MIDDLE ALT="tex2html_wrap_inline3143" SRC="img97.gif"> for the de&nbsp;Vaucouleurs, exponential, and PSF fits,
+respectively. If one wishes to make use of this trinary scheme to 
+classify objects, calculation of the fractional likelihoods is recommended:
+<BR><IMG WIDTH=513 HEIGHT=38 ALIGN=BOTTOM ALT="equation813" SRC="img102.gif"><BR>
+and similarly for <IMG WIDTH=64 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3167" SRC="img103.gif"> and <IMG WIDTH=73 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3169" SRC="img104.gif">.  
+A fractional likelihood greater than 0.5 for any of these three profiles
+is generally a good threshold for object classification.  This works
+well in the range <IMG WIDTH=109 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3171" SRC="img105.gif">; at the bright end, the
+likelihoods have a tendency to underflow to zero, which makes them less
+useful.  In particular, <TT>star_L</TT> is often zero for bright stars. 
+For future data releases we 
+will incorporate improvements to the model fits to give more
+meaningful results at the bright end.
+<P>
+Ellipticity
+<A NAME="swphotomeasureellipticity">&#160;</A>
+<P>
+The model fits yield an estimate of the axis ratio and position angle
+of each object, but it is useful to have model-independent measures of
+ellipticity. In the data released here, <TT>frames</TT> provides two further
+measures of ellipticity, one based on second moments, the other based
+on the ellipticity of a particular isophote.  The model fits do
+correctly account for the effect of the seeing, while the methods
+presented here do not.
+<P>
+The first method measures flux-weighted second moments,
+defined as:
+<BR><IMG WIDTH=500 HEIGHT=69 ALIGN=BOTTOM ALT="eqnarray826" SRC="img106.gif"><BR>
+In the case that the object's isophotes are self-similar ellipses, one
+can show:
+<BR><IMG WIDTH=500 HEIGHT=76 ALIGN=BOTTOM ALT="eqnarray834" SRC="img107.gif"><BR>
+where <I>a</I> and <I>b</I> are the semi-major and semi-minor axes, and <IMG WIDTH=9 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline3177" SRC="img108.gif">
+is the position angle. <I>Q</I> and <I>U</I> are <TT>Q</TT> and <TT>U</TT> in the 
+class <TT>PhotoObj</TT>
+and are referred to as ``Stokes parameters.'' They can be used to
+reconstruct the axis ratio and position angle, measured relative to row
+and column of the CCDs.  This is equivalent to the normal definition of
+position angle (East of North), for the scans on the Equator. 
+The performance of the Stokes parameters are not ideal at
+low S/N.  
+For future data releases, <TT>frames</TT> will also output variants 
+of the adaptive shape measures used in the weak lensing analysis of
+fischer00, which are closer to optimal measures of shape for
+small objects.
+<P>
+A second measure of ellipticity is given by measuring the ellipticity
+of the 25 magnitudes per square arcsecond isophote (in all bands).  In detail, <TT>frames</TT>
+measures the radius of a particular isophote as a function of angle
+and Fourier expands this function.  It then extracts from the
+coefficients the centroid, major and minor axis, position angle, and average radius of
+the isophote in question<A NAME="tex2html12" HREF="footnode.html#849"><IMG  ALIGN=BOTTOM ALT="gif" SRC="../../../images/foot_motif.gif"></A>.  It also reports the derivative of each of these
+quantities with respect to isophote level, necessary to recompute
+these quantities if the photometric calibration changes<A NAME="tex2html13" HREF="footnode.html#1433"><IMG  ALIGN=BOTTOM ALT="gif" SRC="../../../images/foot_motif.gif"></A>.
+<P>
+<HR><A NAME="tex2html584" HREF="node43.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html582" HREF="node36.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html576" HREF="node41.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html585" HREF="node43.html">Known Problems in frames</A>
+<B>Up:</B> <A NAME="tex2html583" HREF="node36.html">The Frames Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html577" HREF="node41.html">Measurements of Flux</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

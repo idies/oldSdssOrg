@@ -1,0 +1,138 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+<!--#include virtual="segueheader.html"-->
+<html>
+<head>
+<meta name="Author" content="segue-webmaster@sdss.org">
+
+<meta name="Keywords" content="SEGUE, Milky Way, stars, stellar parameters, 
+SDSS, Sloan, 
+digital, survey, galaxy, galaxies, quasar, universe, telescope, 
+astronomy, astrometry,
+spectroscopy, cosmology, large-scale structure, observatory,
+observatories, big bang, redshift, map">
+
+<meta name="Description" content="SEGUE imaging">
+
+<title>SEGUE</title>
+<link rel=StyleSheet href="..includes/sdss.css" type="text/css" media=screen>
+
+</head>
+
+<body>
+
+<!-- Overall table structure - 3x3 -->
+
+<table width="100%" height="100%" border="0" cellspacing="0" 
+cellpadding="0" style="padding:0px; margin:0px; border:0px"> <tr>
+
+
+</tr>
+
+<tr>
+<!-- Body -->
+
+<td valign="top" width="100%" height="100%" bgcolor="#FFFFFF" 
+style="padding:15px;">
+
+
+<div align="center">
+
+<h1>SEGUE Imaging</h1>
+
+<div align="left">
+<p>
+
+<p>The SEGUE imaging survey is designed to photometrically identify and trace 
+all stellar components of the Milky Way Galaxy. 
+The entire sky available from Apache Point 
+Observatory will be sampled, with gaps of no more than 
+about 10 degrees between observations at
+high Galactic latitude (|b| > 30 degrees), and no more than 20 degrees at low 
+Galactic latitude (|b| < 30 degrees).  This will ensure that 
+all major structures, including the thin and thick disks, the stellar spheroid,
+and substructures within the Galactic halo, are adequately sampled.
+</p>
+<p>The SEGUE <a href="skycoverage.html">sky coverage map </a> includes a detailed
+description of the plate layout and  current observational status; the SEGUE
+footprint in l and b, color-coded by level of  priority is shown below:
+<div align="center">
+<img src="../image_gallery/foot.gif" width="90%">
+</p>
+<div align="left">
+<h2>SEGUE Stripes</h2>
+<p>
+The SDSS telescope has a 3&#186 diameter field of view 
+and imaging is obtained using a drift
+scan camera with 30 2048 x 2048 CCDs at the focal plane, and five broad 
+filters ,
+<i>ugriz,</i> that cover a range from 3000 to 10,000&#197. Each continuous
+scan constitutes an imaging <i>run</i> and generates a <i>strip</i>; two  
+<i>strips</i> create a 2.5&#186 wide imaging <i>stripe.</i> 
+(See <a href="../dr7/coverage/index.html"> 
+SDSS DR7 Sky Coverage</a> for details.)
+</p>
+
+<p> A table of SEGUE stripes can be found at
+<a href="stripetable.html"> SEGUE Stripes.</a>
+</p>
+
+<h2>Low Latitude Imaging</h2>
+<p>Many of these stripes go to quite low Galactic latitude, and some
+cross the Galactic plane. The photometric pipeline is not optimized
+for the crowded fields found at low latitude, and so caution must be used
+in these regions of high stellar density:
+<ul>
+<li> Outputs of the photometric pipeline appear to be good until
+the density of objects exceeds ~ 4000 per 10' x 13' field (roughly
+ten times the number density of objects at high latitudes).
+<li> The point spread function (PSF) cannot be measured accurately in crowded
+fields (the pipeline has difficulty finding suitable isolated stars).
+This limits the accuracy of brightness measurements in these fields.
+<li> The pipeline attempts to deblend objects with overlapping
+images, but the deblend algorithm fails when the number of overlapping
+objects in a single family is too large.  In such cases the number of detected
+objects reported by the pipeline can be a dramatic underestimate.
+</ul>
+</p>
+<h2>Photometric  Pipeline</h2>
+<p>
+SEGUE imaging data is processed using the SDSS photometric pipeline. 
+Details can be found on the DR7
+<a href="../dr7/algorithms/index.html">
+algorithms</a> web page.
+</p>
+<h2>Proper motions</h2>
+<p>Proper motions are 
+estimated from comparison with USNO-B data, following the prescription of
+<a href="http://adsabs.harvard.edu/abs/2004AJ....127.3034M">Munn et al. (AJ 127, 2004)</a>.
+These proper motions are utilized in selecting candidates for
+certain categories of the
+SEGUE <a href="targetsel.html">target selection algorithm.</a>
+
+
+
+</p>
+<div align="center">
+
+
+<br clear=all>
+<img src="../images/dot_clear.gif" width="90%" height="5"><br>
+
+
+<tr>
+
+<td height="30" bgcolor="#000000" width="132">
+&nbsp;
+</td>
+
+
+
+</span>
+</center>
+
+</td></tr></table>
+
+</body>
+</html>
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->

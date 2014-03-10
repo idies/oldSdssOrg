@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Imaging Data Quality Assessment</TITLE>
+<META NAME="description" CONTENT="Imaging Data Quality Assessment">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html654" HREF="node50.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html652" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html646" HREF="node48.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html655" HREF="node50.html">Resolving Multiple Detections</A>
+<B>Up:</B> <A NAME="tex2html653" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html647" HREF="node48.html">Assessment of Photometric Calibration</A>
+<BR> <P>
+<H2><A NAME="SECTION00046000000000000000">Imaging Data Quality Assessment</A></H2>
+<P>
+<A NAME="swquality">&#160;</A>
+<P>
+The quality of each field of data from the 2.5-meter imaging camera is
+assessed based on a number of criteria.  A quality is assigned for
+each criterion, and an overall quality is assigned based on the worst
+value of these.  
+The possible values for <TT>quality</TT> in the class
+<TT>Field</TT> (Table&nbsp;<A HREF="node65.html#tbladministrativefield">16</A>) are:
+<P>
+<UL>
+<LI><B><TT>AR_DQ_GOOD</TT>:</B> Data meet requirements
+<LI><B><TT>AR_DQ_ACCEPTABLE</TT>:</B> Data do not meet requirements but are usable
+for target selection; replace with new data if time permits.
+<LI><B><TT>AR_DQ_HOLE</TT>:</B> Data do not meet requirements; the area of sky is small
+enough to not warrant replacing with new data.
+<LI><B><TT>AR_DQ_BAD</TT>:</B> Data do not meet requirements.
+<LI><B><TT>AR_DQ_MISSING</TT>:</B> Data are missing; the area of sky is small enough 
+to not warrant obtaining new data.
+<P>
+</UL>
+<P>
+For the EDR, all fields are in one of the first three categories.  The
+<TT>quality</TT> for each field is indicated in Figure&nbsp;<A HREF="node65.html#figSeeing">8</A>.
+<P>
+A set of flags is maintained for each field in which the quality for
+each of the criteria is recorded.  These flags are 32-bit masks; there
+are 4 masks, one each for <TT>GOOD</TT>, <TT>ACCEPTABLE</TT>, <TT>HOLE</TT>,
+and <TT>BAD</TT>, with bits assigned for each criterion used to judge
+quality.  For example, if the seeing is judged acceptable, then the
+bit assigned to seeing in the ``acceptable'' mask is set.
+Additionally, an overall quality is stored separately.
+<P>
+The following are the criteria used to assess data quality:
+<P>
+<UL>
+<LI><B>PSF (Seeing):</B> The median point-spread function (PSF)
+full-width at half maximum (FWHM) over all 30 (photometric) CCDs must
+be less than 1.5&nbsp;arcsec for <TT>GOOD</TT> data.  Because seeing is a
+function of wavelength, all measures of FWHM are corrected to the
+value that would be measured in the <I>r</I> band by scaling as
+<IMG WIDTH=36 HEIGHT=16 ALIGN=BOTTOM ALT="tex2html_wrap_inline3341" SRC="img135.gif">.  The actual algorithm also smoothes over time, so the
+quality of a field depends on more than just the instantaneous seeing.
+If the seeing fluctuates rapidly from field to field, <TT>quality</TT> is
+set to <TT>AR_DQ_HOLE</TT>.  Additionally, for fields where the FWHM is greater
+than 1.5&nbsp;arcsec and the largest FWHM for any CCD is less than
+1.8&nbsp;arcsec, the <TT>quality</TT> is <TT>AR_DQ_ACCEPTABLE</TT>.
+<LI><B>Tracking:</B> The telescope must track to within 8&nbsp;arcsec in the
+direction perpendicular to nominal path for GOOD data and 18&nbsp;arcsec for
+<TT>ACCEPTABLE</TT> data.  This is necessary to not leave gaps between
+adjacent scanlines.
+<LI><B>PSF Model:</B> The postage stamp pipeline (&#167;&nbsp;<A HREF="node35.html#swpsp">4.3</A>) 
+outputs a status flag that indicates how accurately it was able to model the
+variable PSF in a field.  This flag is converted to a quality of <TT>GOOD</TT>,
+<TT>ACCEPTABLE</TT>, or <TT>HOLE</TT>.
+<LI><B>Timeout: 
+</B> For some fields, the frames pipeline 
+requires an inordinate amount of time to process, particularly if there are
+complex objects such as star clusters.  In such cases the pipeline processing
+times out and no object file is created.  For such fields a <TT>HOLE</TT> is
+created.
+<LI><B>Photometric:</B> Data must meet certain conditions on photometry.
+At present this quality assignment is not automated due to the complexity
+involved in creating a robust test.  Non-photometric data are excised by hand.
+<LI><B>Manual:</B> In some cases it is desirable to override the overall
+automated QA assignment.
+<P>
+</UL>
+<P>
+The parameter <TT>badMask</TT> in Table&nbsp;<A HREF="node65.html#tbladministrativefield">16</A> encodes
+reasons why data were not declared <TT>GOOD</TT>.
+<P>
+The <TT>SKY</TT> and <TT>AMP</TT> bits are not used for the EDR.
+They are used to mask imaging data because of high sky values or bad 
+amplifier noise, respectively.
+<P>
+A substantial portion of fields in the EDR have had quality
+set manually, overriding the PSF or tracking quality in most cases. A list of
+all fields that have had the quality overridden are listed in
+Table&nbsp;<A HREF="node65.html#tbltblquality">25</A>.  They have the <TT>AR_FQ_MANUAL</TT> flag bit set.
+<P>
+<HR><A NAME="tex2html654" HREF="node50.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html652" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html646" HREF="node48.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html655" HREF="node50.html">Resolving Multiple Detections</A>
+<B>Up:</B> <A NAME="tex2html653" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html647" HREF="node48.html">Assessment of Photometric Calibration</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

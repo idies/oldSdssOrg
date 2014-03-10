@@ -1,0 +1,63 @@
+AuthName "SDSS Internal Page"
+AuthType Basic
+AuthUserFile /afs/fnal.gov/files/expwww/sdss/conf/sdss_passwd
+require valid-user
+Satisfy any
+ErrorDocument 401 "<html><head><title>401 Authorization Required</title></head><body><h1>Authorization Required</h1><p>You entered an invalid password.  Please contact sdss-webmaster@sdss.org for the correct password and/or to have your host added to the access list.</body></html>
+
+order deny,allow
+deny from all
+
+# Institutions
+
+# FNAL, U of Chicago (incl. Yerkes), Princeton, IAS
+allow from 131.225. 128.135. 128.112. 192.16.204.
+# U Washington, JHU
+allow from 128.95.98. 128.95.99. .pha.jhu.edu
+# NMSU, APO, USNO
+allow from .nmsu.edu .apo.nmsu.edu .usno.navy.mil .nofs.navy.mil
+# JPG
+allow from .s.u-tokyo.ac.jp .nc.u-tokyo.ac.jp .icrr.u-tokyo.ac.jp .nao.ac.jp 130.34.119.150
+# Max Planck Institutes
+allow from .mpa-garching.mpg.de .mpia-hd.mpg.de 149.217.40.
+
+# Individuals
+
+# Fukugita T. Ichikawa
+allow from 133.11.167.158 133.11.140.74
+# Bob Nichol ({ranger,capella,fire}.phys.cmu.edu)
+allow from 128.2.24.154 128.2.24.167 128.2.26.129
+# UMich folks
+allow from .physics.lsa.umich.edu
+# David Weinberg (fleming.mps.ohio-state.edu)
+allow from mps.ohio-state.edu 140.254.78.20
+# STScI folks ({faxafloi,oz,redlimit,landru,runrig}.stsci.edu)
+allow from 130.167.103.62 130.167.109.63 130.167.103.83 130.167.100.5 130.167.250.42
+# Avery Meiksin
+allow from 195.194.120.38
+# Bob Brunner (elmo.caltech.edu)
+allow from 131.215.102.25
+# Andy Connolly (tiamat.phyast.pitt.edu)
+allow from 136.142.113.47
+# Heidi Newberg @ RPI
+allow from 128.113.8. 128.113.7.60 128.113.7.94
+# Wolfgang Voges (o08.xray.mpe.mpg.de)
+allow from 130.183.72.188
+# Michael Richmond (a188-l009.isc.rit.edu)
+allow from 129.21.188.9
+# Gordon Richards, Don Schneider ({quasar,miffy,mstar}.astro.psu.edu)
+allow from 128.118.147.74 128.118.147.106 128.118.147.165
+# Dan Eisenstein (cmb.as.arizona.edu)
+allow from 128.196.209.18
+# Michael S. Vogeley ({mercury,mars,venus,jupiter}.physics.drexel.edu)
+allow from 129.25.7.176 129.25.7.178 129.25.7.191 129.25.7.193
+# David W. Hogg ({howdy,aloha}.physics.nyu.edu)
+allow from 128.122.134.216 128.122.134.218
+# Francisco Castander (tycho.astro.yale.edu, ceres.das.uchile.cl)
+allow from 130.132.24.48 146.83.9.53
+#
+# Unknowns
+#
+allow from 204.153. #Princeton Univ?
+allow from 192.68.148. # Yerkes?
+allow from 198.128.225.130 # beowulf.llnl.gov

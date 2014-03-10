@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<project name="sdssorg" default="xhtml" basedir=".">
+
+<target name="prepare">
+    <mkdir dir="doc"/>
+</target>
+
+<target name="xhtml">
+    <mkdir dir="doc/xhtml"/>
+    <!-- It is possible to use the ant "style" task, but whatever processor
+         my version of ant uses sometimes fails, and in much slower than
+	 xsltproc even when it succeeds. -->
+    <apply executable="xsltproc" dest="doc/xhtml" parallel="false">
+        <arg value="--output"/>
+	<targetfile/>
+        <arg value="./docsrc/docbook-sdssorg.xsl"/>
+	<srcfile/>
+	<fileset dir="./docsrc" includes="*.xml"/>
+	<mapper type="glob" from="*.xml" to="*.html"/>
+    </apply>
+</target>
+
+<target name="html" depends="prepare">
+    <mkdir dir="doc/html"/>
+    <apply executable="docbook2html">
+        <arg line="--nochunks"/>
+	<arg line="--output doc/html"/>
+	<fileset dir="./docsrc" includes="*.xml"/>
+    </apply>
+</target>
+
+</project>

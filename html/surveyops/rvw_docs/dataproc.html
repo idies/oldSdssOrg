@@ -1,0 +1,107 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+<P align=center><STRONG>Sloan Digital Sky Survey<BR>Review 
+of Observing Systems and Survey Operations<BR><BR></STRONG><FONT 
+size=5><STRONG>Data Processing at Fermilab<BR></STRONG></FONT>Steve Kent<BR>April 12, 
+2000</P>
+<hr style="HEIGHT: 6px">
+<H3>Functions</H3>
+ The data processing system at Fermilab receives data from the 
+imager, the spectrographs, and the Photometric Telescope (PT) that are 
+shipped on magnetic tape. The imager and PT data are fed through a series 
+of pipelines that perform astrometric and photometric calibrations of the 
+2.5 m data, identify and catalog stars, galaxies, and quasars, select 
+targets for spectroscopy, and provide plates designs for plate drilling. 
+Interactions with APO operations occur in the following way: 
+<OL>
+  
+  <LI>APO is provided with a monthly imaging observing plan. 
+  
+  <LI>Plate design files are provided to UW and to APO at approximately 2 
+  month intervals. 
+  
+  <LI>Tapes are shipped to APO every morning after a night on which data 
+  were collected. 
+  
+  <LI>Feedback is provided to indicate which areas of the sky or plates need 
+  reobserving because of data not meeting specification. 
+  
+  <LI>Feedback is provided to signal problems in instruments, data collection 
+  programs, or observing procedures that affect the data quality. 
+</LI></OL>
+ 
+<H3>Current Status</H3>
+ The mechanical aspects of data processing are largely in place. Data 
+tapes are express shipped to Fermilab the critical data processing 
+pipelines for the PT and 2.5 m imaging data are fully functional and are 
+largely automated. Procedures exist for spooling input data, running jobs, 
+collating and assessing the quality of the output data, writing the object 
+catalogs to a database and bulk data to tape, and documenting the process. 
+Similar procedures exist to handle the spectroscopic data, although they are 
+less mature. The processing resources (CPU, disk, and tape) are in place 
+and are adequate to handle the volume of data received to date. We are 
+planning to upgrade the CPU and disk this fiscal year. The target selection 
+and plate design pipelines are currently run interactively. Plate design 
+files are distributed via a web site and are used by UW and APO. Processed 
+data is being distributed routinely to the collaboration. To date we have 
+processed of order 3 terabytes of raw imaging, data, designed over 200 plug 
+plates, and processed 30 spectroscopic plates (12,000 spectra).  
+
+<H3>What's missing</H3>
+ Items 1, 2, and 3 below affect our ability to meet survey 
+requirements. The remainder affect the overall operational efficiency of the 
+survey in some way. 
+<OL>
+  
+  <LI>The photometric calibrations have been troublesome, in particular various 
+   problems existed with detector contamination and inadequate telescope 
+   baffling that affected the accuracy of the calibration. We think the 
+  problems  are solved, and some testing has been done  that shows this, 
+  but addtional verification is needed. The details of the  transfer of 
+  photometric calibrations from the PT to the 2.5 m will change  and will 
+  change the photometric zero-points slightly. 
+  
+  <LI>The target selection algorithms, while close to completion, are not 
+  absolutely  finished and fully verified. The galaxy selection algorithm is 
+  the most  advanced, and aside from possible shifts in the photometric 
+  zero-point,  it is thought to be done the remaining work to be done is 
+  verification.  The quasar algorithm is 90% complete, but much testing and 
+  running of the  algorithms on a variety of data remain. It will be 
+  finalized by this  summer. The remaining algorithms are in various states 
+  of completion but  they have less impact because they are used for 
+  categories that not intended  to be complete surveys. 
+  
+  <LI>The criteria for acceptance or rejection of data are not fully defined, 
+   most importantly criteria on image quality. The current spec would cause 
+   rejection of virtually all data taken to date. 
+  
+  <LI>The survey strategy process, which provides observing plans to APO,  
+  is still done by hand, and there is currently only crude feedback from  
+  the results  of data processing to determine which areas of the sky are 
+  completed  or in need of reobserving. Since we have so much new sky  
+  to observe, this is not a major problem at the moment, but will become  so 
+  in a year. 
+  
+  <LI>The goal for turning around the imaging data through plate design  is 
+  1 month, not the 2 being  achieved at present. Since spectroscopic 
+  observing is not consuming  plates at the maximum expected rate, the 2 
+  month turnaround is not yet  a serious problem. Minor formatting problems 
+  with data being delivered  from APO need to be resolved. The planned 
+  computing hardware upgrade will  quadruple the processing power, reducing 
+  the turnaround time. 
+  
+  <LI>There are still planned enhancements to the photometric pipeline that 
+  might  affect which objects are targeted. </LI></OL>
+<P>&nbsp</P>
+<P>
+<HR id=HR1 style="HEIGHT: 6px">
+
+<P></P>
+<P><FONT size=2><EM><STRONG>Review of Observing Systems and Survey 
+Operations<BR></STRONG>Apache Point Observatory<BR>April 25-27, 2000</EM></FONT> 
+</P>
+
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

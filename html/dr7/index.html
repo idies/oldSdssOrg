@@ -1,0 +1,412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SDSS Data Release 7</title>
+<link rel="stylesheet" type="text/css" href="includes/sdss.css">
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="./includes/header_toplayer.html"-->
+		<p>
+The Sloan Digital Sky Survey (see <a href="http://www.sdss.org">www.sdss.org</a> for general information) mapped one quarter of the entire sky and performed a redshift survey of galaxies, quasars and stars. Data Release 7 (DR7) is the seventh major data release and provides <a href="./products/index.html">images, imaging
+catalogs, spectra, and redshifts</a> for download. It is the final data release of SDSS-II, an extension of the original SDSS consisting of three subprojects: <a href="../legacy/index.html">The Legacy Survey</a>, <a href="../segue/">SEGUE</a> and 
+a <a href="../supernova/aboutsupernova.html">Supernova survey</a>.</p>
+		<p><a href="./start/aboutdr7.html">About DR7</a> explains what is new in DR7, and lists remaining or new caveats and subtleties in the data. </p>
+		<p>This site is designed primarily to provide access to Data Release 7 for professional astronomers. Members of the public, including educators, can explore DR7 by starting at the <a href="http://cas.sdss.org">SkyServer</a> website.</p>
+		<p>Please refer to the <a href="../collaboration/credits.html">credits 
+page</a> for our sources of funding, participating institutions, and
+how to acknowledge the use of SDSS data in your publications. Please
+also note how to refer to SDSS sources in your publications using the
+proper <a href="./coverage/IAU.html">IAU nomenclature for SDSS
+sources</a>.</p>
+		<p>The Sloan Digital Sky Survey is continuing through the Third Sloan Digital Sky Survey (SDSS-III). More information on that survey is available at <a href="http://www.sdss3.org">www.sdss3.org</a>. SDSS-III has completed its two subsequent data releases, <a href="http://www.sdss3.org/dr9">Data Release 9</a>, and <a href="http://www.sdss3.org/dr8">Data Release 8 (DR8)</a>.</p>
+
+		<h2>Data access</h2>
+
+<p>The <a href="./products/index.html">data products</a> page
+describes which data SDSS produces.  Fits images, spectra and catalog
+tables are served by the <a href="http://das.sdss.org/">Data Archive
+Server (DAS)</a>. You can also search and brows all catalogs and jpeg
+images through the <a href="http://cas.sdss.org/astrodr7/">Catalog
+Archive Server (CAS)</a> database.  For an overview of the various
+search forms, see the <a href="./access/index.html">data access</a>
+page.</p>
+
+<h2>Imaging</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td>Footprint area</td>
+    <td>
+      <table border="1">
+	<tr>
+	  <td>Total cataloged in CAS</td><td>11663 sq. deg.</td>
+	</tr>
+	<tr>
+	  <td>Legacy unique</td><td>8423 sq. deg.</td>
+	</tr>
+	<tr>
+	  <td>Legacy NGC ellipse</td><td>7646 sq. deg.</td>
+	</tr>
+	<tr>
+	  <td>SEGUE</td><td>3240 sq. deg.</td>
+	</tr><tr>
+	  <td><a href="http://www.sdss.org/drsn/DRSN_data_release.html">Supernova Survey</a></td><td>~300 sq. deg., repeated ~80
+	    times</td>
+	</tr><tr>
+	  <td><a href="./start/aboutdrsup.html">M31 / Perseus / Sgr / SGP 
+	      scans</a></td><td>46 sq. deg.</td>
+	</tr><tr>
+	  <td><a
+  href="http://photo.astro.princeton.edu/oriondatarelease/">Low
+  galactic latitude fields (&quot;Orion&quot; runs)</a></td>
+	  <td>832 sq. deg.</td>
+	</tr>
+      </table>
+    </td>
+  </tr><tr>
+    <td>Imaging total area in DAS (multiple scans counted multiple times)</td>
+    <td>45,000 sq. deg. (1.3 million frames/filter)</td>
+  </tr><tr>
+    <td>Imaging catalog</td>
+    <td>357 million unique objects (SEGUE: 127 million, Legacy: 230 million)</td>
+  </tr><tr>
+    <td>Data volume</td>
+    <td>
+      <table border="1">
+	<tr>
+	  <td>images (fits)</td><td>15.7 TB</td>
+	</tr><tr>
+	  <td>other data products (catalogs, masks, jpeg images, etc.) (<a href="./access/index.html#DAS">DAS</a>, fits format)</td><td>26.8 TB</td>
+	</tr><tr>
+	  <td>catalogs (<a href="./access/index.html#CAS">CAS</a>, SQL database)</td><td>18 TB</td>
+	</tr>
+      </table>
+    </td>
+  </tr><tr>
+    <td>Average wavelengths and magnitude limits <br />
+	(95% detection repeatability for point sources)</td>
+    <td>
+	<table border="1">
+	  <tr>
+	    <td><var>u</var></td>
+	    <td><var>g</var></td>
+	    <td><var>r</var></td>
+	    <td><var>i</var></td>
+	    <td><var>z</var></td>
+	  </tr>
+	  <tr>
+	    <td>3551&Aring;</td>	
+	    <td>4686&Aring;</td>
+	    <td>6165&Aring;</td>
+	    <td>7481&Aring;</td>
+	    <td>8931&Aring;</td>
+	  </tr>
+	  <tr>
+	    <td>22.0</td>	
+	    <td>22.2</td>
+	    <td>22.2</td>
+	    <td>21.3</td>
+	    <td>20.5</td>
+	  </tr>
+      </table>
+    </td>
+  </tr><tr>
+    <td>PSF width</td>
+    <td>1.4&quot; median in <var>r</var></td>
+  </tr><tr>
+    <td>Pixel size</td>
+    <td>0.396&quot;</td>
+  </tr><tr>
+    <td>Exposure time for each pixel</td>
+    <td>53.9 s</td>
+  </tr><tr>
+    <td>Photometric calibration</td>
+    <td>
+	<table>
+	  <tr>
+	    <td>
+	<table border="1">
+	  <caption>Target</caption>
+	  <tr>
+	    <td><var>r</var></td>       
+	    <td><var>u-g</var></td>
+	    <td><var>g-r</var></td>
+	    <td><var>r-i</var></td>
+	    <td><var>i-z</var></td>
+	  </tr><tr>
+	    <td>2%</td>
+	    <td>3%</td>
+	    <td>2%</td>
+	    <td>2%</td>
+	    <td>3%</td>
+	  </tr>
+	</table>
+	</td>
+	<td>
+	<table border="1">
+	  <caption>Ubercal</caption>
+	  <tr>
+	    <td><var>r</var></td>       
+	    <td><var>u-g</var></td>
+	    <td><var>g-r</var></td>
+	    <td><var>r-i</var></td>
+	    <td><var>i-z</var></td>
+	  </tr><tr>
+	    <td>1%</td>
+	    <td>2.2%</td>
+	    <td>1.5%</td>
+	    <td>1.5%</td>
+	    <td>1.5%</td>
+	  </tr>
+	</table>
+	</td>
+	</tr>
+	</table>
+    </td>
+  </tr><tr>
+    <td>Astrometry</td>
+    <td>&lt; 0.1&quot; rms absolute per coordinate</td>
+  </tr>
+  </table>
+
+<h2>Spectroscopy</h2>
+<table border="1" width="100%">
+    <tr>
+      <td>Spectroscopic area</td>
+      <td>
+	  <table border="1">
+	    <tr><td>Total</td>
+	    <td>9380 sq. deg.</td>
+	  </tr><tr>
+	    <td>Legacy</td>
+	    <td>8032 sq. deg.</td>
+	  </tr><tr>
+	    <td>SEGUE</td>
+	    <td>1348 sq. deg.</td>
+	  </tr>
+        </table>
+      </td>
+    </tr><tr>
+      <td>Wavelength coverage</td>
+      <td>3800-9200&Aring;</td>
+    </tr><tr>
+      <td>Resolution</td>
+      <td>1800-2200</td>
+    </tr><tr>
+      <td>Signal-to-noise</td>
+      <td>&gt;4 per pixel at <var>g</var>=20.2</td>
+    </tr><tr>
+      <td>Redshift accuracy</td>
+      <td>30 km/sec rms for main galaxy sample (from repeat observations)</td>
+    </tr><tr>
+      <td>RV accuracy (systematics, for stars)</td>
+      <td>1.8 km/s systematics (SEGUE plate-to-plate wavelength solutions)</td>
+    </tr><tr>
+      <td>RV accuracy (total errors, for stars S/N per pixel = 27)</td>
+      <td>5.5 km/s rms (SEGUE matched plate comparisons, near g=18th mag)</td>
+    </tr><tr>
+      <td>Target magnitude limits for main samples</td>
+      <td>Galaxies: Petrosian <var>r</var> &lt;17.77<br />
+	  Quasars: PSF <var>i</var> &lt;19.1 (20.2 for objects likely
+	  at z&gt;2.3)</td>
+    </tr><tr>
+      <td>Spectroscopic catalog</td>
+      <td>
+	  <table border="1">
+	    <colgroup>
+	      <col>
+	      <col span="3" align="right">
+	    </colgroup>
+	    <tr>
+	      <th>Class</th>
+	      <th align="center">N(total)</th>
+	      <th align="center">N(main)</th>
+	      <th align="center">N(SEGUE)</th>
+	    </tr><tr>
+	      <td>All</td>
+	      <td>1,640,960</td>
+	      <td>1,374,080</td>
+	      <td>266,880</td>
+	    </tr><tr>
+	      <td>Galaxies</td>
+	      <td>929,555</td>
+	      <td>928,567</td>
+	      <td>988</td>
+	    </tr><tr>
+	      <td>Quasars (z &lt;2.3)</td>
+	      <td>104,740</td>
+	      <td>103,121</td>
+	      <td>1,619</td>
+	    </tr><tr>
+	      <td>Quasars (z &ge;2.3)</td>
+	      <td>16,633</td>
+	      <td>15,411</td>
+	      <td>1,222</td>
+	    </tr><tr>
+	      <td>M stars and later</td>
+	      <td>84,047</td>
+	      <td>76,125</td>
+	      <td>7,922</td>
+	    </tr><tr>
+	      <td>Other stars</td>
+	      <td>380,214</td>
+	      <td>150,748</td>
+	      <td>229,466</td>
+	    </tr><tr>
+	      <td>Sky spectra</td>
+	      <td>97,398</td>
+	      <td>75,209</td>
+	      <td>22,189</td>
+	    </tr><tr>
+	      <td>Unknown</td>
+	      <td>28,383</td>
+	      <td>24,767</td>
+	      <td>3,616</td>
+      </tr>
+          </table>
+	  640 spectra are observed simultaneously on one
+	  <em>plate</em>. There are:
+	  <ul>
+	    <li>1802 Legacy (&quot;main-survey&quot;) plates,<li>
+	    <li>86 repeat observations (&quot;extra plates&quot;) of 77 distinct
+	  Legacy plates,</li>
+	    <li>676 observations of 660 distinct <a
+	  href="./products/spectra/special.html#nonSEGUE">special plates</a>, including</li>
+	    <li> 410 observations of 212 distinct <a
+		href="./products/spectra/special.html#SEGUE">special plates
+		taken under SEGUE</a>. </li>
+	  </ul>
+      </td>
+  </tr><tr>
+    <td>Data volume</td>
+    <td>
+	<table border="1">
+	  <tr>
+	    <td>exposures and calibrated spectra (&quot;2d&quot;)</td><td>3.3 TB</td>
+	  </tr><tr>
+	    <td>spectra, redshifts, line measurements (&quot;1d&quot;)</td><td>450 GB</td>
+	  </tr>
+        </table>
+    </td>
+    </tr>
+</table>
+
+<a name="previous"></a>
+<h2>Previous data releases</h2>
+
+<p>For reference, we provide links to earlier data releases. The
+current data release always provides both the largest sky coverage and
+the highest-quality data and reductions.</p>
+
+<ul>
+  <li><a href="http://www.sdss.org/dr1/">Data Release 1 (DR1)</a></li>
+  <li><a href="http://www.sdss.org/dr2/">Data Release 2 (DR2)</a></li>
+  <li><a href="http://www.sdss.org/dr3/">Data Release 3 (DR3)</a></li>
+  <li><a href="http://www.sdss.org/dr4/">Data Release 4 (DR4)</a></li>
+  <li><a href="http://www.sdss.org/dr5/">Data Release 5 (DR5)</a></li>
+  <li><a href="http://www.sdss.org/dr6/">Data Release 6 (DR6)</a></li>
+</ul>
+
+<hr />
+
+<p>Funding for the SDSS and SDSS-II was provided by the Alfred P. Sloan Foundation, the 
+Participating Institutions, the National Science Foundation, the U.S. Department of Energy, 
+the National Aeronautics and Space Administration, the Japanese Monbukagakusho, the Max Planck 
+Society, and the Higher Education Funding Council for England. The SDSS was managed by the 
+Astrophysical Research Consortium for the Participating Institutions.</p>
+
+<hr />
+<address>
+<!-- Warning: the parse_this is used in bin/webPublish.sh -->
+This is version <!-- parse_this --> $Name:  $. <!-- Done with reporting the version. -->
+This page was last modified on $Date: 2013/08/01 16:55:35 $ (UT).
+<!-- Created: Tue Jul 30 21:49:21 DST 2002 -->
+
+</address>
+</td>
+</tr>
+</table>
+<img alt="" src="./images/spacer.gif" width="314" height="1" border="0"></td>
+<td width="304" valign="top" align="center" bgcolor="#dddddd">
+    <table cellpadding="8" cellspacing="0" border="0" width="132">
+      <tr>
+	<td class="newsBox"><strong>News</strong>
+
+<p><a href="http://www.sdss3.org/dr10">DR10</a>, the current data release from
+<a href="http://www.sdss3.org">SDSS-III</a>, is released July 30, 2013!
+
+<p><a href="http://www.sdss3.org/dr9">DR9</a>, from
+<a href="http://www.sdss3.org">SDSS-III</a>, is released Aug 1, 2012!
+
+<p><a href="http://www.sdss3.org/dr8">DR8</a>, the first data release from
+<a href="http://www.sdss3.org">SDSS-III</a>, is available.
+
+<p> A new release of the Quasar Catalog complete through DR7 is now
+<a href="http://www.sdss.org/dr7/products/value_added/qsocat_dr7.html">available</a>
+
+<p> SDSS Mirror sites to bookmark are listed <a href="./news/index.html">here</a>
+
+    <p> A <a href="http://arxiv.org/abs/0902.1781">paper</a> describing the SEGUE survey is available.<p>
+
+		<p>
+		A <a href="http://adsabs.harvard.edu/abs/2009ApJS..182..543A">paper</a> describing DR7 is available.
+		<p>
+	    <a href="./news/index.html">More details...</a>
+	</td>
+      </tr>
+    <tr>
+<td><a href="./dr7photo_big.gif"> <img src="./dr7photo.gif"  alt="Imaging Sky Image" border="0"> </a>
+	  <table cellpadding="2" cellspacing="0" border="0" width="272"><tr>
+	    <td class="infoBoxes">Legacy DR7
+		Imaging Sky Coverage (Aitoff
+		projection of Equatorial
+		coordinates)</td>
+	  </tr></table>
+	  <br>
+	  <a href="./dr7spectro_big.gif">
+	  <img src="./dr7spectro.gif" alt="Spectral Sky Image"
+	  border="0">
+	  </a>
+	  <table cellpadding="2" cellspacing="0" border="0" width="272"><tr>
+	    <td class="infoBoxes">Legacy DR7 Spectral Sky Coverage (Aitoff
+		projection of Equatorial
+		coordinates)</td>
+	  </tr></table>
+	 	<br> 
+      <a href="./seguephoto_big.gif">
+	  <img src="./seguephoto.gif"  alt="Imaging Sky Image"
+	  border="0">
+	  </a>
+	  <table cellpadding="2" cellspacing="0" border="0" width="272"><tr>
+	    <td class="infoBoxes">SEGUE DR7
+		Imaging Sky Coverage (Aitoff
+		projection of Equatorial
+		coordinates)</td>
+	  </tr></table>
+	  <br>
+	  <a href="./seguespectro_big.gif">
+	  <img src="./seguespectro.gif" alt="Spectral Sky Image"
+	  border="0">
+	  </a>
+	  <table cellpadding="2" cellspacing="0" border="0" width="272"><tr>
+	    <td class="infoBoxes">SEGUE DR7 Spectral Sky Coverage (Aitoff
+		projection of Equatorial
+		coordinates)</td>
+	  </tr></table></td>
+	  
+    </tr></table>
+    <img alt="" src="./images/spacer.gif" width="304" height="1" border="0"></td>
+<td width="5" class="colorborder"><img alt="" src="./images/spacer.gif" width="5" height="1" border="0"></td>
+</tr><tr>
+  <td class="footer">&nbsp;</td>
+  <td width="5" class="colorborder"><img alt="" src="./images/spacer.gif" width="5" height="1" border="0"></td>
+  <td colspan="2" class="footer">&nbsp;&nbsp;Submit your questions to 
+  <a href="http://www.lib.uchicago.edu/e/ask/SDSSask.html">
+  the SDSS helpdesk</a>&nbsp;&nbsp;</td>
+  <td width="5" class="colorborder"><img alt="" src="./images/spacer.gif" width="5" height="1" border="0"></td>
+</tr></table>
+
+</body>
+</html>
+

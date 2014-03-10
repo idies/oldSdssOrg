@@ -1,0 +1,369 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<center><b><i><font size=+1>Sloan Digital Sky Survey</font></i></b>
+<br><b><i><font size=+1>Review of Data Processing and Distribution Operations</font></i></b><br>
+<BR>
+<br><b><font size=+3>Technical Summary of the Photometric Pipeline</font></b>
+<br>Jill Knapp and Robert Lupton
+<br>Princeton University
+<br>June 20, 2000</center>
+
+<hr WIDTH="100%">
+<br>&nbsp;
+<p>Dear Reader:
+<p>We are beginning, or perhaps tiptoeing around, writing up the technical
+<br>paper describing the Photometric Pipeline.&nbsp; The following outline
+is
+<br>a summary of what Photo does:
+<br>&nbsp;
+<p>PHOTO paper: Outline
+<br>====================
+<br>&nbsp;
+<p>Draft of June 20 2000
+<br>&nbsp;
+<br>&nbsp;
+<p>The first two chapters are background and expected to get into few details.
+<br>&nbsp;
+<p>1. Introduction
+<br>===============
+<p>&nbsp; The SDSS
+<br>&nbsp;&nbsp;&nbsp; Filters, CCD mosaic, data taking
+<br>&nbsp;&nbsp;&nbsp; CCD photometry: particular problems and characteristics
+<br>&nbsp;&nbsp;&nbsp; TDI mode
+<br>&nbsp;&nbsp;&nbsp; pixel scale
+<br>&nbsp;&nbsp;&nbsp; strips and stripes
+<br>&nbsp;&nbsp;&nbsp; lateral overlaps
+<br>&nbsp;&nbsp;&nbsp; expected PSF
+<br>&nbsp;&nbsp;&nbsp; time to cross array
+<br>&nbsp;&nbsp;&nbsp; expected/observed sky brightness
+<br>&nbsp;&nbsp;&nbsp; expected PS sensitivities
+<br>&nbsp;&nbsp;&nbsp; expected surface brightness sensitivities
+<br>&nbsp;&nbsp;&nbsp; saturation
+<br>&nbsp;&nbsp;&nbsp; position calibration: Photo &lt;-> Astrom
+<br>&nbsp;&nbsp;&nbsp; photometric calibration: Photo &lt;-> MTpipe
+<br>&nbsp;
+<p>&nbsp;
+<br>&nbsp; What Photo has to do
+<br>&nbsp; Data rate
+<br>&nbsp; Execution time
+<br>&nbsp; Goals have been met
+<br>&nbsp; Outline of the rest of the paper
+<br>&nbsp; Plans for distribution of code
+<br>&nbsp; useful URLs
+<br>&nbsp;
+<p>&nbsp; Tables:&nbsp; Filters, nominal wavelengths, widths, PS sensitivities
+<p>&nbsp;&nbsp;&nbsp; Sky coverage, size of a frame, pixel size, lateral
+overlap area,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; time to cross array, integration time
+<p>&nbsp; Figures: pretty pic of camera, or diagram of filter layout
+<p>&nbsp;&nbsp;&nbsp; pretty color pic of a piece of the sky
+<br>&nbsp;
+<br>&nbsp;
+<p>2. Photo: Overall Architecture
+<br>==============================
+<br>&nbsp;
+<p>&nbsp; DA system and astroline
+<br>&nbsp; Motivation for architecture
+<br>&nbsp;&nbsp;&nbsp; Frames
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; needs:
+<br>&nbsp;&nbsp;&nbsp; PSP
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; needs:
+<br>&nbsp;&nbsp;&nbsp; SSC
+<br>&nbsp; (I have put it in this order because we need to explain why
+we need
+<br>&nbsp;&nbsp; PSP and in turn why we need SSC)
+<br>&nbsp; Necessary inputs to Frames
+<br>&nbsp; Data file formats and nomenclature
+<br>&nbsp;
+<p>&nbsp; Table: list of inputs:
+<br>&nbsp;&nbsp;&nbsp; postage stamps
+<br>&nbsp;&nbsp;&nbsp; darks
+<br>&nbsp;&nbsp;&nbsp; bias
+<br>&nbsp;&nbsp;&nbsp; flats
+<br>&nbsp;&nbsp;&nbsp; fang &amp; gang files
+<br>&nbsp;&nbsp;&nbsp; astroline stamps
+<br>&nbsp;&nbsp;&nbsp; astrom stars
+<br>&nbsp;&nbsp;&nbsp; astrom and ptpipe trans structures and files
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp; Figures: data flow through photometric pipelines
+<br>&nbsp;
+<p>3. SSC
+<br>======
+<p>&nbsp; Inputs from astroline
+<br>&nbsp; cutting frames and overlaps
+<br>&nbsp; aligning frames to make a field
+<br>&nbsp;&nbsp; ("data startup cost" goes here?)
+<br>&nbsp; cutting postage stamps
+<br>&nbsp;&nbsp;&nbsp; definition of different kinds of postage stamp
+<br>&nbsp; outputs
+<p>&nbsp; Table: inputs to SSC
+<br>&nbsp;&nbsp; outputs from SSC
+<br>&nbsp;&nbsp; (do we need this?)
+<br>&nbsp;
+<br>&nbsp;
+<p>4. PSP-1: Overview and Functionality
+<br>====================================
+<p>&nbsp; Tasks of PSP
+<br>&nbsp; Inputs to PSP
+<br>&nbsp; Outputs from PSP
+<br>&nbsp; Analysis of idB files: smoothing/averaging lengths
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; overscan
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flat field
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sky
+<br>&nbsp; Postage stamps: different types and their purpose
+<br>&nbsp;&nbsp;&nbsp; PSF
+<br>&nbsp;&nbsp;&nbsp; wings
+<br>&nbsp;&nbsp;&nbsp; frame stars
+<br>&nbsp;&nbsp;&nbsp; ghosts
+<br>&nbsp; Wings of bright stars
+<br>&nbsp; diffraction spikes
+<br>&nbsp; ghosts (?)
+<p>&nbsp; Tables: Inputs
+<br>&nbsp;&nbsp; Outputs
+<p>&nbsp; Figures: data flow through PSP
+<br>&nbsp; montage of postage stamps
+<br>&nbsp; variation of sky &amp; flat field on a typical night
+<br>&nbsp;
+<p>5. PSP-2: PSF
+<br>======================
+<p>**Note: this will probably be a separate paper**
+<p>&nbsp; The problem
+<br>&nbsp;&nbsp;&nbsp; Optics
+<br>&nbsp;&nbsp;&nbsp; Seeing
+<br>&nbsp;&nbsp;&nbsp; Photometry
+<br>&nbsp; Modeling the PSF
+<br>&nbsp;&nbsp;&nbsp; Optics, seeing and spatial variation
+<br>&nbsp;&nbsp;&nbsp; stationarity
+<br>&nbsp;&nbsp;&nbsp; basis functions
+<br>&nbsp;&nbsp;&nbsp; KL decomposition
+<br>&nbsp;&nbsp;&nbsp; required number of stamps per frame
+<br>&nbsp;&nbsp;&nbsp; Stokes parameters
+<br>&nbsp;&nbsp;&nbsp; rejection
+<br>&nbsp;&nbsp;&nbsp; using modelled PSF
+<br>&nbsp;&nbsp;&nbsp; aperture corrections
+<br>&nbsp;&nbsp;&nbsp; PSF widths
+<br>&nbsp; Interpolation of PSF over a run
+<br>&nbsp; Dealing with too few postage stamps
+<br>&nbsp; Science: some remarks about seeing
+<br>&nbsp;&nbsp;&nbsp; atmospheric modeling
+<br>&nbsp;&nbsp;&nbsp; promise further analysis
+<p>Table: PSF decomposition: terms and coefficients
+<p>Figures: Aperture corrections vs time: "before" and "after"
+<br>&nbsp; Model vs real PSF across frame, and residuals
+<br>&nbsp; Variation of PSF width across camera
+<br>&nbsp; Variation of PSF width as a function of time
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QU plots
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width plots
+<br>&nbsp;
+<p>6. Frames-1&nbsp; Introduction
+<br>=========================
+<p>&nbsp; Inputs and outputs (general)
+<br>&nbsp; A walk through Frames
+<br>&nbsp;&nbsp;&nbsp; what gets done where
+<br>&nbsp;&nbsp;&nbsp; what gets done when
+<br>&nbsp; data problems
+<br>&nbsp;&nbsp;&nbsp; pixel size and band limit
+<br>&nbsp;&nbsp;&nbsp; bad columns
+<br>&nbsp;&nbsp;&nbsp; CRs
+<br>&nbsp;&nbsp;&nbsp; bleed trails
+<br>&nbsp; wings, ghosts
+<br>&nbsp; variable PSFs
+<br>&nbsp; Image analysis
+<br>&nbsp;
+<p>&nbsp; Tables:&nbsp; Inputs
+<br>&nbsp;&nbsp;&nbsp; Outputs (summary)
+<p>&nbsp; Figures:&nbsp; a frame of raw data
+<br>&nbsp;&nbsp;&nbsp;&nbsp; the same frame corrected
+<br>&nbsp;&nbsp;&nbsp;&nbsp; data flow through Frames
+<br>&nbsp;
+<p>7. Frames-2: Correction of data defects
+<br>=======================================
+<p>&nbsp; Introduction
+<br>&nbsp;&nbsp;&nbsp; description of a frame
+<br>&nbsp;&nbsp;&nbsp; saturation levels in each filter
+<br>&nbsp;&nbsp;&nbsp; application of bias
+<br>&nbsp;&nbsp;&nbsp; application of flat
+<br>&nbsp; Bad columns
+<br>&nbsp;&nbsp;&nbsp; typical number of bad columns
+<br>&nbsp;&nbsp;&nbsp; origin of bad column map
+<br>&nbsp;&nbsp;&nbsp; correcting for bad column
+<br>&nbsp; Cosmic rays
+<br>&nbsp;&nbsp;&nbsp; finding cosmics
+<br>&nbsp;&nbsp;&nbsp; correcting for cosmics
+<br>&nbsp;&nbsp;&nbsp; number of cosmics in a typical frame
+<br>&nbsp; Bleed trails
+<br>&nbsp; Serial register artifacts
+<br>&nbsp; Outputs: corrected frames
+<p>&nbsp; Figures: performance of interpolation across columns
+<br>&nbsp;&nbsp;&nbsp; "before" and "after" of
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cosmic ray
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bad column
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bleed trail
+<br>&nbsp;
+<p>7. Frames-3: Finding and Combining Objects
+<br>==========================================
+<p>&nbsp; First pass: find bright objects
+<br>&nbsp;&nbsp;&nbsp; saturated stars (already known)
+<br>&nbsp;&nbsp;&nbsp; subtract bright objects
+<br>&nbsp;&nbsp;&nbsp; wings of saturated stars
+<br>&nbsp;&nbsp;&nbsp; (?exploiting wings to measure magnitude?)
+<br>&nbsp; Second pass: finding objects to the limit
+<br>&nbsp;&nbsp;&nbsp; psf filtering
+<br>&nbsp;&nbsp;&nbsp; find objects
+<br>&nbsp;&nbsp;&nbsp; binning/smoothing
+<br>&nbsp;&nbsp;&nbsp; finding more objects
+<br>&nbsp;&nbsp;&nbsp; blank sky objects
+<br>&nbsp; Growing objects
+<br>&nbsp; Combining filters
+<br>&nbsp; Blank sky objects
+<br>&nbsp; Definition of atlas images
+<br>&nbsp; Outputs
+<br>&nbsp;&nbsp;&nbsp; atlas images
+<br>&nbsp;&nbsp;&nbsp; (compression of atlas images)
+<br>&nbsp;&nbsp;&nbsp; object subtracted binned frames
+<br>&nbsp;&nbsp;&nbsp; masks
+<p>&nbsp; Tables:&nbsp; Limits
+<br>&nbsp;&nbsp;&nbsp;&nbsp; (faintest &amp; brightest PSs, lowest and
+highest
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; surface brightness)
+<br>&nbsp;&nbsp;&nbsp; How much sky is lost
+<br>&nbsp;&nbsp;&nbsp; Outputs
+<p>&nbsp; Figures: `before' and 'after' subtraction of saturated star with
+wings
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Frame with atlas image boundaries and centroids
+of all objects
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Example atlas images
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Frame reconstructed from Atlas Images
+<br>&nbsp;
+<p>8. Frames-4: Measure Objects
+<br>============================
+<br>&nbsp;
+<p>&nbsp; (understood: everything below is followed by "&amp; uncertainties")
+<br>&nbsp; sky subtraction: global vs local
+<br>&nbsp; sub-pixellization
+<br>&nbsp; centroiding, sinc-shifting and astrometric offsets between bands
+<br>&nbsp; sector array and radial profiles
+<br>&nbsp; objects at frame edges
+<br>&nbsp; processing flags
+<br>&nbsp; photometry
+<br>&nbsp;&nbsp;&nbsp; psf
+<br>&nbsp;&nbsp;&nbsp; aperture
+<br>&nbsp;&nbsp;&nbsp; 3" aperture
+<br>&nbsp;&nbsp;&nbsp; radial profile
+<br>&nbsp;&nbsp;&nbsp; isophotal
+<br>&nbsp;&nbsp;&nbsp; luptitudes and procedure for "upper limits"
+<br>&nbsp;&nbsp;&nbsp; Petrosian magnitudes
+<br>&nbsp;&nbsp;&nbsp; Petrosian radii
+<br>&nbsp; shapes
+<br>&nbsp;&nbsp;&nbsp; ellipticities
+<br>&nbsp;&nbsp;&nbsp; position angles
+<br>&nbsp;&nbsp;&nbsp; Stokes parameters
+<br>&nbsp;&nbsp;&nbsp; isophotal shape
+<br>&nbsp; model fits
+<br>&nbsp;&nbsp;&nbsp; definition
+<br>&nbsp;&nbsp;&nbsp; library
+<br>&nbsp;&nbsp;&nbsp; psf convolution
+<br>&nbsp;&nbsp;&nbsp; likelihoods
+<br>&nbsp;&nbsp;&nbsp; model magnitudes and model parameters
+<br>&nbsp;&nbsp;&nbsp; model colors
+<br>&nbsp; star/galaxy separation
+<br>&nbsp; **this may be a separate paper**
+<br>&nbsp; roughness parameter(s)
+<br>&nbsp; PSF fraction
+<p>&nbsp; Figures: map of sector array
+<br>&nbsp; PSF vs model vs aperture magnitudes for point sources
+<br>&nbsp; deV/exponential/psf/likelihood prism diagrams vs magnitude
+<br>&nbsp; sample color color and color magnitude diagrams
+<p>&nbsp; Tables: Photo outputs
+<br>&nbsp;&nbsp; Photo flags
+<br>&nbsp;
+<p>9. Frames-5: Astrometric and Photometric Calibration
+<br>====================================================
+<p>This should be short.&nbsp; There should be a reference to whatever
+photometric
+<br>calibration paper we have/will have.
+<p>&nbsp; Astrometric calibration:
+<br>&nbsp; Anomalous refraction
+<br>&nbsp; Map of CCD array and position information
+<br>&nbsp;&nbsp;&nbsp; astrometric trans structures (w reference to ASTROM
+paper)
+<br>&nbsp;&nbsp;&nbsp; centroiding and transfer objects
+<br>&nbsp; Photometric calibration:
+<br>&nbsp;&nbsp;&nbsp; photometric trans structures
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; calibration stars
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final calibration
+<p>&nbsp; Figures: sample color-color and color-magnitude diagrams
+<br>&nbsp;&nbsp;&nbsp; color pictures of some galaxies
+<br>&nbsp;&nbsp;&nbsp; star and galaxy counts
+<br>&nbsp;
+<p>10. Frames-6: Deblending
+<br>========================
+<p>**note: this will be a separate paper, already drafter**
+<p>&nbsp; Statement of the problem
+<br>&nbsp;&nbsp;&nbsp; Definition of a blended object
+<br>&nbsp;&nbsp;&nbsp; decomposition algorithm
+<br>&nbsp;&nbsp;&nbsp; problem objects
+<p>&nbsp; Tables: number of blended objects as a function of magnitude
+<p>&nbsp; Figures: images of several examples of parents and children
+<br>&nbsp;&nbsp;&nbsp; schematic to show how the algorithm works
+<br>&nbsp;
+<p>11. Frames-7: Moving Objects
+<br>=============================
+<p>&nbsp; The problem
+<br>&nbsp;&nbsp;&nbsp; expected proper motions
+<br>&nbsp;&nbsp;&nbsp; very fast objects
+<br>&nbsp;&nbsp;&nbsp; moving objects as contaminants
+<br>&nbsp; finding moving objects
+<br>&nbsp; flags
+<br>&nbsp; prospects for future (Kuiper belt etc)
+<p>&nbsp; Figures: velocities showing asteroids
+<br>&nbsp;&nbsp;&nbsp; (color-magnitude plots of asteroids)
+<br>&nbsp;&nbsp;&nbsp; (color-color plots of asteroids)
+<p>12. Photo Summary: Outputs and Performance
+<br>==========================================
+<p>&nbsp; Outputs
+<br>&nbsp; Processing flags
+<br>&nbsp; performance on several platforms
+<br>&nbsp;&nbsp;&nbsp; profiles: memory, timing
+<p>&nbsp; Tables: Measured parameters
+<br>&nbsp;&nbsp; Output parameters
+<br>&nbsp;&nbsp; Flags
+<br>&nbsp;&nbsp; Output formats
+<p>&nbsp; Figures: timing/memory diagrams
+<br>&nbsp;
+<p>13. Testing and QA
+<br>==================
+<p>&nbsp; History
+<br>&nbsp; tracking problems
+<br>&nbsp; testing PSP: simulations
+<br>&nbsp; simulations: description
+<br>&nbsp; HST fields, including the Groth strip
+<br>&nbsp; clusters
+<br>&nbsp; overlaps: lateral, half field, repeat
+<p>&nbsp; The QA test suite: tracking Photo's performance
+<br>&nbsp;
+<p>&nbsp; Tables: known regions observed
+<p>&nbsp; Figures: simulated images
+<br>&nbsp;&nbsp;&nbsp; scan of globular cluster
+<br>&nbsp;&nbsp;&nbsp; scan of HST field
+<br>&nbsp;
+<p>14. Summary
+<br>===========
+<p>&nbsp; Photo performance: accuracy, completeness, speed
+<br>&nbsp; Information produced
+<br>&nbsp; list of web sites for more information
+<br>&nbsp;
+<p>15. Future
+<br>==========
+<p>&nbsp; Coaddition
+<br>&nbsp; cosubtraction
+<br>&nbsp; atlas image analysis
+<p>&nbsp; SDSS boilerplate etc
+<br>&nbsp; plans for releasing the code
+<br>&nbsp;
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

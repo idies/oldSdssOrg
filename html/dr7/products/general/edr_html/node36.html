@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>The Frames Pipeline</TITLE>
+<META NAME="description" CONTENT="The Frames Pipeline">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html517" HREF="node37.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html515" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html509" HREF="node35.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html518" HREF="node37.html">How frames Designates Objects</A>
+<B>Up:</B> <A NAME="tex2html516" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html510" HREF="node35.html">The Postage Stamp Pipeline</A>
+<BR> <P>
+<H2><A NAME="SECTION00044000000000000000">The Frames Pipeline</A></H2>
+<P>
+<A NAME="swphoto">&#160;</A>
+<P>
+The frames pipeline (<TT>frames</TT>) detects, deblends, and measures
+objects, carrying out this processing on a field-by-field basis.  This
+section describes what one needs to know to interpret the quantities
+we calculate in <TT>frames</TT>, rather than the technical details, which
+will be covered in lupton01b.  These quantities are stored in
+the <TT>PhotoObj</TT> and <TT>Profile</TT> classes (Table&nbsp;<A HREF="node65.html#tblphoto">6</A>).
+Mask bits set in <TT>objFlags</TT> of <TT>PhotoObj</TT> are for the object
+detections for all bands combined.  Mask bits set in <TT>flags</TT> of
+<TT>PhotoObj</TT> are for the detection in each band.  The mask bit
+values are given in Table&nbsp;<A HREF="node65.html#tblflag">9</A>.  We refer to these classes
+and masks throughout this section.  Further products of the imaging pipelines
+are given in &#167;&nbsp;<A HREF="node4.html#ddproducts">2.2</A>.
+<P>
+<BR> <HR>
+<UL><A NAME="CHILD_LINKS">&#160;</A>
+<LI> <A NAME="tex2html519" HREF="node37.html#SECTION00044100000000000000">How <TT>frames</TT> Designates Objects</A>
+<LI> <A NAME="tex2html520" HREF="node38.html#SECTION00044200000000000000">Outline of <TT>frames</TT></A>
+<LI> <A NAME="tex2html521" HREF="node39.html#SECTION00044300000000000000">Deblending of Objects</A>
+<LI> <A NAME="tex2html522" HREF="node40.html#SECTION00044400000000000000">Moving Objects</A>
+<LI> <A NAME="tex2html523" HREF="node41.html#SECTION00044500000000000000">Measurements of Flux</A>
+<LI> <A NAME="tex2html524" HREF="node42.html#SECTION00044600000000000000">Measurements of Shape and Morphology</A>
+<LI> <A NAME="tex2html525" HREF="node43.html#SECTION00044700000000000000">Known Problems in <TT>frames</TT></A>
+</UL>
+<BR> <HR>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

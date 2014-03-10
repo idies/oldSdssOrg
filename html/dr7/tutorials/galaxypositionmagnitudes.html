@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorial: Position and Magnitude Limited Catalog Query - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Tutorial: Position and Magnitude Limited Catalog Query</h1>
+
+This procedure outlines how to search the SDSS data for galaxies
+around an RA and DEC position of a certain r magnitude range and get
+back the semi-major axis value in each SDSS color.</p>
+
+<ol class="tut">
+<li>Access the <a href="http://cas.sdss.org/astro/en/tools/search/IQS.asp">SDSS Imaging Query Server (IQS)</a></li>
+  
+<li>Set &quot;Limit number of output rows&quot; parameter by estimating the number that you expect (or leave it blank).</li>
+
+<li>Select the parameters to be returned by ctrl-clicking:
+    <ol style="list-style-type:lower-alpha">
+      <li>minimal - full id info</li>
+      <li>radec - position info</li>
+      <li>model_mags - SDSS filter magnitudes</li>
+      <li><code>iso_a_g, iso_a_r, iso_a_i, iso_a_z, iso_a_u</code> -
+	  semi-major axis measurements</li>
+    </ol>
+</li>
+
+<li>Click the Best radio button to search the database containing the
+    most recent data and reductions</li>
+  
+<li>No spectroscopy parameters are necessary for this search.</li>
+  
+<li>Select the u, g, r, i, and z radio buttons.</li>
+
+<li>Select &quot;Cone Search&quot; under &quot;Position Constraints&quot;</li>
+ 
+<li>Enter the raCenter (decimal degrees), decCenter (decimal degrees) and 
+then the radius of your search area in arcminutes (max = 30 arcmin).</li>
+  
+<li>Enter the r magnitude range (min and max) to which you wish to limit the 
+search</li>
+  
+<li>Ensure that only the &quot;extended Sources (Galaxies)&quot; check
+    box is checked in &quot;Object Type&quot;</li>
+  
+<li>For now, use default &quot;ignore&quot; under objc_flags and
+    objc_flags2, but be sure to read about <a
+    href="../products/catalogs/flags.html">image processing flags</a>
+    and filter your data to obtain meaningful results from the imaging
+    catalogs.</li>
+  
+<li>Click on the &quot;Submit Request&quot; button.</li>
+
+</ol>
+
+<p><b>Sample Query Response Time</b></p>
+
+<p>For a query using ra = 120, dec = 40, radius = 30 arcminutes, r model magnitude range 17 - 17.1, 
+and number of rows set at 500:</p>
+<ul>
+  <li>41 rows returned</li>
+  <li>50 seconds of real time elapsed</li>
+</ul>
+
+<hr>
+<!-- hhmts start -->Last modified: Tue Jul 26 20:45:50 CDT 2005
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+
+
+</body>
+
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>FAQ - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<div id="pdflink">
+  <a href="faq.swf" target="text" onmouseover="this.T_WIDTH=320;this.T_BGCOLOR='#FFFFFF';return escape('Get text as Flash paper document (opens in new window)')">
+     <img src="../images/swf_icon.jpg" alt="Get text as Flash paper document" />
+  </a>
+  &nbsp;&nbsp;&nbsp;  
+  <a href="faq.pdf" target="text" onmouseover="this.T_WIDTH=270;this.T_BGCOLOR='#FFFFFF';return escape('Get text as PDF document (opens in new window)')">
+     <img src="../images/pdf_icon.gif" alt="Get text as PDF document (opens in new window)" />
+  </a>
+
+</div>
+
+
+<a name="top"></a>
+<h1>Frequently Asked Questions</h1>
+
+<ol class=compact>
+  <li><a href="#whatissdss"> What is the Sloan Digital Sky Survey?</a></li>
+  <li><a href="#data">How can I get SDSS data?</a></li>
+  <li><a href="#casdas">What is the Catalog Archive Server (CAS)? What is the Data Archive Server (DAS)?</a></li>
+  <li><a href="#whatisskysrv">What is SkyServer?</a><br /></li>
+  
+  <li><a href="#images"> Where in the sky do the data come from?</a></li>
+  <li><a href="#searchtools">How can I search for data?</a></li>
+  <li><a href="#whathelp"> What help is available?</a></li>
+  <li><a href="#learn"> I am a teacher. How can I use the data in my classes?</a><br /></li>
+  
+  <li><a href="#findobj">How can I see if the SDSS has an image of my favorite object?</a></li>
+  <li><a href="#crossmatch">How can I match a list of objects to see what the SDSS knows about them?</a><br /></li>
+
+  <li><a href="#brightstars">Why doesn't SDSS have data for well-known visible stars (Sirius, Vega, etc.)?</a></li>
+  <li><a href="#stargalaxy">Why are some bright stars classified as galaxies?</a></li>
+  <li><a href="#longID">What does the long SDSS ID number mean, and how do I work with it?</a></li>
+</ol>
+
+<h3>More Technical Questions</h3>
+
+<ol class=compact>
+  <li><a href="#cas">What interfaces are available to SDSS catalog data?</a></li>
+  <li><a href="#ubvri">How do I convert from the SDSS's ugriz magnitudes to UBVRI magnitudes?</a></li>
+  <li><a href="#targvbest">What is the difference between Target and Best?</a></li>
+  <li><a href="#scienceprimary">What is the difference between 
+	<span class="eqn">SpecObj</span> and <span class="eqn">SpecObjAll</span>? 
+	What does sciencePrimary mean?</a></li>
+  <li><a href="#photoobjtag">What are the differences between PhotoObj, PhotoTag, and PhotoObjAll?		</a></li>
+  <li><a href="#specphotoall">How do I get photometry for spectroscopic objects?<br> 
+	What is the <span class="eqn">SpecPhotoAll</span> table?</a></li>
+  <li><a href="#specphoto">What is the difference between <span class="eqn">SpecPhoto</span> 
+	and <span class="eqn">SpecPhotoAll</span>?</a></li>
+  <li><a href="#numprec">Why do z and zErr (in SpecObj) have different
+      numerical precision?</a></li>
+  <li><a href="#str">How do I change the precision of values in the output of my query?</a></li>
+  <li><a href="#spectype2">What is the difference between <span class="eqn">specClass</span> and <span class="eqn">objType</span> for
+      spectroscopic objects, and which one should I use?</a></li>
+  <li><a href="#longID2">Why does SDSS use the long (64-bit) objID fields, and what is the composition of the PhotoObj 
+      <span class="eqn">objID</span> and SpecObj <span class="eqn">specObjID</span>
+      fields?</a></li>
+  <li><a href="#mirror">I want to mirror the SDSS archive - how can I get a copy of <i>all</i> the data?</a></li>
+  <li><a href="#htm">Where can I get a copy of the <span class="eqn">HTM (Hierarchical Triangular Mesh)</span> spatial index library?</a></li>
+</ol>
+
+
+<p>&nbsp;</p>
+<hr>
+<p>&nbsp;</p>
+
+<h3>Answers</h3>
+
+<ol class="tut">
+
+
+<li><a name="whatissdss"></a>
+<h3>What is the Sloan Digital Sky Survey?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>
+The Sloan Digital Sky Survey (SDSS) was one of the most ambitious scientific projects of all time. Its 
+primary science goal was to make a high-quality three-dimensional map of the universe. The survey 
+used a specially-built 2.5-meter telescope in New Mexico and a CCD camera to 
+take images of about one-quarter of the night sky. It entire dataset is now available online to astronomers and the 
+general public.</p>
+
+<p>The SDSS has taken images of more than 300 million objects. The survey has already completed a preliminary map 
+of the universe, and has made many scientific discoveries from our Solar System to the edge of the Universe. The SDSS's discoveries are 
+detailed in the <a href="http://www.sdss.org/signature.html" target="sdss">Science</a> section of the sdss.org website (link opens in a new window).</p>
+</li>
+
+
+<li>
+<a name="data"></a>
+<h3>How can I get SDSS data?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>
+SDSS data is available from this <a href="http://www.sdss.org/dr7">Data Release 7</a> website.
+</p>
+</li>
+
+
+<li>
+<a name="casdas"></a>
+<h3>What is the Catalog Archive Server (CAS)? What is the Data Archive Server (DAS)?<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>
+SDSS data can be accessed in two ways. It can be viewed as catalog data (measured parameters for sky objects) or 
+as FITS images and data files. Catalog data, along with preview images and spectra, are available from the <a href="http://cas.sdss.org/astro/en/">Catalog Archive Server</a>. 
+FITS images and data are available from the <a href="http://das.sdss.org">Data Archive Server</a>.
+</p>
+</li>
+
+
+<li>
+<a name="whatisskysrv"></a>
+<h3>What is SkyServer?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>
+<a href="http://skyserver.sdss.org">SkyServer</a> is a web site where students and members of the general public can get data from the Sloan Digital Sky Survey (SDSS). SkyServer shares 
+many data access tools with the <a href="http://cas.sdss.org/astro/en/">Catalog Archive Server</a>, but also includes some tools designed specifically for the public. 
+SkyServer's <a href="http://cas.sdss.org/dr7/en/proj/">Projects</a> are excellent resources for astronomy educators who want to include real data in 
+their courses.
+</p>
+</li>
+
+
+
+
+<li>
+<a name="images"></a>
+<h3>
+Where in the sky do the data come from?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>The SDSS takes data in long, narrow "stripes." See the <a href="../coverage/index.html" target="help">Sky Coverage</a> page (link opens 
+in a new window) for maps and tables that show where in 
+they sky the current data come from. The CAS <a href="http://cas.sdss.org/astro/en/tools/chart/navi.asp" target="tools">Navigate</a> tool (new window) 
+also has an interactive sky globe that shows where the SDSS has data. To see if a specific area has been seen 
+by the SDSS, enter its coordinates into the <a href="http://cas.sdss.org/astro/en/tools/chart/chart.asp" target="tools">Finding Chart</a> (new window).</p>
+</li>
+
+
+<li><a name="searchtools"></a>
+<h3>How can I search for data?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+
+<p>When you search for data in the SDSS, you are going through the SDSS database and looking for objects that match criteria you 
+choose. For simple searches of photometric data, use the <a href="http://cas.sdss.org/astro/en/tools/search/iqs.asp" target="tools">Inaging Query Form</a> 
+(new window). For simple searches of spectroscopic data, use the <a href="http://cas.sdss.org/astro/en/tools/search/sqs.asp" target="tools">Spectroscopic Query Form</a> 
+(new window). For more complex searches, 
+use <a href="http://cas.sdss.org/astro/en/tools/search/sql.asp" target="tools">Structured Query Language (SQL)</a>. See the CAS's 
+guide on <a href="http://cas.sdss.org/astro/en/help/howto/search/">Searching for Data</a> to learn more about SQL. To see thumbnail results of 
+objects that meet your criteria, use the <a href="http://cas.sdss.org/astro/en/help/tools/chart/list.asp" target="tools">Image List</a> tool 
+(new window).</p>
+
+<p>For large, complex queries that will take a long time to run, use <a href="http://casjobs.sdss.org/casjobs/" target="tools">CasJobs</a> 
+(new window), the SDSS's batch query interface.</p>
+
+<p>The CAS has many other tools too. See <a href="http://cas.sdss.org/astro/en/tools/started/" target="tools">Getting Started</a> 
+(new window) for more information on all the tools.</p>
+</li>
+
+
+
+<li>
+<a name="whathelp"></a>
+<h3>What help is available?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>
+This site has an extensive <a href="index.html">Help</a> section, including 
+a <a href="../glossary/index.html">Glossary of SDSS terms</a> and a set of 
+<a href="../tutorials/index.html" target="help">Tutorials</a>, which are guides for doing common research 
+tasks with SDSS data. Each tool also has its own Help section.
+</p>
+</li>
+
+<li>
+<a name="learn"></a>
+<h3>I am a teacher. How can I use the data in my classes?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>SkyServer's <a href="http://cas.sdss.org/public/en/proj/">Projects</a> use SDSS data to teach topics in astronomy and other sciences, 
+using guided and open inquiry. With our Projects, you and your students can learn about spectra and 
+colors of stars, galaxy types, the history of the universe, and much more.</p>
+
+<p>You are welcome to use and adapt any of our projects in your classes, free of charge. For more 
+information on what you can do with SkyServer in the classroom, see our 
+<a href="http://cas.sdss.org/public/en/proj/teach.asp">Teacher FAQ</a>.</p> 
+</li>
+
+
+<li>
+<a name="findobj"></a>
+<h3>
+How can I see if the SDSS has an image of my favorite object?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>Find the coordinates of the object using a name resolver like <a href="http://simbad.u-strasbg.fr/simbad/sim-fid" target="offsite">SIMBAD</a> (link opens 
+in a new window) or <a href="http://nedwww.ipac.caltech.edu/forms/byname.html" target="offsite">NED</a> (new window).</p>
+
+<p>Then, go to the CAS's <a href="http://cas.sdss.org/astro/en/tools/chart/navi.asp" target="tools">Navigate</a> tool (new window) and enter 
+the object's coordinates. You can enter the coordinates as decimal degrees or as sexagesimal in the format HH:MM:SS and 
+(+/-)DD:MM:SS. Click "Get Image" to see the object, and click on the object for its SDSS data. See the 
+Help link in the Navigate tool for more information.</p>
+</li>
+
+
+<li><a name="crossmatch"></a>
+<h3>How can I match a list of objects to see what the SDSS knows about them?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+
+<p>Go to the CAS's <a href="http://cas.sdss.org/astro/en/tools/crossid/upload.asp" target="tools">Imaging Upload</a> 
+tool (opens in new window). Paste your list of objects, or upload a file containing data with the last two columns as (ra, dec)
+in decimal degrees. Click Submit. The next page will show only those objects that appear in the SDSS, with SDSS Object IDs that 
+link to the <a href="http://cas.sdss.org/astro/en/tools/explore/obj.asp" target="tools">Explore</a> tool.</p>
+
+<p>To see a thumbnail SDSS image of each matching object, use the <a href="http://cas.sdss.org/astro/en/tools/chart/list.asp" target="tools">Image List</a> tool. Enter 
+your list in the textbox on the upper left and click "Get Image". Click on one of the thumbnails to go to that position in the 
+<a href="http://cas.sdss.org/astro/en/tools/chart/navi.asp" target="tools">Navigate</a> tool, or on one of the object names to go to that object's 
+<a href="http://cas.sdss.org/astro/en/tools/explore/obj.asp" target="tools">Explore</a> tool entry.</p>
+</li>
+<br />
+
+
+
+<li>
+<a name="brightstars"></a>
+<h3>Why doesn't the SDSS have data for well-known visible stars (Sirius, Vega, etc.)?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>The SDSS has a very sensitive <a href="http://cas.sdss.org/public/en/sdss/instruments/instruments.asp">camera</a>. 
+Stars that you can see with your unaided eyes are a little too bright for the SDSS's camera, so they show up as 
+washed out. The SDSS still gets an image of those stars (for example, here is an image of <a href="http://cas.sdss.org/public/en/tools/chart/navi.asp?ra=116.2997&dec=28&scale=10" 
+target="tools">Pollux</a> from SkyServer - link opens in a new window), but their images are unreliable, and the SDSS gets no catalog data.</p> 
+</li>
+
+
+
+<li>
+<a name="stargalaxy"></a>
+<h3>Why are some bright stars classified as galaxies?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>The SDSS distinguishes between stars and galaxies based on their shapes: single points of light are stars, and 
+fuzzy patches of light are galaxies. Some stars are bright enough that their light washes out the camera, so 
+to the SDSS's camera, they look like fuzzy disks instead of single points of light. Their appearance fools the 
+SDSS's software into classifying them as galaxies.</p>
+</li>
+
+
+
+<li>
+<a name="longID"></a>
+<h3>What does the long SDSS ID number mean, and how do I work with it?</a>
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>The SDSS needs a way to uniquely identify every object in the database, so it generates ID numbers. The ID numbers are code numbers that 
+include information about how the object was observed.</p>
+
+<p>One very important point when working with SkyServer is that the object IDs are so long that they get cut off in Excel, and show up with 
+000 as the last three digits. This means you won't be able to find your objects anymore! To get around this problem, see this 
+<a href="http://cas.sdss.org/public/en/howto/graph/caveat.asp">workaround</a>.</p>
+
+</li>
+
+</ol>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>More Technical Answers</h3>
+<p>&nbsp;</p>
+
+<ol class="tut">
+<li><a name="cas"</a>
+<h3>What interfaces are available to SDSS catalog data?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>The Catalog Archive Server (CAS) is the database that contains the SDSS's catalog data. There are multiple 
+interfaces to the data, including (all links open in a new window): 
+   <ol class="med">
+     <li><a href="http://cas.sdss.org/astro/en/" target="tools">Catalog Archive Server</a>: a web-based, synchronous interface for browsing and searching</li>
+     <li><a href="http://cas.sdss.org/public/en/" target="tools">SkyServer</a>: a special interface to the CAS designed for the general public and students</li>
+     <li><a href="http://casjobs.sdss.org/casjobs/" target="tools">CasJobs</a>: a batch (asynchronous) system for querying the database and storing results</li>
+     <li><a href="http://cas.sdss.org/astro/en/help/download/sqlcl" target="tools">sqlcl</a>: a command-line interface</li>
+     <li><a href="http://www.astro.princeton.edu/~rhl/skyserver/" target="tools">Emacs buffer</a>: an Emacs interface for running queries</li>
+   </ol>
+
+<p>Alternatively, you can retrieve SDSS FITS images with the <a href="http://das.sdss.org/" target="tools">Data Archive Server</a>.</p>
+</li>
+
+
+<li><a name="ubvri"</a>
+<h3>How do I convert from the SDSS's ugriz magnitudes to UBVRI magnitudes?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>The SDSS measures magnitudes through <i>ugriz</i> filters, which give <i>ugriz</i> magnitudes. These magnitudes can be converted into UBVRI magnitudes using 
+<a href="http://www.sdss.org/dr7/algorithms/sdssUBVRITransform.html">a set of transformations</a> described on the 
+Algorithms page of this site.</p> 
+</li>
+
+
+
+<li>
+<a name="targvbest"></a>
+<h3>What is the difference between Target and Best?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>Because the survey imaging and processing was improved over the course of the survey, the SDSS
+often obtained improved photometric measurements of objects AFTER they have 
+been chosen ("<a href="../glossary/index.html#target">targeted</a>") for spectroscopy. However, it is important 
+to keep a record of the photometric measurements at the time objects were targeted. We therefore maintain two versions of the photometric catalog:
+</p>
+
+ <ol>
+ <li><b>Target:</b><p> Known as TARGDR7 in the DR7 CAS, this database contains the 
+photometric catalogs AS THEY WERE WHEN OBJECTS WERE CHOSEN FOR SPECTROSCOPY. 
+This database contains the union of all target <a href="../glossary/index.html#chunk">chunks</a>. It may cover a slightly
+different area than <a href="../glossary/index.html#best">Best</a>, blended objects may be 
+<a href="../glossary/index.html#deblend">deblended</a> differently, 
+image quality may be worse, and photometric calibration may be less accurate. 
+However, if you want to see what the SDSS thought the magnitudes and other 
+properties of an object were when it was chosen for spectroscopy, this is the
+place to look. Note that this database DOES NOT contain links from the 
+photometric objects to the spectroscopy (you can always get the Target data 
+for spectroscopic objects using the TargObjID field in the <code>SpecObjAll</code> table), 
+nor does it contain the <a href="../glossary/index.html#tiling">tiling</a> information. This is because the Target 
+database is intended to be a snapshot of the survey before any spectroscopy 
+is done.</p></li>
+ <li><b>Best:</b><p> Known as BESTDR7 in the DR7 CAS, this database contains the latest,
+best versions of the imaging data, processed with the latest version of the 
+photometric processing software, and with the most recent understanding of the
+photometric calibration applied. For any science based on object photometry, 
+you will want to use the Best data. In addition, only the Best database 
+contains all of the spectroscopy and tiling information.</p>
+ </li>
+ 
+ </ol>
+</li>
+ 
+<li>
+<a name="scienceprimary"></a>
+<h3>What is the difference between <em>SpecObj</em> and <em>SpecObjAll</em>? What does 
+<em>sciencePrimary</em> mean?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+
+<p>The <code>SpecObjAll</code> table contains ALL spectroscopic objects, regardless 
+of their status in the survey. Queries on this table can produce unusual or undesired objects. Thus, we have created the <code>SpecObj</code> 
+view, which contains data for ONLY those fibers defined as SciencePrimary. To be defined as SciencePrimary, an object <em>must</em> meet all of the following criteria:
+</p>
+<ol class="med">
+<li>It was <a href="../glossary/index.html#target">targeted</a> in the target <a href="../glossary/index.html#skyversion">skyVersion</a></li>
+<li>The <a href="../glossary/index.html#plate">plate</a> on which the spectrum was taken is the primary observation of that 
+    <a href="../glossary/index.html#tile">tile</a></li>
+<li>The plate was a main survey plate (not part of the Southern survey or a special project)</li>
+<li>The objType is <em>not</em> QA, SKY, or SPECTROPHOTO_STD (these object types are repeatedly observed)</li>
+<li>The <a href="../glossary/index.html#fiber">fiber</a> was mapped correctly (this is the <code>zWarning</code> check)</li>
+</ol>
+<p>
+As a result, some plates may have many (or even all) of their fibers excluded from SpecObj. Some instances where this occurs are:</p>
+<ul>
+<li>Fibers and plates that were targeted but are outside the official survey boundaries. These objects cannot be matched to a 
+<em>PhotoPrimary</em> in the <a href="../glossary/index.html#target">target</a>) version of the sky so they do not make it into <code>SpecObj</code>. 
+<a href="../glossary/index.html#plate">Plates</a> 344-346, 348, and 364 (tileRun 6) have 0 SpecObjs. Other plates from 
+<a href="../glossary/index.html#tile">tile</a> runs 4 and 6 have reduced numbers of objects, especially 315 and 342. This could affect plates 
+266-315, 363, 361 from tileRun 4 and plates 342-348, 364 from tileRun 6.</li>
+
+<li>Fibers where objType = 'SKY' do not show up in the <code>SpecObj</code> view. Some plates (for undetermined reasons) have large numbers of sky fibers: Plate
+417 has 214 sky fibers, and they all seem to be on one half of the plate; Plate 595 has 91 SKYs and Plate 359 has 84 SKYs.
+</li>
+
+<li>Fibers where objType = 'QA' also do not show up in the <code>SpecObj</code> view.
+Below is a table of the plates with more than 100 QA fibers and the number 
+of such fibers:<br>
+<table border="1">
+<tr><th>Plate</th><th># of QA fibers</th></tr>
+<tr><td align="center">483</td><td align="center">174</td></tr>
+<tr><td align="center">471</td><td align="center">136</td></tr>
+<tr><td align="center">500</td><td align="center">125</td></tr>
+<tr><td align="center">470</td><td align="center">123</td></tr>
+<tr><td align="center">418</td><td align="center">120</td></tr>
+<tr><td align="center">550</td><td align="center">108</td></tr>
+</table>
+<p><b>Note:</b> The definition of <b>SciencePrimary</b> relies purely on spectroscopic and geometric considerations. There are objects 
+in <code>SpecObj</code> which <em>do not</em> have a corresponding <b>Best</b> photometric object.</p>
+</ul>
+</li>
+
+<li>
+<a name="photoobjtag"></a>
+<h3>What are the differences between <em>PhotoObj</em>, <em>PhotoTag</em>, and <em>PhotoObjAll</em>?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p><em>PhotoObjAll</em> is a table in the Best and Target databases which contains 
+<b>all</b> of the measured photometric quantities for <b>all</b> of the imaging objects.
+Because we measure hundreds of parameters for each of 340 million objects, this is a 
+very large table, and queries can take very long to run.</p>
+
+<p>In an effort to speed up queries, we have created a table with only a subset of the 
+parameters that are requested most often (a "thin table"). This table is 
+called <em>PhotoTag</em>. If you have a query that uses and returns only values 
+stored in <em>PhotoTag</em>, it will execute much faster than if you used <em>PhotoObjAll</em>.</p>
+<p>
+In addition, we have created a view of <em>PhotoObjAll</em> that contains only those objects that are 
+<a href="../glossary/index.html#primary">Primary</a> or <a href="../glossary/index.html#secondary_object">Secondary</a>. 
+This view is called <em>PhotoObj</em>. 
+Because this view effectively contains fewer objects than PhotoObjAll (but all the measured quantities for these objects), queries will 
+execute faster.</p>
+<p>
+Given the above, you should consider:</p>
+<ol>
+<li>Querying from <span class="eqn">PhotoTag</span> if it contains everything you are looking for</li>
+<li>Querying from <span class="eqn">PhotoObj</span> otherwise, UNLESS you are interested in data for objects which are 
+<em>neither PRIMARY nor SECONDARY</em>. In that case, you will need to use <em>PhotoObjAll</em>.</li>
+<li>Importantly, the "shorthand" quantities <em>u,g,r,i,z</em> do <u>not</u> exist in 
+the <em>PhotoTag</em> table (because we want to keep it as thin as possible). Instead, you must use 
+ModelMag_[ugriz], which is indexed to make queries faster. 
+<b>HOWEVER</b>, in <em>PhotoObjAll</em> and its views, only the <em>u,g,r,i,z</em> are indexed, 
+and <em>not</em> the ModelMags!</li>
+</ol>
+<p>
+Because PhotoTag has many fewer parameters, larger portions of it can be cached, improving performance. We have found that for almost 
+all queries which contain parameters fully in <wm>PhotoTag</wm>, it is faster. If you were looking for objects that had 
+been detected multiple times, the fastest approach would be to perform a join on <em>PhotoTag</em> with itself, 
+requiring that one object be Primary and the other Secondary.</p>
+</li>
+
+
+<li>
+<a name="specphotoall"></a>
+<h3>How do I get photometry for spectroscopic objects? What is the <em>SpecPhotoAll</em> table?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>The <em>SpecPhotoAll</em> table is a precomputed join between the <a href="../glossary/index.html#best">Best</a> 
+<em>PhotoObjAll</em> and <em>SpecObjAll</em> tables. It includes the most requested parameters from these two tables, as well as a 
+few pieces of information about <a href="../glossary/index.html#tiling">tiling</a>. It also includes the TargetObjID, which allows user to 
+retrieve the <a href="../glossary/index.html#target">Target</a> version of the photometry.</p> 
+
+<p>Note that all spectro-photo matches are not included in SpecPhotoAll, since there are additional JOIN conditions imposed on tiling and
+targeting information.  The actual SQL fragment from the SpecPhotoAll construction is shown below to indicate all the JOINs involved: </p>
+<table align='center'>
+<tr><td class='code'>
+	FROM SpecObjAll s
+             <dd>JOIN TileAll w ON s.tile=w.tile
+             <dd>LEFT OUTER JOIN TilingInfo t ON s.targetid=t.targetid and w.tileRun=t.tileRun
+             <dd>JOIN TargetInfo i on s.targetObjid=i.targetObjid
+             <dd>LEFT OUTER JOIN PhotoObjAll p WITH (nolock) ON s.bestObjid=p.objid
+             <dd>LEFT OUTER JOIN PhotoTag q ON p.objid=q.objid
+</td></tr></table>
+
+<p><span class="eqn">SpecPhotoAll</span> is very useful for viewing and comparing objects' photometric and spectroscopic properties.</p>
+</li>
+
+
+<li>
+<a name="specphoto"></a>
+<h3>What is the difference between <em>SpecPhoto</em> and <em>SpecPhotoAll</em>?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>As described above, <em>SpecPhotoAll</em> is a precomputed join between the <a href="../glossary/index.html#best">Best</a> 
+<em>PhotoObjAll</em> and <em>SpecObjAll</em> tables. This includes non-science objects, and a variety of objects many users will not 
+be interested in. The <em>SpecPhoto</em> view includes only those pairs where the SpecObj is a sciencePrimary 
+(<a href="#scienceprimary">see the definition above</a>), and the 
+BEST PhotoObj is a <a href="../glossary/index.html#primary">PRIMARY</a> object.
+</p>
+</li>
+
+
+<li>
+<a name="numprec"></a>
+<h3>Why do z and zErr (in SpecObj) have different numerical precisions?</a>
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>
+Internally, these numbers are stored to their full precision as they come out
+of the spectroscopic pipeline. When you perform a query, they have some
+default string format applied that cuts them to what you see. But you can use
+SQL's str() function to change the string format to whatever you like.</p>
+
+<p>To get z to 6 decimals, for example, change your query to 'select str(z,8,6) as z'
+instead of just z, and analogously for zErr. This applies the function str()
+to the values in column z and returns the result with column label z (without
+the "as", the result of a function has no column label). The
+str(col,length,dec) function takes the numerical value in 'col' and formats it
+as a string of length 'length' and with 'dec' significant digits. In other words, 
+str(z,8,6) is the SQL equivalent to the C function printf("%8.6f",z). str() rounds the
+result to the number of decimals you request.  </p>
+</li>
+
+
+<li>
+<a name="str"></a>
+<h3>How do I change the default precision of values in the output of my query?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>Use the <b>str(<i>column</i>,<i>n</i>,<i>d</i>)</b> SQL construct (where <i>n</i> is the total number
+of digits and <i>d</i> is the number of decimal places) to set the precision of the column that your query requests.
+SkyServer returns values with a default precision that is set for each data type, and this may not
+be enough precision for some types of science. See the <a href="http://cas.sdss.org/astro/en/help/docs/realquery.asp#nbrrun" target="help">Selected neighbors in run</a> or
+the <a href="http://cas.sdss.org/astro/en/help/docs/realquery.asp#qcomplete" target="help">Uniform Quasar Sample</a> sample queries (both open in 
+new windows) for examples of how to use STR.</p>
+</li>
+
+
+<li>
+<a name="spectype2"></a>
+<h3>What is the difference between <em>specClass</em> and <em>objType</em> for
+spectroscopic objects, and which one should I use?
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>
+The <em>objType</em> parameter in <span class="eqn">SpecObj</span> and other tables is set when the objects are targeted 
+for spectroscopy, when the spectroscopic plates are prepared.  The <em>specClass</em> parameter is set by the spectroscopic 
+pipeline after the spectrum is observed. For science, you should use the specClass attribute. The objType field is included 
+for studies of the targeting algorithm.
+</p>
+</li>
+
+
+<li>
+<a name="longID2"></a>
+<h3>Why does SDSS use the long (64-bit) objID fields, and what is the composition of the PhotoObj 
+<span class="vocabulary">objID</span> and SpecObj <span class="vocabulary">specObjID</span> fields?</a>
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>
+The 64-bit ID fields are required as primary keys (unique identifiers) in the SDSS database tables.  They are used to uniquely identify
+each record in the <a href="http://cas.sdss.org/astro/en/help/docs/intro.asp#indices" target="help">database indices</a> (link opens in a new window) for enhanced 
+performance.  Each of them are bit-encoded with information about the observational origin, i.e., the run,rerun, camera column, etc. for 
+photometric data, and the plate, MJD, fiberID etc. for spectroscopic objects.  
+Please see the <a href="http://cas.sdss.org/astro/en/help/docs/algorithm.asp?key=objID" target="tools">entry for SDSS ObjID Encoding</a> (new window) in the Algorithms page.
+</p>
+</li>
+
+
+<li>
+<a name="mirror"></a>
+<h3>I want to mirror the SDSS archive - how can I get a copy of <i>all</i> the data?</a>
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>
+A copy of the current publicly-available SDSS data release is available from UIC (University of Illinois at Chicago)
+for worldwide distribution over fast links.  Please see the <a href="http://www.skyserver.org/" target="help">SkyServer support site at skyserver.org</a>
+(new window) for further details on how to host a mirror site and where to get the data. Click on the <b>SDSS Mirrors</b> link on that site.</p>
+</li>
+
+
+<li>
+<a name="htm"></a>
+<h3>Where can I get a copy of the <span class="vocabulary">HTM (Hierarchical Triangular Mesh)</span> spatial index library?</a>
+&nbsp;&nbsp;<a href="#top"><img src="images/top.gif" ALT="Back to Top" NOSAVE BORDER="1" HEIGHT="15" WIDTH="20" ALIGN="TOP"><small>Top</small></a></h3>
+<p>
+Freely downloadable copies of the HTM library (in C++, Java and now C#) are available at the <a href="http://www.skyserver.org/" target="help">SkyServer 
+support site at skyserver.org</a> (new window). Click on the <b>HTM</b> link on that site.
+</li>
+
+
+</ol>
+
+<p>Do you have other questions that aren't answered here? Ask the <a href="http://www.lib.uchicago.edu/e/ask/SDSSask.html">SDSS helpdesk</a>!</p>
+      
+
+<hr>
+<!-- Created: Tue Jul 30 21:49:21 DST 2002 -->
+<!-- hhmts start -->Last modified: Mon Jun 25 22:32:37 CEST 2007
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+</html>

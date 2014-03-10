@@ -1,0 +1,308 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+<CENTER><B><I><FONT SIZE=+1>Sloan Digital Sky Survey</FONT></I></B></CENTER>
+
+<CENTER><B><I><FONT SIZE=+1>Review of Data Processing Operations</FONT></I></B><BR>
+<BR></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Status of Photometric Calibrations
+as of July 2000</FONT></B></CENTER>
+
+<CENTER>Stephen Kent</CENTER>
+
+<CENTER>July 5, 2000</CENTER>
+
+<P>
+<HR style="HEIGHT: 6px">
+
+<h3>Requirements</h3>
+
+The top level requirements for photometric calibrations is to achieve
+rms errors of 0.02 mag in <i>r'</i>, 0.02 in <i>g'-r'</i>, <i>r'-i'</i>,
+0.03 in <i>u'-g'</i>, <i>i'-z'</i>
+for any randomly selected group of stars.  The requirement on colors is
+written with the expectation that there is a correlation of errors
+among different filters, so errors of 0.02 mag on, say <i>g'</i> and <i>r'</i>
+individual combine so as to yield an error of 0.02 mag on <i>g'-r'</i>.
+
+No constraints on correlations on a single area of the sky.
+
+<h3>Functions</h3>
+
+The calibration of the SDSS data is a multistage process:
+<p>
+<ol>
+<li> The fundamental reference star is BD+17 4708.  Its SDSS magnitudes
+are derived from accurate spectrophotometry.
+<li> A set of ~150 primary stars around the sky have been calibrated
+relative to the fundamental star using observations obtained during
+1998-2000 using the USNO 40 inch telescope, a UV thinned CCD, and a set of
+SDSS filters.  The effective wavelengths of this system define the SDSS
+bandpasses.
+
+<li>A set of secondary patches have been defined that cover the 2.5m
+survey area.  These are spaced so as to cover all scanlines on each stripe
+approximately once per hour of scanning.  The photometric telescope (PT)
+observes a mix of primary stars and secondary patches on each
+photometric night.  These data are processed by the MT pipeline.
+The outputs are calibrated patches and extinction doefficients night by night.
+
+<li>Each scanline from the 2.5m camera is calibrated using 
+  data from one or more patches using the Final Calibration pipeline.</li>          
+        
+</ol>
+
+<h3> Summary of known problems </h3>
+
+<ol>
+<li> We currently use twilight flats for the <i>u'</i> band and dome
+flats for the other bands.  Flatfielding of the PT patches has been
+difficult due to several problems.  These include:
+  <dir>
+  <li> Oil contaminant that collects on the CCD.  This problem is thought
+   to have been due to use of an improper vacuum  grease (which evaporated
+   in the heat of the PT dome during the summer) and is thought to
+   be solved, but continuous monitoring is needed.
+  <li> Incomplete baffling of the PT.  Three rounds of filter masking and
+   baffle additions have been made to the telescope since the beginning of
+   the year
+   <li> Improper filtering of the flatfield lamp, producing the wrong
+   color balance in the <i>g'</i> band.
+   <li>Two glass correctors near the focal plane have curved 
+  surfaces; these can lead to scattered light problems. No effects have been 
+  discerned so far; not are expected if antireflection coatings are working as 
+  designed.</li>          
+              
+            
+     
+   </dir>
+As a consequence, we have much data in hand with varying degrees of
+imperfection.
+<li> 3 bands (<i>g', r', i'</i>) use interference filters to define the
+long wavelength limit.  The filters on the 2.5m (and perhaps on the PT)
+have shifted effective wavelength, likely due to the fact that the filters
+on the 2.5m are in vacuum, while on the PT they are in dry air.
+This complicates our ability to compute color transformations between
+the different telescopes.  At present, no color terms are used, which
+introduces small calibration errors, but more importantly means that it
+is possible that the 2.5m photometry will not be on the same systems as
+the standard stars.
+
+<li> The MT pipeline code has not been tested rigorously end-to-end to
+determine if its outputs are correct.  (Casual testing has been done).
+Known problems include:
+  <dir>
+  <li> Fringing in the <i>i'</i> and <i>z'</i> bands is severe enough
+   to need correcting; nothing is done at present.
+  <li> Errors on quantities are not computed correctly.
+  <li> There is a sense that scatter in computed magnitudes 
+  is larger than it ought to be.</li>            
+      
+  </dir>
+
+<li>The final calibration pipeline is known to not compute zero points
+  efficiently (using medians rather than weighted averages), although
+  a recent change in the pipeline produced no significant change in the
+  outputs.
+
+<li> The photometric pipeline corrects PSF magntitudes to a 
+  standard aperture, and until recently the aperture size was too small, 
+  introducing seeing-dependent variations in the zero point (up to 5% in bad 
+  seeing).</li>         
+            
+             
+
+</ol>
+
+
+<h3>Detailed Requirements and Tests</h3>
+
+Each detailed requirement is quoted for just the <i>r'</i> filter; 
+requirements for other filters or colors scale the same as for the top level 
+requirements. 
+<OL>
+<li>Internal error of primary stars &lt;  .01 mag
+   <ol>
+   <li>Status: Met.  1+ years of USNO data have been reduced.
+	The rms errors per observation are 0.01 mag in g', r', i', z', 0.03
+	mag in u'.  Each star is observed 10+ times, so errors in mean
+	are must smaller.
+   <li>QA check needed: None
+   <li>Future work: Monitor primaries for variability; 
+    monitor additional stars in each field.</li>       
+	   
+   </ol>
+<p></p>
+<li>USNO to PT transformation: No more than 0.6% error per star.
+  <ol>
+  <li>Status: Not verified.
+  We have many solutions PT vs USNO, but b terms are not solved
+	for yet.  Any transformation errors will likely show up as
+	correlations of residuals with color.  Additional tests are to
+	search for correlation of residuals with time, azimuth, etc.
+	Hogg finds nonzero color terms, but it is unclear if he
+	used the latest standard star values; he certainly did not
+	use c terms, which will affect b.
+  <li> Known problems: There is a suspected problem with changes in the
+	filter transmissions curves due to environmental effects.
+  <li>What needs to be done: Measure the transmission 
+    curves of the PT and USNO filters. Concoct a "super-excal" that reduced a 
+    large body of PT data against USNO; use proper transformation equations.</li>           
+	          
+	         
+  </ol>
+<p></p>
+<li>PT linearity - Peak uncorrected nonlinearity error shall be &lt;  0.3%.
+  <ol>
+  <li>Status: Satisfied
+  <li>Check: Tests are reported in "Verification of the 
+    SDSS Photometric Telescope I. Electronics" by Fukugita, Ichikawa, Watanabe, 
+    and Yasuda Peak-peak nonlinearity is 1%. Corrections are applied in mtpipe. 
+    Without correction, worst error is 0.5%. Errors in corrections have not been 
+    checked.</li>         
+	       
+	
+
+            
+            
+      
+  </ol>
+<p></p>
+<li>Nightly PT extinction &amp; zero-points - rms per star/sqrt(# degrees of freedom)
+   &lt;  0.6%.
+  <ol>
+  <li> Status: Satisfied on good nights.  Main source of error is variations
+   in extinction and uncorrected flatfielding errors.
+
+  <li>Test:  Look at rms solutions of standard stars on a typical night:
+http://www-sdss.fnal.gov:8000/mtdata/dp/apo20/run/JL2350/mjd51641/html/
+mtres-51641.html
+   We get rms mag per star:
+<pre>			u'	.03
+			g'	.02
+			r'	.02
+			i'	.03
+			z'	.03
+</pre>
+   rms of solutions are above / sqrt(23); .007 mag or less.
+
+  <il>To do: Repeat with latest standard star values; repeat 
+    with fringing corrections; repeat i' and z' with grid corrections or remove 
+    observations not exactly centered on CCD. Need to compute rms properly in 
+    excal.</li>          
+	         
+	     
+         
+  </ol>
+<p></p>
+<li> Flatfielding of PT patches - rms error of 3x3 grid test patches should
+   be no worse than 0.6% for a single star.
+  <ol>
+  <li> Status: One set of grid tests has been fully processed in 5 filters
+	with PT in a usable state.  rms errors are as follows:
+<pre>
+	   u' .008 mag		(MJD 51614)
+	   g' .020 mag		(MJD 51614)
+	   r' .016 mag		(MJD 51614)
+	   i' .010 mag		(MJD 51667)
+	   z' .018 mag		(MJD 51667)
+</pre>
+  We are not yet meeting spec except at u'.
+  <li> Known problems:  The flat field illumination pattern has changed
+  several times due to configuration changes in the PT (addition of baffles,
+  changes in FF lamp filterse, etc).  An additional problem was introduced
+  when the CCD warmed up just before the cooling system expired.
+   <li> Plans to rectify: Continue to obtain more grid 
+    tests, now in a 3x3 pattern. If the flatfields remain stable and repeatable, 
+    it will be possible to construct a correction frame based on the measured 
+    pattern of photometric variations. At present the amount of data is 
+    inadequate to do this. If other contributions to the error budget are 
+    smaller than budgeted, the spec on flatfielding could be relaxed.</li>             
+              
+             
+              
+              
+             
+  </ol>
+<p></p>
+<li> Zero-point differences for bright and faint stars on PT patches
+   shall not exceed 0.6%.
+  <ol>
+  <li>Status: Not tested.  Data are in hand - they just need someone to
+   examine.
+   <li>Available test data: Short and long exposures of patch 10d5.
+   Many patches that overlap 2.5m scans.  A few patches that, by
+   accident, overlap by 1/2 CCD width.
+   <li>How to rectify: Perhaps the Hogg task force can take 
+    this on.</li>           
+   </ol>
+<p></p>
+<li>Photometric mismatch between PT and 2.5m after applying a linear
+   color term shall be less than 0.6% rms.
+  <ol>
+   <li>Status: Unresolved.  It is now apparent that the filters on the
+   2.5m have shifted effective wavelength since they have been in a vacuum.
+   No one has recomputed the shift in colors with the new data.
+   <li>Tests data: This requirement was to be tested using synthetic
+   photometry alone.  However, it can be partially tested using
+   PT vs 2.5m data, looking for residuals vs. color.
+   <li>No QA tests are needed during the survey.
+   <li> Known problems: Getting traces of the 2.5m and PT 
+    filters is tedious.</li>            
+   
+   </ol>
+<p></p>
+<li>Variations in the aperture correction vs. column number within a single
+   2.5m CCD shall not exceed 0.6%.
+   <ol>
+   <li>Status: Spot checks show that we are meeting this in the camcols
+	with the worst PSF variation.  A full set of tests remains to be done.
+   <li>Test data: Comparison of camcol 6, <i>r'</i>, psf mag with synthesized
+   aperture mags.
+   <li> QA tests: Plots of 2.5m minus PT residuals vs. CCD columns are
+   a standard QA plot.
+   <li> Known problems: At present the 2.5m aperture 
+    corrections use too small an aperture.</li>          
+     
+   </ol>
+<p></p>
+<li> Spatial variations in 2.5m - PT photometric calibration vs. CCD column 
+   shall be less than 0.6% rms.
+   <ol>
+   <li> Status: Spot checks show that we are meeting this requirement.
+   <li> Test data: Numerous PT vs 2.5m overlaps.
+   <li> Same QA plots as in the previous requirement provide a cross-check
+   <li> Known problems: None</li>   
+  </ol>
+<p></p>
+<li>Time variation of aperture correction along a column shall not exceed
+   0.6 %.
+  <ol>
+  <li> Status: Not met.
+  <li> Test data: Runs 745, 752, 756.
+  <li> QA tests: These are standard QA plots produced by final calibration.
+  <li> Known problems: Photo uses too small an aperture. A 
+    big one may require adding wing stars. Some tests with synthetic aperture 
+    photometry indicate that a big aperture can meet this requirement.</li>             
+             
+           
+  </ol>
+<p></p>
+  <LI>Time variation of photometrity along a stripe shall not exceed 0.6%. 
+  <OL>
+  <li> Status: No known problems, but only spot checks have been done.
+  <li> Test data: Runs 745, 752, 756.  PT-2.5m zero points change by
+   1-2% peak-peak.  A known event where the extinction increased during
+   run 745 was properly tracked by the PT.
+  <li> QA tests: On long runs with multiple PT patches observed on the same
+   night, track the variation in zero point of the photometric transfer.
+   This is done in final calibration.
+  <li> Known problems: We have much experience with 
+    photometricity variations at the USNO (Flagstaff AZ, elev. 7000'), which 
+    show that variations up to 4% can occur on some nights. <BR></li></OL></LI></OL>
+<HR id=HR1 style="HEIGHT: 6px">
+ <FONT size=2><EM><STRONG>Review of SDSS Data Processing and Distribution<BR></STRONG>Fermilab<BR>July 20-21, 
+2000</EM></FONT> <BR><BR>
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

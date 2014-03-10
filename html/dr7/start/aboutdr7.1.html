@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>About DR7.1 - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>The SDSS Data Release 7.1 (DR7.1)</h1>
+
+<h2>Contents</h2>
+
+<ul>
+  <li><a href="#dr7cont">What DR7.1 contains</a></li>
+  <li><a href="#dr7new">What's new in DR7.1</a></li>
+  <li><a href="#imcaveat">Caveats for imaging data</a></li>
+  <li><a href="#speccaveat">Caveats for spectroscopic data</a></li>
+</ul>
+      
+
+<a name="dr7new"></a>
+<h3>New for DR7.1</h3>
+
+
+<ul>
+  <li>DR7.1 contains 205 new plates worth of spectra (136 Legacy, 65 SEGUE, 4 Baotest plates)</li>
+  <li>DR7.1 contains over 1200 square degrees of new SEGUE low-latitude
+     imaging </li>
+
+  <li>DR7.1 CAS contains an all new 'propermotions' table for over 100M
+	objects, with corrected and updated values</li>
+  <li>DR7.1 CAS contains an all new sppParams table with updated
+		velocities and estimates of [Fe/H], log g Teff and
+	stellar type classification info for over 330,000 stellar spectra</li>
+</ul>
+
+
+<p> Except for the addition of new data and the changes in the 
+sspp pipeline and the propermotions code described above, the pipelines 
+and databases are essentially identical in 
+DR7.1, DR6, DR5, DR4, DR3 and DR2.  Thus, DR7.1 is a proper 
+superset of DR6, which is a
+superset of DR5, etc.  The DR2 included reprocessing of all data
+included in DR1, and those data in EDR that pass our data-quality
+criteria for the official survey.  For details about what changed in
+subsequent releases, please refer to 
+<a href="http://www.sdss.org/DR6/start/aboutdr6.html">About DR6</a>.</p>
+
+<a name="dr7cont"></a>
+<h2>What DR7 contains</h2>
+
+<p>The DR7 imaging data cover about 8420 square degrees of
+&quot;legacy&quot; sky, with information on roughly 230 million
+distinct photometric objects, and about  2400 (up from 1200) square degrees of SEGUE
+sky, with about 110 million objects.  The DR7.1 spectroscopic data
+include data from 1656 main survey plates of 640 spectra each, and
+cover 7470 square degrees. In addition, DR7.1 contains 536
+&quot;extra&quot; and &quot;special&quot; plates:</p>
+
+<ul>
+  <li>64 &quot;extra&quot; plate/MJD combinations which are repeat
+      observations of 55 distinct main survey plates</li>
+  <li>452 distinct &quot;special&quot; plates, which includes 227
+      SEGUE plates (see above), and 230 plates with 
+      observations of spectroscopic targets, mostly in the southern galactic cap, which
+      were selected by the collaboration for a series of specialized science
+      programs. Some of these plates are outside of the
+      regular DR7.1 imaging area; <a href="./aboutdrsup.html">DR71sup</a> provides
+      that missing imaging, among other things.</li>
+  <li>15 &quot;extraspecial&quot; repeat observations of
+      &quot;special&quot; plates (7 of SEGUE plates, and 8 of other
+      special plates)</li>
+</ul>
+
+<p>There is a separate page describing <a
+href="../products/spectra/special.html">the special plates in
+DR7.1</a> </p>
+
+<p>The DR7.1 footprint is defined by all non-repeating survey-quality
+imaging runs within the a priori defined elliptical survey area in the
+Nothern Galactic Cap, and three stripes in the Southern Galactic Cap
+obtained prior to 14 July 2007, and the spectroscopy associated with
+that area as well as the <em>extra</em> and <em>special</em> plates
+obtained before that date.  
+In fact, 34 square degrees of imaging data
+in the Nothern Galactic Cap lie outside this ellipse.  
+Additional a small number of SEGUE imaging runs obtained between July and 
+November 2007 are also included. 
+While the DR7.1 scans do not repeat a given area of sky, they do 
+overlap to some extent, and the data in the overlaps are included in 
+earlier releases as well. The sky coverage of the imaging and 
+spectroscopic data that
+make up DR7.1 are given on the <a href="../coverage/index.html">coverage
+page</a>.  The natural unit of imaging data is a run; the DR7.1 contains
+data from 265 runs in the best database,  267 runs
+in the target database, and 85 runs in the SEGUE database.</p>
+
+<p>A total of 183 square degrees of sky are different runs between target
+and best, the majority along the Equatorial Stripe in the Fall sky.</p>
+
+<p>We also make available images and associated catalogs from
+three categories of special runs as a 
+<a href="http://www.sdss.org/dr7.1/start/aboutdrsup.html">DRsup</a> 
+(supplemental) DAS-only data release.  They are: 
+  <ul>
+  <li>A series of repeat scans of the Equatorial Stripe in the Southern
+      Galactic Cap (Stripe 82);</li>
+  <li>Scans through M31 and the Perseus Cluster;</li>
+  <li>Scans taken at low Galactic latitude as part of the SEGUE project;
+      these runs were used to target stars on <a
+      href=http://www.sdss.org/dr6/products/spectra/special.html>
+      special plates</a>.</li>
+</ul>
+</p>
+
+<a name="imcaveat"></a>
+<h2>Imaging caveats</h2>
+
+<p>The following caveat is new to DR7.1</p>
+
+<p>The following caveats apply unchanged to DR7.1</p>
+
+<h3>Red leak to the <var>u</var> filter and very red objects</h3>
+
+<!--#include virtual="../products/images/u_redleak.html"-->
+
+<h3>Bias in sky determination</h3>
+
+<!--#include virtual="../products/images/u_sky.html"-->
+
+<h3>Zeropoint of the photometric system</h3>
+
+<!--#include virtual="../algorithms/sdssab.html"-->
+
+<h3>Holes in the imaging data</h3>
+
+<p>About 0.3% of the DR7.1 imaging footprint area 
+(about 25 square degrees) for DR7.1 are marked as
+<em>holes</em>.  These are indicated in the CAS by setting
+<code>quality=5 (HOLE)</code> in the <code>tsField</code> file and
+<code>field</code> table and given in the <a
+href="../coverage/holes.html">list of quality holes</a>, which
+contains further details about the holes and quality flags, including
+a information about a table in the CAS which allows
+one to query for quality information about each field of data.</p>
+
+<h3>Problems with one <var>u</var> chip</h3>
+
+<p>The <var>u</var> chip in the third column of the camera is read out
+on two amplifiers.  On occasion, electronic problems on this chip
+caused one of the two amplifiers to fail, meaning that half the chip
+has no detected objects on it.  This was a problem for only two of the
+105 imaging runs included in DR5: run 2190, which includes a total of
+360 frames in two separate contiguous pieces on strip 12N (centered
+roughly at delta = +5 degrees in the North Galactic Cap; NGC), and run
+2189, which includes 76 frames on stripe 36N near the northern
+boundary of the contiguous area in the NGC.  The relevant frames are
+flagged as bad in the <code>quality</code> flag; in addition,
+individual objects in this region have the <var>u</var> band flagged
+as <code>NOTCHECKED_CENTER</code> (or, for objects which straddle the
+boundary between the two amplifiers, <code>LOCAL_EDGE</code>).  <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2945R">Richards
+et al (2002)</a> describe how the quasar selection algorithm handles
+such data; the net effect is that no quasars are selected by the
+<var>ugri</var> branch of the algorithm for these data.</p>
+
+<a name="speccaveat"></a>
+<h2>Spectroscopy caveats</h2>
+
+<h3>Problematic plates (new: flux scale offset for 28 plates)</h3>
+
+<p>A small number of plates suffered from a variety of minor problems
+affecting the quality of the spectrophotometry (but not of
+redshifts). See the list under <a
+href="../products/spectra/index.html#badplates">Plates with
+problematic spectrophotometry</a> on the data products page for
+spectra.</p>
+
+<p>A problem repeated from DR6 into DR7.1 is that 
+28 plate/MJD combinations have an
+offset in their spectrophotometric flux scale. See <a
+href="../products/spectra/index.html#specphotooffset">spectrophotometry
+flux scale offset caveat</a>.
+
+<h3>Zero equivalent width of emission lines, especially H alpha</h3>
+
+<!--#include virtual="../products/spectra/zeroEW.html"-->
+
+<h3>Note about galactic extinction correction</h3>
+
+<!--#include virtual="../products/spectra/galextinction.html"-->
+
+
+<h3>Mismatches between the spectroscopic and imaging data</h3>
+
+<p>For various reasons, a small fraction of the spectroscopic objects
+do not have a counterpart in the <code>best</code> object catalogs. In
+addition, the DR7.1 does not contain photometric information for some of
+the <a href="../products/spectra/special.html">special plates</a>, and
+the retrieval of photometric data from the CAS database requires
+special care for objects from the special plates, and even more care
+for SEGUE spectra.  See the caveat
+about <a
+href="../products/spectra/index.html#specphotomismatch">mismatches
+between spectra and images</a> on the data products page for
+spectra.</p>
+
+
+<hr>
+Something in this file was modified on $Date: 2008/06/22 22:48:37 $ (UT)
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

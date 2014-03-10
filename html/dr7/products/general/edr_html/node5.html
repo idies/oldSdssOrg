@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Parameters, Classes, and Associations</TITLE>
+<META NAME="description" CONTENT="Parameters, Classes, and Associations">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html171" HREF="node6.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html169" HREF="node4.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html163" HREF="node4.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html172" HREF="node6.html">Imaging Data Products</A>
+<B>Up:</B> <A NAME="tex2html170" HREF="node4.html">Data Products</A>
+<B> Previous:</B> <A NAME="tex2html164" HREF="node4.html">Data Products</A>
+<BR> <P>
+<H3><A NAME="SECTION00022100000000000000">Parameters, Classes, and Associations</A></H3>
+<P>
+<A NAME="ddclasses">&#160;</A>
+<P>
+We organize our measured parameters, for imaging and
+spectroscopic data, by grouping related parameters into <TT>classes</TT>.
+Table&nbsp;<A HREF="node65.html#tblclasses">5</A> lists the classes.  Tables&nbsp;<A HREF="node65.html#tblphoto">6</A>,
+<A HREF="node65.html#tblexternal">10</A>,&nbsp;<A HREF="node65.html#tblspecobj">11</A>,
+<A HREF="node65.html#tblspecinfo">12</A>,&nbsp;<A HREF="node65.html#tbladministrativestatistics">14</A>,
+<A HREF="node65.html#tbladministrativerunchunksegment">15</A>,
+<A HREF="node65.html#tbladministrativefield">16</A>,&nbsp;<A HREF="node65.html#tbladministrativeplate">17</A>, and
+<A HREF="node65.html#tblconstants">18</A> list the parameters in each class with a brief
+description.
+<P>
+In each table, we list the parameter name (in many cases, parameters
+have several synonyms, as listed), the datatype, a brief description,
+and, for Table&nbsp;<A HREF="node65.html#tblphoto">6</A>, an indication of whether this is a
+tagged entry (a parameter for which searches are particularly fast;
+see &#167;&nbsp;<A HREF="node14.html#ddinterfacessdssqt">2.4.1</A>).  For binary flags, the meaning of the bits are given
+explicitly.  Parameters for which there exists a placeholder in the
+database, but are not yet calculated, are indicated as such with the
+phrase ``(placeholder)'' in the table.
+<P>
+Many quantities are defined for each band, and thus have five entries.
+In the Catalog Archive Server (&#167;&nbsp;<A HREF="node10.html#ddserverscatarch">2.3.1</A>) these are
+indexed with 0, 1, 2, 3, 4 inside of square brackets, <TT>[]</TT>, for
+<I>u</I>,<I>g</I>,<I>r</I>,<I>i</I>,<I>z</I>, respectively.  In the skyServer
+(&#167;&nbsp;<A HREF="node12.html#ddserverssky">2.3.3</A>) these are indexed with <TT>_u, _g, _r,
+_i, _z</TT> for the filters.
+<P>
+Some parameters are <EM>associations</EM> to objects in other classes.
+For example, an object in the class <TT>SpecObj</TT>
+(Table&nbsp;<A HREF="node65.html#tblspecobj">11</A>) has a parameter <TT>plate</TT>, which is an
+object in the <TT>Plate</TT> class (Table&nbsp;<A HREF="node65.html#tbladministrativeplate">17</A>).  This contains information common to
+the 640 spectra taken in one set of observations for the plate.  The
+<EM>association</EM> is indicated in the table in the type column as <TT>
+OneAssoc(Plate)</TT>.  Other associations point to many (rather than one)
+objects.  In <TT>SpecObj</TT>, for example, the parameter <TT>
+emissionredshift</TT> has the type <TT>ManyAssoc(EmissionRedshift)</TT>.  It
+points to a list of redshifts measured.  The ``best'' value of the
+emission and absorption redshift is stored in <TT>z</TT> of <TT>
+SpecObj</TT>, but for complex spectra, you may access the full list of
+redshifts measured during processing.
+<P>
+<HR><A NAME="tex2html171" HREF="node6.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html169" HREF="node4.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html163" HREF="node4.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html172" HREF="node6.html">Imaging Data Products</A>
+<B>Up:</B> <A NAME="tex2html170" HREF="node4.html">Data Products</A>
+<B> Previous:</B> <A NAME="tex2html164" HREF="node4.html">Data Products</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

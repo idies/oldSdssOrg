@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Great Circle Drift Scanning</TITLE>
+<META NAME="description" CONTENT="Great Circle Drift Scanning">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html386" HREF="node27.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html384" HREF="node24.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html380" HREF="node25.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html387" HREF="node27.html">Spectroscopic System</A>
+<B>Up:</B> <A NAME="tex2html385" HREF="node24.html">Imaging System</A>
+<B> Previous:</B> <A NAME="tex2html381" HREF="node25.html">Filters</A>
+<BR> <P>
+<H3><A NAME="SECTION00032200000000000000">Great Circle Drift Scanning</A></H3>
+<P>
+<A NAME="hwcamdriftscan">&#160;</A>
+<P>
+The <EM>survey coordinate system</EM> <IMG WIDTH=38 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline2905" SRC="img28.gif"> is a spherical
+coordinate system with poles at <IMG WIDTH=86 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline2907" SRC="img29.gif">,
+<IMG WIDTH=72 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline2909" SRC="img30.gif"> and <IMG WIDTH=94 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline2911" SRC="img31.gif">,
+<IMG WIDTH=72 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline2909" SRC="img30.gif">.  The survey equator is thus a great circle
+perpendicular to the J2000 celestial equator, intersecting it at
+<IMG WIDTH=94 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline2915" SRC="img32.gif"> and <IMG WIDTH=77 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline2917" SRC="img33.gif">.  Lines of
+constant <IMG WIDTH=9 HEIGHT=17 ALIGN=MIDDLE ALT="tex2html_wrap_inline2919" SRC="img34.gif"> are great circles perpendicular to the survey equator
+and lines of constant <IMG WIDTH=8 HEIGHT=12 ALIGN=BOTTOM ALT="tex2html_wrap_inline2921" SRC="img35.gif"> are small circles parallel to the
+survey equator.  <IMG WIDTH=47 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline2923" SRC="img36.gif">, <IMG WIDTH=47 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline2925" SRC="img37.gif"> is located at
+<IMG WIDTH=94 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline2915" SRC="img32.gif">, <IMG WIDTH=95 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline2929" SRC="img38.gif">, with
+<IMG WIDTH=9 HEIGHT=17 ALIGN=MIDDLE ALT="tex2html_wrap_inline2919" SRC="img34.gif"> increasing northward.
+<P>
+The survey area is divided into stripes, where each stripe is centered
+along a line of constant <IMG WIDTH=9 HEIGHT=17 ALIGN=MIDDLE ALT="tex2html_wrap_inline2919" SRC="img34.gif">, separated from the adjoining
+stripe(s) by <IMG WIDTH=27 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline2935" SRC="img39.gif">.  Each drift scan tracks a survey stripe,
+offset by <IMG WIDTH=38 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline2937" SRC="img40.gif">&nbsp;arcsec perpendicular to the stripe.  Two scans (or
+``strips''), one offset to the north and one to the south, are
+required to fill a stripe.  
+The survey latitude tracked by stripe
+<I>n</I> is given by
+<BR><IMG WIDTH=500 HEIGHT=17 ALIGN=BOTTOM ALT="equation382" SRC="img41.gif"><BR>
+in the Northern Galactic Hemisphere, and 
+<BR><IMG WIDTH=500 HEIGHT=17 ALIGN=BOTTOM ALT="equation384" SRC="img42.gif"><BR>
+for the three stripes in the Southern Galactic hemisphere.  
+These stripes are superimposed on a Galactic extinction map in
+Figure&nbsp;2 of york00.
+<P>
+The natural coordinate system to use for processing a given drift scan is the
+<EM>great circle coordinate system</EM> for that stripe, <IMG WIDTH=39 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline2941" SRC="img43.gif">, in which the
+equator of the coordinate system is the great circle tracked by the scan.
+This great circle is inclined by <IMG WIDTH=96 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline2943" SRC="img44.gif"> to the J2000
+celestial
+equator, with an ascending node of <IMG WIDTH=22 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline2945" SRC="img45.gif">.  <IMG WIDTH=45 HEIGHT=17 ALIGN=MIDDLE ALT="tex2html_wrap_inline2947" SRC="img46.gif"> at the
+ascending node.  <IMG WIDTH=10 HEIGHT=17 ALIGN=MIDDLE ALT="tex2html_wrap_inline2949" SRC="img47.gif"> increases in the scan direction (east) and <IMG WIDTH=8 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline2951" SRC="img48.gif">
+increases to the north.  Each stripe has its own great circle coordinate
+system.
+<P>
+For reference, the equations to transform among the different coordinate
+systems are:
+<P>
+<BR><IMG WIDTH=500 HEIGHT=136 ALIGN=BOTTOM ALT="eqnarray388" SRC="img49.gif"><BR><BR> <HR>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

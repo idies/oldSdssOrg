@@ -1,0 +1,43 @@
+#XSTART ASCII 
+# 4
+# "field" "segment.run" "segment.rerun" "segment.camCol"
+# int int int int
+# %d %d %d %d
+#XEND
+#QSTART
+# select field,segment.run,segment.rerun,segment.camCol from Field where 
+# field>=300 && field < 305 && segment.run = 752
+# ;
+#QEND
+#BEGIN OUTPUT fermiEDR@sdssdp5.fnal.gov(131.225.7.73):1510  v2_3_16a   Fri Feb 15 12:56:03 2002
+304 752 40 6
+302 752 40 6
+303 752 40 6
+301 752 40 6
+300 752 40 6
+303 752 40 5
+304 752 40 5
+302 752 40 5
+301 752 40 5
+300 752 40 5
+304 752 40 4
+302 752 40 4
+300 752 40 4
+303 752 40 4
+301 752 40 4
+304 752 40 3
+302 752 40 3
+303 752 40 3
+301 752 40 3
+300 752 40 3
+303 752 40 2
+301 752 40 2
+304 752 40 2
+302 752 40 2
+300 752 40 2
+304 752 40 1
+303 752 40 1
+301 752 40 1
+302 752 40 1
+300 752 40 1
+#END OUTPUT  30 objects 330 bytes Fri Feb 15 12:56:15 2002

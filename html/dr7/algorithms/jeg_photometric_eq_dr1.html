@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>SDSS Photometric Equations</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<H1>SDSS Photometric Equations</H1>
+
+The version of the photometric equations used since DR1 for calibrating
+<a href="../glossary/index.html#secondary_patch"> Secondary Patches</a> 
+observed by the 
+<a href="../glossary/index.html#photo_tel">SDSS Photometric Telescope (or PT)</a> 
+come in two parts:
+
+<ol>
+  <li> equations for calibrating PT instrumental magnitudes to u'g'r'i'z' magnitudes
+       using the <a href=./standardstars/index.html>u'g'r'i'z' primary standard star network</a>, and 
+  <li> equations for transforming u'g'r'i'z' magnitudes to magnitudes in the ugriz 
+       SDSS 2.5m "natural" system.
+</ol>
+
+We describe each set of equations in turn below.
+
+Further details of these two sets of equations can be found in the
+Photometry White Paper by Gunn, Hogg, Finkbeiner, and Schlegel 
+at <a href=./sdssphot.ps>this URL</a>
+
+
+
+
+<H2>Calibrating instrumental magnitudes to the u'g'r'i'z' system</H2>
+
+<P>
+
+Each night's observations of the 
+<a href="./standardstars/index.html">
+u'g'r'i'z' primary standard stars</a> are fit to the following
+equations to determine values of the photometric zeropoints,
+first-order extinctions, and (optionally) the instrumental and
+atmospheric color terms:
+
+<PRE>
+  u'_inst = u' + a_u + b_u*[(u'-g')-(u'-g')_zp] + c_u*[(u'-g')-(u'-g')_zp]*(X-X_zp) + k_u*X
+  g'_inst = g' + a_g + b_g*[(g'-r')-(g'-r')_zp] + c_g*[(g'-r')-(g'-r')_zp]*(X-X_zp) + k_g*X
+  r'_inst = r' + a_r + b_r*[(r'-i')-(r'-i')_zp] + c_r*[(r'-i')-(r'-i')_zp]*(X-X_zp) + k_r*X
+  i'_inst = i' + a_i + b_i*[(r'-i')-(r'-i')_zp] + c_i*[(r'-i')-(r'-i')_zp]*(X-X_zp) + k_i*X
+  z'_inst = z' + a_z + b_z*[(i'-z')-(i'-z')_zp] + c_z*[(i'-z')-(i'-z')_zp]*(X-X_zp) + k_z*X
+</PRE>
+
+Furthermore, these equations are then applied to the secondary patch
+stars to convert their instrumental magnitudes to calibrated
+u'g'r'i'z' magnitudes.  This step is performed iteratively until 
+the calibrated u'g'r'i'z' magnitudes have converged.
+
+The variables are defined as follows:
+
+<PRE>
+  u'_inst     |  These are the instrumental magnitudes --
+  g'_inst     |     -2.5log(counts/sec)
+  r'_inst     |  -- in each of the u'g'r'i'z' filters.
+  i'_inst     |
+  z'_inst     |
+
+  u'          |
+  g'          |  The standard magnitudes for the standard star
+  r'          |  in each of the u'g'r'i'z' filters.
+  i'          |
+  z'          |
+
+  a_u         |
+  a_g         |  These are the photometric zeropoints  
+  a_r         |  in each of the u'g'r'i'z' filters.
+  a_i         |
+  a_z         |
+
+  b_u         |
+  b_g         |  These are the instrumental color term coefficients
+  b_r         |  for each of the u'g'r'i'z' filters.
+  b_i         |  
+  b_z         |  
+
+  c_u         |
+  c_g         |  These are the atmospheric colors term coeffiecients)
+  c_r         |  (aka, second order extinctions)
+  c_i         |  for each of the u'g'r'i'z' filters.
+  c_z         |
+
+  (u'-g')     |  
+  (g'-r')     |  The standard colors of the standard star.
+  (r'-i')     |  
+  (i'-z')     |  
+
+  (u'-g')_zp  |  
+  (g'-r')_zp  |  The calibrated zeropoint -- or "crossing" -- colors 
+  (r'-i')_zp  |  for the instrumental and atmospheric color terms (see below).
+  (i'-z')_zp  |  
+
+  X           |  The airmass of the observation.
+
+  X_zp        |  The zeropoint airmass for the atmospheric color term
+              |  (see below).
+
+  k_u         |
+  k_g         |  The first-order extinction coefficients 
+  k_r         |  for each of the u'g'r'i'z' filters.
+  k_i         |
+  k_z         |
+</PRE>
+
+
+The zeropoint -- or "crossing" -- colors are DEFINED to have the following values:
+
+<PRE>
+  (u'-g')_zp = 1.39     |  the values were defined
+  (g'-r')_zp = 0.53     |  in a manner so that they
+  (r'-i')_zp = 0.21     |  would be close to the mean
+  (i'-z')_zp = 0.09     |  colors of the u'g'r'i'z' 
+                        |  standard stars under the 
+                        |  color cuts described below
+</PRE>
+
+The zeropoint airmass is DEFINED to be
+
+<PRE>
+  X_zp = 1.30           |  this is roughly the expected 
+                        |  mean airmass of the SDSS
+</PRE>  
+
+The b term coefficients for the new PT filter set (installed August 2001) are:
+
+<PRE>
+  b_u =  0.001
+  b_g = -0.041
+  b_r =  0.009
+  b_i =  0.010
+  b_z =  0.002
+</PRE>
+
+These b terms coefficents showed seasonal variability for the previous
+PT filter set; darkrun-by-darkrun values can be found at 
+<a href=./bterms.apo20_to_usno_dr1.par>this URL</a>.
+(In standard processing of the pre-filter change data, the b terms 
+are linearly interpolated from the darkrun-by-darkrun values in this 
+table to the night of the PT observation.)
+
+The c term coefficients are typically quite small (|c| < 0.02); 
+for the purposes of SDSS calibration, they have been set to 
+zero exactly for all five filters:
+
+<PRE>
+  c_u =  0.000
+  c_g =  0.000
+  c_r =  0.000
+  c_i =  0.000
+  c_z =  0.000
+</PRE>
+
+For SDSS calibration, the following color cuts are also imposed:
+
+<PRE>
+   0.70 <= u'-g' <= 2.70 &&
+   0.15 <= g'-r' <= 1.20 && 
+  -0.10 <= r'-i' <= 0.60 && 
+  -0.20 <= i'-z' <= 0.40
+</PRE>
+
+The redward cuts are imposed because the u'g'r'i'z' standard star
+system is not well-determined for stars redder than about M0.  The
+blueward cuts are imposed in order to avoid stars with large Balmer
+discontinuities and very cool stars which have blue colors due to
+molecular absorption.  In general non-SDSS practice, it is generally
+safe to calibrate blueward of the blue limits; matters fall apart, 
+however, much more quickly beyond the redward cuts.
+
+
+
+<a name="usno2SDSS"></a><H2>Converting from u'g'r'i'z' magnitudes to SDSS 2.5m ugriz magnitudes</H2>
+
+To convert from u'g'r'i'z' to 2.5m ugriz:
+
+<pre>
+  u(2.5m) = u' - b25(u)*( (u'-g')-(u'-g')_zp ) + zpOffset25(u)
+  g(2.5m) = g' - b25(g)*( (g'-r')-(g'-r')_zp ) + zpOffset25(g)
+  r(2.5m) = r' - b25(r)*( (r'-i')-(r'-i')_zp ) + zpOffset25(r)
+  i(2.5m) = i' - b25(i)*( (r'-i')-(r'-i')_zp ) + zpOffset25(i)
+  z(2.5m) = z' - b25(z)*( (i'-z')-(i'-z')_zp ) + zpOffset25(z)
+</pre>
+
+where
+
+<pre>
+   b25(u) =  0.000
+   b25(g) = -0.060
+   b25(r) = -0.035
+   b25(i) = -0.041
+   b25(z) =  0.030
+
+  (u'-g')_zp = 1.39  |
+  (g'-r')_zp = 0.53  | these have the same values
+  (r'-i')_zp = 0.21  |      as in the previous eqn.
+  (i'-z')_zp = 0.09  |
+</pre>
+
+
+Fortunately, all the zpOffset25's are
+
+<pre>
+  zpOffset25(u) = 0.000
+  zpOffset25(g) = 0.000
+  zpOffset25(r) = 0.000
+  zpOffset25(i) = 0.000
+  zpOffset25(z) = 0.000
+</pre>
+
+
+
+<H2>Converting from SDSS 2.5m ugriz magnitudes to AB magnitudes</H2>
+
+<p>See the separate section on <a
+href="./fluxcal.html#sdss2ab">conversion from SDSS to AB magnitudes</a>.</p>
+
+</pre>
+
+<hr>
+<!-- hhmts start -->Last modified: Wed Jun 15 20:34:01 CDT 2005
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

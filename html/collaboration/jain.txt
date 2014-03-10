@@ -1,0 +1,110 @@
+I would like to apply for External Collaborator status 
+in the SDSS to continue working on projects I started when 
+I was a postdoc at Johns Hopkins University from September 1997 to 
+December 2000. I am currently at the University of Pennsylvania. 
+
+I have shown the following statement to Josh Frieman and Alex Szalay, 
+since it is in the area of large-scale structure. 
+
+My work in SDSS projects has been in two areas: 1. Weak gravitational
+lensing, and, 2. Angular clustering of galaxies. I have developed mock
+catalogs and written software for the analysis of data in these two
+areas, as detailed below. 
+
+1. Weak gravitational lensing. 
+In 1997 when I joined the SDSS lensing effort, it was unclear which if 
+any direction in weak lensing would yield detections and useful 
+science. Beginning with the weak lensing meeting at Ann Arbor
+in the fall of 1997, I developed mock catalogs of shear fields to figure
+out what statistics one could measure with adequate signal to noise if
+systematics were well controlled. I used redshift distributions of
+source galaxies expected from the imagining survey and ran ray tracing
+simulations to generate mock catalogs for different cosmological
+models. These catalogs combined adequate small scale resolution with 
+the wide area coverage that the SDSS provides and used the N-body 
+simulations of the Virgo consortium to which I had access (they have 
+since been made public). 
+
+The SDSS dataset is quite different from the typical deep imaging
+survey used for weak lensing. The simulated catalogs gave a
+concrete feeling for what morphological structures one could expect
+to see with adequate signal to noise given the comparatively low 
+galaxy number density and shallow depth of the SDSS. Shot noise and
+sample variance contributions to the errors expected on measurements
+of the shear variance and power spectrum were estimated and compared
+to analytical estimates based on Gaussian statistics. 
+
+The first lensing measurement made with the SDSS was of galaxy-galaxy
+lensing in 1999. I adapted the mock catalogs to be useful for estimating
+noise and neighboring galaxy contributions in the galaxy-galaxy lensing
+measurement. I provided the catalogs on a web site and wrote 
+documentation and reading programs to make it easy to use and summarized
+them in email messages on sdss-weaklens. The catalogs were not, as far
+as I know, used much owing perhaps to geography: I was working 
+at Hopkins while the bulk of the data analysis was done at Ann Arbor 
+and Chicago. 
+
+In parallel with the effort on shear measurements, I worked with Alex
+Szalay and Andy Connolly on developing magnification as a way of 
+measuring lensing. This is complementary to the shear approach and is 
+affected by somewhat different systematics in the data (photometric 
+calibration as opposed to psf anisotropy). While testing the angular 
+clustering properties of the commissioning data, we found what appeared 
+to be a lensing signal in the cross-correlation of low-z and high-z 
+galaxy populations. I worked on adapting the angular correlation code 
+to measure such cross-correlations and on testing it extensively. These 
+tests were valuable in interpreting both the angular clustering of 
+galaxies and the lensing cross-correlation. 
+I also worked on the theoretical predictions and signal to noise
+estimates of the lensing measurement. The cross-correlation is 
+sensitive to errors in the photometric redshifts and we were able to 
+estimate the level of photo-z contamination in the sample through the 
+cross-correlation measurement. With Rita Kim initially, I worked on 
+measuring the qso-galaxy cross-correlation as a similar measure of 
+magnification bias. This work has now been merged with the efforts of 
+Ryan Scranton and others. I also began work with Alex Szalay, Tim
+Mckay and Narciso Benitez to detect magnification bias from the galaxy
+clusters which were used to measure shear. I have repeated on two 
+occasions the cross-correlation measurements and testing of photo-z's 
+and color cuts through them with newer versions of photo. 
+
+I have recently worked with Ravi Sheth and Ryan Scranton on theoretical
+predictions of magnfication bias as measurable from the galaxy-galaxy
+and qso-galaxy cross-correlations in the SDSS. These predictions address
+a drawback in all previous theoretical work in this field: that only
+models of the dark matter were used, coupled with simple linear bias
+models, to predict correlations that are fundamentally different from 
+biased matter correlations. We have used a halo model and the GIF 
+simulations to model SDSS galaxies and found differences from all 
+previous work that would be valuable in interpreting the data. Further
+we estimated the signal-to-noise for SDSS data expected for both the 
+galaxy-galaxy and qso-galaxy magnification bias cross-correlations. 
+
+2. Angular clustering of galaxies. 
+Since January 1998 I have worked on the measurement of clustering
+parameters of the power spectrum through the angular clustering of 
+galaxies. My main project has been the development of a Karhunen-Loeve
+code with Alex Szalay. This code has been refined and tested over the 
+past two years and has been applied to measure the sigma8 and gamma 
+parameters from the commissioning data. Over the summer of 1998, I
+also worked with David Weinberg, Shaun Cole at Durham, and Naoki
+Yoshida at MPA, to develop mock catalogs for the imaging survey. 
+Existing mock catalogs at that time were designed for the shallower 
+spectroscopic survey, so there was a need to develop mocks for the 
+imaging survey. My role was not in developing the catalogs (which was 
+done by Cole and Yoshida), but in supplying the selection function 
+and goemetry and in testing the results. 
+
+I would like to request external collaborator status in the lensing 
+and clustering projects I have contributed to. 
+
+1. Angular cross-correlations to measure magnification bias: principally
+to continue my work on low and high redshift galaxy correlations and 
+qso-galaxy correlations. 
+2. Angular clustering: to continue work on the measurement of clustering
+and its evolution through the KL approach. 
+3. Weak lensing: development of detailed mock catalogs and combination 
+of shear and magnification measurements. 
+
+Thanks,
+Bhuvnesh Jain

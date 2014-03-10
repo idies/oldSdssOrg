@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SDSS Data Release 7 (public legacy release)</title>
+<link rel="stylesheet" type="text/css" href="index_files/sdss.css">
+</head><body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0"><tbody><tr>
+	<td colspan="5" bgcolor="#6352c7"><img alt="" src="index_files/hpHdrRel7.gif" border="0" height="104" width="760"></td>
+	<td class="colorborder" width="5"><img src="index_files/spacer.gif" alt="" border="0" height="1" width="5"></td>
+</tr><tr>
+	<td bgcolor="#000000" valign="top" width="132">
+<!--Begin menubar for entry page (no link to "home"; from leftside-top.html)-->
+		<table border="0" cellpadding="0" cellspacing="0" width="134"><tbody><tr>
+			<td class="divider"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="1"></td>
+		</tr><tr>
+			<td class="linkcell"><a href="http://www-sdss.fnal.gov/%7Esdssdp/dr7web/about.html" class="none"><span class="link">About SDSS</span></a></td>
+		</tr><tr>
+			<td class="divider"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="1"></td>
+		</tr><tr>
+			<td class="linkcell">&nbsp;&nbsp;&nbsp;<a href="http://www-sdss.fnal.gov/%7Esdssdp/dr7web/credits.html" class="none"><span class="link">Credits</span></a></td>
+		</tr><tr>
+			<td class="divider"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="1"></td>
+		</tr><tr>
+			<td class="linkcell"><a  class="none"><span class="link">Data Access</span></a></td>
+		</tr><tr>
+			<td class="divider"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="1"></td>
+		</tr><tr>
+			<td class="linkcell">&nbsp;&nbsp;&nbsp;<a href="http://sdssdp47.fnal.gov/sdsssn/snlist_confirmed.php" class="none"><span class="link">Confirmed SNe</span></a></td>
+		</tr><tr>
+			<td class="divider"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="1"></td>
+		</tr><tr>
+			<td class="linkcell">&nbsp;&nbsp;&nbsp;<a href="http://www.sdss.org/drsn/DRSN_data_release.html" class="none"><span class="link">File Access</span></a></td>
+		</tr><tr>
+			<td class="divider"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="1"></td>
+		</tr><tr>
+			<td class="linkcell"><a href="http://www-sdss.fnal.gov/%7Esdssdp/dr7web/search.html" class="none"><span class="link">Search</span></a></td>
+		</tr><tr>
+			<td class="divider"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="1"></td>
+		</tr><tr>
+			<td class="linkcell"><a href="http://www.lib.uchicago.edu/e/ask/SDSSask.html" class="none"><span class="link">Contact Helpdesk</span></a></td>
+		</tr><tr>
+			<td class="divider"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="1"></td>
+		</tr><tr>
+			<td class="linkcell"><a href="http://www.sdss3.org/" class="none"><span class="link">SDSS-III</span></a></td>
+		</tr>
+		
+		
+		
+		<tr>
+			<td><img alt="" src="index_files/menuBottom.gif" border="0" height="6" width="132"></td>
+		</tr><tr>
+			<td><img alt="" src="index_files/fields.gif" border="0" height="103" width="132"></td>
+		</tr>
+	  </tbody></table>
+<!--End menu bar-->
+	</td>
+	<td class="colorborder" width="5"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="5"></td>
+	<td valign="top">
+		<table border="0" cellpadding="8" cellspacing="0"><tbody><tr>
+			<td class="body">
+
+
+<p>
+The SDSS Supernova Survey is part of SDSS II, a 3-year extension of the original SDSS.
+Operations ran from began July 2005 and till 
+July 2008. This time-domain 
+survey involved repeat imaging of the same region of sky every 
+other night. The primary scientific motivation 
+was to detect and measure light curves for a large number of supernovae. 
+Through repeat scans of the SDSS Southern equatorial 
+stripe (about 2.5&deg wide by ~120&deg long) <p>
+Over the course of 
+three 3-month campaigns (Sept-Nov. 2005-7), 
+we discovered and measured multi-band 
+lightcurves for ~500 spectroscopically confirmed Type Ia supernovae in the redshift range z=0.05-0.4. 
+In addition, we harvested a few hundred light curves for SNe Ia that we did not have the 
+opportunity to spectroscopically confirm, but for which we are measuring host-galaxy redshifts 
+after the fact. The survey also discovered on the order of 100 spectroscopically confirmed 
+core-collapse supernovae (supernova types Ib/c and II). <p>
+All SN candidates were made publicly 
+available instantly via the web and via <a href=http://voeventnet.caltech.edu/>VOEventNet</a>. All confirmed and likely SNe were announced 
+rapidly in <a href=http://cfa-www.harvard.edu/iau/cbat.html>Central Bureau for Electronic Telegrams circulars</a>.<p>
+This sample, with excellent photometric calibration, should provide 
+new constraints on the dark energy and insights into systematics of 
+SNe Ia as calibrated standard candles. It complements recent surveys 
+that have targeted both lower and higher redshift regimes.
+The collaboration carried out rapid spectroscopic follow-up 
+on other telescopes for the vast majority of  high-quality SN Ia candidates, with 
+the aim of confirming SN type and determining host galaxy redshift.
+In addition, we carried out multi-epoch spectrophotometry for 
+a subsample, with the aim of deriving improved SN K-corrections and 
+studying the spectroscopic diversity of the SN Ia population. <p>
+
+
+<hr>
+<address>
+<!-- Warning the parse_this is used in bin/webPublish.sh -->
+This is version <!-- parse_this -->  v7_20080917_1508 . <!-- Done with reporting the version. -->
+This page was last modified on $Date: 2009/10/13 20:28:10 $ (UT).
+<!-- Created: Tue Jul 30 21:49:21 DST 2002 -->
+
+<p>If you are using Netscape 4.x and see oversized fonts, please look at the <a href="http://www-sdss.fnal.gov/%7Esdssdp/dr7web/coverage/credits.html#website">workaround on the Credits page</a>.</p></address>
+</td>
+</tr>
+</tbody></table>
+<img alt="" src="index_files/spacer.gif" border="0" height="1" width="314"></td>
+<td align="center" bgcolor="#dddddd" valign="top" width="304">
+    <table border="0" cellpadding="8" cellspacing="0" width="132">
+      <tbody><tr>
+	<td class="newsBox"><strong>News</strong>
+	    <p>The DRSN has been updated thru SN season 3(Fall 2007)
+            </p>
+	  	    <a href="http://www-sdss.fnal.gov/%7Esdssdp/dr7web/news/index.html">More details...</a>
+	</td>
+      </tr>
+    <tr>
+<td><a href="sdsssn/gallery/sn_gallery.20056.Ia_only.x2.oname.jpg"> <img src="sdsssn/gallery/sn_gallery.20056.Ia_only.x2.oname_sm.jpg" alt="Imaging Sky Image" border="0"> </a>
+	  <table border="0" cellpadding="2" cellspacing="0" width="272"><tbody><tr>
+	    <td class="infoBoxes">
+	      Type Ia Supernovae from the 2005-2006 observing campaigns.
+	    </td>
+	  </tr></tbody></table>
+	  <br>
+<a href="sdsssn/gallery/sn_gallery.200567.x2.oname.jpg"> <img src="sdsssn/gallery/sn_gallery.200567.x2.oname_sm.jpg" alt="Imaging Sky Image" border="0"> </a>
+	  <table border="0" cellpadding="2" cellspacing="0" width="272"><tbody><tr>
+	    <td class="infoBoxes">
+	      All Supernovae from the 2005-2007 observing campaigns.
+	    </td>
+	  </tr></tbody></table>
+	  <br>
+
+	  
+     </td>
+	  
+    </tr></tbody></table>
+    <img alt="" src="index_files/spacer.gif" border="0" height="1" width="304"></td>
+<td class="colorborder" width="5"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="5"></td>
+</tr><tr>
+  <td class="footer">&nbsp;</td>
+  <td class="colorborder" width="5"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="5"></td>
+  <td colspan="2" class="footer">&nbsp;&nbsp;Submit your questions to 
+  <a href="http://www.lib.uchicago.edu/e/ask/SDSSask.html">
+  the SDSS helpdesk</a>&nbsp;&nbsp;</td>
+  <td class="colorborder" width="5"><img alt="" src="index_files/spacer.gif" border="0" height="1" width="5"></td>
+</tr></tbody></table>
+
+</body></html>

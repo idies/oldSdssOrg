@@ -1,0 +1,595 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <META NAME="Template" CONTENT="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+   <META NAME="Author" CONTENT="William N. Boroski">
+   <TITLE>Telescope Servo System Commissioning</TITLE>
+</HEAD>
+<BODY LINK="#0000FF" VLINK="#800080">
+
+<DIV ALIGN=right>TR-98020</DIV>
+
+<CENTER></CENTER>
+
+<CENTER><B>SDSS Trip Report</B>&nbsp;<BR></CENTER>
+
+<CENTER></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Telescope Servo System Commissioning<BR>
+</FONT>May 12-16, 1998</B></CENTER>
+
+<CENTER></CENTER>
+
+<CENTER><BR>
+Claudio Rivetta and Charlie Briegel<BR>
+Fermi National Accelerator Laboratory</CENTER>
+
+<CENTER>Batavia, IL&nbsp;&nbsp; USA&nbsp;&nbsp;&nbsp; 60510</CENTER>
+
+<CENTER></CENTER>
+
+<HR SIZE="4" WIDTH="100%">
+
+<P>&nbsp;
+<BR>The purpose of this trip to APO was to 1) resolve problems encountered
+with the telescope servo system encoders; 2) improve the tuning on the
+telescope altitude axis servo loop; and 3) refine the performance of the
+rotator and azimuth axis servo loops.
+<BR>&nbsp;
+
+<P><FONT SIZE=+1><B>Wednesday, May 13</B></FONT>
+
+<P>On Wednesday, we started working on the rotator servo system. Two problems
+had been identified with the rotator servo: 1) missed counts on the encoder
+at velocities greater than 10x sidereal rate; and 2) slippage between the
+drive motor capstan and the rotator disk. The first problem was the result
+of switch settings inside the encoder interpolator. At the given switch
+settings, the gain of the interpolator was set at 100, the maximum input
+frequency at 22KHz, and the output pulse edge separation at 80 ns. This
+last parameter is below the minimum pulse separation of 200 ns specified
+for the MEI controller and appears to be the reason why the MEI controller
+was missing counts. Table 1 lists the possible interpolator configurations
+based on internal hardware switch settings.
+
+<P>We changed the interpolator switch settings to obtain a gain of 25,
+a maximum input frequency of 22 KHz, and an output edge separation of 380
+ns. With these interpolator settings, we tested position repeatability
+of the rotator by watching encoder output as we moved the rotator back
+and forth between two indicator marks we placed on the axis. We had good
+agreement between the actual position and that indicated on the CRT display.
+
+<P>To convert encoder counts to engineering units at the drive disk, we
+used the nominal diameter values for the rotator drive disk, drive capstan,
+and encoder capstan. We realize this may introduce some error in the position
+readings if the actual diameters vary from these nominal values. Therefore,
+we need to verify the actual diameters and then recalibrate the system.<BR>
+<BR>
+<CENTER><BR>
+<BR>
+<B>Table 1. Heidenhain EXE 600 Interpolator Switch Settings</B></CENTER>
+&nbsp;
+<CENTER><TABLE BORDER CELLPADDING=7 WIDTH="576" HEIGHT="554" >
+<TR>
+<TD VALIGN=TOP WIDTH="9%" HEIGHT="38" BGCOLOR="#FAE1AF">
+<CENTER></CENTER>
+
+<CENTER><B>Gain</B>&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="38" BGCOLOR="#FAE1AF">
+<CENTER><B>Max. Input Frequency</B>&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="38" BGCOLOR="#FAE1AF">
+<CENTER><B>Output Clock Frequency</B>&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="38" BGCOLOR="#FAE1AF">
+<CENTER><B>Minimum Output Edge Separation</B>&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP COLSPAN="4" WIDTH="25%" HEIGHT="38" BGCOLOR="#FAE1AF">
+<CENTER></CENTER>
+
+<CENTER><B>Switch</B>&nbsp;</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="9%" HEIGHT="19" BGCOLOR="#FAE1AF">
+<CENTER><B>(1)</B>&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19" BGCOLOR="#FAE1AF">
+<CENTER><B>(kHz)</B>&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19" BGCOLOR="#FAE1AF">
+<CENTER><B>(MHz)</B>&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19" BGCOLOR="#FAE1AF">
+<CENTER><B>(ns)</B>&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19" BGCOLOR="#FAE1AF">
+<CENTER><B>S5</B>&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19" BGCOLOR="#FAE1AF">
+<CENTER><B>S6</B>&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19" BGCOLOR="#FAE1AF">
+<CENTER><B>S7</B>&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19" BGCOLOR="#FAE1AF">
+<CENTER><B>S8</B>&nbsp;</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER ROWSPAN="3" WIDTH="9%" HEIGHT="57">
+<CENTER>100&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19">
+<CENTER>22&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19">
+<CENTER>10&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19">
+<CENTER>80&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19">
+<CENTER>11&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19">
+<CENTER>5&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19">
+<CENTER>180&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19">
+<CENTER>6&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19">
+<CENTER>2.5&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19">
+<CENTER>380&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP COLSPAN="8" WIDTH="99%" HEIGHT="6"></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER ROWSPAN="4" WIDTH="9%" HEIGHT="76">
+<CENTER>&nbsp;50&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19">
+<CENTER>43&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19">
+<CENTER>10&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19">
+<CENTER>80&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19">
+<CENTER>22&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19">
+<CENTER>5&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19">
+<CENTER>180&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19">
+<CENTER>11&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19">
+<CENTER>2.5&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19">
+<CENTER>380&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19">
+<CENTER>6&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19">
+<CENTER>1.25&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19">
+<CENTER>780&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP COLSPAN="8" WIDTH="99%" HEIGHT="6"></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER ROWSPAN="4" WIDTH="9%" HEIGHT="76">
+<CENTER>25&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19">
+<CENTER>43&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19">
+<CENTER>5&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19">
+<CENTER>180&nbsp;</CENTER>
+</TD>
+
+<TD ALIGN=CENTER VALIGN=TOP WIDTH="6%" HEIGHT="19">o</TD>
+
+<TD ALIGN=CENTER VALIGN=TOP WIDTH="6%" HEIGHT="19">o</TD>
+
+<TD ALIGN=CENTER VALIGN=TOP WIDTH="6%" HEIGHT="19">o</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19">
+<CENTER>22&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19">
+<CENTER>2.5&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19">
+<CENTER>380&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>o</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19">
+<CENTER>11&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19">
+<CENTER>1.25&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19">
+<CENTER>780&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x&nbsp;</CENTER>
+</TD>
+
+<TD ALIGN=CENTER VALIGN=TOP WIDTH="6%" HEIGHT="19">o</TD>
+
+<TD ALIGN=CENTER VALIGN=TOP WIDTH="6%" HEIGHT="19">o</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="21%" HEIGHT="19">
+<CENTER>6&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="22%" HEIGHT="19">
+<CENTER>0.625&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="23%" HEIGHT="19">
+<CENTER>1580&nbsp;</CENTER>
+</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD ALIGN=CENTER VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+
+<TD ALIGN=CENTER VALIGN=TOP WIDTH="6%" HEIGHT="19">o</TD>
+
+<TD VALIGN=TOP WIDTH="6%" HEIGHT="19">
+<CENTER>x</CENTER>
+</TD>
+</TR>
+</TABLE></CENTER>
+&nbsp;&nbsp;
+
+<P>The second problem with the rotator axis involved slippage between the
+drive capstan and drive disk. We tried to address this problem by re-adjusting
+the preload on the rotator drive capstan. We worried that the preload had
+not been properly readjusted after the last set of friction measurements
+was made on the rotator harmonic drive coupling. However, after verifying
+that the motor was properly preloaded, we saw that the capstan still slipped
+on the drive. Further inspection revealed that the slippage was caused
+by the rotator cable wrap. At certain positions, the rotator wrap tends
+to hang up on the rotator, which causes the rotator to stall. There is
+little we can do about this until the rotator cable wrap is reworked or
+a new cable wrap installed. Jon Davis is working on an interim fix until
+a permanent solution is found. We did verify that no damage was occurring
+to the drive disk as a result of the slippage.
+<BR>&nbsp;
+<BR>&nbsp;
+
+<P><FONT SIZE=+1><B>Thursday, May 14</B></FONT>
+
+<P>On Thursday, we worked on the altitude servo system. We set the interpolators
+for both encoders to a gain of 25, maximum input frequency of 22 KHz, and
+output edge separation of 380 ns. We also installed low-pass filters, with
+a bandwidth of approximately 200 Hz, in each power amplifier. This allowed
+us to increase the gain of the altitude PID loop, which resulted in a much
+stiffer axis. It should be noted that the integral term in the PID loop
+is currently set to zero. Additional work is necessary to fine-tune the
+integral term.
+
+<P>With the new interpolator settings and the low-pass filters, we tested
+the ability of the control system to hold altitude position by pulling
+on the end of the secondary truss with a spring scale. We exerted a maximum
+downward force of 30 pounds and saw that the telescope held its altitude
+position. This test indicates that the control loop will hold the altitude
+axis in position against reasonably high forces.
+
+<P>While we worked on the telescope controls, Paul Czarapata worked on
+the wind-baffle altitude axis servo system. He modified the LVDT connections
+to the wind-baffle servo system to eliminate a ground loop, and connected
+the new altitude motor/brake assembly to the drive amplifier. By the end
+of the day, work on the altitude axis was nearly finished.
+<BR>&nbsp;
+<BR>&nbsp;
+
+<P><FONT SIZE=+1><B>Friday, May 15.</B></FONT>
+
+<P>During the morning, Paul finished working on the altitude wind-baffle
+control system and connected the chain between the motor and the wind-baffle
+structure. The altitude wind-baffle servo was ready for testing. We once
+again tested the telescope altitude servo system by moving the telescope
+within the wind-baffle. We saw some high frequency oscillations in the
+altitude servo, which we removed by reducing the gain in the PID loop<B><I>.
+(Is this accurate?) </I>We also saw some low frequency perturbations that
+we were not able to remove.</B>
+
+<P>The weather at APO was clear with wind gusts on the order of 15-20 mph,
+so we decided to open the building to check the behavior of the telescope
+with wind perturbations. We moved the telescope in altitude and azimuth
+at several different velocities, ranging from sidereal rate to approximately
+1/10 of the maximum slew rate. Throughout these tests, the wind-baffle
+tracked the telescope without problems<I>.&nbsp; </I><B>The performance
+of the telescope servo system was almost the same as what we saw inside
+the building. The telescope held its position well, but the low frequency
+perturbations we saw inside the building were still present.</B>&nbsp;
+We also moved the telescope 20 degrees in altitude and saw that the encoder
+position agreed with the altitude clinometer to within 1 degree.
+
+<P>At about 5 PM, we closed the telescope enclosure and tried to understand
+why we had such oscillations in the control system. With the wind-baffle
+servo system turned off, we re-tuned the PD loop and the low pass filters
+in the amplifiers for both the altitude and azimuth axes. With the wind
+-baffle servo turned on, we observed that noise was being coupled to the
+telescope control system. This appears to be causing the low-frequency
+perturbations we are seeing in the telescope controls and is a problem
+we will have to address during our next trip.
+<BR>&nbsp;
+<BR>&nbsp;
+
+<P><FONT SIZE=+1><B>Saturday, May 16.</B></FONT>
+
+<P>On Saturday morning, we once again tested the altitude and azimuth axes.
+We worked some more on the missing count problem to better understand if
+we can use a gain of 100 with the MEI controller. We determined that at
+a maximum velocity of 3.5 degrees/sec, the maximum output frequency delivered
+by the encoders will be about 10 kHz. If the interpolators are set to a
+maximum input frequency of 11 kHz and gain of 50, the output pulses to
+the MEI controller will have a separation of 380 ns, which the MEI can
+read without problem. With an interpolator gain of 100, the minimum separation
+drops to 180ns, which is slightly below the 200 ns minimum&nbsp; specified
+by the controller and may lead to dropped counts by the MEI.
+
+<P>We tested this on the rotator by setting the interpolator gain to 100,&nbsp;
+the input frequency to 11 kHz, and the output pulse separation to 180 ns.&nbsp;
+Moving the rotator back and forth several time, we saw an average error
+of a few minutes over 60 degrees of motion.&nbsp; We are not sure, however,
+whether the discrepancy was due to missed counts or to the accuracy of
+the marks that we placed on the rotator.&nbsp; We started to run out of
+time at APO, so we will do more testing with the interpolator settings
+at Fermilab or at the Heidenhain branch office near Chicago to understand
+what the optimum settings should be for the interpolators.
+
+<P>Prior to leaving APO, we set the encoder interpolators for all three
+axes to a gain of 25, input frequency of 22 kHz, and minimum output pulse
+edge separation to 380 ns. With these settings, the MEI controller should
+not lose counts under normal telescope motions. It is possible that counts
+will be lost, however, if the telescope is moved by hand at velocities
+exceeding 6 degrees/sec.
+
+<P>The control system is currently capable of closing on position in all
+three axes.&nbsp; Expected position error at this time is on the order
+of 1000 encoder counts.&nbsp; With the interpolator gain set to 25, this
+equates to 14 mas at the altitude and azimuth drive disks.
+<BR>&nbsp;
+
+<P>
+<HR SIZE="4" WIDTH="100%">
+
+<P>Questions regarding this trip report should be addressed to <A HREF="mailto:rivetta@fnal.gov">Claudio
+Rivetta</A> at (630) 840-8035 or <A HREF="mailto:briegel@fnal.gov">Charlie
+Briegel</A> at (630) 840-4510.
+
+<P><I><FONT SIZE=-1>Last modified 05/27/98</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</BODY>
+</HTML>

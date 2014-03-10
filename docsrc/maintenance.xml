@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                         "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<article>
+<articleinfo>
+  <title>Maintenance of SDSS Web Pages at Fermilab</title>
+  <author>
+    <firstname>Eric</firstname>
+    <othername>H.</othername>
+    <surname>Neilsen</surname>
+    <lineage>Jr.</lineage>
+  </author>
+</articleinfo>
+
+<section><title>Introduction</title>
+
+<section><title>This Document</title>
+<para>The original of this document is maintained in DocBook, and
+can be converted into HTML using utilities that are part of the Scientific
+Linux base installation: 
+<screen><prompt>bash$ </prompt><userinput>docbook2html --nochunks webPageMaintetance.xml</userinput></screen> Other DocBook conversion
+utilities installed as part of Scientific
+
+Linux include <userinput>docbook2pdf</userinput>,
+<userinput>docbook2rtf</userinput>, <userinput>docbook2tex</userinput>, and
+<userinput>docbook2txt</userinput>, all of which are part of the
+<application>docbook-utils</application> <application>rpm</application>.</para>
+</section>
+
+<section><title>Overview</title>
+
+<para>There are four types of web pages hosted at Fermilab:</para>
+<variablelist>
+<varlistentry>
+  <term>collaboration resource web</term>
+  <listitem><para>Documentation intended for members of the SDSS collaboration.
+      Content resides in the crwstatic <application>CVS</application> product.
+  </para></listitem>
+</varlistentry>
+<varlistentry>
+  <term>sdss.org</term>
+  <listitem><para>Documentation intended for the general public,
+      including professional astronomers that are not members of
+      the collaboration.
+      Content resides in the sdssorg <application>CVS</application> product.
+  </para></listitem>
+</varlistentry>
+<varlistentry>
+  <term>Data Release pages</term>
+  <listitem><para>Documentation of the assorted data releases.
+      Content resides in the drweb <application>CVS</application> product.
+  </para></listitem>
+</varlistentry>
+<varlistentry>
+  <term>CAS</term>
+  <listitem><para>The Catalog Archive Server, the web front end to
+    the SDSS data itself. 
+    Content resides in the skyserver <application>CVS</application> product.
+  </para></listitem>
+</varlistentry>
+</variablelist>
+
+<para>Each of these four types of web pages has its own
+<application>CVS</application> product, and separate computers are
+used to serve each. Each product has its own scripts, some of them
+broken, used to maintain it, each written by different developers and
+following different conventions.</para>
+
+<para>The division of what goes in one site and what goes in another
+is not clean, and some content is even present, in different forms, on
+different sites. For example, a glossary is present in both the
+skyserver and the data release web pages, and the sources are in very
+different forms. Changes to the glossary must therefore be preformed
+twice. In other cases, there are pages on different sites that
+describe the same thing at roughly the same depth, but the text is
+completely different and changes are made separately.</para>
+
+<para>Two of the sites, sdss.org and the data release sites, are
+hosted by the central services computers at Fermilab. Publishing a
+page to one of these sites is a multistage process.</para>
+<procedure>
+
+<step><para>Copy your file or files into the development staging area
+in Fermilab AFS space. One machine that has the AFS file structure
+mounted is <systemitem class="systemname">fnalu.fnal.gov</systemitem>. A copy might look like this:
+<screen><prompt>bash$</prompt> <userinput>scp -r html fnalu:/afs/.fnal.gov/files/expwww/sdssdevel</userinput></screen></para></step>
+
+<step><para>
+You must use the <command>upd_volrelease</command> application
+to make this visible on the development site:
+<screen><prompt>bash$</prompt> <userinput>ssh fnalu /usr/local/bin/upd_volrelease /afs/fnal.gov/files/expwww/sdssdevel</userinput></screen></para></step>
+
+<step><para>
+If the pages are acceptable, copy the files into the staging 
+area of AFS space corresponding to the public web site:
+<screen><prompt>bash$</prompt> <userinput>scp -r html fnalu:/afs/.fnal.gov/files/expwww/sdss</userinput></screen></para></step>
+
+<step><para>
+and serve the new pages:
+<screen><prompt>bash$</prompt> <userinput>ssh fnalu /usr/local/bin/upd_volrelease /afs/fnal.gov/files/expwww/sdss</userinput></screen>
+
+</para>
+</step>
+
+
+</procedure>
+
+
+</section>
+
+</section>
+<section>
+
+<title>Collaboration Resource Web</title>
+
+<para>The crwstatic <application>CVS</application> product holds the static pages for this site, as well as
+the scripts used to generate the dynamic content. This content is served by
+these nodes:</para>
+<itemizedlist>
+  <listitem><para><systemitem class="systemname">sdsswww1.fnal.gov</systemitem></para></listitem>
+  <listitem><para><systemitem class="systemname">sdsswww2.fnal.gov</systemitem></para></listitem>
+</itemizedlist>
+
+<para>The content resides in 
+<filename class="directory">/export/data/www/data</filename>
+on each of these nodes. The contents of this directory must be the
+same on each machine.
+</para>
+
+<para>The <application>CVS</application> product contains a script, make_crw, that exports a fresh copy of
+crwstatic from the <application>CVS</application> repository and copies it and other files into
+appropriate places an the servers.</para>
+
+<para>Several pages on this site are updated thruogh cron jobs. The
+cron jobs previusly maintained by John Inkmann can still be found in
+<filename class="directory">~inkmann/sdsslnx5/cronjobs</filename></para>
+
+</section>
+<section>
+
+<title>sdss.org</title>
+
+<section><title>CVS Product</title>
+
+<para>The sdssorg <application>CVS</application> product holds the content served from
+sdss.org. The Fermilab <ulink type="html"
+url="http://www-oss.fnal.gov/csi/">Core Services and
+Infrastructure</ulink> group manages the web server for this
+site.</para>
+
+</section>
+
+<section><title>Updating the web pages served from sdss.org</title>
+
+<procedure>
+<step><para>Check all changes into <application>CVS</application>.</para></step>
+
+<step><para>Export the <application>CVS</application> product into an appropriate temporary directory:
+<screen><prompt>bash$</prompt> <userinput>mkdir /tmp/sdssorg-$version</userinput>
+<prompt>bash$</prompt> <userinput>cd /tmp/sdssorg-$version</userinput>
+<prompt>bash$</prompt> <userinput>cvs rtag -r $version sdssorg</userinput>
+<prompt>bash$</prompt> <userinput>cvs export -r $version sdssorg</userinput>
+<prompt>bash$</prompt> <userinput>cd sdssorg</userinput>
+</screen></para></step>
+
+<step><para>
+Copy the files into the editable area of AFS space corresponding
+to the development web site, <ulink type="html"
+url="http://devel.sdss.org">devel.sdss.org</ulink>:
+<screen><prompt>bash$</prompt> <userinput>scp -r html fnalu:/afs/.fnal.gov/files/expwww/sdssdevel</userinput></screen></para></step>
+
+<step><para>
+and serve the new pages on the development web site:
+<screen><prompt>bash$</prompt> <userinput>ssh fnalu /usr/local/bin/upd_volrelease /afs/fnal.gov/files/expwww/sdssdevel</userinput></screen></para></step>
+
+<step><para>
+If the pages are acceptable, copy the files into the editable
+area of AFS space corresponding to the public web site:
+<screen><prompt>bash$</prompt> <userinput>scp -r html fnalu:/afs/.fnal.gov/files/expwww/sdss</userinput></screen></para></step>
+
+<step><para>
+and serve the new pages:
+<screen><prompt>bash$</prompt> <userinput>ssh fnalu /usr/local/bin/upd_volrelease /afs/fnal.gov/files/expwww/sdss</userinput></screen></para></step>
+
+<step><para>
+You can now clean up <filename class="directory">/tmp</filename>:
+<screen><prompt>bash$</prompt> <userinput>cd /tmp</userinput>
+<prompt>bash$</prompt> <userinput>rm -r /tmp/sdssorg-$version</userinput></screen></para></step>
+</procedure>
+</section>
+
+<section>
+<title>Adding a new Image of the Week</title>
+
+<procedure>
+
+<step><para>Set environment variables to the object name and image
+source:
+<screen><prompt>bash$</prompt> <userinput>objname=<replaceable>M87</replaceable></userinput>
+<prompt>bash$</prompt> <userinput>imsrc=<replaceable>~/images/${objname}.jpeg</replaceable></userinput></screen>
+</para></step>
+
+<step><para>Check out the sdssorg <application>CVS</application>
+product and go to the iotw directory:
+<screen><prompt>bash$</prompt> <userinput>cvs co sdssorg</userinput>
+<prompt>bash$</prompt> <userinput>cd sdssorg/html/iotw</userinput></screen>
+</para></step>
+
+<step><para>Generate images of appropriate sizes for full display,
+thumbnail, and link from header:
+<screen><prompt>bash$</prompt> <userinput>convert -resize 192x192 $imsrc ${objname}_thumbnail.jpeg</userinput>
+<prompt>bash$</prompt> <userinput>convert -resize 80x80 $imsrc ${objname}_tiny.jpeg</userinput>
+<prompt>bash$</prompt> <userinput>convert -resize 512x512 $imsrc ${objname}.jpeg</userinput></screen></para></step>
+
+<step><para>Build the image link from the header:
+<screen><prompt>bash$</prompt> <userinput>cp iotw_template.png iotw_thumbnail.png</userinput>
+<prompt>bash$</prompt> <userinput>gimp iotw_thumbnail.png ${objname}_tiny.jpeg</userinput>
+<prompt>bash$</prompt> <userinput>rm ${objname}_tiny.jpeg</userinput></screen></para></step>
+
+<step><para>Write the caption:
+<screen><prompt>bash$</prompt> <userinput>emacs ${objname}.txt</userinput>
+</screen></para></step>
+
+<step><para>Edit the iotw main page:
+<screen><prompt>bash$</prompt> <userinput>emacs iotw.html</userinput>
+</screen></para></step>
+
+<step><para>Add the new object to the archive:
+<screen><prompt>bash$</prompt> <userinput>emacs archive.xml</userinput>
+<prompt>bash$</prompt> <userinput>xmllint --xinclude archive.xml | xsltproc archive.xslt - &gt; archive.html</userinput>
+</screen></para></step>
+
+<step><para>Check the changes into <application>CVS</application>:
+<screen><prompt>bash$</prompt> <userinput>cvs add ${objname}.txt ${objname}.jpeg ${objname}_thumbnail.jpeg</userinput>
+<prompt>bash$</prompt> <userinput>cvs ci -m "made $objname the new iotw"</userinput>
+</screen></para></step>
+
+<step><para>Copy the new and changed files into the AFS test space:
+<screen><prompt>bash$</prompt> <userinput>scp ${objname}.jpeg ${objname}_thumbnail.jpeg iotw_thumbnail.png iotw.html archive.html fnalu:/afs/.fnal.gov/files/expwww/sdssdevel/html/iotw</userinput>
+<prompt>bash$</prompt> <userinput>ssh fnalu /usr/local/bin/upd_volrelease /afs/fnal.gov/files/expwww/sdssdevel/html/iotw</userinput></screen>
+</para></step>
+
+<step><para>Check the development pages, starting at <ulink url="http://devel.sdss.org/">http://devel.sdss.org/</ulink>.</para></step>
+
+<step><para>Copy the new and changed files into the AFS production space:
+<screen><prompt>bash$</prompt> <userinput>scp ${objname}.jpeg ${objname}_thumbnail.jpeg iotw_thumbnail.png iotw.html archive.html fnalu:/afs/.fnal.gov/files/expwww/sdss/html/iotw</userinput>
+<prompt>bash$</prompt> <userinput>ssh fnalu /usr/local/bin/upd_volrelease /afs/fnal.gov/files/expwww/sdss/html/iotw</userinput></screen>
+</para></step>
+
+
+</procedure>
+</section>
+
+<section>
+
+<title>Updating the survey status web pages</title>
+
+<para>Currently, the survey status web pages must be updated by
+hand.</para>
+
+<procedure>
+
+<step><para>Create a temporary directory in which to generate the
+status plots, and go there:
+<screen><prompt>bash$</prompt> <userinput>STATTMPDIR=/tmp/serveyStatus</userinput>
+<prompt>bash$</prompt> <userinput>mkdir $STATTMPDIR</userinput>
+<prompt>bash$</prompt> <userinput>cd $STATTMPDIR</userinput></screen>
+</para></step>
+
+<step><para>Setup dp and generate the plots:
+<screen><prompt>bash$</prompt> <userinput>setup dp</userinput>
+<prompt>bash$</prompt> <userinput>astrotools -noTk -command "statPlotMake"  > submitSurveyStatus.log</userinput></screen>
+</para></step>
+
+<step><para>Clean out the old contents of
+<filename class="directory">~sdssdp/WWW</filename>
+and replace with the new:
+<screen><prompt>bash$</prompt> <userinput>rm -rf /home/s1/sdssdp/WWW/surveystatus/*</userinput>
+<prompt>bash$</prompt> <userinput>cd /home/s1/sdssdp/WWW/surveystatus</userinput>
+<prompt>bash$</prompt> <userinput>cp ${STATTMPDIR}/stat*.gif .</userinput>
+<prompt>bash$</prompt> <userinput>cp ${STATTMPDIR}/stat_summ*.html .</userinput>
+<prompt>bash$</prompt> <userinput>cp /home/s1/sdssdp/WWW/status/imaging/imagingStatus.gif .</userinput>
+<prompt>bash$</prompt> <userinput>cp /home/s1/sdssdp/WWW/status/spectroscopy/survey_area_covered_23.gif .</userinput>
+<prompt>bash$</prompt> <userinput>cp /home/s1/sdssdp/WWW/status/mt/secondary_coverage.gif .</userinput></screen>
+</para></step>
+
+<step><para>Push the new plots onto the fnalu web servers:
+<screen><prompt>bash$</prompt> <userinput>scp /home/s1/sdssdp/WWW/status/spectroscopy/survey_area_covered* fnalu:/afs/.fnal.gov/files/expwww/sdss/html/status</userinput>
+<prompt>bash$</prompt> <userinput>scp /home/s1/sdssdp/WWW/status/spectroscopy/survey_area_covered_23.gif  fnalu:/afs/.fnal.gov/files/expwww/sdss/html/status/survey_area_covered_latest.gif</userinput>
+<prompt>bash$</prompt> <userinput>scp /data/dp0.b/users/skent/mt/*History.html fsgi01:/afs/.fnal.gov/files/expwww/sdss/html/status</userinput>
+<prompt>bash$</prompt> <userinput>ssh fnalu /usr/local/bin/upd_volrelease /afs/.fnal.gov/files/expwww/sdss/html</userinput></screen>
+</para></step>
+
+<step><para>Remove the temporary directory:
+<screen><prompt>bash$</prompt> <userinput>rm -r $STATTMPDIR</userinput></screen>
+</para></step>
+
+</procedure>
+</section>
+
+<section>
+
+<title>Adding a New Press Release</title>
+
+<procedure>
+
+<step><para>If there are any images, copy them into the
+<filename>html/news/releases</filename> of the sdssorg
+<application>CVS</application> product.
+</para></step>
+
+<step><para> 
+Create the press release web page itself.  The file should be named
+<filename><replaceable>YYYYMMDD</replaceable>.<replaceable>keywords</replaceable>.html</filename>,
+and placed in the <filename>html/news/releases</filename> of the
+sdssorg <application>CVS</application> product. Follow the typical
+template for sdssorg web pages:
+<screen><![CDATA[
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<h2>New Discovery</h2>
+
+<p><strong>(April 26, 2005)</strong></p>
+
+<h3>CONTACTS:</h3>
+<ul>
+<li>Jane Astronomer, University of Somewhere, (555) 555-5555, astronomer@somewhere.edu</li>
+<li>Joe Astronomer, University of Elsewhere, (555) 555-5556, astronomer@elsewhere.edu</li>
+</ul>
+
+<p>We found something!</p>
+
+<table border=0 width="80%" align="center" >
+<tr>
+<td><a href=ourDiscovery.jpeg><img src=ourDiscovery.small.jpeg></a></td>
+<tr>
+<td>
+<strong>Look what we found! (Image credit: Joe Astronomer, SDSS)</strong>
+<BR>
+(Click on image to enlarge)
+</table>
+
+<h3>AUTHORS:</h3>
+<ul>
+<li>Jane Astronomer, University of Somewhere, (555) 555-5555, astronomer@somewhere.edu</li>
+<li>Joe Astronomer, University of Elsewhere, (555) 555-5556, astronomer@elsewhere.edu</li>
+</ul>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->
+
+]]></screen>
+</para></step>
+
+<step><para>Add a link to the new press release to the news page, <filename>html/news/news.html</filename></para></step>
+
+<step><para>Add a link to the new press release to the main page, <filename>html/sdss.html</filename></para></step>
+
+
+</procedure>
+</section>
+
+</section>
+<section>
+
+<title>CAS</title>
+
+<para>The Catalog Archive Server provides the web front end to the SDSS data
+itself.</para>
+
+
+</section>
+
+<section><title>Checking link integrity</title>
+
+<para>The <application>gurlchecker</application> can be used to check
+the integrity of the links an the web pages. It can be downloaded from
+its home site at <ulink
+url="http://labs.libre-entreprise.org/projects/gurlchecker/">http://labs.libre-entreprise.org/projects/gurlchecker/</ulink>,
+but getting the dependencies right can be painful; downloading it from
+the dag <application>yum</application> repository is much
+easier:</para>
+
+<procedure>
+<step><para>Make sure you have a <application>yum</application> configuration file that will let you talk to the dag repository:
+<screen><prompt>bash#</prompt> <userinput>diff /etc/yum.conf /etc/yum.conf.dag</userinput>
+35a36,40
+> 
+> [zdag]
+> name=DAG rpms
+> baseurl=ftp://ftp.scientificlinux.org/linux/extra/dag/redhat/el3/en/i386/dag/
+> 
+</screen></para>
+</step>
+
+<step><para>Go get the <application>rpm</application>:
+<screen><prompt>bash#</prompt> <userinput>yum -d1 -c /etc/yum.conf.dag install gurlchecker</userinput></screen></para></step>
+</procedure>
+
+<para>Then, just run it:
+<screen><prompt>bash$ </prompt> <userinput>gurlchecker</userinput></screen></para>
+</section>
+
+</article>
+
+<!--  LocalWords:  afs
+ -->

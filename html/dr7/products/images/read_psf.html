@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Data products: Extracting PSF Images - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<h1>Extracting PSF Images</h1>
+
+<p>We have created a standalone code that serves to both read them and as a
+template library for inclusion in other codes. The code is available as: <a
+href="readAtlasImages-v5_4_11.tar.gz">readAtlasImages-v5_4_11.tar.gz</a>.</p>
+
+<h2>Compiling</h2>
+
+<p>1. % make clean</p>
+
+<p>2. % make</p>
+
+<p>If you are on a big-endian machine, remove -DSDSS_LITTLE_ENDIAN from
+CFLAGS in the Makefile.</p>
+
+<h2>Using</h2>
+<pre>% read_PSF -h
+Usage: read_PSF [options] input-file hdu output-file
+Your options are:
+       -?      This message
+       -h      This message
+       -i      Print an ID string and exit
+       -v      Turn up verbosity (repeat flag for more chatter) </pre>
+
+<p>To reconstruct the <var>z</var> PSF (i.e. the 5th HDU) at the position (row, col) =
+(500, 600) from run 1336, column 2, field 51 you'd say:</p>
+<pre>%  read_PSF psField-001336-2-0051.fit 5 500.0 600.0 foo.fit </pre>
+
+<p>The desired PSF would appear as an unsigned short FITS file in foo.fit;
+the background level is set to the standard `soft bias' of 1000. If you want
+a floating image, change a line in the read_PSF.c; look for</p>
+<pre>        /* create a float region */</pre>
+
+<h2>Developer Comments</h2>
+
+<p>The standalone programs read_atlas_image (reads fpAtlas files) and
+read_mask (reads fpM files) are similar. All three are built by the
+same 'make' command.</p>
+
+<p>I don't expect that many users will actually want to use the
+read_PSF executable (although it is perfectly functional). The main
+use of the product will probably be to link into custom built executables
+that need to process atlas image data. I believe that the code should be
+easily reused for this purpose.</p>
+
+<p></p>
+<hr>
+<!-- hhmts start -->Last modified: Fri Jun 23 14:02:15 BST 2006
+<!-- hhmts end -->
+ <!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

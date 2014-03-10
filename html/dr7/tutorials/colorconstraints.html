@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorial: Obtaining Spectra based on Color Constraints- SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Tutorial: Obtaining Spectra based on Color Constraints</h1>
+
+<h2>How to Find all Objects with Spectra that Satisfy a 
+Given Set of Color Constraints and then Get the Spectra.</h2>
+
+<p>This query, in particular, finds spectra for all objects at the hot
+end of the WD cooling sequence. For a simple example, this list is
+defined as objects with g-r &lt;-0.15 and u-g &lt;0.4.&nbsp; Normally,
+when querying based on filter or color magnitudes, you should also
+make sure all the appropriate <a
+href="../products/catalogs/flags.html">photo QA flags</a> are set
+properly (to indicate the object's photometry is trustworthy), but in
+this case, since all these objects have spectra, we will assume they
+were targeted and allocated a fiber based on good photometric
+magnitudes, so we don't bother to check the QA flags.</p> <p><b><font
+size="4">Procedure</font></b></p>
+
+<ol class="tut">
+  <li>Go to the <a
+  href="http://cas.sdss.org/astro/en/tools/search/SQS.asp">Spectro
+  Query Server</a> (all data access tools are linked from <a
+  href="../access/index.html">Data Access</a> in the left navigation
+  bar).</li>    
+  <li>Select "html" as output format if you want to look at your query
+      results in your browser, or "csv" to save them in a
+      &quot;comma-separated values&quot; file which you can use to
+      retrieve spectra from the Data Archive Server later</li>
+  <li>At the first line, enter 0 to have your query return an unlimited number 
+  of output rows/objects.</li>
+  <li>Select &quot;minimal&quot; under &quot;Spectroscopy Parameters&quot; under &quot;Parameters to 
+  Return&quot;. This will return the MJD, plate, and fiberID that you will need to 
+  actually get the spectra from the DAS. Make sure none of the
+  filters are checked in the "Filter (for DAS use)" section.</li>
+  <li>Select the Best radio button between the parameter listboxes.</li>
+  <li>Under Position Constraints, make sure &quot;No Position Constraint&quot; is 
+  selected.</li>
+  <li>Enter 0.4 in the &quot;u-g max&quot; box.</li>
+  <li>Enter -0.15 in the &quot;g-r max&quot; box.</li>
+  <li>Unselect &quot;Extended Sources&quot; and make sure &quot;Point Sources&quot; is selected in 
+  the &quot;Object Type&quot; section of the form.</li>
+  <li>Verify that nothing else is selected.</li>
+  <li>Click on &quot;Submit Request&quot;. Depending on database load,
+      this query takes about half a minute to run and returns 3493 objects.</li>
+</ol>
+<p><br>
+<b>To get the actual spectra for these objects:</b></p>
+
+<ol class="tut">
+  <li>Select csv output and save the csv file to disk.</li>
+  <li>Go to the <a href="http://das.sdss.org/www/html/post_fibers.html">DAS
+      spectroscopic data retrieval form</a>.</li>
+  <li>Select the data release you for the spectra you want to
+      download. DR7 uses a later version of the pipeline, and includes
+      spectra not included in DR6. Note that if you select "All data"
+      then the rerun you desire must be included in the csv table you
+      upload, and you will need to slightly modify the procedure you
+      use to generate the cvs accordingly.</li>
+  <li>Select the result csv file from above in the "select file to
+      upload" box.</li>
+  <li>Click on "Submit Request" at the bottom of the page.</li>
+  <li>Follow the link given the "Download selection" section to the
+      form for mass download.</li>
+  <li>Under "File types," select spSpec. (You might also want spPlotGif if you 
+      want to see simple GIFs of each spectrum.) The spSpec selection
+      will get you the FITS file for each spectrum.</li>
+  <li>Since either "wget" or "rsync" under the "Download Selection"
+      section, depending on how you want to download your data.</li>
+  <li>Hit the "request" button at the bottom of the page. When
+      queried by your browser, choose where to save the file.</li>
+  <li>Follow the instructions in
+      the <a href="http://das.sdss.org/www/html/das2.html#interactive">Interactive
+      download tools</a> section of the DAS home page to download the
+      files you requested.</li>
+  <li>See the tutorial on <A HREF="../products/spectra/read_spSpec.html">&quot;Displaying SDSS Spectra&quot;</A> to learn how to display your 
+  new SDSS spectra.</li>
+</ol>
+
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Wed Jun 21 16:54:26 BST 2006
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+
+</html>

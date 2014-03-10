@@ -1,0 +1,8 @@
+This image of the globular cluster NGC 288 came from the SDSS
+photometric telescope. Globular clusters are centrally concentrated
+spherical collections of stars, typically numbering in the hundreds of
+thousands. Note that NGC 288 contains stars with a variety of colors
+and luminosities. Because the stars in a globular cluster are formed
+at the same time, from the same cloud of gas, and are at the same
+distance, these differences are not due to age, initial composition,
+or distance, but mass.

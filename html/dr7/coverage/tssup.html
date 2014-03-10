@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>List of DR7sup imaging runs</title>
+<link rel="stylesheet" type="text/css" href="./includes/sdss.css">
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<pre>
+The following table describes the contents of
+the DRsup (Data Release Supplemental) imaging runs for DR7.
+the Key to the column headers is:
+
+Run:   Run
+Rerun: Rerun
+Stpe:  Stripe
+S:     Strip (North or South or Overlap (1/2 way between N and S))
+mu0:   survey mu of the beginning of the run
+mu1:   survey mu of the end of the run
+All run have nu limits of approximately -1.25 to 1.25 degrees.
+f0:    First field archived  (camcols 1-6 inclusive)
+nF:    number of fields archived  (camcols 1-6 inclusive)
+node: great circle ascending node (deg)
+incl: great circle inclination (deg)
+Comment:  What does this point at on the sky, and what are the node and
+	inclination in the <a href="../glossary/index.html#great_circle_coords">great circle coordinate system</a> 
+	of the stripe that this data is on.  Using
+	a mu between mu0 and mu1 and setting nu=0, one can determine the RA,DEC
+	of these runs by converting from great circle coordinates using the formula of
+	<a href="http://adsabs.harvard.edu/abs/2002AJ....123..485S">Stoughton et al. 2002 AJ 123, 485</a> as listed in section 3.2.2 (where 95 degrees
+	is replaced by the 'node(stripe)' below throughout).
+
+whichDB:  Where this data can be found
+	<a href="http://cas.sdss.org/runs">runs</a> CAS or <a href="http://das.sdss.org">DAS</a> 
+
+What:  What this is imaging of:
+ M31*: a scan over or near Andromeda (M31)
+ Cross: a scan perpendicular to the regular SDSS stripe direction (for calib)
+ Oblique: a scan at an angle to the SDSS stripe direction (for calib) 
+ PerPisc: a scan over the Per-Pisc Galaxy cluster region of sky
+ MonX1,X2: a scan at an angle to the SEGUE const. Longitude stripes (for calib)
+ S*test: a test scan of a SEGUE or Legacy stripe usually in cloudy conditions
+ S*ts: a test scan of a SEGUE or Legacy stripe usually in cloudy conditions
+ M71: a scan over the low-latitude globular M71 (run 6895 camcol 3 hits it)
+ SGP: a scan on SEGUE stripe 90, later deprecated, near the South Galactic Pole
+
+	
+	
+
+-------------------------------------------------------------------------------
+  Run  Re Stpe S    mu0   mu1   f0    nF   node   incl    whichDB  What   inDas
+-------------------------------------------------------------------------------
+ 2766  40  100 N   2.58  11.56   11   60 189.985 -90.002     runs  Cross   0
+ 3356  40  100 N  20.35  29.34   11   60 342.831  62.034     runs  M31test 0
+ 3366  20  100 N  21.77  40.19   14  124 342.870  62.000  dasonly  M31     1
+ 3367  20  100 S  21.26  40.27   11  128 342.870  62.000  dasonly  M31     1
+ 3511  40  100 N  93.61 100.34   31   45 245.195 -90.142     runs  Cross   0
+ 3512  40  100 N  63.07  74.89   11   79 335.415  25.315     runs  Oblique 0
+ 3557  40  100 N  88.17  99.26   11   74  65.497  89.961     runs  Oblique 0
+ 3559  40  100 N  62.58  73.80   11   75 335.411  25.305     runs  Oblique 0
+ 3610  40   61 N  25.19  45.10   15  133  95.000 -52.500     runs  PerPisc 1
+ 3628  40   61 S  24.88  46.14   24  142  95.000 -52.500     runs  PerPisc 1
+ 3629  40   61 N  28.45  46.12   11  118  95.000 -52.500     runs  PerPisc 1
+ 3634  40   62 N  24.20  45.16   22  140  95.000 -50.000     runs  PerPisc 1
+ 3643  20   62 S  28.98  45.29   11  110  95.000 -50.000  dasonly  PerPisc 1
+ 3643  40   62 S  28.98  45.30   11  109  95.000 -50.000     runs  PerPisc 1
+ 4334  40  205 N  49.05  92.76   11  292  32.000  35.000     runs  SgrStrm 1
+ 4448  40  100 N  76.50  89.68   11   88 263.018 -90.003     runs  Cross   0
+ 4516  40  205 N 123.76 150.40   11  178  32.000  35.000     runs  SgrStrm 1
+ 4629  40  100 N 261.25 304.81   11  291  64.995 -90.003     runs  Cross   0
+ 4822  40  291 N 295.38 378.78   11  557 325.100  50.810     runs  MonX2   1
+ 5064  40   90 S 341.01 370.35   22  196  95.000  20.000     runs  SGP     1
+ 5069  40   90 S  20.69  59.91   12  262  95.000  20.000     runs  SGP     1
+ 5070  40   90 S  44.82  49.61   11   32  95.000  20.000     runs  SGP     1
+ 5181  40  100 N  74.15  91.82   11  118  83.817 -90.002     runs  Cross   0
+ 5391  40  290 N 226.92 267.35   11  271 259.900  43.200  dasonly  MonX1   1
+ 5392  40  290 N 251.87 262.95   11   75 259.900  43.200  dasonly  MonX1   1
+ 5398  40  290 N 251.34 284.43   11  221 259.900  43.200     runs  MonX1   1
+ 5657  40  206 N  27.22  37.25   14   67 212.482 -90.001     runs  Cross   1
+ 5711  40   79 N  19.69  54.43   11  233  95.000  -7.500  dasonly  S79Test 1
+ 5867  40   17 N 119.94 154.97   11  235  95.000  17.500  dasonly  S17test 1
+ 5921  40   17 S 123.12 132.70   11   65  95.000  17.500  dasonly  S17test 1
+ 6073  40  213 S  81.26  91.44   11   68 263.808  89.997     runs  Oblique 0
+ 6168  40 1020 S 262.19 278.07   11  107  60.000  34.950  dasonly  S1020Ts 1
+ 6207  40  290 N 278.53 297.84   11  129 259.900  43.200     runs  MonX1   1
+ 6212  40  290 N 282.34 317.52   24  235 259.900  43.200     runs  MonX1   1
+ 6282  41  301 S 282.43 296.20   11   93 127.890  64.230  dasonly  M71test 1
+ 6426  40  293 S  23.33  41.15   11  119 344.670  60.100     runs  M31halo 1
+ 6469  40   72 N  38.30  57.17   11  127  95.000 -25.000  dasonly  S72test 1
+ 6470  40   72 N  46.28  52.87   11   45  95.000 -25.000  dasonly  S72test 1
+ 6481  40 1356 N 118.23 130.96   11   86 226.000 316.860  dasonly  S1356ts 1
+ 6751  40  205 N 194.28 217.34   11  154  32.000  35.000     runs  SgrStrm 1
+ 6782  40  100 N 205.82 232.62   11  180  32.000  35.000  dasonly  SgrStrm 1
+ 6794  41  205 N 216.15 249.09   11  220  32.000  35.000     runs  SgrStrm 1
+ 6895  40  100 N 285.33 291.02   42   39 127.890  64.230  dasonly  M71col3 1
+ 7185  40 1458 S  92.33  98.47   11   42 315.140 328.780  dasonly  S1458ts 1
+ 7210  40  100 N  20.28  40.49   11  136 344.670  60.100  dasonly  M31halo 1
+
+-----------------------------------------------------------------------------
+</pre>
+</body>
+</html>

@@ -1,0 +1,71 @@
+I am writing to request External Collaborator status in the SDSS to 
+continue working on several large-scale structure projects begun while 
+I was a postdoc at the University of Chicago.
+
+I have actually been working on the SDSS since 1998 when I quantified
+the effects of fiber collisions on measurements of galaxy clustering as 
+David Weinberg's thesis student at Ohio State.  During the past two years 
+as a postdoctoral fellow at the University of Chicago, I have worked
+primarily on the SDSS.  This summer I left Chicago to become a postdoc at 
+NYU and I would like to continue working on SDSS projects as an external
+collaborator.
+
+My main scientific interest in the SDSS lies in using galaxy clustering
+to constrain galaxy formation theories.  In particular, I am involved in
+several efforts to determine the halo occupation distribution (HOD) of
+galaxies (i.e., how galaxies occupy dark matter halos) as a function of
+various galaxy properties, such as luminosity, color, morphology, etc.
+This work is a natural extension to my theoretical thesis work, where I
+investigated how the HOD can be constrained using galaxy clustering
+statistics.
+
+Specifically, I am actively involved in HOD modelling of the following
+large scale structure statistics:
+
+1) Galaxy groups and clusters in the SDSS spectroscopic sample.  I am
+   leading a project to identify galaxy groups and clusters using a
+   friends-of-friends algorithm.  This study is complementary to the
+   efficient, but complex cluster-finding studies that operate on the
+   imaging data because of its simplicity: it only uses 3D spatial 
+   information to find groups.  Though the main purpose of this project is 
+   to constrain the HOD, I am also investigating the general properties of 
+   groups and grouped galaxies.
+
+2) The galaxy-galaxy correlation function measured from the SDSS
+   spectroscopic sample.  I am collaborating with Idit Zehavi, Josh 
+   Frieman, David Weinberg, Zheng Zheng + others to extract the HOD for 
+   different galaxy types using a halo model fit to the data.  The first 
+   results from this collaboration appeared in Zehavi et al. 2003 and we 
+   are now moving towards a more thorough publication.
+
+3) The galaxy-mass correlation function measured from galaxy-galaxy
+   lensing. I am collaborating with Erin Sheldon, Josh Frieman, Tim McKay,
+   David Weinberg + others to do a similar analysis as with the
+   galaxy-galaxy correlation function.
+
+4) The anisotropy in the galaxy two-point functions caused by
+   redshift-space distortions.  I am collaborating with David Weinberg,
+   Jeremy Tinker, Zheng Zheng, Idit Zehavi, Josh Frieman + others to model
+   the anisotropy of clustering in the HOD framework.
+
+All of these projects involve the creation and testing of mock catalogs
+that are used to test our data analysis methods.  I have helped to test
+mocks that are run using the PTHalos algorithm and I have created my own
+mocks by artificially populating dark matter halos in N-body simulations
+with galaxies. One of the ways I have used these mocks is to investigate
+the effects of fiber collisions and survey edges on clustering statistics. 
+I will continue to create and test SDSS mock catalogs when I go to NYU and
+I expect that they will be of use to other SDSS scientists. In addition
+to making mock catalogs, I have helped to test and debug the LSS samples
+and the LSS mask constructed by Michael Blanton and Max Tegmark.
+
+I would like to continue the collaborations listed above.  I am 
+essentially interested in continuing my studies of large-scale structure 
+and galaxy formation by using SDSS galaxy clustering data. I plan to also 
+continue developing and testing mock catalogs that will be useful for 
+these purposes, and I plan to continue testing future versions of the SDSS 
+LSS samples.
+
+Sincerely,
+
+Andreas Berlind

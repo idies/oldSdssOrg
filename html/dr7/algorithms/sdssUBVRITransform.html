@@ -1,0 +1,495 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>SDSS Photometric Equations</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<H1>Transformations between SDSS magnitudes and UBVR<sub>c</sub>I<sub>c</sub></H1>
+
+<p>There have been several efforts in calculating transformation equations
+between ugriz (or u'g'r'i'z') and UBVR<sub>c</sub>I<sub>c</sub>.
+Here, we focus on seven of the most current efforts:</p>
+<ul>
+
+<li> <a href="#Jester2005"> Jester al. (2005)</a>, 
+     who derived transformation equations for stars and for z<=2.1 quasars,</li>
+
+<li> <a href="#Jordi2006"> Jordi al. (2006)</a>, 
+     who derived general transformation equations for stars, as well
+     as separate ones for Population I and metal-poor population II stars,</li>
+
+<li> <a href="#Karaali2005"> Kiraali, Bilir, and Tuncel (2005)</a>, 
+     who derived transformation equations for stars,</li>
+
+<li> <a href="#Bilir2005"> Bilir, Karaali, and Tuncel (2005)</a>, 
+     who derived transformation equations for dwarf stars, and </li>
+
+<li> <a href="#West2005"> West, Walkowicz, and Hawley (2005)</a>, 
+     who derived transformation equations for M and L dwarf stars, </li>
+
+<li> <a href="#Rodgers2005"> Rodgers et al. (2005)</a>, 
+     who derived transformation equations for main sequence stars.</li>
+
+<li> <a href="#Lupton2005"> Lupton (2005)</a>, 
+     who derived transformation equations for stars.</li>
+
+</ul> 
+
+<p>There are currently no transformation equations explicitly for
+galaxies, but <a href="#Jester2005"> Jester al.'s (2005)</a> and <a
+href="#Lupton2005"> Lupton's (2005) </a> transformation equations for
+stars should also provide reasonable results for normal galaxies
+(i.e., galaxies without strong emission lines).</p>
+
+<p>Caveat: Note that these transformation equations are for the SDSS
+ugriz (u'g'r'i'z') magnitudes <i>as measured</i>, not for SDSS ugriz
+(u'g'r'i'z') corrected for AB offsets.  If you need AB ugriz
+magnitudes, please remember to convert from SDSS ugriz to AB ugriz
+using AB offsets described at <a href="./fluxcal.html#sdss2ab"> this
+URL</a>).</p>
+
+<p>At the end of this webpage, we estimate the <a
+href="#vega_sun_colors"> ugriz colors of Vega and the Sun.</p>
+
+<a name="Jester2005">
+<H2> Jester et al. (2005)</H2>
+
+<p>The following transformation equations were extracted from Table 1
+of <a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2005AJ....130..873J&amp;db_key=AST"> Jester et
+al. (2005)</a> and are generally useful for stars and for quasars.
+The transformation equations for z<=2.1 quasars is based upon
+synthetic photometry of an updated version of the quasar composite
+spectrum of <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2001AJ....122..549V&amp;db_key=AST&amp;high=41ab501ef100710">
+Vanden Berk et al. (2001)</a> using DR1 data as well as the red and
+reddened quasar composites for <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003AJ....126.1131R&amp;db_key=AST&amp;high=41ab501ef100822">
+Richards et al. (2003)</a>.  The transformations for stars were
+derived from the <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2121S&amp;db_key=AST&amp;high=41ab501ef132253">
+Smith et al. (2002)</a> u'g'r'i'z' photometry of Landolt stars,
+suitably transformed from the USNO-1.0m u'g'r'i'z' system to the SDSS
+2.5m ugriz system via the <a
+href="./jeg_photometric_eq_dr1.html#usno2SDSS">u'g'r'i'z'-to-ugriz
+transformations</a>.</p>
+
+<p>The transformation equations for stars supercede those of 
+<a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1996AJ....111.1748F&amp;db_key=AST&amp;high=41ab501ef100913">
+Fukugita et al.(1996)</a> and 
+<a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2121S&amp;db_key=AST&amp;high=41ab501ef132253">
+Smith et al. (2002)</a>.</p>
+
+<pre>
+
+UBVRcIc -> ugriz
+================
+
+Quasars at z <= 2.1 (synthetic)    
+        Transformation                RMS residual
+    u-g    =    1.25*(U-B)   + 1.02      0.03
+    g-r    =    0.93*(B-V)   - 0.06      0.09
+    r-i    =    0.90*(Rc-Ic) - 0.20      0.07
+    r-z    =    1.20*(Rc-Ic) - 0.20      0.18
+    g      =    V + 0.74*(B-V) - 0.07    0.02
+    r      =    V - 0.19*(B-V) - 0.02    0.08
+
+
+Stars with Rc-Ic < 1.15 and U-B < 0
+        Transformation                RMS residual
+    u-g    =    1.28*(U-B)   + 1.14      0.05
+    g-r    =    1.09*(B-V)   - 0.23      0.04
+    r-i    =    0.98*(Rc-Ic) - 0.22      0.01
+    r-z    =    1.69*(Rc-Ic) - 0.42      0.03
+    g      =    V + 0.64*(B-V) - 0.13    0.01
+    r      =    V - 0.46*(B-V) + 0.11    0.03
+
+
+All stars with Rc-Ic < 1.15
+        Transformation                RMS residual
+    u-g    =    1.28*(U-B)   + 1.13      0.06
+    g-r    =    1.02*(B-V)   - 0.22      0.04
+    r-i    =    0.91*(Rc-Ic) - 0.20      0.03
+    r-z    =    1.72*(Rc-Ic) - 0.41      0.03
+    g      =    V + 0.60*(B-V) - 0.12    0.02
+    r      =    V - 0.42*(B-V) + 0.11    0.03
+
+
+
+ugriz -> UBVRcIc
+================
+
+Quasars at z <= 2.1 (synthetic)
+        Transformation                RMS residual
+    U-B    =    0.75*(u-g) - 0.81        0.03 
+    B-V    =    0.62*(g-r) + 0.15        0.07
+    V-R    =    0.38*(r-i) + 0.27        0.09
+    Rc-Ic  =    0.72*(r-i) + 0.27        0.06
+    B      =    g + 0.17*(u-g) + 0.11    0.03
+    V      =    g - 0.52*(g-r) - 0.03    0.05
+
+
+Stars with Rc-Ic < 1.15 and U-B < 0
+        Transformation                RMS residual     
+    U-B    =    0.77*(u-g) - 0.88        0.04
+    B-V    =    0.90*(g-r) + 0.21        0.03
+    V-R    =    0.96*(r-i) + 0.21        0.02
+    Rc-Ic  =    1.02*(r-i) + 0.21        0.01
+    B      =    g + 0.33*(g-r) + 0.20    0.02
+    V      =    g - 0.58*(g-r) - 0.01    0.02
+
+
+All stars with Rc-Ic < 1.15     
+        Transformation                RMS residual
+    U-B    =    0.78*(u-g) - 0.88        0.05
+    B-V    =    0.98*(g-r) + 0.22        0.04
+    V-R    =    1.09*(r-i) + 0.22        0.03
+    Rc-Ic  =    1.00*(r-i) + 0.21        0.01
+    B      =    g + 0.39*(g-r) + 0.21    0.03
+    V      =    g - 0.59*(g-r) - 0.01    0.01
+
+</pre>
+
+
+<a name="Jordi2006">
+<H2> Jordi et al. (2006)</H2>
+
+<p>The following transformation equations were extracted from Table 3
+of <a href="http://adsabs.harvard.edu/abs/2006A%26A...460..339J"> Jordi et
+al. (2006)</a> and are generally useful for stars. They are derived from comparing <a href="http://www3.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/community/STETSON/index.html">Stetson's extension</a> of the Landolt standard stars with the corresponding SDSS DR4 photometry. The equations including the Johnson U band are based on the comparison of Landolt's original standard stars and the SDSS DR4. </p>
+
+<pre>
+
+UBVRcIc -> ugriz
+================
+
+        Transformation                   
+    u-g   =     (0.750 &#177 0.050)*(U-B)  + (0.770 &#177 0.070)*(B-V) + (0.720 &#177 0.040)
+    g-V   =     (0.630 &#177 0.002)*(B-V)  - (0.124 &#177 0.002)
+    g-B   =     (-0.370 &#177 0.002)*(B-V) - (0.124 &#177 0.002)
+    g-r   =     (1.646 &#177 0.008)*(V-R)  - (0.139 &#177 0.004)
+    g-i   =     (1.481 &#177 0.004)*(V-I)  - (0.536 &#177 0.004) if V-I <= 1.8
+    g-i   =     (0.83 &#177 0.01)*(V-I)    + (0.60 &#177 0.03)   if V-I >  1.8
+    r-i   =     (1.007 &#177 0.005)*(R-I)  - (0.236 &#177 0.003) 
+    r-z   =     (1.584 &#177 0.008)*(R-I)  - (0.386 &#177 0.005)
+    r-R   =     (0.267 &#177 0.005)*(V-R)  + (0.088 &#177 0.003) if V-R <= 0.93
+    r-R   =     (0.77 &#177 0.04)*(V-R)    - (0.37 &#177 0.04)   if V-R >  0.93 
+    i-I   =     (0.247 &#177 0.003)*(R-I)  + (0.329 &#177 0.002)
+
+
+
+ugriz -> UBVRcIc
+================
+
+        Transformation                   
+    U-B   =     (0.79 &#177 0.02)*(u-g)    - (0.93 &#177 0.02)
+    U-B   =     (0.52 &#177 0.06)*(u-g)    + (0.53 &#177 0.09)*(g-r) - (0.82 &#177 0.04)
+    B-g   =     (0.175 &#177 0.002)*(u-g)  + (0.150 &#177 0.003)
+    B-g   =     (0.313 &#177 0.003)*(g-r)  + (0.219 &#177 0.002)
+    V-g   =     (-0.565 &#177 0.001)*(g-r) - (0.016 &#177 0.001)
+    V-I   =     (0.675 &#177 0.002)*(g-i)  + (0.364 &#177 0.002) if  g-i <= 2.1
+    V-I   =     (1.11 &#177 0.02)*(g-i)    - (0.52 &#177 0.05)   if  g-i >  2.1
+    R-r   =     (-0.153 &#177 0.003)*(r-i) - (0.117 &#177 0.003)
+    R-I   =     (0.930 &#177 0.005)*(r-i)  + (0.259 &#177 0.002)
+    I-i   =     (-0.386 &#177 0.004)*(i-z) - (0.397 &#177 0.001)
+
+</pre>    
+
+<p>The following transformation equations were extracted from Table 4
+of <a
+href="http://adsabs.harvard.edu/abs/2006A%26A...460..339J">
+Jordi et al. (2006)</a> and are generally useful for Population I and
+metal-poor Population II stars, respectively. The transformations for
+the Population II stars are derived from comparing Stetson fields
+around Draco, NGC 2419 and NGC 7078 with their SDSS DR4
+photometry. The transformations for the Population I stars are derived
+from the <a
+href="http://www3.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/community/STETSON/index.html">Stetson
+extension</a> of Landolt's equatorial fields compared with the SDSS
+DR4 photometry. The transformation equation for Population II stars
+including the SDSS (i-z)-color is not calculated, because of the small
+number of stars.
+
+<pre>    
+BVRcIc -> griz
+================
+
+        Transformation for Population I stars:                
+    g-V   =     (0.634 &#177 0.002)*(B-V)  - (0.127 &#177 0.002)
+    g-B   =     (-0.366 &#177 0.002)*(B-V) - (0.126 &#177 0.002)
+    g-r   =     (1.599 &#177 0.009)*(V-R)  - (0.106 &#177 0.006)
+    g-i   =     (1.474 &#177 0.004)*(V-I)  - (0.518 &#177 0.005) if V-I <= 1.8
+    g-i   =     (0.83 &#177 0.01)*(V-I)    + (0.62 &#177 0.03)   if V-I >  1.8
+    r-i   =     (0.988 &#177 0.006)*(R-I)  - (0.221 &#177 0.004)
+    r-z   =     (1.568 &#177 0.009)*(R-I)  - (0.370 &#177 0.006)
+    r-R   =     (0.275 &#177 0.006)*(V-R)  + (0.086 &#177 0.004) if V-R <= 0.93 
+    r-R   =     (0.71 &#177 0.05)*(V-R)    - (0.31 &#177 0.05)   if V-R >  0.93
+    i-I   =     (0.251 &#177 0.003)*(R-I)  + (0.325 &#177 0.002) 
+          
+        Transformation for metal-poor Population II stars:                
+    g-V   =     (0.596 &#177 0.009)*(B-V)  - (0.148 &#177 0.007) 
+    g-B   =     (-0.401 &#177 0.009)*(B-V) - (0.145 &#177 0.006)
+    g-r   =     (1.72 &#177 0.02)*(V-R)    - (0.198 &#177 0.007)
+    g-i   =     (1.48 &#177 0.01)*(V-I)    - (0.57 &#177 0.01)   if V-I <= 1.8
+    r-i   =     (1.06 &#177 0.02)*(R-I)    - (0.30 &#177 0.01)  
+    r-z   =     (1.60 &#177 0.06)*(R-I)    - (0.46 &#177 0.03)  
+    r-R   =     (0.34 &#177 0.02)*(V-R)    + (0.015 &#177 0.008) if V-R <= 0.93 
+    i-I   =     (0.21 &#177 0.02)*(R-I)    + (0.34 &#177 0.01)
+
+
+
+griz -> BVRcIc
+================
+
+        Transformation for Population I stars:          
+    B-g   =     (0.163 &#177 0.002)*(u-g)  + (0.170 &#177 0.004)
+    B-g   =     (0.312 &#177 0.003)*(g-r)  + (0.219 &#177 0.002)
+    V-g   =     (-0.573 &#177 0.002)*(g-r) - (0.016 &#177 0.002)
+    V-I   =     (0.671 &#177 0.002)*(g-i)  + (0.359 &#177 0.002) if g-i <= 2.1
+    V-I   =     (1.12 &#177 0.02)*(g-i)    - (0.53 &#177 0.06)   if g-i >  2.1
+    R-r   =     (-0.257 &#177 0.004)*(r-i) + (0.152 &#177 0.002)
+    R-I   =     (0.977 &#177 0.006)*(r-i)  + (0.234 &#177 0.003)
+    I-i   =     (-0.409 &#177 0.006)*(i-z) - (0.394 &#177 0.002)
+    
+
+        Transformation for metal-poor Population II stars:                
+    B-g   =     (0.20 &#177 0.01)*(u-g)    + (0.15 &#177 0.01)
+    B-g   =     (0.349 &#177 0.009)*(g-r)  + (0.245 &#177 0.006)
+    V-g   =     (-0.569 &#177 0.007)*(g-r) + (0.021 &#177 0.004)
+    V-I   =     (0.674 &#177 0.005)*(g-i)  + (0.406 &#177 0.004) if g-i <= 2.1
+    R-r   =     (-0.25 &#177 0.02)*(r-i)   - (0.119 &#177 0.005)
+    R-I   =     (0.80 &#177 0.02)*(r-i)    + (0.317 &#177 0.004)
+
+             
+</pre>    
+
+
+<a name="Karaali2005">
+<H2> Karaali, Bilir, and Tuncel (2005)</H2>
+
+<p>These transformations appeared in <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2005PASA...22...24K&amp;db_key=AST&amp;high=41ab501ef126356">
+Karaali, Bilir, and Tuncel (2005)</a>.  They are based on Landolt
+(1992) UBV data for 224 stars in the color range 0.3 < B-V < 1.1 with
+SDSS ugr photometry from the <a
+href="http://www.ast.cam.ac.uk/~wfcsur/index.php"> CASU INT Wide Field
+Survey</a>.  An improvement over previous SDSS<->UBVR<sub>c</sub>I<sub>c</sub>
+transformations is the use of two colors in each equation, which is
+particularly helpful for the u-g transformation.</p>
+
+<pre>
+
+UBVRcIc -> ugriz
+================
+
+Stars with  0.3 < B-V < 1.1
+    u-g    =    0.779*(U-B) + 0.755*(B-V)  + 0.801
+    g-r    =    1.023*(B-V) + 0.016*(U-B)  - 0.187
+
+
+ugriz -> UBVRcIc
+================
+
+Stars with  0.3 < B-V < 1.1
+    B-V    =    0.992*(g-r) - 0.0199*(u-g) + 0.202
+
+</pre>
+
+
+
+<a name="Bilir2005">
+<H2> Bilir, Karaali, and Tuncel (2005)</H2>
+
+<p>These transformation equations appeared in <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2005AN....326..321B&amp;db_key=AST">
+Bilir, Karaali, and Tuncel (2005, AN 326, 321)</a>.  They are based
+upon 195 dwarf stars that have both ugriz photometry and Landolt UBV
+photometry.</p>
+
+<pre>
+
+UBVRcIc -> ugriz
+================
+
+Dwarf (Main Sequence) Stars
+    g-r    =    1.124*(B-V) - 0.252
+    r-i    =    1.040*(R-I) - 0.224
+    g      =    V + 0.634*(B-V) - 0.108
+
+</pre>
+
+
+
+
+<a name="West2005">
+<H2> West, Walkowicz, and Hawley (2005)</H2>
+
+<p>These transformation equations appeared in <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2005PASP..117..706W&amp;db_key=AST">
+West, Walkowicz, and Hawley (2005, PASP 117, 706)</a>.  They are based
+upon photometry of M and L dwarf stars from <a
+href="http://www.sdss.org/dr3/">SDSS Data Release 3</a>.</p>
+
+<pre>
+
+UBVRcIc -> ugriz
+================
+
+M0-L0 Dwarfs, 0.67 <= r-i <= 2.01
+       Transformation                      RMS residual     
+    r-i    =    -2.69 + 2.29*(V-Ic)           0.05
+                      - 0.28*(V-Ic)**2
+
+M0-L0 Dwarfs, 0.37 <= i-z <= 1.84
+        Transformation                     RMS residual
+    i-z    =    -20.6 + 26.0*(Ic-Ks)          0.10
+                      - 11.7*(Ic-Ks)**2
+                      - 2.30*(Ic-Ks)**3
+                      - 0.17*(Ic-Ks)**4
+
+</pre>
+
+
+
+
+<a name="Rodgers2005">
+<H2> Rodgers et al. (2005)</H2>
+
+<p>These equations are from Rodgers et al. (2005, AJ, submitted).  They
+are based upon a set of main sequence stars from the <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2121S&amp;db_key=AST&amp;high=41ab501ef132253">
+Smith et al. (2002)</a> u'g'r'i'z' standard star network that also
+have Landolt UBVR<sub>c</sub>I<sub>c</sub> photometry.  Note that
+these equations, strictly speaking, transform from
+UBVR<sub>c</sub>I<sub>c</sub> to u'g'r'i'z' and not to ugriz.  The <a
+href="./jeg_photometric_eq_dr1.html#usno2SDSS">transformation from
+u'g'r'i'z' to ugriz</a>, however, is rather small.  Note also, as with
+the <a href="#Karaali2005"> Karaali, Bilir, and Tuncel (2005)
+transformations</a> listed above, two colors are used in the u'-g' and
+g'-r' equations to improve the fits.  The use of two colors in the
+fits is especially useful for u'-g', which is strongly affected by the
+Balmer discontinuity.</p>
+
+
+<pre>
+
+UBVRcIc -> u'g'r'i'z'
+=====================
+
+Main Sequence Stars
+    u'-g'  =    1.101(+/-0.004)*(U-B) + 0.358(+/-0.004)*(B-V) + 0.971
+    g'-r'  =    0.278(+/-0.016)*(B-V) + 1.321(+/-0.030)*(V-Rc) - 0.219
+    r'-i'  =    1.070(+/-0.009)*(Rc-Ic) - 0.228
+    r'-z'  =    1.607(+/-0.012)*(Rc-Ic) - 0.371
+
+</pre>
+
+
+<a name="Lupton2005">
+<H2> Lupton (2005)</H2>
+
+<p>These equations that Robert Lupton derived by matching DR4
+photometry to Peter Stetson's published photometry for stars.</p>
+
+<pre>
+
+Stars
+
+   B = u - 0.8116*(u - g) + 0.1313;  sigma = 0.0095
+   B = g + 0.3130*(g - r) + 0.2271;  sigma = 0.0107
+
+   V = g - 0.2906*(u - g) + 0.0885;  sigma = 0.0129
+   V = g - 0.5784*(g - r) - 0.0038;  sigma = 0.0054
+
+   R = r - 0.1837*(g - r) - 0.0971;  sigma = 0.0106
+   R = r - 0.2936*(r - i) - 0.1439;  sigma = 0.0072
+
+   I = r - 1.2444*(r - i) - 0.3820;  sigma = 0.0078
+   I = i - 0.3780*(i - z)  -0.3974;  sigma = 0.0063
+
+</pre>
+
+<p>Here is the <a
+href="http://cas.sdss.org/astro/en/tools/search/sql.asp">CAS SQL
+query</a> Robert used to perform the matchup of DR4 photometry with
+Stetson's:</p>
+
+<pre>
+
+  select
+     dbo.fSDSS(P.objId) as ID, name,
+     S.B, S.Berr, S.V, S.Verr , S.R, S.Rerr, S.I, S.Ierr,
+     psfMag_u, psfMagErr_u, psfMag_g, psfMagErr_g,
+     psfMag_r, psfMagErr_r, psfMag_i, psfMagErr_i, psfMag_z, psfMagErr_z,
+     case when 0 = (flags_u & 0x800d00000000000) and status_u = 0 then 1 else 0 end as good_u,
+     case when 0 = (flags_g & 0x800d00000000000) and status_g = 0 then 1 else 0 end as good_g,
+     case when 0 = (flags_r & 0x800d00000000000) and status_r = 0 then 1 else 0 end as good_r,
+     case when 0 = (flags_i & 0x800d00000000000) and status_i = 0 then 1 else 0 end as good_i,
+     case when 0 = (flags_z & 0x800d00000000000) and status_z = 0 then 1 else 0 end as good_z
+  from
+     stetson as S
+  join star as P on S.objId = P.objId
+  join field as F on P.fieldId = F.fieldId
+  where
+     0 = (flags & 0x40006)
+
+</pre>
+
+
+
+
+<a name="vega_sun_colors">
+<H2>Estimates for the ugriz Colors of Vega and the Sun</H2>
+
+<p>Assuming V=+0.03 and U-B = B-V = V-R<sub>c</sub> =
+R<sub>c</sub>-I<sub>c</sub> = 0.00, we find for the A0V star Vega the
+following:</p>
+
+<pre>
+    g   = -0.08  (+/-0.03)
+    u-g = +1.02  (+/-0.08)
+    g-r = -0.25  (+/-0.03)
+    r-i = -0.23  (+/-0.02)
+    i-z = -0.17  (+/-0.02)
+</pre>
+
+<p>where we used the <a href="#Bilir2005">Bilir, Karaali, and Tuncel
+(2005) transformation for g</a> and the <a href="#Rodgers2005">Rodgers et
+al. (2005) transformations</a> (plus the <a
+href="./jeg_photometric_eq_dr1.html#usno2SDSS">u'g'r'i'z'-to-ugriz
+transformations</a>) for the u-g, g-r, r-i, and i-z colors.
+The error bars in parentheses are rough estimates
+of the systematic errors based upon the different values
+that different sets of transformation equations yield. </p>
+
+<p>Assuming M(V)=+4.82, U-B=+0.195, B-V=+0.650,
+V-R<sub>c</sub>=+0.36, and R<sub>c</sub>-I<sub>c</sub>=+0.32, 
+we find for the Sun the following:</p>
+
+<pre>
+    M(g)= +5.12  (+/-0.02)
+    u-g = +1.43  (+/-0.05)
+    g-r = +0.44  (+/-0.02)
+    r-i = +0.11  (+/-0.02)
+    i-z = +0.03  (+/-0.02)
+</pre>
+
+<p>where, again, we used the <a href="#Bilir2005">Bilir, Karaali, and
+Tuncel (2005) transformation for g</a> and the <a
+href="#Rodgers2005">Rodgers et al. (2005) transformations</a> (plus
+the <a
+href="./jeg_photometric_eq_dr1.html#usno2SDSS">u'g'r'i'z'-to-ugriz
+transformations</a>) for the u-g, g-r, r-i, and i-z colors.  As above,
+the error bars in parentheses are rough estimates of the systematic
+errors based upon the different values that different sets of
+transformation equations yield.</p>
+
+<hr>
+This page was last modified on $Date: 2008/10/24 11:20:48 $ (UT).
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

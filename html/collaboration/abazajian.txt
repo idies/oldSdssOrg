@@ -1,0 +1,52 @@
+This month, I am moving from Fermilab to Los Alamos, and am writing to
+request continuing as an external collaborator with scientists involved
+in analyzing SDSS data.  There are four projects that I have gotten
+greatly involved with that I would like to continue.
+
+One is with Josh Frieman, David Weinberg, Zheng Zheng, Idit Zehavi, Erin
+Sheldon, and Andreas Berlind on modelling the halo occupation
+distribution (HOD) and using SDSS galaxy-galaxy and galaxy-mass
+correlation function measures to constrain halo occupation model
+parameters, and, vice-versa, using the correlation function measurements
+and HOD to constrain
+cosmology.
+
+The second project is using the flux power spectrum of the Lyman-alpha
+forest in SDSS quasar spectra to infer the shape and amplitude of the 3D
+matter power spectrum, the growth of structure, and cosmological
+parameters.  My work involves helping analyze the method of recovering
+the 3D matter power from the flux power spectrum, testing the analysis
+technique with mock data, and combining the measurements for
+cosmological parameter determination in concert with CMB and other
+cosmological measurements.  This collaboration is with Lam Hui, Adam
+Lidz, and Scott Dodelson.
+
+The third project involves using 3D galaxy power spectrum to study
+galaxy clustering and cosmological parameters, in combination with the
+other measures of large scale structure and the CMB.  This may be
+combined with short-scale measurements described in the first project
+above to constrain galaxy bias.  This project is in collaboration with
+Scott Dodelson and Max Tegmark.
+
+The fourth project involves measuring the growth of cosmological
+structureand galaxy formation via optically-selected cluster samples
+using the maxBCG technique by Jim Annis and the C4 technique by Chris
+Miller and others.  I am involved in the theoretical analysis of the
+measurements by Jim Annis and Chris Miller, regarding the cosmological
+implications of the measurements by comparison with the expected
+abundance and mass function of clusters.  We are also studying the
+implications for galaxy formation theory with Risa Wechsler.
+
+I hope to be able to complete these projects with the SDSS collaboration
+ while a Director's Fellow at the particle physics and astrophysics
+groups  at Los Alamos National Laboratory.
+
+Sincerely,
+Kev Abazajian
+
+-- 
+-------------------------------------------------------------------------
+   Kev Abazajian                                   ph: (505) 667-2986
+T-8/T-6 Director's Fellow
+   Los Alamos National Lab
+-------------------------------------------------------------------------

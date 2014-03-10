@@ -1,0 +1,27 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+<h1>
+<center>Messier 90</center>
+</h1>
+<center><img src="m90.jpg"></center>
+
+<p>
+Shown is the spiral galaxy Messier 90 and its companion IC 3583.  M90 is one of the larger spiral galaxies found in the Virgo cluster.  There is evidence that the two are gravitationally interacting, like many of the galaxies observed by SDSS.  The color gradients seen in M90 also indicate an age spread in its' stellar content, with older stars found near the center.
+
+</p>
+
+<p><strong>(Caption by John Bochanski)</strong></p>
+
+<p><a href="archive.html">Go to the <em>SDSS Image of the Week</em> archive</a></p>
+
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=3040653; 
+var sc_invisible=0; 
+var sc_partition=33; 
+var sc_security="2d1bccc8"; 
+</script>
+
+<script type="text/javascript" src="http://www.statcounter.com/counter/counter_xhtml.js"></script><noscript><div class="statcounter"><a class="statcounter" href="http://www.statcounter.com/"><img class="statcounter" src="http://c34.statcounter.com/3040653/0/2d1bccc8/0/" alt="free website stats program" /></a></div></noscript>
+<!-- End of StatCounter Code -->
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->

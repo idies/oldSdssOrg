@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Outline of frames</TITLE>
+<META NAME="description" CONTENT="Outline of frames">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html544" HREF="node39.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html542" HREF="node36.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html536" HREF="node37.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html545" HREF="node39.html">Deblending of Objects</A>
+<B>Up:</B> <A NAME="tex2html543" HREF="node36.html">The Frames Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html537" HREF="node37.html">How frames Designates Objects</A>
+<BR> <P>
+<H3><A NAME="SECTION00044200000000000000">Outline of <TT>frames</TT></A></H3>
+<P>
+<A NAME="swphotoprocedure">&#160;</A>
+<P>
+The pipeline analyzes the data one field (&#167;&nbsp;<A HREF="node29.html#hwda">3.5</A>) at a time. Because
+information about each object is contained in five separate frames,
+one for each filter, the five frames for each field are processed
+together.
+<P>
+Each frame has instrumental signatures (flat field, bias, cosmic rays,
+and bad columns) removed, and the global sky value from the <TT>psp</TT>
+subtracted.  The CCDs are known to be non-linear by of order 2% near
+saturation; this is <EM>not</EM> corrected for in the current version of
+the pipeline.  Cosmic rays are found as objects with gradients between
+adjacent pixels substantially steeper than allowed by the PSF and are
+interpolated over.  Note that our images are marginally well-sampled
+in 1'' seeing.  Previously recognized bad columns are interpolated
+over using linear prediction (e.g., Rybicki &amp; Press 1992), as are
+bleed trails from saturated stars.
+<P>
+Objects containing a (found and interpolated-over) cosmic ray
+are flagged by having the mask bit <TT>CR</TT> set in <TT>flags</TT> for
+that band; objects with any interpolated pixels in them at all (due to
+bad columns or bleed trails) are flagged by having <TT>INTERP</TT> set.
+<TT>INTERP_CENTER</TT> indicates that a pixel was interpolated over
+within 3 pixels of the center of the object, and <TT>
+PSF_FLUX_INTERP</TT> indicates that at least 20% of the PSF flux is
+interpolated; in rare cases, photometry of objects with these latter
+two flags set might be suspect.
+<P>
+Next, objects in the frame are detected and their properties measured
+in a four step process in each band.  First, an object finder is run
+to detect bright objects. In each band, the object-finder detects
+pixels which are more than <IMG WIDTH=35 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3047" SRC="img64.gif"> (corresponding roughly to <IMG WIDTH=69 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3049" SRC="img65.gif">) above the sky noise; only a single pixel need be over this
+threshold for an object to be detected at this stage.  These objects are flagged as
+<TT>BRIGHT</TT>.  The extended power-law wings of <TT>BRIGHT</TT> objects
+which are saturated are subtracted from the frame.  Such stars are
+marked <TT>SUBTRACTED</TT>.  Then, the sky level is estimated by
+median-smoothing the frame image on a scale of approximately
+100&nbsp;arcsec; the resulting ``local'' sky image is subtracted from the
+frame (remember that a global sky determined on an entire frame has
+already been subtracted).  This sky level is stored for each object
+for each band in the parameter <TT>sky</TT> (and an associated
+uncertainty <TT>skyErr</TT>), in units of asinh magnitudes
+(&#167;&nbsp;<A HREF="node41.html#swphotoluptitudes">4.4.5</A>) per square arcsec. 
+For children of
+blends (&#167;&nbsp;<A HREF="node39.html#swphotodeblend">4.4.3</A>), the <TT>sky</TT> parameter includes
+the contribution of its siblings.
+<P>
+Third, we find objects by smoothing the image with a Gaussian fit to
+the PSF, and look for <IMG WIDTH=18 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3051" SRC="img66.gif"> peaks over the (smoothed) sky in each band.
+After objects are detected, they are ``grown'' more-or-less
+isotropically by an amount approximately equal to the radius of the
+seeing disk. We then define an object to be a connected set of pixels
+which are detected in at least one band.  Note that all pixels in the
+object are subsequently used in the analysis in <I>every</I> band,
+whether or not they were originally detected in that band.  The
+photometric pipeline never reports an upper limit for the detection of
+an object, but rather carries out a proper measurement, with its
+error, for each of the varieties of fluxes listed in
+&#167;&nbsp;<A HREF="node41.html#swphotoflux">4.4.5</A>.
+<P>
+Objects detected in a given band at this stage are flagged by setting the mask
+bit <TT>BINNED1</TT> (Table &nbsp;<A HREF="node65.html#tblflag">9</A>) in <TT>flags</TT> of the <TT>PhotoObj</TT>
+class in that band. All pixel values in these <TT>BINNED1</TT> objects are then
+replaced by the background level (with sky noise added in), the frame is
+rebinned into a <IMG WIDTH=37 HEIGHT=22 ALIGN=MIDDLE ALT="tex2html_wrap_inline3053" SRC="img67.gif"> image, and the object-finder is run again. The
+resulting sample is flagged in a similar way with the <TT>BINNED2</TT> mask, and
+pixel values in these objects are replaced with the background level.
+Finally, we rebin the original pixel data at <IMG WIDTH=38 HEIGHT=22 ALIGN=MIDDLE ALT="tex2html_wrap_inline2839" SRC="img13.gif">, and objects found at
+this stage are flagged <TT>BINNED4</TT>. The set of detected objects then
+consists of all objects with pixels flagged <TT>BINNED1</TT>, <TT>BINNED2</TT>, or
+<TT>BINNED4</TT>.
+<P>
+Fourth, the pipeline measures the properties of each object, including
+the position, as well as several measures of flux and shape, described
+more fully below. It attempts to determine whether each object actually
+consists of more than one object projected on the sky, and if so, to
+deblend such a ``parent'' object into its constituent ``children'',
+self-consistently across the bands (thus all children have
+measurements in all bands).  Then it again measures the properties of
+these individual children.  Bright objects are measured twice: once
+with a global sky, and no deblending run; this detection is flagged
+<TT>BRIGHT</TT>, and a second time with a local sky.  For most purposes,
+only the latter is useful, and thus one should reject all objects
+flagged <TT>BRIGHT</TT> in compiling a sample of objects for study.
+<P>
+Other flag bits listed in Table&nbsp;<A HREF="node65.html#tblflag">9</A> that are useful at this stage
+are:
+<UL>
+<LI>  <TT>SATUR</TT>, indicating
+that at least one pixel in the object is flagged as saturated (the
+corresponding <TT>SATUR_CENTER</TT> indicates that the saturated
+pixel(s) are close to the center, to distinguish extended objects
+blended with saturated stars on their outskirts; unfortunately,
+this distinction is not as clean as we would like, due to
+improper handling of diffraction spikes).
+<LI> <TT>EDGE</TT>, indicating that the object overlaps the edge of the
+frame, which may affect the photometry of the object. 
+</UL>
+<P>
+Finally, the pipeline outputs the measured quantities for each object,
+including all of the <TT>BRIGHT</TT> objects, all the parents, and all
+the children. In the following sections, we discuss how to interpret these 
+outputs.
+<P>
+A typical frame at high Galactic latitudes contains of order 1000
+objects, including of order 5 objects chosen deliberately in regions
+where no objects are detected; these are used to place sky fibers for
+spectroscopy, and are classified as <TT>Sky</TT>.  Repeat observations of a given area of sky in roughly
+1.5'' seeing shows that our 95% completeness limit for stars is
+<IMG WIDTH=303 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3059" SRC="img68.gif">, and <IMG WIDTH=69 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3061" SRC="img69.gif">; the
+completeness drops to zero over roughly half a magnitude.  These
+numbers are somewhat worse than quoted in the SDSS Project Book
+york00, as that calculation assumed 1'' seeing and slightly
+broader filters.
+<P>
+<HR><A NAME="tex2html544" HREF="node39.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html542" HREF="node36.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html536" HREF="node37.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html545" HREF="node39.html">Deblending of Objects</A>
+<B>Up:</B> <A NAME="tex2html543" HREF="node36.html">The Frames Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html537" HREF="node37.html">How frames Designates Objects</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

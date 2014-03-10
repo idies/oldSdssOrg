@@ -1,0 +1,469 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Data products: QA: single-run QA - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+<h1>Single-run QA</h1>
+
+<a href="./summaryQA.html">Over to summary QA</a> - <a href="./index.html">Up to Photometry QA</a>
+
+<h2>Single-run QA quantities</h2>
+
+<p>Single-run QA is the first place to look to understand in detail
+the quality for a given run.  This explanation of a run's QA page will
+use an example run (chosen more or less at random), run 1478, rerun
+40, which covers a part of strip 12 S.  It can be reached from the <a
+href="http://das.sdss.org/imaging/QA/summaryQA_analyzePC.html">summary
+web site</a>; clicking on the run number gets us to <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/all-runQA-1478-40.html">
+http://das.sdss.org/imaging/QA/1478/40/qa/all-runQA-1478-40.html</a>.</p>
+
+<p> Note that the top of the run's QA page indicates the versions of the
+astrometric and photometric pipelines used to generate the data that
+went into this analysis.  The run's QA page gives statistics of a wide
+variety of internal consistency statistics run on the data, with links
+to specific postscript figures (and in some cases, tables of numbers)
+giving the gory details.  The tests carried out reflect specific
+concerns and problems we've had with the data and pipelines thereof,
+and therefore allow us to determine whether for these data, the
+problem does not appear.  This will become clear with the detailed
+descriptions of the specific tests carried out.</p>
+
+<p>An SDSS run is divided into six scanlines or camera columns, and
+each camera column is divided into a long series of slightly
+overlapping fields of 10x13 arcmin<sup>2</sup>.  Each field, in turn,
+is made up of five frames, one in each of the SDSS filters,
+<var>u,g,r,i,z</var>. There is a condensed version of the QA for the
+run described <a href="#summary">below</a>, but to understand it
+requires familiarity with the basic tests of runQA, which we now
+describe.
+
+<p> The tests that are carried out on each run fall into six broad
+categories, which are listed in the table of contents in the beginning
+of the run's QA page.</p>
+
+<ul>
+  <li><a href="#quality">Field Quality
+      Statistics</a> tabulate the distribution of field qualities of
+      each camera column.</li>
+  <li><a href="#principal"><font
+      color="blue">Principal Color Distributions</font></a>.  The constancy
+      of the distribution of stars in color-color diagrams (the <i>stellar
+      locus</i>) allows a test of the photometric uniformity of the data.</li>
+  <li><a href="#sky">Background Brightness Analysis</a>.  Another check of the photometric uniformity
+      comes from comparing the sky brightness from one camera column to
+      another.</li>
+  <li><a href="#PSF">PSF Photometry</a>. There are several algorithms to determine the
+      brightnesses of stars; systematic differences between them are an
+      indication of possible problems in the determination of the
+      point-spread function.</li>
+  <li><a href="#astrometry">Relative Astrometry</a>. The relative positions of
+      stars in the five passbands are checked for systematic offsets.</li>
+  <li><a href="#flats">Flatfield Errors</a>. The <a
+      href="#principal">principal colors</a> of stars can be used to check for
+      systematic offsets as a function of position on each chip, due to
+      errors in the flatfield vector.  Note that the signal-to-noise ratio
+      for this analysis is usually poor for a single run; this analysis is
+      better done on a <a href="#summary">large group of runs
+      together</a>.</li>
+</ul>
+      
+
+<a name="quality"></a>
+<h3> Determining the overall quality of each field</h3>
+
+<p>The table lists the fractions of fields in each camera column with
+each quality classification as defined on the<a
+href="./summaryQA.html">summaryQA page</a>.  In our example run, the
+vast majority of fields are good or excellent.  Tables of relevant
+numbers are given for each camera column in links in the first column
+of the table, and (in even more excruciating detail) in the link
+labelled <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/fieldQAwizhard-runQA-1478-40.dat"><font
+color="blue"> Here is the QAwizhard's Field Quality
+Table</font></a>.</p>
+
+<a name="principal"></a>
+<h3> The Principal Colors of the Stellar Locus</h3>
+
+<p>The distribution of ordinary stars in SDSS color-color space
+follows a tight locus with distinctive features that can be used as
+measures of the photometric calibration.  In particular, one can use
+various regions of these stellar loci that appear straight to define a
+series of <i>principal colors</i>, whose median values should be
+essentially constant over the survey (although they are weakly
+metallicity-dependent).  See <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003ApJ...586..195H">Helmi
+et al (2003, ApJ, 586, 195)</a> for an initial description of these
+principal colors.  These colors are defined after correcting for
+foreground reddening a la <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1998ApJ...500..525S">Schlegel,
+Finkbeiner, and Davis (1998)</a>; to a very good approximation, at the
+flux limits of the SDSS, all stars are beyond the absorbing dust.
+There are four such principal colors defined:</p>
+
+<ul>
+  <li> The <em>s color</em>, <code>s=-0.249u+0.794g-0.555r+0.234</code>, which
+      is perpendicular to the stellar locus in the <var>u-g</var>,
+      <var>g-r</var> diagram.</li>
+  <li>The <em>w color</em>, <code>w=-0.227g+0.792r-0.567i+0.050</code>, which is perpendicular
+      to the blue branch of the stellar locus in the <var>r-i</var> vs. <var>g-r</var> diagram.
+  <li>The <em>x color</em>, <code>x=0.707g-0.707r-0.983</code>, which is perpendicular to
+      the red branch of the stellar locus in the r-i vs. g-r diagram.</li>
+  <li>The <em>y color</em>, <code>y=-0.270r+0.800i-0.534z+0.059</code>, which is
+      perpendicular to the stellar locus in the r-i vs. i-z
+  diagram.</li>
+</ul>
+
+<p>Each of these colors has been offset to be zero over the full SDSS
+survey.  They have been normalized such that the error in the
+principal colors is comparable to the error in a single band, assuming
+the errors in each band are the same.  These colors are measured for
+every star brighter than r=19 (which are not flagged as having
+problematic photometry).  The statistics are plotted in a series of
+figures labelled <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40-scolor.ps"><font
+color="blue">Click here for the main s color plot</font></a> (and
+similarly for <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40-wcolor.ps">w</a>,
+<a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40-xcolor.ps">x</a>,
+and <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40-ycolor.ps">y</a>).
+They show the median and rms statistics in each bin, as a function of
+field number, for each camera column.  Here one can see at a glance
+the extent to which the stellar locus is in agreement with the SDSS
+global average (the lines in the top panel stay close to zero), and
+whether there are specific fields or groups of fields that deviate.
+One can also see whether the width of the stellar locus stays
+constant.  Also shown are the number of stars used in each bin for the
+principal color determination (this is usually not flat, as the
+density of stars changes with Galactic latitude).  Finally, the rms
+statistic in bins does not measure the number of extreme outliers from
+the stellar locus, so also shown is the number of stars more than 2
+sigma from the median s, w, x, and y values, on the blue side and red
+side, respectively.</p>
+
+<p> In addition, these statistics are all made available in the <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/fieldQAwizhard-runQA-1478-40.dat"><font
+color="blue">Field Quality Table </font></a>, and also in links off
+the flat-field error page linked at the bottom of the runQA page, and
+are summarized in a series of tables, that look like this:</p>
+
+<table border cellspacing=0 cellpadding=6>
+<tr>
+  <td colspan=0 rowspan=1></td>
+  <th colspan=9 align=center><em>  The x color
+      </em></th>
+</tr>
+
+<tr><th>Quantity:</th> <th>Median</th> <th>Max|PC|</th> <th>Rms</th> <th>Width</th> <th>MaxWidth</th> <th>Nall</th> <th>NblueTail</th> <th>NredTail</th> </tr>
+
+<tr> <th> <A HREF=http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40_0-xcolorQA.ps> col. 1 </th> <th><font color="red"> -0.013* </font> </th> <th> 0.026 </th> <th> 0.009 </th> <th> 0.041 </th> <th> 1.28 </th> <th> 30 </th> <th> 1 </th> <th> 0 </th> </tr>
+
+<tr> <th> <A HREF=http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40_1-xcolorQA.ps> col. 2 </th> <th> -0.008 </th> <th> 0.028 </th> <th> 0.011 </th> <th> 0.042 </th> <th> 1.30 </th> <th> 28 </th> <th> 1 </th> <th> 0 </th> </tr>
+
+<tr> <th> <A HREF=http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40_2-xcolorQA.ps> col. 3 </th> <th><font color="red"> -0.015* </font> </th> <th> 0.039 </th> <th> 0.012 </th> <th> 0.041 </th> <th> 1.37 </th> <th> 30 </th> <th> 1 </th> <th> 0 </th> </tr>
+
+<tr> <th> <A HREF=http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40_3-xcolorQA.ps> col. 4 </th> <th><font color="red"> -0.013* </font> </th> <th> 0.032 </th> <th> 0.011 </th> <th> 0.041 </th> <th> 1.41 </th> <th> 28 </th> <th> 1 </th> <th> 0 </th> </tr>
+
+<tr> <th> <A HREF=http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40_4-xcolorQA.ps> col. 5 </th> <th><font color="red"> -0.014* </font> </th> <th> 0.024 </th> <th> 0.012 </th> <th> 0.042 </th> <th> 1.33 </th> <th> 29 </th> <th> 1 </th> <th> 1 </th> </tr>
+
+<tr> <th> <A HREF=http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40_5-xcolorQA.ps> col. 6 </th> <th><font color="red"> -0.012* </font> </th> <th> 0.017 </th> <th> 0.008 </th> <th> 0.040 </th> <th> 1.38 </th> <th> 30 </th> <th> 1 </th> <th> 0 </th> </tr>
+
+<tr> <th> mean value </th> <th><font color="red"> -0.012* </font> </th> <th> 0.028 </th> <th> 0.011 </th> <th> 0.041 </th> <th> 1.345 </th> <th> 29.167 </th> <th> 1.000 </th> <th> 0.167 </th> </tr>
+
+</table>
+<br> <font color="red"> *Red entries are triggered by  entry < -0.01 0    0.0  0.0  0  0 0 0</font>
+<br> <font color="red"> or entry >  0.01 0.04 0.02 0.08 1.75 100 30 30</font>
+
+<p>Color-color and color-magnitude diagrams are given in links to each camera column,
+showing exactly the stars that go into the definition of each primary
+color. </p>
+
+<p>The quantities listed, for each camera column, include:</p>
+
+<ul>
+  <li> <b>Median</b>: The median value over all bins of the median
+      principal color.  That is, it is the median of the values shown in the
+      top panel of the principal color figure.  
+      The principal colors are supposed to be close to zero, so 
+      This is the value you want to look for to see if there is some
+      systematic offset of the photometry of the whole camera column from the survey
+      as a whole.</li>
+  <li> <b>Max|PC|</b>: The largest deviation of the median principal color in a bin from
+      the median over all bins.  That is, it is the most outlying point of
+      the values shown in the top panel of the principal color figure.  Look
+      here for an indication of outlying frames with problematic photometry.
+  <li> <b>Rms</b>: The RMS scatter of the median PC color in each bin.
+      That is, it is the scatter around the mean of the values shown in the
+      top panel of the principal color figure.  Look here for an indication
+      of varying photometric calibration along a run (caused, e.g., by
+      clouds).</li>
+  <li> <b>Width</b>: The median value of the rms width of the principal
+      color in each bin.  That is, it is the median of the values shown in
+      the second panel of the principal color figure.  Typical values are
+      less than 0.05 magnitudes.</li>
+  <li> <b>MaxWidth</b>: The maximum value of the rms width of the principal
+      color in each bin.  That is, it is the maximum of the values shown in
+      the second panel of the principal color figure.  Look here for signs
+      of a single frame with poor photometry.</li>
+  <li> <b>Nall</b> (admittedly a confusing name): The median number of
+      stars which went into the determination of the principal color in each bin (i.e., the third
+      panel in the principal color figure).  This median is not very
+      interesting, as the number of stars is a strong function of Galactic
+      latitude.  Much more meaningful are:</li>
+  <li> <b>NblueTail</b> and <b>NredTail</b>, which give the median number of
+      stars per bin which lie more than 2 sigma (on the blue and red sides,
+      respectively) of the median principal color.  This is an indication of
+      possible problems with some small fraction of the photometry.  This is
+      the median of the quantity shown in the lower two panels of the
+      principal color plot.</li>
+</ul>
+
+<p>Too large a value of any of these quantities indicates a problem.
+If any of these values is above a threshold, as indicated, it is shown
+in <font color="red">red</font>, so problems can be recognized at a
+glance.  If a problem is indicated, often the best way to proceed is
+to look at the principal color plots.  For example, in run 1478, the
+Median x color is about -0.013 (i.e., 13 millimags) in most columns, a
+bit above the nominal threshold of 0.01.  The <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40-xcolor.ps">x</a>
+color plot does indeed show an offset in the x color of about 1%,
+which seems to be a real calibration problem.</p>
+
+
+<a name="sky"></a>
+<h3> Background (Sky) Brightness Analysis</h3>
+
+<p>Another check of the uniformity of the photometric calibration, from
+one camera column to another, is the uniformity of the sky brightness.
+The sky brightness, measured on a frame-by-frame basis, changes with
+time; here we calculate for each filter a
+running median as a function of field over the six camera columns.
+The plot <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40-sky.ps">http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40-sky.ps</a>,
+shows the <i>deviations</i> of each camera column from this median, in
+units of magnitudes per square arcsecond.
+Note that the bandpasses of the <i>z</i> chips differ slightly, one
+from another; this effect is corrected for before taking the medians. 
+
+<p>Thus the variation of the sky brightness with time has been taken out;
+these curves should be quite flat (as indeed they are).  In addition,
+the <i>median</i> of each of these curves has also been taken out, so
+each should hug zero.</p>
+
+<p>Summary statistics are then given of the quantities in that figure,
+including medians (i.e., the quantity taken out of the graphs above)
+in the table <em> Phot. Zeropoint Corr. for Flat
+Sky</em>, rms (<em>Sky: RMS</em>), and max
+deviation (<em>Sky: Max Dev</em>)statistics.  Note
+that each of these tables links to the same figure for each of the
+camera columns.</p>
+
+<p>As this example shows, this is a very powerful statistic, and
+checks for consistency of the internal photometric calibration and the
+flat-fields at the level of much better than a percent.  It is
+limited, however, by the presence of scattered light, especially in
+the u band.  An interesting scientific question is whether the sky
+brightness is expected to differ at this level over the 2.5 degree
+field of the camera. </p>
+
+<a name="PSF"></a>
+<h3> PSF Photometry</h3>
+
+<p>Errors in the determination of the Point Spread Function (PSF) have
+been one of the most pernicious in the development of the photometric
+pipeline.  The following tests allow us to determine how well the PSF
+is calculated, by comparing different measures of the brightnesses of
+stars. </p>
+
+<p>In particular, the PSF magnitudes of stars (i.e., that determined
+from a direct fit of the PSF model to the brightness, aperture
+corrected to a large aperture; see the EDR paper) should agree with
+the large-aperture (here, a diameter of 7.5 arcsec) magnitude itself.
+This comparison can be carried out only for bright stars, for which
+the noise from the sky is negligible.  This is carried out for each
+column of data for each filter, and there are <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40_3-apCorr7.ps">plots
+such as this example showing the difference between aperture and PSF
+magnitude</a> (for objects believed to be stars, brighter than 19th
+magnitude, and with estimated PSF error less than 0.05, in each band
+considered).  Each star is shown as a point, with a running median per
+field shown as a red line.  </p>
+
+<p>
+The Postage Stamp Pipeline, which determines the PSF in the first
+place, indicates for each field the quality of its determination of
+the PSF.  There are certainly fields in which the PSF is known to be
+poorly determined (usually in regions where the PSF is changing
+rapidly with time; note the bottom panels give the r-band seeing and
+its derivative); changes in seeing of 0.2 arcsec/field are definitely
+bad!  These fields are flagged as having suspect PSF, and are
+indicated as such with cyan or magenta lines in the plot.  These fields
+are <i>not</i> included in the summary statistics now described.
+<p>
+These summary statistics consist of:
+<ul>
+  <li> The maximum deviation in the median aperture - PSF magnitude per
+      field (i.e., the quantity plotted in red), in <font
+      color="blue">m(apert7)-m(psf): Max Dev</font>;</li>
+  <li> The median value of the median PSF - aperture magnitude per
+      field, in <em>m(apert7)-m(psf): Med Off</em>;</li>
+  <li> The rms scatter of the median PSF - aperture magnitude per field,
+      in <em>m(apert7)-m(psf): RMS</em>.</li>
+</ul>
+
+<p>In run 1478, the median PSF-aperture magnitude hugs zero impressively
+well, with essentially no offset, and an rms scatter of 0.01 mag in u
+and z, and substantially better in g, r, and i.  Two chips (out of
+30!), the u-band in columns 2 and 5, are flagged red in their median
+offset.  As an aperture correction is made to make the PSF and
+aperture magnitudes agree in the mean, this test is more a consistency
+check than anything else.  </p>
+
+<p>In addition to the PSF, every object is fit to exponential or de
+Vaucouleurs profile.  The better-fitting of these two yields a
+so-called `model magnitude'.  This quantity is aperture-corrected to
+force the model and PSF magnitudes of stars to agree.  Of course, for
+stars, the model scalesizes are close to zero, but this has really all
+worked properly with the latest version of the photometric pipeline,
+as described in detail in the <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2004AJ....128..502A">SDSS
+DR2 paper</a>.  The consistency of model and PSF magnitudes for stars
+is  is tested in the next series of plots and tables, <font
+color="blue">m(mod)-m(psf): Max Dev/Med Off/RMS</font>.</p>
+
+<a name="astrometry"></a>
+
+<h3> Internal Tests of Astrometry</h3>
+
+<p>The astrometric calibration is applied to the r-band, and then
+propagated to each of the other bands in turn.  One can ask, on a
+star-by-star basis, whether the calibrated positions are consistent.
+This is shown in the last two sets of plots and tables.  The
+photometric pipeline measures a "velocity" for each object.  This is
+done with asteroids in mind: a main-belt asteroid has an apparent
+proper motion of a few arcseconds over the five-minute interval
+between the r-band image and the g-band image.  Thus the astrometric
+position of the asteroid varies linearly with filter (in the order,
+<i>riuzg</i>).  The pipeline fits a line to the positions of
+<i>every</i> object; for all real stars, this line has a slope
+consistent with zero.  The scatter in this slope can be expressed as a
+relative positional uncertainty between bands in arcseconds; these
+tables collect the statistics for bright stars (r&lt;19.0).  </p>
+
+<p>In particular, the <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40_0-rel_astrom.ps">plots
+under <em>band-to-band astrometric accuracy</em></a> show the measured
+distribution of this effective positional uncertainty (in the row and
+column directions), shown both linearly (upper panels) and
+logarithmically (middle panels; note the change in scale on the
+x-axis).  The median and sigma (as measured from the interquartile
+range) are given for each panel.  Note the pesky periodic peaks in the
+upper histograms; those are an artifact of round-off errors in the way
+the data are stored. </p>
+
+<p>The distribution is roughly Gaussian.  One wants to look at
+outliers in this plot, for example to look for asteroids in the outer
+solar system.  The T3 and T5 statistics shown in the figure give the
+number of 3-sigma and 5-sigma outliers relative to the number expected
+in a purely Gaussian distribution, respectively.  T3 is typically
+5-10, while T5 is meaningless for all but the very longest runs.  But
+note that the distribution cuts off <i>completely</i> at +/- 100
+milliarcsec; the internal astrometry is very clean!</p>
+
+<p>If the astrometric errors are estimated correctly, the distribution of
+the <i>measured</i> errors divided by the errors <i>estimated</i> by
+the imaging pipelines will
+be a Gaussian with variance unity.  This is tested in the lower panel,
+<em>Relative Astrometry by Field</em> 
+(for blue and red stars separately).  The distributions are not too
+far off from Gaussian, and indeed have a variance significantly less
+than unity, implying that the estimated astrometric errors are biased
+somewhat high.</p>
+
+<p> All these statistics are summarized in the table shown, for row
+and column statistics separately.  All quantities are shown in units
+of milliarcseconds (except for the chi-squared statistics, which of
+course are unitless).</p>
+
+<p>One can then study these statistics as a function of field.  The <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40_0-rel_astrom_field.ps">astrometry
+plot</a> (here for column 1) shows the internal astrometric offsets
+for each star brighter than r=19, together with median per field.  The
+statistics for these quantities (median over the fields, maximum, and
+rms) are listed in the table.  The maximum over a field are a few tens
+of milliarcsec, with an rms of only a few milliarcsec.</p>
+
+<a name="flats"></a>
+<h2>Checks of the flat fields</h2>
+
+<p>Note that the results of these tests are given on a <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/ff-runQA-1478-40.html">separate
+flat-field QA page</a>, as they are less useful on a run-by-run basis.  Also given
+on the run's flat-field QA page are links to the data files containing detailed
+information on the principal colors. </p>
+
+<p>The SDSS images are from a drift-scan, thus the flat field is a
+one-dimensional vector for each chip, as a function of pixel column.
+If this flat field is in error, the error will propagate into all
+derived quantities, especially the photometry.  The Principal Colors,
+described <a href="#principal">above</a>, can be used to check the
+flat fields.  The stellar principal colors are determined for each
+camera column as a function of pixel column (in bins of 32 pixels).
+Systematics as a function of pixel column are an indication of
+flat-field problems.  There are four principal colors, and five
+flat-fields; the equations are closed by including constraints from
+the PT.  The results of solving for the possible correction in each of
+the <var>u, g, r, i</var>, and <var>z</var> flat-fields is shown in a
+series of <a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/runQA-1478-40-gPC-col.ps">flat-field
+quality plots like this one</a>).  Again, these tend to be noisy for a
+single run, especially in u (where we've been having the most trouble
+with the flats).  The largest problems in the flats tend to be at
+their edges.  This information is used a posteriori to improve the
+SDSS flat-fields themselves.</p>
+
+<a name="summary"></a>
+<h2>Summary Table</h2>
+At both the top and the bottom of the runQA page, there is a link to a
+<a
+href="http://das.sdss.org/imaging/QA/1478/40/qa/summary-runQA-1478-40.html">summary
+table</a>, which condenses all this information further.  The first
+table is a repeat of the the <a href="#sky">
+Phot. Zeropoint Corr. for Flat Sky</a>, giving estimates from the sky levels
+of any photometric offsets of each chip.  A second such estimate is
+given from the <a href="#principal">principal colors</a> in the table
+entitled <em> Zeropoint Corrections to Fix Principal
+Colors</em>.  Here, the four principal colors for each chip
+(median'ed over the run) are solved for the five passbands, under the
+(arbitrary) assumption that the offsets in g, r, and i (the three
+highest S/N bands) add to zero.  Remember, the principal colors are
+defined to have zero mean over the full survey, and are normalized to
+have errors comparable to the error in a single band.  Because the
+u-band enters into the principal colors only through u, where it has a
+coefficient of 1/4, this process tends to "push" the offsets to u;
+there will often be offsets in u that are somewhat above spec as a
+consequence.</p>
+
+<p>Note that the links off these tables are dummies and do not lead anywhere.</p>
+
+<p>Following that is a table with mean statistics over the run of
+various additional quantities associated with the PSF determination
+and the relative astrometry between bands.  These of course are taken
+simply from the detailed QA we have already seen.</p>
+
+
+<hr>
+<!-- hhmts start -->Last modified: Fri Jun 23 14:06:37 BST 2006
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

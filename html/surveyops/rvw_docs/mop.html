@@ -1,0 +1,227 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+<H1 style="TEXT-ALIGN: center">
+<CENTER><FONT size=3><B><I>Sloan Digital Sky Survey</I></B></FONT></CENTER>
+<CENTER><FONT size=3><B><I>Review of Observing Systems and Survey 
+Operations</I></B><BR><BR></FONT></CENTER>
+<CENTER><B><FONT size=+2></FONT></B></CENTER>
+<CENTER><FONT size=-1><FONT size=5>Photometric Telescope Observers Program 
+Overview<BR></FONT></FONT><FONT size=2>Eric Neilson</FONT></CENTER>
+<CENTER><FONT size=-1>April 10, 2000</FONT></CENTER>
+<HR SIZE=4 width="100%"></H1>
+<H2><FONT size=3>Introduction</FONT></H2>
+<P><FONT size=2>The Monitor Telescope Observers Program, or 
+MOP, provides the interface for the observers on the Photometric Telescope (or 
+PT), and implements automated observation of standard stars and secondary 
+patches (transfer fields). All functions are available through a command line 
+interface, and most are available through a GUI (graphical user interface) as 
+well. Procedures common to routine observation are mostly automated. </FONT>           
+           
+          
+            
+            
+    </P>
+<H2><FONT size=3>Functionality</FONT></H2>
+<OL>
+  <LI><FONT size=2><SPAN style="FONT-WEIGHT: bold">Basic telescope, filter wheel box, and 
+  camera control</SPAN>. Using MOP, the observer can send basic commands to the 
+  telescope, filter wheel box, and camera. These include (but are not limited 
+  to) slewing the telescope, setting the filter wheel, opening and closing the 
+  shutter, and reading out the CCD. </FONT>
+  <LI><FONT size=2><SPAN style="FONT-WEIGHT: bold">Target field management</SPAN>. MOP allows 
+  the user to load lists of targets into memory, create observing plans using 
+  these targets, and then carry them out. MOP loads the locations and contents 
+  of primary standard, pointing, and secondary fields from the <SPAN 
+  style="FONT-STYLE: italic">mtstds</SPAN> product, and 
+  allows the user to load other targets, called "manual targets," from a file 
+  owned by the observer. These manual targets can be added interactively or by 
+  directly editing the manual target file. MOP can assist the observer in 
+  choosing targets by keeping track airmass at extrapolated time of observation, 
+  keeping track of which fields have previously been observed at what airmasses, 
+  and planning pairs of observations at different airmasses for use in 
+  extinction measurements. </FONT>
+  <LI><FONT size=2><SPAN style="FONT-WEIGHT: bold">Manual and semi-automated 
+  observing</SPAN>. An observer 
+  may observe by selecting a desired field (or list of fields), and MOP will 
+  observe them in sequence. The resulting images can be examined interactively. 
+  The observer may also make observations to measure the focus, correct the 
+  pointing, and take grid tests. On a more basic level still, the observer may 
+  observe by directing the pointing, selecting the filter, opening the shutter 
+  for the desired time, and reading out the CCD. </FONT>
+  <LI><FONT size=2><SPAN style="FONT-WEIGHT: bold">Automated observing</SPAN>. MOP can add targets to the 
+  planned target list either at the request of the user, or automatically as it 
+  completes observations. MOP attempts to choose targets such that a suitable 
+  number of primary standards, in a range of colors and at a range in airmasses, 
+  are taken within a sequence of observations, and that any observations not 
+  necessary for primary standards are of needed secondary standards. Because the 
+  planned target list remains editable by the observer, the automatic selections 
+  may be modified by the observer as desired. </FONT>
+  <LI><FONT size=2><SPAN style="FONT-WEIGHT: bold">Calibration</SPAN>. MOP will take automated sequences of 
+  dome flats and biases, and assist the observer in taking twilight flats by 
+  measuring the count levels and suggesting exposure times based on a modeled 
+  twilight. </FONT>
+  <LI><FONT size=2><SPAN style="FONT-WEIGHT: bold">Log creation</SPAN>. In addition to the report file 
+  required by the pipeline, MOP assists in the creation of a manual log by 
+  providing an editor window with appropriate fields for the observer to fill 
+  out. Many operations in MOP, particularly the taking of observations, generate 
+  log lines which are automatically appended to the manual log. At the end of 
+  the night, MOP can send the log to the appropriate mailing 
+list.</FONT>     
+                
+               
+             
+               
+               
+</LI></OL>
+<H2><FONT size=3>Status</FONT></H2>
+<P><FONT size=2>MOP is currently usable, and most of its 
+desired functionality is implemented and working. In its current state, in the 
+course of a typical night, an observer will </FONT>            
+               
+ </P>
+<UL>
+  <LI><FONT size=2>uncover the telescope, use MOP to point 
+  the telescope to the dome screen, turn on the lamp, and begin the taking of 
+  flat field exposures. MOP does not need attention from the observer while the 
+  dome flats are being taken. </FONT>
+  <LI><FONT size=2>instruct MOP to take the desired number 
+  of bias frames, and wait for the biases to complete </FONT>
+  <LI><FONT size=2>open the dome (MOP is not involved here) 
+  </FONT>
+  <LI><FONT size=2>point the telescope to an appropriate 
+  point in the sky for twilight flats, and use MOP to take twilights. MOP 
+  requires user confirmation of the exposure time for each flat as it is taken, 
+  but assists the observer by returning the count level of each flat as it is 
+  taken, and providing suggested twilight exposure times based on a model 
+</FONT>
+  <LI><FONT size=2>load a list of fields MOP should not 
+  observe. This list includes previously completed secondary patches, and may 
+  need to be updated by hand </FONT>
+  <LI><FONT size=2>enter into MOP the stripes and 
+  coordinates along these stripes for which secondary patches are to be 
+  observed. These may be changed at any time during the night </FONT>
+  <LI><FONT size=2>select an FK5 star, observe it, and 
+  correct the pointing based on where it falls in the image. </FONT>
+  <LI><FONT size=2>using MOP's tools for selecting targets, 
+  create a list of 7 or 8 target fields to begin the nights observing </FONT>
+  <LI><FONT size=2>take a focus frame of the first target 
+  in the list, and adjust the focus accordingly </FONT>
+  <LI><FONT size=2>turn on the "auto-picker" in MOP, and 
+  begin observing; as each field in the initial list is observed, and 
+  appropriate field will be chosen by MOP and appended to the list </FONT>
+  <LI><FONT size=2>wait for the sun to come up. In this 
+  time, the observer should periodically </FONT>             
+   
+  <OL>
+    <LI><FONT size=2>check the focus, and adjust it if 
+    necessary </FONT>
+    <LI><FONT size=2>note weather and observing conditions 
+    in the log as they change </FONT>
+    <LI><FONT size=2>check images and log to catch ensure 
+    everything is working properly</FONT>          
+  </LI></OL>
+  <LI><FONT size=2>as the sky becomes bright enough, take 
+  twilight flats as described above </FONT>
+  <LI><FONT size=2>cover the telescope, and close the dome 
+  </FONT>
+  <LI><FONT size=2>email the log to the appropriate mailing 
+  list </FONT>
+  <LI><FONT size=2>write data to tape</FONT>   </LI></UL>
+<P><FONT size=2>This procedure usually functions without 
+problems. There is a bug which occasionally (once every several nights of 
+observing) causes GUI to partially freeze and stops the automatic observation. 
+Operation can be restored using one command at the command line. The problem may 
+already be fixed, but its intermittent nature means that a number of additional 
+nights of observations with the fix are necessary to establish this. </FONT>           
+           
+            
+             
+           
+        </P>
+<P><FONT size=2>Several currently incomplete enhancements 
+are desired for improved performance and observer convenience:</FONT>        
+   </P>
+<UL>
+  <LI><FONT size=2><SPAN style="FONT-WEIGHT: bold">fully automated twilight flats<SPAN 
+  style="FONT-WEIGHT: normal">. Improved modeling of the twilight to facilitate 
+  this is being worked on, but may prove impossible due to night to night 
+  variability in the color of the twilight sky. It is likely that this feature 
+  would not generally be useful, as dome flats in all filters except <SPAN 
+  style="FONT-STYLE: italic">u</SPAN> are likely to be suitable. Automated 
+  twilight flats in the <SPAN style="FONT-STYLE: italic">u</SPAN> filter only 
+  would be much simpler.</SPAN></SPAN> </FONT>
+  <LI><FONT size=2><SPAN style="FONT-WEIGHT: bold">improved automation in secondary field 
+  selection</SPAN> 
+  Currently, the observer must keep track of which secondary fields need to be 
+  observed, and which are completed. A database is being developed which will 
+  keep track of which secondary fields have been successfully taken, which have 
+  been attempted but have not yet been determined to be of suitable quality, and 
+  which of the unobserved fields have the highest priority. When this product is 
+  complete, MOP will examine it do determine its choice of secondary patches. 
+  </FONT>
+  <LI><FONT size=2><SPAN style="FONT-WEIGHT: bold">integration of partial array reads with 
+  automatic target selection</SPAN>. Although MOP may perform partial array reads at the request 
+  of the observer, the readout size is not automatically adjusted for each 
+  target field. If in the future MOP will automatically read out only the 
+  central region of the CCD when primary fields containing only one primary are 
+  observed, time will be saved on primary fields. </FONT>
+  <LI><FONT size=2><SPAN style="FONT-WEIGHT: bold">automatic focus</SPAN>. Focusing currently requires 
+  observer attention. Options for automatic focusing, such as mapping of focus 
+  as a function of temperature, are being explored. Note that the focus is 
+  sufficiently stable that, on nights with good seeing, near critically sampled 
+  images can be maintained throughout the night with only one focus adjustment 
+  after the initial focusing for the night.</FONT>   
+            
+                
+             
+              
+         </LI></UL>
+<H2><FONT size=3>Performance</FONT></H2>
+<P><FONT size=2>Except for sunrise and sunset, when the 
+observer must open and close the dome, and initiate the taking of bias frames 
+and flat fields, MOP mostly succeeds in automating a nights observation. The 
+observer must still "keep watch" throughout the night to keep the telescope in 
+focus, monitor weather conditions, and ensure that MOP continues to run. The 
+errors which cause MOP to stop automated observations are being tracked down and 
+solved. Possible strategies for automated focusing are being explored. 
+</FONT>             
+             
+           
+            
+              
+          
+       </P>
+<P><FONT size=2>The PT does not currently observe secondary 
+patches at the rate necessary for the survey. Refinement of the exposure times 
+(which are currently known to be much longer than necessary) and increased use 
+of partial array readouts will significantly speed up observation.</FONT>             
+             
+            
+   </P>
+<H2><FONT size=3>Conclusion</FONT></H2>
+<P><FONT size=2>MOP's basic functionality is complete: an 
+observer may take a nights data conveniently and efficiently, needing only 
+periodically to check up on the observations. However, several features 
+important for the convenience of the observers are not yet finished. Completion 
+and integration of the secondary patch database will become particularly 
+important as the survey progresses, as it will become very difficult for the 
+observers to keep track of which secondary patches need observation. Work on 
+these features</FONT>            
+           
+          
+           
+           
+              
+      , and the general stability of 
+the program, is progressing steadily. </P>
+<HR SIZE=4 width="100%">
+
+<P><B><I><FONT size=-1>Review of Observing Systems and Survey 
+Operations</FONT></I></B> <BR><I><FONT size=-1>Apache Point 
+Observatory</FONT></I> <BR><I><FONT size=-1>April 25-27, 2000</FONT></I> 
+</P>
+
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

@@ -1,0 +1,889 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+<!--#include virtual="segueheader.html"-->
+
+<html>
+<head>
+<meta name="Author" content="segue-webmaster@sdss.org">
+
+<meta name="Keywords" content="SEGUE, Milky Way, stars, stellar parameters, 
+SDSS, Sloan, 
+digital, survey, galaxy, galaxies, quasar, universe, telescope, 
+astronomy, astrometry,
+spectroscopy, cosmology, large-scale structure, observatory,
+observatories, big bang, redshift, map">
+
+<meta name="Description" content="Home page of SEGUE">
+
+<title>SEGUE</title>
+<link rel=StyleSheet href="../includes/sdss.css" type="text/css" media=screen>
+
+</head>
+
+<body>
+
+<!-- Overall table structure - 3x3 -->
+
+<table width="100%" height="100%" border="0" cellspacing="0" 
+cellpadding="0" style="padding:0px; margin:0px; border:0px"> <tr>
+
+<!-- Header -->
+
+
+</tr>
+
+<tr>
+<!-- Body -->
+
+<td valign="top" width="100%" height="100%" bgcolor="#FFFFFF" 
+style="padding:15px;">
+
+<title>SEGUE</title>
+
+<div align="center">
+<h1>SEGUE Target Selection</h1>
+
+<div align="left">
+
+<img src="../includes/images/color_colorts.jpg" width ="800"><br>
+<i><small> Example color-color diagram of SEGUE target selection categories.
+</small></i>
+
+<p>
+A paper describing the SEGUE Target Selection has been submitted to
+the Journal, a link to it will appear here soon.
+
+The first table below lists the possible targettype (in the sppParams
+CAS table) and the PrimTarget (in the specobjall table) bit settings 
+available on each spectrum if this object was a SEGUE target.
+
+In addition, the same v4.6 Target selection bits were set for
+all stellar objects (g < 21 or z < 21) in the main DR7 photoobjall table in the
+SEGUEPrimTarget field, whether or not they actually received a 
+SEGUE fiber.  These bits may be used to analyze completeness and efficiency
+of SEGUE target selection.
+
+<p>
+<pre>
+Summary Table of SEGUE Target Selection Categories
+
+Category     vers    PrimTarg Bit      Color (dereddened) ,Mag cuts                              PerPlate  Total  Success
+-------------------------------------------------------------------------------------------------------------------------
+WD/sdO/sdB   v4.6      0x80080000   g < 20.3, -1 < g-r < -0.2, -1 < u-g < 0.7, u-g + 2(g-r) < -0.1     25  4069   0.62  
+CWD   	     v4.6      0x80020000   r < 20.5, -2 < g-i < 1.7, H_g > 16.05+2.9(g-i)                     10  1187   0.005  
+BHB/BS/A     v4.6      0x80002000   g < 20.5, 0.8 < u-g < 1.5, -0.5 < g-r < 0.2                       150 24688   0.66 
+F            v4.6      0x80100000   g < 20.3, -0.7 < P1(s) < -0.25, 0.4 < u-g < 1.4, 0.2 < g-r < 0.7  200 37900   0.68  
+Low Metal    v4.6      0x80010000   r < 19, -0.5 < g-r < 0.75, 0.6 < u-g < 3.0, l > 0.135             150 29788   0.12  
+F/G          v4.6      0x80000200   g < 20.2, 0.2 < g-r < 0.48                                         50  6939   0.9  
+G            v4.6      0x80040000   r < 20.2, 0.48 < g-r < 0.55                                       375 62784   0.96 
+             v3.3                   r < 20.2,  0.50 < g-r < 0.55        
+K giants     v4.6      0x80004000   r < 18.5, 0.5 < g-r < 0.8                                          70 16866   0.3  
+                                              l > 0.07     pm < 11 mas/yr      
+M giants     v4.6      0x80004000   r < 18.5, 0.8 < g-r < 1.2,  pm < 5 mas/yr                          30  5948   0.08  
+AGB          v4.6      0x80800000   r<19.0, 2.5 < u-g < 3.5, 0.9 < g-r <1.3, s < -0.06                 10  1343   0.08  
+dK , dM      v4.6      0x80008000   r < 19, 0.55 < g-r < 0.75                                          50 18358   0.80   
+sdM  	     v4.6      0x80400000   r < 20 , g-r > 1.6, 0.9 < r-i < 1.3                                25  1012   0.003  
+esdM         v4.6      0x81000000   (g-r)0.787-0.356>(r-i) , r-i <0.9, H_r >17, 2.4 >g-i>1.8           40  9420   0.20  
+WDMS         v4.6      0x80001000   g < 20, (u-g) < 2.25, -0.2 < g-r < 1.2, 0.5 < r-i < 2.0             5   487   0.65 
+        				g-r > -19.78(r-i)+11.13, g-r < 0.95(r-i)+0.5          
+             				i-z > 0.5   for r-i > 1           
+             				i-z > 0.68(r-i)-0.18 for  r-i <= 1          
+L            v4.6      0x80200000   z < 19.5,  i-z > 1.7                                                5  1277   0.07  
+                           				u > 21       
+LL Blue      v4.6      0x80000800   g-r < 0.25                                                        800  8522   0.3  
+LL AGB       v4.6      0x88000000   s > -0.13, 3.5 > u-g > 2.6, 0.8 < g-r <1.3                         50   499   0.3 
+LL KIII      v4.6      0x80000400   0.55 < g-r < 0.9, g < 19, pm < 11 mas/yr                          300  3220   0.3 
+
+-----------------------------------------------------------------------------------------------------------------------
+
+</pre>
+<p>
+The  paper which describes the SEGUE Target Selection also has
+a brief section describing the Legacy Stellar target selection.
+
+The table below lists the possible targettype (in the sppParams
+CAS table) and the PrimTarget (in the specobjall and photoobjall tables) 
+bit settings available on each spectrum if this object was a Legacy target.
+
+<p>
+<pre>
+Legacy Survey Stellar Target Selection categories
+-----------------------------------------------------------------------------------------------------------------------
+
+Category                  PrimTarget bit   color, mag cuts                                                Total Fibers
+-----------------------------------------------------------------------------------------------------------------------
+
+SPECTROPHOTO_STD            s0x20  0.1 < g-r < 0.4, 16 < g < 17.1                                          20320 
+REDDEN_STD                   s0x2  0.1 < g-r < 0.4, 17.1 < g < 18.5 					   22337 
+HOT_STD                     0x200  g < 19, u-g < 0, g-r < 0                                                 3370 
+ROSAT_C                     0x800  r < 16.5  ROSAT X-ray source within $60''                                8000
+ROSAT_C                     0x800  u-g <1.1 ROSAT within $60''
+ROSAT_E                 0x8000000  ROSAT within $60''$                                                      8000
+STAR_BHB                   0x2000  -0.4 < g-r < 0, 0.8 < u-g < 1.8                                         19887
+STAR_CARBON                0x4000  g-r > 0.85, r-i > 0.05, i-z > 0, r-i < -0.4+0.65(g-r)                    4453
+								(g-r) > 1.75 
+STAR_BROWN_DWARF           0x8000  z<19, err(i) < 0.3, r-i > 1.8, i-z > 1.8                                  667
+STAR_SUB_DWARF            0x10000  g-r > 1.6, 0.95 < r-i < 1.6, err(g) < 0.1                                1482
+STAR_CATY_VAR             0x20000  g<19.5, u-g < 0.45, g-r < 0.7, r-i > 0.3, i-z > 0.4                      8959 
+                          0x20000  (u-g)-1.314(g-r) < 0.61 , r-i > 0.91, i-z > 0.49
+STAR_RED_DWARF            0x40000  i < 19.5, err(i) < 0.2, r-i > 1.0, r-i > 1.8                            14649
+STAR_WHITE_DWARF          0x80000  g-r < -0.15, u-g+2(g-r) < 0,r-i < 0                                      6059
+                                         H_g > 19 , H_g > 16.136 + 2.727(g-i)
+					 g-i > 0,  H_g > 16.136 + 2.727(g-i)
+STAR PN                0x10000000  g-r > 0.4, r-i < -0.6, i-z > -0.2, 16 < r_0 < 20.5                         20 
+SERENDIP_BLUE            0x100000  u-g <0.8, g-r < -0.05                                                   81937 
+SERENDIP_FIRST           0x200000  FIRST radio source within 1.5''                                         14689
+SERENDIP_RED             0x400000  r-i > 2.7, i-z >1.6                                                      4179
+SERENDIP_DISTANT         0x800000  g-r>2, r-i <0                                                           11820
+
+-----------------------------------------------------------------------------------------------------------------------
+</pre>
+<p>
+<div align="left">
+<p> <b><big>Current version</big></b> of the target selection algorithm is 
+<a href="#v4.6"><big>v4.6</big></a>.</p>
+<table> 
+<tr align="center"><th><big> Previous versions:</big><th>
+<td><a href="#v4.0">v4.0</a>
+<td><a href="#v3.4">v3.4</a>
+<td><a href="#v3.3">v3.3</a>
+<td><a href="#v3.2">v3.2</a>
+<td><a href="#v3.2">v3.1</a>
+<td><a href="#v3.2">v3.0</a>
+<td><a href="#v2.0">v2.0</a>
+</table>
+<dl>
+<dd>
+<p> The <a href="http://das.sdss.org/www/html/spectro/allPlates-26.html"> plate list table</a> 
+denotes which version of the target selection was used for each plate. 
+Notes at the beginning of each version of the target selection
+highlight changes from previous version. In addition, there are
+occasional special target selection cuts utilized for specific plates/targets.
+</p>
+</dl>
+
+<h3><a href="#SpecialTS">Special targets</a></h3>
+
+<hr>
+<h2>Target Categories</h2>
+<li> <a href="#wd"> White Dwarf</a>
+<li>  <a href="#cwd">Cool White Dwarf</a>
+<li> <a href="#bhb">A/BHB</a>
+<li> <a href="#f">F turnoff, subdwarf</a>
+<li> <a href="#fg">F/G stars</a>
+<li> <a href="#g">G stars</a>
+<li> <a href="#kg">K giant</a>
+<li> <a href="#low">Low Metallicity</a>
+<li> <a href="#kd">K dwarf</a>
+<li> <a href="#mswd">Main sequence - White dwarf pair</a>
+<li> <a href="#msub">M sub-dwarf</a>
+<li> <a href="#brown">L, T Brown dwarf</a>
+<li> <a href="#agb">AGB candidate</a>
+<hr>
+  <h2>Overview</h2>
+
+<p>SEGUE has as one of its goals a kinematic and stellar population study
+  of the high-latitude thick disk and halo of the Milky Way.  The halo
+  is sampled sparsely with a series of seven deg<sup>2</sup> tiles both in the
+  SEGUE imaging stripes and the main Legacy survey area, with centers
+  separated by roughly 10 deg.  Each such tile is sampled with two
+  pointings, split at r=17.8, approximately the median target
+  magnitude.  
+</p>
+<p>Half of the ~1180 targets on each line of sight are
+  selected using straightforward color-color and color-magnitude cuts designed 
+to
+  sample across the main sequence from g-r = 0.75 (K-dwarfs at T<sub>
+  eff</sub> ~ 5000K) through the main sequence turnoff.  To this sample we
+  add metal-poor main sequence turnoff stars selected by their blue
+  <i>ugr</i> colors, essentially an ultraviolet excess cut that is extremely
+  efficient at separating the halo from the thick disk near the turnoff.
+  At r = 19.5, the average star that makes this selection is at a
+  heliocentric distance of 10 kpc for [Fe/H] = -1.54.  To reach to
+  greater distances, we use the strength of the Balmer jump to select
+  field blue horizontal branch (BHB) stars in the <i>ugr</i> color-color
+  diagram.
+  The halo BHB sample extends to distances of 40
+  kpc, and we select all available BHB candidates in our high-latitude
+  fields.
+</p>
+<p>
+  The most distant spectroscopic target category in SEGUE is halo red
+  giants.  We select halo giant candidates by the photometric offset in
+  the <i>ugr</i> color-color diagram caused by their ultraviolet excess and
+  weak MgH relative to foreground disk dwarfs, augmented by a 3&sigma; 
+proper motion cut using a
+  recalibrated version of the USNO-B catalog.
+  Spectroscopic identification of true giants using the methodology in
+  has shown that the giant selection is roughly
+  50% efficient at g < 17, the current limit to which we can reliably
+  identify giants in the spectra. The halo giant sample identified in
+  this way reaches distances of 40 kpc from the sun.
+</p>
+ <p> The spectroscopic selection also includes smaller categories of rare
+  but interesting objects.  These include cool white dwarfs selected
+  with the recalibrated USNO-B reduced proper motion diagram, which can
+  be used to date the age of the Galactic disk, and high proper motion 
+targets from the SUPERBLINK
+  catalog, which have uncovered some of the
+  most extreme M subdwarfs known and aided in
+  the calibration of their metallicity scale using common proper motion
+  pairs.</p>
+<hr>
+<h2><a name="v4.6">v4.6 Detailed Target Selection</a></h2>
+
+<h3>Notes:</h3>
+<ul>
+<li>	All <i>ugriz</i> magnitudes listed below are  dereddened PSF mags
+	objc_flag[2] check:<br>  
+	No bright, no edge, no bad interp, no bad deblends
+
+<li>	For selections which involve <i>u</i> band, we require that
+	the u flags indicate a <i>u</i> band detection.
+	
+<li>	The 'regular SDSS bright end cut' is: <br>No spectra of
+	objects with <i>g,r</i> or <i>i</i> fiber mag < 14.5 allowed.
+
+<li>	For SEGUE v2_0 we cut on <i>r</i> only at r<sub>fiber</sub> < 14.5.
+	This resulted in fiber warnings for 
+	red stars where<br> r-i > 0 &rarr; i < 14.5.<br>
+	The spectra were ok however and scattered light was not
+	harmful to adjacent fibers on the CCDs.
+
+<li>	For SEGUE v3_0 we cut on i<sub>fiber</sub> < 14.2.
+	This allows bright blue things to get spectra and still avoids
+	putting very red bright stars on the plate to scatter.
+
+<li>	Also, proper motions have been included for objects
+	which have matches to the USNO-B catalog and are used
+	in the K giant and Cool White dwarf selection categories.
+<li>	Low Latitude Algorithms implemented:
+<ul>
+<li>	AGB type objects at low latitude
+<li>	K III type objects at low latitude
+<li>	Bluetip objects at low latitude
+<li>	AMNH high proper motion objects at low latitude
+</ul>
+
+<li>	Principle component color definitions:<br>
+&nbsp;<br>
+<a name="lcolor"> l </a>= -0.436u + 1.129g - 0.119r - 0.574i + 0.1984<br>
+&nbsp;<br>
+        and is a photometry metalicity indicator for stars
+        in the color range 0.5 < g-r < 0.8.<br>
+        Reference:<a href="http://www.journals.uchicago.edu/ApJ/journal/issues/ApJS/v119n2/37662/37662.html"> Lenz, D., Newberg, H., Rosner, R., Richards, G.
+        & Stoughton, C.  1998 ApJS 119, 121</a><br>
+&nbsp;<br>
+
+ <a name="scolor">       s</a> = -0.249u + 0.794g - 0.555r + 0.234<br>
+&nbsp;<br>
+<a name="P1">        P1(s)</a> = P1 = 0.91(u-g) + 0.415(g-r) -1.280<br>
+&nbsp;<br>
+Reference:<a href="http://www.journals.uchicago.edu/ApJ/journal/issues/ApJ/v586n1/16759/16759.html"> Helmi et al 2003</a>
+
+
+
+</ul>
+<hr>
+
+<h3><a name="wd">White dwarf selection </a></h3>
+ (bit -2146959360 &rarr; 0x80080000)
+<dl><dt>Color cuts:</dt>
+<dd>	g < 20.3  
+<dd>	-1 < g-r < -0.2 
+<dd>	-1 < u-g < 0.7  
+<dd>	u-g + 2(g-r) < -0.1
+</dl>
+
+Weighting: magslope 1.2<br>
+Target count Goal: 25 per plate pair<br>
+
+<h3><a name="cwd"> Cool White dwarf selection</a>  </h3>
+(bit -2147352576 &rarr;  0x80020000)	
+<dl><dt>Color cuts:</dt>
+<dd>	14.5 < r < 20.5 
+<dd>	-2 < g-i  
+<dd>     g-i < 1.7 (if no neighbor with g > 22 within 7 arcsec)
+<dd>     otherwise g-i < 0.12
+</dl>
+
+<dl><dt>Require reliable proper motion (&mu;) measurement:</dt>
+<ul>
+<li> one-to-one match to USNO_B
+<li> good proper motion fit (small rms in each coordinate)
+<li> be detected in all 5 epochs in USNO-B
+<li> no neighbor brighter than g = 22 within 7 arcsec 
+(to avoid blending problems)<br> 
+OR <br> 
+blue enough (g-i < 0.12) that target is likely white dwarf
+</ul>
+
+<dl><dt> Cuts on reduced proper motion Hg = g + 5*log(&mu;) + 5</dt>
+<dd> Hg > 17.5
+<dd> Hg > 16.05 + 2.9*(g-i)
+</dl>
+	
+<br>
+Weighting: magslope 1.2<br>
+Target count Goal: 10 per plate pair (but allow overflow if they are present)
+
+<h3><a name="bhb"> A/BHB selection </a></h3>
+ (bit -2147475456 &rarr; 0x80002000)
+<dl><dt>Color cuts:</dt>
+<dd> g < 20.5
+<dd> 0.8 < u-g < 1.5
+<dd> -0.5 < g-r < 0.2
+<dd> u detection present
+</dl>
+
+<dl><dt>Also compute color-gravity index:</dt>
+<dd>v = 0.283(u-g) - 0.354(g-r) + 0.455 (r-i) + 0.766 (i-z)
+</dl>
+
+Weighting: weight on the 'v' parameter so object with v color 
+of 0 is 4 times as likely to get fiber as v of 0.4.<br>
+Target count Goal: 150 per plate pair  (get ~100 per pair)
+
+<h3><a name="f"> F turnoff, sub-dwarf selection </a></h3>
+(bit -2146435072 &rarr; 0x80100000)
+<dl><dt>Color cuts:</dt>
+<dd> -0.7 < <a href="#P1">P1(s) </a>< -0.25
+<dd> 0.4 < u-g < 1.4
+<dd> 0.2 < g-r < 0.7
+<dd> g < 20.3
+</dl>
+	
+<ul>
+<li><a href="#P1">P1</a> is a color perpendicular to the locus for F/G/K stars;
+more negative P1 indicates lower-metallicity side of locus.
+<li>Note: there was an <a href="#scolor">s-color </a>cut in versions prior to v3.3,  s &ge -0.065,
+no longer present for v3.3 and beyond.
+</ul>
+<br>
+Weighting: colorslope+ magnitude weighting P1 min/max slope = 5<br>
+Target count Goal: 200 per plate pair 
+
+<h3><a name="fg"> F/G stars</a>  </h3>
+(bit -2147483136 &rarr;  0x80000200)
+<dl><dt>Color cuts:</dt>
+<dd> 0.2 < g-r < 0.48
+<dd> 14.0 < g < 20.2
+</dl>  
+<br>
+Unbiased random subsampling of this range of g-r color space<br>
+Target count Goal: 50 per plate pair<br>
+
+<h3><a name="g"> G selection</a></h3>
+ (bit -2147221504 &rarr; 0x80040000)
+<dl><dt>Color cuts:</dt>
+<dd> 14.0 < r < 20.2
+<dd> 0.48 < g-r < 0.55
+</dl>
+Note: slightly wider g-r color band to get sufficient targets at high |b|.<br>
+<br>
+Weighting: random<br>
+Target count Goal: 375 per plate pair
+
+
+<h3><a name="kg"> K Giant Selection </a></h3>
+(bit -2147467264 &rarr; 0x80004000)
+<dl><dt>Color cuts:</dt>
+<dd> r < 20.2
+<dd> 0.7 < u-g < 4.0 
+<dd> 0.35 < g-r < 0.8
+<dd> 0.15 < r-i < 0.6
+<dd> <a href="#lcolor">l-color </a>  > 0.07
+</dl>
+
+Also: Proper motion < 11 milliarcsec/year and good proper motion match<br>
+<br>
+Weighting: magslope 2.0<br>
+Target count Goal: 95 per plate pair 
+(expected density 4/sq deg = 28/plate pair)
+ 
+<h3><a name="low"> Low Metallicity selection </a></h3>
+(bit -2147418112 &rarr; 0x80010000)
+<dl><dt>Color cuts:</dt>
+<dd> 14 < r < 19.5
+<dd> -0.5 < g-r < 0.75
+<dd> 0.6 < u-g < 3.0
+<dd><a href="#lcolor"> l-color </a> > 0.135
+<dd> require detection in u band
+</dl>
+<br>
+Weighting: magslope 1.8 and <b>faint plate</b> targets sorted by 
+magnitude to 'pack' them, so that brightest ones targeted before 
+fainter ones.<br>
+Target count Goal: 150 per plate pair
+
+<h3><a name="kd"> K dwarf selection </a></h3>
+(bit -2147450880 &rarr; 0x80008000)
+<dl><dt>Color cuts:</dt>
+<dd> 14.5 < r < 19.0
+<dd> 0.55 < g-r < 0.75
+</dl>
+<br>	
+Selection: Random subsample<br>
+Target count Goal: 95 per plate pair
+
+<h3><a name="mswd"> Main Sequence - White Dwarf pairs </a></h3>
+ (bit -2147479552  &rarr; 0x80001000)
+<p>
+Note that for this category only: colors are NOT dereddened.
+<p>
+
+
+<dl><dt>Color cuts (from Potsdam group):</dt>
+<dd>	  u-g < 2.25
+<dd>	  g-r > -0.2
+<dd>	  g-r < 1.2
+<dd>	  r-i > 0.5
+<dd>	  r-i < 2.0
+<dd>	  g-r > -19.78*(r-i) + 11.13
+<dd>	  g-r < 0.95*(r-i) + 0.5
+<dd>	  i-z > 0.5 for r-i > 1.0
+<dd>	  i-z > 0.68*(r-i)-0.18 for r-i &le 1.0
+<dd>	  15 < g < 20
+</dl>
+<br>	
+Target goal: 5 per plate pair, maximum of 10
+
+<h3><a name="msub"> M sub-dwarf selection</a></h3>
+  (bit -2143289344 &rarr; 0x80400000)
+<dl><dt>Color cuts (based on West et al):</dt>
+<dd>g-r > 1.6
+<dd> 0.95 < r-i < 1.3
+<dd> 14.5 < r < 19.0
+</dl>
+<br>
+Selection: magslope 0.9<br>
+Target count Goal: < ~5 per plate pair<br>
+<br>
+Plus:
+<li>Lepine Shara AMNH high proper motion stars
+<li>Goal 25-30 per plate pair
+<li>Proper motion selected.
+
+<h3><a name="brown"> L,T brown-dwarf selection</a></h3>
+ (bit -2145386496 &rarr; 0x80200000)
+<dl><dt>Color cuts:</dt>
+<dd> z < 19.5
+<dd> u > 21
+<dd> g > 22
+<dd> r > 21
+<dd> i-z > 1.7
+</dl>
+Note: for brown dwarf selection we require additional flag 
+checks on i and z band as suggested by X.Fan.
+<br>
+Target count Goal: < 5 per plate pair 
+
+<h3><a name="agb"> AGB candidate selection</a> </h3>
+
+(bit -2139095040 &rarr;  0x80800000)
+
+<dl><dt>Color cuts:</dt>
+<dd> 14.0 < r < 19.0
+<dd> 2.5 < u-g < 3.5
+<dd> 0.9 < g-r < 1.3
+<dd> <a href="#scolor">s-color </a>< -0.06
+<dd> detection in u band
+</dl>
+<br>
+Selection: magslope 1.4<br>
+Target count Goal: 10 per plate pair
+</p>
+<hr>
+<h2><a name="SpecialTS">Special Targets</a></h2>
+<h3>Plates 2336, 2337:<br>
+Special K giant selection<br></h3>
+
+<p>
+Approximately 200 fibers allocated to objects with
+<li> 0.35 < g-r < 0.9
+<li> proper motion consistent with zero.
+<li>No selection boundary parallel to the stellar locus imposed.<br>
+</p>
+<p>
+Another 200 fibers allocated to random subsample of stellar
+locus with
+<li> 0.2 < g-r < 0.48
+</p>
+<p> These two plates are at (l,b) = (130, -23), (150,+26) respectively,
+and likely contain Monoceros Giants.</p>
+
+
+
+
+
+<hr>
+<h2><a name="v4.0">v4.0 Target Selection</a></h2>
+<h3> Summary of changes from v3.4:</h3>
+
+<li>Low Latitude Algorithms implemented:
+<ul>
+<li>	AGB type objects at low lat
+<li>	K III type objects at low lat
+<li>	Bluetip objects at low lat
+<li>	AMNH high proper motion objects at low lat
+
+</ul>
+<hr>
+<h2><a name="v3.4">v3.4 Target Selection</a></h2>
+<h3> Summary of changes from v3.3:</h3>
+
+<li>MSWD colors are now NOT dereddened psf mags (previously were
+		dereddened).
+
+<li>	'l-cut' for Low metallicity backed off to 0.135 from 0.15,
+	which allows more in, as too many bright candidates were
+	not getting fibers.
+
+<hr>
+<h2><a name="v3.3">v3.3 Target Selection</a></h2>
+<h3> Summary of changes from v3.2:</h3>
+
+<h3>A/BHB</h3>
+
+<li>new color cuts (H. Newberg algorithm)
+<ul>
+<li>g < 20.5, 0.8 < u-g < 1.5, -0.5 < g-r < 0.2, u detection present
+</ul>
+<li>Also: compute color-gravity index:<br>
+	v = 0.283(u-g) - 0.354(g-r) + 0.455 (r-i) + 0.766 (i-z)
+<li>Weighting: weight on the 'v' parameter so object with
+	v color of 0 is 4 times as likely to get fiber as v of 0.4.
+<li>Target count Goal: 150 per plate pair  (get ~100 per pair)
+
+
+<h3> F turnoff</h3>
+<li> s-color cut is no longer present
+
+<h3>*Addition of new F/G stars category:</h3> 
+<li> bit -2147483136
+<li>0.2 < g-r < 0.48, 14.0 < g < 20.2, unbiased random subsampling
+	of this range of g-r color space,  
+<li>Target count Goal: 50 per plate pair
+
+<h3>Low Metallicity</h3>
+<li>New for v3_3: We move the 'l' weight to l-color > 0.15 (was > 0.12).
+	This is more restrictive, hoping to land higher fraction
+	of [Fe/H] < -2 objects.
+
+<h3>*Addition of new Main Sequence-White Dwarf pair category:</h3>
+(based on color cuts from Potsdam group)
+<p>
+Note that for this category only: colors are NOT dereddened.
+<p>
+<li>bit -2147479552
+<ul>
+<li>	  u-g < 2.25
+<li>	  g-r > -0.2
+<li>	  g-r < 1.2
+<li>	  r-i > 0.5
+<li>	  r-i < 2.0
+<li>	  g-r > -19.78*(r-i) + 11.13
+<li>	  g-r < 0.95*(r-i) + 0.5
+<li>	  i-z > 0.5 for r-i > 1.0
+<li>	  i-z > 0.68*(r-i)-0.18 for r-i <= 1.0
+<li>	  15 < g < 20
+</ul>
+<li>Target goal: 5 per plate pair, maximum of 10
+
+
+<hr>
+<h2><a name="v3.2">v3.2 Target Selection</a></h2>
+<h3> Summary of changes from v3.1:</h3>
+
+
+<h3> A/BHB selection </h3>
+
+	<li>CHANGE For v3_2:  Sort candidates by color,
+	so that all, or most, blue BHBs g-r < 0 , get a fiber.
+
+
+
+<hr>
+<h2><a name="v3.1">v3.1 Target Selection</a></h2>
+<h3> Summary of changes from v3.0 (in bold):</h3>
+
+<h3> Cool White Dwarf:</h3>
+<li>Target goal: 10 per plate pair, <b>but allow overflow if they are present.</b>
+
+<h3>K Giant</h3>
+<li>Target Goal: <b>95</b> per plate pair (expected density 4/sq deg = 28/plate pair)
+
+<h3>Low Metallicity</h3>
+<li>New for v 3.1:  We also weight by <a href="#lcolor">l-color</a> to
+favor the ones closer to the blue edge of the u-g color in the stellar locus.
+
+<h3>K dwarf</h3>
+<li>Target Goal: <b>95</b> per plate pair
+
+<h3> M sub-dwarf</h3>
+<li>M sub-dwarfs (color based West et al ) 
+		g-r > <b>1.6</b>, 0.95 < r-i < 1.3, 14.5 < r < 19.0
+
+	<li>Target count Goal: <~<b>5</b> per plate pair 
+	<li>Selection: magslope 0.9
+
+	<li><b>Plus: Lepine Shara AMNH high proper motion stars , goal 25-30 per
+	plate pair, proper motion selected.</b>
+
+<hr>
+<h2><a name="v3.0">v3.0 Target Selection</a></h2>
+<h3> Summary of changes from v2.0:</h3>
+<ul>
+<li>For selections which involve u band, we require that
+	the u flags indicate a u band detection.
+	
+<li>The 'regular SDSS bright end cut' is: No spectra of
+	objects with g, r or i fiber mag < 14.5 allowed.
+
+	
+<li>For SEGUE v2.0 we cut on r only at r<sub>fiber</sub> < 14.5,
+	this resulted in "whopping" fiber warnings for 
+	red stars where r-i > 0 &rarr; i < 14.5.
+	The spectra were ok however and scattered light was not
+	harmful to adjacent fibers on the CCDs.
+
+<li>For SEGUE v3_0 we are cutting on i<sub>fiber</sub> < 14.2.<br>
+	This allows bright blue things to get spectra and still avoids
+	putting very red bright stars on the plate to scatter.
+
+<li>Also, proper motions have been included for objects
+	which have matches to the USNO-B catalog and are used
+	in the K giant and Cool White dwarf selection categories.
+<li> Significant changes to Cool White Dwarf, M dwarf
+<li> Addition of Brown dwarf category
+
+</ul>
+
+Specific category changes (in bold):
+
+<h3>White Dwarf:</h3>
+<li>g < 20.3 , -1 < g-r < -0.2, -1 < u-g < <b>0.7 </b>  
+<li><b>	u-g + 2(g-r) < -0.1</b>
+<li> Weighting: <b>magslope 1.2</b>
+<li> Target goal: 25 per plate pair
+
+<h3>Cool White Dwarf:</h3>
+<ul><b><dl><dt>Color cuts:</dt>
+<dd>	14.5 < r < 20.5 
+<dd>	-2 < g-i  
+<dd>     g-i < 1.7 (if no neighbor with g > 22 within 7 arcsec)
+<dd>     otherwise g-i < 0.12
+</dl>
+
+<dl><dt>Require reliable proper motion (&mu;) measurement:</dt>
+<ul>
+<li> one-to-one match to USNO_B
+<li> good proper motion fit (small rms in each coordinate)
+<li> be detected in all 5 epochs in USNO-B
+<li> no neighbor brighter than g = 22 within 7 arcsec 
+(to avoid blending problems)<br> 
+OR <br> 
+blue enough (g-i < 0.12) that target is likely white dwarf
+</ul>
+<li>Weighting: magslope 1.2</b>
+<li>Target goal: 10 per plate pair
+</ul>
+
+<h3>A/BHB</h3>
+
+<li>g < 20.5,<b> 0.6</b> < u-g < 1.4, <b>-0.5</b> < g-r < 0.2, 
+<a href="#scolor">scolor</a> < -0.065
+
+<li>Weighting: <b>magslope 2.0</b>
+<li> Target goal: 150 per plate pair (get ~ 100 per pair)
+
+<h3> F turnoff, subdwarf</h3>
+
+<li>-0.7 < <a href="#p1">p1(s)</a> < <b>-0.25</b>, 0.4 < u-g < <b>1.4</b>, 
+<b>0.2</b> < g-r < 3.0, g < 20.3
+<li>Weighting: colorslope + magnitude wighting P1 min/max slope = 5</b>
+<li> Target goal: 200 per plate pair
+
+<h3> G star</h3>
+
+<li><b>14.0</b> < r < 20.2, <b>0.48</b> < g-r < 0.55
+
+<li>	Note slightly wider g-r color band to get sufficient targets
+	at high |b|.
+
+<li>Weighting: random
+<li> Target goal: 375 per plate pair
+
+<h3>K Giant</h3>
+
+<li>r < 20.2, 0.7 < u-g < 4.0 ,<b> 0.35 < g-r < 0.8</b>,
+	  0.15 < r-i < 0.6, 
+<a href="#lcolor">l-color</a> > <b>0.07</b>
+<li>proper_motion < 11 milliarcsec/year and good propermotion match
+
+<li>Weighting: magslope 2.0</b>
+<li> Target Goal: 100 per plate pair
+
+<h3>Low Metallicity</h3>
+
+<li><b>14 < r < 19.5, -0.5 < g-r < 0.75, 0.3 < u-g < 3.0, l-color > 0.12
+<li>also require detection in u band.
+<li>Weighting: magslope 1.8 and
+<li>Faint plate targets sorted by magnitude to 'pack' them, so
+	that brightest ones targeted before fainter ones.</b>
+<li> Target Goal: 150 per plate pair
+
+<h3>K dwarf</h3>
+<li>14.5 < r < <b>19.0, 0.55 < g-r < 0.75</b>
+<li>Selection: Random subsample
+<li>Target count Goal: <b>100</b> per plate pair</b>
+
+<h3>*M sub-dwarf</h3>
+<b>
+<li>bit -2143289344
+<li>M sub-dwarfs (color based West et al ) 
+<li>g-r > 1.51, 0.95 < r-i < 1.3, 14.5 < r < 19.0
+<li>Target count Goal: <~25 per plate pair 
+<li>Selection: magslope 0.9</b>
+
+	
+<h3> *L,T brown-dwarf selection </h3>
+<b><li> bit -2145386496
+<li>z < 19.5, u > 21, g > 22, r > 21, i-z > 1.7
+<li>for Brown dwarf selection we require additional flag 
+	checks on i and z band as suggested by X. Fan.
+<li>Target count Goal: < 5 per plate pair </b>
+
+	
+<h3> AGB candidate selection</h3>
+
+<li>14.0 < r < <b>19.0</b>, 2.5 < u-g < 3.5, 0.9 < g-r < 1.3, 
+<a href="#scolor">s-color</a> < <b>-0.06
+<li>detection in u band required.</b>
+<li>Selection: <b>magslope 1.4</b>
+<li>Target count Goal: <b>10</b> per plate pair
+
+<hr>
+<h2><a name="v2.0">v2.0 Target Selection</a></h2>
+
+	All magnitudes are  dereddened PSF mags<br>
+	Flags:  No bright, no edge, no bad interp, no bad deblend<br>
+	
+
+	
+
+<h3>White dwarf selection</h3> 
+
+<li>bit -2146959360 
+<li>g < 20.3 , -1 < g-r < -0.2, -1 < u-g < 0.5 
+<li>Weighting: colorslope
+<li>Target count Goal: 25 per plate pair
+
+	
+<h3> Cool White dwarf selection</h3> 
+
+<li>bit -2147352576 
+<li>15 < r < 20, -0.1 < g-r < 1.1, g-r > 2.4(r-i) + 0.5, i-z < 0
+<li>Weighting: colorslope
+<li>Target count Goal: 10 per plate pair
+
+	
+<h3> A/BHB selection</h3>
+
+<li>bit -2147475456 
+<li>	g < 20.5, 0.5 < u-g < 1.4, -0.8 < g-r < 0.2,
+<a href="#scolor"> scolor</a> < -0.065
+<li>	Weighting: colorslope
+<li>	Target count Goal: 150 per plate pair 
+
+	
+<h3> F turnoff, sub-dwarf selection </h3>
+
+<li>bit  -2146435072
+<li>	-0.7 < p1(s) < -0.3, 0.4 < u-g < 1.7, -0.3 < g-r < 3, g < 20.3
+<li>	Weighting: colorslope+ magnitude weighting
+<li>	Target count Goal: 150 per plate pair 
+
+	
+<h3> G selection </h3>
+
+<li> bit -2147221504
+<li>	14.2 < r < 20.2, 0.50 < g-r < 0.55
+<li>Weighting: random
+<li>Target count Goal: 375 per plate pair
+	
+<h3> K Giant Selection</h3> 
+
+<li> bit -2147467264
+<li>r < 20.2, 0.7 < u-g < 4.0 , 0.40 < g-r < 1.2,
+	  0.15 < r-i < 0.6, <a href="#lcolor">l-color</a> > 0.1
+<li>proper_motion < 15 arcsec/century<br>
+(this should have been 1.5 arcsec/cent)
+<li>Weighting: colorslope
+<li>Target count Goal: 100 per plate pair
+ 
+	
+<h3> Low Metallicity selection </h3>
+
+<li> bit -2147418112
+<li>	r < 20.2, -0.5 < g-r < 0.9, 0.3 < u-g < 3.0, 
+<a href="lcolor">l-color</a> > 0.15
+<li>Weighting: colorslope
+<li>Target count Goal: 150 per plate pair
+
+	
+<h3> K dwarf selection </h3>
+
+<li> bit -2147450880
+<li>	14.5 < r < 19.5, g-r > 0.7,  r-i < 0.8
+<li>	Selection: Random
+<li>	Target count Goal: 125 per plate pair
+
+	
+<h3> M dwarf selection</h3> 
+
+<li>bit -2145386496
+<li>	Three selections in one:
+<ul>
+	<li>regular M dwarfs
+        <li>high velocity M dwarfs (ppm based),
+	<li>M sub-dwarfs (color based)
+</ul>
+<li>	regular M dwarfs: r-i > 0.3, 14.5 < r < 19.0 (N=12)
+<li>    sub-dwarf cands: u-g > 1.8, g-r > 0.8, 0.5 < r-i , 14.5 < r < 19 (N=15)
+<li>	high-velocity M dwarfs: r-i > 0.3, 14.5 < r < 19.3
+<li>    velocity proxy >~ 100 km/s (25)
+<li>    Selection: colorslope (Mdwarfs), high velocity weighted colorslope, 
+			colorslope (SubDwarfs)
+<li>	Target count Goal: 50 per plate pair (sum of three sub-categories)
+
+	
+<h3> AGB candidate selection</h3> 
+
+<li> bit -2139095040
+<li>	14.5 < r < 19.5, 2.5 < u-g < 3.5, 0.9 < g-r < 1.3, 
+<a href="#scolor">s-color</a> < -0.07
+<li>	Selection: colorslope
+<li>	Target count Goal: 15 
+
+
+
+<br clear=all>
+<img src="../images/dot_clear.gif" width="90%" height="5"><br>
+
+
+<tr>
+
+<td height="30" bgcolor="#000000" width="132">
+&nbsp;
+</td>
+
+
+</span>
+</center>
+
+</td></tr></table>
+
+</body>
+</html>
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->

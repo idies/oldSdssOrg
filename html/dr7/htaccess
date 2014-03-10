@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName "SDSS devel"
+AuthUserFile /afs/fnal.gov/files/expwww/sdssdevel/auth/.htpasswd
+require valid-user
+

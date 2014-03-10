@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="SDSS Image Gallery: Photos">
+<title>SDSS Image Gallery: Photos</title>
+</head>
+
+<sdss-page select="gallery">
+
+<h1 align="center">Image Gallery: Telescope Photos</h1>
+
+<p>This is a collection of photographs of the SDSS site, telescope,
+equipment, and collaborators.  Click on any of the links below to
+download a larger version of the image thumbnails.
+</p>
+
+<hr>
+
+<: 
+require 'gallery.pl';
+print_gallery('../photos','(telescope|people)');
+:>
+
+</sdss-page>
+
+</html>

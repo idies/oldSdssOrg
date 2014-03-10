@@ -1,0 +1,401 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+<FONT size=4><STRONG>
+<CENTER><B><I><FONT size=+1>Sloan Digital Sky Survey</FONT></I></B></CENTER>
+<P></P>
+<CENTER><B><I><FONT size=+1>Review of Data Processing 
+Operations</FONT></I></B><BR><BR></CENTER>
+<P></P>
+<CENTER><B><FONT size=+2></FONT></B></CENTER>
+<P></P>
+<P>
+<P>
+<CENTER><FONT size=5>Science Archive<BR><BR></FONT>Ani Thakar</CENTER>
+<P></P>
+<CENTER><FONT size=3>July 7, 2000</FONT></CENTER>
+<P></P>
+<P>
+<HR style="HEIGHT: 6px">
+
+<P>   
+</STRONG></FONT>The SDSS Science Archive (SX) consists of the following 
+components: </P>
+<UL>
+  <LI>A commercial object-oriented DBMS - Objectivity - 
+  that serves as the data repository or warehouse. In addition to providing 
+  persistence and data integrity for an object data model, Objectivity also 
+  provides binary compatibility across the major hardware platforms, transparent 
+  and configurable data organization, superior data-mining performance for 
+  complex data models, distributed database capability and automated replication 
+  of the archive. 
+  <LI>A client-server interface to the data warehouse later 
+  that consists of:&nbsp; 
+  <UL>
+    <LI>a Tcl/Tk GUI client - the SX Query Tool or sxQT - 
+    that enables users to formulate queries in the SQL-like SX Query Language 
+    (SXQL) and submit them to the SX server of their choice (see below). The 
+    sxQT pScience Archive Overview The SDSS Science Archive (SX) consists of the 
+    following components: 
+    <LI>A commercial object-oriented DBMS - Objectivity - that serves as the 
+    data repository or warehouse. In addition to providing persistence and data 
+    integrity for an object data model, Objectivity also provides binary 
+    compatibility across the major hardware platforms, transparent and 
+    configurable data organization, superior data-mining performance for complex 
+    data models, distributed database capability and automated replication of 
+    the archive. </LI></UL>
+  <LI>A client-server interface to the data warehouse later 
+  that consists of:&nbsp; 
+  <UL>
+    <LI>A&nbsp;Tcl/Tk GUI client - the SX Query Tool or 
+    sxQT - that enables users to formulate queries in the SQL-like SX Query 
+    Language (SXQL) and submit them to the SX server of their choice (see 
+    below). The sxQT provides a multi-window environment that enables the user 
+    to initiate multiple sessions with different SX servers and submit multiple 
+    queries in parallel.&nbsp; 
+    <LI>A&nbsp;multi-threaded and distributed server (sxServer) written in C++ 
+    that creates and manages user sessions and executes user queries. It 
+    performs user authentication and routes query output in the appropriate 
+    format to the specified output targets. The sxServer has the ability to 
+    handle multiple parallel user sessions as well as multiple parallel user 
+    queries per session. Queries that need to access distributed data are 
+    executed in distributed mode by sending the required parts of the queries to 
+    remote hosts and executing them with remote slave servers. </LI></UL>          
+  </LI></UL>
+<P>&nbsp;</P>
+<P>
+<HR style="LEFT: 10px; TOP: 556px">
+
+<P></P>
+<P>&nbsp;</P>
+<P><FONT size=4><STRONG>Status of SX Requirements </STRONG></FONT></P>
+<P>The original requirements for the SX (circa 1995) are listed below along with 
+an indication beside each requirement as to whether it has been met (Yes), not 
+met (No) or not applicable any more (NA). Other comments are added as necessary. 
+</P>
+<P>The science archive shall consist of: </P>
+<UL>
+  <LI>A science database that shall: </LI></UL>
+<OL style="MARGIN-RIGHT: 0px">
+  <OL style="MARGIN-RIGHT: 0px">
+    <LI> Retain calibrated object catalogs (photometric CCD output) 
+    <STRONG>Yes</STRONG>
+    <LI> Retain parameters from spectroscopic pipeline <STRONG>Yes&nbsp; 
+    </STRONG>
+    <LI> Enhanced goal: provide ability to recalibrate object catalogs 
+    <STRONG>No&nbsp; </STRONG>
+    <LI> Retain references to atlas images and extracted spectra <STRONG>Yes&nbsp; 
+    </STRONG>
+    <LI> Provide ability to carry out manual target selection for certain 
+    target categories <STRONG>Yes&nbsp; </STRONG>
+    <LI> Provide ability to carry out offline QA activities <STRONG>Yes 
+    </STRONG>
+    <LI> Provide ability for SDSS scientists to extract subsets of retained 
+    data <STRONG>Yes&nbsp; </STRONG>
+    <LI> Enhanced goal: Provide ability to retain scientist-derived data sets 
+    <STRONG>No&nbsp; </STRONG>
+    <LI> Enhanced goal: Provide smooth transition to public distribution 
+    system <STRONG>No </STRONG></LI></OL></OL>
+<UL>
+  <LI>A set of files tracked by the science database <STRONG>Yes (tsObjc, 
+  tsField, fpAtlas, fpBin, psSpec, fpMask) </STRONG>
+  <LI>A set of files not tracked by the science database <STRONG>Yes (all other 
+  files) </STRONG></LI></UL>
+<P>&nbsp;</P>
+<P><EM>Summary</EM>: </P>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P>All primary science archive requirements have been met, with the exception 
+  of the enhanced goals.</P>
+  <P>&nbsp;</P></BLOCKQUOTE>
+<HR>
+
+<P><FONT size=4><STRONG>I. Input to Science Archive </STRONG></FONT></P>
+<P><EM>Survey Definition </EM>  </P>
+<OL style="MARGIN-RIGHT: 0px">
+  <OL style="MARGIN-RIGHT: 0px">
+    <LI>A description of the North Imaging survey area 
+    <STRONG>Yes&nbsp;</STRONG>
+    <LI>Survey progress: A description of sky inserted into database to date 
+    <STRONG>Yes </STRONG></LI></OL></OL>
+<P><EM>Final Astrometric Calibration </EM>   </P>
+<OL style="MARGIN-RIGHT: 0px">
+  <OL style="MARGIN-RIGHT: 0px">
+    <LI>List of r' band calibration coefficients on a frame-by-frame basis 
+    <STRONG>Yes <BR><BR></STRONG><EM>[TBD: Are position errors stored on an 
+    object-by-object basis?] </EM></LI></OL></OL>
+<P><EM>Final Photometric Calibraton </EM>   </P>
+<OL style="MARGIN-RIGHT: 0px">
+  <OL>
+    <LI>List of photometric calibration coefficients on a frame-by-frame basis 
+    <STRONG>Yes </STRONG></LI></OL></OL>
+<P><EM>Merged Object Lists </EM>   </P>
+<OL style="MARGIN-RIGHT: 0px">
+  <OL style="MARGIN-RIGHT: 0px">
+    <LI>A list of calibrated objects and parameters from the Frames pipeline of 
+    photo <STRONG>Yes </STRONG>
+    <LI>A list of object masks from the Frames pipeline of photo <STRONG>No 
+    (photo not providing masks, only bit flags), needs to be extracted (who, 
+    when?) <BR><BR></STRONG><EM>[TBD: Do&nbsp;1 and&nbsp;2 provide all 
+    information about masked areas of sky?] <BR></EM>
+    <LI>Run and Field information. Might be needed for recalibrations 
+    <STRONG>Yes </STRONG>
+    <LI>Star/Galaxy/QSO classifications <STRONG>Yes </STRONG>
+    <LI>Enhanced goal: Cross-identifications to other catalogs <STRONG>No (wait 
+    till real mandate for this; FIRST, USNO, ROSAT incl.) </STRONG></LI></OL></OL>
+<P><EM>Target Selection </EM>  </P>
+<OL style="MARGIN-RIGHT: 0px">
+  <OL>
+    <LI>A list of all targetable objects with target selection categories 
+    <STRONG>No (target does not store this - to be changed)</STRONG>
+    <LI>A list of all objects from a selected as targets with selection category 
+    <STRONG>Yes&nbsp;</STRONG>
+    <LI>Tiling flags for all objects in&nbsp;2 <STRONG>Yes (coming with schema 
+    for spectra)&nbsp;</STRONG>
+    <LI>&nbsp;Reports for all targets selected manually <STRONG>No (target does 
+    not store this - to be changed) </STRONG></LI></OL></OL>
+<P><EM>Spectroscopic Pipeline </EM>  </P>
+<OL>
+  <OL>
+    <LI>Redshifts and parameters of all targeted objects <STRONG>Yes 
+    </STRONG>
+    <LI>Enhanced goal: Tile and plate information <STRONG>Yes 
+    <BR><BR></STRONG><EM>[TBD: If a target has multiple spectra obtained, is 
+    there a need to assign one as a primary measurement?]</EM><STRONG><EM> 
+    </EM>NA <BR></STRONG>
+    <LI>Enhanced goal: Scientist derived catalogs <STRONG>No </STRONG>
+    <LI>Enhanced goal: Other input catalogs <STRONG>No </STRONG></LI></OL></OL>
+<P>&nbsp;</P>
+<P>Separate files tracked from Science Database&nbsp;</P>
+<OL>
+  <LI>Atlas Images Yes (under construction) 
+  <LI>1-D spectra Yes (under construction) </LI></OL>
+<P>&nbsp;</P>
+<P>Separate files not tracked or accessible from Science Archive </P>
+<OL>
+  <LI>Compressed pixel map 
+  <LI>Full corrected pixel map 
+  <LI>Corrected spectroscopic frames d. Unused data </LI></OL>
+<P><EM>[TBD: Southern Survey Yes (same as Northern)]</EM></P>
+<P>Summary: </P>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P>All the basic requirements for Inputs have been met - the SX meets these 
+  requirements to the extent possible with the current inputs provided by the 
+  photo and spectro pipelines. The enhanced goals have not been 
+met.</P></BLOCKQUOTE>
+<P>&nbsp;</P>
+<P>
+<HR>
+
+<P></P>
+<P>&nbsp;</P>
+<P><FONT size=4><STRONG>II. Functional Goals </STRONG></FONT></P>
+<P>User will be able to carry out efficient queries to locate objects over one 
+or more ranges of following attributes: </P>
+<OL>
+  <LI>Longitude or latitude in several spherical coordinates 
+  <OL>
+    <LI>J2000 Ra and Dec <STRONG>Yes </STRONG>
+    <LI>J1950 Ra and Dec <STRONG>Yes </STRONG>
+    <LI>Enhanced goal: Ra and Dec of arbitrary epoch <STRONG>No </STRONG>
+    <LI>Galactic coordinates <STRONG>Yes</STRONG>
+    <LI>Survey Coordinates <STRONG>Yes </STRONG>
+    <LI>Any linear combination of the two coordinates <STRONG>Yes 
+  </STRONG></LI></OL>
+  <LI>Radius within a give point of the sky <STRONG>Yes </STRONG>
+  <LI>u' g' r' i' z' (One set of magnitudes per object) <STRONG>Yes 
+  </STRONG>
+  <LI>Any linear combination of 3. <STRONG>Yes </STRONG>
+  <LI>Object radius (one per object) <STRONG>Yes </STRONG>
+  <LI>Surface brightess formed by c and d <STRONG>Yes </STRONG>
+  <LI>Star/Galaxy/QSO Classification flag <STRONG>Yes </STRONG>
+  <LI>Object class (small/medium/big/mask) <STRONG>Yes </STRONG>
+  <LI>Target Selection Category <STRONG>Yes (target flags) </STRONG>
+  <LI>Spectrum available flag <STRONG>Yes (link exists?) </STRONG></LI></OL>
+<P>&nbsp;</P>
+<P>User will be able to carry out queries on any retained object parameter 
+(subject to implementation constraints) Yes </P>
+<P>&nbsp;</P>
+<P><EM>Enhanced Goal: </EM></P>
+<UL>
+  <LI>
+  <DIV style="MARGIN-RIGHT: 0px">All calibrated quantities can be recomputed 
+  using improved astrometric and photometric calibrations. Queries can be 
+  performed on the recalibrated quantities <STRONG>Yes (in principle, with 
+  methods defined on objects) </STRONG></DIV>
+  <LI>For all efficient queries, return an esimated number of objects to be 
+  located <STRONG>Yes </STRONG>
+  <LI>For all located objects, users shall be able to specify an arbitrary 
+  subset of stored parameters to be returned (subject to implementation 
+  constraints) plus the following derived quantities: <STRONG>Yes </STRONG>
+  <OL>
+    <LI>a. Number of located objects <STRONG>Yes </STRONG>
+    <LI>b. TBD: Extra parameters <STRONG>Yes (e.g. AVERAGE, MIN, MAX, STDDEV 
+    etc.) </STRONG></LI></OL>
+  <LI>Users shall be able to perform the following functions: 
+
+  <OL>
+    <LI>Efficient repeated queries [e.g, get all objects 
+    within each of 10,000 QSOs in my favorite catalog).] No 
+    <LI>Make simple plots, etc. of returned parameters (e.g., 
+    SMONGO) No, but can do with AEs 
+    <LI>Formulate new queries based on results of previous 
+    queries NA 
+    <LI>TBD: What else? </LI></OL>         </LI></UL>
+<P><EM>Summary: </EM></P>
+<P>All the basic functional goals, with the exception of efficient repeated 
+queries and the ability to make plots in the SX, have been met. One of the two 
+enhanced goals has been met. </P>
+<P>---------------- </P>
+<P><FONT size=4><STRONG>III. Technical Goals </STRONG></FONT></P>
+<P><EM>User interface </EM>  </P>
+<OL>
+  <LI>User interface shall be developed in a TCL/Tk/TclDp 
+  environment <STRONG>Yes </STRONG>
+  <LI>User interface shall communicate with a query support 
+  layer via ASCII interface protocol <STRONG>Yes </STRONG>
+  <LI>Data shall be returnable to files, sockets, or pipes. </LI></OL>
+<P>Returned data shall use binary machine independent format 
+(FITS binary, ASCII if appropriate, TBD: FITS ASCII, other?) <STRONG>Yes 
+</STRONG>           
+       </P>
+<P><EM>Enhanced goal: </EM>           
+           
+        </P>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+  <P>Data shall be stored in a system providing industry-standard OSQL-like 
+  interface to enable use of commercial products to provide alternative view of 
+  the database <STRONG>Yes (Objy has SQL++) </STRONG></P></BLOCKQUOTE>
+<P><EM>Distributability </EM> </P>
+<OL>
+  <LI>A master copy of all data shall be maintained (the 
+  Master Science Archive) <STRONG>Yes</STRONG> 
+  <LI>Capability shall be present to replicate all or part 
+  of the Master Science Archive as local databases at SDSS institutions. 
+  Replication may consist of: 
+  <OL>
+    <LI>Science Database in its entirety <STRONG>Yes</STRONG> 
+    <LI>All or part of separate files tracked by Science 
+    Database <STRONG>Yes</STRONG> 
+    <LI>No capability shall be present to replicate an 
+    arbitrarily selected subset of the science database beyond that described by 
+    section 1.3 of USER INTERFACE <STRONG>Yes</STRONG> 
+ 
+  <LI> Replication of databases shall be possible on all SDSS supported 
+  platforms <STRONG>Yes</STRONG> </LI></OL>
+  <LI>d. No capability is required be present to replicate all or part of 
+  separate files not tracked by Science Database <STRONG>Yes</STRONG> </LI></OL>
+<P><EM>Security </EM> </P>
+<OL style="MARGIN-RIGHT: 0px">
+  <LI>Master Science Archive shall be protected against corruption by SDSS 
+  participant user <STRONG>Yes</STRONG>
+  <LI>Master Science Archive shall be protected against unauthorized access Yes 
+  Summary: All the technical goals have been met. </LI></OL>
+<P>&nbsp;</P>
+<P>
+<HR>
+
+<P></P>
+<P>   </P>
+<P><STRONG>SX Usage Stats </STRONG></P>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+<P>Usage statistics for the SX for the last 6 months are shown below. </P>
+<P> Total number of SX logins </P>
+<P> </P>
+<P> Total number of queries submitted </P>
+<P> </P>
+<P> Number of queries completed </P>
+<P> </P>
+<P> Number of queries aborted by user </P>
+<P> </P>
+<P> Number of queries not completed due to system errors </P>
+<P> </P>
+<P> Average query execution time (predicted : actual) </P>
+<P> </P>
+<P> SX usage by institution (# of logins for each institution) </P>
+<P> </P>
+<P> Usage with time chart (# of logins per day) </P>
+<P> </P>
+<P> Stability of SX server: </P>
+<P> </P>
+<P> # of server crashes per day (plot since Mar/00) </P>
+<P> </P>
+<P> SX bug reporting stats </P></BLOCKQUOTE>
+<P>&nbsp;</P>
+<P>
+<HR>
+
+<P></P>
+<P>&nbsp;</P>
+<P><STRONG>SX Performance and Objectivity Issues 
+</STRONG>     </P>
+<P>Our goal is to have a scalable, primarily I/O-limited archival system. The 
+current release of Objectivity has prevented us from reaching that goal due to 
+performance problems that we have identified with it. Benchmarks conducted by 
+the SX development team that compared Objectivity performance with Microsoft's 
+SQL Server indicate that scan speeds with Objectivity were more than an order of 
+magnitude slower than with SQL Server. Even after allowing for the additional 
+complexity of an object database, this was a serious shortfall in performance, 
+and quite unacceptable. Most of this discrepancy was attributable to the time it 
+took to open individual objects in Objectivity. This operation was using up 
+several thousand CPU cycles instead of the expected few hundred cycles. </P>
+<P>This problem was reported to Objectivity in the last quarter of 1999 and in 
+December 1999 Objectivity agreed to put it on their "warmlist" and fix it for 
+v6.0 due to be released in Summer 2000. However, our ongoing discussions with 
+Objectivity over the last few months revealed that the problem had not in fact 
+made it on their warmlist. So beginning in May 2000 we started to press 
+Objectivity on this issue and initiated discussions with Mats Persson at 
+Objectivity to resolve the problem. Alex Szalay went to Objectivity HQ for 
+several days to impress the urgency of this issue upon them. Peter Kunszt spent 
+several weeks in June conducting intensive profiling and benchmarking of our 
+Objectivity code and was able to finally convince Objectivity of the fundamental 
+nature and severity of the problem. We are happy to report that Mats has been 
+able to speed up the Objectivity code by a factor of 15 as a result of this 
+effort, and the performance is now comparable to SQL Server. However, these 
+changes are still limited to the Windows/NT version of Objectivity, and we 
+intend to work with Objectivity to ensure that most or all of them will make it 
+into the UNIX versions by the time Objectivity releases v6.0 (now due September 
+2000). </P>
+<P>&nbsp;</P>
+<P>
+<HR>
+
+<P></P>
+<P>&nbsp;</P>
+<P><STRONG>Results of benchmarking: </STRONG>   </P>
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+<P> Straight (no predicate) Scan Speed (Mb/s) Tests between Jun 5 and Jun 27, 
+2000: SQL-Server vs Objectivity </P>
+<P> </P>
+<P> 2M objects </P>
+<P> </P>
+<P> 8M objects </P>
+<P> </P>
+<P> Predicate Scan Speed (Mb/s) Tests between Jun 5 and Jun 27, 2000: 
+SQL-Server vs Objectivity </P>
+<P> </P>
+<P> 2M objects </P>
+<P> </P>
+<P> 8M objects </P></BLOCKQUOTE>
+<P style="MARGIN-RIGHT: 0px">&nbsp;</P>
+<HR>
+
+<P style="MARGIN-RIGHT: 0px">&nbsp;</P>
+<P><STRONG>Hardware Issues: </STRONG>  </P>
+<P>We have been able to obtain sequential I/O speeds of 1.3M objects/s with SQL 
+Server (running 2 threads) and 450k objects/s with Objectivity (running as a 
+single thread) on an Intel/Linux box. The maximum raw I/O speeds possible with 
+this hardware is in excess of 200Mb/s, and with the latest Objectivity 
+performance improvements, we expect to be able to achieve 100 Mb/s with 
+Objectivity on a Linux box in the near future. The speeds we have been able to 
+achieve on the SGI are quite disappointing by comparison (3 - 17 Mb/s) and 
+considering that SGI's implementation of UNIX and POSIX threads has a number of 
+pecularities that have caused serious problems for us in the past (costing us 
+over 6 man-months of effort to resolve them), it seems that the Intel/Linux 
+clusters are the preferred hardware environment to deploy SX on in the future. 
+</P>
+<P> </P>
+<HR>
+<P>&nbsp;</P>
+
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

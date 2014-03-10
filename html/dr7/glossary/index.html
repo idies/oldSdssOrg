@@ -1,0 +1,1746 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Glossary - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<a name="top">
+<h1>Glossary of SDSS Terminology</h1>
+
+<p>This page contains a comprehensive glossary of SDSS-related
+terminology. Terms are given in alphabetical order, with definitions and 
+links to extended descriptions where available. If you come across a term you
+don't understand, or think we should include, please submit it to <a
+href="http://www.lib.uchicago.edu/e/ask/SDSSask.html">the SDSS helpdesk</a>.</p>
+
+<!-- We also provide <a href="../catalog/tables.html">descriptions of the various tables</a> and the <a href="../catalog/terms.html">specific parameters contained therein</a>.
+-->
+<center>
+<h3><b><a href="#A">A</a> <a href="#B">B</a> <a href="#C">C</a> <a href="#D">D</a> <a href="#E">E</a> <a href="#F">F</a> <a href="#G">G</a> <a href="#H">H</a> <a href="#I">I</a> <a href="#J">J</a> <a href="#K">K</a> <a href="#L">L</a> <a href="#M">M</a> <a href="#N">N</a> <a href="#O">O</a> <a href="#P">P</a> <a href="#Q">Q</a> <a href="#R">R</a> <a href="#S">S</a> <a href="#T">T</a> <a href="#U">U</a> <a href="#V">V</a> <a href="#W">W</a> <a href="#X">X</a> <a href="#Y">Y</a> <a href="#Z">Z</a></b></center>
+</h3>
+
+<br>
+<a name="A"></a>
+<h3><u>A</u></h3>
+
+<a name="adaptive_moment"></a>
+
+<h3>adaptive moments</h3>
+
+A method of measuring object shapes. These moments are close to
+optimal for measuring the shapes of faint galaxies, and have been used
+for weak lensing studies. See the <a
+href="../algorithms/adaptive.html">Adaptive Moments</a> section of the
+<a href="../algorithms/index.html">algorithms pages</a>.
+
+<a name="APO"></a>
+
+<h3>APO</h3>
+
+Apache Point Observatory, located in Sunspot, New Mexico. This is the
+location of the 2.5m SDSS telescope as well as the <a
+href="#photo_tel">Photometric Telescope (PT)</a>, as well as other
+non-SDSS telescopes. See <a href="http://www.apo.nmsu.edu/">APO
+homepage</a>.
+
+<a name="ARC"></a>
+
+<h3>ARC</h3>
+Astrophysical Research Consortium.  Incorporated in the State of Washington.
+ Members include the University of Washington; New Mexico State University; 
+ The University of Chicago, Princeton University; Johns Hopkins University;
+ the University of Virginia; the University of Colorado; the Institute for Advanced Study. 
+ Body that owns and operates <a href="#apo">APO</a>.
+
+<a name="asinh"></a>
+
+<h3>asinh magnitude</h3> 
+Magnitudes within the SDSS are expressed as inverse 
+hyperbolic sine (or ``asinh'') magnitudes, sometimes referred to informally as <em>luptitudes</em> .
+The transformation from linear flux measurements to asinh magnitudes
+is designed to be virtually identical to the standard astronomical
+magnitude at high signal-to-noise ratio, but to switch over to linear behavior at low S/N and even at negative values of flux,
+where the logarithm in the <a href="#mag_pogson">Pogson magnitude</a> fails.  Details can be found in the <a href="../algorithms/photometry.html">Photometry section</a> of the Algorithms pages, or the <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v118n3/990094/990094.html">Lupton et al. 1999 AJ paper</a>.
+
+<a name="astrans"></a>
+
+<h3>asTrans file</h3>
+FITS binary table with astrometric transformations for every field in a single imaging run. It transforms frame (row,col) coordinates to great circle (mu,nu) coordinates for a given inclination. Available in the <a href="#DAS">DAS</a>.
+
+<a name="Astrda"></a>
+
+<h3>AstroDA</h3>
+The data acquisition and analysis system used to collect data from the survey telescope cameras.
+
+<a name="Astrom"></a>
+
+<h3>Astrom</h3>
+The data processing pipeline that maps CCD pixel coordinates to celestial coordinates. The detailed workings of this pipeline are described in the <a href="../algorithms/astrometry.html">Astrometry</a> section of the <a href="../algorithms/index.html">algorithms pages</a>, or the <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v125n3/202156/202156.html">Pier et al. 2003 AJ paper</a>.
+
+<a name="astrom_chip"></a>
+
+<h3>astrometric chip</h3>The SDSS <a href="#camera">camera</a>
+contains 24 2048x400 pixel CCDs (in addition to the 30 2048x2048
+photometric CCDs) which are used for astrometry and focus
+monitoring. Because they are smaller chips, the effective exposure
+time is only 11 seconds, allowing the survey to observe brighter stars
+without saturation. These bright star positions are necessary to match
+to objects present in astrometric catalogs used by the <a
+href="#Astrom">Astrom pipeline</a>. For more details on these chips,
+please see the appropriate section of the <a
+href="../instruments/imager/index.html">camera pages</a> or the AJ
+imaging camera paper (<a
+href="http://www.journals.uchicago.edu/AJ/journal/issues/v116n6/980260/980260.html"
+target="new">Gunn et al. 1998</a>).
+
+<a name="astrometry"></a>
+
+<h3>astrometry</h3>
+
+The detailed methodology utilized by the SDSS is described in the <a
+href="../algorithms/astrometry.html">Astrometry</a> section of the <a
+href="../algorithms/index.html">algorithms pages</a>.
+
+<a name="astrotools"></a>
+
+<h3>Astrotools</h3> 
+<p>The Collaboration's software package used for data processing.</p>
+
+<a name="atlas_image"></a>
+
+<h3>atlas image</h3>
+For each detected <a href="#object">object</a>, the atlas image
+comprises the pixels that were detected as part of the object in any
+filter. These are available through the <a href="#DAS">DAS</a>, as a 
+single file for each field.
+
+<a name="B"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>B</u></h3>
+
+<a name="best"></a>
+
+<h3>Best</h3>
+
+We maintain multiple versions of the SDSS imaging data set. The
+<b>Best</b> version contains the images and photometric catalogs with
+the highest quality data at the time of the data release. The <a
+href="#target">target</a> version contains those data at the time the
+target selection algorithm was run for that part of the sky.  For
+example, the DR1 "best" data set contained better data for some parts
+of the sky than the DR1 "target" data set (including most of the EDR
+data set).
+<!-- If newer data of -->
+<!-- better quality becomes available for a piece of sky (specifically, if -->
+<!-- a <a href="#chunk">chunk</a> is newly <a -->
+<!-- href="#resolve">resolved</a>), the old data is removed from this -->
+<!-- database and replaced. Therefore, this database is <em>not</em> -->
+<!-- static. In general, we plan to update this database every few -->
+<!-- months. For the DR1-beta, the contents of this database are -->
+<!-- fixed, -->
+<!-- however. -->
+
+<a name="binned_frame"></a>
+
+<h3>binned frame</h3>
+Each file is a FITS image for one filter, 512 x 372 pixels, with WCS information. These are the <a href="#corrected_frame">corrected frames</a> with detected objects removed and binned 4 pixels by 4 pixels. All pixels that are in <a href="#atlas_image">atlas images</a> are replaced by the background level before binning, with suitable noise added. All of the header parameters from the original image are inherited as well. Available in the <a href="#DAS">DAS</a>.
+
+<a name="blackbook"></a>
+
+<h3>Black Book</h3> This document provides a description of the
+original science goals of the survey, as well as the hardware and
+software designs, and was the 1996 proposal to NASA. Please keep in
+mind that it is <em>not</em> updated, so information within it may no
+longer be current. Nevertheless, it provides an excellent overview of
+the survey. The science content of this proposal is available online
+in the <a
+href="http://www.astro.princeton.edu/PBOOK/welcome.htm">Project
+Book</a>.
+
+<a name="boresight"></a>
+
+<h3>boresight</h3>
+The telescope control computer keeps track
+of a specific point in the telescope focal plane that is called the <b>boresight</b>. The boresight is not fixed in the array but is at one of two
+places for the two <a href="#strip">strips</a> that compose a <a href="#stripe">stripe</a>. It is the boresight that will track <a href="#great_circle_coords">great circles</a>. Technically, the boresight tracks a path that is a great circle in J2000 coordinates as viewed from the solar system barycenter.
+
+<a name="C"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>C</u></h3>
+
+<a name="calibration"></a>
+
+<h3>calibration</h3>
+The process by which the photometric and spectroscopic observations are calibrated. The goal of calibration is to take the digital camera readouts and convert them to measured quantities like fluxes. The details of these procedures can be found on the <a href="../algorithms/index.html">algorithms pages</a>.
+
+<a name="camcol"></a>
+
+<h3>camcol</h3>
+A Camcol is the output of one camera column of CCD's (each with a different filter) as part of a <a href="#run">Run</a>. Therefore, 1 Camcol = 1/6 of a Run. It is also a portion of a <a href="#scanline">scanline</a>.
+
+<a name="camera"></a>
+
+<h3>camera</h3>
+
+The instrument used for imaging. It consists of 30 photometric and 24
+astrometric CCDs (see <a
+href="../instruments/imager/index.html">camera description</a>).  The
+camera is a mosaic of 54 CCD detectors in the focal plane, 30 large
+devices arranged in 6 columns of 5 each and 24 smaller devices around
+the periphery. See this <a href="../shared_images/camera.gif">sketch
+of the camera focal plane</a> or this <a
+href="../shared_images/camopen.jpg">real life image</a>. The camera is
+described in detail in the imaging camera paper (<a
+href="http://www.journals.uchicago.edu/AJ/journal/issues/v116n6/980260/980260.html"
+target="new">Gunn et al. 1998</a>).
+
+
+<a name="CAS"></a>
+
+<h3>CAS (Catalog Archive Server)</h3>
+
+The <a href="../access/index.html#CAS">Catalog Archive Server</a>
+is a searchable database that contains the measured parameters from all objects in the imaging
+survey and the spectroscopic survey. 
+
+<a name="casjobs"></a>
+
+<h3>CasJobs</h3>
+A batch (asynchronous) interface to the <a href="#cas">CAS</a> for querying the database and 
+storing results. CasJobs is designed to handle especially long or otherwise demanding queies.
+
+<a name="caveats"></a>
+<h3>Caveats</h3>
+Also known as "known problems."  SDSS maintains a list of issues which are potentially 
+troublesome but for which we have devised workarounds. 
+
+
+<a name="central_meridian"></a>
+
+<h3>central meridian</h3>
+The meridian which passes through the center of the survey area, 12h 20m , defines the central meridian of a scan. The great
+circle perpendicular to it passing through the survey center at <img src="../shared_images/delta.gif">=32.8deg is the <a href="#survey_equator">survey equator</a>. 
+
+<a name="child"></a>
+
+<h3>child</h3>
+A product of the <a href="#deblend">deblending</a> process. When two objects are near each other on the sky, their images may appear merged. The deblender tries to split this merged image; the resulting sub-images are called children. The initial merged image is called a <a href="#parent">parent</a>. For more details, see the <a href="../algorithms/deblend.html">Deblending</a> section of the <a href="../algorithms/index.html">algorithms pages</a>.
+
+<a name="chunk"></a>
+
+<h3>chunk</h3>
+
+A chunk is a piece of sky composed of a set of touching but non-overlapping primary
+<a href="#segment">segments</a> (or parts of segments) of individual runs which fills a
+"chunk" of a <a href="#stave">stave</a>, and is therefore bounded on
+the east and west by lines of constant <a href="#mu">mu</a>, and
+north-south by lines of constant <a href="#eta">eta</a> (if in the
+North). Southern chunks have no eta boundary applied.  A chunk may
+also have a <a href="#lambda ">lambda</a> cut if it is at the end of
+the survey region for that stripe. Chunks do not overlap, so the union
+of all existing chunks represents the unique sky coverage for the
+survey at any given time. See this <a
+href="../shared_images/sdssgeom.jpg">figure explaining the SDSS survey
+geometry</a> for details. Note that the bounds on chunks, if using
+mu/eta, are a mix of <a href="#survey_coords">survey coordinates</a>
+and <a href="#great_circle_coords">great circle
+coordinates</a>. <b>Note:</b> The term chunk has sometimes been used
+to describe an area of sky that has had <a href="#tiling">tiling</a>
+run on it. This is properly called a <a href="#tile_region">tiled
+region</a>.
+
+<a name="classification"></a>
+
+<h3>classification (photometric)</h3>
+The method by which we assign a type (star or galaxy) to each <a href="#object">object</a>. The details of this procedure are described in the <a href="../algorithms/classify.html">Classification</a> section of the <a href="../algorithms/index.html">algorithms pages</a>.
+
+<a name="cloud_cam"></a>
+
+<h3>Cloud Camera</h3>
+A camera at the mountain that takes continuous pictures
+of the sky at 10 microns, a wavelength at which clouds emit.
+It is a sensitive measure of the photometricity of the sky as a
+function of time. 
+
+<a name="CMM"></a>
+
+<h3>CMM</h3>
+
+Coordinate Measuring Machine, a device used to measure the positions
+of holes in the <a href="#fiber">fiber</a> mount <a
+href="#plate">plates</a> for the spectrographic survey.
+
+<h3>Cmodel magnitude</h3>
+
+Composite model magnitude. See <a href="#mag_cmodel">magnitude,
+cmodel</a>.
+
+<a name="chunk"></a>
+
+<h3>convex</h3>
+A convex is the intersection of one or more circles, with a depth (the number of circles 
+involved). If we have two intersection circles, A and B, then both (A) and (B) are a convex 
+of depth 1, their intersection (A)(B) is also a convex, but of depth 2. We call these simple 
+convexes "wedges."
+
+<a name="coordinates"></a>
+<h3>coordinates</h3>
+The SDSS uses three different coordinate systems. We use
+standard astronomical right ascension (RA) and declination (Dec),
+J2000. There is also the <em><a href="#survey_coords">survey
+coordinate system</a></em>, with coordinates <a href="#lambda">lambda
+(<IMG SRC="../shared_images/lambda.gif" BORDER="0" ALT="&lambda;"
+ALIGN="BASELINE">)</a> and <a href="#eta">eta (<IMG
+SRC="../shared_images/eta.gif" BORDER="0" ALT="&eta;"
+ALIGN="BASELINE">)</a>. This is just a rotation of the usual RA, Dec
+system. Finally, there is the <em><a href="#great_circle_coords">great
+circle coordinate system</a></em>, which is actually a separate
+coordinate system for each <a href="#stripe">stripe</a>. The
+coordinates of this system are <a href="#mu">mu (<IMG
+SRC="../shared_images/mu.gif" BORDER="0" ALT="&mu;"
+ALIGN="BASELINE">)</a> and <a href="#nu">nu (<IMG
+SRC="../shared_images/nu.gif" BORDER="0" ALT="&nu;"
+ALIGN="BASELINE">)</a>.
+
+<a name="corrected_frame"></a>
+
+<h3>corrected frame</h3>
+Each corrected frame is a FITS image for one filter, 2048 columns by 1489 rows, with row number increasing in the scan direction. These are the imaging frames with flat-field, bias, cosmic-ray, and pixel-defect corrections applied. A raw image contains 1361 rows, and a corrected frame has the first 128 rows of the following corrected frame appended to it. The pixels subtend 0".396 square on the sky. Header information using the <a href="#wcs">world coordinate system (WCS)</a> allows standard astronomical FITS tools to convert pixel position to right ascension and declination. Available in the <a href="#DAS">DAS</a>.
+
+<a name="CSV"></a>
+
+<h3>CSV (comma-separated variable)</h3>
+Comma Separated Variable file. A file format used commonly for input to and output from the 
+<a href="#cas">CAS</a>.
+
+<a name="CVS"></a>
+
+<h3>CVS</h3>
+The Concurrent Versions System, used by SDSS software and website developers to maintain versioning control. An open source project available at <a href="https://www.cvshome.org/">https://www.cvshome.org/</a>.
+
+<a name="cx"></a>
+
+<h3>cx/cy/cz</h3>
+The coordinates on the unit sphere utilized by the <a href="#htm">HTM</a> code; stored in the CAS.
+
+<a name="D"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>D</u></h3>
+
+<a name="DAS"></a>
+
+<h3>DAS</h3>
+
+The Data Archive Server, which provides access to the imaging and
+spectroscopic products of the survey. We also provide <a
+href="../access/index.html">descriptions of the DAS data access
+tools</a>.
+
+<a name="data_model"></a>
+
+<h3>data model</h3>
+The description of the structure and organization of the data in a database. The data model tells you all the tables names, their contents, and how they are related to, and linked with, one another. The actual implementation of a data model is called the database schema. For the flat files available in the <a href="#DAS">DAS</a>, the data models are available <a href="../dm/flatFiles/FILES.html">here</a>.
+
+<a name="deblend"></a>
+
+<h3>deblend</h3>
+Deblending is the process by which overlapping objects in images are separated. The <a href="#frames_pipeline">frames pipeline</a> attempts to determine whether each object actually consists of
+more than one object projected on the sky and, if so, to deblend such a <a href="#parent">parent</a> object into its constituent <a href="#child">children</a>, self-consistently across the bands (thus, all children have measurements in all bands). For details on how this works, and what <a href="#flag">flags</a> this procedure may set, see the <a href="../algorithms/deblend.html">Deblending</a> section of the <a href="../algorithms/index.html">algorithms pages</a>.
+
+<a name="Dervish"></a>
+
+<h3>Dervish</h3>
+An <a href="#FNAL">FNAL</a> software toolkit used by many of the data acquisition and reduction systems. 
+
+<a name="dev"></a>
+
+<h3>deVaucouleurs</h3>
+Also know as the r<sup>1/4</sup> law, it describes the radial light profile of a typical elliptical galaxy. Defined as<br><b>I(r) = I<sub>0</sub>exp{-7.67[(r/r<sub>e</sub>)<sup>1/4</sup>]}</b>. An elliptical version of this profile is fit to every detected object, yielding the <code>deV</code> parameters. See the <a href="../algorithms/photometry.html#mag_model">model magnitude section of the photometry algorithm page</a> for details. 
+
+<a name="DR1"></a>
+
+<h3>DR1...7</h3> Data Release 1 through 7, the formal periodic releases of SDSS data to the public. A small portion of the data was
+released as part of the <a href="#EDR">Early Data Release
+(EDR)</a>.  The data releases are cumulative: later releases include more recent data and re-processed older data.  Thus DR7, the final release, is the definitive version. 
+Each Data Release is associated with a journal article that describes changes from the previous release. 
+
+<a name="E"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>E</u></h3>
+
+<a name="eclass"></a>
+
+<h3>eClass</h3>
+A value between -1 and +1 assigned by the spectro1d pipeline to each spectrum, derived from 
+principal component vectors. In general, spectra with lower-temperature absorption features 
+have more negative eClass, and spectra with higher temperature features or emission lines have 
+more positive eClass.
+
+<a name="EDR"></a>
+
+<h3>EDR</h3>
+
+Early Data Release. The first public release of SDSS data occurred in
+June of 2001. The EDR is described in the <a
+href="http://www.journals.uchicago.edu/AJ/journal/issues/v123n1/201415/201415.html">EDR
+paper on the AJ web site</a>, also available as <a
+href="../algorithms/edrpaper.html">EDR paper in HTML</a>.
+
+<a name="ellipticity"></a>
+
+<h3>ellipticity</h3>
+Measures how elliptical an object is. In the SDSS, we have numerous methods to measure this: 
+<ul>
+<li>the <a href="#stokes">Stokes' parameters</a></li>
+<li>the <a href="#adaptive_moment">adaptive moments</a></li>
+<li>the <a href="#dev">De Vaucouleurs profiles</a></li>
+<li>the <a href="#exp">exponential profiles</a></li>
+<li>the isophotal parameters</li>
+</ul>
+
+<a name="eta"></a>
+
+<h3>eta</h3>
+Latitude in the <a href="#survey_coords">survey coordinate system</a>. Eta is the angle between the survey equator and the great circle passing through the point perpendicular to the survey meridian, positive to the north.
+Constant latitude curves are great circles
+
+<a name="exp"></a>
+
+<h3>exponential model</h3>
+The radial light distribution of a disk galaxy can often be fit by an exponential profile:<br>
+<b>I(r) = I<sub>0</sub>exp(-1.68r/r<sub>e</sub>)</b><br>
+The number 1.68 is chosen so that the
+model radius is a half-light radius. An elliptical version of
+this profile is fit to every detected object, yielding the <code>exp</code> parameters. See the <a href="../algorithms/photometry.html#mag_model">model magnitude section of the photometry algorithm page</a> for details. 
+
+<a name="extra_plates"></a>
+
+<h3>extra plates</h3>
+Reobservations of main survey plates, useful for variability studies or checks. See the 
+<a href="../coverage/">Sky Coverage</a> page for more information.
+
+<a name="F"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>F</u></h3>
+
+<a name="false"></a>
+
+<h3>False color pipeline</h3>
+A  pipeline to produce 3-color JPG files of 
+zoomed-down SDSS images.  
+
+<a name="family_objects"></a>
+
+<h3>family objects</h3>
+These are objects that are generated when photometric objects are neither primary nor secondary 
+survey objects but a composite object that has been <a href="#deblend">deblended</a> or the part 
+of an object that has been deblended wrongfully (like the spiral arms of a galaxy). These objects 
+are kept to track how the deblender is working.
+
+<a name="fiber"></a>
+
+<h3>fiber</h3>
+The SDSS spectrograph uses optical fibers to direct the light from individual objects to the slithead. Each object is assigned a corresponding <b><font face="arial black, monaco, chicago">fiberID</b></font>. The fibers are 3 arcsec in diameter in the source plane. Each fiber is surrounded by a large sheath which prevents any pair of fibers from being placed closer than 55 arcsec on the same <a href="#plate"> plate</a>.
+
+
+<h3>fiberMag</h3>
+The magnitude measured by the frames pipeline to simulate the flux that would fall into a fiber in typical seeing. See <a href="#mag_fiber">Magnitude, fiber</a>. 
+
+<a name="field"></a>
+<h3>field</h3>
+
+A field is a part of a <a href="#camcol">camcol</a> that is processed
+by the <a href="#photo">Photo pipeline</a> at one time. Fields are
+2048x1489 pixels; a field consists of the <a href="#frame">frames</a>
+in the 5 filters for the same part of the sky. Fields overlap each
+other by 128 rows; <a href="#primary">primaries</a> are decided when
+<a href="#chunk">Chunks</a> are <a href="#resolve">resolved</a> (using
+objects between rows 64 and1425 as primaries). A field at the edge of
+a Chunk may in fact be included in two (or more) Chunks. See this <a
+href="../shared_images/sdssgeom.jpg">figure explaining SDSS field
+geometry</a> for details.
+
+<a name="filter"></a>
+
+<h3>filter</h3>
+The SDSS uses five filters: <em>u,g,r,i,z</em> to restrict the light reaching each CCD to only certain wavelengths (or colors).  
+Please read the <a href="../instruments/imager/index.html">Camera Page</a> for details. Term is used to describe both the physical 
+filter and to tag parameters as measured through that filter. 
+
+<a name="FITS"></a>
+
+<h3>FITS</h3>
+The Flexible Image Transport System, a standard method of storing astonomical data. The FITS format has a <a href="http://fits.gsfc.nasa.gov/">home page</a>.
+
+<a name="flag"></a>
+
+<h3>flag</h3>
+A bitmask used in the database to specify various properties of an object. There are many flags in the SDSS catalogs such as whether the object was <a href="#deblend">deblended</a> or saturated, for instance. There are
+   status flags set by PSP, and by survey operations, on a
+   frame-by-frame basis, describing the quality of the PSF, and the
+   quality of the data overall.  Each object is given status flags
+   that sort out overlaps.  The spectra have flags at two levels
+   as well: pixel-by-pixel flags, and warning flags accompanying the
+   redshifts and classification to indicate trouble.
+For more help with flags, see the <a href="../products/catalogs/flags.html">Flags Help Page</a>.
+
+<a name="FNAL"></a>
+
+<h3>FNAL</h3>
+Fermi National Accelerator Laboratory, one of the participating institutions in SDSS. Their homepage is <a href="http://www.fnal.gov">http://www.fnal.gov</a>.
+
+<a name="footprint"></a>
+
+<h3>footprint</h3>
+The area on the sky covered by the SDSS. The footprint is described on the <a href="../coverage/index.html">sky coverage page</a>.
+
+<a name="fpAtlas"></a>
+
+<h3>fpAtlas file</h3>
+A FITS binary table containing the <a href="#atlas_image">atlas images</a> for all objects detected in all five filters in a single <a href="#field">field</a>. Requires special software to decode into individual FITS images for each object. The FITS images are available in the <a href="#DAS">DAS</a>.
+
+<a name="fpBin"></a>
+
+<h3>fpBin file</h3>
+See <a href="#binned_frame">binned frame</a>.
+
+<a name="fpC"></a>
+
+<h3>fpC file</h3>
+See <a href="#corrected_frame">corrected frame</a>.
+
+<a name="fpFieldStat"></a>
+
+<h3>fpFieldStat file</h3>
+A FITS binary table containing a statistical summary of the results of the <a href="#frames_pipeline">frames pipeline</a> for one <a href="#field">field</a> for a single frames pipeline run. This information is also found in the Field table in the <a href="#CAS">CAS</a> database. Available in the <a href="#DAS">DAS</a>.
+
+<a name="fpM"></a>
+
+<h3>fpM file</h3>
+See <a href="#mask_frame">mask frame</a>.
+
+<a name="fpObjc"></a>
+
+<h3>fpObjc file</h3>
+These are FITS binary tables containing catalogs of detected objects output by the <a href="#frames_pipeline">frames pipeline</a>. These are <em>uncalibrated</em>, as opposed to the <a href="#tsobj">tsObj</a> files, with no <a href="#target">targeting</a> information. Available in the <a href="#DAS">DAS</a>.
+
+<a name="frame"></a>
+
+<h3>frame</h3>
+The data stream from a single CCD in a scanline is cut into a series of frames which measure 2048 x 1489 pixels and overlap 10% with the adjacent frame. The frames in the 5 filters for the same part of the sky are called a <a href="#field">field</a>. 
+
+<a name="frames_pipeline"></a>
+
+<h3>frames pipeline</h3>
+In this pipeline, the images are  bias-subtracted and flat-fielded, and bad
+     columns, cosmic rays, and bleed trails are interpolated over.
+     This yields <a href="#corrected_frame">corrected frames</a>.  Then objects are found by running a
+     PSF-matched filter over the image, and matched between the
+     five frames making up a field.  A <a href="#deblend">deblender</a> is run to resolve
+     overlaps, and the properties of each object are written to the
+     <a name="#fpObjc">fpObjc</a> files.  Atlas images are written to the <a name="#fpAtlas">fpAtlas</a> files.
+
+<a name="fundamental_standard"></a>
+
+<h3>fundamental standard</h3>
+The photometry of the primary standard stars
+is ultimately tied to the SED of the star BD 17 +4708, which is the
+fundamental standard for the SDSS photometric system.  See the <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v123n4/201445/201445.html"> Smith et al. 2002 AJ paper</a> for more details. 
+
+<a name="G"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>G</u></h3>
+
+<a name="gnats"></a>
+
+<h3>GNATS</h3>
+The system used to report and track bugs and issues with SDSS hardware and software; for collaboration use only. 
+
+<a name="great_circle_coords"></a>
+
+<h3>great circle coordinates</h3>
+One of the two main coordinate systems 
+utilized by the SDSS. In this system, <a href="#mu">mu</a> and <a href="#nu">nu</a> are spherical coordinates (corresponding to ra and dec) in a system whose equator is along the center of the <a href="#stripe">stripe</a> in question. The stripes of the survey are great circles which all cross at (RA, Dec) = (95, 0). The stripes are defined by their inclination with respect to the equator, and are indexed by integers <em>n</em> such that the inclination of a stripe is -25 + 2.5<em>n</em>. Thus, stripe <em>n</em>=10 corresponds to the Equator. The design is that the area covered by the imaging on a given stripe (the so-called OK_SCANLINE area in the north) is a 2.5 degree wide rectangle centered on nu=0 in Great Circle coordinates. 
+
+<a name="H"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>H</u></h3>
+
+
+<a name="The Hammer"></a>
+<h3>The Hammer</h3>
+
+The Hammer is the name of a piece of code developed by the University of
+Washington red star analysis team to provide accurate spectral types
+and other information for red stars (generally redder than spectral type K,
+extending through types M,  L and T).  The spectral type classifier
+output of the Hammer is provided in the sppParams table of the DR7 CAS
+for each star in the database.  The Hammer provides the best classification
+information for redder stars.
+
+
+<a name="htm"></a>
+
+<h3>HTM</h3>
+The Hierarchical Triangular Mesh (HTM) is a partitioning scheme to divide the surface of the unit sphere into spherical triangles. It is a hierarchical scheme and the subdivisions have roughly equal areas. HTM is used to index the coordinates in the object databases for faster querying speeds. For more details, and downloadable software, see the <a href="http://www.sdss.jhu.edu/htm/">HTM Website</a>. 
+
+<a name="hoggpt"></a>
+
+<h3>HoggPT</h3>
+A program which runs on the mountain, which uses information
+from the <a href="#photo_tel">photometric telescope</a> and the <a href="#cloud_cam">cloud camera</a> to determine the
+photometricity of a given night.  It was written by David Hogg and
+colleagues.
+
+<a name="hole"></a>
+
+<h3>hole</h3>
+A <a href="#field">field</a> or set of fields which is missing from the data,
+either because of non-photometric conditions, tracking problems, or very
+poor seeing.
+This is encoded in the status flags.
+
+<a name="I"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>I</u></h3>
+
+<a name="IOP"></a>
+
+<h3>IOP</h3>
+Imaging Observers Program. The software that runs the <a href="#camera">imaging camera</a> on the survey telescope. 
+
+<a name="J"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>J</u></h3>
+
+<a name="JHU"></a>
+
+<h3>JHU</h3>
+Johns Hopkins University, one of the participating institutions in SDSS. The SDSS JHU homepage is <a href="http://www.sdss.jhu.edu">http://www.sdss.jhu.edu</a>.
+
+<a name="JPG"></a>
+
+<h3>JPG</h3>
+Japan Participation Group, one of the participating institutions in SDSS. Their homepage is <a href="http://indus.astron.s.u-tokyo.ac.jp/works/SDSS/sdss.html">http://indus.astron.s.u-tokyo.ac.jp/works/SDSS/sdss.html</a>.
+
+<a name="K"></a>
+<h3><u>K</u></h3>
+
+<a name="L"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>L</u></h3>
+
+<a name="lambda"></a>
+
+<h3>lambda</h3>
+One of the coordinates of the <a href="#survey_coords">survey coordinate system</a>. The stripe longitude lambda is measured from the survey
+central meridian positive to the east along the great circles
+perpendicular to that meridian. Constant longitude curves are circles
+centered on the survey poles <!-- <a href="#poles">survey poles</a> -->.
+
+<a name="legacy"></a>
+
+<h3>Legacy</h3>
+One of the three surveys that comprise the second phase
+<a href="#sdss2">(SDSS-II)</a>
+of the <a href="#sdss">Sloan Digital Sky Survey (SDSS)</a>.
+It completes the SDSS-I survey of the extragalactic universe.  SDSS-I plus Legacy
+obtained images and redshifts of a million galaxies and quasars over a contiguous
+swath of sky in the Northern Galactic Cap, and three stripes in the Southern Galactic Cap.
+
+<a name="luminous_red_galaxy"></a>
+
+<h3>luminous red galaxy</h3>
+SDSS luminous red galaxies (LRGs) are selected on the basis of color and magnitude to yield a 
+sample of luminous intrinsically red galaxies that extends fainter and farther than the 
+<a href="#main_galaxy_sample">SDSS main galaxy sample</a>. See <a href="http://arxiv.org/abs/astro-ph/0108153">Eisenstein 
+et al. (2001)</a> for detailed discussions of sample selection, efficiency, use, and caveats.
+
+<a name="luptitude"></a>
+
+<h3>luptitude</h3>
+An informal name for the <a href="#asinh">asinh magnitude</a>.
+
+<a name="M"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>M</u></h3>
+
+<a name="maggie"></a>
+
+<h3>maggie</h3>
+A <em>maggie</em> is a linear
+measure of flux; one maggie has an AB magnitude of 0 (thus a surface
+brightness of 20 mag/square arcsec corresponds to 10<sup>-8</sup> maggies
+per square arcsec). This unit is used for object <a href="#profile">radial profiles</a>, where we provide the azimuthally averaged object surface brightness in a series of annuli.
+
+<a name="mag_cmodel"></a>
+<h3>magnitude, cmodel</h3>
+
+Composite model magnitude. The magnitude obtained from the
+best-fitting linear combination of the best-fitting de Vaucouleurs and
+exponential model for an object's light profile (cf. <a
+href="#mag_model">magnitude, model</a>). See <a
+href="../algorithms/photometry.html#cmodel">cmodel magnitude
+description</a> in Photometry section of the Algorithms pages.
+
+<a name="mag_fiber"></a>
+<h3>magnitude, fiber</h3>
+The flux contained within the aperture of a <a href="#fiber">spectroscopic fiber</a>
+(3" in diameter) is calculated by the frames pipeline in each band and stored in <b><font face="arial black, monaco, chicago">
+fiberMag</b></font>. Details can be found in the <a href="../algorithms/photometry.html#mag_fiber">Photometry section</a> of the Algorithms pages.
+<br>
+
+<a name="mag_model"></a>
+
+<h3>magnitude, model</h3>
+Just as the <a href="#mag_psf">PSF magnitudes</a> are optimal measures of the fluxes of
+stars, the optimal measure of the flux of a galaxy would use a matched galaxy
+model.  With this in mind, the code fits two models to the
+two-dimensional image of each object in each band:<br>
+1. a pure deVaucouleurs profile, and<br>
+2. a pure exponential profile.<br>
+The best-fit model in the
+  r-band is fit to the other four bands; the results are stored as the
+  model magnitudes. 
+Details, <font color="red"> including a very important warning</a></font>, can be found in the <a href="../algorithms/photometry.html#mag_model">Photometry section</a> of the Algorithms pages.
+
+<a name="mag_petro"></a>
+
+<h3>magnitude, Petrosian</h3>
+Stored as <b><font face="arial black, monaco, chicago">petroMag</b></font>. For galaxy photometry, measuring flux is more difficult than for stars, because galaxies do not all have the same radial surface
+brightness profile, and have no sharp edges.  In order to avoid
+biases, we wish to measure a constant fraction of the total light,
+independent of the position and distance of the object. To satisfy these
+requirements, the SDSS has adopted a modified form of the
+<a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1976ApJ...209L...1P&db_key=AST&high=3d6550d53612836">Petrosian (1976)</a> system, measuring galaxy fluxes within a circular
+aperture whose radius is defined by the shape of the azimuthally
+averaged light profile.
+Details can be found in the <a href="../algorithms/photometry.html#mag_petro">Photometry section</a> of the Algorithms pages and the <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v124n3/202037/202037.html">Strauss et al. 2002 AJ paper</a> on galaxy target selection.
+
+<a name="mag_pogson"></a>
+
+<h3>magnitude, Pogson</h3> The Pogson magnitude is the standard
+astronomical magnitude system, where one increment in magnitude is an
+increase in brightness by the fifth root of 100.  A star of 1st
+magnitude is therefore 100 times as bright as a star of 6th
+magnitude. That is, for two objects <br> <code>M1 - M2 =
+-2.5log(F1/F2)</code><br> where M1 and M2 are the magnitudes of two
+objects, and F1 and F2 are their luminous fluxes.
+
+<a name="mag_psf"></a>
+
+<h3>magnitude, PSF</h3>
+Stored as <b><font face="arial black, monaco, chicago">psfMag</b></font>. For isolated stars, which are well-described by the point spread function 
+(PSF), the optimal
+measure of the total flux is determined by fitting a PSF model to the
+object.  Details can be found in the <a href="../algorithms/photometry.html#mag_psf">Photometry section</a> of the Algorithms pages.
+
+<a name="main_sample">
+
+<h3>main sample</h3>
+Also known as the Main Galaxy Sample or Main. This is the tiled sample of galaxies in the SDSS that 
+is limited by the r-band flux.  The main galaxy sample target selection algorithm is detailed in 
+<a href="http://adsabs.harvard.edu/cgi-bin/bib_query?2002AJ....124.1810S">Strauss et al. (2002)</a>.
+
+<a name="mask"></a>
+
+<h3>mask</h3>
+Regions of data that are excluded from analysis. For example, some wavelength regions in the 
+spectra may be masked out, some pixels in the photometric images may suffer from cosmic rays and 
+so are masked out, and some parts of the sky (e.g. around bright stars) may be masked.
+
+<a name="mask_frame"></a>
+
+<h3>mask frame</h3>
+Each file is a binary FITS table for one filter. Each row of the table describes a set of pixels in the corrected frame, using mask values described in <A HREF="edr.tb8.html">Table 8</A>. Available in the <a href="#DAS">DAS</a>.
+
+<a name="MAST"></a>
+
+<h3>MAST</h3>
+The Multimission Archive at Space Telescope. Data from a variety of space missions and ground-based telescopes is provided, including the Sloan <a href="#EDR">EDR</a>. The site is located <a href="http://archive.stsci.edu/">here</a>. 
+
+<a name="mjd"></a>
+
+<h3>MJD</h3>
+Modified Julian Date.  A standardized sequence number with units of days that is useful for 
+unambiguous marking of time, e.g. for tracking a variable star.   
+
+<h3>modelMag</h3>
+The model magnitude. See <a href="#mag_model">magnitude, model</a>.
+
+<a name="monitor"></a>
+
+<h3>Monitor Telescope (MT)</h3>
+The previous incarnation of the <a href="#photo_tel">Photometric Telescope (PT)</a>.
+
+<a name="MT field"></a>
+
+<h3>MT field</h3>
+See <a href="#secondary_patch">secondary patch</a>.
+
+<a name="mtpipe"></a>
+
+<h3>mtpipe</h3>
+The pipeline for processing data from the <a href="#photo_tel">Photometric Telescope</a>. A description can be found in the <a href="../algorithms/edrpaper.html#sw-photocal-mtpipe">appropriate section of the EDR paper</a>.
+ 
+<a name="mu"></a>
+
+<h3>mu</h3>
+One of the coordinates in the SDSS <a href="#great_circle_coords">great circle coordinate system</a>. Mu corresponds to RA, or longitude. 
+
+<a name="N"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>N</u></h3>
+
+<a name="nfcalib"></a>
+
+<h3>nfCalib</h3>
+The pipeline that uses the results of <a href="#mtpipe">MTPipe</a> and 
+<a name="#astrom">astrom</a> to apply the photometric
+   and astrometric calibration to each object in the imaging data.  The data products are called nfCalib files.
+
+<a name="nu"></a>
+
+<h3>nu</h3>
+One of the coordinates in the SDSS <a href="#great_circle_coords">great circle coordinate system</a>. Nu corresponds to Dec, or latitude. 
+
+<a name="O"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>O</u></h3>
+
+<a name="object"></a>
+
+<h3>object</h3>
+Enumerates detected photometric objects within a given <a href="#field">field</a>. Thus, multiple fields may have objects with the same object number.
+
+<a name="objectivity"></a>
+
+<h3>Objectivity</h3> A brand of object-oriented database</a> used to
+initially serve the <a href="#EDR">EDR</a> and to run <a
+href="#OpDB">OpDB</a>.
+
+
+<a name="ObjID"></a>
+
+<h3>ObjID</h3>
+The long object identification, which is a 
+bit-encoded integer of <a href="#run">run</a>, <a href="#rerun">rerun</a>,
+<a href="#camcol">camcol</a>, <a href="#field">field</a>, <a href="#object">object</a>.  Note that when the data are reprocessed (rerun), the object identification changes. <b>IMPORTANT NOTE:</b> For spectroscopic objects, there are two possible choices for the matching photometric measurement: <b><font face="arial black, monaco, chicago">TargetObjID</b></font> is the photometric object identification number of the corresponding photometric object <em>when <a href="#target">targeting</a> was run</em>, and  <b><font face="arial black, monaco, chicago">BestObjID</b></font>, which points to the <a href="#best">best</a> imaging and processing of the photometry.
+
+<a name="OpDB"></a>
+
+<h3>OpDB</h3>
+
+The survey's internal Operations Database at <a href="#FNAL">FNAL</a>.
+
+<a name="P"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>P</u></h3>
+
+<a name="par_file"></a>
+
+<h3>par file</h3>
+Also known as a Yanny parameter file. This is a simple ascii file format developed to store lists of parameters for the SDSS, such as the <a href="../coverage/index.html">survey coverage description</a>. 
+
+<a name="parent"></a>
+
+<h3>parent</h3>
+A product of the <a href="#deblend">deblending</a> process. When two objects are near each other on the sky, their images may appear merged. The deblender tries to split this merged image; the initial merged image is called a parent, while the resulting sub-images are called <a href="#child">children</a>. For more details, see the <a href="../algorithms/deblend.html">Deblending</a> section of the <a href="../algorithms/index.html">algorithms pages</a>.
+
+<a name="particip"></a>
+
+<h3>participating institution</h3>
+One of the institutions involved in the survey. These institutions have contributed hardware, software, manpower, or financial support to the survey, and thus have pre-public access to data.
+
+<a name="petromag"></a>
+
+<h3>petroMag</h3>
+The Petrosian magnitude. See <a href="#mag_petro">Magnitude, Petrosian</a>
+
+<a name="petrorad"></a>
+
+<h3>petroRad</h3>
+The Petrosian radius. A measure of the angular size of an image, most meaningful for galaxies. 
+Units are seconds of arc. The Petrosian radius (and related measures of size called petroR50 
+and PetroR90) are derived from the surface brightness profile of the galaxy, as described 
+in <a href="../algorithms/">Algorithms</a>. 
+
+<a name="photo"></a>
+
+<h3>Photometric Pipeline (<code>Photo</code>)</h3>
+A series of linked pipelines (<a href="#ssc">Serial Stamp Collecting pipeline, SSC</a>; <a href="#psp">Postage Stamp Pipeline, PSP</a>, and
+ <a href="#frames_pipeline">Frames</a>) which analyze the raw image data, including bias
+   subtraction, sky and PSF determination, flat-fielding, and finding
+   and measuring the properties of objects.  The astrometric and
+   photometric calibration is carried out with the <a href="#Astrom">astrometric
+   pipeline</a> and <a href="#nfcalib">nfCalib</a>. 
+
+<a name="photo_tel"></a>
+
+<h3>Photometric Telescope</h3> Also abbreviated PT. A 0.5-meter
+telescope used for monitoring the transmission of the atmosphere during
+the course of the survey. Its principal function is to aid 
+in accurately calibrating an object's brightness as measured with the
+main 2.5-m telescope. See the <a
+href="http://www.sdss.org/tour/photo_telescope.html">PT web
+page</a> for more details.
+
+<a name="phototag"></a>
+
+<h3>photoTag</h3>
+A table that includes only the most frequently accessed PhotoObj columns. GalaxyTag and StarTag are 
+views of PhotoTag that contain only Primary extended images and point-like images, respectively. 
+None of these tables and views contain spectroscopic information. 
+
+<a name="photoz"></a>
+
+<h3>photoZ</h3>
+The photometric redshift. The measured colors of galaxies and quasars are observed to depend on 
+their redshift.  This enables a technique called "photometric redshifts" whereby the redshift 
+can be estimated from the measured colors, in the absence of a spectrum. Photometric redshifts 
+have larger random and systematic errors than spectroscopic redshifts, but they can be obtained 
+for fainter and thus many more galaxies and quasars. 
+
+<a name="plate"></a>
+
+<h3>plate</h3>
+Each spectroscopic exposure employs a large, thin, circular metal plate that positions the 
+fibers via holes drilled at the locations of the images in the telescope focal plane. Each plate 
+has a unique serial number, which is called plate in views such as SpecObj.
+
+<a name="plate_map"></a>
+
+<h3>plate mapper</h3>
+An instrument that maps which plugged <a href="#fiber">fiber</a> corresponds to which target object. The 640 fibers of the <a href="#spectrograph">spectrograph</a> are placed by hand without regard to which fiber corresponds to which position. An automated fiber mapper resolves this object-to-fiber match-up by scanning lasers across the terminal ends of the fibers and observing where they ``light up'' on the focal plane. 
+
+<a name="poles"></a>
+
+<h3>poles</h3>
+SDSS uses a number of coordinate systems to describe positions on the sky. These are spherical polar 
+coordinates, where great circles are lines of longitude that converge at the poles. Specifying the 
+location of the poles on the sky is part of the definition of the coordinate system. 
+
+<a name="psf"></a>
+
+<h3>Point Spread Function (PSF)</h3>
+The detailed shape of the response of the
+telescope plus instrument to a star.  It varies with position, filter,
+and time, due to changes in the atmosphere and the optics of the
+telescope.  It is calculated by the <a href="#psp">PSP</a>.
+
+<!-- <a name="poles"></a> -->
+
+<!-- <h3>poles</h3> -->
+
+<a name="psp"></a>
+
+<h3>Postage Stamp pipeline (PSP)</h3>
+This pipeline determines for a <a href="#run">run</a>
+   the background sky, the flat-field, and the spatially varying Point
+   Spread Function (PSF) in each CCD, all of which will be used by
+   the <a href="#frames_pipeline">Frames pipeline</a>.
+
+<a name="primary"></a>
+
+<h3>Primary (object)</h3>
+The ``main'' observation of an object. Because there are overlaps at many levels of the imaging (<a href="#run">runs</a>, <a href="#stripe">stripes</a>), an object may be observed two or more times. Whether or not a specific observation of an object is the primary is 
+decided when <a href="#chunk">chunks</a> are <a href="#resolve">resolved</a>. Whether an object is primary or not depends on a large number of factors.
+
+<!-- Is it in the primary area of a <a href="#stripe">stripe</a>, also known as a <a href="#stave">stave</a>? This implies the object has the OK_STRIPE flag set. <p> -->
+
+<a name="primary_standard"></a>
+
+<h3>primary standard</h3>
+One of the 158 stars on the SDSS photometric
+  system that is observed by the PT to measure the extinction of a
+  given night, and which is used to calibrate the magnitudes of the
+  secondary standards.  The primary standard system is described
+  in the <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v123n4/201445/201445.html"> Smith et al. 2002 AJ paper</a>.
+
+<a name="profile"></a>
+
+<h3>profile</h3>
+An azimuthally-averaged radial
+surface brightness profile. In the catalogs, it is given as the
+average surface brightness in a series of annuli.  This quantity is in 
+units of <a href="#maggie">maggies</a> per square arcsec. The number of annuli for which there is a
+measurable signal is listed as <b><font face="arial black, monaco, chicago"> nprof</b></font>, the mean surface
+brightness is listed as <b><font face="arial black, monaco, chicago"> profMean</b></font>, and the error is listed as
+<b><font face="arial black, monaco, chicago"> profErr</b></font>.  This error includes both photon noise, and the
+small-scale ``bumpiness'' in the counts as a function of azimuthal
+angle.
+
+When converting the <b><font face="arial black, monaco, chicago">profMean</b></font> values to a local surface
+brightness, it is <b>not</b> the best approach to assign the mean
+surface brightness to some radius within the annulus and then linearly
+interpolate between radial bins.  Do not use smoothing
+splines, as they will not go through the points in the cumulative
+profile and thus (obviously) will not conserve flux. What <a href="#frames_pipeline">frames pipeline</a>
+does, e.g., in determining the <a href="#mag_petro">Petrosian ratio</a>, is to fit a taut spline to the
+<em>cumulative</em> profile and then differentiate that spline fit,
+after transforming both the radii and cumulative profiles with asinh
+functions.  We recommend doing the same here.
+<br>
+The annuli used are provided in <a href="profile_table.html">this table</a>.
+
+<a name="project_book"></a>
+
+<h3>Project Book</h3>
+The SDSS Project Book includes a detailed scientific justification and plan for SDSS, as well 
+as comprehensive descriptions of the hardware. At one point it was called the Black Book.
+
+<a name="psField"></a>
+
+<h3>psField file</h3>
+A FITS binary table with preliminary photometric calibration, as well as final point-spread-function fit, for a single <a href="#field">field</a> in an imaging <a href="#run">run</a>. Available in the <a href="#DAS">DAS</a>.
+
+
+<h3>psfMag</h3>
+The PSF magnitude. See <a href="#mag_psf">Magnitude, PSF</a>
+
+
+<a name="Q"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>Q</u></h3>
+
+<a name="QA"></a>
+
+<h3>Quality Assurance (QA)</h3>
+Generally speaking, the process by which data
+are confirmed to be of survey quality.  Each pipeline carries out QA,
+whose results are available for examination. After
+the imaging data are calibrated, they are run through a comprehensive
+set of tests (runQA) that confirm that the various photometric
+measures are consistent, and that, e.g., the <a href="#zhed">Zhed point</a> is
+well-behaved.  Overlap QA looks for consistency in the photometry and
+astrometry of objects in overlaps between adjacent <a href="#scanline">scanlines</a> and <a href="#stripe">stripes</a>. 
+
+<a name="QA_hole"></a>
+
+<h3>QA hole</h3>
+A spectroscopic target selected for quality assurance (QA, i.e., various kinds of tests) with a 
+drilled hole in the respective plate. 
+
+<a name="quasar"></a>
+
+<h3>quasar</h3>
+The spectro1d pipeline classifies some objects as "quasars" (e.g. as labeled at the bottom of the 
+gif plot). Objects are classified as quasars by the spectro1d pipeline if it detects an emission 
+line wider than 1000 km/sec (full-width at half-maximum). The Early Data Release paper gives a more complete 
+description of the classification process (but is outdated in that the EDR paper describes 
+a selection based on a full-width at half-maximum of only 500 km/sec). 
+
+<a name="R"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>R</u></h3>
+
+<a name="reconst"></a>
+
+<h3>Reconstructed Frame</h3>
+Images of SDSS fields constructed by "pasting" <a href="#atlas_image">atlas image</a> cutouts into the <a href="#field">field</a> and filling the rest of the image with simulated sky noise. 
+
+<a name="redden"></a>
+
+<h3>reddening</h3>
+Reddening corrections in magnitudes at the position of each object,
+<b><font face="arial black, monaco, chicago">reddening</b></font>, are computed following <a href="http://www.journals.uchicago.edu/ApJ/journal/issues/ApJ/v500n2/37368/37368.html">Schlegel, Finkbeiner & Davis (1998)</a>.  The
+only magnitudes in the CAS that include these corrections are dered_u, dered_g, etc.
+
+<a name="region"></a>
+
+<h3>region</h3>
+A region is the union of <a href="#convex">convex</a> areas
+
+<a name="rerun"></a>
+
+<h3>rerun</h3>
+A reprocessing of an imaging <a href="#run">run</a>. The underlying imaging data are the same, just the software version and calibration may have changed.
+
+<a name="resolve"></a>
+
+<h3>resolve</h3>
+A term describing the assignments of subsets of data (<a href="#field">fields</a>, <a href="#segment">segments</a>, <a href="#run">runs</a>) to fill a <a href="#chunk">chunk</a>. A chunk is "resolved" when there are sufficient data to fill a contiguous length of a <a href="#stripe">stripe</a>. At that time, decisions are made on the best data to use (seeing, photometric conditions) to fill the desired area. A chunk can be resolved multiple times, as new data are acquired or data are reprocessed (see <a href="#target">Target</a> and <a href="#best">Best</a>)
+ 
+<a name="run"></a>
+
+<h3>Run</h3> A Run is a length of a <a href="#strip">strip</a>
+observed in a single continuous observing scan, bounded by lines of <a href="#mu">mu</a> and <a
+href="#nu">nu</a>. A strip covers a great circle region from pole to
+pole; this cannot be observed in one pass. The fraction of a strip
+observed at one time (limited by observing conditions) is a Run. Runs
+can (and usually do) overlap at the ends. Like strips, it takes a pair
+of runs to fill in a length of a <a href="#stripe">stripe</a>.  This
+is why you may read about data taken from "Runs 752/756" or some
+similar terminology. Each individual run contains 6 <a
+href="#camcol">camcols</a> spanning the same range of nu, but not
+delimited by <a href="#eta">eta</a>. These run pairs might not have
+the same starting and ending <a href="#nu">nu</a> coordinates. See
+this <a href="../shared_images/sdssgeom.jpg">figure</a> for details.
+
+<a name="runs_database"></a>
+
+<h3>Runs database</h3>
+A database accessible via the <a href="#cas">CAS</a> that contains photometric catalog parameters 
+derived from all <a href="run">runs</a>, not just runs with quality sufficiently good to 
+support spectroscopic targeting. The Runs database is designed to facilitate comparison of the 
+same part of the sky at more than one epoch. 
+
+<a name="S"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>S</u></h3>
+
+<!-- <a name="scan"></a> -->
+
+<!-- <h3>scan</h3> -->
+
+<a name="scanline"></a>
+
+<h3>scanline</h3>
+A subdivision of a <a href="#strip">strip</a>. Each strip is covered by 6 "scanlines".  Scanlines are defined in
+<a href="#great_circle_coords">great circle coordinates</a>. The great circle coordinate
+system is different for each strip, and is defined by setting the
+equator of the coordinate system to be the center line of constant eta
+for the <a href="#stripe">stripe</a> to which the strip belongs.  A scanline is then bounded on the top and bottom by
+lines of constant <a href="#nu">nu</a>, with no east or west boundaries. 
+Scanlines touch but don't overlap, and thus are a unique mapping on the
+sky for that stripe only.  Scanlines for different stripes DO overlap. This is because the scanlines come from the camera columns, or <a href="#camcol">camcols</a>, which 
+have a fixed physical width, while the spherical coordinates converge at the poles. See this <a href="../shared_images/sdssgeom.jpg">figure</a> for details. <b>Note:</b> The term scanline has been used interchangeably (and improperly) with <a href="#camcol">camcol</a>.
+ 
+<a name="schema"></a>
+
+<h3>schema</h3>
+The implementation of a <a href="#data_model">data model</a> in a database. 
+
+<a name="schema_browser"></a>
+
+<h3>schema browser</h3>
+A directory in the <a href="#cas">CAS</a> that lists all of the tables and views, and the names of 
+the parameters stored in them, with brief descriptions.   
+
+<a name="science_archive"></a>
+
+<h3>science archive</h3>
+Also known as the SX, this was the prior incarnation of the database containing the object catalogs for the SDSS (for the <a href="#EDR">EDR</a>). 
+
+<a name="science_primary"></a>
+
+<h3>science primary</h3>
+Spectra that are considered good enough for science are marked as sciencePrimary spectra and included 
+in the SpecObj view of the SpecObjAll table. There are several criteria used to determine whether 
+the sciencePrimary flag should be set to 1 for an object in the SpecObjAll table. These are 
+described in the FAQ entry for sciencePrimary.
+
+<a name="sdss"></a>
+
+<h3>SDSS</h3>
+The Sloan Digital Sky Survey <a href="http://www.sdss.org">http://www.sdss.org</a>.
+
+<a name="sdssii"></a><a name="sdss2"></a>
+<h3>SDSS-II</h3>
+The second phase of the <a href="#sdss">SDSS</a> extended from July 2005 to July 2008 and has three components:
+<ol type="1">
+<li><a href="#legacy">Legacy</a></li>
+<li><a href="#segue">SEGUE</a></li>
+<li><a href="#sn">Supernova</a></li>
+</ol>
+
+<a name="sdssqa"></a>
+
+<h3>sdssQA</h3>The SDSS Query Analyzer. A Java-based Graphical User Interface (GUI) that provides the functionality necessary for SDSS users to prepare and submit queries to the SQL server database.
+
+<a name="sdssqt"></a>
+
+<h3>sdssQT</h3>
+Obsolete. This was the SDSS Query Tool, used for the <a href="#edr">Early Data Release</a>. It is a Graphical User Interface (GUI) that provides the functionality necessary for SDSS users to prepare and submit queries to the Science Archive, the 'end product' of the SDSS, where all publicly available scientific data products are stored and
+ready for access. 
+
+<a name="secondary_object"></a>
+
+<h3>secondary object</h3>
+The best observation of an object with multiple observation is called the <a href="#primary">primary 
+object</a>, and other observations are stored in the PhotoObjAll table and PhotoObj view as 
+secondary objects.
+
+<a name="secondary_patch"></a>
+
+<h3>secondary patch</h3>
+The <a href="#photo_tel">PT</a> observes a series of
+  secondary patches on a given night, calibrated to the system of
+  <a href="#primary_standard">primary standards</a>.  These patches overlap the 2.5m survey <a href="#stripe">stripes</a>;  with the photometry determined for these, we can set the zeropoints
+  of the 2.5m <a href="#run">runs</a>. 
+
+<a name="sector"></a>
+
+<h3>sector</h3>
+A sector is basically an intersection of <a href="#tile_regions">TileRegions</a>. It is a plate wedge 
+modified by intersections with overlapping <a href="#tile_boundaries">tile boundaries</a>. 
+If the <a href="#tiling_boundary">TilingBoundary</a> regions are complex (multiple <a href="#convex">convexes</a>) 
+or if they are holes (isMask=1), then the resulting sector is also complex (a region of multiple 
+convexes). As such, a sector is just a single convex. Tiling boundaries do not add any depth to 
+the sectors; they just truncate them to fit in the boundary.
+
+<a name="segment"></a>
+
+<h3>segment</h3>
+
+A segment is a piece of a given <a href="#frames_pipeline">frames</a> pipeline
+reduction (<a href="#run">run</a>/<a href="#run">rerun</a>/<a
+href="#camcol">camcol</a>), covering a piece of a <a
+href="#scanline">scanline</a>, bounded on the east and west by lines
+of constant <a href="#mu">mu</a>.  Because segments are defined before
+the <a href="#primary">primary</a> area of a <a
+href="#stripe">stripe</a>, segments can actually go beyond the <a
+href="#eta">eta</a> limits of a <a href="#stave">stave</a> (and a <a
+href="#chunk">chunk</a>). Indeed, near the very end of a stripe (near
+the poles), a segment may fall completely outside a stave. See this <a
+href="../shared_images/sdssgeom.jpg">figure</a> for details.
+
+
+<a name="segue"></a>
+
+<h3>SEGUE</h3>
+The <a href="../../segue/">
+Sloan Extension for Galactic Understanding and Exploration</a>
+mines the stellar content of the Milky Way in order to create a
+detailed 3-dimensional map of the Galaxy.
+SEGUE obtained 3500 square degrees of new imaging data, including scans at low Galactic latitude.  SEGUE obtained spectra of 240,000 stars in the disk and spheroid,
+revealing the age, composition and phase-space distribution of stars within the
+various Galactic components.
+These stellar excavations provide essential clues for understanding the structure,
+formation and evolution of our Galaxy.
+<p>
+SEGUE is one of the three surveys that comprise the second phase
+<a href="#sdss2">(SDSS-II)</a>
+of the <a href="#sdss">Sloan Digital Sky Survey (SDSS)</a>.
+</p>
+
+<a name="serendipity"></a>
+
+<h3>serendipity</h3>
+An open category of targets whose selection criteria explore different regions of parameter space. 
+These include:
+<ul>
+	<li>objects lying outside the stellar locus in color space (SERENDIP_RED, SERENDIP_BLUE, SERENDIP_DISTANT)</li>
+	<li>objects coincident with FIRST sources but fainter than the equivalent in quasar target selection; also not restricted to point sources (SERENDIP_FIRST)</li>
+	<li>hand-selected targets (SERENDIP_MANUAL)</li>
+</ul>
+
+
+<a name="ssc"></a>   
+
+<h3>Serial Stamp Collecting Pipeline (SSC)</h3>
+The first stage of the
+   <a href="#photo">Photometric pipeline</a>.  It collects for further analysis the atlas
+   images of stars to be used in astrometric calibration and PSF
+   determination.
+
+<a name="sloan_foundation"></a>
+
+<h3>Alfred P. Sloan Foundation</h3>
+A philanthropic nonprofit institution (www.sloan.org) established in 1934 by Alfred Pritchard Sloan, 
+Jr., then President and Chief Executive Officer of the General Motors Corporation. An early award from 
+the Sloan Foundation was recognized by naming the survey the Sloan Digital Sky Survey. The Sloan 
+Foundation has continued to be a major supporter of SDSS. 
+
+<a name="skyserver"></a>
+
+<h3>SkyServer</h3>
+The <a href="http://skyserver.sdss.org/">public outreach website</a> for distribution of SDSS data. Includes tools to get images, spectra, and catalog info, as well as educational and fun materials.
+
+<a name="skyversion"></a>
+
+<h3>sky version</h3>
+The SkyVersion is a numerical designator of whether photometric data is <a href="#target">Target</a> (SkyVersion=0), <a href="#best">Best</a> (SkyVersion=1), or one of the repeated scans of the <a href="#southern_survey">Southern Survey</a> (SkyVersions 2 through 14). 
+
+<a name="small circle"></a>
+
+<h3>small circle</h3>
+A section of a sphere which does not contain a diameter of the sphere. Lines of constant latitude are small circles.
+
+<a name="sn"></a>
+<h3>Supernova</h3>
+One of the three surveys that comprise the second phase
+<a href="#sdss2">(SDSS-II)</a>
+of the <a href="#sdss">Sloan Digital Sky Survey (SDSS)</a>.
+It features repeated sweeping of the sky to find these remnants
+of gigantic explosions from dying stars.
+Astronomers can precisely measure the distances of distant supernovae,
+using them to map the rate of expansion of the universe.
+This study will help quantify the properties of cosmological dark energy.
+
+<a name="sos"></a>
+
+<h3>Son-of-Spectro</h3>
+A pared-down version of <a href="#spec2d">spec2d</a> that runs on the
+mountain, and gives feedback to the observers about the S/N of each
+spectroscopic exposure and any possible problems in the data.
+
+<a name="sop"></a>
+
+<h3>SOP (spectroscopic observing program)</h3>
+This is the program which
+operates the spectrographs, including guiding the telescope and
+controlling the calibrations.
+
+<a name="southern_survey"></a>
+
+<h3>Southern Survey</h3>
+Three <a href="#stripe">stripes</a> in the Southern Galactic Cap with associated spectroscopy.  More commonly used to denote the equatorial stripe (Stripe 82) and its associated spectroscopy. 
+Stripe 82 has been observed repeatedly to enable variability studies and to coadd for deeper images.
+
+<a name="specclass"></a>
+
+<h3>specClass</h3>
+A parameter in the SpecObj view that indicates the best-matching spectroscopic template. For example, 
+if SpecClass = 1, then the best-matching template was of some kind of star. Similarly SpecClass = 2 
+means galaxy and SpecClass = 3 or 4 means quasar.
+
+<a name="spec1d"></a>
+
+<h3>Spec1D</h3>
+
+The second half of the spectroscopic pipeline, also known as Spectro 1D, which
+classifies the spectra and
+performs various analyses on them, including obtaining the
+redshifts. The operational goals of the 1D SPECTRO pipeline are:
+<OL>
+<LI>To fit the continuum of the spectrum.
+<LI>To determine an emission-line redshift and identify all detected emission
+lines.  A flag will also be set to identify any expected emission
+lines (on the basis of the spectral classification) which were not seen.
+<LI>To classify the spectrum by cross-correlating with a set of
+template spectra ranging from
+stars to quasars.  A principal component
+analysis similar to that of Connolly et al. (1995)
+has also been implemented - see <a href="../algorithms/redshift_type.html">galaxy spectral classification details</a>.
+<LI>To cross-correlate the spectrum with the a set of templates and
+obtain redshifts (a href="../algorithms/redshift_type.html">Details here</a>).
+<LI>  To fit a set of emission/absorption lines as a Gaussian (a href="../algorithms/speclinefits.html">Details here</a>).
+<LI> To measure the velocity dispersion of galaxies (a href="../algorithms/veldisp.html">Details here</a>).
+<li>To measure various absorption line indices, as outlined in the <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v123n1/201415/201415.html">EDR AJ paper</a>.
+</OL>
+
+<a name="spec2d"></a>
+
+<h3>Spec2D</h3>
+The first half of the spectroscopic pipeline (also sometimes referred
+to as idlspec2d), which reduces the raw 2D spectral frames to 1D calibrated
+spectra (flux versus wavelength). The operational goals of the 2D SPECTRO pipeline are:
+<OL>
+<LI>To interpolate over bad pixels
+<LI>To mask all bad pixels and pixels contaminated by strong sky emission.
+<LI>To bias and dark subtract the raw 2D data frames
+<LI>To trim the frame
+<LI>To flat-field  using calibration frames taken at
+the same telescope pointing position before and after an exposure
+on the sky.
+<LI>To optimally extract 1D spectra from this 2D frame.
+<LI>To apply wavelength calibration, rebin to a common
+wavelength solution, and sky subtract. 
+<LI>To coadd the three or more individual exposures for each
+object. 
+<LI>To put the red and blue halves of the spectrum together.
+<LI>To flux calibrate the spectrum to obtain 
+spectrophotometry good to roughly 15%, using the measured photometry
+of spectrophotometric standards on each plate. 
+</OL>
+
+
+<a name="specbs"></a>
+
+<h3>SpecBS</h3>
+An alternative 1-d spectroscopic pipeline developed by David Schlegel. The data and documentation for this pipeline are available at <a href="http://spectro.princeton.edu/">http://spectro.princeton.edu/</a> and via the DAS.
+
+<a name="specobj"></a>
+
+<h3>SpecObjID</h3>
+A unique bit-encoded 64-bit ID used for spectroscopic objects. It is generated from <a href="#plate">plateid</a>, mjd,  and <a href="#fiber">fiberid</a>. Completely independent of any photometric enumeration system.
+
+<a name="special_plates"></a>
+
+<h3>special plates</h3>
+Special plates obtain spectra beyond the main survey targets, according to a variety of schemes for 
+selecting targets. A list of the special plates, and a description of the targeting scheme, is given 
+in the <a href="../coverage/index.html">Sky Coverage</a> pages. 
+
+<a name="spectro"></a>
+
+<h3>Spectro</h3>
+The spectroscopic data reduction pipeline. See  <a href="#spec2d">Spec2D</a> and <a href="#spec1d">Spec1D</a> for details.
+
+<a name="spectrograph"></a>
+
+<h3>spectrograph</h3>
+The instrument used to obtain spectra of objects. SDSS actually uses two identical spectrographs, each receiving as input 320 of the <a href="#fiber">fibers</a> from a <a href="#plate">plate</a>. Details of the spectrograph can be found on the <a href="../instruments/spectrograph/index.html">spectrograph page</a>.
+
+<a name="spectrophotometry"></a>
+
+<h3>spectrophotometry</h3>
+The procedure for absolute flux calibration of spectra. Please see the <a href="../algorithms/spectrophotometry.html">Spectrophotometry</a> section of the <a href="../algorithms/index.html">algorithms pages</a> for an extensive description. 
+
+<a name="sppLines"></a>
+
+<h3>sppLines</h3>
+The 'SEGUE Stellar Parameter Pipeline' computes line indices for a wide range of common features 
+at the radial velocity of the star in question. These outputs are stored in the <a href="#cas">CAS</a> 
+in a table called 'sppLines', indexed on the 'specObjID' key index parameter for queries joining 
+to other tables such as specobjall and photoobjall.
+
+<a name="sppParams"></a>
+
+<h3>sppParams</h3>
+A pipeline called the 'SEGUE Stellar Parameter Pipeline' (sspp) computes standard stellar atmospheric 
+parameters such as [Fe/H], log g and Teff for each star by a variety of methods. These outputs are 
+stored in the CAS in a table called 'sppParams', indexed on the 'specObjID' key index parameter for 
+queries joining to other tables such as specobjall and photoobjall.
+
+<a name="spPlate"></a>
+
+<h3>spPlate file</h3>
+A FITS image containing the wavelength- and flux-calibrated combined spectrum over all exposures (potentially spanning multiple nights) for a given mapped <a href="#plate">plate</a>. Output as part of <a href="#spec2d">spec2d</a>, it does <em>not</em> contain redshift information. Available in the <a href="#DAS">DAS</a>.
+
+<a name="spSpec"></a>
+
+<h3>spSpec file</h3>
+A FITS image containing the line measurements and redshift determinations, as well as the 1-d spectrum, for a single object, summing over all of its exposures through a given mapped <a href="#plate">plate</a>. Available in the <a href="#DAS">DAS</a>.
+
+<a name="sql"></a>
+
+<h3>SQL</h3> The <em><b>S</b>tructured <b>Q</b>uery
+<b>L</b>anguage</em>, a standard means of asking for data from
+databases. For more, see our <a
+href="http://cas.sdss.org/astro/en/help/docs/sql_help.asp">SQL help
+page</a>.
+
+<a name="SSPP"></a>
+
+<h3>SSPP</h3>  The <a href="http://../../segue/stellarpars.html">SEGUE Stellar Parameter Pipeline</a>,
+is the union of a set of techniques gathered together in one
+set of pipeline for measuring common stellar atmospheric parameters
+(namely metallicity, effective temperature and surface gravity) for
+stars based on medium resolution (R ~ 2000) spectra of the stars,
+combined with accurate stellar photometry.  This pipeline yields Teff, [Fe/H] ([M/H]), and log g measurements
+for all stars of sufficient S/N (generally better than 10 or 15 for bluer stars).  The results are available in the CAS in the sppParams table.
+
+<a name="stave"></a>
+
+<h3>stave</h3>
+A unique region of sky, bounded by two lines of constant <a href="#eta">eta</a>. A stave is a portion of a <a href="#stripe">stripe</a> that is tapered near the poles so that it does not overlap with the neighboring stave. This term is used analogously to the meaning of stave in barrelmaking.
+
+<a name="stokes"></a>
+
+<h3>Stokes Parameters</h3> 
+These quantities are related to object ellipticities.  Define the flux-weighted second moments of the object as:<br>
+<b>M<sub>xx</sub> = &lt;x<sup></sup>/r<sup>2</sup>&gt; ,M<sub>yy</sub> = &lt;y<sup>2</sup>/r<sup>2</sup>&gt; , M<sub>xy</sub> = &lt;xy/r<sup>2</sup>&gt;</b><br>
+In the case that the object's isophotes are self-similar ellipses, one can show that: <br>
+<b>Q = M<sub>xx</sub>-M<sub>yy</sub> = [(a-b)/(a+b)]&times;cos2<img src="../shared_images/phis.gif"> <br> U = M<sub>xy</sub> = [(a-b)/(a+b)]&times;sin2<img src="../shared_images/phis.gif"></b><br>
+where a and b are the semimajor and semiminor axes and <img src="../shared_images/phis.gif"> is the position angle. Q and U are <b><font face="arial black, monaco, chicago">Q</b></font> and <b><font face="arial black, monaco, chicago">U</b></font> in the table
+<b><font face="arial black, monaco, chicago">PhotoObj</b></font> and are referred to as "Stokes parameters." They can be used to reconstruct the axis ratio and position
+angle, measured relative to row and column of the CCDs. This is equivalent to the normal definition of position
+angle (east of north), for the scans on the equator. The performance of the Stokes parameters are not ideal at low
+signal-to-noise ratio, in which case the <a href="#adaptive_moment">adaptive moments</a> will be more useful.
+
+<a name="strip"></a>
+
+<h3>strip</h3>
+
+A strip is a scan along a line of constant survey latitude <a
+href="#eta">eta</a>. The center of a stripe is set at a given eta;
+centers of strips have a <a href="#boresight">boresight</a> offset
+added. Because the columns of CCDs have gaps between them, it is
+necessary to take two offset but overlapping observations to fill in a
+<a href="#stripe">stripe</a>. These two scans are called strips, one North and one South. Note
+that while strips are centered on a given eta, THEY ARE NOT BOUND BY
+ETA LINES. Thus they are rectangular regions and can overlap at the
+poles. See this <a href="../shared_images/sdssgeom.jpg">figure</a> for
+details.
+
+<a name="stripe"></a>
+
+<h3>stripe</h3> Stripes are the sum of two strips, defined in <a
+href="#survey_coords">survey coordinates</a> (<a
+href="#lambda">lambda</a>, <a href="#eta">eta</a>).  A "stripe" is
+defined by a line of constant eta, bounded on the north and south by
+the edges of the two strips that make up the stripe, and bounded on
+the east and west by lines of constant lambda. Because both strips and
+stripes are defined in "observed" space, they are rectangular areas
+which overlap as one approaches the poles. See this <a
+href="../shared_images/sdssgeom.jpg">figure</a> for
+details. <b>NOTE</b>: You may see the term stripe used to mean an area
+bounded by eta lines, which would be a unique part of the sky. That is
+a common use of the term, as some of the target selection
+documentation uses it that way. The proper (and relatively new) term
+for the unique, eta-bound portion of a stripe is a <em><a
+href="#stave">stave</a></em>.
+
+<a name="stripe_82_coadd"></a>
+
+<h3>stripe 82 coadd</h3>
+An SDSS data product that sums (i.e., co-adds) individual pixels from the photometric sections of 
+runs on Stripe 82. There are two coadds: one for the North strip and one for the South strip. 
+These co-added runs were processed via the photometric pipeline to produce catalog values for 
+objects that go much deeper than the individual runs. Thus "Stripe 82 coadd" can also refer to 
+the catalog values as well as to the pixels. 
+
+<a name="stripe_82_database"></a>
+
+<h3>stripe 82 database</h3>
+The Stripe 82 database, accessible via the <a href="#cas">CAS</a>, includes the Stripe 82 coadds 
+as well as all runs ever obtained on Stripe 82. Runs obtained earlier than 2004 were in photometric 
+conditions and were part of the Southern Survey. More recent runs were for the Supernova Survey 
+and have a faster cadence, but were often obtained in non-photometric conditions, or with Moon, 
+or with poor seeing. All of the runs have been calibrated in a uniform way, although the 
+non-photometric runs will of course have larger errors.
+
+<a name="surface_brightness"></a>
+
+<h3>surface brightness</h3>
+The <a href="#frames_pipeline">frames pipeline</a> also reports the radii containing 50% and 90% of the <a href="#mag_petro">Petrosian flux</a> for each band, <b><font face="arial black, monaco, chicago">petroR50</b></font> and <b><font face="arial black, monaco, chicago">petroR90</b></font> respectively. The usual
+characterization of surface-brightness in the target selection pipeline of the SDSS is the mean surface brightness within petroR50. 
+<br>
+It turns out that the ratio of petroR50 to petroR90, the so-called ``inverse concentration index'', is correlated with morphology (Shimasaku et al. 2001,
+Strateva et al. 2001). Galaxies with a de Vaucouleurs profile have an inverse concentration index of around 0.3; exponential galaxies have an inverse
+concentration index of around 0.43. Thus, this parameter can be used as a simple morphological classifier. 
+<br>
+An important caveat when using these quantities is that they are not corrected for seeing. This causes the surface brightness to be underestimated, and
+the inverse concentration index to be overestimated, for objects of size comparable to the PSF. The amplitudes of these effects are not yet well
+characterized. 
+
+<a name="supernova_campaign"></a>
+
+<h3>supernova campaign</h3>
+One of the three observing seasons for the Supernova survey, namely September through November of 
+2005, 2006, and 2007.  Some test data were also obtained in Fall of 2004. 
+
+<a name="supernova_stripe"></a>
+
+<h3>supernova stripe</h3>
+Stripe 82, the celestial equatorial stripe that is visible in the Fall and observed in each 
+Supernova campaign. (In practice the Supernova data extend slightly beyond the formal definition 
+of Stripe 82, comprising in total 120 degrees from RA = 20h to RA = 4h.)
+
+<a name="survey_coords"></a>
+
+<h3>survey coordinates</h3>
+One of the two main coordinate systems used by the 
+survey, with coordinates <a href="#eta">eta</a> and <a href="#lambda">lambda</a>. 
+This is simply another spherical coordinate system, where (eta,lambda)=(0,90.) corresponds to (ra,dec)=(275.,0.) and (eta,lambda)=(57.5,0.) corresponds to 
+(ra,dec)=(0.,90.). Note also that at (eta, lambda)=(0.,0.), 
+(ra,dec)=(185.,32.5). So, this is a pure rotation of the usual RA/Dec system, as opposed to the <a href="#great_circle_coords">great circle system</a>, which is defined relative to each individual <a href="#stripe">stripe</a>.
+For some reason, although "eta" is constant along great 
+circles, it is referred to as "survey latitude," while "lambda" is referred to
+ as "survey longitude." Also, "eta" runs only from -90. to 90.; the back of 
+the sphere is covered by "lambda", which runs from -180. to 180. The Survey 
+coordinates are defined such that the "primary" area of a <a href="#stripe">
+stripe</a> (otherwise known as a <a href="#stave">stave</a>) in the north 
+is defined by a rectangle in Survey coordinates which is 2.5 degrees wide in 
+eta (coordinate width). <!--  You may be interested in SM routines which convert  -->
+<!--  between Equatorial, Survey, and Great Circle coordinates, but we won't -->
+<!--  tell you where you get them.XXX -->
+
+<a name="survey_equator"></a>
+
+<h3>survey equator</h3>
+The great circle perpendicular to the <a href="#central_meridian">central meridian</a>,  passing through the survey center at delta=32.8deg is the survey equator. 
+
+<a name="survey_poles"></a>
+
+<h3>survey poles</h3>The locations of the poles in the <a href="#survey_coords">survey coordinate system</a>. Due to the unusual nature of this system, there is an east pole and a west one, at delta = 0 , alpha = 18h 20m and 6h 20m. 
+
+<a name="sx"></a>
+
+<h3>SX</h3>
+An abbreviation for the old Science Archive. This was the prior incarnation of the database containing the object catalogs. utilizing <a href="#objectivity">Objectivity</a> software.
+
+<a name="T"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<h3><u>T</u></h3>
+
+<a name="table"></a>
+
+<h3>Table</h3> 
+A specific set of objects and their measured quantities stored in a database.
+
+<a name="target"></a>
+
+<h3>Target</h3>
+
+<b>1.</b> An object selected as a candidate for spectroscopy.<br>
+<b>2.</b> The pipeline used to select candidate for spectroscopy (also called the TS pipeline). The
+procedures and various type of targets are described in the <a
+href="../algorithms/target.html">the Target algorithm page</a>. <br>
+<b>3.</b>The version of the data set containing photometric
+measurements for objects at the time <a
+href="../algorithms/target.html"><code>Target</code></a> was run. If
+newer observations or improved calibration or software becomes
+available, the imaging data may be reprocessed, but <em>not</em>
+re-<code>Target</code>ed. The improved photometry is provided in the
+separate <a href="#best"><code>Best</code> data set</a>.
+
+<a name="target_selection"></a>
+
+<h3>target selection</h3>
+A general term used to describe how objects are selected for spectroscopic observation. A priori, 
+one has only the photometric parameters, thus the "target selection algorithm" gives the rules 
+whereby a statistically complete sample of galaxies, quasars, or stars is selected within each 
+tile on the sky. 
+
+<a name="tdi"></a>
+
+<h3>TDI</h3>
+The SDSS imaging data are taken in time-delay-and-integrate (TDI) mode at the sidereal rate almost simultaneously in five bands. The sky tracks through 5 CCD detectors in succession, each located behind a different filter. See <a href="../shared_images/camera.gif">this image</a> to get a better idea.
+
+<a name="tilable"></a>
+
+<h3>tilable target</h3> These are spectroscopic <a href="#target"> target</a>s which are assigned to <a href="#tile"> tile</a>s by <a href="#tiling"> tiling</a>. The significance of this is that tilable targets are supposed to have as close to uniform completeness as possible and it should be possible to define well-defined samples of such targets. The bitmasks <b>primTarget</b> and <b>secTarget</b> described in <a href="../algorithms/target.html"> the description of the target selection</a> contain the target assignments of each <a href="#object"> object</a>. Tilable targets for the survey proper are those with the <b>primTarget</b> flags QSO_HIZ, QSO_CAP, QSO_SKIRT, QSO_FIRST_CAP, QSO_FIRST_SKIRT, GALAXY_RED, GALAXY, GALAXY_BIG, GALAXY_BRIGHT_CORE, or STAR_BROWN_DWARF, and those with the <b>secTarget</b> flag HOT_STD.
+
+<a name="tile"></a>
+
+<h3>tile</h3>
+A 1.49 deg radius circle on the sky determined by <a href="#tiling">tiling</a> and which contains the locations of up to 592 <a href="#tilable"> tilable target</a>s and other science targets. For each tile one or more <a href="#plate"> plate</a>s will be created. If less than the maximum of 592 <a href="#tilable"> tilable targets</a> can be assigned to that tile, the spare fibers are assigned to other spectroscopic targets. The 48 remaining <a href="#fiber"> fiber</a>s are assigned to calibration targets. 
+
+<a name="tile_region"></a>
+
+<h3>tiled region</h3>
+TileRegion is a term used to indicate the portion of a <a href="#tile">Tile</a> that may have <a href="#target">targets</a> 
+(i.e. within the union of the <a href="#tiling_boundary">TilingBoundaries</a> for a <a href="#tile_run">TileRun</a> 
+and outside the union of the <a href="#tiling_mask">TilingMasks</a> for the TileRun and the global 
+TilingMasks). These are not necessarily convex, because of the TilingMasks.
+
+<a name="tile_run"></a>
+
+<h3>tile run</h3>
+A TileRun represents a single run of the tiling software. It is a logical unit of geometrical 
+information that consists of a set of <a href="#tiling_boundary">TilingBoundaries</a>, 
+<a href="#tiling_mask">TilingMasks</a>, and <a href="#tile">Tiles</a> that are associated with 
+exactly one TileRun (ie each TilingBoundary, TilingMask, and Tile is associated with exactly 
+one TileRun, with one exception that will be noted later). Sometimes this is also called a 
+tiling chunk, although that is incorrect usage of the term and it should not be confused with 
+an imaging chunk.
+
+<a name="tiling"></a>
+
+<h3>tiling</h3>
+The process of designing <a href="#tile">tiles</a> for spectroscopy. 
+
+<a name="tiling_boundary"></a>
+
+<h3>tiling boundary</h3>
+A TilingBoundary is a set of "rectangles" that defines the area of the sky that may be tiled in a 
+<a href="#tile_run">TileRun</a>. Only <a href="#target">targets</a> from within the union of the 
+<a href="#tiling_boundary">TilingBoundaries</a> for a TileRun may be assigned to Tiles created 
+during a TileRun. A single TilingBoundary must be contained within a single chunk.
+
+<a name="#tiling_mask"></a>
+
+<h3>tiling mask</h3>
+TilingMasks are "rectangles" that should not be considered part of the tileable area 
+during a <a href="#tile_run">TileRun</a>.
+
+<a name="tpm"></a>
+
+<h3>TPM</h3>
+Telescope Performance Monitor. Software that reports on the physical parameters of the survey telescope.
+
+<a name="tsfield"></a>
+
+<h3>tsField</h3>
+The tsField files are FITS binary tables containing the information about each imaging <a href="#field">field</a> that is exported to the Field tables in the <a href="#CAS">CAS</a>. Available in the <a href="#DAS">DAS</a>, in both <a href="#best">Best</a> and <a href="#target">target</a> versions.
+
+<h3>tsObj</h3>
+<a name="tsobj"></a>
+The tsObj files are FITS binary tables containing calibrated object catalogs output by the <a href="#frames_pipeline">frames pipeline</a>, one per <a href="#field">field</a>. They are available from the <a href="#DAS">DAS</a>, in both <a href="#best">Best</a> and <a href="#target">target</a> versions, and form the basis for the photometric data found in the PhotoObj table in <a href="#CAS">CAS</a>.
+
+<a name="tsobjfrommap"></a>
+
+<h3>tsObjFromMap</h3>
+A <a href="#tsobj">tsObj file</a> containing the calibrated information only for those objects which have been <a href="#target">targeted</a>. Available in the <a href="#DAS">DAS</a>.
+
+<a name="type"></a>
+
+<h3>type</h3>
+Also known as PhotoType. A classification available in the photoObjAll table and related views 
+that refers to image morphology (namely, the image profile does or does not match the 
+<a href="#psf">point-spread function). Type = 3 is "galaxy," and type = 6 is "star."
+
+
+<a name="U"></a>
+<h3><u>U</u></h3>
+
+<a name="ubercal"></a>
+<h3>Ubercal</h3>
+Ubercal is a method of recalibrating the SDSS Imaging survey,
+using a 'global' rather than a 'local' (scan-by-scan), technique
+of solving for zeropoints and extinction for each camera-column 
+for each run.  It makes heavy use of overlapping 'crossing scans',
+which run at an oblique angle to the standard survey stripes and
+yield multiple detections of the same stars in different camera columns.
+Application of the Ubercal techniques suggests that
+the overall scatter in the photometry of the survey can be reduced
+from about 2% rms in the gri bands down to 1% rms.  The Ubercal outputs are available for the whole
+of the Main survey imaging footprint in the CAS.  They are
+available as both offsets from the standard SDSS photometry and
+as stand-alone magnitudes for each primary object.
+
+<a name="V"></a>
+<h3><u>V</u></h3>
+<a name="view"></a>
+
+<h3>View</h3>
+In a database, a way of looking at a subset of the data in a given <a href="#table">Table</a>. Views are treated just like Tables in <a href="#sql">SQL</a> queries. For example, in the <a href="#CAS">CAS</a>, the Galaxy view shows only the subset of PhotoObj table that are morphologically classified as galaxies. 
+
+
+<a name="W"></a>
+<h3><u>W</u></h3>
+
+<a name="wcs"></a>
+
+<h3>WCS</h3>
+World Coordinate System. The FITS standard for defining 
+astrometric calibrations in the image header. 
+
+<a name="X"></a>
+<h3><u>X</u></h3>
+<a name="Y"></a>
+<h3><u>Y</u></h3>
+<a name="Z"></a>
+<h3><u>Z</u></h3>
+
+<a name="zconf"></a>
+
+<h3>zConf</h3>
+Literally the confidence that the redshift is correct, zConf is more broadly a measure of the 
+likelihood that the spectral template (and thus spectral classification and redshift) is correct. 
+Except for intrinsically featureless spectra, it is generally correlated with the signal-to-noise 
+ratio in the spectrum.
+
+<a name="zhed"></a>
+
+<h3>zhed point</h3>
+   The stellar locus in SDSS color-color space is essentially
+    one-dimensional.  Various canonical positions in color-color space
+    can be defined from bends in the stellar locus; we call these
+    positions the Zhed Points.  The constancy of these positions (after correcting for reddening) is a
+    very useful test of the uniformity of our photometry. 
+
+<a name="zstatus"></a>
+
+<h3>zStatus</h3>
+The adopted redshift (the spectroscopic parameter z) may be determined by one of a number of 
+algorithms, and it can be manually overridden in problematic cases. The zStatus flag encodes which 
+method was actually used.
+
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a><br clear="all">
+<hr />
+<!-- Created: Tue Jul 30 21:49:21 DST 2002 -->
+<!-- hhmts start -->Last modified: Wed Jun 27 17:45:42 CEST 2007
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+</html>

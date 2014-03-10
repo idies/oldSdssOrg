@@ -1,0 +1,21 @@
+# Plate MJD Problem
+312 51689 Problems with Readout
+338 51694 Problems with Readout
+339 51692 Problems with Readout
+343 51692 Problems with Readout
+344 51693 Problems with Readout
+346 51693 Problems with Readout
+349 51699 Problems with Readout
+350 51691 Problems with Readout
+353 51703 Problems with Readout
+426 51882 Red light leak  -- The DR2 reduction of this plate is missing an r camera exposure and thus the flux level for the red-side is lower than itshould be -- redshifts are generally ok.
+504 52316 Spectrograph Collimation Problem
+541 51959 Problems with extraction and sky subtraction
+721 52228 Spectrograph Collimation Problem
+761 52266 Spectrograph Collimation Problem
+769 52282 Spectrograph Collimation Problem
+770 52282 Spectrograph Collimation Problem
+775 52295 Spectrograph Collimation Problem
+778 52337 Spectrograph Collimation Problem
+946 52407 The DR2 reduction of this plate is missing an r camera exposure and thus the flux level for the red-side is lower than it should be -- redshifts are generally ok.
+1343 52790 The DR3 reduction of the plate is missing an exposure and thus the signal to noise level on this plate is significantly lower than nominal -- redshifts are generally ok.

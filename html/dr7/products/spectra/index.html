@@ -1,0 +1,593 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Data products: Spectra - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Spectra</h1>
+<p>Up: <a href="../index.html">Data Products</a> Sections: <a
+href="../images/index.html">Images</a> - <a
+href="../catalogs/index.html">Object lists</a> - Spectra - <a
+href="../tiling/index.html">Tiling</a></p>
+
+<p>Down: <a href="#quality">Quality of spectra</a> - <a href="#aboutspectra">About SDSS spectra</a> - <a href="#caveats">Caveats</a></p>
+
+<h2>DR7 contains completely reprocessed spectra.</h2>
+
+<p>In DR7, there have been improvements to the algorithms
+which photometrically calibrate the spectra, and all spectra have been
+re-reduced. The new spectro "rerun number" is 26.</p>
+
+<h2>About spectroscopic samples</h2>
+
+<h3>Normal survey plates</h3>
+
+<p>The spectroscopic survey is predominantly a survey for</p>
+<ul>
+  <li>Bright galaxies, the "main" sample, with Petrosian <var>r</var>-band
+    magnitude &lt; 17.77 (to get an idea of their distribution, see
+      this <a href="./pieplot.ps">pie plot showing the redshift
+      distribution of 78275 DR1 galaxies with
+      -15&deg; &lt; DEC &lt; 20&deg;</a>).</li>
+  <li>Luminous Red Galaxies (LRGs) with Petrosian <var>r</var>-band magnitude
+    down to 19.5 (see this <a href="./zdist.ps">redshift distribution
+      of DR2 "main" galaxies and LRGs</a>), and</li>
+  <li>Quasars, targetting  quasar candidates as faint as <var>i &lt;
+      20.2</var> (see this <a href="./qsozdist.ps">DR2 quasar
+      redshift distribution</a>).</li>
+</ul>
+
+<p>There is also a large number of spectra of stars. Brown dwarfs, ROSAT and
+FIRST counterparts are targetted as well. Refer to the <a
+href="../general/target_quality.html">target selection quality</a> or <a
+href="../../algorithms/target.html">target selection algorithm</a> for
+details about the spectroscopic survey targets.</p>
+
+<h3>Extra and special plates, including SEGUE</h3>
+
+<p>New since DR4 is the publication of &quot;extra&quot; and
+&quot;special&quot; plates. <strong>Extra plates</strong> are repeat
+observations of normal survey plates. These have the same plate number
+as the original observation, but a different MJD and usually <em>a
+different mapping between fiber number and
+ra,dec</em>. <strong>Special plates</strong> are spectroscopic
+observations made under a variety of special programs which are
+described on the <a href="./special.html">special spectra
+page</a>.</p>
+
+<p>Note the caveat below about <a href="#specialquery">querying
+ special-plate data in the CAS (including SEGUE)</a>.</p>
+
+
+<h2>Getting and using spectra</h2>
+
+<p>The spectra distributed by the SDSS have been sky subtracted,
+corrected for telluric absorption <a
+href="../../algorithms/spectrophotometry.html">spectrophotometrically
+calibrated</a> by the Spectro2d pipeline.  Spectral classification,
+redshift determination, and emission and absorption line measurements
+are carried out by the &quot;1D&quot; pipeline. DR7 
+contains the outputs from two independent 1D pipelines: the
+<code>spectro1d</code> code that has also been used in all previous
+releases, and the <a
+href="../algorithms/redshift_type.html#specBS"><code>specBS</code></a>
+code whose outputs (&quot;Princeton reductions&quot;) were previously
+available only from <a
+href="http://spectro.princeton.edu">spectro.princeton.edu</a>. The CAS
+contains only the <code>spectro1d</code> outputs as before; the
+<code>specBS</code> outpus are available through the <a
+href="../../access/index.html#DAS">DAS</a>.</p>
+
+<p>The <a href="../../algorithms/index.html">algorithms page</a>
+contains details about spectroscopic data processing for all pipelines.</p>
+
+<p>Since DR1, the Data Archive Server has been providing the same spectrum in two
+files:</p>
+<ul>
+  <li>Spectro2d <code>spPlate*.fits</code>:
+      all calibrated spectra and supporting data (signal-to-noise,
+      resolution, quality flags and similar) from a single plate,
+      without any parameters or continuum fits. <strong>In
+      DR7:</strong> the spPlate files now also contain the sky spectra
+      that have been used for sky subtraction of each spectrum.<br />
+      See the <a
+    href="../../dm/flatFiles/spPlate.html"><code>spPlate*.fits</code>
+      data model</a> for details of the file contents. There is one <code>2d</code>
+      directory for every plate number in the DAS that contains all
+      <code>spPlate</code> files for that plate, including those for
+      different MJDs where repeats are available; e.g. <a
+      href="http://das.sdss.org/spectro/2d_26/0644/">http://das.sdss.org/spectro/2d_26/0644/</a></li>
+  <li>Spectro1d <code>spSpec*.fits</code>:
+      multiple fits extensions (images and tables) with the calibrated
+      spectrum, a continuum-subtracted spectrum, and all measured parameters
+      (redshift, line fits, line indices, per-pixel resolution). See
+      the <a
+      href="../../dm/flatFiles/spSpec.html"><code>spSpec*.fits</code>
+      data model</a> for details of the file contents, and <a
+      href="./read_spSpec.html">how to read an spSpec file</a>. There
+      is one spSpec file per plate/MJD/fiber combination, found in a
+      parallel <code>1d</code>directory tree with one directory
+      per plate, e.g. <a
+      href="http://das.sdss.org/spectro/1d_26/0644/1d/">http://das.sdss.org/spectro/1d_26/0644/1d/</a></li>
+  <li>In addition, spectro1d produces <code>spPlot*.gif,.ps</code>
+      plots of the spectra with line locations for the best-fitting
+      redshift, again in one directory per plate, e.g. <a
+      href="http://das.sdss.org/spectro/1d_26/0644/gif/">http://das.sdss.org/spectro/1d_26/0644/gif/</a></li>
+</ul>
+<p>All of the above files are available through the <a
+      href="http://das.sdss.org/">DAS query form</a>.</p>
+
+<p>DR7 provides additional spectroscopic data:</p>
+<ul>
+  <li>spectro2d <a
+      href="../../dm/flatFiles/spCFrame.html"><code>spCFrame*.fits</code></a>:
+      SDSS spectra are typically combined from 3 or more individual
+      exposures of 15 minutes each. The individual flux-calibrated
+      spectrograph exposures are available in spCFrame*.fits
+      files. <strong>They contain spectra in the spectrograph's native
+      wavelength mapping, which is neither linear in wavelength nor
+      log-wavelength.</strong><br />
+  </li>
+
+  <li><a
+  href="../../algorithms/redshift_type.html#specBS"><code>specBS</code></a>
+  outputs (&quot;Princeton reductions&quot;; see <a
+  href="http://spectro.princeton.edu">http://spectro.princeton.edu</a>):
+      
+      <ul>
+	<li><a
+	    href="../../dm/flatFiles/spZbest.html"><code>spZbest*.fits</code></a>:
+	    best-fit classification and redshift for a given
+	    spectrum</li>
+	<li><a
+	    href="../../dm/flatFiles/spZall.html"><code>spZall*.fits</code></a>:
+	    Same structure aas spZbest, but contains all attempted
+	    fits</li>
+	<li><a
+	    href="../../dm/flatFiles/spZline.html"><code>spZline*.fits</code></a>:
+	    emission-line measurements</li>
+      </ul>
+      There is one file of each type for every plate/MJD
+      combination.</li>
+  <li><code>sspp</code> stellar parameter pipeline outputs: Most of
+      these outputs are available only through two new  tables in the CAS:
+      <ul>
+	<li>Line index equivalent widths for stars:
+	    <a href="./spectrolineindices.html">sppLines</a></li>
+	<li>Stellar atmospheric parameters ([Fe/H], log g, Teff) for stars:
+	    <a href="./spectroparameters.html">sppParams</a>
+	    for all the <a href="http://www.sdss.org/segue/index.html">SEGUE</a>
+	    spectra and a large fraction of the main
+	    database spectra classified as stars (not galaxies or quasars).
+	</li>
+      </ul>
+      In the DAS, we provide bulk versions of the stellar parameter
+      outputs in one directory per plate/MJD combination, e.g. <a
+      href="http://das.sdss.org/spectro/sspp_26/0644-52149">spectro/sspp_26/0644-52149</a>,
+      which include .csv  versions of the sppParams and sppLines
+      tables and some additional information and plots not available through the
+      CAS.
+  </li>
+</ul>
+
+<p>The specBS outputs are available through the <a
+href="http://das.sdss.org/">DAS query form</a>. The
+<code>spCFrame</code> files are not available through the DAS query
+form, but can be found in the same <code>2d</code> directories as the
+<code>spPlate</code> files in the DAS; these also contain the specBS
+outputs. E.g., <a
+href="http://das.sdss.org/spectro/2d_26/0644/">http://das.sdss.org/spectro/2d_26/0644/</a>.</p>
+
+<h3>Bulk download of spectra, spectroscopic parameters, and corresponding imaging data</h3>
+
+<p> Very often one wishes to obtain all the SDSS photometric (imaging
+camera) data associated with each spectrum.  One can obtain this
+information most easily for nearly all plates through the <a
+href="http://cas.sdss.org/astro/en/tools/search/SQS.asp">SQS</a>
+interface by selecting imaging parameters to return with your selected
+spectra.</p>
+
+<p>For those who prefer working with the full fits files of spectra
+and imaging catalogs, make available a special set of files
+(<code>spObj-*.fit</code>) containing a bundled version of the
+spectroscopic data and all the corresponding imaging data.</p>
+
+<p>These files are available via
+the <a href="http://das.sdss.org/">DAS</a> by requesting the data
+product <code>tsObjFromMap (or spObj)</code> for the plates you
+wish. To get these files in bulk for the entire survey, see
+the <a href="./getspectra.html">page on redshift catalogs and SDSS
+spectra and corresponding imaging data</a>.</p>
+
+<h3>More on data access</h3>
+
+<p>The <a href="../../access/">data access</a> page contains various
+query forms to get spectra by coordinates, or to search for spectra by
+redshift, object magnitude, color etc., and to retrieve them from the
+archive. In particular, the <a
+href="../../access/index.html#CAS">Catalog Archive Server</a> provides
+a fast search capability for object lists and spectroscopic parameters
+as well as pointers to the files in the <a
+href="../../access/index.html#DAS">Data Archive Server</a>, whose
+structure is explained on the <a href="../../data/index.html">Data
+Archive Server structure and contents page</a>. The <a
+href="http://cas.sdss.org/astro/en/tools/search/SQS.asp">Spectro Query
+Server</a> query form is dedicated to the search of the spectroscopic
+database. You can also download fits tables with the classification,
+redshifts and other information from the <a
+href="./getspectra.html">page with redshift catalogs and
+spectro+imaging data</a>.</p>
+
+<p>Please note the <a href="#caveats">caveats</a> below, which are
+essential to obtain meaningful scientific results from analysing SDSS
+spectra, in particular the <a href="#zstatus">redshift status
+caveat</a>.</p>
+
+<a name="quality"></a>
+<h2>Quality of spectra</h2>
+
+<ul>
+  <li><a href="./snmagplate.html">spectroscopic signal-to-noise as
+      function of magnitude</a></li>
+  <li><a href="./spectrophotometry.html">Details about the quality of
+      spectrophotometry</a></li>
+  <li><a href="./radvelocity.html">Accuracy of stellar radial
+  velocities improved substantially in DR7</a></li>
+</ul>
+
+<a name="aboutspectra"></a>    
+<h2>About the spectra</h2>
+
+<p>For details about the spectrographs, see the <a
+href="../../instruments/spectrographs/index.html">spectrograph
+page</a>.</p>
+
+<table border="1">
+  <tr>
+    <td>Plate diameter</td><td>3 degrees</td>
+  </tr><tr>
+    <td>Fiber diameter</td><td>3 arcsec</td>
+  </tr><tr>
+    <td>Wavelength coverage</td><td>3800 - 9200 &Aring;</td>
+  </tr><tr>
+    <td>Wavelength calibration</td><td>better than 5 km/s</td>
+  </tr><tr>
+    <td>Wavelength reference</td><td>heliocentric <a href="vacwavelength.html">vacuum wavelengths</a></td>
+  </tr><tr>
+    <td>Binning</td><td>log-lambda, 69 km/s per pixel</td>
+  </tr><tr>
+    <td>Resolution</td><td>1850 to 2200; value for each spectrum in <a href="../../dm/flatFiles/spPlate.html">spPlate*.fits</a></td>
+  </tr><tr>
+    <td>Flux Units </td><td>10<sup>-17</sup> erg/s/cm<sup>2</sup>/&Aring;</td>
+  </tr>
+</table>
+
+<h3>Further details</h3>
+
+<ul>
+  <li>Error and mask arrays, and the sky spectrum
+  subtracted from each object spectrum,  are available (see the <a
+    href="../../dm/flatFiles/spPlate.html">data model</a>.)
+  </li>
+  <li>Spectroscopic observations are undertaken in non-photometric conditions
+      when the imaging camera is not in use. At least three
+      fifteen-minute exposures are taken until the cumulative mean S/N
+      per pixel exceeds 4 for a fiducial fiber magnitude of
+      <var>g</var> = 20.2 and <var>i </var>= 19.9.
+  </li>
+  <li>We provide the <a
+      href="../../algorithms/spectemplates/index.html">cross-correlation
+      templates</a> used to obtain <a
+      href="../../algorithms/redshift_type.html#xcorz">cross-correlation
+      redshifts</a>.</li>
+</ul>
+
+<a name="caveats"></a>
+<h2>Caveats</h2>
+
+<h3>DAS only plates</h3>
+
+	A few Legacy and SEGUE plates either did not have
+	sufficient exposure time to reach their target S/N in
+	order to be declared 'done'.  Also, in the case of SEGUE,
+	3 plates have bright but not faint equivalents (or vice-versa).
+	These plates do not appear in the CAS or in the list of
+	all plates, however, they are available in the DAS.
+	The plate-mjd numbers for these plates are:
+
+<pre>
+ plate-mjd      Why not in CAS platex table:
+ -----------------------------------------------------------------------
+ 0356-51779    S/N too low -- plate not done (not enough exposure)
+ 1112-53180    S/N too low -- plate not done
+ 1858-53271    SEGUE test plate, high DEC, never made it to CAS
+ 2309-54441    S/N too low -- SEGUE plate
+ 2333-53676    M71 very bright plate, lots of saturation, only 320/640 done
+ 2535-54632    SEGUE bright, faint matching plate not done 
+ 2640-54474    BAOTest plate, test plate for SDSS-III 
+ 2716-54629    SEGUE bright, faint matching plate not done
+ 2813-54650    SEGUE bright, insufficient S/N, plate not done
+ 2851-54485    SEGUE dup pointing of plate 2045.
+ 2962-54578    don't have correct tsObj file, Low S/N, plate not done
+</pre>
+
+<a name="rvredshift"></a>
+<h3> Note on Radial Velocities</h3>
+The DAS records ELODIE-matched template redshifts for all stars
+        as the quantity elodie_z in the spZbest* file for
+        each plate.  The CAS records this as the quantity elodierv in
+        the sppParams table in the BESTDR7 Context.  The elodierv =
+        c*elodie_z+7.3 km/s, where the 7.3 is an empirically
+        derived offset putting the elodierv of all stars on
+        a system consistent with that of other literature measures
+        of known radial velocity standards.
+
+Two other redshifts, the specBS redshift and the Spectro redshift
+        are available, unaltered, in the sppParams table (or spbsparams view).
+        These redshifts, primarily for galaxy work, do not have
+        the 7.3 km/s offset applied.
+
+<p>
+<a name="zstatus"></a>
+<h3>Redshift status</h3>
+
+<p> Only 1% of the objects have an "unknown" classification, usually
+because of low signal-to-noise ratio or completely featureless
+spectra. The redshifts of all but a few tenths of a percent of the
+remainder are believed to be correct. <strong>To identify the few
+objects with unreliable redshifts, be sure to consider the confidence
+we have assigned to each redshift (<code>z_conf</code> in the <a
+href="../../dm/flatFiles/spSpec.html">spSpec*.fits primary header</a>,
+and the status <a
+href="../../dm/flatFiles/spSpec.html#zstatus"><code>zStatus</code></a>
+and <a
+href="../../dm/flatFiles/spSpec.html#zwarning"><code>zWarnin</code></a>
+of the redshift measurement, which may have failed.</strong>). A
+useful cut on the redshift confidence is <code>z_conf &gt; 0.35</code>
+(or <code>zConf &gt; 0.35</code> in the SQL database).
+<!-- See <a href="XXXmissinglinkXXX">spectroscopy documentation on -->
+<!-- redshift confidence</a> (link to be added). --></p>
+
+<a name="EWhalpha"></a>
+<h3>Zero equivalent width of emission lines, especially H alpha</h3>
+
+<!--#include virtual="./zeroEW.html"-->
+
+<a name="chunk78"></a>
+
+<a name="extinct"></a>
+<h3>Galactic extinction correction</h3>
+
+<!--#include virtual="./galextinction.html"-->
+
+<h3>Night sky emission lines</h3>
+
+<p>The night sky emission lines at 5577&Aring, (when there is auroral
+activity) at 6300&Aring;, 6363&Aring;, and in the OH forest in the red
+can be very strong, and leave significant residuals in the spectra
+whose amplitude is occasionally underestimated by the noise model.  Be
+cautious about interpreting the reality of weak features close to
+these lines.</p>
+
+<a name="badplates"></a>
+<h3>Plates with not-quite-perfect spectrophotometry</h3>
+
+<p>A small number of plates, given in the <a href="badplates.txt">list
+of not-quite-perfect plates</a>, suffered from a variety of minor
+problems.  The CCD frames for several plates suffered from a transient
+electronic problem in the red camera in Spectrograph 2, causing the
+columns of the CCD to be misaligned on readout.  This was fixed in
+software, and we believe the data to be reliable.  Another set of
+plates labeled &quot;Spectrograph Collimation Problem&quot; suffered
+from having the spectrograph collimator improperly focused.  This
+problem caused a mismatch between the flatfields and the science
+exposure instrumental profile shapes on the CCD in both the spatial
+and wavelength directions, causing the optimal extraction process to
+reject an excessive number of pixels.  This problem was fixed in
+software, and comparing overlapping objects from adjacent plates
+confirms that the redshifts from these problematic plates are
+unbiased.  However, the spectra themselves should not be used for
+precision work or spectrophotometry.  Other plates have individual
+problems as noted. E.g., during the exposure of one plate, light from
+an LED somewhere on the telescope found its way to the spectrographs,
+resulting in an artificial excess of light centered roughly at
+6500&Aring;; the spectrophotometry of this plate is quite poor.</p>
+
+<a name="specphotomismatch"></a>
+<h3>Mismatches between spectra and photometric data</h3>
+
+<p>In a few cases, the fiber mapping failed which identifies which
+fiber has been plugged into which hole. When this happens for two or
+more objects on the sample plate, there is the possibility of wrong
+matches between spectra and photometric objects. There are 123 objects
+for which the mapping between object and spectrum cannot be
+established (&quot;unmapped fibers&quot;); their ra/dec is listed as
+-9999 in the spectroscopic data set but synthetic fiber magnitudes
+(<code>mag_0, mag_1, mag_2</code> in the <code>specObj</code> tables
+in the CAS, <code>mag_g, mag_r, mag_i</code> in the
+<code>spSpec*.fit</code> files) greater than 0 (i.e., use the
+synthetic magnitudes to distinguish the unmapped fibers from the 2221
+fibers which were broken completely at the time of observations and
+did not yield a spectrum at all).</p>
+
+<p>Errors in the deblending algorithm in the <code>target</code> reductions
+caused spectroscopy to be carried out occasionally on non-existent
+objects (e.g., diffraction spikes of bright stars or satellite
+trails).  Many of these objects no longer exist in the <code>best</code>
+imaging reductions with its improvements to the deblender.  In other
+cases, the photometric pipeline timed out during the <code>best</code>
+imaging reductions in fields for which <code>target</code> imaging proceeded
+without problem, so that the <code>best</code> photometry is missing for
+bona-fide objects. This predominantly happens in fields close to a few
+very bright stars.  We expect to recover objects from these ``timeout
+holes'' in future data releases.</p>
+
+<a name="specialquery"></a>
+<p>The <a href="./special.html">special plates</a> have special issues
+regarding photometric matches. Some of the special plates were
+targeted using photometry that is not part of DR7, or not even SDSS
+photometry.  Therefore, the SDSS photometry for objects on plates 797,
+1468, 1471, 1472, 1665, and 1666 is only available through <a
+href="../../start/aboutdrsup.html">DRsup</a>.</p>
+
+<p>In addition, special plates with SDSS photometry are different from
+regular SDSS plates in that they have no tiling information associated
+with them. Therefore, the <code>specPhotoAll</code> table is not
+populated with all entries from special plates.  
+Querying SEGUE data is explained in a <a
+href="../../../segue/getstarted.html#ex4">SEGUE sample SQL
+query</a>.</p>
+
+<p>To obtain photometric information for non-SEGUE special-plate
+spectra, perform the following join:</p>
+<pre>
+select columns
+from specObjAll as so
+inner join photoObj as po on so.bestobjid = po.objid</pre>
+
+<p>
+
+<!-- <p>A total of 663 spectroscopic objects therefore do not have a -->
+<!-- counterpart in the <code>best</code> catalogs, 0.2% of the total.  Of -->
+<!-- these, 80 (including the 62 unmapped fibers) can only be retrieved -->
+<!-- from the table <code>specObjAll</code> in the database.  The remaining -->
+<!-- 583 objects are contained in the default spectroscopic table -->
+<!-- <code>specObj</code>, but will not be found by queries requesting both -->
+<!-- photometric and spectroscopic information.</p> -->
+
+<a name="galveldisp"></a>
+<h3>Galaxy velocity dispersion measurements</h3>
+
+<p>The velocity dispersion measurements distributed with SDSS spectra
+use template spectra convolved to a maximum sigma of 420
+km/s. Therefore, velocity dispersion sigma &gt; 420 km/s are not
+reliable and must not be used. The figure below shows the quality of
+velocity dispersion error estimates.<p>
+
+<div class="cfig"> <img width="475px" src="../../algorithms/vdisp_errcomp.png"> <p
+class="cfig"> Error distribution of the velocity dispersion
+measurements from spectro1d DR6 (thin black solid line), spectro1d DR5
+(dotted red line), specBS (dashed blue line), and B03 (dotted-dashed
+green line). The thick solid line was obtained by comparing repeated
+measurements.</p> </div>
+
+<p></p>
+
+<p>We recommend the user to not use SDSS velocity dispersion measurements
+for:</p>
+<ul>
+  <li>spectra with median per-pixel S/N &lt; 10</li>
+  <li>velocity dispersion estimates smaller than about 70 km s<sup>-1</sup>
+    given the typical S/N and the instrumental resolution of the SDSS
+  spectra</li>
+</ul>
+
+<p>Also note that the velocity dispersion measurements are not corrected to a
+standard relative circular aperture.</p>
+
+<p>See the <a href="../../algorithms/veldisp.html">velocity dispersion
+algorithm</a> for details.</p>
+
+<a name="bonusplates"></a>
+<h3>"Bonus" plates beyond the survey limits</h3>
+
+<p>A few plates target objects beyond the <a
+href="../../coverage/atStripeDef.par">survey limits</a> for a
+particular survey stripe, stripe 10 (see <a
+href="../../coverage/index.html">survey coverage page</a>).  These
+plate/MJD combinations are:</p>
+
+<table border="1">
+  <tr>
+    <th>Plate</th><th>MJD</th>
+  </tr>
+  <tr>
+    <td>343</td><td>51692 (straddles stripe limits)</td>
+  </tr><tr>
+    <td>344</td><td>51693</td>
+  </tr><tr>
+    <td>345</td><td>51690</td>
+  </tr><tr>
+    <td>346</td><td>51693</td>
+  </tr><tr>
+    <td>348</td><td>51671</td>
+  </tr><tr>
+    <td>364</td><td>52000</td>
+</table>
+
+<p>Their corresponding <code>target</code>imaging data does not
+contain any <code>PRIMARY</code> objects. Objects from this region are
+therefore not available via a normal search of the <code>target</code>
+object lists.  To find the target data, select on <code>status &
+0x402</code> (both <code>GOOD</code> and <code>OK_SCANLINE</code>)
+instead of selecting on the <code>PRIMARY</code> flag being set in
+<code>status</code>. The information is also contained in the
+<code>spObj-*.fit</code> files, which are available for all plates.
+These files are available via the <a
+href="http://das.sdss.org/">DAS</a> by requesting the
+data product <code>tsObjFromMap (or spObj)</code> for the plates you
+wish.  They are also available for bulk <a
+href="../../data/rsync.html">rsync</a> or <a
+href="http://wget.sunsite.dk">wget</a> download via <a
+href="http://das.sdss.org/">DAS through http </a> (in
+<code>spectro/ss_SPRERUN/PLATE/spObj-*</code>).</p>
+
+<p>These objects have been declared <code>primary</code> in the
+<code>best</code> data set.  The CAS correctly records the positional
+matches between these spectra and their counterparts in
+<code>best</code>. However, since the corresponding targets are not
+primary, the spectra are not included in the <code>specObj</code> and
+<code>specPhoto</code> views in the CAS, but must be searched
+explicitly in <code>specObjAll</code> and
+<code>photoObjAll</code>.</p>
+
+<a name="radvel"></a>
+<h3>Accuracy of stellar radial velocities</h3>
+
+<p>The <a href="./radvelocity.html">accuracy of stellar radial
+velocities in DR2/DR3 and beyond</a> is described on a separate page.</p>
+
+<a name="clipped"></a>
+<h3>Clipped Spectral Lines</h3>
+
+<p>The spectroscopic pipeline combines observations of a given object on the red 
+and blue spectrographs, and between the separate 15-minute exposures on the sky, 
+by fitting a tightly-constrained spline to the data, allowing discrepant points 
+such as cosmic rays to be rejected. This spline requires as input the effective 
+resolution of the spectra.</p>
+
+<p>As described in the <a href="http://adsabs.harvard.edu/abs/2007arXiv0707.3413A">DR6 paper</a>, 
+it did not do a perfect job; occasionally, very strong and sharp emission lines were erroneously 
+rejected by this algorithm. This turned out to be due to the fact that the spline code did not 
+adequately track the changing resolution of the spectra as a function of wavelength and fiber 
+number. Including this effect much improved the behavior of this algorithm.  The figure below shows 
+an example spectrum of an object affected by this problem in DR6, and its improved counterpart 
+in DR7, as is apparent by the correct 3:1 ratio of the 5007 and 4959 &Aring; lines of [OIII]. 
+The total number of objects that were affected by this problem is quite small; affecting less 
+than 1 percent of galaxies with H&beta; equivalent width >25 &Aring;.  
+
+<img src="clipped_lines.jpg" alt="A comparison of sharp spectral lines between the older DR6 and improved DR7 systems" />  
+
+<p>There is another problem, unfortunately not fixed in DR7, which has a similar effect. If the 
+line is so bright that it is saturated in the individual 15-minute exposures of the spectrograph, 
+it will also appear clipped.  Unfortunately, such saturated pixels are not flagged as such, 
+although usually such lines are recognizeable as having an inverse variance equal to zero.</p>
+
+<p>Luckily, objects with such strong emission lines are very rare, but the user should be aware 
+of the possibility of objects with extremely strong emission lines and unphysical or unusual line 
+ratios.</p>
+
+
+
+<hr>
+<!-- hhmts start -->Last modified: Fri Oct 31 17:31:24 CET 2008
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+<!--#include virtual="segueheader.html"-->
+<html>
+<head>
+<meta name="Author" content="segue-webmaster@sdss.org">
+
+<meta name="Keywords" content="SEGUE, Milky Way, stars, stellar parameters, 
+SDSS, Sloan, 
+digital, survey, galaxy, galaxies, quasar, universe, telescope, 
+astronomy, astrometry,
+spectroscopy, cosmology, large-scale structure, observatory,
+observatories, big bang, redshift, map">
+
+<meta name="Description" content="SEGUE SSPP">
+
+<title>SEGUE</title>
+<link rel=StyleSheet href="../includes/sdss.css" type="text/css" media=screen>
+
+</head>
+
+<body>
+
+<!-- Overall table structure - 3x3 -->
+
+<table width="100%" height="100%" border="0" cellspacing="0" 
+cellpadding="0" style="padding:0px; margin:0px; border:0px"> <tr>
+
+<!-- Header -->
+
+
+</tr>
+
+<tr>
+<!-- Body -->
+
+<td valign="top" width="100%" height="100%" bgcolor="#FFFFFF" 
+style="padding:15px;">
+<div align="center"><h1> SEGUE Stellar Parameter Pipeline</h1>
+
+<div align="left">The SEGUE Stellar Parameter Pipeline (SSPP) implements a 
+"multi-method" approach, using a combination of techniques to
+extract reliable estimates of stellar parameters from the SEGUE 
+spectroscopic data.
+
+Details of the SSPP can be found in two recent publications:
+<ul>
+<li><a href="../documents/sspp0627.pdf"> SEGUE Stellar Spectroscopic Pipeline.
+I.  Description and Initial Validation Tests</a>, Y. S. Lee et al. (2007).
+
+<li><a href="../documents/ms0627.pdf"> SEGUE Stellar Spectroscopic Pipeline.
+II. Validation with Galactic Globular and Open Clusters</a>, 
+Y. S. Lee et al. (2007).
+</ul>
+
+
+<h2>Stellar Parameter Estimation</h2>
+<p>
+The SEGUE Stellar Parameter
+Pipeline (SSPP) makes use of multiple techniques in order to estimate the
+fundamental stellar atmospheric parameters:
+<ul>
+<li>effective temperature &rarr;T<sub>eff</sub>
+<li>surface gravity &rarr; log g
+<li>metallicity &rarr; parameterized by [Fe/H]
+</ul> 
+for stars with spectra and <i>ugriz</i> photometry obtained during the course 
+of the original Sloan Digital Sky Survey (SDSS-I) and its first extension
+(SDSS-II/SEGUE). 
+</p>
+
+<p>The use of multiple approaches allows for an empirical
+determination of the internal errors for each derived parameter, based on the
+range of the reported values from each method. Based on about 120,000 spectra
+for stars obtained during SDSS-I and SEGUE that satisfy S/N &ge; 10/1 (average
+value over the spectra range 3,850-6,000&#197, and have derived temperatures
+in the range 4500K &le; T<sub>
+eff</sub> &le; 7,500K, typical internal errors
+obtained by the SSPP are:
+<ul>
+<li> &sigma;(T<sub>eff</sub>) &le; 75K
+<li> &sigma;(log g) &le; 0.20 dex
+<li> &sigma;([Fe/H]) &le; 0.10 dex
+</ul>
+</p>
+<p>
+A comparison with an analysis of high-resolution spectra for over 150
+SDSS-I/SEGUE stars suggests that the SSPP is able to estimate 
+T<sub>eff</sub>, log g, and [Fe/H] to an external uncertainty 
+(random plus systematic errors ) of
+117K, 0.26 dex, and 0.22 dex, respectively, in the temperature range
+4500K &le; T<sub>eff</sub> &le; 7,500K.
+These errors apply for the very highest S/N
+spectra obtained from SDSS (S/N > 50/1), as only quite bright stars were
+targeted for high-resolution observations. Outside of the quoted temperature
+range, we presently to do not have sufficient high-resolution spectra to fully
+test the parameters obtained by the SSPP.
+<p>
+</p>
+An analysis of likely member stars in a handful of Galactic open and globular
+clusters indicates that the SSPP slightly over-estimates [Fe/H] 
+(by on the order of 0.15 dex) for stars with [Fe/H] < -2.0, and 
+underestimates [Fe/H] for stars with near solar metallicities by ~ 0.3 dex. 
+Determinations of T<sub>eff</sub> and log g exhibit no obvious offsets 
+relative to expectations.
+<p>
+</p>
+Despite these small remaining uncertainties, the SSPP determines stellar
+atmospheric parameters with sufficient accuracy and precision, in the
+temperature range  4500K &le; T<sub>
+eff</sub> &le; 7,500K, to carry out
+detailed explorations of the chemical compositions and kinematics of the
+thick-disk and halo populations of the Milky Way.
+</p>
+See <a href="../dr7/products/spectra/spectroparameters.html">
+'sppParams' Table </a> for
+SSPP parameter definitions.
+
+<h2>Line Indices</h2>
+<p>
+The initial step in calculation of line indices for SDSS spectra is to 
+transform
+the wavelength scale of the original SDSS spectrum over to an air-based (rather
+than vacuum-based) wavelength scale, and to linearly rebin the spectrum to 
+1 &#197 bins in the blue (3,800-6,000 &#197), and 1.5  bins in the red
+(6,000-9,000 &#197). Then, based on the adopted radial velocity described
+above, the wavelength scale is shifted to zero rest wavelength.
+</p>
+<p>
+The SSPP measures 77 atomic and molecular lines. Line index
+calculations are performed in two modes; one is to use a global
+continuum fit over the entire wavelength range (3,850-9,000 &#197),
+the other is to obtain a local continuum around the line bands of
+interest. The choice between which mode is used depends on the line
+depth and width of the feature under consideration. Local continua
+are employed for the determinations of stellar atmospheric
+parameters based on techniques that depend on individual line
+indices. Other techniques, such as the neural network, spectral
+matching, and autocorrelation methods, require wider ranges to be
+considered; for these the global continuum is used. We make use of
+the errors in the fluxes reported by the SDSS spectroscopic
+reduction pipeline in order to obtain estimates in the uncertainties
+in the line indices. 
+</p>
+<a href=" ../dr7/products/spectra/spectrolineindices.html">
+DR7 'sppLines' Table</a>
+
+<h2>Improvements between DR6 and DR7</h2><p>There have been several improvements made in the SSPP since the release of DR6. In particular, the SSPP averages no longer suffer underestimates of metallicities (by about 0.3 dex) for stars approaching solar metallicity.</p><p>This improvement was accomplished by adding synthetic spectra with super-solar metallicities to two of the synthetic grid matching techniques (<code>NGS1</code> and <code>NGS2</code>), as well as through a recalibration of the <code>CaIIK2</code>, <code>ACF</code>, <code>CAIIT</code>, and <code>ANNRR</code> methods. See Table 5 in <a href="http://adsabs.harvard.edu/abs/2008AJ....136.2022L">Lee et al. 2008a</a> for the naming convention for each technique.</p><p>Two methods, <code>ACF</code> and <code>CaIIT</code>, have been recalibrated to the "native" <code>g-r</code> system, instead of making use of calibration on <code>B-V</code>, which required application of an uncertain transformation in color space. The <code>ANNRR</code> approach, which also tended to underestimate metallicity for near-solar metallicity stars, has been re-trained on the SDSS/SEGUE spectra with improved stellar parameters, resulting in a better determination of the metallicity for metal-rich stars.</p><p>Moreover, a neural network approach, based solely on noise-added synthetic spectra, has also been introduced. There remains a tendency for the SSPP to assign slightly higher metallicities for stars with [Fe/H] < -2.7. This offset is presently being calibrated out, and will be corrected in SEGUE-2 (part of SDSS-III). For more detailed descriptions of the individual methods of the SSPP, see <a href="http://adsabs.harvard.edu/abs/2008AJ....136.2022L">Lee et al. 2008a</a>.</p><p>Additionally, the pipeline now identifies cool main sequence stars of low metallicity (late-K and M subdwarfs). The stars are assigned metallicity classes and spectral subtypes following the classification system of <a href="http://adsabs.harvard.edu/abs/2007ApJ...669.1235L">L&eacute;pine et al. 2007</a>. Cool and ultra-cool subdwarfs are classified as subdwarfs (sdK, sdM), extreme subdwarfs (esdK, esdM), and ultrasubdwarfs (usdK, usdM) in order of decreasing metal content. The classification is based on the absolute and relative values of the TiO and CaH molecular bandstrengths, and derived from fits to K-M dwarf and K-M subdwarf spectral templates.</p><p>A number of open and globular clusters have been observed photometrically and spectroscopically with the SDSS instruments to evaluate the performance of the SSPP (<a href="http://adsabs.harvard.edu/abs/2008AJ....136.2050L">Lee et al. 2008b</a>). In addition, high-resolution spectra have been obtained for about 100 field stars included in the SDSS, and used to expand the SSPPP checks over a wider parameter space (<a href="http://adsabs.harvard.edu/abs/2008AJ....136.2070A">Allende Prieto et al. 2008</a>). These high-resolution observations have also been used to assess the precision of the SDSS radial velocities at the bright end of the SDSS spectroscopic range, and to set the zero-point of the stellar radial velocity pipeline.</p>
+<br clear=all>
+<img src=".//images/dot_clear.gif" width="90%" height="5"><br>
+
+
+<tr>
+
+<td height="30" bgcolor="#000000" width="132">
+&nbsp;
+</td>
+
+
+
+</span>
+</center>
+
+</td></tr></table>
+<!--#include virtual="../dr7/dr7link.html"-->
+</body>
+</html>
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->
+

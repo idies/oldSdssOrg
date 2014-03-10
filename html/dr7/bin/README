@@ -1,0 +1,2 @@
+The scripts in this directory are called via ../Makefile 
+To see instructions, cd .. and type make

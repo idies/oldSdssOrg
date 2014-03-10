@@ -1,0 +1,83 @@
+<p>Because of scattered light (see the Early Data Release paper</a> [<a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123..485S">Stoughton
+et al. 2002</a>]), the background sky in the SDSS images is
+non-uniform on arc-minute scales.  The photometric pipeline determines
+the median sky value within each 100&quot; square on a grid with
+50&quot; spacing, and bilinearly interpolates this sky value to each
+pixel. This biases the sky bright near large extended galaxies. As was already reported 
+in the <a href="http://adsabs.harvard.edu/abs/2006ApJS..162...38A">Data 
+Release 4 paper</a> and in <a href="http://adsabs.harvard.edu/abs/2005MNRAS.361.1287M">
+Mandelbaum et al. 2005</a>, this effect causes a systematic decrease in the number density 
+of faint objects near bright galaxies. In addition, it also strongly
+affects the photometry of the bright galaxies themselves, as has been
+reported by <a
+href="http://adsabs.harvard.edu/abs/2007ApJ...662..808L">Lauer et
+al. (2007)</a>, <a
+href="http://adsabs.harvard.edu/abs/2007AJ....133.1741B">Bernardi et
+al. (2007)</a>, and <a
+href="http://adsabs.harvard.edu/abs/2007ApJ...660.1186L">Lisker et
+al. (2007)</a>. This effect was overestimated in Data Release 6 but has been corrected for 
+Data Release 7.</p>
+
+<p>We have quantified this effect by adding simulated galaxies with
+exponential or de Vaucouleurs profiles to SDSS images. The simulated
+galaxies ranged from apparent magnitude <var>m<sub>r</sub>=12</var> to
+<var>m<sub>r</sub>=19</var> in half-magnitude steps, with a one-to-one 
+mapping from <var>m<sub>r</sub></var> to S&eacute;rsic half-light radius 
+determined using the mean observed relation between these quantities 
+for Main sample galaxies with exponential and deVaucouleurs profiles.
+Axis ratios of <var>0.5</var> and <var>1</var> were used, with random
+position angle for the non-circular simulated galaxies.</p>
+
+<p>Results in the <var>r</var> band are shown in the figure below, which 
+shows the difference between the input magnitude and the model magnitude 
+returned by the SDSS photometric pipeline as a function of r magnitude for 
+galaxies with both exponential and deVaucouleurs profiles. (Figure and text from 
+DR7 paper<a href="../images/index.html#footnotes">*</a>)</p>
+
+<!--
+<p>Also shown is the fractional error in the scale size
+<var>r<sub>e</sub></var>.  The biases are significant to
+<var>r=16</var> for late-type galaxies, and to <var>r=17.5</var> for
+early-type galaxies. Also shown is the results of a separate analysis
+by by Hyde & Bernardi (unpublished) who fit deVaucouleurs models to
+SDSS images of extended elliptical galaxies, using their own sky
+subtraction algorithm, which is less likely to overestimate the sky
+level near extended sources.  Their results are quite consistent with
+the simulations.</p>-->
+
+<img alt="Sky misestimation near bright galaxies" src="http://www.sdss.org/dr7/products/catalogs/sersic.jpg">
+
+<p style="width:640px;text-align:center;font-style:italic;">Difference between measured model and true <var>r</var>-band magnitudes of a 
+series of simulated galaxies with S&eacute;rsic index of 1 (disk galaxies; upper 
+panel) and 4 (elliptical galaxies; lower panel).<!-- These galaxies followed the 
+magnitude-effective radius relation observed in the VAGC, and were either 
+circularly symmetric (circles) or had an axis ratio of 0.5 (diamonds). They were 
+added to random areas of real high-latitude fields, and run through <var>photo</var>. 
+The simulated elliptical galaxies show a systematic offset even at the faint end; 
+this is due to the fact that the <var>photo</var> model magnitude code assumes a 
+truncation beyond 7 scale-lengths, while the "true" magnitude has no such truncation. 
+This is a 0.05 mag effect.</p>-->
+<hr />
+<!--
+OLD CAPTION
+<p
+style="width:640px;text-align:justify"><em>Upper panel:</em> The error
+in the <var>r</var> band model magnitude of simulated galaxies with an
+<var>n=1</var> (exponential) profile (blue hexagons) and an
+<var>n=4</var> (de Vaucouleurs) profile (red crosses) as determined by
+the photometric pipeline, as a function of magnitude.  Fifteen
+galaxies are simulated at each magnitude for each profile.  Also shown
+are the analogous results from Hyde & Bernardi (unpublished) for three
+early-type galaxy samples: 54 nearby (<var>z<0.03</var>) early-type
+galaxies from the ENEAR catalog <a
+href="http://adsabs.harvard.edu/abs/2000AJ....120...95D">(da Costa et
+al. 2000)</a> in black; 280 brightest cluster galaxies from the C4
+catalog <a
+href="http://adsabs.harvard.edu/abs/2005AJ....130..968M">(Miller et
+al. 2005)</a> in green; and 9000 early-type galaxies from the <a
+href="http://adsabs.harvard.edu/abs/2003AJ....125.1817B">Bernardi et
+al. (2003a)</a> analysis in magenta.  <em>Lower panel:</em> The
+fractional error in the scale size <var>r<sub>e</sub></var> as a
+function of magnitude from the simulations and the Hyde & Bernardi
+analysis.  </p> --></div>

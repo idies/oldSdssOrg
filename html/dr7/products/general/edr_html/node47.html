@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>The Final Calibration Pipeline</TITLE>
+<META NAME="description" CONTENT="The Final Calibration Pipeline">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html636" HREF="node48.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html634" HREF="node44.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html628" HREF="node46.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html637" HREF="node48.html">Assessment of Photometric Calibration</A>
+<B>Up:</B> <A NAME="tex2html635" HREF="node44.html">Photometric Calibration</A>
+<B> Previous:</B> <A NAME="tex2html629" HREF="node46.html">Monitor Telescope Pipeline</A>
+<BR> <P>
+<H3><A NAME="SECTION00045300000000000000">The Final Calibration Pipeline</A></H3>
+<P>
+<A NAME="swphotocalfcalib">&#160;</A>
+<P>
+The final calibration pipeline works much like <TT>mtpipe</TT>, computing
+the transformation between aperture photometry (or other photometry)
+as observed by the 2.5m telescope and the final SDSS photometric
+system.  The pipeline matches stars between a camera column of 2.5m
+data and an overlapping secondary patch.  Each camera column of 2.5m
+data is calibrated individually.  There are of order 100 stars in each
+patch in the appropriate color and magnitude range in the overlap.
+The locations of these secondary patches are indicated in
+Figure&nbsp;<A HREF="node65.html#figSeeing">8</A>.
+<P>
+The transformation equations have the same form as
+those used by <TT>mtpipe</TT>, i.e., equation&nbsp;(<A HREF="node46.html#eqmtpipe1">15</A>).  Once again the <I>b</I> coefficient is set to 0.
+The extinction coefficient is taken from PT observations on the same
+night, linearly interpolated in time when multiple extinction
+determinations are available.
+ Second order extinction corrections
+are included for completeness, but in practice do not affect the
+photometry by more than 0.01 mag.   A single zeropoint <I>a</I> is computed
+from stars on all patches that overlap a given CCD in a given run.
+Observations are weighted by their estimated errors, and
+sigma-clipping is used to reject outliers. 
+At one time it was thought that a time dependent zero
+point might be needed to account for the fact that the 2.5m camera
+and corrector lenses rotate relative to the telescope mirrors and optical
+structure; however, it now appears that any variations in throughput
+are small compared to inherent fluctuations in the calibration of the
+patches themselves.  The
+statistical error in the zeropoint is constrained to be less than
+1.35% in <IMG WIDTH=16 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3203" SRC="img111.gif"> and <IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3205" SRC="img112.gif"> and 0.9% in <IMG WIDTH=44 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3283" SRC="img125.gif">.  However,
+systematic errors can be larger; we describe some of the tests of the
+consistency of our photometry in &#167;&nbsp;<A HREF="node48.html#swphotocalassess">4.5.4</A>.
+<P>
+One of the diagnostics of systematic problems is to plot residuals in
+the individual star observations as a function of magnitude or CCD
+column.  Figure&nbsp;<A HREF="node65.html#fignfcalibghosting">10</A> shows an example, which
+indicates a problem with ghosting internal to the 2.5m telescope and
+system.  This is most apparent in the <I>u</I> band, and is due to
+ghosting between the CCD and the <I>u</I> filter combined with
+vignetting of the out-of-focus ghost image.  At the edge of the field
+of view, especially columns 1 and 6 of the 2.5m imaging camera, this
+effect gives rise to a CCD column dependent magnitude error of up to
+10% in <IMG WIDTH=16 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3203" SRC="img111.gif"> for a small range of CCD columns in the 2.5m imaging
+camera. The effect is present to a smaller degree (no more than 3%)
+in the other filters.  The effect exists in the EDR 
+in runs 752, 756, 1336, 1339, 1356 and 1359, and it will be
+addressed for future data releases.
+<P>
+For the first two runs included in the EDR
+(94 and 125) the full telescope baffling system was not
+in place.  Stray light entering the telescope
+affected the median sky flatfields, causing systematic errors in the
+photometric calibration.   We correct for this stray light
+in a two step process.  First, these runs are processed assuming that
+there is no stray light.  Significant photometric residuals from
+comparisons to our PT calibration patches
+(&#167;&nbsp;<A HREF="node46.html#swphotocalmtpipe">4.5.2</A>) are attributed to the presence of the
+stray light.  The peak-to-peak variation of this effect is 10%. We
+calculate a correction vector to compensate for this, and apply it
+during a second processing of the runs.  Once this is done, the data
+show no detectable residual effect from the scattered light.
+<P>
+<HR><A NAME="tex2html636" HREF="node48.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html634" HREF="node44.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html628" HREF="node46.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html637" HREF="node48.html">Assessment of Photometric Calibration</A>
+<B>Up:</B> <A NAME="tex2html635" HREF="node44.html">Photometric Calibration</A>
+<B> Previous:</B> <A NAME="tex2html629" HREF="node46.html">Monitor Telescope Pipeline</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- This template is for "3rd level", 2 directories below DR1/doc -->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>spectrograph parameters - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" lang="en">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Spectrograph parameters and description</h1>
+
+<h2>Introduction</h2>
+
+<p>Each spectrographic exposure collects spectra from 640 points on the focal
+plane, most of them corresponding to objects. An aluminum plate with holes
+drilled at the desired locations fixes the points from which spectra will be
+gathered. When prepared for observation, this plate (usually called a plug
+plate) is mounted on a cartridge that can be quickly mounted and dismounted
+from the telescope. Optical fibers plugged into the holes in the plate carry
+light from the focal plane to slitheads attached to the cartridge. Each of
+the two slitheads accept light from 320 of the total of 640 optical fibers,
+and correspond to a spectrograph permanently mounted on the back of the
+telescope. Mounting a cartridge on the telescope brings the plug plate to
+Cassegrain focus and mates each slithead to its corresponding spectrograph.
+Each of the two spectrographs collect spectra on 2 SITe/Tektronix 2048 by
+2048 CCDs, one covering a wavelength range of 3800 &Aring; to 6100 &Aring;, and the
+other from 5900 &Aring; to 9100 &Aring;.</p>
+
+<p>A detailed description of the spectrographs can be found in the <a
+href="../technicalPaper/index.html">technical summary</a> and in the <a
+href="http://www.astro.princeton.edu/PBOOK/spectro/spectro.htm">project
+book</a>. This page summarizes the most important information needed to
+understand the data it produces.</p>
+
+<h2><a name="parameters">Spectrograph parameters</a></h2>
+
+<table border="1">
+  <caption></caption>
+  <tbody>
+    <tr>
+      <td>CCDs</td>
+      <td>4, 2048 &times; 2048, SITe/Tektronix, 49.2mm square</td>
+    </tr>
+    <tr>
+      <td>Channels</td>
+      <td>3800-6150&Aring; (blue), 5800-9200&Aring; (red)</td>
+    </tr>
+    <tr>
+      <td>Number of fibers</td>
+      <td>320 &times; 2</td>
+    </tr>
+    <tr>
+      <td>Fiber diameter</td>
+      <td>3"</td>
+    </tr>
+    <tr>
+      <td>Wavelength calibration</td>
+      <td>Hg, Cd, and Ne arc lamps, rms error of 0.07 pixels (10 km/s)</td>
+    </tr>
+    <tr>
+      <td>Flat field</td>
+      <td>quartz lamps</td>
+    </tr>
+    <tr>
+      <td>Flux calibration</td>
+      <td>Standard stars in each field, tied to colors observed with the
+        imaging camera</td>
+    </tr>
+    <tr>
+      <td>Pixel size</td>
+      <td>69 km/s</td>
+    </tr>
+    <tr>
+      <td>Spectral resolution</td>
+      <td>ranges from 1850 to 2200</td>
+    </tr>
+    <tr>
+      <td>Integration time</td>
+      <td>Exposures are taken until the cumulative mean S/N per pixel exceeds
+        4 for a fiducial fiber magnitude of g = 20.2 and i = 19.9, typically
+        3 exposures of 15 minutes each under good conditions.</td>
+    </tr>
+  </tbody>
+</table>
+<!-- end page content-->
+
+
+<h2>Instrument throughput</h2>
+
+<p><img alt="spectroscopic throughput" src="spectput.png"></p>
+<hr>
+<!-- hhmts start -->Last modified: Thu Apr  3 15:32:45 CST 2003
+<!-- hhmts end -->
+ <!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

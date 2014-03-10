@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Different Sky Coverage between Target and Best - SDSS DR7</title>
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+<h1>Instances of different sky coverage in target and best</h1>
+
+This note is to alert DR2/DR3 users to a few differences between
+the <a href="../glossary/index.html#target"><code>Target</code></a> imaging skyVersion area coverage and the <a href="../glossary/index.html#best"><code>Best</code></a>imaging skyVersion area coverage.
+<br><p>
+Every attempt was made to make the <code>best</code> area cover the same
+area as the <code>target</code> area, and to make the chunk boundaries
+the same.  For the most part the <code>target</code> and <code>best</code> start and endMu's
+for the same chunk of sky agree to within 1'', however there are a few
+exceptions which we list below.  For these few exceptions, if a whole
+stripe is considered, then the areas agree to 1'' --  only the 
+end/begin points of internal chunks within a stripe are slightly offset. 
+<br><p>
+The startMu and endMu coordinates listed below are
+in arcseconds, divide by 3600.0 to get degrees. These are inclined
+great circle coordinates and so mu = RA (J2000) only on stripes 10 and 82
+(the equator).  The numbers  can go beyond 360*3600 to avoid endMu &lt; startMu).
+<ul>
+<li>Stripe 9, startMu 614999: <code>best</code> ends at 724412, <code>target</code> ends at
+    723324</li>
+<li>Stripe 9, startMu 724412 (<code>best</code>) , startMu 723324 (<code>target</code>):
+	both end at 858918</li>
+    <br>Note that together the two stripe 9 chunks
+	both start at 614999 and end at 858918.</li>
+<li>Stripe 10, startMu 439001:
+	<code>best</code> ends at 533284, <code>target</code> ends at 522543</li>
+<li>Stripe 10, startMu 533284 (<code>best</code>), startMu 522543 (<code>target</code>):
+    <code>best</code> ends at 849998, <code>target</code> ends at 851094</li>
+<li>Stripe 10, startMu 849998 (<code>best</code>), startMu 851094 (<code>target</code>):
+	both end at 899949
+    <br>Note that together the three stripe 10 chunks
+	both start at 439001 and end at 899949.</li>
+<li>Stripe 82, startMu 1176576
+    <p><Code>Target</Code> and <Code>Best</Code> skyVersions go from  startMu = 1176576 to endMu = 1499432.
+    These chunks match in length, however note that 
+    in the '<Code>Best</Code>' version of the sky, we replace runs 1033/1056/94/125 with 
+    (improved quality) runs 3388, 3325 2662 and 3388.
+    We needed to minimize the impact of the 'astrometrically offset by 74 arcsec' 
+    early run 1056 and thus avoid 'gaps' in the filled <code>best</code> skyVersion of 
+    the stripe 82 between scanline (camCols) at the beginning of the run.  
+    This run 1056 exists in the 'resolved' <code>target</code> skyVersion, and we can't 
+    remove it from the <code>target</code> imaging data (or we lose that information), 
+    however, the plates (plates 371-380) were targeted off of run 1033/1056/94/125
+    have a slightly non-uniform tiling pattern (i.e. small horizontal gaps) where
+    no objects are present.
+    Large scale structure folks may wish to consider this information 
+    in making their region  masks.</p></li>
+</ul>
+<p>
+Users interested in large scale structure map calculations should note
+that the 'lambda limits' are not used for the three southern stripes,
+76, 82 and 86, instead the 'startMu' and 'endMu' limits are followed. 
+For the 'target' skyVersion of data (from which spectroscopic targets were
+selected), 'lambda limits' override mu limits in the Northern survey.
+For the 'best' version of sky (for DR2/DR3), 'lambda limits' are
+not recognized for any stripes, mu limits (as listed in the tsChunk files) 
+are always used when determining if an object is 'PRIMARY' (mode = 1) or 'SECONDARY' (mode = 2).
+<p>
+
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Wed May 19 16:24:57 CDT 2004
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

@@ -1,0 +1,8 @@
+Messier 81 is a gorgeous spiral galaxy 12 million light years away in the
+constellation Ursa Major. The distance to M81 is one of the best
+determined for a galaxy. This measurement was done using Cepheid
+variables, stars that vary in brightness as they pulse in size over a
+period of days. The absolute brightness of these stars is directly
+correlated with their pulse period. By measuring the apparent brightness
+and pulse periods of 30 Cepheids in M81 astronomers were able to calculate 
+the distance to this galaxy.

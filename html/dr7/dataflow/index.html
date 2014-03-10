@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Data Flow - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<a name="top">
+<h1>Data Flow: Telescope to Catalogs</h1>
+
+<h2>Introduction</h2>
+
+<p>The SDSS's primary data products are the survey photometry and the
+spectroscopic measurements for the quasar, galaxy and star samples.
+They can be accessed <!-- through the Catalog Archive Server database,
+or --> as binary (.fits) tables and images through the Data Archive
+Server (see the <a href="../access/index.html">archive access
+page</a>).  The Data Archive Server also contains intermediate
+data products.</p>
+
+<p>The storage structure of <!--  both archives (in particular --> the Data Archive
+Server<!--  ) --> reflects the way in which the data are acquired and processed.
+To help understand the archive structure and the logical relation
+between the various data products, this section gives a high-level
+description of the data flow from the telescopes through our pipelines
+into the archives. The <a href="../algorithms/index.html" >details of
+our algorithms</a> are described elsewhere.</p>
+
+<h2>Overview</h2> The   figure gives a  simplified description  of the
+data flow.  <img   src="./dataflow.png"  alt="Data  flow" align="left"
+vspace="20"><br clear="left">
+
+<p>All  observations  are done  at <a  href="http://www.apo.nmsu.edu/">
+Apache  Point Observatory</a>.  There is a drift-scan
+camera for <strong>2.5m Imaging</strong>. Based on the imaging survey,
+we select  targets  for the <strong>2.5m Spectroscopy</strong>  survey
+carried    out   with   a  640-fiber   spectrograph.   For photometric
+calibration,     there is a   conventional  CCD   camera  on the  0.5m
+Photometric   or  <strong>Monitor  Telescope</strong> (interchangeably
+called PT or MT).  The various pipelines  produce nearly 100 different
+types      of         data        files         (see    the         <a
+href="../dm/flatFiles/FILES.html">   Data Model</a> for        a
+description of  all  of  them), both   working  files and   scientific
+outputs.  Note that  the  names of files  in the  Data  Archive Server
+reflect their contents as well as  the name of  the pipeline which has
+created them.</p>
+
+<h3>Photometric / Monitor Telescope (PT/MT)</h3>
+<table border="1">
+  <thead valign="top">
+  <tr>
+    <th>Associated pipelines</th>
+    <th>Function</th>
+    <th>Scientific output</th>
+    <th>DAS filename</th>
+  </tr>
+  </thead>
+  <tfoot>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tfoot>
+  <tbody valign="top">
+  <tr>
+    <td><a href="../algorithms/edrpaper.html#sw-photocal-mtpipe"><code>mtpipe</code></a></td>
+    <td>Nightly extinction measurements;<br />
+	Photometric calibration of secondary standard patches</td>
+    <td>Extinction and photometric calibration information</td>
+    <td><a href="../dm/flatFiles/tsField.html"><code>tsField</code></td>
+  </tr>
+</table>
+  
+  
+<h3>2.5m Drift-scan camera</h3>
+<table border="1">
+  <thead valign="top">
+  <tr>
+  <th>Associated pipelines</th>
+    <th>Function</th>
+    <th>Scientific output</th>
+    <th>DAS filename</th>
+  </tr>
+  </thead>
+  <tfoot>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tfoot>
+  <tbody valign="top">
+  <tr>
+    <td><a href="../algorithms/edrpaper.html#sec:astrom"><code>astrom</code></a></td>
+    <td>astrometric calibration</td>
+    <td>astrometric coefficients</td>
+    <td><a href="../dm/flatFiles/tsField.html"><code>tsField</code><br />
+	<a href="../dm/flatFiles/fpC.html">WCS information in<code>fpC</code>
+    </td>
+  </tr>
+  <tr>
+    <td>Postage-stamp pipeline <a href="../algorithms/edrpaper.html#sw-psp"><code>psp</code></a></td>
+    <td>PSF characterization for each pixel as a function of time
+    <td>PSF images and parameters</td>
+    <td><a href="../dm/flatFiles/psPlan.html">PSF
+    </td>
+  </tr>
+  <tr>
+    <td><a href="../algorithms/edrpaper.html#sw-photo"><code>photo</code></a></td>
+    <td>image flat field, bias subtract, cosmic ray recognization <br />
+	    and object extraction </td>
+    <td>photometric coefficients</td>
+   <td><a href="../dm/flatFiles/tsObj.html">tsObj<br />
+<a href="../dm/flatFiles/tsField.html">tsField<br />
+<a href="../dm/flatFiles/fpC.html">fpC
+   </td>
+  </tr>
+
+</table>
+
+<h3>2.5m Spectrographs</h3>
+<table border="1">
+  <thead valign="top">
+  <tr>
+    <th>Associated pipelines</th>
+    <th>Function</th>
+    <th>Scientific output</th>
+    <th>DAS filename</th>
+  </tr>
+  </thead>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="../algorithms/edrpaper.html#sw-target"><code>target</code></a></td>
+    <td>Target selection</td>
+    <td>Completed Tile file</td>
+    <td><a href="../dm/flatFiles/tiBoundaries.html"><code>tiBoundaries</code></a></td>
+  </tr>
+  <tr>
+    <td><a href="../algorithms/edrpaper.html#sw-spectro-2d"><code>spectro2d</code></a></td>
+    <td>Extraction of spectra, wavelength and flux calibration,
+                  sky subtraction, combination of multiple exposures</td>
+    <td>Calibrated 1-d spectra grouped into FITS files by 
+                       plate (640 spectra/file)</td>
+    <td><a href="../dm/flatFiles/spPlate.html"><code>spPlate</code></a></td>
+  </tr>
+  <tr>
+    <td><a href="../algorithms/edrpaper.html#sw-spectro-1d"><code>spectro1d</code></a></td>
+    <td>Object classification, redshifts determination, measurement of line strengths and line indices</td>
+    <td>Measurements grouped into a fits file with the 1d spectrum (spSpec*.fits)</td>
+    <td><a href="../dm/flatFiles/spSpec.html"><code>spSpec</code></a></td>
+  </tr>
+  <tr>
+    <td><a href="../algorithms/redshift_type.html#specBS"><code>specBS</code></a></td>
+    <td>Alternative classification and redshift code</td>
+    <td>Outputs into binary FITS files</td>
+    <td>Files in DAS include: <code>spZbest, spZall, spZline</code> files.</td>
+  </tr>  
+</table>
+  
+
+<hr>
+
+<!-- Created: Tue Jul 30 21:49:21 DST 2002 -->
+<!-- hhmts start -->Last modified: Tue Aug 26 17:19:38 CDT 2003
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+</html>

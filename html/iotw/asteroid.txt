@@ -1,0 +1,16 @@
+The object of interest in this image is a set of faint, blue, green, and red
+streaks in the upper half of the picture.  This object is an asteroid
+passing close to the earth at high angular velocity.  It moved from
+right to left during the 5 minutes that this image was taken.  Since each
+piece of sky is imaged in 5 filters in succession, the object showed up in
+different locations in each of the different filters.  Only 3 of the 5
+filters are used to make this image, giving rise to the 3 colored streaks.
+
+Near earth objects are rocks ranging in size from
+meters to kilometers. These objects are very important because of
+their likelihood of impacting the Earth.  The photometric data
+provided by SDSS will be invaluable for linking near earth objects to
+their parent populations.  Possible places they may have come from
+include the asteroid belt and extinct cometary nuclei.
+
+(Caption by Steve Kent, Tom Quinn)

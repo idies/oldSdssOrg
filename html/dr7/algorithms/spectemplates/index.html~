@@ -1,0 +1,336 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Spectral cross-correlation templates - SDSS DR1</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<h1>Spectral cross-correlation templates</h1>
+
+<p>One of the redshift measurements is carried out by
+cross-correlating each spectrum with each of 33 template spectra. Here
+we provide the template spectra.</p>
+
+<ul>
+  <li>All templates as fits files (same file format as <a
+      href="../../dm/flatFiles/spSpec.html"><code>spSpec*.fits</code></a>):
+      <a href="./spectemplatesDR1.tar.gz">spectemplatesDR1.tar.gz</a>
+      (1.8 MB)</li>
+</ul>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Spectral class</th>
+    <th>gif spectrum</th>
+    <th>Files</th>
+  </tr>
+<tr>
+<td> 1</td><td>Star</td>
+<td><a href="./spDR1-001.gif"><img alt="Template #1" src="./spDR1-001.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-001.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-001.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-001.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 2</td><td>Star</td>
+<td><a href="./spDR1-002.gif"><img alt="Template #2" src="./spDR1-002.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-002.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-002.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-002.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 3</td><td>Star</td>
+<td><a href="./spDR1-003.gif"><img alt="Template #3" src="./spDR1-003.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-003.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-003.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-003.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 4</td><td>Star</td>
+<td><a href="./spDR1-004.gif"><img alt="Template #4" src="./spDR1-004.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-004.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-004.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-004.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 5</td><td>Star</td>
+<td><a href="./spDR1-005.gif"><img alt="Template #5" src="./spDR1-005.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-005.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-005.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-005.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 6</td><td>Star</td>
+<td><a href="./spDR1-006.gif"><img alt="Template #6" src="./spDR1-006.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-006.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-006.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-006.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 7</td><td>Star</td>
+<td><a href="./spDR1-007.gif"><img alt="Template #7" src="./spDR1-007.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-007.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-007.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-007.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 8</td><td>Star</td>
+<td><a href="./spDR1-008.gif"><img alt="Template #8" src="./spDR1-008.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-008.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-008.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-008.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 9</td><td>Star</td>
+<td><a href="./spDR1-009.gif"><img alt="Template #9" src="./spDR1-009.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-009.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-009.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-009.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 10</td><td>Star</td>
+<td><a href="./spDR1-010.gif"><img alt="Template #10" src="./spDR1-010.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-010.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-010.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-010.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 11</td><td>Star</td>
+<td><a href="./spDR1-011.gif"><img alt="Template #11" src="./spDR1-011.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-011.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-011.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-011.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 12</td><td>Late-type Star (M or later)</td>
+<td><a href="./spDR1-012.gif"><img alt="Template #12" src="./spDR1-012.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-012.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-012.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-012.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 13</td><td>Late-type Star (M or later)</td>
+<td><a href="./spDR1-013.gif"><img alt="Template #13" src="./spDR1-013.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-013.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-013.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-013.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 14</td><td>Late-type Star (M or later)</td>
+<td><a href="./spDR1-014.gif"><img alt="Template #14" src="./spDR1-014.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-014.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-014.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-014.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 15</td><td>Late-type Star (M or later)</td>
+<td><a href="./spDR1-015.gif"><img alt="Template #15" src="./spDR1-015.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-015.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-015.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-015.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 16</td><td>Late-type Star (M or later)</td>
+<td><a href="./spDR1-016.gif"><img alt="Template #16" src="./spDR1-016.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-016.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-016.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-016.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 17</td><td>Star</td>
+<td><a href="./spDR1-017.gif"><img alt="Template #17" src="./spDR1-017.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-017.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-017.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-017.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 18</td><td>Star</td>
+<td><a href="./spDR1-018.gif"><img alt="Template #18" src="./spDR1-018.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-018.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-018.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-018.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 19</td><td>Star</td>
+<td><a href="./spDR1-019.gif"><img alt="Template #19" src="./spDR1-019.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-019.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-019.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-019.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 20</td><td>Late-type Star (M or later)</td>
+<td><a href="./spDR1-020.gif"><img alt="Template #20" src="./spDR1-020.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-020.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-020.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-020.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 21</td><td>Star</td>
+<td><a href="./spDR1-021.gif"><img alt="Template #21" src="./spDR1-021.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-021.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-021.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-021.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 22</td><td>Star</td>
+<td><a href="./spDR1-022.gif"><img alt="Template #22" src="./spDR1-022.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-022.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-022.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-022.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 23</td><td>Star</td>
+<td><a href="./spDR1-023.gif"><img alt="Template #23" src="./spDR1-023.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-023.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-023.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-023.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 24</td><td>Galaxy</td>
+<td><a href="./spDR1-024.gif"><img alt="Template #24" src="./spDR1-024.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-024.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-024.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-024.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 25</td><td>Galaxy</td>
+<td><a href="./spDR1-025.gif"><img alt="Template #25" src="./spDR1-025.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-025.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-025.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-025.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 26</td><td>Galaxy</td>
+<td><a href="./spDR1-026.gif"><img alt="Template #26" src="./spDR1-026.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-026.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-026.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-026.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 27</td><td>Galaxy</td>
+<td><a href="./spDR1-027.gif"><img alt="Template #27" src="./spDR1-027.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-027.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-027.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-027.ps">ps</a></td></tr>
+</table></td>
+</tr>
+  <tr>
+<td> 28</td><td>Galaxy</td>
+<td><a href="./spDR1-028.gif"><img alt="Template #28" src="./spDR1-028.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-028.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-028.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-028.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 29</td><td>Galaxy</td>
+<td><a href="./spDR1-029.gif"><img alt="Template #29" src="./spDR1-029.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-029.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-029.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-029.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 30</td><td>QSO</td>
+<td><a href="./spDR1-030.gif"><img alt="Template #30" src="./spDR1-030.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-030.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-030.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-030.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 31</td><td>QSO</td>
+<td><a href="./spDR1-031.gif"><img alt="Template #31" src="./spDR1-031.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-031.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-031.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-031.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 32</td><td>QSO</td>
+<td><a href="./spDR1-032.gif"><img alt="Template #32" src="./spDR1-032.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-032.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-032.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-032.ps">ps</a></td></tr>
+</table></td>
+</tr>
+<tr>
+<td> 33</td><td>QSO</td>
+<td><a href="./spDR1-033.gif"><img alt="Template #33" src="./spDR1-033.gif" width="300"></td>
+<td><table border="0">
+<tr><td><a href="./spDR1-033.fit">fit</a></td></tr>
+<tr><td><a href="./spDR1-033.gif">gif</a></td></tr>
+<tr><td><a href="./spDR1-033.ps">ps</a></td></tr>
+</table></td>
+</tr>
+</table>
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar  3 15:22:59 CST 2003
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

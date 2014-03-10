@@ -1,0 +1,281 @@
+<?xml version="1.0"?>
+
+<iotwList xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <instructions>
+The file archive.html should be generated autamatically from archive.xml
+using something like this:
+bash$ xmllint --xinclude archive.xml | xsltproc archive.xslt - &gt; archive.html
+
+Thumnails can be generated easily using:
+bash$ convert -resize 192x192 obj.jpeg obj_thumbnail.jpeg
+  </instructions>
+
+  <iotw>
+    <name>NGC 5474</name>
+    <type>Galaxy</type>
+    <image>NGC5474.jpeg</image>
+    <thumbnail>NGC5474_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="NGC5474.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>CGCG 180-023</name>
+    <type>Galaxy</type>
+    <image>CGCG180-023.jpeg</image>
+    <thumbnail>CGCG180-023_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="CGCG180-023.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>NGC 3239</name>
+    <type>Galaxy</type>
+    <image>n3239.gif</image>
+    <thumbnail>NGC3239_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="n3239.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>Palomar 14</name>
+    <type>Globular Cluster</type>
+    <image>Palomar14.jpeg</image>
+    <thumbnail>Palomar14_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="Palomar14.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>NGC 4631</name>
+    <type>Galaxy</type>
+    <position>
+      <ra>190.533</ra>
+      <dec>32.5415</dec>
+    </position>
+    <image>NGC4631.jpeg</image>
+    <thumbnail>NGC4631_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="NGC4631.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>3C 273</name>
+    <type>Quasar</type>
+    <position>
+      <ra>187.2779154</ra>
+      <dec>2.0523883</dec>
+    </position>
+    <image>3C273.jpeg</image>
+    <thumbnail>3C273_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="3C273.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>NGC 4725</name>
+    <type>Spiral Galaxy</type>
+    <image>NGC472.jpeg</image>
+    <thumbnail>NGC4725_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="NGC4725.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>NGC 4565</name>
+    <type>Spiral Galaxy</type>
+    <image>NGC4565.jpg</image>
+    <thumbnail>NGC4565_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="NGC4565.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>62P/Tsuchinshan</name>
+    <type>Comet</type>
+    <image>Tsuchinshan.jpeg</image>
+    <thumbnail>Tsuchinshan_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="Tsuchinshan.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>NGC 5248</name>
+    <type>Spiral Galaxy</type>
+    <position>
+      <ra>204.383625</ra>
+      <dec>8.885056</dec>
+    </position>
+    <image>NGC5248.jpeg</image>
+    <thumbnail>NGC5248_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="NGC5248.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>NGC 3737</name>
+    <type>Galaxy group</type>
+    <position>
+      <ra>173.901625</ra>
+      <dec>54.948556</dec>
+    </position>
+    <image>NGC3737.jpeg</image>
+    <thumbnail>NGC3737_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="NGC3737.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>Messier 87</name>
+    <type>Elliptical Galaxy</type>
+    <position>
+      <ra>187.7059304</ra>
+      <dec>12.3911231</dec>
+    </position>
+    <image>M87_big.jpeg</image>
+    <thumbnail>M87_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="M87.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>Messier 64</name>
+    <type>Spiral Galaxy</type>
+    <position>
+      <ra>194.182333</ra>
+      <dec>21.681083</dec>
+    </position>
+    <image>M64.jpeg</image>
+    <thumbnail>M64_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="M64.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>NGC 7814</name>
+    <type>Spiral Galaxy</type>
+    <position>
+      <ra>0.812042</ra>
+      <dec>16.145417</dec>
+    </position>
+    <image>NGC7814.jpeg</image>
+    <thumbnail>NGC7814_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="NGC7814.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>IZw18</name>
+    <type>Compact Blue Dwarf Galaxy</type>
+    <position>
+      <ra>143.508467</ra>
+      <dec>55.241073</dec>
+    </position>
+    <image>IZw18.jpeg</image>
+    <thumbnail>IZw18_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="IZw18.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>VIRGOHI21</name>
+    <type>Galaxy</type>
+    <position>
+      <ra>184.47333</ra>
+      <dec>14.756944</dec>
+    </position>
+    <image>VIRGOHI21.jpeg</image>
+    <thumbnail>VIRGOHI21_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="VIRGOHI21.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>NGC 288</name>
+    <type>globular cluster</type>
+    <position>
+      <ra>13.197706</ra>
+      <dec>-26.589901</dec>
+    </position>
+    <image>ngc288.jpeg</image>
+    <thumbnail>ngc288_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="ngc288.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>NGC 4438 and NGC 4435</name>
+    <type>galaxy pair</type>
+    <position>
+      <ra>186.9399741</ra>
+      <dec>13.0088263</dec>
+    </position>
+    <image>ngc4438.jpeg</image>
+    <thumbnail>ngc4438_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="ngc4438.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>NGC 1491</name>
+    <type>HII region</type>
+    <position>
+      <ra>60.80651</ra>
+      <dec>51.31608</dec>
+    </position>
+    <image>n1491.jpeg</image>
+    <thumbnail>n1491_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="n1491.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>Messier 44</name>
+    <type>open cluster</type>
+    <position>
+      <ra>130.0925</ra>
+      <dec>19.6721</dec>
+    </position>
+    <image>beehive.jpg</image>
+    <thumbnail>beehive_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="beehive.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+  <iotw>
+    <name>NGC 2403</name>
+    <type>spiral galaxy</type>
+    <position>
+      <ra>114.214167</ra>
+      <dec>65.602556</dec>
+    </position>
+    <image>n2403.jpg</image>
+    <thumbnail>n2403_thumbnail.jpeg</thumbnail>
+    <caption>
+       <xi:include href="n2403.txt" parse="text"/>
+    </caption>
+  </iotw>
+
+
+</iotwList>

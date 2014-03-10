@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorial: Getting Flags and Proper Motion for a List of 
+Targets- SDSS DR1</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Tutorial: Getting Flags and Proper Motion for a List of 
+Targets</h1>
+
+<p>The following procedure outlines how to use the CAS Imaging Query Server 
+(IQS) to obtain flags and proper motion for a list of targets.</p>
+<p><b><font size="4">Procedure</font></b></p>
+<ol class="tut">
+  <li>Access the <a
+      href="http://cas.sdss.org/astro/en/tools/search/IQS.asp">SDSS
+      Imaging Query Server (IQS)</a>.</li>
+  <li>Select whether you want html output to look at the results in
+      your browser, or csv output to save them to a file which you can
+      later upload to the Data Archive Server to retrieve images or spectra.</li>
+  <li>In the Imaging parameters window, select the list of parameters you want. If you
+      will be using the results to collect data from the DAS, you will need to select 
+      the "minimal" set.
+      They are listed by alphabetical order. The list and some explanations are 
+      given in <a href="../dm/flatFiles/tsObj.html"> the tsObj file description
+      </a>. Flags are described 
+      in <a href="../products/catalogs/flags.html">the photometric flags page</a>. You can select 
+      one block of contiguous items by using the usual shift-click, or
+      non-contiguous itmes using ctrl-click.</li>
+  <li>Select <a
+      href="../glossary/index.html#target"><code>Target</code></a> imaging
+      to get and query on the imaging parameters used for the spectroscopy
+      (positions, selection,...). Select <a
+      href="../glossary/index.html#best"><code>Best</code></a> to get
+      and select on the imaging parameters corresponding to the most
+      recent observations and runs of the photometric pipeline.</li>
+  <li>In the &quot;Position Constraints&quot; panel you can search a rectangular area, a 
+      circular area (Cone Search), or for the closest object only
+      (Proximity Search). For the Proximity Search, your upload file (or the
+      window containing the coordinates) must have as the first line
+      &quot;ra,dec,sep&quot;, and the separation must be specified in
+      arcseconds (max 10). If you specify both an upload file and give
+      coordinates in the window, the upload file will be used.</li>
+  <li>In the &quot;Imaging Constraints&quot; you can place constraints
+      based on magnitudes, colors or flags.</li>
+  <li>Submit your query</li>
+</ol>
+
+<p>To get fits images, e.g., of your targets:
+<ol class="tut">
+  <li>Select csv output and save the csv file to disk.</li>
+  <li>Go to the <a href="http://das.sdss.org/www/html/post_fields.html">DAS
+      imaging data retrieval form</a>.</li>
+  <li>Select "All data" for the data release choice, because the CSV generated 
+      by the "minimal" columns as instructed above includes the rerun.</li>
+  <li>Select the result csv file from above in the "select file to
+      upload" box.</li>
+  <li>Click on "Submit Request" at the bottom of the page.</li>
+  <li>Under "File types," select the types of files you want to
+      download (fpC or drC for fits images, for example).
+  <li>Since either "wget" or "rsync" under the "Download Selection"
+      section, depending on how you want to download your data.</li>
+  <li>Hit the "request" button at the bottom of the page. When
+      queried by your browser, choose where to save the file.</li>
+  <li>Follow the instructions in
+      the <a href="http://das.sdss.org/www/html/das2.html#interactive">Interactive
+      download tools</a> section of the DAS home page to download the
+      files you requested.</li>
+</ol>
+
+<hr>
+<!-- hhmts start -->Last modified: Tue Jul 26 20:45:31 CDT 2005
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+
+</html>

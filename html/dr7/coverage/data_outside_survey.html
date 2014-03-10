@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Data outside the survey area - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Data outside the survey area</h1>
+
+<p>There are tsObj files which have no or few primary objects
+in the <code>target</code> version because they lie outside the 
+<a href=atStripeDef.par>lambda limits</a> in a number of stripes (they have been made primary in the
+<code>best</code> version).  As a consequence, querying the
+<code>target</code> photometry catalogs for primary objects in this
+part of the sky will not return any objects, although they do exist in
+the database.</p>
+
+<p>Here is the list of <a
+href="../glossary/index.html#field">fields</a> which have no or few
+primary objects in <code>target</code> in DR3.</p>
+
+<pre>
+stripe 10:
+    run   fields
+    1239  11-33
+    756   41-63
+    745   534-609
+    752   636-711
+stripe 12:
+    run   fields
+    2125  13-32
+    2126  11-29
+stripe 34:
+    run   fields
+    2131  17-34
+    2137  47-64
+stripe 35:
+    run   fields
+    2328  168-179
+    2305  168-180
+stripe 36:
+    run   fields
+    2248  263-274
+    2335  136-148
+stripe 37:
+    run   fields
+    1350  20-23
+    1402  11-14
+</pre>
+
+<p>Another thing to watch out for is that the mu limits in the
+tsChunk*.par files will therefore extend beyond the survey lambda
+limits. A consequence is that the <a
+href="../products/images/use_masks.html">mask</a> csv's, which use these
+mu limits, will extend beyond the lambda limits as well.</p>
+
+<hr>
+<!-- hhmts start -->Last modified: Tue Jun 20 18:29:59 BST 2006
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

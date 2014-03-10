@@ -1,0 +1,47 @@
+I have used the SDSS spectroscopic and photometric observations of AGN
+to select and study in detail a rare class of AGN with double-peaked
+Balmer line profiles. For my thesis I worked on double-peaked AGN
+selected based on their Halpha line profiles, which restricted the
+sample to redshifts smaller than z<0.33.  The characteristic
+double-peaked line shapes most likely trace the rotation of the
+accretion disks surrounding the supermassive black holes in AGN.  With
+the help of theoretically motivated disk illumination patterns and the
+resulting disk surface-emissivity, detailed studies of individual line
+shapes can constrain the disk inclination and the size of the line
+emitting region and distinguish between axisymmetric and
+non-axisymmetric disks. The distribution of model disk parameters
+inferred from the observed line profiles can be used to test AGN
+unification schemes and disk stability at large distance (few thousand
+to about ten thousand gravitational radii) from the central black
+hole. Moreover, characterizing the general properties of the disk
+emission AGN in comparison with a volume limited sample of all AGN
+observed with the SDSS provides clues to theories concerning the
+accretion disk emission contribution to the low-ionization lines of
+all AGN.
+
+SDSS has already produced the largest existing sample of disk-emission
+candidates (Strateva, I. V., Strauss, M. A., Hao. L., et al. 2003).
+The excellent photometry and asymmetry are necessary for AGN target
+selection and the large area of sky which would be covered by the
+survey's end guarantees the discovery of more double-peaked AGN
+despite their rarity. Less than 3% of all z<0.33 AGN already surveyed
+(as of June 2002) had Halpha lines indicative of disk emission, but
+only about 1/4 of those (a total of 23 objects to date) were
+consistent with the simplest axisymmetric disk models, which allow
+unambiguous model fits. In order to enlarge the sample size, it is
+essential to extend the search to larger areas as well as redshifts
+(using the Hbeta and MgII lines) as SDSS data becomes available. A
+large sample is also essential to constrain the multiwavelenght
+properties of the disk-emitters as only 25% and 40% of the sample has
+radio or X-ray counterparts, found by FIRST and ROSAT position
+matches, respectively. 
+
+I will be moving to Pennsylvania State University in January 2004 to
+work as a postdoc to Dr. Niel Brandt and Dr. Donald Schneider. At Penn
+State I would like to continue working on disk emission by enlarging
+the SDSS double-peaked sample. In order to continue and expand this
+work I will need access to the SDSS photometry and spectroscopy of all
+low redshift AGN (z<1.9, where the MgII line region is still within
+the observed range). 
+
+			Iskra Strateva

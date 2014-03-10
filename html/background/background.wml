@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="SDSS General Information">
+<title>SDSS General Information</title>
+</head>
+
+<sdss-page select="background">
+
+<p><font size="+1"><strong>
+<a href="science.html">The Science of the SDSS</a><br>
+<a href="site.html">Apache Point Observatory</a><br>
+<a href="telescope.html">Details of the Survey Telescope</a><br>
+<a href="data.html">Data Processing Challenges</a><br>
+</strong></font></p>
+
+<h2>Mapping the Universe</h2>
+
+<p>Mapmaking, laying the gridwork for reality, is an activity central to
+the step-by-step advance of human knowledge.  The last decade has seen
+an explosion in the scale and diversity of the mapmaking enterprise,
+with fields as disparate as genetics, oceanography, neuroscience, and
+surface physics applying the power of computers to recording and
+understanding enormous and complex new territories.  This ability to
+record and digest immense quantities of data in a timely way is changing
+the face of science.  The Sloan Digital Sky Survey, the most ambitious
+astronomical survey project ever undertaken, will bring this modern
+practice of comprehensive and quantitative mapping to cosmography, the
+science of mapping the universe and determining our place in it.</p>
+
+<p>The Sky Survey will systematically map one-quarter of the entire sky,
+producing a detailed image of it and determining the positions and
+absolute brightnesses of more than 100 million celestial objects.  It
+will also measure the distance to a million of the nearest galaxies,
+giving us a three-dimensional picture of the universe through a volume
+one hundred times larger than that explored to date.  The Sky Survey
+will also record the distances to 100,000 quasars, the most distant
+objects known, giving us an unprecedented hint at the distribution of
+matter to the edge of the visible universe.</p>
+
+<p>The Sky Survey is the latest in an ancient and honorable tradition of
+surveying the sky.  Many of humanity's earliest permanent records
+describe the attempts to frame the universe.  The Sky Survey will
+advance this tradition in a number of ways.  As the first large-area
+survey to use electronic light detectors, the image it produces will be
+substantially more sensitive and accurate than earlier surveys, which
+relied on photographic techniques.  The results of the Sky Survey will
+be available to the scientific community electronically, both as images
+and as precise catalogs of all the objects discovered.  The Sky Survey
+also represents a significant increase in scale.  The total quantity of
+information produced, about 15 terabytes (trillion bytes), rivals the
+information content of the Library of Congress.</p>
+
+<p>By systematically and sensitively observing such a large fraction of
+the sky, the Sky Survey will have a significant impact on astronomical
+studies as diverse as the large-scale structure of the universe, the
+origin and evolution of galaxies, the relation between dark and luminous
+matter, the structure of our own Milky Way, and the properties and
+distribution of the dust from which stars like our sun were created.  It
+will represent a new reference point, a field guide to the universe at
+the millenium, which will be used by scientists for decades to come.</p>
+
+<address>
+<strong>Background page credits:</strong> Diana Steele and Anne Wenzel
+</address>
+
+</sdss-page>
+
+</html>

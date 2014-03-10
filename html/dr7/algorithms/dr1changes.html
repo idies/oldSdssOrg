@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Changes from EDR to DR1 - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<a name="top"></a>
+<h1>Changes from EDR to DR1</h1>
+
+<p>The SDSS data, both imaging and spectroscopy, are processed through
+an extensive series of software pipelines, which have been developed
+over a number of years.  The versions of the software used for the
+Early Data Release (EDR) met most (although not quite all) of our
+scientific requirements.  This software and its performance is
+described in detail in
+<a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123..485S&db_key=AST&high=3c76c4134306290"
+target="_parent"> 
+Stoughton et al (2002)</a> (hereafter, EDR paper), 
+where a number of known problems and caveats are laid out.  Since that
+time, there have been substantial revisions to all the pipelines
+which have been used to process the DR1 data; this document describes
+the most important of these changes and the effect that these have on
+the science outputs of the survey.  Remaining known problems are
+described as well. A summary description of DR1 is given in the <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003AJ....126.2081A">DR1 paper</a>
+(Abazajian et al 2003).</p>
+
+<h2>		Photometric Calibration </h2>
+
+<p>As described in the EDR paper (sections 3.2.1 and 4.5), our
+photometric calibration system is complicated by the fact that we
+calibrate with a separate telescope (the 20-inch 'Photometric
+Telescope', or PT) from the one with which the imaging data are taken
+(i.e., the 2.5m).  Because of unfortunate properties of the filters
+used in these observations, the effective band-passes on the PT and
+the 2.5m differ systematically.  Our previous formalism for carrying
+out the photometric calibration took this into account in an
+approximate, and not completely self-consistent way.  We have now
+reformulated the photometric equations, so that we work directly in
+the natural system of the 2.5m, making the relation between detected
+counts and magnitude a simple one. The exact details are described in
+this <a href="./sdssphot.ps">definition of the SDSS photometric system
+(.ps, 80 kb)</a>.  (See also <a href=./jeg_photometric_eq_dr1.html>
+this webpage</a> for a summary of the photometric equations now in
+use.)</p>
+
+<p>One consequence of making the photometry self-consistent is that we
+no longer have to indicate our photometry as preliminary with the
+asterisk notation.  Thus photometry as measured by the 2.5m, and as
+released as part of DR1, should be referred to as <var>u g r i z</var>
+(and not <var>u* g* r* i* z*</var>).  Note that the mean colors of
+stars on the old and new systems (i.e., <var>u*g*r*i*z*</var>
+vs. <var>ugriz</var>) have been forced to be the same.</p>
+
+<h3>Conversion to AB magnitudes is difficult</h3>
+
+<p>As Section 4.5 of the EDR paper discusses, putting these magnitudes
+on a consistent AB system (i.e. converting the magnitude zeropoint
+into physical flux units) is tricky.  We expect that our <var>u g r i
+z</var> photometry is not exactly on the AB system, but we estimate
+from several lines of argument that the <var>g-r</var>,
+<var>r-i</var>, and <var>i-z</var> colors are nearly AB to within
+about 3%.  We estimate that the u-g color is too red by about 5%
+(again with about 3% of uncertainty), in the sense that
+<var>(u-g)</var>(AB) = <var>(u-g)</var>(SDSS) - 0.05.  We are
+continuing to work on measuring and cross-checking the exact
+photometric AB zeropoints.
+
+Note that our <i>relative</i> photometry is quite a bit better than
+these numbers would imply; repeat observations show that our
+calibrations are better than 2%.
+
+<h2>	     The Photometric Pipeline</h2>
+
+<p>This is the code that flat-fields and bias subtracts the images,
+corrects for cosmic rays and bad columns, and finds and measures the
+properties of objects.  As described in Section 4.5.4 of the EDR
+paper, the flat fields are affected by scattered light, especially in
+the u-band, thus giving systematically incorrect photometry.  We have
+now characterized the flat fields much more accurately, and reduced
+this systematic effect to be no larger than 2% in g, r, i and z, and
+3% in u.  RMS statistics are substantially better; uncertainties in
+the flat fields contribute less than 1% rms to the photometric error
+in u, and less than 1/2% in all other bands.  </p>
+
+<h3>Improved PSF fitting means improved photometric calibration</h3>
+
+<p>Much of the photometric calibration depends on a detailed
+understanding of the Point Spread Function (PSF); both its width as a
+function of position and time, and its outer extent in order to carry
+out an aperture correction (EDR paper Section 4.4.5.2).  The old
+version of the pipelines had trouble following these variations when
+the PSF was changing rapidly; this code has been made substantially
+more robust now, and should remove residual effects in the photometry
+as a function of seeing.   It is still true that there are small
+regions of the data in which the seeing variations are so rapid (FWHM
+changing by more than 0.2 arcsec in a minute) that the current code
+will have systematic errors, but these errors are estimated and
+propagated through to the quoted errors in the PSF photometry. 
+</p>
+
+<h3>Non-linearity correction applied</h3>
+
+<p> There is a small but measureable non-linearity in the response of
+the photometric CCD's, measuring several percent at saturation.  This
+is now corrected for explicitly.  This is important, as the
+photometric calibration is tied down at the bright end, where this
+non-linearity can matter.  See the <a
+href="../instruments/imager/nonlinearity.html">non-linearity
+documentation</a> for details.</p>
+
+<h3>Improved cosmic-ray rejection</h3>
+
+<p> Cosmic rays are recognized as such by their sharp gradients
+relative to the PSF.  This is effective in removing the vast majority
+of them but, as described in <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2001AJ....122.2833F">Fan
+et al (2001)</a>, is not perfect, especially when looking for rare
+objects detected in only one band.  That paper describes an enhanced
+routine to look for signs that a given detection might be a cosmic ray
+masking as an object; this routine is now run as part of PHOTO.  A
+flag, OBJECT2_MAYBE_CR, is set for objects which are suspected to be
+cosmic rays.</p>
+
+<a name="deblender"></a><h3>Deblender improvements</h3>
+
+<p> The deblender (EDR Paper 4.4.3) separates overlapping images of
+galaxies and stars.  It had the unfortunate behavior of often
+shredding large galaxies with substructure into several pieces,
+especially brighter than r ~15 mag.  This behavior has been
+suppressed, and the vast majority of bright galaxies are now treated
+properly by the deblender.
+  The deblender works by noticing peaks in the image and assigning to
+each a template shape from which to carry out the deblending.  If two
+templates were substantially the same (i.e., if they were close to
+degenerate), the deblender tended to give unphysical results.  This
+was fixed by removing from the list of templates those that were close
+to degenerate.  The photo flag <code>OBJECT2_DEBLEND_DEGENERATE</code>
+is set to indicate parents for which this template pruning has
+happened.  A related useful flag is
+<code>OBJECT2_BRIGHTEST_GALAXY_CHILD</code>, which is set for that
+child in a complicated deblend that is probably associated with the
+bright galaxy in question (as the name implies). See the <a
+href="../products/catalogs/flags.html">deblending flags
+information</a>.</p>
+
+<h3>Adaptive moments added</h3>
+
+<p> In addition to the object shape measures described in Section
+4.4.6 of the EDR paper, the photometric pipeline now calculates
+so-called adaptive moments which weight the photons in a
+close-to-optimal way for weak lensing measurements of faint objects.
+These are described in detail in the <a
+href="./adaptive.html">Adaptive Moments algorithm page</a>.  Briefly,
+the quantities calculated include: <blockquote> M_e1 = (Mxx -
+Myy)/(Mxx + Myy)<br> M_e2 = 2 Mxy/(Mxx + Myy)<br> M_rr_cc = Mxx +
+Myy<br> </blockquote></p>
+
+<p>Four items of the covariance matrix are stored.  Each term as listed
+is the square root of the corresponding entry in the covariance
+matrix; for negative covariance terms, the quantity 
+sign(x)*abs(sqrt(x)) is stored.  The terms are:
+<blockquote>
+M_e1e1Err: The square root of the e1 variance<br>
+M_e2e2Err: The square root of the e2 variance<br>
+M_e1e2Err: The square root of the e1-e2 covariance (with the sign convention above)<br>
+M_rr_ccErr: The square root of the rr-rr covariance<br>
+</blockquote>
+Also calculated is the fourth moment, M_cr4.  These moments are
+*uncorrected* for the local PSF, so information on the shape of the
+PSF is also output:
+<blockquote>
+M_e1_psf<br>
+M_e2_psf <br>
+M_rr_cc_psf<br>
+M_cr4_psf<br>
+</blockquote>
+</p>
+
+<p>Various flags are set indicating possible problems in determining
+these moments.  A complete description of the PHOTO flags is given in
+<a href="../products/catalogs/flags.html">the description of photo
+flags </a> (see the <a
+href="../products/catalogs/flags.html#mmoment">description of
+moment-related flags</a>).</p>
+
+<h3>Improved model fits for large galaxies</h3>
+
+<p>In previous versions of PHOTO (including that used for the EDR), the
+exponential and de Vaucouleurs models were fit only to the central
+4.4'' radius of each object. This was fine for distant, faint
+galaxies, but tended to give misleading results for nearby galaxies
+with large angular extent. The present code now does a much more
+reasonable fit to large galaxies, meaning that, for example, model
+magnitudes of bright galaxies are meaningful (but see below).  A small
+bug in the pipeline caused the model fluxes of a handful of bright
+galaxies to be estimated as negative; this is a rare occurrence, and
+roughly half the DR1 data have been reduced with a version of the
+pipeline that fixes this problem.</p>
+
+<h3>Model log-likelihoods reported to avoid numerical underflow</h3>
+
+<p>These model fits yield a formal likelihood.  In previous versions
+of PHOTO, these had a tendency to underflow to zero, especially for
+bright objects of high S/N.  The current pipeline now outputs the
+natural log of the likelihood as well, to enable these quantities to
+be useful.  </p>
+
+<h3>The "model magnitude bug" and DR1 beta</h3>
+
+<p> However, fixing one problem often reveals more subtle, hidden
+problems.  Comparing the model (i.e., exponential and de Vaucouleurs
+fits) and Petrosian magnitudes of bright galaxies shows a systematic
+offset of about 0.2 magnitudes (in the sense that the model magnitudes
+are brighter).  This turns out to be due to a bug in the way the PSF
+was convolved with the models (this bug affected the model magnitudes
+even when they were fit only to the central 4.4" radius of each
+object).  This caused problems for very small objects (i.e., close to
+being unresolved).  The code forces model and PSF magnitudes of
+unresolved objects to be the same in the mean by application of an
+aperture correction, which then gets applied to all objects.  The net
+result is that the model magnitudes are fine for unresolved objects,
+but systematically offset for galaxies brighter than at least 20th
+mag.</p>
+
+<p>The bug has been found and fixed in the latest version of the
+software, but unfortunately, too late for distribution in the DR1
+"beta" edition of the Data Archive Server.  We have carried out
+extensive tests with data run through both versions of the code. In
+summary:</p>
+<a name="dr1beta"></a>
+<ul>
+ <li>Colors derived from model magnitudes are almost completely
+insensitive to the bug.  Model magnitudes remain the optimal
+quantities to use for the colors of extended objects, especially at
+the faint end. </li>
+
+ <li>For photometry of unresolved sources, one should use PSF
+ magnitudes. </li>
+
+ <li>For photometry of resolved sources, one should use Petrosian
+magnitudes, especially at the bright end. </li>
+
+ <li>The scale sizes derived from the model fits are systematically
+wrong.  For exponential fits, the effective radii are systematically
+0.15" too large in the present code (almost independent of r_e
+itself), while for the de Vaucouleurs fits, they are roughly 25% too
+large (almost independent of r_e itself, for r_e > 2 arcsec).  These
+correction factors depend on seeing to some level, of course.</li>
+</ul>
+
+<h3>DR1 model magnitudes are better than EDR model magnitudes</h3>
+
+<p>Again, it is worth emphasizing that the model magnitudes in DR1 are
+appreciably better than those used in the EDR.  We are reprocessing
+all the DR1 data with a version of the photometric pipeline that
+addresses this remaining bug, and will release the results to the
+public in the final release of DR1 as soon as they are ready. Also see
+<a href="http://www.sdss.org/dr1/start/aboutdr1.html">About DR1</a>.</p>
+
+
+<h2> The Astrometric Pipeline</h2> <p>
+  The astrometric pipeline has been improved in a number of ways,
+including superior treatment of chromatic aberration.  That, together
+with the incorporation of improved centroids from the photometric pipeline
+and improved astrometric calibration catalogs, have
+improved the astrometric solutions.  Where UCAC data are
+available, the rms residuals per
+coordinate in the astrometric solutions are typically of order 60 mas.
+See
+<a href="http://www.journals.uchicago.edu/AJ/journal/issues/v125n3/202156/202156.html">Pier et al. (2003)</a>
+(AJ, or <a href="http://xxx.lanl.gov/abs/astro-ph/0211375">astro-ph/0211375</a>)
+for a complete description of
+the astrometric pipeline, including differences in the astrometry between
+EDR and DR1.
+</p>
+
+<h2> The Spectroscopic Pipelines </h2> <p>
+
+<h3>Improved spectrophotometry</h3>
+
+<p>The 2d spectroscopic pipeline (idlspec2d) has upgraded to much
+improved flat-fielding, bias subtraction, and handling of bad columns
+and pixels in the data.  Sky subtraction has been improved, especially
+in the red, by allowing a gradient in the sky brightness across a
+spectroscopic plate.  The spectrophotometric flux calibration is
+improved as well, as is the correction for absorption lines from the
+Earth's atmosphere.  The spectrophotometry is still not perfect,
+however; the detailed slope of the continuum of objects can be
+systematically off by as much as 20% in the flux in the extremes, and
+one occasionally finds artificial features near the dichroic (i.e.,
+around 6000 Angstroms) of a few percent, and features in the blue as
+large as 5-10%.  </p>
+
+<p> The above statements about the quality of the spectrophotometry
+hold for point sources.  For extended sources, the definition of
+spectrophotometry itself becomes somewhat ambiguous (see the
+discussion in Section 4.10 of the EDR paper).  In particular, in the
+presence of spectral gradients, the smear calibrations may be
+difficult to interpret for extended objects. </p>
+
+<h3>Saturated emission lines</h3>
+
+<p> On occasion, bright emission lines in objects such as compact
+star-forming galaxies will saturate, causing line ratios to become
+meaningless.  The relevant pixels are usually (but not always) flagged
+as having exactly zero flux errors.  </p>
+
+<h3>Better continuum and line fits</h3>
+
+<p>There have been upgrades to the continuum and line-fitting routines
+in the spectro1d pipeline.  Improved stellar templates have much
+improved the classification of unusual types of stars.  Comparison of
+two parallel versions of the redshift/classification code shows an
+error rate of only 0.5%, with an additional 1% of spectra of too low
+signal-to-noise ratio to allow unambiguous classification.  The DR1
+released spectroscopic data have used this comparison to recognize
+errors in the redshifts, and update them accordingly; we therefore
+expect that the number of incorrect redshifts in the final outputs for
+objects of reasonable signal-to-noise ratio to be no more than a few
+tenths of a percent. </p>
+
+<h3>Spectroscopic classification of galaxies and the eClass parameter</h3>
+
+<p>The galaxy spectral classification eigentemplates for DR1 are
+created from a much larger sample of spectra than were used in the
+EDR, now approximately 200,000.  The eigenspectra used in DR1 are an
+early version of those created by Yip et al.<!-- reference XXX --></p>
+
+<p>eClass is a single-parameter classifier based on the expansion
+coefficients (eCoeff1-5) (see EDR).  The sign of the second
+eigenspectrum has been reversed with respect to that of EDR; therefore
+we recommend using the expression atan(-eCoeff2/eCoeff1) rather than
+eClass as the single-parameter classifier.  This will retain the sense
+of negative values denoting early-type spectra as was the case in EDR
+and also Yip et al.  This will become the definition in spectro rerun
+23, which will be contained in the final release of DR1.</p>
+
+
+
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Fri Oct  1 13:54:24 CDT 2004
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

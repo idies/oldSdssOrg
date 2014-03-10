@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Algorithms: psPhot - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<a name="top"></a>
+<h1>New Reductions of SEGUE Imaging Data and Crowded Fields</h1>
+
+<h2><tt>PSPhot</tt> Photometry</h2>
+
+<p>
+As was noted in the DR6 paper, the SDSS imaging pipeline
+(<tt>photo</tt>) was designed to analyze data at high Galactic
+latitudes, and is not optimized to handle very crowded fields.  The
+Legacy survey is restricted to high latitudes, and photo performs
+adequately throughout the Legacy footprint. However, at lower
+latitudes, when the density of stars brighter than r=21 grows above
+5000 deg<sup><small>-2</small></sup>, the pipeline is known to fail,
+as it is unable to find sufficiently isolated stars to measure an
+accurate PSF, and the deblender does poorly with overly crowded
+images.  Many of the SEGUE scans probe these low latitudes, and we
+therefore adapted an alternative stellar photometry code
+called <tt>PSPhot</tt> developed by the Pan-STARRS team 
+(<a href="http://adsabs.harvard.edu/abs/2002SPIE.4836..154K">Kaiser et al. 2002;</a>
+Magnier 2006) 
+to be used for these runs.  In brief, we first
+run this code, and then run <tt>photo</tt> using the list of objects
+detected by <tt>PSPhot</tt> as input to help <tt>photo</tt>'s object
+finder in crowded regions.  This approach thus provides two sets of
+photometry at low latitudes.
+
+<p>
+Like e.g., DAOPHOT (
+<a href="http://adsabs.harvard.edu/abs/1987PASP...99..191S">Stetson 1987</a>),
+<tt>PSPhot</tt> begins with the assumption
+that every object is unresolved, and therefore does a better job than
+<tt>photo</tt> in crowded stellar regions.  It uses an analytical
+model based on Gaussians to describe the basic PSF shape, with
+parameters which may vary across the field of the image to follow the
+PSF variations.  It also uses a pixel-based representation of the
+residuals between the PSF objects and the analytical model, which is
+also allowed to vary across each field.  Candidate PSF stars are
+selected from the collection of bright objects in the frame by
+searching for a tight clump in the distribution of second moments.
+After rejecting outliers, the PSF fit parameters are used to constrain
+the spatial variations in the PSF model.
+
+<p>
+Unlike <tt>photo</tt>, <tt>PSPhot</tt> processes each frame separately
+(without any requirement of continuity of PSF estimation across frame
+boundaries), and each filter separately (without any requirement that
+the list of objects between the separate filters agree).  The pipeline
+outputs positions and PSF magnitudes (and errors) for each detected
+object; the results are found in the <tt>PsObjAll</tt> table in the CAS.
+The resulting photometry is then matched between filters 
+using a 1" matching radius.   While the estimated PSF
+errors output by <tt>photo</tt>  include a term from the uncertainty in
+the PSF fitting, this component is not included in the errors
+reported by <tt>PSPhot</tt>. 
+
+<p>
+ We then run <tt>photo</tt>, asking it to carry out photometry at the position
+ of each object detected by <tt>PSPhot</tt>, in addition to the positions of
+ objects <tt>photo</tt> itself detects.  This allows <tt>photo</tt> to do a much better
+ job of distinguishing individual objects in crowded regions.
+ In addition, the pipeline is fine-tuned to less aggressively look for
+ overlap between adjacent objects, and not to give up as soon as it
+ does at high latitude when faced with deblending large numbers of
+ objects.  We describe below how the photometry directly out of <tt>PSPhot</tt>,
+ and that from <tt>photo</tt>, compare. 
+
+<p>
+  The SDSS PSF photometry had an offset applied to it to make it agree
+  with aperture photometry of bright stars within a radius of
+  7.43''; this large aperture photometry was in fact
+  what was used by ubercalibration to tie all the photometry
+  together 
+(<a href="http://adsabs.harvard.edu/abs/2008ApJ...674.1217P">Padmanabhan et al. 2008</a>).
+  In crowded regions, finding
+  sufficiently isolated stars to measure aperture photometry becomes
+  difficult.  <tt>PSPhot</tt> photometry was forced
+  to agree with these large-aperture magnitudes for bright stars; this
+  was done in practice by determining, for each CCD in the imaging
+  camera for each run, the
+  average aperture correction needed to put the two on the
+  same system, using stars at Galactic latitude |b| > 15&ordm;, where
+  crowding effects are less severe. 
+
+<p>
+If any part of a SEGUE imaging run extended to |b| < 25&ordm;, the
+entire run was processed through the <tt>photo</tt> and <tt>PSPhot</tt> code.  This
+sample includes most (but not all) of the SEGUE imaging runs.
+These <tt>PSPhot</tt>+<tt>photo</tt> processed runs, designated with rerun=648 in the DR7
+CAS and DAS, are declared the <tt>Best</tt> reduction of these SEGUE
+runs.  There is also an inferior <tt>Target</tt> version of these SEGUE
+runs which was used to design SEGUE spectroscopic plates; it is based
+on <tt>photo</tt> alone, as the <tt>PSPhot</tt> code was unavailable at the time the
+plates were designed.  The <tt>Target</tt> reductions have rerun=40, and
+are segregated to the <tt>SEGUETARGDR7</tt> database.
+
+<p>
+  This processing revealed a problem with <tt>photo</tt>.  In crowded
+  regions, one cannot find sufficiently isolated stars to measure
+  counts through such a large aperture, and in practice, the code
+  corrected PSF magnitudes to an aperture photometry radius of 3.00&#148;
+  instead, whenever any part of a given run dipped below 
+  |b| = 8&ordm;.  Thus the aperture correction was underestimated, typically
+  by 0.03--0.06 mag, depending on the seeing.  This was not a problem
+  for any of the Legacy imaging scans, but is very much an issue for
+  the SEGUE runs.  Fortunately, there is a strong correlation, in a
+  given detector, between the aperture correction from a 3.00&#148;
+  aperture to a 7.43&#148; aperture (as measured on high-latitude fields),
+  and the seeing. We therefore applied this correction after the fact
+  to the <tt>photo</tt> PSF, de Vaucouleurs, exponential, and model
+  magnitudes for all SEGUE runs affected by this problem.  This was
+  carried out before ubercalibration, so these runs are
+  photometrically calibrated in a consistent way.
+
+
+<h2>Comparison of <tt>photo</tt> and <tt>PSPhot</tt> Photometry</h2>
+
+<p>
+The quality of the photometry produced by <tt>PSPhot</tt>, and by <tt>photo</tt> with
+the <tt>PSPhot</tt>-detected objects as input, 
+was evaluated by comparing the
+magnitudes computed by the two methods.  Within each field, we calculated the
+median of the difference of PSF magnitudes for stars with 
+14 < u,g,r,i,z < 20.  This median difference had an rms of 0.014
+mag.  Fields with a difference greater than 0.08 mag are suspect, and
+further investigation is needed to determine which of the two
+pipelines might be at fault. We followed 
+<a href="http://adsabs.harvard.edu/abs/2005AJ....130.1752M">McGehee et al. (2005)</a>
+to
+measure reddening-free colors of the same stars that track the stellar
+locus: 
+
+<center>
+<div id="reddening-free-colors"/>
+  Q<sub><small>gri</small></sub> = (g - r) - E<sub><small>gri</small></sub>(r - i), 
+<br>
+  Q<sub><small>riz</small></sub> = (r - i) - E<sub><small>riz</small></sub>(i - z), 
+<p>
+<em>Reddening-free colors</em>
+</center>
+
+where E<sub><small>gri</small></sub> = 1.582 and E<sub><small>riz</small></sub> = 0.987. 
+These are normalized to equal zero at high Galactic latitude (note
+that these colors do <em>not</em> include the u band).  
+    
+<p>
+Median Q<sub><small>gri</small></sub> and
+Q<sub><small>riz</small></sub> colors in each field were computed for
+objects identified as stars in each field, and satisfying magnitude
+and color cuts as follows: 14<(u,g,r,i,z)<20, 0.5<(u-g)<1.9,
+0.0<(g-r)<1.2, -0.2<(r-i)<0.8, and -0.2<(i-z)<0.6.  The Q-parameters
+were found to be lower by up to 0.1 mag at low Galactic latitudes; to
+remove this effect, we fit a model of a constant plus Lorentzian to
+the median Q values as a function of Galactic latitude, and subtracted
+it.  The distributions of the Q<sub><small>gri</small></sub> and
+Q<sub><small>riz</small></sub> values for both <tt>photo</tt>
+and <tt>PSPhot</tt> are compared as density plots here:
+
+<p>
+<div id="distribution-plots"/>
+<div style="width:500px;margin-right:auto;margin-left:auto">
+<img src="dr7-fig4.png"/><br>
+<em>
+The distribution of median Q<sub><small>gri</small></sub> and
+Q<sub><small>riz</small></sub> parameters measuring the position of
+the stellar locus within each field for the <tt>photo</tt> (left)
+and <tt>PSPhot</tt> (right) photometric pipelines; zero values are
+indicative of uniform photometry.  Within the Galactic plane (lower
+panels), the <tt>PSPhot</tt> values are more concentrated, but contain a
+higher number of systematic departures from the main locus.
+The <tt>PSPhot</tt> code in fact gives a tighter locus at high latitudes
+as well (upper panels).  Histogram equalization of the gray-scale was
+used to emphasize low density regions.
+</em>
+</div>
+
+<p>
+From the <a href="#reddening-free-colors">reddenining free color</a> equations, photometric
+errors in a single filter manifest themselves differently: &delta; g as
+a shift in Q<sub><small>gri</small></sub>, &delta; r as a line with
+slope dQ<sub><small>riz</small></sub>/dQ<sub><small>gri</small></sub>
+= -1/(1+E<sub><small>gri</small></sub>) = -0.35, &delta; i as a line
+with slope
+dQ<sub><small>riz</small></sub>/dQ<sub><small>gri</small></sub> =
+-(1+E<sub><small>riz</small></sub>)/E<sub><small>gri</small></sub> =
+-1.07, and &delta; z as a shift in Q<sub><small>riz</small></sub>.
+
+<p>
+The <tt>photo</tt> data in a given field was flagged as bad when
+either |Q<sub><small>gri</small></sub>| or
+|Q<sub><small>riz</small></sub>| > 0.12 mag (&ge;5&sigma;) as
+measured from <tt>photo</tt> magnitudes, and similarly for
+the <tt>PSPhot</tt> outputs.  Of course, a field could be flagged as bad
+in both sets of outputs.  By this criterion, about 2% of the fields
+processed with <tt>PSPhot</tt> were flagged bad based on
+the <tt>photo</tt> outputs, and 3.6% were bad based on <tt>PSPhot</tt>
+photometry.  The vast majority of the flagged fields are within
+15&ordm; of the Galactic plane, and essentially all the fields in
+which the median difference between <tt>photo</tt> and <tt>PSPhot</tt>
+photometry was greater than 0.08 mag in a given band were flagged as
+bad by the Q criteria.  This flag and the
+Q<sub><small>gri</small></sub> and Q<sub><small>riz</small></sub>
+quantities themselves can be found in the <tt>fieldQA</tt> table in the
+CAS.
+
+<p>
+Although more fields are flagged based on the <tt>PSPhot</tt> outputs,
+the <tt>PSPhot</tt> scatter in
+the <a href="#distribution-plots">ditribution plots</a> is tighter at
+both high and low Galactic latitudes than for <tt>photo</tt>.
+The <tt>PSPhot</tt> stellar photometry is therefore preferred for
+studies of the stellar locus (we have not fully assessed its
+robustness to outliers), but comes with the caveat that fields flagged
+bad should be identified in the <tt>fieldQA</tt> table and be culled.
+
+<p>
+An alternative check of SDSS photometry in dense stellar fields was carried
+out by 
+<a href="http://adsabs.harvard.edu/abs/2008ApJS..179..326A">An et al. (2008)</a>,
+who reduced the SDSS imaging
+data for crowded open and globular cluster fields using the
+DAOPHOT/ALLFRAME suite of programs (
+<a href="http://adsabs.harvard.edu/abs/1987PASP...99..191S">Stetson 1987</a>, 
+<a href="http://adsabs.harvard.edu/abs/1994PASP..106..250S">1994</a>).  
+At a stellar density of &sim;400 stars deg<sup><small>-2</small></sup> with r<20, they found
+&sim;2% rms variations in the difference between <tt>photo</tt> and
+DAOPHOT magnitudes in the scanning direction in all five bandpasses
+(see their Figure 3).  The systematic structures 
+are likely due to imperfect modeling of the PSFs in <tt>photo</tt>, given that DAOPHOT
+magnitudes exhibit no such large variations with respect to aperture photometry.
+In other words, the PSF variations were too rapid for the <tt>photo</tt> pipeline
+to follow over a time scale covered approximately by one field (&asymp;10'
+or &asymp;54 seconds in time).
+
+<p>
+<a href="http://adsabs.harvard.edu/abs/2008ApJS..179..326A">An et al. (2008)</a>
+further examined the accuracy of <tt>photo</tt> magnitudes in
+semi-crowded fields using three open clusters in their sample.
+Stellar densities in these fields were as much as &sim;10 times
+higher than those in the high Galactic latitude
+fields, but <tt>photo</tt> recovered &sim;80-90% of stellar objects
+in the DAOPHOT/ALLFRAME catalog.  
+<a href="http://adsabs.harvard.edu/abs/2008ApJS..179..326A">An et al. (2008)</a>
+found that these fields have
+only marginally stronger spatial variations in <tt>photo</tt> magnitudes than
+those at lower stellar densities.  
+
+<a name="footnotes"></a>
+<!--#include virtual="../dr7link.html"-->
+
+<hr>
+<!-- hhmts start -->Last modified: Tue Apr 15 12:00:12 CDT 2003
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body>
+</html>

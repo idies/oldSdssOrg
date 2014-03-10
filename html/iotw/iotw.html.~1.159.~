@@ -1,0 +1,16 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+<h1>
+<center>Perseus Galaxy Cluster</center>
+</h1>
+<center><img src="perseus.jpg"></center>
+
+<p> 
+Shown is a mosaic of the Perseus Galaxy cluster.  Similar to other large galaxy clusters, this cluster contains mostly old, elliptical galaxies.  Their yellowish hue is primarily due to older stellar populations, such as red giants.  The kinematics of these clusters are dominated by dark matter, which is detected by X-ray emission from intracluster gas.  The net effect of this dark matter causes the galaxies in this cluster to move faster than if their luminous matter was causing their motions.
+
+</p>
+
+<p><strong>(Caption by John Bochanski / Photo courtesy of Stephen Kent)</strong></p>
+
+<p><a href="archive.html">Go to the <em>SDSS Image of the Week</em> archive</a></p>
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->

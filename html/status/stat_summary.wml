@@ -1,0 +1,67 @@
+<html><body>
+<!--Table Goes Here -->
+<table width=100% border=1 cellspacing =0 cellpadding=0>
+<tr>
+<td></td><td>Base</td> <td>Done</td>
+ <td>Percent Complete</td>
+</tr>
+<!--END Table Row ----------------------------------------!>
+<tr>
+<td>
+Imaging
+</td>
+<td>
+8452 (Scanned Square Degrees)
+</td> 
+<td>
+2706
+</td>
+<td>
+<IMG SRC=statSummaryimg.gif><BR>
+32 % as of Aug 05, 2001
+</td>
+</tr>
+<!--END Table Row ---------------------------------!>
+<tr>
+<td>
+Spectroscopy
+</td>
+<td>
+1688 (Tiles)
+</td> 
+<td>
+268
+</td>
+<td>
+<IMG SRC=statSummaryspec.gif><BR>
+15 % as of Jul 31, 2001
+</td>
+</tr>
+<!--END Table Row ---------------------------------!>
+<tr>
+<td>
+MT (Secondary) Patches
+</td>
+<td>
+1563 (Patches)
+</td> 
+<td>
+719
+</td>
+<td>
+<IMG SRC=statSummarypatch.gif><BR>
+46 % as of Jul 31, 2001
+</td>
+</tr>
+<!--END Table Row ---------------------------------!>
+</table>
+<H1>Cumulative Progress Graphs</H1>
+<UL TYPE=CIRLE>
+<LI><A href=statImg.NORTH.gif>North Imaging</a> 
+<LI><A href=statImg.SOUTH.gif>South Imaging</A> 
+<LI><A href=statImg.REPEAT.gif>Repeat Imaging</A>
+<LI><A href=statSpec.NORTH.gif>North Spectroscopy</a> 
+<LI><A href=statSpec.SOUTH.gif>South Spectroscopy</A>
+<LI><A href=statPatch.NORTH.gif>MT Secondary Patches for North</A> 
+<LI><A href=statPatch.SOUTH.gif>MT Secondary Patches for South</A>
+</UL></BODY></HTML>

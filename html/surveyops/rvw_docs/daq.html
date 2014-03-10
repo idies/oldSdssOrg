@@ -1,0 +1,305 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<CENTER><B><I>Sloan Digital Sky Survey</I></B></CENTER>
+
+<CENTER><B><I>Review of Observing Systems and Survey Operations</I></B><BR>
+<BR></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Data Acquisition System</FONT></B></CENTER>
+
+<CENTER><FONT SIZE=-1>Don Petravick</FONT></CENTER>
+
+<CENTER><FONT SIZE=-1>April 11, 2000</FONT></CENTER>
+
+<HR SIZE=4 WIDTH="100%">
+
+<P><B>Description and Functionality</B>&nbsp;<BR>
+<BR>
+<BR><FONT SIZE=-1>The SDSS data acquisition system consists of hardware,
+software, and methods for maintaining the hardware and software. Conceptually,
+the system sits between the data path of the instruments and the "observers
+software".</FONT>
+<BR><FONT SIZE=-1>The system was <A HREF="http://www-sdss.fnal.gov:8000/DA/Architecture.html">specified</A>
+and procured by early 1992. The system is built of common components and
+shares much Unix software with the rest of the survey. The system was delivered
+to Apache Point Observatory in 1996.</FONT>
+
+<P><FONT SIZE=-1>The physical specification of the system is summarized
+as:</FONT>
+<UL>
+<LI>
+<FONT SIZE=-1>A computer system for the 2.5 m telescope whose primary components
+are:</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>An SGI Challenge computer plus peripherals serving as a host</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Two VME crates plus disk and tape peripherals to service
+the photometric part of the imaging camera.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>A VME crate plus disk peripherals to service the astrometric
+part of the imaging camera.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>A VME system plus disk for the Spectrograph.</FONT></LI>
+</UL>
+
+<LI>
+<FONT SIZE=-1>A computer system for the Photometric Telescope whose primary
+components are:</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>An SGI Challenge computer plus peripherals serving as a host</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>A VME system plus disk and tape peripherals</FONT></LI>
+</UL>
+
+<LI>
+<FONT SIZE=-1>Supporting equipment at Apache Point Observatory, consisting
+of:</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>A simulator sufficient to drive one optical fibre, and to
+simulate any survey instrument.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>A spares kit.</FONT></LI>
+</UL>
+
+<LI>
+<FONT SIZE=-1>A lab at Fermilab, consisting of:</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>An SGI Challenge computer</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>A simulator setup</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Sufficient VME hardware to test one unit of throughput.</FONT></LI>
+</UL>
+</UL>
+<FONT SIZE=-1>The function of the SDSS data acquisition system is</FONT>
+<UL>
+<LI>
+<FONT SIZE=-1>To acquire all data from the Imager, the Photometric Telescope,
+and the twin Spectrographs.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To verify framing of the images.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To display the images in real time on video monitors as an
+operational aide.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To spool a night's worth of images, making them available
+to the "op" software.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To make a number of control primitives available to the "op"
+software.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>For "photometric" ccds in the imager</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>To write the data to redundant tape drives</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To histogram all the data to produce a "flat field" vector
+for almost all frames.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To scan the images for stars, producing a "postage stamp"
+file for almost all frames.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To make sufficient images available to a Unix host computer
+for online QA.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To make all summary data available to a Unix host computer
+for online QA and recording.</FONT></LI>
+</UL>
+
+<LI>
+<FONT SIZE=-1>For the Astrometric CCDs in the imager camera</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>Calculate a "sky" value for each "division" in in the physical
+CCD.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To locate stars in the astrometric data, place the stars
+in a "postage stamp" file.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To locate stars in the "focus loop" ccd and produce information
+sufficient for a focus servo.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To make sufficient images available to a Unix host computer
+for online QA.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>To make all summary data available to a Unix host computer
+for online QA and recording.</FONT></LI>
+</UL>
+</UL>
+<FONT SIZE=-1>The system does not:</FONT>
+<UL>
+<LI>
+<FONT SIZE=-1>Command the survey instruments.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Command the telescope control computer or any type of motion
+control systems.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Implement the observing policies of the survey.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Implement any decisions on the quality of the data or the
+condition of the instruments.</FONT></LI>
+</UL>
+<FONT SIZE=-1>The software for the VME system is constructed on top of
+VxWorks 5.1.1. The software is aware of the hardware features of all VME
+cards. As such it is constrained to run unchanged only in a VME environment
+which is hardware compatable with the delivered system.</FONT>
+
+<P><FONT SIZE=-1>The Unix DA software is written to IRIX. The software
+includes a IRIX device driver for the PT link, a high speed (for its day)
+non-standard network connecting the Unix systems and the VME crates.</FONT><BR>
+<BR>
+<BR><B>Degree of completion</B>&nbsp;<BR>
+<BR>
+<BR><FONT SIZE=-1>We believe the system meets its <A HREF="http://www-sdss.fnal.gov:8000/dss/doc/Specification/Operation/Operation_fs.ps">functional
+specifications</A></FONT>
+
+<P><FONT SIZE=-1>The system was delivered to Apache Point Observatory in
+September of 1996. Prior to delivery, the system was unit tested by means
+of a full scale hardware simulator. The simulator was constructed a Fermilab.
+Many defects were discovered and removed from the system using this test
+structure.</FONT>
+
+<P><FONT SIZE=-1>After delivery, an integration effort, involving the data
+interface to each instrument was completed. The data acquisition system
+was also run for a substantial amount of time at APO with the full simulator.</FONT>
+
+<P><FONT SIZE=-1>As operation of the survey has ramped up, other efforts
+have been made to explain the system, resolve problems and fix defects
+in the system by the FNAL group.</FONT><BR>
+<BR>
+<BR><B>Correctness</B>&nbsp;<BR>
+<BR>
+<BR><FONT SIZE=-1>The system was unit tested before and after its deployment
+to Apache Point Observatory. It performs all functions specified in its
+functional requirements document. There are features in the DA system to
+check data integrity from the VCI+ to the tape in test mode.</FONT>
+
+<P><FONT SIZE=-1>There is an ongoing effort to resolve problems which are
+detected as higher levels of the system are delivered, and as the Survey
+undergoes its test year. An example of a recent problem resolution is the
+completion of a project to work around a defect in the CIPRICO RIMFIRE
+3563 board in March, 2000. The root cause is an unexpected type of behavior
+in the Rimfire board when a particular type of tape error occurs.</FONT>
+
+<P><FONT SIZE=-1>Pending issues are:</FONT>
+<UL>
+<LI>
+<FONT SIZE=-1>Resolve occasional crashes of the astrometric boards.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Deploy the "video services" card and retire the VIGRA card.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Center the sky histograms for the photometric CCDS more quickly
+when the sky moves.</FONT></LI>
+</UL>
+<B><FONT SIZE=+0>Lifetime</FONT></B><BR>
+<BR>
+<BR><FONT SIZE=-1>A component sparing and lifetime project was begun in
+FY1999 and completed except as noted in March, 2000. The purpose of the
+project was to provide for an additional five years of lifetime for the
+system. (The original system was to last until the year 2001). All hardware
+and software components were considered. Notable activities of the life
+time project were:</FONT>
+<UL>
+<LI>
+<FONT SIZE=-1>Replacement of the the SGI Crimson host computers with SGI
+challenge computers.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Upgrade of the IRIX operating system to IRIX 6.5.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Upgrade of the VxWorks 5.1.1 cross compiler to gcc cygnus-2.2.3.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Upgrade of the "pool" disks and real time file system to
+50GB per MVME167.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Upgrade of the tape drives to DLT4000.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Construction of seven complete VCI+ cards and three partial
+cards.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Construction of a replacement for the "vigra" video cards,
+which are no longer manufactured. These cards are not yet deployed.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Consideration of the lifetime of the MVME167 boards. These
+boards have a battery whose lifetime is a function of the temperature and
+the number of power-on hours.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Consideration if the lifetime of the LEDS in the "foxi" senders.
+LEDS have a lifetime which is a function of operational hours and operational
+temperature. Ten Spare FOXI transmitter modules have been procured.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>The hardware spares kit was evaluated and augmented.</FONT></LI>
+</UL>
+<BR>
+<FONT SIZE=-1>Beyond the sparing kit and sparing methods we rely on the
+FNAL equipment pool for additional pairs of the CIPRICO Rimfire boards
+and the PTE link.</FONT>
+
+<P><FONT SIZE=-1>The Integrated Systems development department has four
+full time staff members who were involved in the development of the system
+(Bakken, Holmgren, Petravick, Rechenmacher).&nbsp; In addition, a fifth
+person (Nicinski) has accepted an offer to return to the department. While
+none of these persons have the SDSS as a full time assignment, the department
+has been able to staff and run its SDSS related projects. The department
+has a clear mandate from its management to provide for the long term support
+of this system.</FONT>
+
+<P><FONT SIZE=-1>Having completed the sparing project, the planned activity
+for FY2000 is to stand by and fix bugs and help resolve problems. The department
+had made several trips to APO and performed substantial work at Fermilab
+doing this work.</FONT><BR>
+<BR>
+<BR>
+<HR SIZE=4 WIDTH="100%">
+<BR><B><I><FONT SIZE=-1>Review of Observing Systems and Survey Operations</FONT></I></B>
+<BR><I><FONT SIZE=-1>Apache Point Observatory</FONT></I>
+<BR><I><FONT SIZE=-1>April 25-27, 2000</FONT></I>
+<BR>&nbsp;
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

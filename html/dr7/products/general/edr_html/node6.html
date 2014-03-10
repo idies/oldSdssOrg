@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Imaging Data Products</TITLE>
+<META NAME="description" CONTENT="Imaging Data Products">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html181" HREF="node7.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html179" HREF="node4.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html173" HREF="node5.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html182" HREF="node7.html">Spectroscopic Data Products</A>
+<B>Up:</B> <A NAME="tex2html180" HREF="node4.html">Data Products</A>
+<B> Previous:</B> <A NAME="tex2html174" HREF="node5.html">ParametersClasses, and Associations</A>
+<BR> <P>
+<H3><A NAME="SECTION00022200000000000000">Imaging Data Products</A></H3>
+<P>
+<A NAME="ddproductsimaging">&#160;</A>
+<P>
+<B>Image Parameters</B>
+<P>
+The results of the imaging pipelines (described below in
+&#167;&nbsp;<A HREF="node36.html#swphoto">4.4</A>) are summarized in Table&nbsp;<A HREF="node65.html#tblphoto">6</A>,
+and the apertures used for radial profile measurements are in
+Table&nbsp;<A HREF="node65.html#tblradii">7</A>.  For each object, we measure the position, several
+varieties of the flux, morphological parameters, and a provisional
+classification.  We also include informational flags on each pixel in the
+images (Table&nbsp;<A HREF="node65.html#tblmaskbits">8</A>) and each object (Table&nbsp;<A HREF="node65.html#tblflag">9</A>) and
+summary flags and statistics for each field
+(Table&nbsp;<A HREF="node65.html#tbladministrativefield">16</A>).  The choice of flags and which measure
+of flux and shape to use are dictated by the science goals of the SDSS.  The
+catalog contains over 120 parameters and flags measured for 13,804,448
+objects.  10,947,783 of these are unique, well-measured astrophysical objects.
+<P>
+The SDSS object catalogs are matched against the FIRST becker95,
+ROSAT voges99, and USNOA2.0 monet databases; the
+resulting parameters are described in Table&nbsp;<A HREF="node65.html#tblexternal">10</A>.
+<P>
+<B>Images</B>
+<P>
+Each corrected frame is a FITS image for one filter, 2048 columns <IMG WIDTH=9 HEIGHT=16 ALIGN=MIDDLE ALT="tex2html_wrap_inline2843" SRC="img14.gif">
+1489 rows, with row number increasing in the scan direction.
+These are the imaging frames with flat field, bias, cosmic
+ray, and pixel defect corrections applied.
+A raw image contains 1361 rows, and a corrected frame has the first 128
+rows of the following corrected frame appended to it.  The pixels
+subtend 0.396'' square on the sky.
+<P>
+Header information using the World Coordinate System (WCS) calabretta01 
+allows standard astronomical FITS tools to convert pixel position to
+<IMG WIDTH=38 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline2847" SRC="img15.gif"> (&#167;&nbsp;<A HREF="node34.html#secastrom_wcs">4.2.2</A>).
+<P>
+<B>Binned Images</B>
+<P>
+Each file is a FITS image for one filter, <IMG WIDTH=72 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline2849" SRC="img16.gif"> pixels,
+with WCS information.  These are the corrected frames with detected
+objects removed and binned <IMG WIDTH=38 HEIGHT=22 ALIGN=MIDDLE ALT="tex2html_wrap_inline2839" SRC="img13.gif"> pixels.
+<P>
+<B>Mask Frame</B>
+<P>
+Each file is a binary FITS table for one filter.  Each row of the
+table describes a set of pixels in the corrected frame, using mask
+values described in Table&nbsp;<A HREF="node65.html#tblmaskbits">8</A>.
+<P>
+<B>Atlas Image</B>
+<P>
+For each detected object, the atlas image comprises the pixels in a
+rectangular area associated with the object in each filter.  These are
+provided through a database, as either a JPEG color image, or as a
+FITS file for each selected filter.
+<P>
+<B>Color Image</B>
+<P>
+We combine the corrected frames from the <IMG WIDTH=30 HEIGHT=17 ALIGN=MIDDLE ALT="tex2html_wrap_inline2853" SRC="img17.gif"> and <I>i</I>
+filters and produce a color image with the filters
+corresponding to blue, green, and red, respectively.  The intensity mapping of
+each color is adjusted to enhance the appearance of these images.
+We use the same mapping for all of the color images.
+<P>
+<HR><A NAME="tex2html181" HREF="node7.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html179" HREF="node4.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html173" HREF="node5.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html182" HREF="node7.html">Spectroscopic Data Products</A>
+<B>Up:</B> <A NAME="tex2html180" HREF="node4.html">Data Products</A>
+<B> Previous:</B> <A NAME="tex2html174" HREF="node5.html">ParametersClasses, and Associations</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

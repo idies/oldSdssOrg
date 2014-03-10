@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+<html>
+<head>
+<meta name="Description" 
+content="SDSS Survey Status: Spectroscopy Survey">
+<title>SDSS Survey Status: Spectroscopy Survey</title>
+</head>
+<sdss-page>
+<h2>SDSS Survey Status: Spectroscopy Survey</h2>
+<p>
+<IMG SRC="survey_area_covered.gif" >
+
+<BR>
+<BR>
+<text-navbar>
+<sdss-address>
+</sdss-page>
+</html>

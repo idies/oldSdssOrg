@@ -1,0 +1,12 @@
+CGCG 180-023, also called II Hz 4, is a superb example of a ring
+galaxy.  Ring galaxies are believed to form when a compact smaller
+galaxy plunges through the center of a larger more diffuse rotating
+disk galaxy. The galaxy in transit exerts a brief inward pull on the
+stars of the target galaxy, which execute radial harmonic oscillations
+in addition to their initial circular motion. A series of ring waves
+forms and propagates through the target disk, as numerical simulations
+have convincingly demonstrated (e.g., Lynds & Toomre 1976; Theys &
+Spiegel 1977). These radially expanding waves are accompanied by a
+strong burst of star formation: observed ring galaxies are usually
+very blue and possess large HII regions (Theys & Spiegel 1976; Jeske
+1986).

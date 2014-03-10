@@ -1,0 +1,8 @@
+<p>There is a bug in the line-measurement code that has been in use
+since DR3 which gives some emission lines an equivalent width of zero,
+even though there is a significant line detection. The aim of the
+change introducing the bug had been to determine the equivalent width
+by integrating the spectrum, instead of using the parameters of a
+fitted Gaussian. The Gauss-fit equivalent width can be recovered from the
+fit parameters using the usual expression <code>EW = 2.5066 * sigma *
+height / continuum</code>.</p>

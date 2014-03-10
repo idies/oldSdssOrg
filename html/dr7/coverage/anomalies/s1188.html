@@ -1,0 +1,52 @@
+<html>
+
+
+<h3>Stripes 1188/72 Footprint Anomaly </h3>
+
+There is a defect in the footprint along stripe 1188 from 352 > RA > 340 and  20 < DEC < 30 where Primary objects are missing.
+
+<p>
+
+<img src="global1188.png">
+<p>
+ <h3>Here is a possible SQL for recovering these objects (to do both in the Runsdb and dr7 contect) : </h3>
+<p>
+<p>
+Select
+p.run,p.rerun,p.camcol,p.field,p.obj,p.ra,p.dec,g,mode,p.status,stripe,strip
+<p>
+From
+Photoobjall p,field f,segment s
+<p>
+Where
+<p>
+Ra between  352 and 340 and
+<p>
+Dec between 20 and 30   and
+<p>
+G between 18  and 18.2  and
+<p>
+p.fieldid = f.fieldid and f.segmentid = s.segmentid
+<p>
+(and mode=1 for the context dr7)
+<p>
+<p>
+<p>
+
+<h3>With this, we can select the interesting data in Runsdb keeping the datas : </h3>
+<p>
+( $11== 72 &&  $4 > 268 )
+
+<p>
+The South strip of Stripe 72 from the runsdb consists of objects from run 4836.
+<p>
+<h3> A new stripe : </h3>
+
+
+<p>
+Moreover, in the Runsdb database appears another stripe, the stripe 291. In the following picture, all the datas come from Runsdb.
+<p>
+<img src="stripe291.png">
+<p>
+
+</html>

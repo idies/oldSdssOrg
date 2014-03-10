@@ -1,0 +1,96 @@
+# Brian Wilhite's spectro gallery
+
+# QSO's
+
+id: g0308-127
+title: Redshift 4.16 QSO
+caption: \
+The spectrum of a QSO at a redshift (z) of 4.16.  The emission line \
+fitting algorithm correctly identified the redshifted Lyman alpha peak, \
+as well as the nitrogen, silicon, oxygen and carbon emission features \
+just redward.  Note that the software regarded much of the Lyman alpha \
+forest as unidentifiable emission lines, but still calculated a correct \
+redshift.  The Survey will obtain spectra for roughly 100,000 QSO's, \
+although most will be at lower redshift than this one.
+category: spectrum, quasar
+credit: SDSS Collaboration
+
+id: g0339-213
+title: Redshift 3.7 QSO
+caption: \
+A QSO with broad absorption at z~3.7.  Again, 1d correctly identified \
+the emission features, although the broad absorption caused an error of \
+about 0.05 in redshift.
+category: spectrum, quasar
+credit: SDSS Collaboration
+
+# id: dvb3qso
+# Follow this link for a postscript version of 3 SDSS spectra with
+# absorption features identified Dan Vanden Berk.
+
+# Galaxies
+
+id: g0312-255
+title: Typical galaxy
+caption: \
+A galaxy at redshift 0.1234.  These "typical" galaxies' redshifts are \
+usually fit by identifying the calcium H and K lines in conjunction with \
+the strong magnesium and sodium lines at 5178 and 5891 Angstroms, \
+respectively.  Strong absorption in hydrogen and the G band can also be \
+seen in this spectrum.  At the end of its run, the Survey will have \
+spectra for approximately one million such galaxies.
+category: spectrum, galaxy
+credit: SDSS Collaboration
+
+id: g0312-220
+title: Bright red galaxy
+caption: \
+This is an example of an SDSS Bright Red Galaxy (BRG).  These galaxies \
+are typically elliptical galaxies at a redshift of 0.25 to 0.5, targeted \
+for spectroscopy due to their red color in the imaging portion of the \
+Survey.  This galaxy, at a redshift of 0.3762, has especially prominent \
+magnesium and sodium absorption.
+category: spectrum, galaxy
+credit: SDSS Collaboration
+
+id: g0312-529
+title: Emission-line galaxy
+caption: \
+An emission-line galaxy with z=0.0886.  The prominent features of such a \
+galaxy are now in emission, not absorption.  SDSS software fits the \
+redshifts for these galaxies by identifying the various hydrogen, \
+nitrogen II, sodium II, and oxygen III lines.
+category: spectrum, galaxy
+credit: SDSS Collaboration
+
+# Stars
+
+id: g0312-371
+title: DA white dwarf
+caption: \
+Although the SDSS is primarily an extragalactic survey, spectra will be \
+obtained for some 100,000 stars.  This is a typical DA white dwarf, as \
+identified by its very broad hydrogen absorption features.
+category: spectrum, star
+credit: SDSS Collaboration
+
+id: g0312-485
+title: Cool red M star
+caption: \
+Many of the stars to be observed within the Survey are cool red stars \
+such as this M star.  These stars are easily identified by their low \
+flux in the blue portion of the spectrum and clear titanium oxide \
+absorption bands towards the red end.
+category: spectrum, star
+credit: SDSS Collaboration
+
+id: g0315-422
+title: Carbon star
+caption: \
+Through sheer number of objects observed, the SDSS will help advance the \
+field of stellar astronomy.  Here is an example of a carbon star, a \
+"rare" star which lies away from the main stellar sequence.  The strong \
+absorption bands in the blue half of the spectrum are due to absorption \
+by molecular carbon.
+category: spectrum, star
+credit: SDSS Collaboration

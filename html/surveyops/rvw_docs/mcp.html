@@ -1,0 +1,137 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<CENTER><B><I>Sloan Digital Sky Survey</I></B></CENTER>
+
+<CENTER><B><I>Review of Observing Systems and Survey Operations</I></B><BR>
+<BR></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Overview of the Motion Control Processor</FONT></B></CENTER>
+
+<CENTER><B><FONT SIZE=+2>and Telescope Control Computer</FONT></B></CENTER>
+
+<CENTER>Robert Lupton</CENTER>
+
+<CENTER>April 10, 2000</CENTER>
+
+<HR SIZE=4 WIDTH="100%">
+
+<P><B>Functionality</B>
+
+<P><FONT SIZE=-1>The Telescope Control Computer (TCC) is a DEC Alpha running
+VMS. The TCC programs were written by Russell Owen (University of Washington)
+and are essentially identical to those used to control the APO 3.5m telescope.</FONT>
+
+<P><FONT SIZE=-1>The TCC performs the following functions:</FONT>
+<UL>
+<LI>
+<FONT SIZE=-1>Converts positions specified in e.g. (ra, dec) into (az,
+alt, rotation)</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Controls the 2.5m's motion by means of sets of PVT (Position,
+Velocity, Time) triplets, specifying the desired position and velocity
+of the telescope at the specified time. These PVTs are sent to the MCP.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Controls the 2.5m's optics, allowing for deflections and
+responding to requests for piston motion of the secondary</FONT></LI>
+</UL>
+<FONT SIZE=-1>The Motion Control Processor (MCP) is a MV162 processor running
+vxWorks sharing a VME backplane with a number of other boards:</FONT>
+<UL>
+<LI>
+<FONT SIZE=-1>An </FONT><TT>MEI</TT><FONT SIZE=-1> board to control the
+telescope's axes (az, alt, rotator) and read the fiducials. This MEI board
+is responsible for the actual PID control of the axes</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>A number of <I>Industry Pack</I> boards to interface with
+the programmable logic processor that controls e.g. the flat field lamps
+and the brakes</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>A second MV162 (The Telescope Monitor Processor, TPM) responsible
+for logging the telescope's status</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>More <I>Industry Pack</I> boards to read e.g. the position
+of the mirror activators</FONT></LI>
+</UL>
+<FONT SIZE=-1>The MCP is responsible for:</FONT>
+<UL>
+<LI>
+<FONT SIZE=-1>Translating motion commands from the TCC's PVTs to commands
+that the MEI can understand</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Accepting and implementing requests from the TCC or engineering
+menu to e.g. set the brakes, or reset the amplifiers</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Accepting and acting upon commands from the user-level programs
+(IOP and SOP) to e.g. turn on flat field lamps</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Interpreting the true positions of the axes, as revealed
+by crossing fiducial marks, and making appropriate allowances for errors</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Reading the state of the interlocks system; the axis positions
+voltages, currents, and other state; and the state of other components
+such as the flat field screen. This information is made available to the
+<TT>TPM</TT> via shared memory in the VME crate, and to other interested
+parties via UDP packets.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Maintaining a log of what it's doing</FONT></LI>
+</UL>
+<B>Status</B>
+
+<P><FONT SIZE=-1>Of these systems,</FONT>
+<UL>
+<LI>
+<FONT SIZE=-1>The TCC is fully functional</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>The TPM logging is functional, although there are still some
+minor issues to be addressed</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>The MCP is reasonably stable, although there is some missing
+functionality and some outstanding problems. For example,</FONT></LI>
+
+<UL>
+<LI>
+<FONT SIZE=-1>It is intended that the MCP be able to control instrument
+changes but this has not yet been implemented.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>On-the-fly corrections to the encoder positions are implemented,
+but disabled pending further testing</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Offsets of -30' in alt take the telescope out of closed loop</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>There are some mysterious failures and hangs</FONT></LI>
+</UL>
+</UL>
+<FONT SIZE=-1>When the MCP works, as it almost always does, its performance
+is very good. It is not clear whether the intermittent axis-motion problems
+will be solvable without a total rewrite of the code that handles PVT commands
+from the TCC.</FONT>
+
+<P><FONT SIZE=-1>I believe that all of these systems are maintainable,
+although the long-term owner of the MCP code has not been identified.&nbsp;
+Documentation for the TPM and (especially) the MCP is seriously lacking.</FONT>
+
+<P>
+<HR SIZE=4 WIDTH="100%">
+<BR><B><I><FONT SIZE=-1>Review of Observing Systems and Survey Operations</FONT></I></B>
+<BR><I><FONT SIZE=-1>Apache Point Observatory</FONT></I>
+<BR><I><FONT SIZE=-1>April 25-27, 2000</FONT></I>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

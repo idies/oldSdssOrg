@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Algorithms: psPhot - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<a name="top"></a>
+<h1>Photometric Redshifts</h1>
+
+As described in the DR5 paper, the SDSS makes available the results of
+two different photometric redshift determinations for galaxies, one based
+on neural nets and the other based on a template-fitting approach. 
+With DR7.
+
+<h2>Photometric Redshifts with Neural Nets</h2>
+
+<p>
+The neural net solutions for photometric redshifts and their errors (listed as 
+<tt>Photoz2</tt> in the CAS, and described in 
+<a href="http://adsabs.harvard.edu/abs/2008ApJ...674..768O">Oyaizu et al. 2008</a>) have
+not changed since DR6, and do not use the ubercalibrated magnitudes.
+However, we now provide a value-added catalog containing the redshift
+probability distribution for each galaxy, p(z), calculated using the
+weights method presented in 
+<a href="http://adsabs.harvard.edu/abs/2008arXiv0810.2991C">Cunha et al. (2008)</a>. 
+The p(z) for each
+galaxy in the catalog is the weighted distribution of the
+spectroscopic redshifts of the 100 nearest training-set galaxies in
+the space of dereddened model colors and r magnitude.  For the p(z)
+calculation we also added the zCOSMOS 
+(<a href="http://adsabs.harvard.edu/abs/2007ApJS..172...70L">Lilly et al. 2007</a>) and
+DEEP2-EGS 
+(<a href="http://adsabs.harvard.edu/abs/2007ApJ...660L...1D">Davis et al. 2007</a>) 
+galaxies to the spectroscopic training
+set used for the <tt>Photoz2</tt> solution.
+
+<p>
+<a href="http://adsabs.harvard.edu/abs/2008arXiv0810.2991C">Cunha et al. (2008)</a>
+showed that summing the p(z) for a sample of
+galaxies yields a better estimation of their true redshift
+distribution than that of the individual photometric redshifts.  
+<a href="http://adsabs.harvard.edu/abs/2008MNRAS.386..781M">Mandelbaum et al. (2008)</a>
+found that this gives significantly smaller
+photometric lensing calibration bias than the use of a single photometric redshift
+estimate for each galaxy.  
+
+<h2>Photometric Redshifts: A New Hybrid Technique</h2>
+
+<p>
+With DR7, we have made substantial improvements in the other
+photometric redshift code (<tt>Photoz</tt>), using a hybrid method
+that combines the template fitting approach of 
+<a href="http://adsabs.harvard.edu/abs/2003AJ....125..580C">Csabai et al. (2003)</a>;
+i.e., the approach used in DR5 and DR6, and an empirical calibration
+using objects with both observed colors and spectroscopic redshifts.
+We summarize the method briefly here, with details to follow in a
+paper in preparation.
+
+<p>
+The spectroscopic sample of SDSS contains over 900,000
+spectroscopically confirmed galaxies, and the combination of the main
+sample 
+(<a href="http://adsabs.harvard.edu/abs/2002AJ....124.1810S">Strauss et al. 2001</a>), 
+the LRG sample 
+(<a href="http://adsabs.harvard.edu/abs/2001AJ....122.2267E">Eisenstein et al. 2001</a>)
+and special plates targeted at fainter blue galaxies (DR4 paper) more
+or less cover the whole color region in which galaxies lie to the
+depths of SDSS.  Thus we use the DR7 spectroscopic set as a reference
+set for redshift estimation without any additional data from synthetic
+spectra.
+
+<p>
+The estimation method uses a k-d tree (following 
+<a href="http://adsabs.harvard.edu/abs/2007AN....328..852C">Csabai et al.  2007</a>)
+to search in the ubercalibrated u-g, g-r, r-i, i-z color space for the
+100 nearest neighbors of every object in the estimation set (i.e. the
+galaxies for which we want to estimate redshift) and then estimates
+redshift by fitting a local hyperplane to these points, after
+rejecting outliers.  If an object lies outside the bounding box of the
+100 nearest neighbors in color space, the photometric redshift is less
+reliable, and the object is flagged accordingly.
+
+<p>
+We use template fitting to estimate the K-correction, distance
+modulus, absolute magnitudes, rest frame colors, and spectral type.
+We search for the best match of the measured colors and the synthetic
+colors calculated from repaired 
+(<a href="http://adsabs.harvard.edu/abs/2000AJ....120.1588B">Budavari et al. 2000</a>) 
+empirical
+template spectra at the redshift given by the local nearest neighbor
+fit.
+
+<p>
+We have found that the mean deviations of the redshifts from the
+best-fit hyperplane is a good estimate of the error.  That, together
+with the flag indicating whether an object lies outside the bounding
+box of its neighbors, and the difference between the estimated
+photometric redshift and the average redshift of its neighbors, can be
+used to select objects with reliable photometric redshift values.
+
+<p>
+The rms error of the redshift estimation for the reference set
+decreases from 0.044 in DR6 to 0.025 in DR7 with this improved
+algorithm:
+
+<div id="distribution-plots"/>
+<div style="width:1000px;margin-right:auto;margin-left:auto">
+<img src="dr7-fig5.png"/><br>
+<em>The template-based estimated redshifts versus the true spectroscopic redshifts for a
+random sample of 30,000 galaxies with redshifts from SDSS. The
+estimated values calculated with the old (DR6) method has
+significantly larger scatter and more outliers than the ones with the
+new hybrid (DR7) technique. Note that the sample is dominated by red
+galaxies (whose photometric redshifts are intrinsically easier to
+measure) at z > 0.2. 
+</em>
+</div>
+
+<p>
+Iteratively removing the outliers beyond 3 &sigma; gives rms errors of
+0.028 and 0.020 for the old and new methods, respectively. In
+addition, the reliability of the quoted errors is much higher.
+
+<a name="footnotes"></a>
+<!--#include virtual="../dr7link.html"-->
+
+<hr>
+<!-- hhmts start -->Last modified: Tue Apr 15 12:00:12 CDT 2003
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body>
+</html>

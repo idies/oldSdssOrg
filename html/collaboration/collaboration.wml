@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="SDSS Collaboration">
+<title>Collaboration Affairs</title>
+</head>
+
+<sdss-page select="collaboration">
+
+<h1>Collaboration Affairs</h1>
+
+<p><img src="$(ROOT)/photos/95_1591CN.web1.jpg" align="right"
+alt="1994 Collaboration meeting at Yerkes">The Collaboration consists of
+about 150 scientists at the <a
+href="$(ROOT)/members/index.html">Participating Institutions</a>.
+Its membership also includes scientists from non-participating
+institutions who have earned data access through their contributions to
+SDSS infrastructure.  In addition its membership includes external
+collaborators who provide expertise on specific projects.  The size of
+the Collaboration is about 200 Ph.D. scientists.</p>
+
+<p>The Collaboration provides an opportunity for its members to exchange
+information and ideas freely, thereby assisting the pursuit of their
+individual research goals.  Collaboration Affairs is the organization
+for accomplishing these goals.  Collaboration Affairs consists of the
+Collaboration Council, the Working Groups, and the Publications
+Office.</p>
+
+<h3>Scientific Spokesperson</h3>
+
+<p>The Director has delegated the management of Collaboration Affairs to
+the Scientific Spokesperson.  He has also delegated to the Spokesperson
+the primary responsibilities for representing the Survey to the
+scientific community and for raising the visibility of the Survey within
+the astronomy and physics communities.</p>
+
+<h3>Collaboration Council</h3>
+
+<p>The Spokesperson has established a Collaboration Council (CoCo) to
+help manage the affairs of the collaboration.  It includes a formal
+channel to the Director and the Advisory Council for addressing the
+issues of the Collaboration that requires their action.  The CoCo
+consists of one representative from each SDSS institution, and one At
+Large member to represent the external participants.  Each SDSS
+institutional representative to CoCo is appointed by its scientific
+member of the Advisory Council.  The At Large member is chosen by the
+Spokesperson in consultation with the CoCo.  The Chair of the CoCo is
+appointed by the Spokesperson and reports to the Spokesperson.  The CoCo
+provides advice on all Collaboration matters to the Spokesperson
+including recommendations for policies on publications, scientific
+representation, and science projects.</p>
+
+<p>The CoCo is responsible for reviewing proposals for <a
+href="../policies/ext_coll.html">science projects which include external
+collaborators</a>, scientists who may be given limited access to SDSS
+data for specific projects. A list of approved projects with External
+Collaborators can be found <a href="approved_ext_coll.html">here</a>.</p>
+
+
+<p>The current members of the Collaboration Council are:
+<ul>
+<li><a href="mailto:rich@oddjob.uchicago.edu">Rich Kron (Chair)</a>
+<li><a href="mailto:nicole@nmsu@edu">Nicole Vogt (NMSU)</a>
+<li><a href="mailto:gamk@mpa-garching.mpg.de">Guinevere Kauffmann (MPA)</a>
+<li><a href="mailto:frieman@fnal.gov">Josh Frieman (Chicago)</a>
+<li><a href="mailto:jd@toast.astro.washington.edu">Julianne Dalcanton (UW)</a>
+<li><a href="mailto:ethan@pha.jhu.edu">Ethan Vishniac (Johns Hopkins)</a>
+<li><a href="mailto:ivezic@astro.princeton.edu">Zeljko Ivezic (Princeton)</a>
+<li><a href="mailto:jam@nofs.navy.mil">Jeff Munn (USNO)</a>
+<li><a href="mailto:grebel@mpia-hd.mpg.de">Eva Grebel (MPIA)</a>
+<li><a href="mailto:schaye@ias.edu">Joop Schaye (IAS)</a>
+<li><a href="mailto:doi@ioa.s.u-tokyo.ac.jp">Mamoru Doi (JPG)</a>
+<li><a href="mailto:yanny@fnal.gov">Brian Yanny (Fermilab)</a>
+<li><a href="mailto:ajorg@lanl.gov">Anders Jorgensen (LANL)</a>
+<li><a href="mailto:deisenstein@as.arizona.edu">Daniel Eisenstein (External Participants)</a>
+</ul>
+</p>
+
+<h3>Working Groups and Key Projects</h3>
+
+<p>Working Groups have been formed to address the following specific
+topics:
+<ul>
+<li>large scale structure
+<li>clusters
+<li>galaxies
+<li>quasars
+<li>stars
+<li>serendipity
+<li>southern survey
+<li>reddening
+<li>solar system
+</ul>
+One function of these Working Groups is to define <a
+href="key_projects.html">Key Projects</a> which together define the Core
+Program of the SDSS.</p>
+
+<p>The WG's are to consider the complete flow of data relevant to each
+WG from the CCD's through calibration to final publication.  The WG's
+will assist the Director in defining scientific requirements for
+equipment, observing time, calibration and analysis software, and data
+storage and distribution.  These requirements will be considered by the
+Project Scientist in formulating recommendations to the Director in the
+same categories.</p>
+
+<p>Each WG Chair is appointed by the Director for a fixed term.  New
+WG's may be formed and existing WG's may be disbanded only after
+approval of a written plan by the Director.</p>
+
+<!-- <b>Text here on Publications Office?</b> -->
+
+
+<h3>Related SDSS Collaboration Links</h3>
+
+<ul>
+<li><a href="$(ROOT)/members/index.html">Participating Institutions</a>
+<li><a href="$(ROOT)/members/others.html">External Participants</a>
+<li><a href=http://www.astro.psu.edu/users/dps/sdsspubguide.html>SDSS Publication Procedures</a>
+
+
+<li>Working Groups
+<li><a href="key_projects.html">Key Projects List</a>
+<li><a href="$(ROOT)/members/builders.html">Builders List</a>
+<li><a href="../policies/index.html">Collaboration Policies</a>
+</ul>
+
+</sdss-page>
+
+</html>

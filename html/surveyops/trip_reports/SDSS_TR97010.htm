@@ -1,0 +1,250 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="William N. Boroski">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <TITLE>Drive Friction and Resonant Frequency Measurements</TITLE>
+</HEAD>
+<BODY LINK="#0000FF" VLINK="#800080">
+
+<DIV ALIGN=right>TR97010</DIV>
+
+<CENTER><B>SDSS Trip Report</B></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Drive Friction and Resonant Frequency Measurements</FONT></B></CENTER>
+
+<CENTER><B>January 14 to 18, 1997</B><BR>
+<BR></CENTER>
+
+<CENTER><A HREF="mailto:hansen@fnal.gov">Sten Hansen</A> and <A HREF="mailto:rivetta@fnal.gov">Claudio Rivetta</A></CENTER>
+
+<CENTER>Fermi National Accelerator Laboratory</CENTER>
+
+<CENTER>Batavia, IL&nbsp;&nbsp; USA&nbsp;&nbsp;&nbsp; 60510</CENTER>
+
+<HR SIZE=4 WIDTH="100%">
+<BR><BR>
+
+<body>
+
+<p><u>SUMMARY</u></P>
+
+
+<p>Friction data was recorded for the altitude, rotator and azimuth axes of the 2.5m
+telescope. Additionally, frequency sweeps of the azimuth
+and the altitude drives with current mode drive were taken, however 
+we were not able to do a frequency sweep of the rotator due to drive capstan slippage. 
+At sidereal rates, the azimuth axis torque/velocity relation has a 
+negative slope.
+
+<p><u>INTRODUCTION</U></P>
+
+<p>This is the second measurement trip to APO. The first, last 
+October, was an attempt to characterize the dynamics of the structure.
+We believe we know the location in the frequency domain (if not the
+associated phases and magnitudes) of the principle resonances of the
+altitude and azimuth axes. We were unable to move the rotator in
+October, so we had no dynamic data on this axis. A goal for this set
+of measurements was to run a sweep of the rotator axis.</P>
+
+<p>During this trip, the condition of the telescope was: secondary truss 
+removed and primary mirror support pointing at the zenith, without dummy
+instrument weights or dummy mirror weights. The bottom heavy condition
+of the structure limited motion in the altitude axis to about 2 degrees
+of arc. </P>
+
+<p><U>THE GOALS</U></P>
+
+<p>We started with this list more or less in order of priority: </P>
+
+<OL>
+
+	<LI>Static friction measurements for all three axes
+	<BR><BR>
+	<LI>An attempt to elucidate the "striction" curve for three axes. 
+	<BR><BR>
+	<LI>A frequency sweep of the rotator axis
+	<BR><BR>
+	<LI>At least one frequency sweep of the altitude and azimuth axes in 
+   		current mode.
+</OL>
+
+<p><U>MEASUREMENT SETUP</U></P>
+
+<p>The instruments used were an HP 3563A system analyzer to produce 
+the drive waveforms and record the responses in either the time or
+frequency domain, a Kepco bipolar power voltage amplifier to drive the
+servo motors, a home built set of op-amps used to convert the Kepco to
+current mode, a home built position interpolator that could be attached
+to the Heidenhain encoders for transmitting position and differentiated
+position data via RS-232 at an 8Hz rate, a 0.1 ohm shunt for measuring
+motor current, and a gain of 3 instrumentation amplifier for the
+tachometer signal. For those measurements that required recording data from
+two channels simultaneously, we used an HP54512 digital scope. There was
+a Inland Motor tachometer installed on the drive shaft of one altitude
+motor. A laptop PC was used to extract the data from the HP analyzer and
+scope onto disk. Claudio brought a zip drive that contained the Matlab
+software package that allowed him to do a cursory examination of the data
+while still on site. As it turned out, our time was so short that we
+were taking measurements late into the evening and so had very
+little time to analyze data. One additional day would have been very
+useful. </P>
+
+<p><U>MEASUREMENTS</U></P>
+
+<p>After spending the morning unpacking our instruments and 
+trundling them down to the 2.5m enclosure, the first order of business
+for Tuesday afternoon was to check the velocity voltage relation (Kv) of
+the Inland Motor tach generator, since all of our measurements used
+velocity. The tachometer was specified as generating 2.5 volts/rad/sec,
+but in fact produced about 0.3 volts/rad/sec for our October
+measurements. Based on conversations with Inland Motor, Charlie Hull
+decided that replacing the existing steel mounting fixture with one made
+of a non-magnetic material would allow the tach to produce its specified
+output. The checking method used was to move the altitude axis by hand
+and collect a record of position and tach output voltage. Integrating
+the tach signal should be related to the position by Kv. We were at
+first misled by data from the analyzer which was scaled in a strange
+way. Channel 1 applied a -0.6 scale factor to its input, while channel 2
+applied a -1 scale factor to its data. Later, Claudio noticed
+anomalously large offsets on the HP scope as well. We believe this was
+due to the freezing temperatures in the 2.5m enclosure, but we will see
+if normal operation is restored when we get our instruments shipped back
+from APO and run them at room temperature. </P>
+
+<p>Wednesday morning, after realizing that the data was strangely 
+scaled, we took new data and applied the appropriate factors and the
+numbers began to appear somewhat more plausible. After these missteps,
+we arrived at a measured Kv of 2.59 volts/rad/sec.</P>
+
+<p>Wednesday afternoon was taken up with connecting power to the
+altitude motors. The first powered measurement was a frequency sweep of
+the altitude axis from 0.1 to 100 Hz. Even without the truss, there were
+several resonances evident.</P>
+
+<p>The next step was to install a feedback loop around the Kepco to 
+convert it to current mode. We decided to use the Kepco instead of the
+GlenTek because the Kepco has a ground referenced output. This allowed
+us to use a shunt resistor to measure current instead of a current
+probe, a device which is prone to drifting (the offsets of our
+instruments rendered the point moot). By looking at the response to a
+square wave, it was evident the system had a high impedance output and a
+response time that implied a bandwidth of about 1KHz, ample for any of
+the measurements we had in mind. We now took another sweep of the
+altitude to compare voltage and current mode drive, and there were no
+obvious differences. This implies that the measurements taken in October
+in voltage mode would have looked the same had they been done with
+current mode drive.</P>
+
+<p>We were ready to begin friction data, but had a readout routine 
+for our scope that would only take 500 points out of a possible 8000 and
+store them on disk. Claudio obtained some example scope data collection
+files from Fermilab, but we had neglected to bring the scope programming
+manual with us. From these, after some hours of fiddling Wednesday night
+and Thursday morning, we had a routine to read 8000 points from two
+scope channels into two files.</P>
+
+<p>By midday Thursday, we began the attempt to do the static 
+friction measurement of the altitude axis. We were unsuccessful due to
+the restoring force of the out of balance structure and resorted to
+driving the system first with sinusoidal, then triangular current
+profiles. From these data runs, it was evident the altitude axis stores
+very little energy when breaking static friction and makes the
+transition from being stationary to moving in a well behaved fashion.
+After making several runs during the afternoon, with help from Jon
+Davis, we remounted the dummy instrument weights in preparation for
+making rotator axis measurements in the evening.</P>
+
+<p>Charlie Hull had wired in a GlenTek driver with a tachometer 
+feedback to run the rotator in closed loop in velocity. In order to
+"break in" the drive surfaces, we ran the rotator for several
+revolutions before taking any data. The friction in the rotator is very
+high - the highest of the three axes. We removed the GlenTek and
+attached the Kepco in order to run in current mode. In
+velocity mode, a frequency sweep would cause the torque to rise at 20dB
+per decade, whereas in current mode the input torque is constant with
+respect to frequency. We drove the rotator drive at a level
+approximately 20% higher than the value required to overcome static
+friction. The sweep began at 0.1Hz and the initial indicators were that
+the phase information was meaningless, since the friction was so
+dominant. By the time the frequency reached 1Hz, the drive began
+slipping, so we immediately shut off power and gave up on getting a
+sweep. We re-attached the GlenTek and took a measurement of the torque
+required to hold a constant velocity as a function of angular position
+through a 90 deg. arc. There was a torque variation of about 25% which
+is consistent with the data taken in November by Jon Davis.</P>
+
+<p>On Friday morning, Charlie Hull moved the tachometer from the
+altitude to the azimuth axis. At the same time we were attaching a
+linear potentiometer between the wind screen platform and the fork of
+the telescope in order to attempt to servo the wind screen to the
+telescope. Steve Bastian had made a clamp and pivot arrangement for us
+ahead of time. Where Steve had put in a hole for pivoting, Jon Davis
+milled a slot to allow the pot slide to sweep from side to side as well
+as to pivot. This arrangement worked and we were able to sweep the
+azimuth through a wide arc. At this point, we took a bode plot in
+current mode and to our surprise, the plot looked very similar to 
+those taken in October, in spite of the absence of the secondary
+truss. That afternoon, Steve Hudson helped us take the dummy instrument
+weights off the rotator.</P>
+
+<p>Meanwhile, Peter Prieto and Jeff Simmons were hooking up a 
+Heidenhain encoder interpolator to go between the azimuth encoder and
+the MEI servo controller installed in the VME crate below the azimuth
+drive. Charlie Briegel at Fermilab was able to establish remote contact
+with the MEI and observe axis motion. During the afternoon and evening,
+several time domain records with various drive waveforms were taken.
+Finally, in the evening, closing the velocity loop, constant velocity
+points at low speed (0.3 x sidereal was the slowest) were taken to try
+and see in what portion of the friction curve the axis was operating. It
+is clear that, at a velocity below 3-5x sidereal, the slope of the
+torque/velocity curve is negative (Striebek effect).</P>
+
+<p>By 9:30 PM Friday, we had decided to call a halt and took down
+the equipment, policed the interior of the 2.5m building and lugged the
+instruments back to the main building. With help from Peter and Jeff
+we packed the instruments back into their boxes in preparation for 
+shipping them back to Fermilab and were done by about 10:30. </P>
+
+<p><U>INITIAL CONCLUSIONS</U></P>
+
+<OL>
+<LI>At sidereal rates and below, the azimuth drive has a negative speed/torque 
+	relationship.
+<BR><BR>
+<LI>The resonances of the azimuth axis are essentially unchanged from the 
+   October measurements, in spite of no secondary truss or any dummy
+	weights. 
+<BR><BR>
+<LI>The margin between breaking static friction and slipping on the
+   rotator axis as it is now is very slim.
+   </OL>
+
+<p><U>FUTURE GOALS</U></P>
+
+<OL>
+<LI>Link the measurement data with the data from the finite
+   element analysis going on at Fermilab 
+<BR><BR>
+<LI>Begin working on the compensator design
+<BR><BR>
+<LI>Collect wind disturbance data when the wind screen is in place
+</OL>
+
+<p><U>ACKNOWLEDGEMENTS</U></P>
+
+<p>Our thanks to the APO staff for their help and assistance and to 
+Charlie Hull for his help on the wind screen controls and for moving the
+tach generator from altitude to azimuth.</P>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this trip report should be addressed to Sten
+Hansen by phone at (630) 840-4027 or by e-mail at <A HREF="mailto:hansen@fnal.gov">hansen@fnal.gov</A>.
+<BR>&nbsp;
+
+<P><I><FONT SIZE=-1>Last modified 02/23/99</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</body>
+</html>

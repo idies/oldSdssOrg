@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Data products: Getting Spectra - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<h1>Getting redshift catalogs and all spectra and corresponding
+imaging data</h1>
+
+<p><a href="./index.html">Back to Spectra</a></p>
+
+<p>For your convenience, we publish a variant of the DR7 spectroscopic
+data set which has all regular survey spectra and corresponding object
+lists entries and atlas images (i.e., these files do not include
+spectra from the &quot;extra&quot; plates with repeat observations,
+nor the spectra from the <a href="./special.html">special
+plates</a>). It consists of the following set of file for each plate
+of 640 fibers:</p>
+
+<ul>
+  <li><code>spDiag-$mjd-$plate.par</code>: the spectro1d summary</li>
+  <li><code>spSpec-$mjd-$plate-$fiber.fit</code>: the catalog of spectral lines per spectrum</li>
+  <li><code>spPlate-$plate-$mjd.fits</code>: the image of reduced spectra (1 spectrum per row)</li>
+  <li><code>plPlugMapM-$plate-$mjd-$mapping.par</code>: the mapping of targets to fibers</li>
+  <li><code>spObj-$plate-$mjd-$rerun.fit</code>: joined <a href="../../dm/flatFiles/tsObj.html"><code>tsObj</code></a> and <a href="../../dm/flatFiles/spDiag.html"><code>spDiag</code></a> and
+      <a href="../../dm/flatFiles/plPlugMap.html"><code>plPlugMap</code></a> data for all fibers, hdu 1 = best, hdu 2 = target
+      </li>
+  <li><code>spAtlas-$plate-$mjd-$fiber.fit</code>: best and target atlas images for all 5 colors for all fibers</li>
+</ul>
+
+<p>The data model for a <a
+href="../../dm/flatFiles/spObj.html"><code>spObj</code></a> file
+is a combination of data taken from the <a
+href="../../dm/flatFiles/tsObj.html"><code>tsObj</code></a>, <a
+href="../../dm/flatFiles/spDiag.html"><code>spDiag</code></a> and <a
+href="../../dm/flatFiles/plPlugMap.html"><code>plPlugMap</code></a> files. A
+<code>tsObj</code> file contains all imaging information for all
+objects (bright and faint) in a particular 0.033 sq. deg. imaging
+field, while a <code>spObj</code> file contains all imaging
+information for all fibers on a particular spectroscopic plate, with
+an area of 7 sq. deg. spanning many imaging fields.</p>
+
+
+<p>So far, only regular survey plates are included in those files, but
+not the extra and <a href="./special.html">special
+plates</a> that have been included starting with DR4. You can access
+these files, as well as catalogs of just the redshifts, in bulk at the
+following locations:</p>
+
+<h3>The full set of plates</h3>
+<ul>
+  <li>one subdirectory per plate: <a
+      href="http://das.sdss.org/spectro/ss_26/">http://das.sdss.org/spectro/ss_26</a><br />
+      An example of what is in these directories:
+      <a href="http://das.sdss.org/spectro/ss_26/0666/">plate 0666</a></li>
+  <li>one tar.gz file of ~95MB per plate: <a
+      href="http://das.sdss.org/spectro/ss_tar_26/">http://das.sdss.org/spectro/ss_tar_26</a>
+      <br /><strong>We recommend to use these.</strong> Most easily
+      retrieved using
+      <a href="http://www.gnu.org/software/wget/wget.html">wget</a>, for example using this command:
+      <pre>wget -r -nH -np -l1 -A.tar.gz http://das.sdss.org/spectro/ss_tar_26/</pre>
+      <em style="color: red">You must include the trailing slash in the wget command!</em><br/>
+      or <a href="../../data/rsync.html">rsync</a>, with this one:
+      <pre>rsync -vtrLPR rsync://user@rsync.sdss.org/spectro/ss_tar_26/ ./</pre>
+      The password is <code>sdss</code>. Also see our <a
+      href="../../data/rsync.html">rsync help page</a>.
+  </li>
+</ul>
+
+<h3>Just the redshifts</h3>
+
+<p>There are separate catalogs by spectroscopic classification, the
+gzipped tarballs are subdivided in to subsets for DR1+DR2+DR3 (suffix
+-DR123.fit.gz) and the incremental sets for DR4, DR5, DR6, and DR7 (suffix
+-DRx.fit.gz).</p>
+
+<h4>Galaxies</h4>
+<ul>
+  <li>All objects classified as galaxies:
+    <ul>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/gals-DR123a.fit">gals-DR123a.fit</a> (592M), data releases 1 through 3, part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/gals-DR123b.fit">gals-DR123b.fit</a> (652M), data releases 1 through 3, part 2</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/gals-DR4.fit">gals-DR4.fit</a> (347M), data release 4 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/gals-DR5.fit">gals-DR5.fit</a> (343M), data release 5 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/gals-DR6.fit">gals-DR6.fit</a> (379M), data release 6 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/gals-DR7.fit">gals-DR7.fit</a> (433M), data release 7 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/gals-EXTRA.fit">gals-EXTRA.fit</a> (119M), <a href="../../glossary/index.html#extra_plates">extra plates</a></li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/gals-SPECIALa.fit">gals-SPECIALa.fit</a> (217M), <a href="../../glossary/index.html#special_plates">special plates</a> part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/gals-SPECIALb.fit">gals-SPECIALb.fit</a> (8.2M), <a href="../../glossary/index.html#special_plates">special plates</a> part 2</li>
+    </ul>
+  </li>
+  <li>Object from the <a
+      href="../../glossary/index.html#tilable">tiled samples</a>
+      <ul>
+	<li>Main galaxy sample: 
+
+<ul>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_gals-DR123a.fit">main_gals-DR123a.fit</a> (491M), data releases 1 through 3, part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_gals-DR123b.fit">main_gals-DR123b.fit</a> (546M), data releases 1 through 3, part 2</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_gals-DR4.fit">main_gals-DR4.fit</a> (294M), data release 4 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_gals-DR5.fit">main_gals-DR5.fit</a> (291M), data release 5 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_gals-DR6.fit">main_gals-DR6.fit</a> (324M), data release 6 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_gals-DR7.fit">main_gals-DR7.fit</a> (373M), data release 7 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_gals-EXTRA.fit">main_gals-EXTRA.fit</a> (88M), <a href="../../glossary/index.html#extra_plates">extra plates</a></li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_gals-SPECIALa.fit">main_gals-SPECIALa.fit</a> (25M), <a href="../../glossary/index.html#special_plates">special plates</a> part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_gals-SPECIALb.fit">main_gals-SPECIALb.fit</a> (487K), <a href="../../glossary/index.html#special_plates">special plates</a> part 2</li>
+</ul>
+	</li>
+	<li>Luminous Red Galaxies (LRGs): 
+
+<ul>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_lrgs-DR123a.fit">main_lrgs-DR123a.fit</a> (58M), data releases 1 through 3, part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_lrgs-DR123b.fit">main_lrgs-DR123b.fit</a> (65M), data releases 1 through 3, part 2</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_lrgs-DR4.fit">main_lrgs-DR4.fit</a> (40M), data release 4 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_lrgs-DR5.fit">main_lrgs-DR5.fit</a> (42M), data release 5 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_lrgs-DR6.fit">main_lrgs-DR6.fit</a> (46M), data release 6 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_lrgs-DR7.fit">main_lrgs-DR7.fit</a> (51M), data release 7 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_lrgs-EXTRA.fit">main_lrgs-EXTRA.fit</a> (11M), <a href="../../glossary/index.html#extra_plates">extra plates</a></li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_lrgs-SPECIALa.fit">main_lrgs-SPECIALa.fit</a> (9.3M), <a href="../../glossary/index.html#special_plates">special plates</a> part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_lrgs-SPECIALb.fit">main_lrgs-SPECIALb.fit</a> (346K), <a href="../../glossary/index.html#special_plates">special plates</a> part 2</li>
+</ul>
+
+	</li>
+
+      </ul>
+  </li>
+</ul>
+
+<h4>Quasars</h4>
+<ul>
+  <li>All objects classified as quasars:
+
+<ul>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/qsos-DR123a.fit">qsos-DR123a.fit</a> (82M), data releases 1 through 3, part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/qsos-DR123b.fit">qsos-DR123b.fit</a> (86M), data releases 1 through 3, part 2</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/qsos-DR4.fit">qsos-DR4.fit</a> (43M), data release 4 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/qsos-DR5.fit">qsos-DR5.fit</a> (45M), data release 5 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/qsos-DR6.fit">qsos-DR6.fit</a> (46M), data release 6 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/qsos-DR7.fit">qsos-DR7.fit</a> (48M), data release 7 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/qsos-EXTRA.fit">qsos-EXTRA.fit</a> (15M), <a href="../../glossary/index.html#extra_plates">extra plates</a></li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/qsos-SPECIALa.fit">qsos-SPECIALa.fit</a> (31M), <a href="../../glossary/index.html#special_plates">special plates</a> part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/qsos-SPECIALb.fit">qsos-SPECIALb.fit</a> (10M), <a href="../../glossary/index.html#special_plates">special plates</a> part 2</li>
+</ul>
+
+  </li>
+  <li>Only objects from the tiled main-survey quasar sample:
+
+<ul>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_qsos-DR123a.fit">main_qsos-DR123a.fit</a> (50M), data releases 1 through 3, part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_qsos-DR123b.fit">main_qsos-DR123b.fit</a> (56M), data releases 1 through 3, part 2</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_qsos-DR4.fit">main_qsos-DR4.fit</a> (31M), data release 4 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_qsos-DR5.fit">main_qsos-DR5.fit</a> (31M), data release 5 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_qsos-DR6.fit">main_qsos-DR6.fit</a> (34M), data release 6 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_qsos-DR7.fit">main_qsos-DR7.fit</a> (37M), data release 7 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_qsos-EXTRA.fit">main_qsos-EXTRA.fit</a> (8.5M), <a href="../../glossary/index.html#extra_plates">extra plates</a></li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_qsos-SPECIALa.fit">main_qsos-SPECIALa.fit</a> (5.5M), <a href="../../glossary/index.html#special_plates">special plates</a> part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/main_qsos-SPECIALb.fit">main_qsos-SPECIALb.fit</a> (839K), <a href="../../glossary/index.html#special_plates">special plates</a> part 2</li>
+</ul>
+
+</li>
+</ul>
+	    
+<p><strong>Note</strong> that there is a vetted <a
+href="../value_added/qsocat_dr5.html">DR5 quasar
+catalog presented by Schneider et al. 2007</a>. The
+information contained in that catalog
+supersedes the information contained in all other data
+sources. <strong>We strongly recommend</strong>
+cross-checking the list given here against the Schneider
+et al. catalog.  Future data releases will incorporate the
+information from the vetted quasar catalogs.</p>
+
+<h4>Stars</h4>
+
+<p>Objects classified as stars in the main SDSS footprint (i.e. not including SEGUE or special plates) 
+<ul>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/stars-DR123a.fit">stars-DR123a.fit</a> (99M), data releases 1 through 3, part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/stars-DR123b.fit">stars-DR123b.fit</a> (136M), data releases 1 through 3, part 2</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/stars-DR4.fit">stars-DR4.fit</a> (61M), data release 4 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/stars-DR5.fit">stars-DR5.fit</a> (64M), data release 5 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/stars-DR6.fit">stars-DR6.fit</a> (68M), data release 6 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/stars-DR7.fit">stars-DR7.fit</a> (70M), data release 7 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/stars-EXTRA.fit">stars-EXTRA.fit</a> (35M), <a href="../../glossary/index.html#extra_plates">extra plates</a></li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/stars-SPECIALa.fit">stars-SPECIALa.fit</a> (402M), <a href="../../glossary/index.html#special_plates">special plates</a> part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/stars-SPECIALb.fit">stars-SPECIALb.fit</a> (611M), <a href="../../glossary/index.html#special_plates">special plates</a> part 2</li>
+</ul>  
+
+</p>
+      
+<h4>Unknown and sky fibers</h4>
+
+<p>Objects whose type could not be identified, and sky fibers used to
+perform sky subtraction from the spectra: 
+
+<ul>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/unks-DR123a.fit">unks-DR123a.fit</a> (54M), data releases 1 through 3, part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/unks-DR123b.fit">unks-DR123b.fit</a> (59M), data releases 1 through 3, part 2</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/unks-DR4.fit">unks-DR4.fit</a> (31M), data release 4 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/unks-DR5.fit">unks-DR5.fit</a> (31M), data release 5 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/unks-DR6.fit">unks-DR6.fit</a> (34M), data release 6 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/unks-DR7.fit">unks-DR7.fit</a> (39M), data release 7 increment</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/unks-EXTRA.fit">unks-EXTRA.fit</a> (16M), <a href="../../glossary/index.html#extra_plates">extra plates</a></li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/unks-SPECIALa.fit">unks-SPECIALa.fit</a> (77M), <a href="../../glossary/index.html#special_plates">special plates</a> part 1</li>
+<li><a href="http://das.sdss.org/spectro/ss_tar_26/unks-SPECIALb.fit">unks-SPECIALb.fit</a> (82M), <a href="../../glossary/index.html#special_plates">special plates</a> part 2</li>
+</ul>
+</p>
+
+
+<h4>What about objects not observed due to fiber collisions?</h4>
+
+<p>
+You will want the <a href="../tiling/index.html">tiling
+information</a>.</lp>
+
+<hr>
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

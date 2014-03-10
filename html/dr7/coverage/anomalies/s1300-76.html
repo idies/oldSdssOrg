@@ -1,0 +1,49 @@
+<html>
+
+
+<h3>Stripes 1300/76 Footprint Anomaly </h3>
+
+There is a defect in the footprint along stripes 1300 and 76 from 40 > RA > 20  and 10 < DEC < 20 :
+
+<p>
+   
+<img src="global1300-76.png">
+<p>
+ <h3>Here is a possible SQL for recovering these objects (to do both in the context dr7 and Runsdb) : </h3> 
+<p>  
+<p>
+Select
+p.run,p.rerun,p.camcol,p.field,p.obj,p.ra,p.dec,g,mode,p.status,stripe,strip
+<p>
+From
+Photoobjall p,field f,segment s
+<p>
+Where
+<p>
+Ra between  40 and 20 and
+<p>
+Dec between 10 and 20   and
+<p>
+G between 18  and 18.2  and
+
+<p>
+p.fieldid = f.fieldid and f.segmentid = s.segmentid
+<p>
+(and mode=1 for the context dr7)
+<p>
+<p>
+<p>
+
+<h3>With this, we can select the interesting data in Runsdb keeping the data  from Runsdb: </h3>
+<p>
+($11 == 1300 && $4 < 27 && $12==0) || ($11 ==76 && $4 > 219)
+
+<p>
+The South strip of Stripe 1300 from the runsdb consists of objects from run 5817.
+<p>
+The North strip of Stripe 76 from the runsdb consists of objects from run 1043.
+<p>
+
+</html>
+
+

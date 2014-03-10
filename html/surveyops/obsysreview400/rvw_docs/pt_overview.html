@@ -1,0 +1,126 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<CENTER><B><I>Sloan Digital Sky Survey</I></B></CENTER>
+
+<CENTER><B><I>Review of Observing Systems and Survey Operations<BR>
+<BR>
+</I><FONT SIZE=+2>Photometric Telescope Overview</FONT></B></CENTER>
+
+<CENTER><FONT SIZE=-1>Alan Uomoto</FONT></CENTER>
+
+<CENTER><FONT SIZE=-1>April 11, 2000</FONT></CENTER>
+
+<HR SIZE=4 WIDTH="100%">
+
+<P><B>Description</B>
+<BLOCKQUOTE>
+  <P><FONT SIZE=-1>Description The Photometric Telescope calibrates transfer
+fields ("Secondary Patches") observed by the 2.5 m telescope and measures
+atmospheric extinction for 2.5 m calibrations.</FONT><FONT size=-1></FONT></P>
+  <P><FONT size=-1>The telescope is a commercial 20-inch Cassegrain reflector 
+  from DFM Engineering. After adding coma correctors to expand the field to one 
+  degree, it has the following characteristics: </FONT><FONT SIZE=-1>       
+          
+       :</FONT> </P>
+
+<P><FONT SIZE=-1>Primary aperture:&nbsp;&nbsp; 20 inches</FONT>
+<BR><FONT SIZE=-1>System f-ratio: f/8.8</FONT>
+<BR><FONT SIZE=-1>Field diameter 1 degree</FONT>
+<BR><FONT SIZE=-1>Pixel size: 1.15 arc seconds</FONT>
+<BR><FONT SIZE=-1>Pointing: 15 arc seconds rms</FONT>
+<BR><FONT SIZE=-1>Uncorrected tracking: 0.5 arc sec drift in 5 minutes</FONT>
+
+<P><FONT SIZE=-1>More information is at <FONT COLOR="#000000"><A HREF="http://www.jhu.edu/~sdss/PT/Optics/index.html">http://www.jhu.edu/~sdss/PT/Optics/index.html</A></FONT></FONT>
+
+<P><FONT SIZE=-1>Instrumentation 
+  includes a six-position filter wheel, rotating
+sector shutter, flat field projector, Soric flat field screen, and
+a thinned AR-coated SITe 2048x2048 CCD similar to those in the SDSS camera
+and spectrograph detectors. The CCD is cooled with a mechanical refrigerator
+(an APD CryoTiger) and controlled by electronics similar to those
+on the SDSS imager and spectrographs. .</FONT>
+
+<P><FONT SIZE=-1>Commands to the 
+  CCD, telescope, and filter/shutter controller are sent from the unix-based 
+  observer's program ("MOP") to a terminal server in the dome. Each device is 
+  attached to a different port on the terminal server. CCD imaging data are 
+  returned via fiber optic directly to the custom data
+acquisition system. The observing procedure is ordinary all-sky broad band photometry. The
+standard star candidates (we have not yet declared a standard system) are mostly high
+quality non-variables from Landolt's UBVRI lists. System magnitudes will be tied to spectrophotometry
+of fundamental stars.</FONT></P></BLOCKQUOTE>
+<B>Functional Status</B>
+<BLOCKQUOTE><FONT SIZE=-1>The system is functional.</FONT>
+
+<P><FONT SIZE=-1>The observer's software picks standard stars, moves the
+telescope, and gathers data. During the night, the observer selects the
+photometric transfer fields, monitors the sky, and checks for focus or
+other problems. At the beginning and end of the night the observer obtains
+calibration data (flats and biases) and opens or closes the dome.</FONT>
+
+<P><FONT SIZE=-1>Data are stored on a Unix (SGI Irix) computer until the end
+of the night when they're written to tape and shipped to Fermilab for processing.
+.</FONT></P></BLOCKQUOTE>
+<B>Performance</B> 
+<BLOCKQUOTE style="MARGIN-RIGHT: 0px"><FONT SIZE=-1>The system collects survey-quality data.&nbsp;
+Known deficiencies against survey requirements are:</FONT> 
+  <P><FONT size=-1>1. Observing efficiency is below the requisite one 
+  calibration set (four pointings) per hour primarily because too much time is 
+  needed for standard stars. The remedy will be to use sub-array readouts for 
+  the standards, reducing the readout time overhead. The observing system (MOP) 
+  has already been modified but the data reduction system (MTPIPE) needs to 
+  accept the new data format. This is a deeper problem than one might expect 
+  because the standard star identifications currently require position 
+  confirmation from many surrounding stars (a legacy from the old 24-inch 
+  telescope, which didn't point very well). We are developing single-star 
+  identification procedures based on the known pointing accuracy of the 20-inch. 
+  </FONT>
+  <P><FONT SIZE=-1>       
+            
+           
+           
+         
+      2. Transfer fields are currently selected by the
+observer based on projected 2.5 m observing plans. Since routine observing does
+not allow full-time observers, we are implementing a system (database) that the observing
+software (MOP) will query to build a night's observing plan.</FONT>
+  <P><FONT size=2>3. We are using a preliminary u'g'r'i'z' calibration based on 
+  USNO 40-inch observations and it will be a few months before we will have an 
+  "official" system declaration. </FONT></P>
+  <P><FONT size=2>4. The staffing requirements are not known. We currently have 
+  a crew of non-APO observers (two JHU postdocs and a LANL scientist) dedicated 
+  to the telescope while it's in use. Within a year these observers will hand 
+  over their duties to SDSS observing staff. Although the 20-inch probably 
+  requires only 1/2-time attention while observing it's not obvious that frees 
+  up 1/2-time for other work if the other work cannot be interrupted so the 
+  staffing requirement is not known. This problem will be explored this summer 
+  and fall when existing APO staff will be trained to take photometry data while 
+  the 2.5 m is operating.</FONT></P></BLOCKQUOTE>
+<P><STRONG>Long-term Robustness</STRONG> </P>
+<BLOCKQUOTE><FONT SIZE=-1>We expect existing equipment to last the duration
+of the survey. It might be desirable to upgrade some items in the data
+acquisition system (especially as spare parts become scarce) but there
+is no fundamental reason to change.</FONT> 
+  <P><FONT SIZE=-1>Potential problems:</FONT></P>
+  <P><FONT size=-1>1) The dome temperature can be high in the summer. 
+  Controlling the heat will improve early evening seeing and reduce suspected 
+  problems with lubricants and sealants at high temperatures. Adding dome 
+  insulation and running the ventilation fan is probably a good idea. 
+</FONT></P>
+  <P><FONT size=-1>2) Winter cold causes problems with the closed cycle 
+  refrigerator, namely it may refuse to restart after a power failure. We plan 
+  to install an uninterruptable power supply and also explore ways to warm the 
+  appropriate parts. </FONT></P>
+
+<HR SIZE=4 WIDTH="100%">
+</BLOCKQUOTE>
+<P><B><I><FONT SIZE=-1>Review of Observing Systems
+and Survey Operations</FONT></I></B>
+<BR><I><FONT SIZE=-1>Apache Point Observatory</FONT></I>
+<BR><I><FONT SIZE=-1>April 25-27, 2000</FONT></I>
+<BR>&nbsp; </P>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

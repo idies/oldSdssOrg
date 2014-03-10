@@ -1,0 +1,401 @@
+This is TeX, Version 3.1415 (C version 6.1) (format=latex 96.9.19)  4 AUG 1999 17:42
+**./images.tex
+(images.tex
+LaTeX2e <1996/06/01>
+
+(/usr/princeton/tex-3.1415-C-6.1/lib/texmf/tex/latex2e/latex209.def
+File: latex209.def 1996/05/21 v0.51 Standard LaTeX file
+Entering LaTeX 2.09 compatibility mode.
+\footheight=\dimen102
+\@maxsep=\dimen103
+\@dblmaxsep=\dimen104
+\@cla=\count79
+\@clb=\count80
+\mscount=\count81
+(/usr/princeton/tex-3.1415-C-6.1/lib/texmf/tex/latex2e/tracefnt.sty
+Package: tracefnt 1996/05/08 v3.0h Standard LaTeX package (font tracing)
+\tracingfonts=\count82
+LaTeX Info: Redefining \selectfont on input line 139.
+)
+\symbold=\mathgroup4
+\symsans=\mathgroup5
+\symtypewriter=\mathgroup6
+\symitalic=\mathgroup7
+\symsmallcaps=\mathgroup8
+\symslanted=\mathgroup9
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 307.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 308.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 309.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 315.
+LaTeX Info: Redefining \em on input line 325.
+(/usr/princeton/tex-3.1415-C-6.1/lib/texmf/tex/latex2e/latexsym.sty
+Package: latexsym 1995/11/28 v2.2c Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 86.
+)
+LaTeX Font Info:    Redeclaring math delimiter \lgroup on input line 389.
+LaTeX Font Info:    Redeclaring math delimiter \rgroup on input line 391.
+LaTeX Font Info:    Redeclaring math delimiter \bracevert on input line 393.
+) (/usr/princeton/tex-3.1415-C-6.1/lib/texmf/tex/latex2e/article.cls
+Document Class: article 1996/05/26 v1.3r Standard LaTeX document class
+(/usr/princeton/tex-3.1415-C-6.1/lib/texmf/tex/latex2e/size11.clo
+File: size11.clo 1996/05/26 v1.3r Standard LaTeX file (size option)
+)
+\c@part=\count83
+\c@section=\count84
+\c@subsection=\count85
+\c@subsubsection=\count86
+\c@paragraph=\count87
+\c@subparagraph=\count88
+\c@figure=\count89
+\c@table=\count90
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+Compatibility mode: definition of \rm ignored.
+Compatibility mode: definition of \sf ignored.
+Compatibility mode: definition of \tt ignored.
+Compatibility mode: definition of \bf ignored.
+Compatibility mode: definition of \it ignored.
+Compatibility mode: definition of \sl ignored.
+Compatibility mode: definition of \sc ignored.
+LaTeX Info: Redefining \cal on input line 543.
+LaTeX Info: Redefining \mit on input line 544.
+\bibindent=\dimen105
+)
+\sizebox=\box26
+\lthtmlwrite=\write3
+(images.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+latex2htmlLength hsize=349.0pt
+latex2htmlLength vsize=766.1112pt
+latex2htmlLength hoffset=0.0pt
+latex2htmlLength voffset=0.0pt
+latex2htmlLength topmargin=0.0pt
+latex2htmlLength topskip=0.00002pt
+latex2htmlLength headheight=0.0pt
+latex2htmlLength headsep=0.0pt
+latex2htmlLength parskip=0.0pt plus 1.0pt
+latex2htmlLength oddsidemargin=54.0pt
+latex2htmlLength evensidemargin=54.0pt
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 90.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 90.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 90.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 90.
+(/usr/princeton/tex-3.1415-C-6.1/lib/texmf/tex/latex2e/Ulasy.fd
+File: Ulasy.fd 1995/11/28 v2.2cLaTeX symbol font definitions
+)
+l2hSize :tex2html_wrap_inline542:7.07185pt::0.0pt::6.63466pt.
+[1
+
+
+]
+l2hSize :tex2html_wrap_inline544:8.41812pt::0.0pt::22.14442pt.
+[2
+
+
+]
+l2hSize :tex2html_wrap_inline548:7.07185pt::0.0pt::6.64984pt.
+[3
+
+
+]
+l2hSize :tex2html_wrap_inline640:9.9103pt::9.9103pt::77.86667pt.
+[4
+
+
+]
+l2hSize :tex2html_wrap_inline652:9.45404pt::9.45404pt::96.72495pt.
+[5
+
+
+]
+l2hSize :tex2html_wrap_inline654:7.07185pt::7.07185pt::24.33328pt.
+[6
+
+
+]
+l2hSize :tex2html_wrap_inline656:9.9103pt::9.9103pt::14.60002pt.
+[7
+
+
+]
+l2hSize :tex2html_wrap_inline660:7.07185pt::0.0pt::34.16547pt.
+[8
+
+
+]
+l2hSize :tex2html_wrap_inline662:10.08516pt::10.08516pt::119.11661pt.
+[9
+
+
+]
+l2hSize :tex2html_wrap_inline678:7.07185pt::7.07185pt::25.54999pt.
+[10
+
+
+]
+l2hSize :tex2html_wrap_inline680:7.07185pt::7.07185pt::25.54999pt.
+[11
+
+
+]
+l2hSize :tex2html_wrap_inline686:8.41812pt::0.0pt::33.59984pt.
+[12
+
+
+]
+l2hSize :tex2html_wrap_inline690:7.07185pt::0.0pt::8.5167pt.
+[13
+
+
+]
+l2hSize :tex2html_wrap_inline692:9.12923pt::9.12923pt::11.60138pt.
+[14
+
+
+]
+l2hSize :tex2html_wrap_inline698:8.41812pt::0.0pt::8.04991pt.
+[15
+
+
+]
+l2hSize :tex2html_wrap_inline726:8.2125pt::8.2125pt::152.37425pt.
+[16
+
+
+]
+l2hSize :tex2html_wrap_inline738:8.2125pt::8.2125pt::157.84926pt.
+[17
+
+
+]
+l2hSize :tex2html_wrap_inline772:8.2125pt::8.2125pt::26.15833pt.
+[18
+
+
+]
+l2hSize :tex2html_wrap_inline774:7.07185pt::0.0pt::22.50832pt.
+[19
+
+
+]
+l2hSize :tex2html_wrap_inline776:7.07185pt::0.0pt::33.45833pt.
+[20
+
+
+]
+l2hSize :tex2html_wrap_inline780:7.62646pt::7.62646pt::42.35008pt.
+[21
+
+
+]
+l2hSize :tex2html_wrap_inline782:7.62646pt::7.62646pt::33.8334pt.
+[22
+
+
+]
+l2hSize :tex2html_wrap_inline784:7.62646pt::7.62646pt::44.78342pt.
+[23
+
+
+]
+l2hSize :tex2html_wrap_inline786:7.07185pt::0.0pt::12.12485pt.
+[24
+
+
+]
+l2hSize :tex2html_wrap_inline792:7.60416pt::0.0pt::6.38751pt.
+[25
+
+
+]
+l2hSize :tex2html_wrap_inline794:7.07185pt::7.07185pt::28.5916pt.
+[26
+
+
+]
+l2hSize :tex2html_wrap_inline796:9.12923pt::0.0pt::36.52847pt.
+[27
+
+
+]
+l2hSize :tex2html_wrap_inline798:7.07185pt::0.0pt::7.04526pt.
+[28
+
+
+]
+l2hSize :tex2html_wrap_inline804:8.41812pt::8.41812pt::40.64458pt.
+[29
+
+
+]
+l2hSize :tex2html_wrap_inline806:7.07185pt::0.0pt::12.12485pt.
+[30
+
+
+]
+l2hSize :tex2html_wrap_inline810:7.07185pt::0.0pt::22.50832pt.
+[31
+
+
+]
+l2hSize :tex2html_wrap_inline818:8.2125pt::8.2125pt::20.07503pt.
+[32
+
+
+]
+l2hSize :tex2html_wrap_inline824:7.62646pt::0.0pt::42.82025pt.
+[33
+
+
+]
+l2hSize :tex2html_wrap_inline826:7.62646pt::0.0pt::44.09773pt.
+[34
+
+
+]
+l2hSize :tex2html_wrap_inline828:7.62646pt::7.62646pt::55.73343pt.
+[35
+
+
+]
+l2hSize :tex2html_wrap_inline830:7.62646pt::0.0pt::4.75006pt.
+[36
+
+
+]
+l2hSize :tex2html_wrap_inline832:7.62646pt::0.0pt::42.82025pt.
+[37
+
+
+]
+l2hSize :tex2html_wrap_inline834:7.62646pt::0.0pt::37.34525pt.
+[38
+
+
+]
+l2hSize :tex2html_wrap_inline836:7.62646pt::0.0pt::35.58105pt.
+[39
+
+
+]
+l2hSize :tex2html_wrap_inline838:7.62646pt::0.0pt::31.87024pt.
+[40
+
+
+]
+l2hSize :tex2html_wrap_inline840:7.62646pt::0.0pt::51.33693pt.
+[41
+
+
+]
+l2hSize :tex2html_wrap_inline844:7.62646pt::0.0pt::30.10605pt.
+[42
+
+
+]
+l2hSize :tex2html_wrap_inline852:7.62646pt::7.62646pt::44.09775pt.
+[43
+
+
+]
+l2hSize :tex2html_wrap_inline866:8.41812pt::0.0pt::33.59984pt.
+[44
+
+
+]
+l2hSize :tex2html_wrap_inline870:7.07185pt::7.07185pt::5.82988pt.
+[45
+
+
+]
+l2hSize :tex2html_wrap_inline874:7.07185pt::7.07185pt::19.4667pt.
+[46
+
+
+]
+l2hSize :tex2html_wrap_inline878:7.07185pt::7.07185pt::19.4667pt.
+[47
+
+
+]
+l2hSize :tex2html_wrap_inline882:7.62646pt::7.62646pt::39.30841pt.
+[48
+
+
+]
+l2hSize :tex2html_wrap_inline886:7.62646pt::0.0pt::18.74174pt.
+[49
+
+
+]
+l2hSize :tex2html_wrap_inline888:9.12923pt::9.12923pt::29.02763pt.
+[50
+
+
+]
+l2hSize :tex2html_wrap_inline898:7.07185pt::7.07185pt::23.63123pt.
+[51
+
+
+]
+l2hSize :tex2html_wrap_inline900:7.07185pt::7.07185pt::57.18332pt.
+[52
+
+
+]
+l2hSize :tex2html_wrap_inline902:7.07185pt::7.07185pt::51.70831pt.
+[53
+
+
+]
+l2hSize :tex2html_wrap_inline908:7.07185pt::7.07185pt::6.59792pt.
+[54
+
+
+]
+l2hSize :tex2html_wrap_inline910:7.07185pt::7.07185pt::32.14784pt.
+[55
+
+
+]
+l2hSize :tex2html_wrap_inline936:7.07185pt::7.07185pt::46.2333pt.
+[56
+
+
+]
+l2hSize :tex2html_wrap_inline938:7.07185pt::0.0pt::8.5167pt.
+[57
+
+
+]
+l2hSize :tex2html_wrap_inline946:7.07185pt::7.07185pt::8.5167pt.
+[58
+
+
+] (images.aux) ) 
+Here is how much of TeX's memory you used:
+ 413 strings out of 10944
+ 4423 string characters out of 73250
+ 44970 words of memory out of 262141
+ 3285 multiletter control sequences out of 9500
+ 12042 words of font info for 44 fonts, out of 100000 for 255
+ 14 hyphenation exceptions out of 607
+ 23i,4n,19p,166b,179s stack positions out of 300i,40n,60p,3000b,4000s
+
+Output written on images.dvi (58 pages, 8544 bytes).

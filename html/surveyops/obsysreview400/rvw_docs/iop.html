@@ -1,0 +1,185 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+
+<CENTER><B><I>Sloan Digital Sky Survey</I></B></CENTER>
+
+<CENTER><B><I>Review of Observing Systems and Survey Operations</I></B><BR>
+<BR></CENTER>
+
+<CENTER><B><FONT SIZE=+2>The Imager Observing Programs</FONT></B></CENTER>
+
+<CENTER>James Annis</CENTER>
+
+<CENTER>April 11, 2000</CENTER>
+
+<HR SIZE=4 WIDTH="100%">
+
+<P><B>IOP</B>
+<UL><FONT SIZE=-1>The Imager Observing Program (IOP) is code that runs
+on the host DA machines, is built on the DA system software "astroda",
+and the survey standard software "astrotools."&nbsp; If astroda is the
+code to see the window that the PT-VME link provides on the VME crates,
+IOP is the code to see what the instruments choose to reveal of themselves,
+and to coerce them, and all the other subsystems necessary (e.g, the telescope)
+into taking high quality data. It&nbsp; has the task of integrating all
+the other subsystems into a working whole.</FONT><FONT SIZE=-1></FONT>
+
+<P><FONT SIZE=-1>IOP has three different layers of functionality: 1) common
+code for driving the Fermilab DA systems and Princeton camera electronics,
+2) special purpose code for driving the individual instruments (IOP, SOP,
+MOP), and 3) system-wide monitoring and warning/error display code.</FONT></UL>
+<B>Common Layer</B>
+<UL><FONT SIZE=-1>The base layer of IOP deals with the common elements
+of the instruments.&nbsp; The MT, the twin spectrographs, and the imager
+all feature Princeton camera electronics, and in particular the Forth microprocessor
+camera controller.&nbsp; Furthermore, all instruments are read out into
+Fermilab data acquisition systems.&nbsp; This layer of code implements
+the camera communication software and the DA/camera initialization routines.
+The common layer allows reboots of the DA and camera, reading of camera
+communications, and construction of CCD logs. Included in the common layer
+are the base commands: goStare and goDrift, which configure the cameras
+and DA systems for data taking. It allows communication with various devices,
+like the Telescope Control Computer (TCC) and the Motion Control Processor
+(MCP), and includes&nbsp; fast telnet code. Another common layer feature
+is the polling of the DA crates to find untransferred gang files, and in
+the case of the MT and spectrographs, staring frames.</FONT></UL>
+<B>The Instrument Layer</B>
+<UL><FONT SIZE=-1>All three instruments have their own special tasks that
+need doing. For example, driving the imager requires the focus loop, driving
+the spectrographs needs a guider, and driving the MT requires talking to
+a completely different telescope. We have chosen to package all of this
+code as subdirectories in the main IOP code. This at least has the virtue
+of minimizing the number of packages one has to work on. MOP and SOP are
+then IOP plus special purpose scripts.&nbsp; One can perhaps refer to them
+collectively as [sim]OP.</FONT></UL>
+<B>The Monitor Layer</B>
+<UL><FONT SIZE=-1>The monitor layer is called ``the server.'. IOP attempts
+to monitor the state of all subsystems necessary for acquiring data of
+high quality.&nbsp; The server monitors the cameras, the nodes and tape
+drives of the DA, the TCC output, the MCP, the interlocks, the focus loop,
+and various measures of data quality, e.g., sky brightness. To give a sense
+of scale, we monitor all 59 CCDs in the survey simultaneously, each of
+which has 100 quantities to measure.</FONT>
+
+<P><FONT SIZE=-1>We perform this task by turning the server shell into
+a "poor man's" real time system.&nbsp; We have created a job scheduling
+loop using the Tcl/Tk after command.&nbsp; This scheduler invokes a procedure
+periodically, with features to catch errors and send them either to murmur
+or to stdout. There are commands to see the jobs in the scheduler loop.</FONT>
+
+<P><FONT SIZE=-1>Each subsystem gets a handler, a procedure for asking
+the subsystem about state, health and error conditions. First, this involves
+communications. We have six different communications methods: 1) telnet
+to a subsystem and query, which is how most subsystems work; 2) telnet
+to a subsystem and parse an ASCII data stream, which is how our TCC works,
+and which we suggest should be avoided; 3) parse an ASCII file as it grows,
+as we do for the murmur log while looking for warning and error messages
+from the&nbsp; VME crates; 4) interpret binary UDP packets as we do from
+the MCP reporting of the interlock system; 5) querying the status pools
+of the DA; and 6) reading gang files to extract quality assurance information
+from them.</FONT>
+
+<P><FONT SIZE=-1>Once we have received state from the subsystem we build
+two arrays: the data and the error arrays. All status information we put
+into the data array, named for example cameraData. All error state information
+we put into the error array, e.g. cameraError. These TCL arrays provide
+a common ``blackboard'' for routines to access.&nbsp; Our conventions is
+to allow the data arrays to grow with time but to reset the error arrays
+each time the error state is queried. This works well if the the instrument
+maintains its own error state and clears it when the condition disappears
+and works less well for single error reports, as come for instance from
+the DA.</FONT>
+
+<P><FONT SIZE=-1>We replicate the blackboard in the client graphical state
+display. This is done by using TCL-DP ability to send and receive UDP packets.
+The packeteer code registers clients. For each client and each data and
+error array, the "packeteer" diffs the array, transforms the array into
+a list,&nbsp; sends the list as a single UDP packet. The "unpacketeer"
+collects the packet and remakes the array.</FONT></UL>
+<B>The Watcher</B>
+<UL><FONT SIZE=-1>The watcher is our graphical state display code. Formally,
+IOP depends on Watcher; in particular, the special purpose code that ties
+IOP to the DA host machines is absent in Watcher, which depends only on
+astrotools and tcldp.</FONT>
+
+<P><FONT SIZE=-1>The unpacketeer collects the packet and remakes the array,
+checking the name of the incoming array, and fires the appropriate&nbsp;
+mapping routine, to map the error array into a bit map. The bit map is
+carried in a hierarchal tree array structured parallel to the graphical
+interface.&nbsp; All error codes on a given tree and layer of the hierarchy
+must be unique and then they may be OR'd together to determine which part
+of the graphical interface is to be painted red. The uniqueness of the
+bit also allows clearing of the error as the observer sees it and acknowledges
+it.</FONT>
+
+<P><FONT SIZE=-1>The graphical status display is that of a hierarchical
+tree. On the top layer is a set of nine ``LED''s, all must be green for
+successful high quality data to be taken. Each LED is the top layer of
+a hierarchy. At each layer of the hierarchy, the bits of the error masks
+of the error map of the levels one below are summed; if the sum is 1 or
+greater the graphical unit is painted red. At layers below the top LED
+there are panels showing all of the devices or components. This layer either
+shows the errors associated with the device, or the status of the device,
+depending of which type of mouse click. At the leaf status entries, one
+can usually click the name of the status and receive a plot of the quantity
+since the start of the day.</FONT></UL>
+<B>IOP: Driving the imaging camera</B>
+<UL><FONT SIZE=-1>The driving of the imaging camera itself has several
+special&nbsp; requirements.</FONT>
+
+<P><FONT SIZE=-1>We have code to determine the optimal rotator angle and
+CCD clocking rate using a new technique called "Lskip". This reduces the
+time to find these parameters down to 10 minutes or so, from the half hour
+or more from our previous and more primitive techniques.</FONT>
+
+<P><FONT SIZE=-1>There is code to tell determine how to run the telescope
+along the Survey scans. The TCC itself knows nothing about Survey scans;
+we must compute, from a given starting time or RA, the correct position
+to slew to, the angle away from RA which to rotate, and the velocity vectors
+along RA and Dec at which to scan.</FONT>
+
+<P><FONT SIZE=-1>We must maintain good focus. We bring over the gang files,
+which contain simple real time reductions of the data, including analysis
+of the images on the focus chips. We use the information in the gangs to
+drive a simple PID loop to control the secondary; we call this the focus
+loop. The SOP guider is built around these same tools.</FONT>
+
+<P><FONT SIZE=-1>We must check whether at the end of the night there remain
+images on the DA pool disks that have not been written to tape, and if
+so, we must write them.</FONT>
+
+<P><FONT SIZE=-1>Downstream pipelines need the bias vector that code in
+IOP generates from a bias drift, the bad column map that IOP can produce
+from staring frames, and the myriad of bookkeeping files that IOP generates,
+from headers through&nbsp; report files. IOP is the source.</FONT></UL>
+<B>Current Status</B>
+<UL><FONT SIZE=-1>IOP is fully functional. There is a set of enhanced goals
+related to increasing survey efficiency that remain to be coded, and of
+course a bug list.</FONT>
+
+<P><FONT SIZE=-1>During this commissioning period we are discovering new
+and interesting error paths in this code. We expect this, and expect that
+new error paths will get rarer as time goes on.</FONT>
+
+<P><FONT SIZE=-1>The [sim]OPs are not very user friendly, and the documentation
+is limited to very high level papers and low level help strings. We have
+instead invested our time in personal training.</FONT>
+
+<P><FONT SIZE=-1>Development and maintenance are in the hands of the remote
+developers. Over the long term, the best course is to incorporate one or
+more observers in light maintenance. Only this way can they gain the confidence
+and skill to modify what is, in the end, their tools to do the survey to
+their own needs.</FONT></UL>
+
+<HR SIZE=4 WIDTH="100%">
+<BR><B><I><FONT SIZE=-1>Review of Oberving Systems and Survey Operations</FONT></I></B>
+<BR><I><FONT SIZE=-1>Apache Point Observatory</FONT></I>
+<BR><I><FONT SIZE=-1>April 25-27, 2000</FONT></I>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

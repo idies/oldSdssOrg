@@ -1,0 +1,40 @@
+Making the coverage plots and getting the numbers for the front page:
+
+Coverage plots: run
+
+select ra,dec from photoprimary
+where objid % 1131 = 22
+
+select ra,dec from specobjall
+where specobjid % 5 = 2
+and ra != -9999 and dec != -9999
+
+Conveniently done at casjobs. Save results as fits tables:
+dr4photoprimary.fits and dr4spectro.fits
+
+Plots are made by proc plotall in dp/etc/survey.tcl Edit that proc to
+reflect the currrent DR.
+
+Then start astrotools and do
+source dp/etc/survey.tcl
+plotall
+
+Then use gimp or similar photoshopping program to crop images and
+insert a white background around the sky ellipse.
+ 
+
+Numbers:
+
+select count(*) from frame
+
+select count(*),dbo.fspecclassn(specclass) from specobjall
+group by specclass
+
+select count(*) from specobjall where specclass in (3,4) and z<2.3
+
+select count(*) from specobjall where specclass in (3,4) and z>=2.3
+
+select count(*) from photoprimary
+
+
+select sum(stripearea) from field

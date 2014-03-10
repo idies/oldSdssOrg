@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Spectroscopic Pipelines</TITLE>
+<META NAME="description" CONTENT="Spectroscopic Pipelines">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html758" HREF="node60.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html756" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html750" HREF="node58.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html759" HREF="node60.html">Extraction and Calibration of </A>
+<B>Up:</B> <A NAME="tex2html757" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html751" HREF="node58.html">Plate Definition</A>
+<BR> <P>
+<H2><A NAME="SECTION000410000000000000000">Spectroscopic Pipelines</A></H2>
+<P>
+<A NAME="swspectro">&#160;</A>
+<P>
+The spectroscopic pipelines, <TT>spectro2d</TT> and <TT>spectro1d</TT>,
+reduce the two-dimensional spectrograms produced by the spectrographs
+to flux- and wavelength-calibrated spectra, and then measure emission
+and absorption features,
+classify the spectra, and measure redshifts.
+<P>
+The <TT>spectro2d</TT> pipeline reduces the raw data and calibration
+images from the red and blue CCD cameras from each spectrograph and
+produces merged, co-added, calibrated spectra, noise estimates, and
+mask arrays (see Table&nbsp;<A HREF="node65.html#tblspectromask">13</A>) for analysis by the <TT>
+spectro1d</TT> pipeline.  All wavelengths are expressed in &#197;, and are
+<EM>vacuum</EM> wavelengths corrected to the heliocentric frame, while
+the flux density <IMG WIDTH=15 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline3507" SRC="img178.gif"> is in units of <IMG WIDTH=137 HEIGHT=33 ALIGN=MIDDLE ALT="tex2html_wrap_inline3509" SRC="img179.gif">&#197;<IMG WIDTH=16 HEIGHT=9 ALIGN=BOTTOM ALT="tex2html_wrap_inline2861" SRC="img20.gif">.
+<P>
+The <TT>spectro1d</TT> pipeline determines emission and absorption
+redshifts, classifies spectra by object type, and measure lines in
+each spectrum. The class <TT>specObj</TT> (Table&nbsp;<A HREF="node65.html#tblspecobj">11</A>)
+contains parameters measured for the entire spectrum, as well as links
+to the <TT>Plate</TT> that the spectrum is from, the <TT>PhotoObj</TT>
+information for the object, and links to objects in
+Table&nbsp;<A HREF="node65.html#tblspecinfo">12</A>: <TT>SpecLine</TT>, lines identified
+and measured; <TT>SpecLineName</TT>, names for the lines; <TT>
+SpecLineIndex</TT>, equivalent widths and redshifts; <TT>
+CrossCorrelationRedshift</TT>, measures of the cross correlation redshift;
+and <TT>EmissionRedshift</TT>, measures of the emission redshifts.
+<P>
+We also provide the flux- and
+wavelength-calibrated spectrum, the spectrum with continuum
+subtracted, and the estimate of the <IMG WIDTH=20 HEIGHT=12 ALIGN=BOTTOM ALT="tex2html_wrap_inline3069" SRC="img70.gif"> error per pixel, all
+in the units above, plus the mask 
+array, as described in &#167;&nbsp;<A HREF="node17.html#distribfiles">2.5</A>.
+<P>
+<BR> <HR>
+<UL><A NAME="CHILD_LINKS">&#160;</A>
+<LI> <A NAME="tex2html760" HREF="node60.html#SECTION000410100000000000000">Extraction and Calibration of Spectra</A>
+<LI> <A NAME="tex2html761" HREF="node61.html#SECTION000410200000000000000">Measuring Spectra</A>
+<LI> <A NAME="tex2html762" HREF="node62.html#SECTION000410300000000000000">Spectroscopic Pipelines Testing and Performance</A>
+</UL>
+<BR> <HR>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

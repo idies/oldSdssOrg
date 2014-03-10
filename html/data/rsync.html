@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>rsync Help - SDSS DR1</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<center><h1>Rsync Help for SDSS DAS Users</h1></center>
+<p>Users of the SDSS Data Archive Server (DAS) who wish to obtain more than 10 files are required to use <em>rsync</em>, an open source utility that provides fast incremental file transfer, using the rsh or ssh protocols. Rsync is available for download at the <a href="http://samba.anu.edu.au/rsync/">rsync website</a>. Here we provide detailed instructions for installation and use on a variety of platforms.</p>
+<ul>
+<li><a href="#unix">Unix and linux</a></li>
+<li><a href="#windows">Windows</a></li>
+<li><a href="#mac">Macintosh</a></li>
+</ul>
+<a name="unix">
+<hr width="100%">
+<br>
+<b><u>Unix and linux</b></u>
+<br><p>
+Rsync is often installed by default on Unix and Linux systems. It is included in Red Hat 7.2, for instance. If it is not installed on your system, or you would like to upgrade to the latest version (2.5.6 as of 02/28/2003), you can find links to the <a href="http://samba.anu.edu.au/rsync/download.html">available downloads</a>. We recommend downloading and compiling the source, rather than retrieving the binary. <br><p>
+The source can be downloaded directly <a href="http://samba.anu.edu.au/ftp/rsync/rsync-2.5.6.tar.gz">here</a>. You will need to gunzip and untar the file if your browser does not do so automatically. A directory called rsync-2.5.6 is created; just <em>cd</em> into that directory, and execute<br>
+<em>./configure</em><br>
+This will create a Makefile and config.h appropriate for your system. Then type<br>
+<em>make</em><br>
+to compile the code. Finally, to put rsync in your path, either add it by hand, or type<br>
+<em>make install</em>.<br>
+At this point, you are ready to use rsync. When you visit the <a href="http://das.sdss.org/DR1-cgi-bin/DAS">DAS access page</a> and request data, you can choose rsync as your download method; if you request more than 10 files this will be the default. When your data is ready, you will be asked to download a file called <b>sdss-rsync.lis</b> to a local directory where you want to save your data. This file contains a listing of all the data files to be pulled over by rsync. Then, just execute<br>
+<em>rsync -vtrLPR rsync://dr1@rsync.sdss.org/DR1/ ./  --include-from=sdss-rsync.lis</em>
+to retrieve your files. You will be prompted for a password, which is simply "dr1". If you will be downloading often, you can set an environment variable of this password by adding<br>
+<em></em>
+to your .cshrc file. 
+<a name="windows">
+<br><p>  
+<b><u>Windows</b></u>
+<br><p>
+Windows users cannot download and run rsync directly. You will first have to install <b>cygwin</b>, a linux emulator. It works with all non-beta, non "release candidate", ix86 versions of Windows since Windows 95, with the exception of Windows CE. Cygwin is available for <a href="http://www.cygwin.com/">download here</a>, free of charge. Just click on the "Install Now" link, and a file called <b>setup.exe</b> will be downloaded. Running this will allow you to install Cygwin. <br><p>
+Because <b>rsync</b> is not included with Cygwin, you will also need to download and install rsync. Use your web browser to <a href="http://samba.anu.edu.au/ftp/rsync/rsync-2.5.6.tar.gz">download the rsync source code</a>. Open a Cygwin session, <em>cd</em> to the location of the source, and follow <a href="#unix">the instructions in the Unix section above</a> to install rsync.
+<a name="mac">
+<br><p>  
+<b><u>Macintosh</b></u>
+<br><p>
+Mac users with OSX can follow <a href="#unix">the instructions in the Unix section above</a> to download and install rsync. Users with OS9.x will unfortunately not be able to use this utility.
+
+<!-- end page content-->
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Feb  3 13:45:32 CST 2003
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

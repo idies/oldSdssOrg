@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Data Processing Factory</TITLE>
+<META NAME="description" CONTENT="Data Processing Factory">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html467" HREF="node32.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html465" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html459" HREF="node30.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html468" HREF="node32.html">Astrometric Pipeline</A>
+<B>Up:</B> <A NAME="tex2html466" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html460" HREF="node30.html">Software</A>
+<BR> <P>
+<H2><A NAME="SECTION00041000000000000000">Data Processing Factory</A></H2>
+<P>
+<A NAME="swfactory">&#160;</A>
+<P>
+Data from APO are transferred to Fermilab for processing and calibration.
+Three flavors of data are produced at APO: data from the imaging camera, data
+from the Photometric Telescope, and spectra from the spectrographs.  Imaging
+data are processed with the imaging pipelines: the <EM>astrometric pipeline</EM>
+(<TT>astrom</TT>;
+&#167;&nbsp;<A HREF="node32.html#secastrom">4.2</A>) performs the astrometric calibration; the <EM>
+postage stamp pipeline</EM> (<TT>psp</TT>; &#167;&nbsp;<A HREF="node35.html#swpsp">4.3</A>) characterizes the
+behavior of the point spread function as a function of time and
+location in the focal plane; the <EM>frames pipeline</EM> (<TT>frames</TT>;
+&#167;&nbsp;<A HREF="node36.html#swphoto">4.4</A>) finds, deblends, and measures the properties of objects; 
+and the <EM>final calibration pipeline</EM> (<TT>nfcalib</TT>;
+&#167;&nbsp;<A HREF="node47.html#swphotocalfcalib">4.5.3</A>) applies the photometric calibration to
+the objects.  This calibration uses the results of the photometric
+telescope data processed with the <EM>monitor telescope pipeline</EM>
+(<TT>mtpipe</TT>; &#167;&nbsp;<A HREF="node46.html#swphotocalmtpipe">4.5.2</A>).  The combination of the
+<TT>psp</TT> and <TT>frames</TT> pipelines is sometimes referred to as <TT>
+photo</TT>.
+<P>
+Individual imaging runs which interleave are prepared for spectroscopy
+with the following steps: <EM>resolve</EM> (&#167;&nbsp;<A HREF="node50.html#swresolve">4.7</A>) selects
+a primary detection for objects which fall in an overlap area; the
+<EM>target selection pipeline</EM> (<TT>target</TT>; &#167;&nbsp;<A HREF="node51.html#swtarget">4.8</A>)
+selects objects for spectroscopic observation; and the <EM>plate
+pipeline</EM> (<TT>plate</TT>; &#167;&nbsp;<A HREF="node58.html#swplate">4.9</A>) specifies the locations of
+the plates on the sky, and the location of holes to be drilled in each plate.
+<P>
+Spectroscopic data are first extracted and calibrated with the <EM>2d
+pipeline</EM> (<TT>spectro2d</TT>; &#167;&nbsp;<A HREF="node60.html#swspectro2d">4.10.1</A>), and then
+classified and measured with the <EM>1d pipeline</EM> (<TT>spectro1d</TT>;
+&#167;&nbsp;<A HREF="node61.html#swspectro1d">4.10.2</A>).
+<P>
+The EDR was prepared using the versions of pipelines
+indicated in Table&nbsp;<A HREF="node65.html#tblpipelineversions">20</A>.  The data for the EDR
+were reduced with a consistent set of pipeline versions,
+with only minor version changes to address operational issues.
+<P>
+We continue to develop these pipelines, and in what follows, we describe known
+problems and future developments where relevant.
+We also continue to improve photometric calibration techniques
+(&#167;&nbsp;<A HREF="node44.html#swphotocal">4.5</A>).
+<P>
+<HR><A NAME="tex2html467" HREF="node32.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html465" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html459" HREF="node30.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html468" HREF="node32.html">Astrometric Pipeline</A>
+<B>Up:</B> <A NAME="tex2html466" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html460" HREF="node30.html">Software</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

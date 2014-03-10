@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Spectroscopic System</TITLE>
+<META NAME="description" CONTENT="Spectroscopic System">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html396" HREF="node28.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html394" HREF="node22.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html388" HREF="node26.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html397" HREF="node28.html">Photometric Telescope</A>
+<B>Up:</B> <A NAME="tex2html395" HREF="node22.html">Hardware</A>
+<B> Previous:</B> <A NAME="tex2html389" HREF="node26.html">Great Circle Drift Scanning</A>
+<BR> <P>
+<H2><A NAME="SECTION00033000000000000000">Spectroscopic System</A></H2>
+<P>
+<A NAME="hwspectro">&#160;</A>
+<P>
+The spectroscopic system is discussed in york00. It produces
+640 individual spectra in a
+three degree diameter field at a resolution <IMG WIDTH=79 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline2953" SRC="img50.gif">
+of about 1800 in the wavelength range of 3800 to 9200 &#197;. This
+wavelength range is divided between two cameras by a dichroic at about
+6150 &#197;, and there are two spectrographs, each producing 320 spectra. There
+are thus 4 CCD detectors, each of the same kind as are present in the
+<I>g</I>, <I>r</I>, and <I>i</I> bands in the camera, 2048 pixels square with 24 micron
+pixels.
+<P>
+The fibers carrying the light from the drilled plug-plates to the spectrographs
+subtend about 3 arcseconds in the focal plane, and are imaged in turn in the
+spectrograph cameras with a footprint of about 3 pixels. The straight-through
+transmissive immersion grisms produce a dispersion which is roughly linear in
+log wavelength. 
+The spectrographs are very efficient; quantum efficiencies on the
+sky as measured from standard stars as a function of wavelength for
+each of the four spectrographic CCDs are presented in
+Figure&nbsp;<A HREF="node65.html#figspectput">5</A>.   They peak at over 25% in the red, and
+just under 20% in the blue.
+<P>
+The nominal exposure time for each plate is 45 minutes, split into at
+least three parts for cosmic ray rejection, with the exact number
+determined by observing conditions.  This set of science exposures is
+preceded and followed by a series of shorter exposures for
+calibration: arcs, flat-fields, and a 4-minute <EM>smear</EM>
+exposure on the sky for spectrophotometric calibration, in which the
+telescope is moved so that the 3&nbsp;arcsec fiber on each object
+effectively covers a <IMG WIDTH=53 HEIGHT=28 ALIGN=MIDDLE ALT="tex2html_wrap_inline2959" SRC="img51.gif"> aperture, aligned with the
+parallactic angle. The smear exposures allow us
+to account for object light excluded from the 3&nbsp;arcsec fibers due to
+seeing and atmospheric refraction; they provide an
+accurate (albeit low signal-to-noise ratio; S/N) measure of the true
+spectral shape of the objects and are used for spectrophotometric
+calibration<A NAME="tex2html9" HREF="footnode.html#415"><IMG  ALIGN=BOTTOM ALT="gif" SRC="../../../images/foot_motif.gif"></A>.   The calibration and science exposures are immediately
+processed through a streamlined version of the 2d spectroscopic
+pipeline (&#167;&nbsp;<A HREF="node59.html#swspectro">4.10</A>) to inform the observers whether the
+calibrations were successful and to provide <I>S</I>/<I>N</I> diagnostics on the
+science exposures.
+<P>
+For each science exposure, the <IMG WIDTH=53 HEIGHT=33 ALIGN=MIDDLE ALT="tex2html_wrap_inline2833" SRC="img12.gif"> per pixel through the SDSS imaging
+passbands is measured and evaluated as a function of fiber magnitude
+for each spectrograph camera.  
+We take repeated 15-minute
+exposures until the cumulative median <IMG WIDTH=94 HEIGHT=33 ALIGN=MIDDLE ALT="tex2html_wrap_inline2965" SRC="img52.gif"> at
+<IMG WIDTH=70 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline2831" SRC="img11.gif"> and <IMG WIDTH=67 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline2969" SRC="img53.gif"> in all 4 cameras.  
+In clear, non-moony conditions,
+the <IMG WIDTH=53 HEIGHT=33 ALIGN=MIDDLE ALT="tex2html_wrap_inline2833" SRC="img12.gif"> threshold is easily reached in 3 exposures, and we never
+take fewer than three exposures; in (partially)
+cloudy or moony conditions, more exposures may be required.
+<P>
+<HR><A NAME="tex2html396" HREF="node28.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html394" HREF="node22.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html388" HREF="node26.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html397" HREF="node28.html">Photometric Telescope</A>
+<B>Up:</B> <A NAME="tex2html395" HREF="node22.html">Hardware</A>
+<B> Previous:</B> <A NAME="tex2html389" HREF="node26.html">Great Circle Drift Scanning</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,46 @@
+order deny,allow
+deny from all
+allow from .uchicago.edu .ias.edu .jhu.edu .princeton.edu .washington.edu .fnal.gov .u-tokyo.ac.jp .nao.ac.jp .mpg.de .nmsu.edu .usno.navy.mil .nofs.navy.mil quasar.astro.psu.edu miffy.astro.psu.edu tycho.astro.yale.edu ceres.das.uchile.cl .physics.lsa.umich.edu sunlight.phys.rpi.edu
+AuthName "SDSS Internal Page"
+AuthType Basic
+AuthUserFile /afs/fnal.gov/files/expwww/sdss/conf/sdss_passwd
+require valid-user
+Satisfy any
+ErrorDocument 401 "<html><head><title>401 Authorization Required</title></head><body><h1>Authorization Required</h1><p>You entered an invalid password.  Please contact sdss-webmaster@sdss.org for the correct password and/or to have your host added to the access list.</body></html>
+
+#the following pre-exist the apache server 21 Dec 2000
+allow from 131.225. 128.135. 128.112. #Fermi; Univ. of Chicago; Princeton Univ.
+allow from 204.153. .apo.nmsu.edu 192.16.204. #Princeton Univ.; APO; IAS
+allow from 133.11.167.158 133.11.140.74 128.112.24. #Japan; Fukugita T. Ichikawa
+allow from 128.95.98. 128.95.99. #Univ. of Washington
+allow from 128.135.40. 192.68.148. #Yerkes unknown
+allow from ranger.phys.cmu.edu capella.phys.cmu.edu #Carnegie Mellon Univ.
+allow from fire.phys.cmu.edu #Carnegie Mellon Univ.
+allow from .pha.jhu.edu .physics.lsa.umich.edu .ias.edu
+allow from .s.u-tokyo.ac.jp .nc.u-tokyo.ac.jp
+allow from 130.34.119.150
+allow from landru.stsci.edu mps.ohio-state.edu
+allow from 195.194.120.38 rhum.roe.ac.uk # Avery Meiksen
+allow from .usno.navy.mil elmo.caltech.edu beowulf.llnl.gov
+allow from 140.254.78.20 149.217.40.130 149.217.40.133
+allow from tiamat.phyast.pitt.edu .mpg.de #Andy Connolly; Max Planck,Heidelb.
+allow from 128.113.8. 128.113.7.60 128.113.7.94 #Heidi\@rpi
+allow from 157.82.231.209 157.82.231.208
+allow from 130.183.72.188 #Wolfgang Voges
+allow from 130.167.250.42 .mpa-garching.mpg.de #Brian McLean, STSCI; MaxPlanck, Garching
+allow from 129.21.188.9 #Richmond
+#the following have been added since 21 Dec 2000
+allow from 128.118.147.74 #quasar.astro.psu.edu (Gordon Richards)
+allow from 128.118.147.106 #miffy.astro.psu.edu (Don Schneider)
+allow from 128.118.147.165 #mstar.astro.psu.edu
+allow from 128.196.209.18 #cmb.as.arizona.edu (Daniel Eisenstein)
+allow from 130.167.103.62 #faxafloi.stsci.edu (Tim Kimball)
+allow from 130.167.109.63 #oz.stsci.edu (Randy Thompson)
+allow from 130.167.103.83 #redlimit.stsci.edu (Damin Christian)
+allow from 129.25.7.178 #(Michael S. Vogeley)
+allow from 129.25.7.191 #(Michael S. Vogeley)
+allow from 129.25.7.193 #(Michael S. Vogeley)
+allow from 129.25.7.176 #(Michael S. Vogeley)
+allow from 149.217.41.105 #sun45.mpia-hd.mpg.de (Eva Grebel)
+allow from 128.122.134.216 #howdy.physics.nyu.edu (David W. Hogg)
+allow from 128.122.134.218 #aloha.physics.nyu.edu (David W. Hogg)

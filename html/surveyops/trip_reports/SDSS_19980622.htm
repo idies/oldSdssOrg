@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <META NAME="Template" CONTENT="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+   <META NAME="Author" CONTENT="William N. Boroski">
+   <TITLE>Telescope Servo Commissioning</TITLE>
+</HEAD>
+<BODY LINK="#0000FF" VLINK="#800080">
+
+<DIV ALIGN=right></DIV>
+
+<div align="left"><B><FONT SIZE=+2>Telescope Servo System Work at APO<br>
+</FONT></B><B>June 22-27, 1998</B><BR>
+  <I><em><br>
+  Sloan Digital Sky Survey Technical Not</em>e</I> <em>10090622 </em><BR>
+  <A HREF="mailto:rivetta@fnal.gov"><br>
+  <em>Claudio Rivetta</em></A><em> and <A HREF="mailto:briegel@fnal.gov">Charlie
+Briegel</A></em><A HREF="mailto:briegel@fnal.gov">, </A>Fermi National Accelerator LaboratoryBatavia, IL USA 60510</div>
+<HR SIZE="4" WIDTH="100%" align="center">
+
+<P>&nbsp;
+<BR>The purpose of this trip was to refine the tuning of the telescope
+altitude and azimuth servo loops and resolve noise problems with the telescope
+drive encoders.&nbsp;&nbsp; We did not fully accomplish these goals due
+to limited time on the telescope and to time spent fixing a problem with
+the windbaffle servo system.
+<BR>&nbsp;
+
+<P><B>Monday, June 22</B>
+
+<P>The UW group was finishing up their collimation work on the telescope,
+so we were limited in what we could do on the telescope.&nbsp; We only
+corrected the polarity of the encoder feedback signals according to the
+TCC signals and rules.
+<BR>&nbsp;
+
+<P><B>Tuesday, June 23 &amp; Wednesday, June 24</B>
+
+<P>We worked on solving a problem that had arisen with the wind baffle
+azimuth drive system. Two of the azimuth drive rollers slipped when the
+velocity was higher than siderial rate. After 1-1/2 days of work we found
+and fixed the problem.&nbsp; As explained by Paul Czarapata, the windbaffle
+azimuth servo system is configured in a master-slave arrangement, with
+one motor acting as the master and the remaining two acting as slaves.
+The master drive is set to speed control and the other two to torque control.&nbsp;
+A signal from the PLC goes to the master (this is the error signal from
+the LVDT).&nbsp; The master's torque monitor signal goes to the torque
+command of the second and third drives.&nbsp; The original controller had
+a "Azimuth Feedforward" signal that actually went to the slave drives on
+the "speed reference" input.&nbsp; This signal acts as a maximum speed
+reference that tells the drive "give me xx amount of torque but don't go
+faster than yyy rpm."&nbsp; When running with the manual control box this
+signal is jumpered to the Master speed reference signal (both are in parallel).&nbsp;
+The problem was that the wind baffle PLC azimuth feedforward signal was
+miswired and shorted.&nbsp; The shorted signal kept the maximum speed reference
+at zero, so the slave motors were being commanded to provide torque but
+not to turn.&nbsp; The additional friction from the recently installed
+windbaffle centering rollers exposed this problem.&nbsp;&nbsp; After we
+corrected the wiring, the windbaffle tracked the movement of the telescope
+at high rate without problems.
+
+<P>Late Wednesday afternoon, we began modifying the control of the altitude
+and azimuth axes to include the integral term. We found that the MEI controller
+has saturation problems associated with the integral term.&nbsp; The controller
+does not work in floating point mode and has a maximum count of 32000 for
+this term.&nbsp; The controller performs an accumulative sum of the error
+to approximate the integral but does not divide by the sampling frequency.&nbsp;
+In this case, the number accumulated grows very fast and saturates the
+integral count.&nbsp; By changing parameters of the loop such as increasing
+the gain, it is possible to fix the problem and make it operative with
+an interpolator gain of 25.&nbsp; If we need to move back the interpolator
+gain to 100, we need to reduce the controller gain by a factor of 4 and
+it will be very difficult to avoid the integral saturation.&nbsp; In this
+case, we need to replace the MEI controller with another unit that does
+not have this problem.&nbsp; For now, all of the altitude, azimuth, and
+rotator encoder interpolators are set to a gain of 25.
+<BR>&nbsp;
+
+<P><B>Thursday, June 25</B>
+<BR>During the morning, we checked for the coupling noise between the windbaffle
+and the telescope that we had observed during our last trip.&nbsp; This
+time we did not see any coupling signal between these structures.&nbsp;
+During the afternoon, we adjusted the altitude axis controller to include
+the integral term.
+<BR>&nbsp;
+
+<P><B>Friday, June 26</B>
+<BR>We tried to address the encoder noise problem by improving the grounding
+between the telescope and windscreen. We fixed the noise problem on the
+altitude encoder and the second azimuth encoder by grounding both ends
+of their respective interpolator cable shields, but this is only a temporary
+fix.&nbsp; We plan to work more on the grounding problem during our next
+APO trip.
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this trip report should be addressed to Claudio
+Rivetta by phone at (630) 840-8035 or by e-mail at <A HREF="mailto:rivetta@fnal.gov">rivetta@fnal.gov</A>.
+<BR>&nbsp;
+
+<P><I><FONT SIZE=-1>Last modified 08/04/98</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</BODY>
+</HTML>

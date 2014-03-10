@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="23cm" height="53cm" viewBox="0 4 23 53">
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" x1="0.699982" y1="21.45" x2="0.699982" y2="55.7639"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" points="0.449982,55.3757 0.699982,55.8757 0.949982,55.3757 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" x1="6.84718" y1="4.75001" x2="6.82783" y2="6.27641"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" points="6.58277,5.88508 6.82642,6.38821 7.08273,5.89141 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" x1="15.847" y1="4.75001" x2="15.8386" y2="6.5264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" points="15.5904,6.13702 15.838,6.6382 16.0904,6.13939 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" x1="11.5097" y1="30.4353" x2="11.5096" y2="55.7429"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" points="11.2596,55.3547 11.5096,55.8547 11.7596,55.3547 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" x1="21.7784" y1="19.2637" x2="21.8281" y2="55.7617"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" points="21.5776,55.3738 21.8282,55.8735 22.0776,55.3732 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" x1="3.675" y1="53.95" x2="3.68613" y2="55.7889"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" points="3.43378,55.4022 3.6868,55.9007 3.93377,55.3992 "/>
+  <rect style="fill: #000000" x="0.537482" y="56" width="22.225" height="0.4"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" x1="7.45" y1="48.7625" x2="7.49845" y2="55.7514"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" points="7.24576,55.3649 7.49922,55.8632 7.74575,55.3615 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" x1="10.825" y1="54.15" x2="10.8579" y2="55.7514"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" points="10.6,55.3685 10.8602,55.8632 11.0999,55.3582 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" x1="17.4375" y1="54.075" x2="17.4626" y2="55.796"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" points="17.207,55.4115 17.4643,55.9078 17.7069,55.4042 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" x1="20.3438" y1="34.6937" x2="20.3286" y2="55.7764"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #e6e6e6" points="20.0788,55.388 20.3285,55.8882 20.5788,55.3884 "/>
+  <rect style="fill: #ffffff" x="4.5" y="6.5" width="4.65" height="3.4" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="4.5" y="6.5" width="4.65" height="3.4" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="6.825" y="7.6">observe with</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="6.825" y="8.4">imaging</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="6.825" y="9.2">camera</text>
+  <rect style="fill: #ffffff" x="13.5125" y="6.75" width="4.65" height="3.4" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="13.5125" y="6.75" width="4.65" height="3.4" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.8375" y="7.85">observe with</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.8375" y="8.65">photometric</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.8375" y="9.45">telescope</text>
+  <rect style="fill: #ffffff" x="13.4" y="39.25" width="5.05" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="13.4" y="39.25" width="5.05" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.925" y="40.35">observe with</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.925" y="41.15">spectrographs</text>
+  <rect style="fill: #ffffff" x="4.55" y="11.25" width="4.55" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="4.55" y="11.25" width="4.55" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="6.825" y="12.35">reduce</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="6.825" y="13.15">imaging data</text>
+  <rect style="fill: #ffffff" x="13.9625" y="26.4" width="4" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="13.9625" y="26.4" width="4" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.9625" y="27.5">select</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.9625" y="28.3">targets</text>
+  <rect style="fill: #ffffff" x="13.85" y="11.4" width="4" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="13.85" y="11.4" width="4" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.85" y="12.5">reduce</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.85" y="13.3">PT data</text>
+  <rect style="fill: #ffffff" x="13.45" y="43.3" width="4.95" height="3.4" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="13.45" y="43.3" width="4.95" height="3.4" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.925" y="44.4">reduce</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.925" y="45.2">spectroscopic</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.925" y="46">data</text>
+  <rect style="fill: #ffffff" x="8.35" y="50.75" width="4.95" height="3.4" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="8.35" y="50.75" width="4.95" height="3.4" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="10.825" y="51.85">load CAS with</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="10.825" y="52.65">spectroscopic</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="10.825" y="53.45">data</text>
+  <rect style="fill: #ffffff" x="13.9125" y="35.65" width="4.05" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="13.9125" y="35.65" width="4.05" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.9375" y="36.75">design and</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.9375" y="37.55">drill plates</text>
+  <rect style="fill: #000000" x="9.3" y="20.45" width="4" height="0.4"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="6.825" y1="9.9" x2="6.825" y2="11.0264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="6.575,10.6382 6.825,11.1382 7.075,10.6382 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="6.825" y1="13.85" x2="6.84776" y2="16.1264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="6.59389,15.7407 6.84888,16.2382 7.09387,15.7357 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="15.8375" y1="10.15" x2="15.8478" y2="11.1764"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="15.5939,10.7907 15.8489,11.2882 16.0939,10.7857 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="15.85" y1="14" x2="15.85" y2="14.8764"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="15.6,14.4882 15.85,14.9882 16.1,14.4882 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="12.8" y1="20.85" x2="15.7585" y2="22.6345"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="15.297,22.6481 15.8543,22.6923 15.5552,22.2199 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="15.9625" y1="29" x2="15.9525" y2="29.8764"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="15.707,29.4854 15.9513,29.9882 16.2069,29.4911 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="15.9375" y1="38.25" x2="15.9278" y2="39.0264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="15.6827,38.6351 15.9264,39.1382 16.1826,38.6414 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="15.925" y1="41.85" x2="15.925" y2="43.0764"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="15.675,42.6882 15.925,43.1882 16.175,42.6882 "/>
+  <rect style="fill: #ffffff" x="14.9625" y="50.675" width="4.95" height="3.4" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="14.9625" y="50.675" width="4.95" height="3.4" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="17.4375" y="51.775">copy </text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="17.4375" y="52.575">spectroscopic</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="17.4375" y="53.375">data into DAS</text>
+  <rect style="fill: #000000" x="13.95" y="48" width="4" height="0.4"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="15.925" y1="46.7" x2="15.9457" y2="47.7764"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="15.6883,47.3931 15.9479,47.8882 16.1882,47.3835 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="14.45" y1="48.4" x2="11.0126" y2="50.6284"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="11.2024,50.2074 10.9188,50.6892 11.4744,50.627 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="17.45" y1="48.4" x2="17.4387" y2="50.4514"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="17.1909,50.0618 17.4381,50.5632 17.6909,50.0646 "/>
+  <rect style="fill: #000000" x="6.35" y="16.35" width="4" height="0.4"/>
+  <rect style="fill: #000000" x="12.35" y="15.1" width="4" height="0.4"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="9.85" y1="16.75" x2="9.80302" y2="20.2264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="9.55829,19.8349 9.80151,20.3382 10.0582,19.8416 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="12.85" y1="15.5" x2="12.8023" y2="20.2264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="12.5562,19.8357 12.8011,20.3382 13.0562,19.8408 "/>
+  <rect style="fill: #ffffff" x="0.35" y="18.3875" width="5.95" height="3.4" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="0.35" y="18.3875" width="5.95" height="3.4" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="3.325" y="19.4875">copy uncalibrated</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="3.325" y="20.2875">imaging run</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="3.325" y="21.0875">files into DAS</text>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="6.85" y1="16.75" x2="3.52779" y2="18.2933"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="3.77453,17.903 3.4264,18.3404 3.98518,18.3565 "/>
+  <rect style="fill: #ffffff" x="17.425" y="18.1438" width="4.55" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="17.425" y="18.1438" width="4.55" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="19.7" y="19.2438">copy PT files</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="19.7" y="20.0438">into DAS</text>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="15.85" y1="15.5" x2="19.5157" y2="18.0172"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="19.0541,18.0036 19.6078,18.0805 19.3372,17.5914 "/>
+  <rect style="fill: #ffffff" x="16.55" y="32.05" width="4.85" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="16.55" y="32.05" width="4.85" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="18.975" y="33.15">copy chunk </text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="18.975" y="33.95">files into DAS</text>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="17.45" y1="30.5" x2="18.8182" y2="31.8906"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="18.3677,31.7892 18.8966,31.9703 18.7241,31.4386 "/>
+  <rect style="fill: #ffffff" x="7.55" y="39.95" width="4.35" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="7.55" y="39.95" width="4.35" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.725" y="41.05">recalibrate</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.725" y="41.85">photometry</text>
+  <rect style="fill: #ffffff" x="1.5875" y="31.8" width="4.1" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="1.5875" y="31.8" width="4.1" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="3.6375" y="32.9">recalibrate</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="3.6375" y="33.7">astrometry</text>
+  <rect style="fill: #ffffff" x="7.35" y="36.1" width="4.8" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="7.35" y="36.1" width="4.8" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.75" y="37.2">load imaging</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.75" y="38">data into CAS</text>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="14.45" y1="30.5" x2="9.89375" y2="35.9287"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="9.95182,35.4707 9.82188,36.0144 10.3348,35.7921 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="8.35" y1="16.75" x2="3.70432" y2="31.5866"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="3.58174,31.1414 3.67091,31.6933 4.05889,31.2909 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="9.75" y1="38.7" x2="9.72947" y2="39.7264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="9.48728,39.3333 9.72724,39.8382 9.98718,39.3433 "/>
+  <rect style="fill: #ffffff" x="5.5" y="45.35" width="5.4" height="3.4" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="5.5" y="45.35" width="5.4" height="3.4" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="8.2" y="46.45">copy </text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="8.2" y="47.25">recalibrated</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="8.2" y="48.05">imaging to DAS</text>
+  <rect style="fill: #000000" x="6.2" y="43.8" width="4" height="0.4"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="9.725" y1="42.55" x2="9.70447" y2="43.5764"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="9.46228,43.1833 9.70224,43.6882 9.96218,43.1933 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="6.65" y1="36.75" x2="6.69841" y2="43.5764"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="6.44567,43.19 6.69921,43.6882 6.94565,43.1864 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="8.2" y1="44.2" x2="8.2" y2="45.1264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="7.95,44.7382 8.2,45.2382 8.45,44.7382 "/>
+  <rect style="fill: #000000" x="3.15" y="36.35" width="4" height="0.4"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="3.6375" y1="34.4" x2="3.64857" y2="36.1264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="3.39608,35.7398 3.64928,36.2382 3.89607,35.7366 "/>
+  <rect style="fill: #ffffff" x="0.85" y="50.55" width="5.65" height="3.4" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="0.85" y="50.55" width="5.65" height="3.4" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="3.675" y="51.65">update CAS</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="3.675" y="52.45">with recalibrated</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="3.675" y="53.25">astrometry</text>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="3.65" y1="36.75" x2="3.67459" y2="50.3264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="3.42389,49.9387 3.6748,50.4382 3.92389,49.9377 "/>
+  <rect style="fill: #ffffff" x="7.175" y="27.08" width="5.25" height="3.4" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="7.175" y="27.08" width="5.25" height="3.4" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.8" y="28.18">copy calibrated</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.8" y="28.98">imaging run</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.8" y="29.78">files into DAS</text>
+  <rect style="fill: #ffffff" x="6.6" y="23.15" width="6.4" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="6.6" y="23.15" width="6.4" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.8" y="24.25">generate calibrated</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.8" y="25.05">imaging run files</text>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="9.8" y1="20.85" x2="9.8" y2="22.9264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="9.55,22.5382 9.8,23.0382 10.05,22.5382 "/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="9.8" y1="25.75" x2="9.8" y2="26.8564"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="9.55,26.4682 9.8,26.9682 10.05,26.4682 "/>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="1" y="22.4">fpC</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="1" y="23.2">fpFieldStat</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="1" y="24">fpObjc</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="1" y="24.8">fpBIN</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="1" y="25.6">fpM</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="1" y="26.4">fpAtlas</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="1" y="27.2">psField</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="1" y="28">asTrans</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="1" y="28.8">...</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="18.2625" y="21.38">exPhotom</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="18.2625" y="22.18">kaCalObj</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="7.175" y="31.38">tsObj</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="7.175" y="32.18">tsField</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="19.4375" y="35.2925">tsObj</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="19.4375" y="36.0925">tsField</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="6.375" y="49.53">drObj, drField</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.7" y="7.25">astroda</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.7" y="8.05">IOP</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="18.525" y="7.23">astroda</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="18.525" y="8.03">MOP</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="18.275" y="12.08">mtpipe</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="18.275" y="12.88">nfcalib</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.525" y="11.83">SSC</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.525" y="12.63">PSP</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.525" y="13.43">astrom</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="9.525" y="14.23">frames</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="19.075" y="39.98">astroda</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="19.075" y="40.78">SOP</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="18.925" y="44.18">idlspec2d</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="18.925" y="44.98">spectro1d</text>
+  <text style="fill: #00ff00; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="18.925" y="45.78">sspp</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="20.325" y="51.38">spPlate</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="20.325" y="52.18">spSpec</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="20.325" y="52.98">spZbest</text>
+  <text style="fill: #ff0000; text-anchor:start; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="20.325" y="53.78">spZline...</text>
+  <rect style="fill: #ffffff" x="13.95" y="22.75" width="4" height="2.6" rx="1" ry="1"/>
+  <rect style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x="13.95" y="22.75" width="4" height="2.6" rx="1" ry="1"/>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.95" y="23.85">resolve</text>
+  <text style="fill: #000000; text-anchor:middle; font-size: 0.6; font-family: sans; font-style: normal; font-weight: normal" x="15.95" y="24.65">chunks</text>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="15.95" y1="25.35" x2="15.9598" y2="26.1764"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="15.7052,25.7912 15.9612,26.2882 16.2052,25.7853 "/>
+  <rect style="fill: #000000" x="13.95" y="30.1" width="4" height="0.4"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" x1="15.95" y1="30.5" x2="15.938" y2="35.4264"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 0.1; stroke: #000000" points="15.689,35.0376 15.9378,35.5382 16.189,35.0388 "/>
+  <rect style="fill: #000000" x="5.3472" y="4.35001" width="11.9998" height="0.4"/>
+</svg>

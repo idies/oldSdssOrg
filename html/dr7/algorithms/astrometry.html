@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Algorithms: Astrometry - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+<!-- Start page content -->
+<h1>Algorithms: Astrometry</h1>
+
+<p>A detailed description of the astrometric calibration is given in
+<a href="http://www.journals.uchicago.edu/AJ/journal/issues/v125n3/202156/202156.html">Pier et al. (2003)</a>
+(AJ, or <a href="http://xxx.lanl.gov/abs/astro-ph/0211375">astro-ph/0211375</a>).
+Portions of that discussion are summarized here, and
+on the <a href="../products/general/astrometry.html">astrometry quality overview
+page</a>.</p>
+
+<p>The <var>r</var> photometric CCDs serve as the astrometric reference CCDs for the SDSS.
+That is, the positions for SDSS objects are based on the <var>r</var> centroids and
+calibrations.  The <var>r</var> CCDs are calibrated by matching up bright stars detected
+by SDSS with existing astrometric reference catalogs.  One of two reduction
+strategies is employed, depending on the coverage of the astrometric catalogs:</p>
+
+<ol>
+<li> Whenever possible, stars detected on the <var>r</var> CCDs are matched
+     directly with stars in the 
+     <a href="http://ad.usno.navy.mil/ucac/">United States Naval Observatory CCD
+     Astrograph Catalog</a>
+     (UCAC, <a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2000AJ....120.2131Z">Zacharias et al. 2000</a>), an (eventually)
+     all-sky astrometric catalog with a precision of 70 mas at its catalog
+     limit of <var>r</var>= 16, and systematic errors of less than 30 mas.
+     There are approximately 2 - 3 magnituds of overlay between UCAC and
+     unsaturated stars on the <var>r</var> CCDs.  The astrometric CCDs
+     are not used.  For DR2/DR3, stripes 9-13, 76, 82, and 86 used UCAC.</li>
+<li> If a scan is not covered by the current version of UCAC, then it is
+     reduced against Tycho-2
+     (<a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2000A%26A...355L..27H">Hog et al. 2000</a>), an all-sky astrometric catalog
+     with a median precision of 70 mas at its catalog limit of
+     V<sub>T</sub> = 11.5, and
+     systematic errors of less than 1 mas.  All Tycho-2 stars are saturated
+     on the <var>r</var> CCDs; however there are about 3.5 magnitudes of overlap between
+     bright unsaturated stars on the astrometric CCDs and the faint end of
+     Tycho-2 ( 8 &lt; <var>r</var> &lt; 11.5), and about 3 magnitudes of overlap between bright
+     unsaturated stars on the <var>r</var> CCDs and faint stars on the astrometric CCDs
+     (14 &lt; <var>r</var> &lt; 17).  The overlap stars in common to
+    the astrometric and <var>r</var> CCDs
+     are used to map detections of Tycho-2 stars on the astrometric CCDs onto
+     the <var>r</var> CCDs.  For DR2/DR3, stripes 30-43 used Tycho-2.</li>
+</ol>
+
+<p>The <var>r</var> CCDs are therefore calibrated directly against the
+primary astrometric reference catalog.  FRAMES uses the astrometric
+calibrations to match up detections of the same object observed in the
+other four filters.  The accuracy of the relative astrometry between
+filters can thus significantly impact FRAMES, in particular the
+deblending of overlapping objects, photometry based on the same
+aperture in different filters, and detection of moving objects.  To
+minimize the errors in the relative astrometry between filters, the
+<var>u</var>, <var>g</var>, <var>i</var>, and <var>z</var> CCDs are
+calibrated against the <var>r</var> CCDs.  <p> Each drift scan is
+processed separately.  All six camera columns are processed in a
+single reduction.  In brief, stars detected on the <var>r</var> CCDs
+if calibrating against UCAC, or stars detected on the astrometric CCDs
+transformed to <var>r</var> coordinates if calibrating against
+Tycho-2, are matched to catalog stars.  Transformations from
+<var>r</var> pixel coordinates to catalog mean place (CMP) celestial
+coordinates are derived using a running-means least-squares fit to a
+focal plane model, using all six <var>r</var> CCDs together to solve
+for both the telescope tracking and the <var>r</var> CCDs' focal plane
+offsets, rotations, and scales, combined with smoothing spline fits to
+the intermediate residuals.  These transformations, comprising the
+calibrations for the <var>r</var> CCDs, are then applied to the stars
+detected on the <var>r</var> CCDs, converting them to CMP coordinates
+and creating a catalog of secondary astrometric standards.  Stars
+detected on the <var>u</var>, <var>g</var>, <var>i</var>, and
+<var>z</var> CCDs are then matched to this secondary catalog, and a
+similar fitting procedure (each CCD is fitted separately) is used to
+derive transformations from the pixel coordinates for the other
+photometric CCDs to CMP celestial coordinates, comprising the
+calibrations for the <var>u</var>, <var>g</var>, <var>i</var>, and
+<var>z</var> CCDs.</p>
+
+<p>Notes: At the edges of pixels, the quantities <em>objc_rowc</em>
+and <em>objc_colc</em> take integer values.</p>
+
+<a name="recalibration"/>
+<h2>Astrometric recalibration</h2>
+
+<p>
+Early SDSS imaging runs were astrometrically calibrated against
+Tycho-2 (Hogg et al. 2000), which yielded statistical errors per
+coordinate for bright stars (r < 20) of approximately 75 mas and
+systematic errors of 20 &mdash; 30 mas.  Later runs were calibrated against
+preliminary versions of the USNO CCD Astrograph Catalog (UCAC,
+Zacharias et al. 2000), which yielded improved statistical errors per
+coordinate of approximately 45 mas, with systematic errors of 20 &mdash; 30
+mas (Pier et al. 2003).  Proper motions were not available for the
+preliminary versions of UCAC.  Since the typical epoch difference
+between the SDSS and UCAC observations is a few years and the typical
+proper motion of UCAC stars is a few mas
+year<sup><small>-1</small></sup>, this introduces an additional
+roughly 10 mas of systematic error in the positions due to the
+uncorrected proper motions of the calibrating stars.
+
+<p>
+All of DR7 has been recalibrated astrometrically against the second
+data release of UCAC (UCAC2; Zacharias et al. 2004). While the
+systematic errors for UCAC2 are not yet well characterized, they are
+thought to be less than 20 mas (N. Zacharias, private communication).
+UCAC2 also includes proper motions for stars with &delta; < +41&ordm;.
+For stars at higher declination, proper motions from the SDSS+USNO-B
+catalog (Munn et al. 2004) have been merged with the UCAC2 positions.
+With these improvements, all DR7 astrometry has statistical errors per
+coordinate for bright stars of approximately 45 mas, with systematic
+errors of less than 20 mas. The mean differences per run between the
+old and new calibrations is a function of position on the sky, with
+typical absolute mean differences of 0 to 40 mas.  The rms differences
+are of order 10 to 40 mas for runs previously reduced against UCAC,
+and 40 to 80 mas for runs previously reduced against Tycho-2,
+consistent with what we would expect given the errors in the
+reductions.
+
+<p>
+Note that the formal SDSS names of objects in the CAS are of the form
+SDSSJhhmmss.ss&plusmn;mddmmss.s.  Because of the subtle changes in the
+astrometry, these names will be slightly different for many objects
+between DR6 and DR7.  The user should be aware of this in comparing
+objects between DR6 and DR7. 
+
+<p>
+The CAS includes proper motions for objects derived by combining SDSS
+astrometry with USNO-B positions, recalibrated against SDSS (Munn
+et al. 2004).  These are given in the <tt>ProperMotions</tt> table in the
+CAS. (This table was called <tt>USNOB</tt> in the DR3 and DR4 versions of the
+CAS.)  An error was discovered in the proper motion code in Data Releases
+3 through 6, which causes smoothly varying systematic errors, in the
+proper motion in right ascension only, of typically 1&mdash;2 mas
+year<sup><small>-1</small></sup> (see Munn et al. 2007 for a full description of the problem
+and its effects).  This error has been corrected in DR7, thus any use of
+proper motions should use the DR7 CAS.
+
+
+<a name="errors"></a>
+<h2>Errors on RA, DEC available in photoObj tables in CAS from DR6 on</h2>
+
+<p>The <code>photoObjAll</code> and derived views
+(<code>photoObj</code>, <code>star</code>, <code>photoPrimary</code>
+etc.) in the <a href="../access/index.html#CAS">CAS</a> now contain
+the errors and covariances for the right ascension and declination as
+well as galactic coordinates for all objects (see the <a
+href="http://cas.sdss.org/astro/en/help/browser/description.asp?n=PhotoObjAll&t=U">CAS
+Schema Browser entry for photoAuxAll</a>). These errors are calculated
+by adding the centroiding errors in quadrature with the estimated
+astrometric calibration errors.  The centroiding and calibration
+errors are calculated in great circle coordinates and are assumed to
+be uncorrelated in the great circle longitude and latitude directions;
+the covariance between the right ascension and declination errors is
+then introduced when transforming the uncorrelated errors in great
+circle coordinates to the celestial coordinate system.</p>
+
+<p>In DR4 and DR5, these errors were available only in the
+<code>photoAuxAll</code> table (as were galactic coordinates). For
+backwards compatibility, there are still <code>photoAuxAll</code> and
+<code>photoAux</code> views, but new queries requiring these
+parameters do not need these auxiliary tables any more.</p>
+
+<a name="footnotes"></a>
+<!--#include virtual="../dr7link.html"-->
+
+<!-- end page content-->
+<hr>
+Last modified on $Date: 2009/03/25 16:49:12 $ (UT).
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

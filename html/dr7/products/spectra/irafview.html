@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Displaying individual spectra files (spSpec files)
+in IRAF - SDSS DR3</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<!-- Start page content -->
+<h1>Displaying individual spectrum files in IRAF</h1>
+
+<P>
+Please see the <A HREF="read_spSpec.html">Reading individual
+spectrum files</A> for details on the spSpec FITS file
+structure.  In brief, though:
+if you want to use splot in IRAF to plot a spectrum,
+you want to give it a file name like:<BR>
+spSpec-MJD-plate-fiber.fit[0][*,X]<BR>
+<PRE>
+where X=1 for reduced spectra
+      X=2 for spectra with 4th order fit to continuum removed
+      X=3 for the error array
+      X=4 for the mask array
+</PRE>
+</P>
+
+<P>
+Alternatively, you can also just give splot a filename
+with the [0] extension at the end, then respond with the X from
+the above list when it asks: Image line/aperture to plot. <BR>
+Ex.<BR>
+<PRE>
+on> splot
+List of images to plot (bob): spSpec-51821-0384-636.fit[0]
+Image line/aperture to plot (0:) (0): 1
+</PRE>
+</P>
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar  8 17:29:42 CST 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

@@ -1,0 +1,593 @@
+<html>
+<p>
+
+<head>
+<p>
+<h3>I. A table which shows the astrometry anomaly : </h3>
+<p>
+We use compare positions of brighter objects from SDSS and 2MASS (JHK catalog), 
+and between SDSS and NOMAD (astrometric catalog from USNO).
+For a few locations on the sky, it appears that there are some differences 
+in position beyond the nominal spec of less than 100 mas accuracy 
+per coordinate.  Our way to show that differences is to calculate 
+in arcsecond what we call the "Delta". The Delta is the distance between 
+the positions of the stars in SDSS vs 2MASS.   Matches for objects
+separated by more than 0.6 arcsec have been excluded from the averages.
+Beyond this, no outlier rejection has been performed.
+<p>
+We can also calculate the average contribution 
+in Delta of RA and DEC separately.
+<p> 
+Having chosen some part of the sky in coordinates (RA, DEC), we can 
+get in each picture some information, like the average of Delta 
+in this area of the sky ( AVR(Delta) ), the standard deviation of 
+Delta (SIGMA(Delta)), or the average of the contribution of right 
+ascension and declination (which are AVR(DeltaRA) and AVR(DeltaDEC)).
+
+<p>
+Each area compared is about 1 square degree in size.
+<p>
+We have not done a comprehensive comparison of the whole of the 
+SDSS footprint vs. the other catalogs.   
+<p>
+We conclude that there are a few areas on the sky where either the SDSS or one
+of the comparison catalogs is off by more than the standard quoted error of
+100 mas per coordinate.  
+<p>
+<h3>II. The SQL we used in website http://openskyquery.net/Sky/skysite/ :  </h3>
+<p>
+Here is an exemple for (Ra,Dec) = (180,10)
+<p>
+<p>
+ SELECT o.objId, o.ra,
+<p>
+    o.dec, o.r, o.type,
+<p>
+    t.objId, t.ra, t.dec,  o.g, o.r, o.i, t.j_m, t.h_m
+<p>
+ FROM
+<p>
+    SDSS:PhotoPrimary o, TWOMASS:PhotoPrimary t
+<p>
+ WHERE XMATCH(o, t) < 0.1 AND
+ <p>
+   Region('CIRCLE J2000 180 10 29.5') AND
+<p>
+    o.type = 6
+
+<p>
+<h3> III. The way to do the Selection : </h3>
+<p>
+<h4>1. The use of awk : </h4>
+<p>
+We can use with this query the following awk code to obtain Delta :
+<p>
+awk -F, ' NR>1 {print $2,",", sqrt(($2-$7)*($2-$7)*cos($3*3.14159/180)*cos($3*3.14159/180)+($3-$8)*($3-$8))*3600.0;}' data.csv > data_delta.csv
+<p> To obtain only the contribution of Ra, we can use :
+<p>
+awk -F, ' NR>1 {print $2,",", sqrt(($2-$7)*($2-$7)*cos($3*3.14159/180)*cos($3*3.14159/180))*3600.0;}' data.csv > data_deltaRA.csv
+<p> And the following to get the contribution of Dec :
+<p>
+awk -F, ' NR>1 {print $2,",", sqrt(($3-$8)*($3-$8))*3600.0;}' data.csv > data_deltaDEC.csv
+<p>
+<h4>2. The results of averages and standart deviation : </h4>
+<p>
+Firstly, we cut the stars with Delta > 0.6 (because they are outliers and are not linked with our astrometry problem) :
+<p>
+awk -F, '$2 < 0.6 {print;}'  data_delta.csv > clean_delta.csv
+<p>
+Then, we can use Excel to calculate both average and standart deviation.
+<p>
+<h4>3. Our results show that there are a few instances 
+where SDSS and 2MASS disagree by more than the nominal of 0.1 arcsec/coordinate.  The delta(RA) values have been corrected for cos(DEC).
+There are fewer instances where SDSS and NOMAD differ by more than the spec,
+however, one should note that the basic SDSS astrometric calibration
+used the UCAC catalog as a reference in computing its astrometric
+solution.  Thus, SDSS, UCAC and NOMAD are not independent astrometric catalogs.
+</H4>
+<p>
+We highlight those areas of overlap between SDSS and 2MASS where
+ seems that when AVR(Delta) > 0.23 in red in the table.
+
+<p>
+
+<p>
+<meta http-equiv=Content-Type content="text/html; charset=macintosh">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 11">
+<style>
+<!--table {}
+.style0
+	{text-align:general;
+	vertical-align:bottom;
+	white-space:nowrap;
+	color:windowtext;
+	font-size:10.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Verdana;
+	border:none;}
+td
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	color:windowtext;
+	font-size:10.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Verdana;
+	text-align:general;
+	vertical-align:bottom;
+	border:none;
+	white-space:nowrap;}
+-->
+</style>
+</head>
+
+<body link="#0000d4" vlink="#993366">
+
+<table border=0 cellpadding=0 cellspacing=0 width=600 style='border-collapse:
+ collapse;table-layout:fixed'>
+ <col width=100 span=6>
+ <col width=100>
+ <col width=100>
+ <tr height=13>
+  <td height=13 width=50>STRIPE</td>
+  <td width=100>RA</td>
+  <td width=100>DEC</td>
+  <td width=100>AVR(Delta)</td>
+  <td width=100>SIGMA(Delta)</td>
+  <td width=100>AVR(DeltaRA)<span style='display:none'>)</span></td>
+  <td colspan=2 width=150>AVR(DeltaDEC)</td>
+<td colspan=2 width=150>AVR(Delta)-Nomad</td>
+ <td width=100>AVR(DeltaRA)</td>
+  <td colspan=2 width=150>AVR(DeltaDEC)</td>
+
+ </tr>
+<tr height=13>
+  <td height=13 width=50></td>
+  <td width=100>(deg)</td>
+  <td width=100>(deg)</td>
+  <td width=100>(arcsec)</td>
+  <td width=100>(arcsec)</td>
+  <td width=100>(arcsec)<span style='display:none'>)</span></td>
+  <td colspan=2 width=150>(arcsec)</td>
+<td colspan=2 width=150>(arcsec)</td>
+ <td width=100>(arcsec)</td>
+  <td width=100>(arcsec)</td>
+
+ </tr>
+
+ <tr height=13>
+  <td height=13></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1188-1.html">1188</a></td>
+  <td align=right>225.9559042</td>
+  <td align=right>56.98013139</td>
+  <td align=right>0.194</td>
+  <td align=right>0.126</td>
+  <td align=right>0.042</td>
+  <td align=right>-0.033</td>
+
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1188-3.html">1188</a></td>
+  <td align=right>264.7419681</td>
+  <td align=right>64.43645654</td>
+  <td align=right>0.151</td>
+  <td align=right>0.126</td>
+  <td align=right>0.005</td>
+  <td align=right>0.025</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1188-4.html"><font color="#FF0000">1188 </font></a>
+  <td align=right><font color="#FF0000">287.3997103 </font></td>
+  <td align=right><font color="#FF0000">63.26341684 </font></td>
+  <td align=right><font color="#FF0000">0.236 </font></td>
+  <td align=right><font color="#FF0000">0.127 </font></td>
+  <td align=right><font color="#FF0000">-0.100 </font></td>
+  <td align=right><font color="#FF0000">0.098 </font></td>
+<td align=right><font color="#FF0000"></font></td>
+ 
+<td align=right><font color="#00CC33"><a href="nomad1188.html">0.224</a> </font></td>
+
+ <td></td>
+<td align=right><font color="#FF0000">0.102 </font></td>
+  <td align=right><font color="#FF0000">-0.086 </font></td>
+ 
+ <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1188-5.html">1188</a></td>
+  <td align=right>306.2138751</td>
+  <td align=right>58.97310519</td>
+  <td align=right>0.204</td>
+  <td align=right>0.116</td>
+  <td align=right>0.014</td>
+  <td align=right>0.118</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1188-6.html">1188</a></td>
+  <td align=right>320.0438116</td>
+  <td align=right>52.62969748</td>
+  <td align=right>0.207</td>
+  <td align=right>0.122</td>
+  <td align=right>0.023</td>
+  <td align=right>0.082</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1188-7.html">1188</a></td>
+  <td align=right>330.0970633</td>
+  <td align=right>45.10372779</td>
+  <td align=right>0.160</td>
+  <td align=right>0.126</td>
+  <td align=right>-0.001</td>
+  <td align=right>-0.003</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1260-1.html">1260</a></td>
+  <td align=right>18.2428094</td>
+  <td align=right>18.78702952</td>
+  <td align=right>0.215</td>
+  <td align=right>0.137</td>
+  <td align=right>0.024</td>
+  <td align=right>-0.064</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1260-2.html"><font color="#FF0000">1260 </font></a></td>
+
+  <td align=right><font color="#FF0000">19.55515186 </font> </td>
+  <td align=right><font color="#FF0000">28.71491245 </font> </td>
+  <td align=right><font color="#FF0000">0.287 </font> </td>
+  <td align=right><font color="#FF0000">0.150 </font> </td>
+  <td align=right><font color="#FF0000">0.129 </font> </td>
+  <td align=right><font color="#FF0000">-0.165 </font> </td>
+<td align=right><font color="#FF0000"></font></td>
+
+ <td align=right><font color="#00CC33"><a href="nomad12602.html">0.299</a> </font> </td>
+ <td></td>
+<td align=right><font color="#FF0000">0.207 </font> </td>
+  <td align=right><font color="#FF0000">-0.145 </font> </td>
+ 
+ <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1260-3.html">1260</a></td>
+
+  <td align=right>21.14557734</td>
+  <td align=right>38.62744541</td>
+  <td align=right>0.177</td>
+  <td align=right>0.127</td>
+  <td align=right>-0.015</td>
+  <td align=right>0.003</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1260-4.html">1260</a></td>
+
+  <td align=right>23.25128998</td>
+  <td align=right>48.51146966</td>
+  <td align=right>0.225</td>
+  <td align=right>0.142</td>
+  <td align=right>-0.128</td>
+  <td align=right>-0.091</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1260-5.html"><font color="#FF0000">1260 </font></a></td>
+
+  <td align=right><font color="#FF0000">26.38611505 </font></td>
+  <td align=right><font color="#FF0000">58.33829694 </font></td>
+  <td align=right><font color="#FF0000">0.334 </font></td>
+  <td align=right><font color="#FF0000">0.100 </font></td>
+  <td align=right><font color="#FF0000">-0.148 </font></td>
+  <td align=right><font color="#FF0000">0.262 </font></td>
+<td align=right><font color="#FF0000"></font></td>
+
+<td align=right><font color="#00CC33"><a href="nomad12605.html">0.222</a> </font></td>
+ <td></td>
+ <td align=right><font color="#FF0000">0.103 </font></td>
+  <td align=right><font color="#FF0000">-0.002 </font></td>
+ 
+ <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1260-6.html"><font color="#FF0000">1260 </font></a></td>
+
+  <td align=right><font color="#FF0000">31.94278132 </font></td>
+  <td align=right><font color="#FF0000">68.02907252 </font></td>
+  <td align=right><font color="#FF0000">0.263 </font></td>
+  <td align=right><font color="#FF0000">0.115 </font></td>
+  <td align=right><font color="#FF0000">-0.106 </font></td>
+  <td align=right><font color="#FF0000">0.171 </font></td>
+<td align=right><font color="#FF0000"></font></td>
+
+ <td align=right><font color="#00CC33"><a href="nomad12606.html">0.181</a> </font></td>
+ <td></td>
+ <td align=right><font color="#FF0000">0.005 </font></td>
+  <td align=right><font color="#FF0000">0.023 </font></td>
+
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1260-7.html"><font color="#FF0000">1260 </font></a></td>
+
+  <td align=right><font color="#FF0000">45.27525281 </font></td>
+  <td align=right><font color="#FF0000">77.26698364 </font></td>
+  <td align=right><font color="#FF0000">0.246 </font></td>
+  <td align=right><font color="#FF0000">0.121 </font></td>
+  <td align=right><font color="#FF0000">-0.043 </font></td>
+  <td align=right><font color="#FF0000">0.167 </font></td>
+<td align=right><font color="#FF0000"></font></td>
+
+ <td align=right><font color="#00CC33"><a href="nomad12607.html">0.159</a> </font></td>
+ <td></td>
+ <td align=right><font color="#FF0000">0.017 </font></td>
+  <td align=right><font color="#FF0000">-0.017 </font></td>
+
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1260-8.html"><font color="#FF0000">1260 </font></a></td>
+
+  <td align=right><font color="#FF0000">96.19431975 </font></td>
+  <td align=right><font color="#FF0000">83.61873228 </font></td>
+  <td align=right><font color="#FF0000">0.239 </font></td>
+  <td align=right><font color="#FF0000">0.133 </font></td>
+  <td align=right><font color="#FF0000">-0.061 </font></td>
+  <td align=right><font color="#FF0000">0.106 </font></td>
+<td align=right><font color="#FF0000"></font></td>
+
+<td align=right><font color="#00CC33"><a href="nomad12608.html">0.210</a> </font></td>
+ <td></td>
+ <td align=right><font color="#FF0000">0.007 </font></td>
+  <td align=right><font color="#FF0000">-0.094 </font></td>
+
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1300-1.html">1300</a></td>
+
+  <td align=right>59.98168844</td>
+  <td align=right>51.62104928</td>
+  <td align=right>0.217</td>
+  <td align=right>0.126</td>
+  <td align=right>-0.065</td>
+  <td align=right>0.104</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1300-2.html"><font color="#FF0000">1300 </font></a></td>
+  <td align=right><font color="#FF0000">72.54559713 </font></td>
+  <td align=right><font color="#FF0000">58.619552 </font></td>
+  <td align=right><font color="#FF0000">0.290 </font></td>
+  <td align=right><font color="#FF0000">0.133 </font></td>
+  <td align=right><font color="#FF0000">-0.142 </font></td>
+  <td align=right><font color="#FF0000">0.134 </font></td>
+<td align=right><font color="#FF0000"></font></td>
+
+<td align=right><font color="#00CC33"><a href="nomad13002.html">0.232</a> </font></td>
+ <td></td>
+ <td align=right><font color="#FF0000">0.086 </font></td>
+  <td align=right><font color="#FF0000">-0.099 </font></td>
+
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1300-3.html"><font color="#FF0000">1300 </font></a></td>
+  <td align=right><font color="#FF0000">90.38627883 </font></td>
+  <td align=right><font color="#FF0000">63.8437677 </font></td>
+  <td align=right><font color="#FF0000">0.328 </font></td>
+  <td align=right><font color="#FF0000">0.102 </font></td>
+  <td align=right><font color="#FF0000">-0.224 </font></td>
+  <td align=right><font color="#FF0000">0.178 </font></td>
+<td align=right><font color="#FF0000"></font></td>
+
+<td align=right><font color="#00CC33"><a href="nomad13003.html">0.137</a> </font></td>
+ <td></td>
+<td align=right><font color="#FF0000">0.024 </font></td>
+  <td align=right><font color="#FF0000">-0.005 </font></td>
+
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1300-4.html"><font color="#FF0000">1300 </font></a></td>
+  <td align=right><font color="#FF0000">113.566800 </font></td>
+  <td align=right><font color="#FF0000">66.09084647 </font></td>
+  <td align=right><font color="#FF0000">0.311 </font></td>
+  <td align=right><font color="#FF0000">0.116 </font></td>
+  <td align=right><font color="#FF0000">-0.104 </font></td>
+  <td align=right><font color="#FF0000">0.213 </font></td>
+<td align=right><font color="#FF0000"></font></td>
+
+<td align=right><font color="#00CC33"><a href="nomad13004.html">0.167</a> </font></td>
+ <td></td>
+<td align=right><font color="#FF0000">0.038 </font></td>
+  <td align=right><font color="#FF0000">-0.023 </font></td>
+
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1220-1.html">1220</a></td>
+  <td align=right>292.183761</td>
+  <td align=right>78.09942726</td>
+  <td align=right>0.211</td>
+  <td align=right>0.140</td>
+  <td align=right>-0.062</td>
+  <td align=right>-0.021</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1220-2.html">1220</a></td>
+  <td align=right>326.3612711</td>
+  <td align=right>72.62666558</td>
+  <td align=right>0.173</td>
+  <td align=right>0.125</td>
+  <td align=right>0.044</td>
+  <td align=right>-0.057</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1220-3.html">1220</a></td>
+  <td align=right>341.8681607</td>
+  <td align=right>64.3233318</td>
+  <td align=right>0.142</td>
+  <td align=right>0.120</td>
+  <td align=right>0.027</td>
+  <td align=right>-0.014</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1220-4.html">1220</a></td>
+  <td align=right>349.9007666</td>
+  <td align=right>55.15929513</td>
+  <td align=right>0.172</td>
+  <td align=right>0.134</td>
+  <td align=right>-0.057</td>
+  <td align=right>-0.011</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1220-5.html">1220</a></td>
+  <td align=right>354.8711739</td>
+  <td align=right>45.66743628</td>
+  <td align=right>0.152</td>
+  <td align=right>0.118</td>
+  <td align=right>-0.042</td>
+  <td align=right>0.000</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13 align=right><a href="s1220-6.html">1220</a></td>
+  <td align=right>358.3799125</td>
+  <td align=right>36.02327954</td>
+  <td align=right>0.190</td>
+  <td align=right>0.122</td>
+  <td align=right>0.092</td>
+  <td align=right>-0.014</td>
+  <td></td>
+ </tr>
+ <tr height=13>
+  <td height=13></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+<tr height=13>
+  <td height=13 align=right><a href="s14.html"><font color="#FF0000">14 </font></a></td>
+  <td align=right><font color="#FF0000">180 </font></td>
+  <td align=right><font color="#FF0000">10 </font></td>
+  <td align=right><font color="#FF0000">0.236 </font></td>
+  <td align=right><font color="#FF0000">0.138 </font></td>
+  <td align=right><font color="#FF0000">-0.129 </font></td>
+  <td align=right><font color="#FF0000">-0.012 </font></td>
+<td align=right><font color="#FF0000"></font></td>
+
+ <td align=right><font color="#00CC33"><a href="nomad14.html">0.200</a> </font></td>
+  <td></td>
+ <td align=right><font color="#FF0000">0.074 </font></td>
+  <td align=right><font color="#FF0000">-0.122 </font></td>
+
+ <td></td>
+ </tr>
+<tr height=13>
+  <td height=13 align=right><a href="s32.html">32</a></td>
+  <td align=right>230</td>
+  <td align=right>45</td>
+  <td align=right>0.192</td>
+  <td align=right>0.126</td>
+  <td align=right>-0.056</td>
+  <td align=right>-0.004</td>
+  <td></td>
+ </tr>
+<tr height=13>
+  <td height=13 align=right><a href="s37.html">37</a></td>
+  <td align=right>135</td>
+  <td align=right>55</td>
+  <td align=right>0.178</td>
+  <td align=right>0.126</td>
+  <td align=right>0.046</td>
+  <td align=right>-0.030</td>
+  <td></td>
+ </tr>
+
+</table>
+
+</body>
+
+
+
+
+
+
+</html>
+

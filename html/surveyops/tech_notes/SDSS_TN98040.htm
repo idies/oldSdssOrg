@@ -1,0 +1,123 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+   <title> SDSS Windscreen Azimuthal Drive System  </title>
+<X-CLARIS-WINDOW TOP=114 BOTTOM=624 LEFT=16 RIGHT=546>
+<X-CLARIS-TAGVIEW MODE=minimal>
+</head>
+<body bgcolor=white>
+
+<h1>Analyzing the Centering Rolers on the SDSS Windscreen Azimuthal Drive System</h1>
+<i>Sloan Digital Sky Survey Telescope Technical Note 19980426</i><br>&nbsp;
+
+<address>
+<a href="mailto:bartoszek@fnal.gov">Larry Bartoszek</a></address>
+<HR>
+
+<P>The wind baffle assembly weighs 11,000 lbs and stands on 3 rollers which are driven to rotate the assembly.  The structure needs additional guidance because as it rotates it tries to walk over the lip of its drive rollers.  The concept is to design a bracket to attach to the motor assembly which will roll against the ID of the wind screen support disk and prevent it from translating its axis with respect to the design azimuthal rotation axis.</p>
+
+<p align="center"><IMG SRC="TN98040_02.jpg" width="569" height="438"></p>
+
+
+<p>I will check to see if the rollers as designed can withstand the design criterion.  The design criterion is that the rollers should be able to resist the entire friction force necessary to slide the wind screen on its drive rollers.  I will assume a coefficient of friction of 1.0, very clean steel on steel in line or edge contact.  This sliding force is simply the weight x <FONT FACE="Symbol">&#109;</FONT>, and a single roller needs to be able to resist it.</p>
+
+<p>F = <FONT FACE="Symbol">&#109;</FONT> (11,000 lbs) = 11,000 lbs.</p>
+
+<p>The design proposed uses a McGill #CYR-2 3/4 with a 3/4" bore.  The shaft is a McMaster Carr stainless steel dowel pin.  I will use a yield strength for it of 35 ksi.</p>
+
+<p>I did not have a McGill catalog, but upon comparing equivalent Torrington bearings in cam followers, I saw no cam follower with a limit load rating of under 14,000 lbs, so the rollers are <u>OK</u>.</p>
+
+<p>Checking the shaft, it is in double shear, so the shear stress is:</p>
+
+<p><IMG SRC="TN98040_126.gif" WIDTH=173 HEIGHT=45></p>
+
+<p>By maximum shear stress theory, the yield strength in shear is half the tensile yield strength.</p>
+
+<p><IMG SRC="TN98040_127.gif" WIDTH=214 HEIGHT=25></p>
+
+<p>The factor of safety calculated from the above numbers is:</p>
+
+<p><IMG SRC="TN98040_128.gif" WIDTH=122 HEIGHT=93></p>
+
+<p>Given the conservative nature of this calculation, I would say that there is an acceptable margin of safety in the shaft.</p>
+
+
+<p>The remaining calculations are on the bracket and bolt pattern holding the cam follower in place</p>
+
+<p>The first calculation is a check on bearing stress in the holes of the bracket. The projected area of the holes is .75" X .406".</p>
+
+<p><IMG SRC="TN98040_129.gif" WIDTH=377 HEIGHT=146></p>
+
+<p>Calculating the required weld between the cam follower support plates and back plate.</p>
+
+<p align="center"><IMG SRC="TN98040_09.jpg" width="515" height="498"></p>
+
+<p>This is a weld group in bending and primary shear.</p>
+
+<p>From Shigley, <u>Mechanical Engineering Design</u>, the bending:</p>
+
+<p align="center"><IMG SRC="TN98040_04.jpg" WIDTH=722 HEIGHT=400></p>
+
+<p>The welds on the bottom bracket are double fillets, top is fillet and butt.</p>
+
+<p><IMG SRC="TN98040_130.gif" WIDTH=160 HEIGHT=50></p>
+
+<p>(I am neglecting the contribution from the butt weld.  Its penetration will be &lt;&nbsp;3/32".)</p>
+
+<p><IMG SRC="TN98040_131.gif" WIDTH=482 HEIGHT=209></p>
+
+<p>As long as the fillet welds are larger than .03", the welds should be safe.  They are specified to be .19", so the welds are fine in bending.  Primary Shear:</p>
+
+<p><IMG SRC="TN98040_132.gif" WIDTH=280 HEIGHT=78></p>
+
+<p>Checking torsional shear stress in minimum cross-section of bracket:</p>
+
+<p align="center"><IMG SRC="TN98040_05.jpg" width="647" height="316"></p>
+
+<p><IMG SRC="TN98040_133.gif" WIDTH=370 HEIGHT=202></p>
+
+<p>This torsional shear stress looks high.  The bracket may need to be thicker.</p>
+
+<p><IMG SRC="TN98040_134.gif" WIDTH=438 HEIGHT=398></p>
+
+<p>The total thickness of the plate needs to be about <u>1.00"</u>.  Cutting it below this may be risky.  There is no reason not to thicken it.</p>
+
+<p align="center"><IMG SRC="TN98040_06.jpg" width="719" height="516"></p>
+<p><IMG SRC="TN98040_135.gif" WIDTH=309 HEIGHT=317></p>
+<p><IMG SRC="TN98040_136.gif" WIDTH=186 HEIGHT=142></p>
+<p align="center"><IMG SRC="TN98040_07.jpg" width="498" height="461"></p>
+
+<p>From the vector diagram, it is clear that bolt 4 takes the highest load.  (From the structure of the moment equation, outermost bolts take more load.)  The F<sub>i</sub><sup>'</sup> numbers are primary shears, assumed equally distributed.</p>
+
+<p><IMG SRC="TN98040_137.gif" WIDTH=366 HEIGHT=436></p>
+<p><IMG SRC="TN98040_138.gif" WIDTH=309 HEIGHT=234></p>
+
+<p>A grade 8 bolt whose yield strength is 120 ksi would just be able to take this load.  (F<sub>sy</sub> = 60 ksi.)  If the bolt is stainless with F<sub>y</sub>=35 ksi, the bolt would have to be much larger.</p>
+
+<p><IMG SRC="TN98040_139.gif" WIDTH=213 HEIGHT=266></p>
+
+<p>The choices are:  Grade 8 bolt, or 1" diameter stainless steel bolt.</p>
+
+<p><b>CONCLUSIONS</b></p>
+
+<OL>
+	<LI>The cam follower is OK as specified.<BR>
+	<LI>The shaft is OK as specified.<BR>
+	<LI>Bearing stress in pin support plates is OK as specified.<BR>
+	<LI>The welds are OK as specified.<BR>
+	<LI>The bracket plate needs to be 1.00" minimum to satisfy torsion.<BR>
+	<LI>A grade 8 bolt, 1/2, can just take the shear stress on the outermost top bolt.  If the bolt is stainless, it should be 01.00.  I recommend 5/8-11 bolts and Grade 8 to create some margin.
+</OL>
+
+
+<BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this note should be addressed to Larry Bartoszek by phone at (630) 844-0248 or by e-mail at <A HREF="mailto:bartoszek@fnal.gov">bartoszek@fnal.gov</A>.
+<BR>&nbsp;
+
+<P><I><FONT SIZE=-1>Last modified 04/28/99</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</BODY>
+</HTML>

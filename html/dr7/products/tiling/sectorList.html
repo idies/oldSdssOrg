@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- This template is for "3rd level", 2 directories below DR1/doc -->
+
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>sectorList files</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<!-- Start page content -->
+<h1>sectorList files</h1>
+
+<HR>
+
+<p> sectorList is a parameter file which contains the information
+about each "sector" --- i.e., each region covered by a unique set of
+tiles. We used to refer to these as "overlap regions" (e.g. in Blanton
+et al. 2001 and Zehavi et al. 2001) but now have adopted the 2dF
+terminology. It has the structure: </p>
+<pre>
+typedef struct {
+   int index;
+   int tileId[20];
+   double area;
+   int nTiles;
+   long nTargets;
+   long nRandom;
+} TIOVERLAP;
+</pre>
+These parameters are:
+<ul>
+<li> <b>index</b>:      Index number of the sector
+<li><b>tileId[20]</b>: List of tiles which overlap this sector
+<li><b>area</b>: Area of the overlap region (square degrees)
+            determined by Monte Carlo
+<li><b>nTiles</b>: Number of tiles overlapping this sector
+<li><b>nTargets</b>: Number of targets in this sector
+<li><b>nRandom</b>: Number of Monte Carlo points in sector (to
+            evaluate error in area)
+</ul>
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar  3 15:22:59 CST 2003
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

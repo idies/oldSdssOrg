@@ -1,0 +1,14 @@
+How does an asteroid appear in the Sloan Digital Sky Survey? This asteroid
+moved a significant amount during the five minutes that it took to make
+this image causing the red, green and blue streaks pictured here. Since
+each patch of sky is imaged in five filters in succesion, a moving object
+shows up in different locations in each of the different filters. Only three
+of the five filters are used to make this image, giving rise to the three 
+colored streaks. 
+
+Asteroids were in the public eye this week as astronomers at the 2006
+International Astronomical Union meeting for the first time defined what
+is a planet. Though near-Earth asteroids like the one pictured here are
+typically very small, other larger bodies in the asteroid belt may soon be
+upgraded from asteroid to dwarf planet. 
+

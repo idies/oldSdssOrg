@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Astrometric Pipeline</TITLE>
+<META NAME="description" CONTENT="Astrometric Pipeline">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html477" HREF="node33.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html475" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html469" HREF="node31.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html478" HREF="node33.html">Astrometric Quality</A>
+<B>Up:</B> <A NAME="tex2html476" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html470" HREF="node31.html">Data Processing Factory</A>
+<BR> <P>
+<H2><A NAME="SECTION00042000000000000000">Astrometric Pipeline</A></H2>
+<P>
+<A NAME="secastrom">&#160;</A>
+<P>
+A separate great circle coordinate system is defined for each stripe
+(&#167;&nbsp;<A HREF="node26.html#hwcamdriftscan">3.2.2</A>).  In these systems, the stripe center is
+the equivalent of the equator in the equatorial <IMG WIDTH=38 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline2847" SRC="img15.gif">
+system. Pixel coordinates are corrected for empirically derived optical
+distortion terms, and the resulting mapping from corrected
+CCD row and column pixel positions to great circle longitude and latitude
+is linear to very good approximation.
+Astrometric solutions are carried out in this coordinate system.  One
+of two reduction strategies is employed depending upon the coverage of
+astrometric catalogs:
+<P>
+<UL>
+<LI> Whenever possible, stars detected on the <I>r</I> photometric CCDs 
+are matched directly with stars in the USNO CCD Astrograph Catalog (UCAC)
+zacharias00.  UCAC extends down to <I>R</I> = 16, giving approximately
+2 magnitudes of overlap with unsaturated stars on the photometric
+<I>r</I> CCDs.  For the EDR, this technique was used for
+the south equatorial stripe (runs 94 and 125) and for the north
+equatorial stripe (runs 752 and 756).
+<LI> If UCAC coverage is not available to reduce an imaging run, bright
+stars detected with the astrometric CCDs are matched with the Tycho-2
+catalog hoeg00.  The fainter stars on the astrometric CCDs
+are then matched with the brighter detections on the <I>r</I> CCDs,
+enabling us to transfer the pixel coordinates of the catalog stars
+onto the <I>r</I> CCD coordinate system.  In the EDR, this technique was
+used for the SIRTF area, runs 1336, 1339, 1356, and 1359.
+<P>
+</UL>
+<P>
+For each <I>r</I> frame, these mappings result in an affine
+transformation relating corrected pixel positions to celestial
+coordinates.  A secondary catalog is produced from the detections on
+the <I>r</I> CCDs.  This secondary catalog is then matched to centroid
+positions on the <I>i</I>, <I>u</I>, <I>z</I>, and <I>g</I> CCDs to derive
+affine transformations in those filters.  The transformation also
+includes terms to correct for differential chromatic refraction and
+those terms are applied when the colors of objects are known
+(Table&nbsp;<A HREF="node65.html#tbladministrativefield">16</A>).  Positions of detected objects
+given in this EDR have had this correction applied.
+<P>
+<BR> <HR>
+<UL><A NAME="CHILD_LINKS">&#160;</A>
+<LI> <A NAME="tex2html479" HREF="node33.html#SECTION00042100000000000000">Astrometric Quality</A>
+<LI> <A NAME="tex2html480" HREF="node34.html#SECTION00042200000000000000">WCS</A>
+</UL>
+<HR><A NAME="tex2html477" HREF="node33.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html475" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html469" HREF="node31.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html478" HREF="node33.html">Astrometric Quality</A>
+<B>Up:</B> <A NAME="tex2html476" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html470" HREF="node31.html">Data Processing Factory</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

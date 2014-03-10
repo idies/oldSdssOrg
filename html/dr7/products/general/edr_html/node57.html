@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Target Culling</TITLE>
+<META NAME="description" CONTENT="Target Culling">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html738" HREF="node58.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html736" HREF="node51.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html732" HREF="node56.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html739" HREF="node58.html">Plate Definition</A>
+<B>Up:</B> <A NAME="tex2html737" HREF="node51.html">Target Selection</A>
+<B> Previous:</B> <A NAME="tex2html733" HREF="node56.html">Calibration Targets</A>
+<BR> <P>
+<H3><A NAME="SECTION00048600000000000000">Target Culling</A></H3>
+<P>
+<A NAME="swcull">&#160;</A>
+In regions of particularly poor seeing, the colors of stars were
+occasionally systematically off, especially when earlier versions of
+<TT>photo</TT> were used.  This caused the target selection algorithms
+that select outliers in color-color space to choose an inordinate
+number of targets.  We corrected for this
+by manually culling targets from the list.
+<P>
+In particular, target candidates were culled from run 752 (Target
+v2.2a) in 61 fields due to 
+problems caused by poor seeing.  In fields with 5 or more quasar
+candidates, we removed candidates which were not also selected as
+galaxy targets, in the following categories:
+<UL>
+<LI>
+<TT>TARGET_QSO_HIZ</TT>, <TT>TARGET_QSO_CAP</TT>, <TT>TARGET_QSO_SKIRT</TT>,
+<LI>
+<TT>TARGET_QSO_FIRST_CAP</TT>, <TT>TARGET_QSO_FIRST_SKIRT</TT>,
+<LI>
+<TT>TARGET_SERENDIP_BLUE</TT>, <TT>TARGET_SERENDIP_RED</TT>,
+<LI> <TT>TARGET_SERENDIP_DISTANT</TT>, <TT>TARGET_STAR_SUB_DWARF</TT>,
+<LI>
+<TT>TARGET_STAR_WHITE_DWARF</TT>, <TT>TARGET_STAR_CARBON</TT>.  
+</UL>
+<P>
+Similarly, target candidates in runs 94, 125 (Target v2.7) were culled
+from 52 fields.  Additionally, all <TT>QSO_HIZ</TT> candidates in run 94
+in camera column 6 were removed from the list.  This was necessary due
+to a problem with the characterization of the point spread function in
+the version of the <TT>psp</TT> used at the time.
+<P>
+After the plates from run 94/125 were drilled, we discovered that many
+quasar candidates were targeted, due to an error in the target
+selection code.  Spectra were collected for these targets, but they
+may be removed from quasar analyses by rejecting objects which satisfy
+the criterion: <IMG WIDTH=335 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3495" SRC="img175.gif">.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

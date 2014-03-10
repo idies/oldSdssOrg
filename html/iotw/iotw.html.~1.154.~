@@ -1,0 +1,15 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+<h1>
+<center>Coma Cluster</center>
+</h1>
+<center><img src="coma.jpg"></center>
+
+<p> 
+The mosaic image above shows the Coma Cluster, a prototypical dense galaxy cluster.  The Coma cluster contains mostly elliptical galaxies, which appear as white-yellow blobs in this image.  In fact, most of the blobs in this image are galaxies.  This cluster has been studied extensively, both observationally and computationally, as large super-computer simulations attempt to recreate the general properties of this cluster. 
+</p>
+
+<p><strong>(Caption by John Bochanski)</strong></p>
+
+<p><a href="archive.html">Go to the <em>SDSS Image of the Week</em> archive</a></p>
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->

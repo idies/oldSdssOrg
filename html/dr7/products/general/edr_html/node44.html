@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Photometric Calibration</TITLE>
+<META NAME="description" CONTENT="Photometric Calibration">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html602" HREF="node45.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html600" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html594" HREF="node43.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html603" HREF="node45.html">Overview of the Photometric </A>
+<B>Up:</B> <A NAME="tex2html601" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html595" HREF="node43.html">Known Problems in frames</A>
+<BR> <P>
+<H2><A NAME="SECTION00045000000000000000">Photometric Calibration</A></H2>
+<P>
+<A NAME="swphotocal">&#160;</A>
+<P>
+The objective of the photometric calibration process is to tie the
+SDSS imaging data to an AB magnitude system, and specifically to the
+``natural system'' of the 2.5m telescope
+defined by the photon-weighted effective wavelengths of each combination of
+SDSS filter,
+CCD response, telescope transmission, and atmospheric transmission
+at a reference airmass of 1.3 as measured at APO.
+<P>
+The calibration process ultimately involves combining data from
+three telescopes: the USNO 40-in on which our primary standards were
+first measured (see below), the SDSS PT (&#167;&nbsp;<A HREF="node28.html#hwpt">3.4</A>), and the SDSS 2.5m
+telescope.
+At the beginning of the survey it was expected that there would be
+a single <I>u</I>' <I>g</I>' <I>r</I>' <I>i</I>' <I>z</I>' system.  However, in the course of processing
+the SDSS data, the unpleasant discovery was made that the filters
+in the 2.5m telescope have significantly different effective
+wavelengths from the filters in the PT and at the USNO.
+These differences have been traced to the fact that the short-pass
+interference films on the 2.5-meter camera live in the same vacuum as
+the detectors, and the resulting dehydration of the films decreases
+their effective refractive index.  This results in blueward shifts of
+the red edges of the filters by about 2.5% of the cutoff wavelength,
+and consequent shifts of the <I>effective</I> wavelengths of order
+half that. The USNO filters are in ambient air, and the hydration
+of the films exhibits small temperature shifts; the PT filters are kept in
+stable very dry air and are in a condition about halfway between ambient and
+the very stable vacuum state. The rather subtle differences between these
+systems are describable by simple linear transformations with small
+color terms for stars of not-too-extreme color, but of
+course cannot be so transformed for very cool objects or objects with
+complex spectra. Since standardization is done with stars, this is not
+a fundamental problem, once the transformations are well understood.
+<P>
+It is these subtle issues that give rise to our somewhat awkward
+nomenclature for the PT and 2.5m filter systems. 
+The calibration is provisional because the zero points
+are not quite on an AB system yet.
+For many purposes the difference between the USNO and the
+2.5m systems are of no consequence.
+We believe that the photometric calibration of the EDR is uniform to
+of order 3% in <IMG WIDTH=39 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3199" SRC="img109.gif">, and <IMG WIDTH=12 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3201" SRC="img110.gif">, and 5% in <IMG WIDTH=16 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3203" SRC="img111.gif"> and <IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3205" SRC="img112.gif"> (all
+numbers are rms), while the absolute calibration in Jy is uncertain by
+as much as 10%.
+<P>
+In this section, we describe the process by which
+photometric calibration is done (&#167;&nbsp;<A HREF="node45.html#swphotocaloverview">4.5.1</A>),
+requiring analysis of data from the PT (&#167;&nbsp;<A HREF="node46.html#swphotocalmtpipe">4.5.2</A>)
+which is then combined with the 2.5m imaging data
+(&#167;&nbsp;<A HREF="node47.html#swphotocalfcalib">4.5.3</A>).  The tests we have carried out to give
+us confidence in the above numbers and caveats in the calibration are described in
+&#167;&nbsp;<A HREF="node48.html#swphotocalassess">4.5.4</A>.  We do
+not aim here to give a full pedagogical description of the
+difficulties of absolute photometry in the SDSS system; that will be
+presented in papers in preparation.
+<P>
+<BR> <HR>
+<UL><A NAME="CHILD_LINKS">&#160;</A>
+<LI> <A NAME="tex2html604" HREF="node45.html#SECTION00045100000000000000">Overview of the Photometric Calibration in SDSS</A>
+<LI> <A NAME="tex2html605" HREF="node46.html#SECTION00045200000000000000">Monitor Telescope Pipeline</A>
+<LI> <A NAME="tex2html606" HREF="node47.html#SECTION00045300000000000000">The Final Calibration Pipeline</A>
+<LI> <A NAME="tex2html607" HREF="node48.html#SECTION00045400000000000000">Assessment of Photometric Calibration</A>
+</UL>
+<HR><A NAME="tex2html602" HREF="node45.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html600" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html594" HREF="node43.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html603" HREF="node45.html">Overview of the Photometric </A>
+<B>Up:</B> <A NAME="tex2html601" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html595" HREF="node43.html">Known Problems in frames</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

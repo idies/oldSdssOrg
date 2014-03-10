@@ -1,0 +1,85 @@
+#
+# Contains a list of all run/rerun combinations which are not in the DAS (CAS Only)
+#
+# whichDatabase indicates if the run/rerun may be found in:
+#  DASONLY (i.e. not in any CAS)
+#  the RunsDB CAS
+#  the Stripe82DB CAS
+#  the DR7 CAS
+#
+# whichSurvey indicates if the run/rerun is from the
+# Legacy SDSS-I or SDSS-II or Supernovae stripe 82 survey
+# SEGUE SDSS-II survey
+# A special Run, such as a M31 scan or a crossing or oblique scan
+# 
+# inDAS indicates 1=this run/rerun is in the DAS
+#                 0=this run/rerun is CAS only
+#
+
+typedef struct {
+        int run;
+        int rerun;
+        int stripe;
+        char strip[2];
+        float muStart;
+        float muEnd;
+        int field0;
+        int nFields;
+        float node;
+        float incl;
+        char whichDatabase[20];
+        char whichSurvey[20];
+        int inDAS;
+} RUNINFO;
+
+
+RUNINFO   106   2   82 S 309.13 419.76   62  739  95.000   0.000 stripe82   Legacy 0
+RUNINFO   206   2   82 N 309.13 419.76   62  739  95.000   0.000 stripe82   Legacy 0
+RUNINFO  1040  40   82 S 305.94 323.31   39  116  95.000   0.000     runs   Legacy 0
+RUNINFO  1040  40   82 S 305.94 323.31   39  116  95.000   0.000 stripe82   Legacy 0
+RUNINFO  1239  41   10 S 121.94 148.14   11  175  95.000   0.000     runs   Legacy 0
+RUNINFO  1336  41   42 N 208.38 221.25   11   86  95.000  80.000     runs   Legacy 0
+RUNINFO  1339  41   42 S 208.32 221.05   11   85  95.000  80.000     runs   Legacy 0
+RUNINFO  1356  41   43 N 206.50 221.92   11  103  95.000  82.500     runs   Legacy 0
+RUNINFO  1359  41   43 S 206.59 222.16   11  104  95.000  82.500     runs   Legacy 0
+RUNINFO  2075  41   35 S 143.40 149.39   30   40  95.000  62.500     runs   Legacy 0
+RUNINFO  2076  41   35 N 128.81 151.12   25  149  95.000  62.500     runs   Legacy 0
+RUNINFO  2126  42   12 N 120.85 185.37   11  431  95.000   5.000     runs   Legacy 0
+RUNINFO  2305  41   35 N 224.21 247.87   26  158  95.000  62.500     runs   Legacy 0
+RUNINFO  2328  41   35 S 222.03 247.33   11  169  95.000  62.500     runs   Legacy 0
+RUNINFO  2347  40   10 N 245.19 253.27   11   54  95.000   0.000     runs   Legacy 0
+RUNINFO  2348  40   10 N 244.93 254.81   11   66 250.000  45.000     runs   Legacy 0
+RUNINFO  2766  40  100 N   2.58  11.56   11   60 189.985 -90.002     runs    Cross 0
+RUNINFO  2856  40   82 N  29.51  37.90   11   56  95.000   0.000     runs   Legacy 0
+RUNINFO  2856  40   82 N  29.51  37.90   11   56  95.000   0.000 stripe82   Legacy 0
+RUNINFO  3322  40   82 N 303.16 318.73   20  104  95.000   0.000     runs   Legacy 0
+RUNINFO  3322  40   82 N 303.16 318.73   20  104  95.000   0.000 stripe82   Legacy 0
+RUNINFO  3356  40  100 N  20.35  29.34   11   60 342.831  62.034     runs  M31test 0
+RUNINFO  3511  40  100 N  93.61 100.34   31   45 245.195 -90.142     runs    Cross 0
+RUNINFO  3512  40  100 N  63.07  74.89   11   79 335.415  25.315     runs  Oblique 0
+RUNINFO  3538  41   15 S 120.04 166.90   11  313  95.000  12.500     runs   Legacy 0
+RUNINFO  3557  40  100 N  88.17  99.26   11   74  65.497  89.961     runs  Oblique 0
+RUNINFO  3559  40  100 N  62.58  73.80   11   75 335.411  25.305     runs  Oblique 0
+RUNINFO  3600  20   37 N 156.58 172.75   11  108  95.000  67.500     runs   Legacy 0
+RUNINFO  3704  41   27 S 141.30 168.55   11  182  95.000  42.500     runs   Legacy 0
+RUNINFO  3723  41   29 N 214.31 249.64   11  236  95.000  47.500     runs   Legacy 0
+RUNINFO  4014  40   25 N 201.18 249.99   11  326  95.000  37.500     runs   Legacy 0
+RUNINFO  4158  40   82 N  80.37  91.90   43   77  95.000   0.000     runs   Legacy 0
+RUNINFO  4158  40   82 N  80.37  91.90   43   77  95.000   0.000 stripe82   Legacy 0
+RUNINFO  4448  40  100 N  76.50  89.68   11   88 263.018 -90.003     runs    Cross 0
+RUNINFO  4540  40   24 N 227.30 236.59   11   62  95.000  35.000     runs   Legacy 0
+RUNINFO  4549  40   24 N 119.67 131.94   11   82  95.000  35.000     runs   Legacy 0
+RUNINFO  4629  40  100 N 261.25 304.81   11  291  64.995 -90.003     runs    Cross 0
+RUNINFO  5072  40   22 N 197.94 202.43   25   30  95.000  30.000     runs   Legacy 0
+RUNINFO  5181  40  100 N  74.15  91.82   11  118  83.817 -90.002     runs    Cross 0
+RUNINFO  5603  40   82 N 296.65 420.16   25  826  95.000   0.000     runs   Legacy 0
+RUNINFO  5603  40   82 N 296.65 420.16   25  826  95.000   0.000 stripe82   Legacy 0
+RUNINFO  5610  40   82 N 294.30 423.95   11  867  95.000   0.000     runs   Legacy 0
+RUNINFO  5610  40   82 N 294.30 423.95   11  867  95.000   0.000 stripe82   Legacy 0
+RUNINFO  5666  40   82 S  41.39  61.90   11  138  95.000   0.000     runs   Legacy 0
+RUNINFO  5666  40   82 S  41.39  61.90   11  138  95.000   0.000 stripe82   Legacy 0
+RUNINFO  6073  40  213 S  81.26  91.44   11   68 263.808  89.997     runs  Oblique 0
+RUNINFO  6591  40 1356 N  11.16  30.78   11  131 225.998 316.856     runs    SEGUE 0
+RUNINFO  6591  40 1356 N  13.33  30.42   25  117 225.998 316.856      dr7    SEGUE 0
+RUNINFO  6752  40   34 N 176.30 181.99   11   38  95.000  60.000     runs   Legacy 0
+RUNINFO  7150  40   82 N 297.30 324.10   11  179  95.000   0.000 stripe82   Legacy 0

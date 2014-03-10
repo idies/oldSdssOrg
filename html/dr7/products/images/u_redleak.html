@@ -1,0 +1,38 @@
+<p>The <var>u</var> filter has a natural red leak around 7100 &Aring;
+which is supposed to be blocked by an interference coating.  However,
+under the vacuum in the camera, the wavelength cutoff of the
+interference coating has shifted redward (see the discussion in the
+EDR paper), allowing some of this red leak through.  The extent of
+this contamination is different for each camera column.  It is not
+completely clear if the effect is deterministic; there is some
+evidence that it is variable from one run to another with very similar
+conditions in a given camera column.  Roughly speaking, however, this
+is a 0.02 magnitude effect in the <var>u</var> magnitudes for mid-K
+stars (and galaxies of similar color), increasing to 0.06 magnitude
+for M0 stars (<var>r-i</var> ~ 0.5), 0.2 magnitude at <var>r-i</var> ~
+1.2, and 0.3 magnitude at <var>r-i</var> = 1.5.  There is a large
+dispersion in the red leak for the redder stars, caused by three
+effects:</p>
+
+<ul>
+  <li>The differences in the detailed red
+leak response from column to column, beating with the complex red
+spectra of these objects.</li>
+  <li>The almost certain time variability of the red leak.</li>
+  <li>The red-leak images on the <var>u</var> chips are out of focus and are
+      not centered at the same place as the <var>u</var> image because of
+      lateral color in the optics and differential refraction - this means
+      that the fraction of the red-leak flux recovered by the PSF fitting
+      depends on the amount of centroid displacement.</li>
+</ul>
+
+<p>To make matters even more complicated, this is a <em>detector</em>
+effect.  This means that it is not the real <var>i</var> and
+<var>z</var> which drive the excess, but the instrumental colors
+(i.e., including the effects of atmospheric extinction), so the leak
+is worse at high airmass, when the true ultraviolet flux is heavily
+absorbed but the infrared flux is relatively unaffected.  Given these
+complications, we cannot recommend a specific correction to the
+<var>u</var>-band magnitudes of red stars, and warn the user of these
+data about over-interpreting results on colors involving the
+<var>u</var> band for stars later than K.

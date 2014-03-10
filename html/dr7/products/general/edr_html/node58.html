@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Plate Definition</TITLE>
+<META NAME="description" CONTENT="Plate Definition">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html748" HREF="node59.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html746" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html740" HREF="node57.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html749" HREF="node59.html">Spectroscopic Pipelines</A>
+<B>Up:</B> <A NAME="tex2html747" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html741" HREF="node57.html">Target Culling</A>
+<BR> <P>
+<H2><A NAME="SECTION00049000000000000000">Plate Definition</A></H2>
+<P>
+<A NAME="swplate">&#160;</A>
+<P>
+Once target selection has been completed, the spectroscopic plates
+need to be positioned and fibers assigned to targets.  As
+noted above, although each plate can accommodate 640 fibers, about 50
+of these are reserved for calibration targets, leaving around 590
+fibers for science targets; for plates 266-315 the available number
+was 588 and for later plates the number was 592. As described in this
+section and in Table <A HREF="node65.html#tbltarget_flag">27</A>, a number of object types
+ are potential spectroscopic science targets. However, only for
+some of these do we attempt to obtain a uniform and complete sample,
+the so-called ``tiled targets,'' as indicated in Table
+<A HREF="node65.html#tbltarget_flag">27</A>. Other science targets, such as most types of
+stars, ROSAT sources, serendipity targets, <I>etc.</I>, are assigned
+leftover fibers according to a set of priorities after the plates are
+positioned and fibers are assigned to tiled targets.
+<P>
+To position the plates, we could simply place them on a uniform grid,
+but given the clustering of the galaxy targets which dominate the
+sample, this procedure would give some plates substantially more
+targets than available fibers, while others would have large numbers
+of extra fibers.  To make best use of observing time, an algorithm
+based on cost-minimization blanton01b determines the optimal
+positioning of plate centers in order to maximize the number of tiled
+targets on which a fiber can be placed.  This spaces plates more
+closely together in regions with a larger density of galaxies,
+increasing the completeness and efficiency of the spectroscopic
+survey.  This process of optimally placing spectroscopic plates is
+referred to as <EM>tiling</EM>.
+<P>
+Due to the finite diameter of the fibers and their cladding, fibers
+cannot be placed more closely than 55&nbsp;arcsec from one another. For
+each group of targets within 55'', we put fibers on the largest
+possible set of the highest priority objects; in case there is a tie,
+we decide on the competing configurations based on the next highest
+priority objects, and so on.  Brown dwarf and hot standard star
+targets have priority over quasar targets, which have priority over
+luminous red galaxies and main sample galaxies. The priorities of each
+object are stored in a parameter <TT>priority</TT>; a higher value means
+higher priority. This procedure means that if two objects of the
+same priority are within 55'', one is rejected at random. Roughly
+8-9% of targeted objects are not targeted for this reason, in
+regions covered by a single plate. In regions of plate overlap, of
+course, both objects in such a close pair can be targeted; about 30%
+of the sky is covered by such overlaps. Finally, there is another
+constraint, which is that no fiber can be placed within 100'' of the
+center of a plate; this excludes a very small number of targets.
+<P>
+Due to an error in an early version of the tiling pipeline, for the
+earliest plates (266-315) three gaps were left in the assignment of
+fibers to tiled targets. Because of the nature of the bug, these
+occurred in regions where plates overlapped; also, they unfortunately
+tended to occur in the densest regions. They occurred in the overlaps
+between plates 270 and 271, plates 312 and 313, and plates 314 and
+315.
+<P>
+The bookkeeping of the tiling results has not been provided in this
+data release, including whether a fiber was eliminated due to a
+collision and whether it was originally targeted in the ``drilling''
+version of the data reductions. Future data releases will include this
+information. However, it is possible to evaluate the completeness from
+the data itself by calculating the fraction of each target type (as
+determined in the released version of the reductions) which have
+spectra; simply be careful to include the effect of fiber
+collisions. We have determined that for South Equatorial Stripe and
+the SIRTF First Look Field, the effective flux limit for the main
+galaxy sample is about
+<IMG WIDTH=69 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3503" SRC="img176.gif">; for the North Equatorial Stripe, the effective flux
+limit is about <IMG WIDTH=69 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3505" SRC="img177.gif">. Finally, because there may be incompleteness in
+regions covered by one observed plate and one unobserved plate, it is
+important to know the locations of the unobserved plates when
+evaluating the window function of the survey. Thus, we include in
+Table <A HREF="node65.html#tbledrspectra">4</A> the locations of plates not released here.
+<P>
+As discussed above in &#167;&nbsp;<A HREF="node57.html#swcull">4.8.6</A>,
+we found that target selection did poorly in a few regions of
+sky of particularly bad seeing, especially with earlier versions of
+the imaging pipelines.  The symptom was typically an excessive number of
+quasar candidates due to poor photometry.  We were forced in a few
+regions therefore to <TT>cull</TT> the spectroscopic targets.
+<P>
+<HR><A NAME="tex2html748" HREF="node59.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html746" HREF="node30.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html740" HREF="node57.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html749" HREF="node59.html">Spectroscopic Pipelines</A>
+<B>Up:</B> <A NAME="tex2html747" HREF="node30.html">Software</A>
+<B> Previous:</B> <A NAME="tex2html741" HREF="node57.html">Target Culling</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

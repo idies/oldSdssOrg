@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorials: Getting spectra of galaxies - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Tutorials: Getting spectra of galaxies within a range of 
+redshift and r magnitude.</h1>
+
+<ol class="tut">
+  <li>At the top of the <a href="http://cas.sdss.org/collabdr71/en/tools/search/SQS.asp">Spectro
+      Query Server</a> (SQS) form, select the maximum number of objects to output.
+      Then select the desired spectroscopy and imaging parameters
+      (&quot;minimal&quot; is what you need to retrieve data from the
+      Data Archive Server later, it outputs 
+      run, rerun, camcol, filter, field for imaging and
+      plate,mjd,fiberID for spectroscopy; &quot;typical&quot; is more
+      useful if you want to assess your results first, e.g., it
+      includes redshift for spectra).
+  <li>Specify whether to retrieve and select on target or best imaging
+      parameters.</li>
+  <li>Select whether you want to see your results in an html table in
+      the browser, or save them to disk in a csv file.</li>
+  <li>Specify position constraints (or no constraint). For a proximity 
+      search, you can either type in coordinates or upload a csv file.</li>
+  <li>Enter the Redshift min and max and the desired confidence in
+      the redshifts (zconf &gt; 0.35 is the bare minimum to avoid objects
+      with uncertain classification and hence redshift; zconf &gt; 0.65 already results
+      in a very clean sample and should be good for most applications).</li>
+  <li>Select &quot;Galaxy&quot; within Spectral Classification.</li>
+  <li>Enter the photometric constraints (in this case, min and max for R-band 
+      model magnitude).</li>
+  <li>De-select point sources if you wish to exclude objects identified by the 
+      imaging survey to be point sources. If you leave this selected, your results 
+      will include such objects later identified spectrally to be galaxies.</li>
+  <li>Select the flags that you want or do not want turned on for your
+      objects (see <a
+      href="../products/catalogs/flags.html">photometric processing
+      flags</a>; some flag checking is already applied by the <a href="../algorithms/target.html">targeting
+      pipelines</a>.</li>
+  <li>Hit &quot;Submit Request&quot;. The desired parameters for objects matching your 
+      query will then be displayed in a table if you selected html
+      above, or you will be prompted to save the results in  a csv table. </li>
+</ol>
+<p><br>
+<b>To get the actual spectra for these objects:</b></p>
+
+<ol class="tut">
+  <li>Select csv output and save the csv file to disk.</li>
+  <li>Go to the <a href="http://das.sdss.org/www/html/post_fibers.html">DAS
+      spectroscopic data retrieval form</a>.</li>
+  <li>Select the data release you for the spectra you want to
+      download. DR7 uses a later version of the pipeline, and includes
+      spectra not included in DR6. Note that if you select "All data"
+      then the rerun you desire must be included in the csv table you
+      upload, and you will need to slightly modify the procedure you
+      use to generate the cvs accordingly.</li>
+  <li>Select the result csv file from above in the "select file to
+      upload" box.</li>
+  <li>Click on "Submit Request" at the bottom of the page.</li>
+  <li>Follow the link given the "Download selection" section to the
+      form for mass download.</li>
+  <li>Under "File types," select spSpec. (You might also want spPlotGif if you 
+      want to see simple GIFs of each spectrum.) The spSpec selection
+      will get you the FITS file for each spectrum.</li>
+  <li>Since either "wget" or "rsync" under the "Download Selection"
+      section, depending on how you want to download your data.</li>
+  <li>Hit the "request" button at the bottom of the page. When
+      queried by your browser, choose where to save the file.</li>
+  <li>Follow the instructions in
+      the <a href="http://das.sdss.org/www/html/das2.html#interactive">Interactive
+      download tools</a> section of the DAS home page to download the
+      files you requested.</li>
+  <li>See the tutorial on <A HREF="../products/spectra/read_spSpec.html">&quot;Displaying SDSS Spectra&quot;</A> to learn how to display your 
+  new SDSS spectra.</li>
+
+</ol>
+
+<h2>Example</h2>
+
+<p>An SQS query with the following specifications: </p>
+<ul>
+  <li>Minimal Imaging and Typical Spectroscopy Parameters</li>
+  <li>Best Imaging</li>
+  <li>No position constraint</li>
+  <li>Redshift Range: 0-0.03</li>
+  <li>Redshift confidence &gt; 0.35</li>
+  <li>Spectral Classification: Galaxy</li>
+  <li>&quot;Point Sources&quot; De-selected</li>
+  <li>&quot;Child&quot; Flag Off </li>
+</ul>
+<p>produced 1790 results.</p>
+
+<hr>
+<!-- hhmts start -->Last modified: Thu Jun 14 16:22:45 CEST 2007
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

@@ -1,0 +1,146 @@
+SDSS 99-4
+Embargoed until 12:30 p.m. CDT, May 31, 1999
+
+Happy, Sleepy, Grumpy... METHANE?
+Sky Survey Scientists Discover New Celestial Dwarfs
+
+Chicago, Ill. -- Scientists of the Sloan Digital Sky Survey announced
+today (May 31) that early data from the Survey have revealed a new type
+of astronomical object, smaller than a star but larger than a
+planet. Until now, only one such object had ever been detected in the
+universe.
+
+Early this spring, while searching Sky Survey data for unusual
+objects such as the universe's most distant quasars, graduate student
+Xiaohui Fan and astronomer Michael Strauss, of Princeton University,
+found a faint but extremely red dot of light in the night sky.
+Subsequent spectroscopic observations revealed that the object was not a
+distant quasar but instead an equally fascinating find -- a nearby cool,
+brown dwarf with properties between those of a planet and a star.
+
+Until their discovery, only one of this type of "cool substellar
+object," known as Gliese 229B, discovered in 1995, had ever been
+observed. However, unlike Gliese 229B, which is a close companion to a
+star, the new object was not orbiting a star, but occurred as a
+free-floating object about 30 light years away in the constellation
+Ophiuchus.
+
+Then, last week, Sky Survey astronomers Zlatan Tsvetanov and Wei
+Zheng of The Johns Hopkins University, along with fellow JHU astronomer
+David Golimowski, confirmed the observation of another ultra-red,
+free-floating object of comparable mass in the constellation Virgo, with
+a spectrum so similar that Golimowski, a co-discoverer of Gliese 229B,
+described it as a clone.
+
+"The JHU result shows that the Princeton discovery was not simply
+beginner's luck but that these objects may be quite common," said
+astronomer Tom Geballe of the Gemini observatory in Hawaii.  "They are
+still so new to astronomy that they require a new vocabulary. The name
+`methane dwarf' has emerged, because of the dramatic presence of bands
+of methane in their spectra. Methane is characteristic of giant planets,
+like Jupiter, but it never appears in normal stars -- they are much too
+hot -- or even in most brown dwarfs."
+
+Objects whose mass falls between that of stars and planets are
+extraordinarily elusive. Because they lack sufficient mass to generate
+the nuclear reactions that make stars shine, they cool down from their
+formation temperature and become too red and too dim to show up in most
+searches of the sky. And, unlike planets, which are found in association
+with stars, these objects may occur as isolated objects in interstellar
+space. Thus, they are very hard to detect.
+
+Astronomers have previously observed objects with masses lower than
+the minimum required to sustain nuclear reactions, the criterion that
+makes an object a star. These lower-mass objects are called "brown
+dwarfs," a name that reflects their temperature: red dwarfs are cooler
+than white ones, and brown dwarfs are cooler still. The term "methane
+dwarf" distinguishes the three known very cool brown dwarfs, which all
+show methane in their spectra, from the population of hotter brown
+dwarfs that lack this signature.
+
+Astronomers also know that low-mass objects -- those with masses
+smaller than the sun -- may be important contributors to the total mass
+of the Milky Way.  But to understand just how much they contribute,
+astronomers must determine their masses -- and how many of them exist.
+
+
+"Just because we haven't seen these free-floaters before doesn't mean
+they are rare," said University of Chicago astronomy graduate student
+Constance Rockosi.  "But to find them, you need to cover a lot of sky
+area and at the same time be able to see very faint objects. The Sky
+Survey covers so much celestial territory that at last we will begin to
+get a grip on how many there really are."
+
+For now, the mass of the methane dwarfs remains unknown. They must be
+smaller than stars, because they are so cool. However, their dimness
+depends not only on their mass but on their age: brown dwarfs cool with
+age, like embers drawn from a fire. So, although the methane dwarfs are
+fainter than other brown dwarfs, they may not be less massive-just much
+older.  Astronomers estimate their masses at 10 to 70 times the mass of
+Jupiter.
+
+Both the Princeton and Johns Hopkins groups discovered the new
+methane dwarfs while looking for objects so red that they were not even
+visible with filters sensitive to other wavelengths. Princeton's Strauss
+described the detective work that led to the confirmation of the
+object's true identity.
+
+"The object we observed was the reddest object we have found thus far
+in 400 square degrees of observing," Strauss said.  "We obtained its
+optical spectrum with the 3.5-meter telescope at Apache Point
+Observatory in New Mexico. The spectrum showed strong absorption by
+water, in the form of steam. We immediately realized it might be an
+object similar to Gliese 229 B. At the suggestion of Princeton astonomer
+Gillian Knapp, we called our colleagues Tom Geballe, of the Gemini
+Observatory, and Sandy Leggett of the Joint Astronomy Centre. By
+coincidence, they were observing at UKIRT, the United Kingdom Infrared
+Telescope in Hawaii, which has one of the best near-infrared
+spectrographs in the world. They obtained infrared spectra and showed
+that our object was an almost exact twin to Gliese 229 B, with strong
+bands of water and methane."
+
+A few weeks later, Geballe and Leggett received a similar call from
+the Johns Hopkins group, and, on May 22 obtained the spectrum for the
+second candidate object.
+
+"As anticipated," Golimowski said, "the spectrum revealed absorption
+features from water vapor and methane. The third known methane dwarf was
+now confirmed! Among many new questions, we need to understand why the
+spectra of these three objects are so amazingly similar. The two new
+free-floaters are ideal targets for searching for even lower-mass
+companions or planets."
+
+Fan said Sky Survey collaborators are pleased at the objects'
+detection so early in the life of their project.  "Even the engineering
+test data from the Sky Survey are proving very productive for science,"
+he said.
+
+The wide-field capability of the Sky Survey telescope and camera are
+only part of the technology necessary to advance the discovery rate of
+new classes of astronomical objects.
+
+"The capability for precision five-color photometry is just as
+important," said Knapp. "The work of Princeton software experts such as
+Robert Lupton and Zeljko Ivezic was crucial."
+
+When the Sky Survey begins routine operations, on each clear moonless
+night a powerful digital camera will generate 200 gigabytes of data
+containing millions of objects. Most of the objects are more or less
+ordinary stars; the interesting, one-in-(literally)-a-million objects
+must be carefully filtered out from the vast quantities of Sky Survey
+data. Thus, another crucial contribution to finding such rare objects as
+methane dwarfs so early in the Survey is the extraordinary capability of
+the Sky Survey's image-processing software, which enables scientists to
+zoom in on unusual classes of objects with high reliability.
+
+The Sloan Digital Sky Survey (SDSS) is a joint project of The
+University of Chicago, Fermilab, the Institute for Advanced Study, the
+Japan Participation Group, The Johns Hopkins University, the
+Max-Planck-Institute for Astronomy, Princeton University, the United
+States Naval Observatory, and the University of Washington. Apache Point
+Observatory, site of the SDSS, is operated by the Astrophysical Research
+Consortium. Funding for the project has been provided by the Alfred
+P. Sloan Foundation, the SDSS member institutions, the National
+Aeronautics and Space Administration, the National Science Foundation,
+the U.S. Department of Energy and the Ministry of Education of
+Japan.  The SDSS Website is http://www.sdss.org/.

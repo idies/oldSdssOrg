@@ -1,0 +1,8 @@
+NGC 2420 is one of the few open clusters observed in the original
+SDSS survey. Most open clusters reside in the disk of the milky way,
+because that is where there is the most material for new star
+formation. The coverage of the original SDSS avoided this area,
+however, so that data on extragalactic sources could be collected with
+minimal obstruction from material in our own galaxy. We have recently
+begun data collection for the SDSS-II survey, which will extend the
+survey coverage into the milky way.

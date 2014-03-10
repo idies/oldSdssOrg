@@ -1,0 +1,145 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="William N. Boroski">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <TITLE>Trip Report - Telescope Engineering at APO, Nov 10-13, 1998</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#3333FF" VLINK="#FF0000" ALINK="#FF0000">
+
+<DIV ALIGN=right></DIV>
+
+<div align="left">  
+  <p><B><FONT SIZE=+2>Telescope Engineering Work at APO<br>
+  </FONT></B><B>November 10-13, 1998</B></p>
+  <I><em>Sloan Digital Sky Survey Technical Not</em></I>e<em> 19981110 </em><BR>
+  <em><BR>
+  <A HREF="mailto: boroski@fnal.gov"><font size="+1">Bill Boroski</font></A><font size="+1"> and <A HREF="http://tdpc01.fnal.gov/sdss/docs/trip_reports/briegel@fnal.gov">Charlie
+Briegel</A></font></em><font size="+1"><A HREF="http://tdpc01.fnal.gov/sdss/docs/trip_reports/briegel@fnal.gov">, </A>Fermi National Accelerator Laboratory Batavia, IL USA 60510</font></div>
+<P>
+<HR SIZE=4 WIDTH="100%">
+
+<P>This report summarizes work done at Apache Point Observatory (APO) by
+Charlie Briegel, Steve Bastian, Bob Nagel, Jon Davis, and Bill Boroski
+during the week of November 10-13, 1998.
+
+<P>Bob Nagel worked with us this week at APO.&nbsp; Bob is a retired telescope
+engineer with over 20 years of experience with telescope control systems.&nbsp;
+We shared with him data on the servo measurements we've made in the past
+and spent quite a bit of time discussing the present state of the telescope
+control system.&nbsp; Bob feels that we're getting close but appreciates
+that there's still quite a bit of work to be done.&nbsp; Bob concurs with
+our decision to replace the rotator harmonic drive with a direct-drive
+system.&nbsp; He also shares our concerns with the azimuth drive bearing.&nbsp;
+More on this later.&nbsp; We'll continue to stay in touch with Bob and
+will share any tracking data we collect in the coming dark run.
+
+<P>Charlie made a number of measurements on the altitude and azimuth axes.&nbsp;
+In altitude, we are tracking with error rates of +/- 5 counts at velocities
+ranging from 10 cts/sec to 10,000 cts/sec.&nbsp; In azimuth, the picture
+is not so good.&nbsp; We continue to struggle with tracking at very low
+velocities.&nbsp; At velocites above 300 counts/sec, we can achieve tracking
+error rates of +/- 5 counts.&nbsp; However, at a velocity of 10 cts/sec,
+the position error rapidly increases until the integral term saturates
+and the servo falls out of closed loop.&nbsp; We suspect that this problem
+is related to friction in the azimuth drive bearing.
+
+<P>French recently looked at the azimuth drive bearing and noted that two-thirds
+of the cylindrical rollers in the bearing had been removed.&nbsp; He also
+noted that the remaining rollers were half-submerged in a bath of gear
+lube.&nbsp; In researching this further, we have learned that gear lube
+is not the most suitable lubricant for this application.&nbsp; Rather,
+a high-performance, low-temperature bearing grease is preferred.&nbsp;
+So before making additional azimuth drive measurements, we agreed to replace
+the lubricant in the azimuth bearing.
+<BR>&nbsp;
+<BR>Jon Davis, Bob, Steve, and I lifted the dust cover off the azimuth
+drive bearing.&nbsp; The gear lube was easily visible and had the appearance
+of clean motor oil.&nbsp; However, it was very sticky to the touch with
+an extremely low viscocity.&nbsp;&nbsp; When we removed the drain plugs,
+nothing came out.&nbsp; By working allen wrenches into the drain plug openings,
+we were able to extract a very thick, very dirty bearing grease. Jon said
+this appeared to be the grease that was originally in the bearing, before
+the gear lube was added.&nbsp; After several minutes of extracting the
+grease in this manner, the gear lube finally started to ooze from the openings.&nbsp;
+Its flow rate was comparable to molasses in winter, so we gathered some
+space heaters and placed them in the lower cone pit to warm the telescope
+body.&nbsp; Over the course of the day, the telescope warmed slightly and
+the flow rate increased.&nbsp; After approximately 12 hours, the level
+of the gear lube was below the bearing rollers.&nbsp; We replaced the drain
+plugs and the dust cover for the night to keep the bearing clean and moth-free,
+and then opened things up the following morning.&nbsp; We continued with
+the heaters until virtually no fluid was exiting the drain holes.&nbsp;
+I should note that there is still a rather thick, sticky film of this lubricant
+on all of the bearing surfaces that is of concern to all here.&nbsp; We
+plan to wipe off as much of this film as possible before installing the
+new grease.
+
+<P>Our original intent was to replace the gear lube with the bearing grease
+that Jon has been using on the 3.5-meter telescope bearings, since he has
+had good cold weather experience with it.&nbsp; However, before doing this
+we looked at the L&amp;F drawing for the azimuth bearing assembly and saw
+that they had specified a synthetic bearing grease.&nbsp; Jon obtained
+a spec sheet from the vendor and noted that the grease has better properties
+than the grease being used on the 3.5-m.&nbsp; The grease is spec'd to
+-100 deg. F and is applicable for low RPM applications involving moderate
+to heavy loads. Jon has ordered a case of this grease and it is expected
+to arrive on Friday. It will be installed in the azimuth bearing on Friday
+afternoon and then Charlie will repeat the azimuth servo measurements.
+
+<P>Charlie continues to work on the interface between the TCC and MCP and
+has been in contact with Russell Owen to discuss some of the problems he
+is having.&nbsp; There appears to be a rounding problem between the two
+systems that results in an accumulated position error.&nbsp; Charlie is
+focusing his effort on fixing this problem.
+
+<P>Now for the good news.&nbsp; We managed to fix the latest wind baffle
+altitude oscillation problem.&nbsp; By turning on the altitude motor brake
+and pulling and pushing at the end of the wind baffle, we noticed that
+the main drive gear was moving back and forth by a few degrees.&nbsp; The
+drive chain at this point was very tight.&nbsp; Bob, Steve, and I removed
+the chain and disassembled the motor/planetary gear assembly and found
+that all of the bolts securing the planetary gear spline were loose.&nbsp;
+Steve Bastian cleaned the bolts and bolt holes with acetone and&nbsp; then
+applied Loctite to the bolt threads and reassembled the motor.&nbsp; After
+remounting the motor, we installed the drive chain following the procedure
+on the L&amp;F windbaffle assembly drawing.&nbsp; The chain is taught,
+but not as tight as it has been.&nbsp;&nbsp; We moved the telescope in
+altitude inside of the building at a velocity of 10,000 counts/sec and
+noted no oscillation in the wind baffle.&nbsp; We also hung from the end
+of the wind baffle and could not make the wind baffle budge.&nbsp; The
+control loop held position quite well.&nbsp; We then opened the enclosure
+and ran the telescope up and down twice in altitude at velocities of 200,000
+counts/sec.&nbsp; Again, we observed no oscillations in the wind baffle.
+Needless to say, we were very happy to find and fix this problem.
+
+<P>The bar code scanners for the alt/az fiducials have arrived, so Steve
+and I installed one of the scanners on the azimuth drive and tested it
+with one of the fiducial bar code labels.&nbsp; The scanner worked quite
+well.&nbsp; We also worked out the design of the mounting brackets for
+the azimuth and altitude tape encoder readheads.&nbsp; Steve will work
+on these brackets; our objective is to install the fiducial systems, the
+bar code labels, and the altitude bar code scanner during the week of Dec
+8.
+
+<P>Glenn Federwitz had sent with me revised logic diagrams showing the
+recent changes made to the interlock system (stop buttons, etc).&nbsp;
+These diagrams have been placed in the interlocks binder at APO;&nbsp;
+the binder now reflects the current state of the system.
+
+<P>We would like to make special note of all of the help and support we
+were given by Jon, Dan, Gretchen, Madonna, Mark, and the rest of the APO
+staff.&nbsp; As always, everyone was great in helping us with our work.&nbsp;
+We also want to thank Bob Nagel for all of us help with the azimuth bearing,
+the windbaffle altitude drive, and for all of his input and advice.
+<BR>&nbsp;
+
+<P>
+<HR SIZE=4 WIDTH="100%">
+<BR>Comments regarding this trip report should be addressed to <A HREF="mailto: boroski@fnal.gov">Bill
+Boroski</A> at (630) 840-4344.<I><FONT SIZE=-1></FONT></I>
+
+<P><I><FONT SIZE=-1>Last updated 11/13/98</FONT></I>
+<BR>&nbsp;
+</BODY>
+</HTML>

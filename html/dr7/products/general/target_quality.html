@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Data products: Quality of Target Selection - SDSS DR7</title>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<H1>Target Selection: Quality and Efficiency</H1>
+
+<p>The Sloan Digital Sky Survey uses its imaging data to select objects
+for spectroscopic followup.  There is a <a
+href="edr_html/node51.html">description of the target selection
+algorithms in the EDR paper</a>. Also compare the <a
+href="../../algorithms/target.html">targetting algorithms page</a>.</p>
+
+<p>Broadly speaking, targetted objects fall into three categories:<p>
+<ul>
+  <li>Targets that are <i>tiled</i> (<a href="#tiled">see "Tiled
+      targets" below</a>) (following Blanton et al,
+      astro-ph/0105535) so as to obtain a complete sample across the sky.
+      These include the <a href="#galaxy">main galaxy</a> targets, the
+      <a href="#lrg">luminous red galaxies</a>,
+      the <a href="#qso">quasar candidates</a>, and the <a
+      href="#brown">brown dwarf candidates</a>.</li>
+  <li>Targets that are needed for spectroscopic processing.  These
+      include blank sky targets (for sky subtraction),
+      spectrophotometric
+      and telluric standards, and reddening standards. Please refer to
+      the section in the <a href="edr_html/node56.html">EDR paper on
+      calibration targets</a>.</li>
+  <li> Everything else (<a href="#other">see description below</a>).
+      These are observed when the tiled targets do
+      not use up all the available fibers on a given plate.</li>
+</ul>
+
+<p><strong>Note:</strong> Just because an object is <i>targetted</i> does
+not necessarily mean that it will be assigned a spectroscopic fiber.
+The <a href="edr_html/node58.html">tiling algorithm</a> (see also <a
+href="http://xxx.lanl.gov/abs/astro-ph/0105535">Blanton et
+al. 2003</a>) assigns targets to fibers; two fibers cannot be placed
+more closely than 55".  This means that roughly 10% of all galaxy
+targets are not observed spectroscopically (somewhat less in the
+overlaps between plates).  The majority of close pairs of galaxies are
+essentially at the same redshift, an approximation that works
+reasonably well for, e.g., correlation function studies (cf., Zehavi
+et al. 2002).</p>
+
+<a name="tiled"></a><h2>Tiled targets</h2>
+
+<a name="galaxy"></a>
+<h3>The main galaxy sample</h3>
+
+<p>This is described in some detail in Strauss et al. (2002); a
+briefer description is on the <a
+href="../../algorithms/target.html#main">target selection algorithm
+page</a>.  In brief, it includes all galaxies with Petrosian <var>r</var>
+magnitude brighter than 17.77.  Here and throughout target selection,
+magnitude limits are based on quantities corrected for Galactic
+reddening a la Schlegel, Finkbeiner, and Davis (1998).  There is a
+Petrosian half-light surface brightness cut of 24.5 magnitudes in one
+square arcsec, which rejects less than 1% of all galaxies.  There is
+also a cut in 3" fiber magnitude at g=15, r=15, and i=14.5 (to prevent
+saturation and cross-talk in the spectrographs).  There are roughly 90
+such targets per square degree.</p>
+
+<h4>Bright galaxy magnitude limits</h4>
+
+<p>The galaxy sample is limited at the <em>bright</em> end by the fiber
+magnitude limits, to avoid saturation and excessive cross-talk in the
+spectrographs.  Similarly, the image deblending software had a
+tendency to occasionally shred large, bright galaxies with
+substructure, causing problems for galaxy target selection at the
+bright end (this problem is essentially fixed in the version of the
+pipeline that produced the "best" imaging reductions, but was not in
+place when the targetting and spectroscopy was carried out.  These two
+effects together cause the spectroscopic sample to become noticeably
+incomplete for galaxies brighter than r=14.5 or so.  We do plan
+eventually to supplement our galaxy catalog with redshifts from the
+literature for those bright galaxies for which we do not have
+redshifts. </p>
+  
+<h4>Faint galaxy magnitude limit</h4>
+
+<p>The galaxy target selection is magnitude-limited to a Galactic
+extinction-corrected Petrosian magnitude of r=17.77.  However, this
+limiting magnitude has varied through the survey, between 17.5 and
+17.77 (it turns out that one needs to survey an enormous region of sky
+to determine the number density of galaxies to a few percent
+accuracy!).  The information on what magnitude limit is used in what
+region of sky is quite complex (as is the information on the exact
+geometry of the sky coverage).  The safest thing to do at this point
+is to limit a galaxy spectroscopic sample for statistical studies to
+r=17.5.</p>
+
+  <h4>Galaxy target selection efficiency</h4>
+
+<p>The galaxy target selection is very efficient.  Only one percent
+of the objects targetted turn out not to be galaxies.  This one
+percent is made up of close pairs of stars, and occasional sprays of
+scattered light.  The signal-to-noise ratio in the spectra is such
+that reliable redshifts are available for essentially all galaxies,
+even those at quite low surface brightness levels.</p>
+
+<a name="lrg"></a>      
+<h3>The Luminous Red Galaxy Sample</h3>
+
+<p>This sample is described by Eisenstein et al. (2001); a briefer
+description can be found on the <a
+href="../../algorithms/target.html#lrg">target selection algorithm
+page</a>.  This targets the most luminous red galaxies at each
+redshift; for redshifts z&gt;0.2, there are clean cuts in
+color-magnitude space that effectively isolate objects with the
+properties of Brightest Cluster Galaxies.  There are two classes,
+flagged with the target bits GALAXY_RED and GALAXY_RED_II,
+respectively; they select a roughly volume-limited sample of objects
+with 0.2&lt;z&lt;0.38 (down to r(Petrosian) = 19.2), and a
+flux-limited sample (to r(Petrosian) = 19.5), which extends to z=0.55.
+There are roughly 12 objects targetted per square degree.</p>
+  
+<p>The LRG sample comes in two parts: a roughly volume-limited
+subsample to z=0.38, and a flux-limited sample that extends to z=0.55
+or so.  The spectra are of high enough quality that only 1-2% of the
+objects targetted fail to have a redshift successfully measured.  The
+color cuts that define the LRG sample break down for redshifts below
+0.2.  That's OK, all such objects are bright enough to be included in
+the main galaxy sample, but it is up to individual scientists to pull
+such a sample out (i.e., based on luminosities and colors). There have
+been small <a
+href="../../algorithms/target.html#dr2LRGchanges">changes in the LRG
+target selection criteria</a> from DR1 to DR2/DR3.</p>
+
+<a name="qso"></a>  
+<h3>The Quasar sample</h3>
+
+<p>This sample is described in Richards et al. (2002); a briefer
+description can be found in the <a
+href="../../algorithm/target.html#qso">target selection algorithm
+page</a>.  Quasar candidates are defined as objects with colors
+distinct from those of ordinary stars (which form almost a
+one-dimensional distribution in SDSS color space).  Certain regions of
+color space are explicitly excluded, as they are contaminated by rarer
+types of stars: hot white dwarfs, A stars, and M dwarf/white dwarf
+pairs.  The algorithm does not explicitly require objects be
+unresolved in the region of color space in which ultraviolet excess
+objects lie (this allows resolved Seyfert galaxies to be targetted),
+but redder objects (i.e., those with z&gt;3, reddened by the Lyman
+alpha forest) must be stellar.</p>
+
+<h4>Magnitude limits</h4>
+<p>The sample is
+      magnitude-limited to a PSF magnitude of i=19.1 in the ultraviolet
+      excess region of color space, and i=20.2 elsewhere.  Roughly 18
+      objects per square degree are targetted; of order 2/3 of these are in
+      fact quasars.
+      In addition, unresolved objects brighter than
+      i=19.1 with counterparts in the FIRST radio survey are also
+      targetted.  Very few of these are not already selected by the color
+      algorithm described above.</p>
+
+<p>There is a bright limit of <var>i</var>=15 for similar reasons as
+in the galaxy target selection</p>
+  
+
+<h4>Quasar target selection changes</h4>
+<p>Quasar target selection has also evolved somewhat, due both to
+      changes in the targetting algorithm itself, and improvements in the
+      photometric pipeline; quasar target selection was the focus of a great
+      deal of fine-tuning during SDSS commissioning.  None of the DR1 data
+      use the very latest version of the target selection algorithm, as
+      described in the Richards et al. (2002) paper.  As a consequence, the
+      quasar targetting efficiency in the data themselves varies a fair
+      amount.  With the current versions of the selection algorithm and the
+      imaging pipeline, the selection is clean: roughly 2/3 of the targets
+      are indeed quasars, and essentially all the contamination is there for
+      astrophysical reasons (principally compact star-forming galaxies, A
+      and F stars, white dwarfs, and late M stars).  However, with old
+      versions of the imaging pipeline, stars tended to scatter out of the
+      stellar locus when the seeing changed rapidly, contaminating the
+      quasar selection and reducing the efficiency of the code.  As a
+      consequence, there are plates, fortunately relatively few, with quasar
+      target selection efficiency as low as 30%.</p>
+
+  <h4>Quasar selection completeness</h4>
+<p>The completeness of the quasar selection algorithm depends somewhat on
+      redshift.  In particular, the completeness is low for 2.4&lt;z&lt;2.9,
+      where the quasar and stellar loci cross; it is similarly low at
+      redshifts around 3.5 and 4.5.  These incompletenesses are more severe
+      in previous versions of the code than at present.</p>
+
+  <h4>Quasar spectrum signal-to-noise</h4> <p>The signal-to-noise
+      ratio of the quasar spectra is high, and the
+      redshift accuracy, based on extensive tests, is similarly high, of
+      order 99%.  The exceptions are astrophysically interesting: BL
+      Lacertae objects (notoriously difficult to distinguish
+      spectroscopically from very hot stars) and extreme Broad Absorption Line
+      quasars (see the paper by Hall et al. 2002) are the most important.
+      Users of the spectra should be sure to pay close attention to the
+      flags indicating uncertainty in redshift determination.</p>
+
+<a name="brown"></a>
+<h3>Brown dwarf candidates</h3>  <p>These represent fewer than one object per
+      square degree; they are targetted by their very red colors in i-z, and
+      relatively blue colors in r-i.</p>
+  
+
+<a name="other"></a><h2>Other targets</h2>
+
+<p>The other categories of scientific targets are assigned
+spectroscopic fibers when fibers are available, following a cleanly
+defined set of priorities.  See the <a
+href="edr_html/node55.html">discussion of target priorities in the EDR
+paper</a>.  Among these are:</p>
+
+  
+<h3>Optical counterparts to ROSAT sources</h3>
+
+<p>These include quasars and AGN
+(including some BL Lacs), some cataclysmic variables, and other
+unusual classes of objects. </p>
+
+<h3>Optical counterparts to FIRST radio
+sources</h3>
+
+<p>These go fainter than the quasar sample and do not have the
+restriction that the object be unresolved.</p>
+
+<h3>Stars chosen by their unusual colors</h3>
+
+<p>These usually extend to magnitude limits fainter than the quasar
+sample.  Among these are objects with colors of blue horizontal branch
+stars and white dwarfs.</p>
+  
+
+<p>Again, these classes of objects are observed spectroscopically
+only when fibers are available, and therefore are not complete on the
+sky in any sense of the term.</p>
+
+<a name="references"></a>
+<h2>Target Selection References</h2>
+<ul>
+<li> <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v124n3/202037/202037.html">
+     Spectroscopic Target Selection in the Sloan Digital Sky Survey: The Main Galaxy Sample</a>,
+     Strauss, M., et al. 2002, AJ, 124, 1810
+<li> <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v122n5/201289/201289.html">
+     Spectroscopic Target Selection for the Sloan Digital Sky Survey: The Luminous Red Galaxy Sample</a>,
+     Eisenstein, D., et al. 2001, AJ, 122, 2267
+<li> <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v123n6/201557/201557.html">
+     Spectroscopic Target Selection in the Sloan Digital Sky Survey: The Quasar Sample</a>, 
+     Richards, G., et al. 2002, 123, 2945
+<li> <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v123n1/201415/201415.html">
+     Sloan Digital Sky Survey: Early Data Release</a>, Stoughton, C., et al. 2002, AJ, 123, 485
+</ul>
+
+<hr>
+<!-- hhmts start -->Last modified: Tue Mar  9 11:37:05 CST 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

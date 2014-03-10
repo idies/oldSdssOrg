@@ -1,0 +1,1171 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>IQS/SQS User's Guide</title>
+  </head>
+
+  <body>
+    <h1>IQS/SQS User's Guide</h1>
+
+
+<b>Use the IQS (SQS) to make intermediate-level queries
+   on the DR1 mysql database for objects in the 
+   DR1 imaging (spectroscopic) sample.</b> 
+
+<HR>
+
+<P>
+Table of contents:
+<UL>
+<LI><a href="#Parameters">Parameters to Return</a>
+<LI><a href="#Spectroscopy">Spectroscopy Parameters</a>
+<LI><a href="#Imaging">Imaging Parameters</a>
+<LI><a href="#DASfilters">Filter names to return (for use by DAS)</a>
+<LI><a href="#PositionConstraint">Position Constraints</a>
+<LI><a href="#PositionRectangularConstraint">Rectangular Search</a>
+<LI><a href="#PositionConeConstraint">Cone Search</a>
+<LI><a href="#PositionProximityConstraint">Proximity Search</a>
+<LI><a href="#NoPositionConstraint">No Position  Constraint</a>
+<LI><a href="#SpectroscopyConstraints">Spectroscopy Constraints</a>
+<LI><a href="#RedshiftConfidence">Redshift and Confidence</a>
+<LI><a href="#SpectralClassification">Spectral  Classification</a>
+<LI><a href="#Primtarget">Primtarget</a>
+<LI><a href="#Sectarget">Sectarget</a>
+<LI><a href="#ImagingConstraints">Imaging Constraints</a>
+<LI><a href="#SkyVersion">Sky Version</a>
+<LI><a href="#MagnitudeType">Magnitude Type</a>
+<LI><a href="#Magnitudes">Magnitudes</a>
+<LI><a href="#Colors">Colors </a>
+<LI><a href="#ObjectType">Object Type</a> 
+<LI><a href="#objc_flags">objc_flags</a>  
+<LI><a href="#objc_flags2">objc_flags2</a>  
+</UL>
+<P>
+<hr>
+<P>
+
+<P>
+<P>
+<h1><a name="Parameters">Parameters to Return</a></h1>
+<P>
+
+<i>Which spectroscopic and/or imaging parameters do you want returned from your query?</i>
+
+<P>
+<P>
+<h3><a name="Spectroscopy">Spectroscopy Parameters</a></h3>
+<P>
+<i>Which spectroscopic parameters do you want returned from your query?</i>
+<P>
+<b> Useful spectroscopy parameter combinations:</b>
+<pre>
+none    (IQS:  none, SQS:  plateid, mjd, fiberid)
+minimal (plateid, mjd, fiberid)
+typical (plateid, mjd, fiberid, z, z_err, z_conf, z_status, spec_cln, z_warnin, raObj, decObj)
+radec   (ra, dec)
+
+</pre>
+<P>    
+<b> Individual spectroscopy parameters 
+    (see also the <a href=../dm/flatFiles/spSpec.html>spSpec Data Model</a>):</b>
+<pre>
+camcol
+decobj
+eClass
+eCoeff1
+eCoeff2
+eCoeff3
+eCoeff4
+eCoeff5
+fiberid
+fiber_mag_g
+fiber_mag_i
+fiber_mag_r
+fiber_mag_u
+fiber_mag_z
+field
+id
+liberalMaxRestWave
+liberalMaxSigma
+mag_g
+mag_i
+mag_r
+maxRestWave
+maxSigma
+mjd
+nGood
+holeType
+plateid
+primtarg
+raobj
+rerun
+run
+sectarge
+sn_g
+sn_i
+sn_r
+spec_cln
+specMask
+vel_dis
+vel_dise
+xfocal
+yfocal
+z
+z_conf
+z_err
+z_status
+z_warnin
+</pre>
+<P>
+<P>
+
+
+<h3><a name="Imaging">Imaging Parameters</a></h3>
+<P>
+<i>Which imaging parameters do you want returned from your query?</i>
+<P>
+Note: "Target Imaging" refers to the imaging data (run) and/or
+processing (rerun) combination used in selecting targets for
+spectroscopic followup; "Best Imaging" refers to the "latest and
+greatest" run/rerun combination and therefore generally supersedes the
+run/rerun combination of "Target Imaging".
+<P>
+<em><b>Caveat</b></em>: In rare instances a spectrum may not be
+matched to a "Best Imaging" object. 
+(For example, this may occur when there were deblending problems in 
+the "Target Imaging", such as when a bright off-center HII region is 
+targeted instead of the parent galaxy, and where that HII region
+is then properly treated in the "Best Imaging" and is no longer a 
+cataloged object.)
+Currently in such cases an SQS query will not return null
+results if "Best Imaging" parameters are requested,
+but will instead substitute the "Target Imaging" parameters.
+Also be aware that this may then cause errors when 
+one exercises the option to feed the SQS csv output into the DAS
+web form, specifically when requesting "Best Imaging" files 
+from the DAS.
+
+<P>
+<b> Useful imaging parameter combinations:</b>
+<pre>
+none          (SQS:  none, IQS:  run, rerun, camcol, field, id)
+minimal       (run, rerun, camcol, field, id)
+typical       (run, rerun, camcol, field, id, objc_type, ra, decl, mag_model_r)
+radec         (ra, dec)
+model_mags    (mag_model_u, mag_model_g, mag_model_r, mag_model_i, mag_model_z)
+model_magerrs (mag_modelerr_u, mag_modelerr_g, mag_modelerr_r, mag_modelerr_i, mag_modelerr_z)
+psf_mags      (psfmag_u, psfmag_g, psfmag_r, psfmag_i, psfmag_z)
+psf_magerrs   (psfmagerr_u, psfmagerr_g, psfmagerr_r, psfmagerr_i, psfmagerr_z)
+petro_mags    (petromag_u, petromag_g, petromag_r, petromag_i, petromag_z)
+petro_magerrs (petromagerr_u, petromagerr_g, petromagerr_r, petromagerr_i, petromagerr_z)
+model_colors  (ugModelColor, grModelColor, riModelColor, izModelColor)
+ugModelColor  (mag_model_u-mag_model_g)
+grModelColor  (mag_model_g-mag_model_r)
+riModelColor  (mag_model_r-mag_model_i)
+izModelColor  (mag_model_i-mag_model_z) 
+
+</pre>
+
+
+<P>
+<b> Individual imaging parameters 
+    (see also the <a href=../dm/flatFiles/tsObj.html>tsObj Data Model</a>):</b>
+<pre>
+ab_deverr_g
+ab_deverr_i
+ab_deverr_r
+ab_deverr_u
+ab_deverr_z
+ab_dev_g
+ab_dev_i
+ab_dev_r
+ab_dev_u
+ab_dev_z
+ab_experr_g
+ab_experr_i
+ab_experr_r
+ab_experr_u
+ab_experr_z
+ab_exp_g
+ab_exp_i
+ab_exp_r
+ab_exp_u
+ab_exp_z
+b
+camcol
+catid
+colcerr_g
+colcerr_i
+colcerr_r
+colcerr_u
+colcerr_z
+colc_g
+colc_i
+colc_r
+colc_u
+colc_z
+colv
+colverr
+decl
+dev_l_g
+dev_l_i
+dev_lnl_g
+dev_lnl_i
+dev_lnl_r
+dev_lnl_u
+dev_lnl_z
+dev_l_r
+dev_l_u
+dev_l_z
+eta
+exp_l_g
+exp_l_i
+exp_lnl_g
+exp_lnl_i
+exp_lnl_r
+exp_lnl_u
+exp_lnl_z
+exp_l_r
+exp_l_u
+exp_l_z
+fibermagerr_g
+fibermagerr_i
+fibermagerr_r
+fibermagerr_u
+fibermagerr_z
+fibermag_g
+fibermag_i
+fibermag_r
+fibermag_u
+fibermag_z
+field
+firstdelta
+firsteta
+firstid
+firstint
+firstlambda
+firstmajor
+firstmatch
+firstminor
+firstpa
+firstpeak
+firstrms
+flags2_g
+flags2_i
+flags2_r
+flags2_u
+flags2_z
+flags_g
+flags_i
+flags_r
+flags_u
+flags_z
+fracpsf_g
+fracpsf_i
+fracpsf_r
+fracpsf_u
+fracpsf_z
+id
+iso_aerr_g
+iso_aerr_i
+iso_aerr_r
+iso_aerr_u
+iso_aerr_z
+iso_a_g
+iso_agrad_g
+iso_agrad_i
+iso_agrad_r
+iso_agrad_u
+iso_agrad_z
+iso_a_i
+iso_a_r
+iso_a_u
+iso_a_z
+iso_berr_g
+iso_berr_i
+iso_berr_r
+iso_berr_u
+iso_berr_z
+iso_b_g
+iso_bgrad_g
+iso_bgrad_i
+iso_bgrad_r
+iso_bgrad_u
+iso_bgrad_z
+iso_b_i
+iso_b_r
+iso_b_u
+iso_b_z
+iso_colcerr_g
+iso_colcerr_i
+iso_colcerr_r
+iso_colcerr_u
+iso_colcerr_z
+iso_colc_g
+iso_colcgrad_g
+iso_colcgrad_i
+iso_colcgrad_r
+iso_colcgrad_u
+iso_colcgrad_z
+iso_colc_i
+iso_colc_r
+iso_colc_u
+iso_colc_z
+iso_phierr_g
+iso_phierr_i
+iso_phierr_r
+iso_phierr_u
+iso_phierr_z
+iso_phi_g
+iso_phigrad_g
+iso_phigrad_i
+iso_phigrad_r
+iso_phigrad_u
+iso_phigrad_z
+iso_phi_i
+iso_phi_r
+iso_phi_u
+iso_phi_z
+iso_rowcerr_g
+iso_rowcerr_i
+iso_rowcerr_r
+iso_rowcerr_u
+iso_rowcerr_z
+iso_rowc_g
+iso_rowcgrad_g
+iso_rowcgrad_i
+iso_rowcgrad_r
+iso_rowcgrad_u
+iso_rowcgrad_z
+iso_rowc_i
+iso_rowc_r
+iso_rowc_u
+iso_rowc_z
+l
+lambda
+mag_deverr_g
+mag_deverr_i
+mag_deverr_r
+mag_deverr_u
+mag_deverr_z
+mag_dev_g
+mag_dev_i
+mag_dev_r
+mag_dev_u
+mag_dev_z
+mag_experr_g
+mag_experr_i
+mag_experr_r
+mag_experr_u
+mag_experr_z
+mag_exp_g
+mag_exp_i
+mag_exp_r
+mag_exp_u
+mag_exp_z
+mag_modelerr_g
+mag_modelerr_i
+mag_modelerr_r
+mag_modelerr_u
+mag_modelerr_z
+mag_model_g
+mag_model_i
+mag_model_r
+mag_model_u
+mag_model_z
+m_cr4_g
+m_cr4_i
+m_cr4_psf_g
+m_cr4_psf_i
+m_cr4_psf_r
+m_cr4_psf_u
+m_cr4_psf_z
+m_cr4_r
+m_cr4_u
+m_cr4_z
+m_e1e1err_g
+m_e1e1err_i
+m_e1e1err_r
+m_e1e1err_u
+m_e1e1err_z
+m_e1e2err_g
+m_e1e2err_i
+m_e1e2err_r
+m_e1e2err_u
+m_e1e2err_z
+m_e1_g
+m_e1_i
+m_e1_psf_g
+m_e1_psf_i
+m_e1_psf_r
+m_e1_psf_u
+m_e1_psf_z
+m_e1_r
+m_e1_u
+m_e1_z
+m_e2e2err_g
+m_e2e2err_i
+m_e2e2err_r
+m_e2e2err_u
+m_e2e2err_z
+m_e2_g
+m_e2_i
+m_e2_psf_g
+m_e2_psf_i
+m_e2_psf_r
+m_e2_psf_u
+m_e2_psf_z
+m_e2_r
+m_e2_u
+m_e2_z
+m_rr_ccerr_g
+m_rr_ccerr_i
+m_rr_ccerr_r
+m_rr_ccerr_u
+m_rr_ccerr_z
+m_rr_cc_g
+m_rr_cc_i
+m_rr_cc_psf_g
+m_rr_cc_psf_i
+m_rr_cc_psf_r
+m_rr_cc_psf_u
+m_rr_cc_psf_z
+m_rr_cc_r
+m_rr_cc_u
+m_rr_cc_z
+nchild
+nprof_g
+nprof_i
+nprof_r
+nprof_u
+nprof_z
+objc_colc
+objc_colcerr
+objc_flags
+objc_flags2
+objc_prob_psf
+objc_rowc
+objc_rowcerr
+objc_type
+offsetdec_g
+offsetdec_i
+offsetdec_r
+offsetdec_u
+offsetdec_z
+offsetra_g
+offsetra_i
+offsetra_r
+offsetra_u
+offsetra_z
+parent
+petromagerr_g
+petromagerr_i
+petromagerr_r
+petromagerr_u
+petromagerr_z
+petromag_g
+petromag_i
+petromag_r
+petromag_u
+petromag_z
+petror50err_g
+petror50err_i
+petror50err_r
+petror50err_u
+petror50err_z
+petror50_g
+petror50_i
+petror50_r
+petror50_u
+petror50_z
+petror90err_g
+petror90err_i
+petror90err_r
+petror90err_u
+petror90err_z
+petror90_g
+petror90_i
+petror90_r
+petror90_u
+petror90_z
+petroraderr_g
+petroraderr_i
+petroraderr_r
+petroraderr_u
+petroraderr_z
+petrorad_g
+petrorad_i
+petrorad_r
+petrorad_u
+petrorad_z
+phi_deverr_g
+phi_deverr_i
+phi_deverr_r
+phi_deverr_u
+phi_deverr_z
+phi_dev_g
+phi_dev_i
+phi_dev_r
+phi_dev_u
+phi_dev_z
+phi_experr_g
+phi_experr_i
+phi_experr_r
+phi_experr_u
+phi_experr_z
+phi_exp_g
+phi_exp_i
+phi_exp_r
+phi_exp_u
+phi_exp_z
+primtarget
+priority
+prob_psf_g
+prob_psf_i
+prob_psf_r
+prob_psf_u
+prob_psf_z
+proferr_g_0
+proferr_g_1
+proferr_g_10
+proferr_g_11
+proferr_g_12
+proferr_g_13
+proferr_g_14
+proferr_g_2
+proferr_g_3
+proferr_g_4
+proferr_g_5
+proferr_g_6
+proferr_g_7
+proferr_g_8
+proferr_g_9
+proferr_i_0
+proferr_i_1
+proferr_i_10
+proferr_i_11
+proferr_i_12
+proferr_i_13
+proferr_i_14
+proferr_i_2
+proferr_i_3
+proferr_i_4
+proferr_i_5
+proferr_i_6
+proferr_i_7
+proferr_i_8
+proferr_i_9
+proferr_r_0
+proferr_r_1
+proferr_r_10
+proferr_r_11
+proferr_r_12
+proferr_r_13
+proferr_r_14
+proferr_r_2
+proferr_r_3
+proferr_r_4
+proferr_r_5
+proferr_r_6
+proferr_r_7
+proferr_r_8
+proferr_r_9
+proferr_u_0
+proferr_u_1
+proferr_u_10
+proferr_u_11
+proferr_u_12
+proferr_u_13
+proferr_u_14
+proferr_u_2
+proferr_u_3
+proferr_u_4
+proferr_u_5
+proferr_u_6
+proferr_u_7
+proferr_u_8
+proferr_u_9
+proferr_z_0
+proferr_z_1
+proferr_z_10
+proferr_z_11
+proferr_z_12
+proferr_z_13
+proferr_z_14
+proferr_z_2
+proferr_z_3
+proferr_z_4
+proferr_z_5
+proferr_z_6
+proferr_z_7
+proferr_z_8
+proferr_z_9
+profmean_g_0
+profmean_g_1
+profmean_g_10
+profmean_g_11
+profmean_g_12
+profmean_g_13
+profmean_g_14
+profmean_g_2
+profmean_g_3
+profmean_g_4
+profmean_g_5
+profmean_g_6
+profmean_g_7
+profmean_g_8
+profmean_g_9
+profmean_i_0
+profmean_i_1
+profmean_i_10
+profmean_i_11
+profmean_i_12
+profmean_i_13
+profmean_i_14
+profmean_i_2
+profmean_i_3
+profmean_i_4
+profmean_i_5
+profmean_i_6
+profmean_i_7
+profmean_i_8
+profmean_i_9
+profmean_r_0
+profmean_r_1
+profmean_r_10
+profmean_r_11
+profmean_r_12
+profmean_r_13
+profmean_r_14
+profmean_r_2
+profmean_r_3
+profmean_r_4
+profmean_r_5
+profmean_r_6
+profmean_r_7
+profmean_r_8
+profmean_r_9
+profmean_u_0
+profmean_u_1
+profmean_u_10
+profmean_u_11
+profmean_u_12
+profmean_u_13
+profmean_u_14
+profmean_u_2
+profmean_u_3
+profmean_u_4
+profmean_u_5
+profmean_u_6
+profmean_u_7
+profmean_u_8
+profmean_u_9
+profmean_z_0
+profmean_z_1
+profmean_z_10
+profmean_z_11
+profmean_z_12
+profmean_z_13
+profmean_z_14
+profmean_z_2
+profmean_z_3
+profmean_z_4
+profmean_z_5
+profmean_z_6
+profmean_z_7
+profmean_z_8
+profmean_z_9
+propermotion
+propermotionangle
+propermotiondelta
+propermotionmatch
+psfmagerr_g
+psfmagerr_i
+psfmagerr_r
+psfmagerr_u
+psfmagerr_z
+psfmag_g
+psfmag_i
+psfmag_r
+psfmag_u
+psfmag_z
+qerr_g
+qerr_i
+qerr_r
+qerr_u
+qerr_z
+q_g
+q_i
+q_r
+q_u
+q_z
+ra
+r_deverr_g
+r_deverr_i
+r_deverr_r
+r_deverr_u
+r_deverr_z
+r_dev_g
+r_dev_i
+r_dev_r
+r_dev_u
+r_dev_z
+reddening_g
+reddening_i
+reddening_r
+reddening_u
+reddening_z
+rerun
+r_experr_g
+r_experr_i
+r_experr_r
+r_experr_u
+r_experr_z
+r_exp_g
+r_exp_i
+r_exp_r
+r_exp_u
+r_exp_z
+rosatcps
+rosatcpserr
+rosatdelta
+rosatdetectlike
+rosatexposure
+rosatext
+rosatextlike
+rosathr1
+rosathr1err
+rosathr2
+rosathr2err
+rosatmatch
+rosatposerr
+rowcerr_g
+rowcerr_i
+rowcerr_r
+rowcerr_u
+rowcerr_z
+rowc_g
+rowc_i
+rowc_r
+rowc_u
+rowc_z
+rowv
+rowverr
+run
+sectarget
+skyerr_g
+skyerr_i
+skyerr_r
+skyerr_u
+skyerr_z
+sky_g
+sky_i
+sky_r
+sky_u
+sky_z
+star_l_g
+star_l_i
+star_lnl_g
+star_lnl_i
+star_lnl_r
+star_lnl_u
+star_lnl_z
+star_l_r
+star_l_u
+star_l_z
+status
+texture_g
+texture_i
+texture_r
+texture_u
+texture_z
+type_g
+type_i
+type_r
+type_u
+type_z
+uerr_g
+uerr_i
+uerr_r
+uerr_u
+uerr_z
+u_g
+u_i
+u_r
+usnoblue
+usnored
+u_u
+u_z
+</pre>
+
+
+
+<P>
+<h3><a name="DASfilters">Filter names to return (for use by DAS)</a></h3>
+<P>
+<i> If you plan to feed the results of this (IQS/SQS) query to the DAS webform, 
+which filters (if any) do you want fed to the subsequent DAS webform query?</i>
+<P>
+
+
+<hr>
+
+<P>
+<h1><a name="PositionConstraint">Position Constraints</a></h1>
+<P>
+<i> Which positional constraints (if any) do you want applied to your query?</i>
+<P>
+<h3><a name="PositionRectangularConstraint">Rectangular Search</a></h3>
+<i>Do you wish to search a rectangular box in ra and dec?</i>
+<P>
+Valid formats (J2000):
+<LI> raMin/raMax in decimal degrees (D.ddddd) 
+     or in sexagesimal hours, minutes, seconds (HH:MM:SS.ss or HH MM SS.ss)
+<LI> decMin/decMax in decimal degrees (+/-DD.ddddd) 
+     or in sexagesimal degrees, arcminutes, arcseconds (+/-DD:MM:SS.s or +/-DD MM SS.s)
+<P>
+<h3><a name="PositionConeConstraint">Cone Search</a></h3>
+<i>Do you wish to search a circle on the sky centered on a single ra and dec?</i>
+<P>
+For a given RA and DEC, the cone search <i>returns all objects within the search radius</i> 
+that meet your search constraints.
+<P>
+Valid formats (J2000):
+<LI> raCenter in decimal degrees (D.ddddd) 
+     or in sexagesimal hours, minutes, seconds (HH:MM:SS.ss or HH MM SS.ss)
+<LI> decCenter in decimal degrees (+/-DD.ddddd) 
+     or in sexagesimal degrees, arcminutes, arcseconds (+/-DD:MM:SS.s or +/-DD MM SS.s)
+<LI> radius in decimal arcminutes (M.mmm)
+<P>
+<P>
+<h3><a name="PositionProximityConstraint">Proximity Search</a></h3>
+<i>Do you want to search the proximities for a list of ra's and dec's?</i>
+<P>
+For a given RA and DEC, the proximity search <i>returns the closest object within 
+the search radius</i> that meets your search constaints.
+<P>
+The list can be either entered directly into the webform box uploaded
+as a file from your machine.  In either case, it must be a comma
+separated list containing fields for ra, dec, and (optionally) sep (radius).
+The <i>order</i> of these fields in the list is unimportant, 
+but the first line of the list must contain the order
+of the fields in comma-separated format; e.g.:
+<pre>
+ra, dec, sep
+</pre>
+<P>
+Valid formats (J2000):
+<LI> ra in decimal degrees (D.ddddd) 
+     or in sexagesimal hours, minutes, seconds (HH:MM:SS.ss or HH MM SS.ss)
+<LI> dec in decimal degrees (+/-DD.ddddd) 
+     or in sexagesimal degrees, arcminutes, arcseconds (+/-DD:MM:SS.s or +/-DD MM SS.s)
+<LI> sep in decimal arcseconds (S.ss)
+
+
+<P>
+<P>
+<h3><a name="NoPositionConstraint">No Position  Constraint</a></h3>
+<P>
+
+<i>Do you want to apply no positional constraints in your query?</i>
+
+<hr>
+
+<P>
+<P>
+<h1><a name="SpectroscopyConstraints">Spectroscopy Constraints</a></h1>
+<i> Which spectroscopic constraints (if any) do you want applied to your query?</i>
+<P>
+<h3><a name="RedshiftConfidence">Redshift and Confidence</a></h3>
+<i>Do you want to search over a given range of redshift and redshift confidence?</i>
+<P>
+Redshifts less than zero are possible (e.g., for stars), as are redshifts greater
+than 5 (some QSOs, but also objects with poorly measured redshifts).
+<P>
+Valid ranges for redshift confidence are from 0 (poor) to 1 (excellent).
+Setting a minimum redshift confidence of 0.95 is typical for selecting
+good galaxy and/or QSO redshift samples.
+
+<h3><a name="SpectralClassification">Spectral  Classification</a></h3>
+<i> What type of objects (as automatically classified by their spectra) do you want returned
+from your query?</i>
+<P>
+The options are:
+<LI> ALL
+<LI> STAR
+<LI> GALAXY
+<LI> QSO
+<LI> HIZ_QSO
+<LI> UNKNOWN
+
+<P>
+
+<P>
+<P>
+<h3><a name="Primtarget">Prim target</a></h3>
+
+<i>Which type of objects do you want returned from your query?  (Here,
+the object type is from the spectroscopic target selection algorithms,
+where the objects have been classified photometrically or by matchup
+with other catalogues.) (primary target categories)</i>
+
+<P>
+The primTarget field is a bit mask specifying which primary target
+categories the object was selected in. The bits are defined as:
+<pre>
+  NAME                 Hexadecimal Value or Description
+  ====                 =============================
+  ignore             = ignore
+
+  Quasars            = QSO_HIZ QSO_CAP QSO_SKIRT QSO_FIRST_CAP QSO_FIRST_SKIRT
+                        (note:  Quasars may contain QSO_MAG_OUTLIERs and QSO_REJECTs,
+                                which the discerning may wish to exclude explicitly)
+  LRGs               = GALAXY_RED GALAXY_RED_II
+  Galaxies           = GALAXY GALAXY_BIG GALAXY_BRIGHT_CORE
+  ROSAT              = ROSAT_A ROSAT_B ROSAT_C ROSAT_D (ROSAT_E is presently a placeholder)
+  Stars              = STAR_BHB STAR_CARBON STAR_BROWN_DWARF STAR_SUB_DWARF 
+                          STAR_CATY_VAR STAR_RED_DWARF STAR_WHITE_DWARF STAR_PN
+
+  QSO_HIZ            = 0x1
+  QSO_CAP            = 0x2
+  QSO_SKIRT          = 0x4
+  QSO_FIRST_CAP      = 0x8
+  QSO_FIRST_SKIRT    = 0x10
+  QSO_MAG_OUTLIER    = 0x2000000
+  QSO_REJECT	     = 0x20000000
+  GALAXY_RED         = 0x20
+  GALAXY_RED_II      = 0x4000000
+  GALAXY             = 0x40
+  GALAXY_BIG         = 0x80
+  GALAXY_BRIGHT_CORE = 0x100
+  ROSAT_A            = 0x200
+  ROSAT_B            = 0x400
+  ROSAT_C            = 0x800
+  ROSAT_D            = 0x1000
+  ROSAT_E            = 0x8000000
+  STAR_BHB           = 0x2000
+  STAR_CARBON        = 0x4000
+  STAR_BROWN_DWARF   = 0x8000
+  STAR_SUB_DWARF     = 0x10000
+  STAR_CATY_VAR      = 0x20000
+  STAR_RED_DWARF     = 0x40000
+  STAR_WHITE_DWARF   = 0x80000
+  STAR_PN            = 0x10000000
+  SERENDIP_BLUE      = 0x100000
+  SERENDIP_FIRST     = 0x200000
+  SERENDIP_RED       = 0x400000
+  SERENDIP_DISTANT   = 0x800000
+  SERENDIP_MANUAL    = 0x1000000
+</pre>
+<P>
+<P>
+<h3><a name="Sectarget">Sectarget</a></h3>
+
+<i>Which type of objects do you want returned from your query?  (Here,
+the object type is from the spectroscopic target selection algorithms,
+where the objects have been classified photometrically or by matchup
+with other catalogues.) (secondary target categories)</i>
+
+<P>
+The secTarget field is a bit mask specifying which primary target
+categories the object was selected in. The bits are defined as:
+<pre>
+  NAME                Hexadecimal Value or Description
+  ====                =============================
+  ignore            = ignore
+
+  LIGHT_TRAP        = 0x1
+  REDDEN_STD        = 0x2
+  TEST_TARGET       = 0x4
+  QA                = 0x8
+  SKY               = 0x10
+  SPECTROPHOTO_STD  = 0x20
+  GUIDE_STAR        = 0x40
+  BUNDLE_HOLE       = 0x80
+  QUALITY_HOLE      = 0x100
+  HOT_STD           = 0x200
+</pre>
+
+<hr>
+
+<P>
+<P>
+<h1><a name="ImagingConstraints">Imaging Constraints</a></h1>
+
+<i> Which imaging constraints (if any) do you want applied to your query?</i>
+
+
+<h3><a name="SkyVersion">Sky Version</a></h3>
+
+You may constrain your search using either the values of the imaging
+parameters used in spectroscopic target selection ("Target") or the
+"latest and greatest" values of the imaging parameters ("Best").  
+<P> 
+See also the <a href=../glossary/index.html>glossary</a> item for 
+<a href=../glossary/index.html#skyversion>Sky Version</a>.
+
+<h3><a name="MagnitudeType">MagnitudeType</a></h3>
+
+Further, your may constrain your search using either: (1) Petrosian
+magnitudes and/or colors, (2) PSF magnitudes and/or colors, or 
+(3) model magnitudes and/or colors.
+
+
+<h3><a name="Magnitudes">Magnitudes</a></h3>
+
+<i>Do you want to search over given range in u, g, r, i, and/or z magnitudes?</i>
+
+
+<P>
+<h3><a name="Colors">Colors </a></h3>
+
+<i>Do you want to search over given range in u-g, g-r, r-i, and/or i-z colors?</i>
+
+
+<P>
+<P>
+<h3><a name="ObjectType">Object Type</a></h3>
+
+<i>Which type of objects do you want returned from your query?  (Here,
+the object type is the classification from the photometric pipeline, and
+are based upon how well an object matches a stellar, de Vaucouleurs, or
+exponential profile.)</i>
+
+<P>
+The object types are: 
+<LI> Extended Sources (e.g., galaxies)
+<LI> Point Sources (e.g., stars, QSOs)
+<LI> Sky Fibers (sky)
+<LI> Unknown   (?)
+
+<P>
+<P>
+<h3><a name="objc_flags">objc_flags</a></h3> 
+
+<i>Which set of objc_flags (from photo) do wish to query on?</i>
+<P>
+These flags are discussed in more detail in the document
+<a href=../products/catalogs/flags.html>
+"Understanding the SDSS Image Data Processing Flags"</a>.
+<P>
+objc_flags2 can be set  (ON) or (OFF).  
+<P>
+<i>Within</i> the set of flags in the objc_flags list, the bits are connected 
+by Boolean OR.  (E.g., turning on both the CANONICAL_CENTER and 
+the BRIGHT flags will return objects which have either
+of these two flags set on.)  <i>Between</i> the set of objc_flags and objc_flags2
+flags, the bits are connected by Boolean AND.  (E.g.,  turning
+on both the CANONICAL_CENTER from the objc_flags list and the DEBLENDED_AS_MOVING
+from the objc_flags2 list will only return objects which have both the
+CANONICAL_CENTER and the DEBLENDED_AS_MOVING bits set on.)
+<P>
+The objc_flags are:
+<pre>
+  NAME                     Hexadecimal Value and/or Description
+  ====                     ==================================================================
+  ignore                 = ignore
+
+  CANONICAL_CENTER       =        0x1 /* used canonical, not local, center                 */
+  EDGE                   =        0x4 /* object is too close to edge of frame              */
+  CHILD                  =       0x10 /* object is a child		                   */
+  PEAKCENTER             =       0x20 /* given center position of peak pixel               */
+  NOPROFILE              =       0x80 /* too small to estimate a profile                   */
+  NOPETRO                =      0x100 /* no Petrosian radius		                   */
+  MANYPETRO              =      0x200 /* more than one Petrosian radius                    */
+  NOPETRO_BIG            =      0x400 /* no Petrosian radius as object is too big          */
+  DEBLEND_TOO_MANY_PEAKS =      0x800 /* too many peaks to deblend                         */
+  CR     	         =     0x1000 /* contains a CR pixel                               */
+  MANYR50                =     0x2000 /* more than one 50% radius	                   */
+  MANYR90                =     0x4000 /* more than one 90% radius	                   */
+  BAD_RADIAL             =     0x8000 /* some low S/N radial points  	                   */
+  INCOMPLETE_PROFILE     =    0x10000 /* r_P includes off-frame pixels                     */
+  INTERP                 =    0x20000 /* object contains interpolated pixels               */
+  SATUR                  =    0x40000 /* object contains saturated pixels                  */
+  NOTCHECKED             =    0x80000 /* object contains NOTCHECKED pixels                 */
+  SUBTRACTED             =   0x100000 /* object had wings subtracted	                   */
+  NOSTOKES               =   0x200000 /* object has no measured stokes params              */
+  BADSKY                 =   0x400000 /* sky level so bad that object is -ve               */
+  PETROFAINT             =   0x800000 /* >= 1 Petrosian radius too faint                   */
+  TOO_LARGE              =  0x1000000 /* object is too large                               */
+  DEBLENDED_AS_PSF       =  0x2000000 /* deblender treated obj as PSF                      */
+  DEBLEND_PRUNED         =  0x4000000 /* deblender pruned peak list                        */
+  ELLIPFAINT             =  0x8000000 /* Center's fainter than desired elliptical isophote */
+  BINNED1                = 0x10000000 /* object was found in 1x1 binned image              */
+  BINNED2                = 0x20000000 /* object was found in 2x2 binned image              */
+  BINNED4                = 0x40000000 /* object was found in 4x4 binned image              */
+  MOVED                  = 0x80000000 /* Object appears to have moved during the exposure.  
+                                         May have been deblended as a moving object        */
+</pre>
+<P>
+<P>
+<h3><a name="objc_flags2">objc_flags2</a></h3>  
+
+<i>Which set of objc_flags2 (from photo) do wish to query on?</i>
+<P>
+These flags are discussed in more detail in the document
+<a href=../products/catalogs/flags.html>
+"Understanding the SDSS Image Data Processing Flags"</a>.
+<P>
+objc_flags2 can be set  (ON) or (OFF).  
+<P>
+<i>Within</i> the set of flags in the objc_flags2 list, the bits are connected 
+by Boolean OR.  (E.g., turning on both the DEBLENDED_AS_MOVING and 
+the PEAKS_TOO_CLOSE flags will return objects which have either
+of these two flags set on.)  <i>Between</i> the set of objc_flags and objc_flags2
+flags, the bits are connected by Boolean AND.  (E.g.,  turning
+on both the CANONICAL_CENTER from the objc_flags list and the DEBLENDED_AS_MOVING
+from the objc_flags2 list will only return objects which have both the
+CANONICAL_CENTER and the DEBLENDED_AS_MOVING bits set on.)
+<P>
+The objc_flags2 are:
+<pre>
+  NAME                      Hexadecimal Value and/or Description
+  ====                      =================================================================
+  ignore                  = ignore
+
+  DEBLENDED_AS_MOVING     =        0x1 /* deblended as a moving object                     */
+  NODEBLEND_MOVING        =        0x2 /* no deblend of moving object                      */
+  TOO_FEW_DETECTIONS      =        0x4 /* too few detections to deblend                    */
+  BAD_MOVING_FIT          =        0x8 /* Fit to moving object was too poor                */
+  STATIONARY              =       0x10 /* velocity is consistent with zero                 */
+  PEAKS_TOO_CLOSE         =       0x20 /* at least some peaks were too close, and thus 
+                                          merged                                           */
+  BINNED_CENTER           =       0x40 /* image was binned while centroiding               */
+  LOCAL_EDGE              =       0x80 /* per-band center's too near edge                  */
+  BAD_COUNTS_ERROR        =      0x100 /* psf|fiberCountsErr is bad/unknown                */
+  BAD_MOVING_FIT_CHILD    =      0x200 /* moving child's fit was too poor                  */
+  DEBLEND_UNASSIGNED_FLUX =      0x400 /* deblender failed to assign enough of flux to 
+                                          children */
+  SATUR_CENTER            =      0x800 /* object's center's saturated                      */
+  INTERP_CENTER           =     0x1000 /* object's center is very close to at least one 
+                                          interpolated pixel                               */
+  DEBLENDED_AT_EDGE       =     0x2000 /* object is deblended though EDGE                  */
+  DEBLEND_NOPEAK          =     0x4000 /* object had no detected peak                      */
+  PSF_FLUX_INTERP         =     0x8000 /* a signifcant amount of PSF's flux is interpolated*/
+  TOO_FEW_GOOD_DETECTIONS =    0x10000 /* too few good detections to  deblend as moving    */
+  CENTER_OFF_AIMAGE       =    0x20000 /* at least one peak's center lay off the atlas 
+                                          image in some band                               */
+  MEASURED                = 0x10000000 /* object has been measured                         */
+  GROWN_MERGED            = 0x20000000 /* growing led to a merger                          */
+  HAS_CENTER              = 0x40000000 /* OBJC has a canonical center                      */
+  MEASURE_BRIGHT          = 0x80000000 /* object should be measured bright                 */
+  DEBLEND_DEGENERATE      =    0x40000 /* at least one potential child has been pruned as 
+                                          being too similar to some other template         */
+  BRIGHTEST_GALAXY_CHILD  =    0x80000 /* this is the brightest child galaxy in a blend    */
+  CANONICAL_BAND          =   0x100000 /* This band was primary (usually r')               */
+  AMOMENT_FAINT           =   0x200000 /* too faint for adaptive moments                   */
+  AMOMENT_SHIFT           =   0x400000 /* center moved too far while determining adaptive 
+                                          moments                                          */
+  AMOMENT_MAXITER         =   0x800000 /* Too many iterations while determining adaptive 
+                                          moments                                          */
+  MAYBE_CR                =  0x1000000 /* object may be a cosmic ray                       */
+  MAYBE_EGHOST            =  0x2000000 /* object may be an electronics ghost               */
+  NOTCHECKED_CENTER       =  0x4000000 /* object's center is NOTCHECKED                    */
+</pre>
+
+<hr>
+
+<address><a href="mailto:sdss-helpdesk@fnal.gov">sdss-helpdesk@fnal.gov</a></address>
+
+</body>
+</html>

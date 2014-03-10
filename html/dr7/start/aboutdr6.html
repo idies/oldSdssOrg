@@ -1,0 +1,308 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>About DR6 - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>The SDSS Data Release 6 (DR6)</h1>
+
+<h2>Contents</h2>
+
+<ul>
+  <li><a href="#dr6cont">What DR6 contains</a></li>
+  <li><a href="#dr6new">What's new in DR6</a></li>
+  <li><a href="#imcaveat">Caveats for imaging data</a></li>
+  <li><a href="#speccaveat">Caveats for spectroscopic data</a></li>
+</ul>
+      
+<a name="dr6new"></a>
+<h3>New for DR6</h3>
+
+<p>DR6 is the first release since DR2 to have significant changes to
+the processing software. As it includes the first data from SDSS-II,
+it also adds substantially different data products - see <a
+href="./aboutsegue.html">About SEGUE</a> and <a
+href="http://www.sdss.org/drsn1/DRSN1_data_release.html">the first
+public data release from the SDSS Supernova Survey</a>. The
+qualitatively new items are:</p>
+
+<ul>
+  <li><strong>SEGUE</strong> imaging catalogs and quality assurance (QA) are available in the <a
+      href="http://cas.sdss.org/seguedr6/en/tools/search/sql.asp">SEGUE
+      CAS database</a>. SEGUE targeting flags will eventually be available for
+      all DR6 imaging, including legacy. See the <a
+      href="../algorithms/target.html#SEGUE">target-selection
+  algorithms page</a> for information on SEGUE targeting.<br />
+      For SEGUE imaging runs, note the <a href="../products/catalogs/index.html#cav_lowlat">caveat on  low-latitude photometry</a> and
+      reddening corrections!</li>
+  <li><strong>Stellar spectroscopy</strong> Stellar <code>Spectral Parameters Pipeline</code> <a
+      href="../products/spectra/spectroparameters.html">line
+      measurements (<code>sppParams</code>, [Fe/H], log g, Teff)</a>
+      and <a href="../products/spectra/spectrolineindices.html">line
+      index measurements (<code>sppLines</code>Ca, Mg, etc.)</a> are
+      available both in the CAS and the DAS for SEGUE and many SDSS
+      spectra. <br /><strong>Important!</strong> The SEGUE spectra count as
+      <a href="../products/spectra/special.html">special-plate</a> spectra
+      in the CAS and are <strong>not</strong> considered to be
+      &quot;scienceprimary&quot;. Therefore, they are <em>not</em> linked to the photometry in
+      the usual way, e.g., they do not appear in the object
+      browser's default view like galaxy, quasar and stellar spectra from
+      the legacy survey. Moreover, all SEGUE spectra are in the
+      <code>BESTDR6</code> database, while most of the SEGUE imaging is in
+      the <code>SEGUEDR6</code> database of the CAS, so that linking
+      imaging and spectroscopy data requires special care. See the <a
+      href="http://segue.uchicago.edu/getstarted.html#ex4">SEGUE sample
+      SQL query for instructions on joining SEGUE imaging and
+      spectroscopy</a>.</li>
+  <li><strong>Ubercal</strong> improved calibrations using cross-scans
+      to tie the photometry of the entire survey to each other. See the <a
+      href="../algorithms/fluxcal.html#ubercal">algorithms entry on ubercal</a></li>
+  <li><strong>Improved spectroscopy reductions</strong> The
+      <code>spec2d</code> code that reduces the spectrograph's
+      2-dimensional CCD images into 1-dimensional spectra has been
+      modified substantially. The most important changes are:
+      <ol>
+	<li>Improved spectrophotometry, now calibrated relative to PSF,
+	    not fiber magnitudes. <strong>The
+	    spectrophotometric flux scale is now brighter by 0.35 mag,
+	    or 25%.</strong></li>
+	<li>Availability of additional data products, including
+	    individual 15-minute exposures (DAS only) and
+	    sky spectra</li>
+      </ol>
+  </li>     
+  <li>In the <code>spectro1d</code> pipeline analyzing the reduced
+      1-dimensional spectra, the algorithm for velocity dispersions
+      has been changed, see <a
+      href="http://adsabs.harvard.edu/abs/2007AJ....133.1954B">Bernardi
+      2007, <em>The sigma-L correlation in nearby early-type
+      galaxies</em>, AJ, 133, 1954</a> and there are <a
+      href="../products/spectra/radvelocity.html">improved
+      radial-velocity estimates for stars</a></li>
+  <li>In the <a href="http://cas.sdss.org/astrodr6/en/">CAS
+      database</a>, the following changes have occured:
+      <ul>
+	<li>All the columns from the <code>photoAuxAll</code>
+	    table (galactic coordinates and astrometric errors in RA
+	    and DEC) are now part of <strong>photoObjAll</strong> and derived views
+	    (<code>photoObj</code>, <code>star</code>, <code>photoPrimary</code>
+	    etc.).  For backwards compatibility, there are still 
+	    <code>photoAuxAll</code> and <code>photoAux</code> views,
+	    but new queries requiring these parameters do not need
+	    these auxiliary tables any more.</li>
+	<li>There have been changes in the sector/region code in the CAS</li>
+	<li>A <a href="http://cas.sdss.org/astrodr6/en/help/browser/enum.asp?n=PhotoClean">&quot;clean photometry&quot; flag</a> has been added to
+	    <a href="http://cas.sdss.org/astrodr6/en/help/browser/description.asp?n=PhotoObjAll&amp;t=U"><code>photoObjAll</code></a> table to facilitate
+	    <a href="../products/catalogs/flags.html">photometric flag
+	    checking</a>.</li>
+      </ul>
+  </li>
+</ul>
+
+<p>The quantitatively new items are:</p>
+<ul>
+  <li>Increased sky
+      coverage of the <em>Legacy</em> survey in both imaging and
+      spectroscopy (as with any data release).  The contiguous imaging in
+      the north galactic cap is essentially complete now.</li>
+  <li>Additional <a
+      href="../products/value_added/">value-added
+      catalogs</a> (e.g., the <a
+      href="../products/value_added/qsocat_dr5.html">DR5
+      quasar catalog</a>).</li>
+</ul>
+
+<p> Except for the changes in the spectroscopic pipeline
+<code>spec2d</code> and the CAS changes described above, the pipelines
+and databases are essentially identical in DR6, DR5, DR4, DR3 and DR2.
+Thus, DR6 is (very nearly) a proper superset of DR5, which is a
+superset of DR4, etc.  The DR2 included reprocessing of all data
+included in DR1, and those data in EDR that pass our data-quality
+criteria for the official survey.  For details about what changed in
+subsequent releases, please refer to <a
+href="http://www.sdss.org/DR4/start/aboutdr4.html">About DR4</a> and
+<a href="http://www.sdss.org/DR5/start/aboutdr5.html">About
+DR5</a>.</p>
+
+<a name="dr6cont"></a>
+<h2>What DR6 contains</h2>
+
+<p>The DR6 imaging data cover about 8420 square degrees of
+&quot;legacy&quot; sky, with information on roughly 230 million
+distinct photometric objects, and about 1200 square degrees of SEGUE
+sky, with about 57 million objects.  The DR6 spectroscopic data
+include data from 1520 main survey plates of 640 spectra each, and
+cover 6860 square degrees. In addition, DR6 contains 467
+&quot;extra&quot; and &quot;special&quot; plates:</p>
+
+<ul>
+  <li>64 &quot;extra&quot; plate/MJD combinations which are repeat
+      observations of 55 distinct main survey plates</li>
+  <li>383 distinct &quot;special&quot; plates, which includes 162
+      SEGUE plates (see above), and 226 plates with 
+      observations of spectroscopic targets, mostly in the southern galactic cap, which
+      were selected by the collaboration for a series of specialized science
+      programs. Some of these plates are outside of the
+      regular DR6 imaging area; <a href="./aboutdrsup.html">DR6sup</a> provides
+      that missing imaging, among other things.</li>
+  <li>15 &quot;extraspecial&quot; repeat observations of
+      &quot;special&quot; plates (7 of SEGUE plates, and 8 of other
+      special plates)</li>
+</ul>
+
+<p>There is a separate page describing <a
+href="../products/spectra/special.html">the special plates in
+DR6</a> </p>
+
+<p>The DR6 footprint is defined by all non-repeating survey-quality
+imaging runs within the a priori defined elliptical survey area in the
+Nothern Galactic Cap, and three stripes in the Southern Galactic Cap
+obtained prior to 7 July 2006, and the spectroscopy associated with
+that area as well as the <em>extra</em> and <em>special</em> plates
+obtained before that date.  In fact, 34 square degrees of imaging data
+in the Nothern Galactic Cap lie outside this ellipse.  While the DR6
+scans do not repeat a given area of sky, they do overlap to some
+extent, and the data in the overlaps are included in earlier releases
+as well. The sky coverage of the imaging and spectroscopic data that
+make up DR6 are given on the <a href="../coverage/index.html">coverage
+page</a>.  The natural unit of imaging data is a run; the DR6 contains
+data from (about) 244 runs in the best database, and (about) 246 runs
+in the target database.</p>
+
+<p>A total of 183 square degrees of sky are different runs between target
+and best, the majority along the Equatorial Stripe in the Fall sky.</p>
+
+<p>We also make available images and associated catalogs from
+three categories of special runs as a 
+<a href="http://www.sdss.org/dr6/start/aboutdrsup.html">DRsup</a> 
+(supplemental) DAS-only data release.  They are: 
+  <ul>
+  <li>A series of repeat scans of the Equatorial Stripe in the Southern
+      Galactic Cap (Stripe 82);</li>
+  <li>Scans through M31 and the Perseus Cluster;</li>
+  <li>Scans taken at low Galactic latitude as part of the SEGUE project;
+      these runs were used to target stars on <a
+      href=http://www.sdss.org/dr6/products/spectra/special.html>
+      special plates</a>.</li>
+</ul>
+</p>
+
+<a name="imcaveat"></a>
+<h2>Imaging caveats</h2>
+
+<p>The following caveat is new to DR6.</p>
+
+<h3>Systematic relative photometry errors in extreme-coloured
+stars</h3>
+
+<p>Stars with extreme colours can have inconsistent photometry due to
+slight differences in the photometric response for different
+camcols. There is a brief description in <a
+href="http://adsabs.harvard.edu/abs/2007astro.ph..3157I">Ivezic et
+al. 2007, AJ in press</a>.</p>
+
+<p>The following caveat has been characterised quantitatively now:</p>
+
+<h3>Overestimation of sky levels in the vicinity of bright
+objects</h3>
+
+<!--#include virtual="../products/catalogs/brightgalsky.html"-->
+
+<p>The following caveats apply unchanged to DR6.</p>
+
+<h3>Red leak to the <var>u</var> filter and very red objects</h3>
+
+<!--#include virtual="../products/images/u_redleak.html"-->
+
+<h3>Bias in sky determination</h3>
+
+<!--#include virtual="../products/images/u_sky.html"-->
+
+<h3>Zeropoint of the photometric system</h3>
+
+<!--#include virtual="../algorithms/sdssab.html"-->
+
+<h3>Holes in the imaging data</h3>
+
+<p>About 0.3% of the DR6 imaging footprint area 
+(about 25 square degrees) for DR6 are marked as
+<em>holes</em>.  These are indicated in the CAS by setting
+<code>quality=5 (HOLE)</code> in the <code>tsField</code> file and
+<code>field</code> table and given in the <a
+href="../coverage/holes.html">list of quality holes</a>, which
+contains further details about the holes and quality flags, including
+a information about a table in the CAS which allows
+one to query for quality information about each field of data.</p>
+
+<h3>Problems with one <var>u</var> chip</h3>
+
+<p>The <var>u</var> chip in the third column of the camera is read out
+on two amplifiers.  On occasion, electronic problems on this chip
+caused one of the two amplifiers to fail, meaning that half the chip
+has no detected objects on it.  This was a problem for only two of the
+105 imaging runs included in DR5: run 2190, which includes a total of
+360 frames in two separate contiguous pieces on strip 12N (centered
+roughly at delta = +5 degrees in the North Galactic Cap; NGC), and run
+2189, which includes 76 frames on stripe 36N near the northern
+boundary of the contiguous area in the NGC.  The relevant frames are
+flagged as bad in the <code>quality</code> flag; in addition,
+individual objects in this region have the <var>u</var> band flagged
+as <code>NOTCHECKED_CENTER</code> (or, for objects which straddle the
+boundary between the two amplifiers, <code>LOCAL_EDGE</code>).  <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2945R">Richards
+et al (2002)</a> describe how the quasar selection algorithm handles
+such data; the net effect is that no quasars are selected by the
+<var>ugri</var> branch of the algorithm for these data.</p>
+
+<a name="speccaveat"></a>
+<h2>Spectroscopy caveats</h2>
+
+<h3>Problematic plates (new: flux scale offset for 28 plates)</h3>
+
+<p>A small number of plates suffered from a variety of minor problems
+affecting the quality of the spectrophotometry (but not of
+redshifts). See the list under <a
+href="../products/spectra/index.html#badplates">Plates with
+problematic spectrophotometry</a> on the data products page for
+spectra.</p>
+
+<p>A problem new to DR6 is that 28 plate/MJD combinations have an
+offset in their spectrophotometric flux scale. See <a
+href="../products/spectra/index.html#specphotooffset">spectrophotometry
+flux scale offset caveat</a>.
+
+<h3>Zero equivalent width of emission lines, especially H alpha</h3>
+
+<!--#include virtual="../products/spectra/zeroEW.html"-->
+
+<h3>Note about galactic extinction correction</h3>
+
+<!--#include virtual="../products/spectra/galextinction.html"-->
+
+
+<h3>Mismatches between the spectroscopic and imaging data</h3>
+
+<p>For various reasons, a small fraction of the spectroscopic objects
+do not have a counterpart in the <code>best</code> object catalogs. In
+addition, the DR6 does not contain photometric information for some of
+the <a href="../products/spectra/special.html">special plates</a>, and
+the retrieval of photometric data from the CAS database requires
+special care for objects from the special plates, and even more care
+for SEGUE spectra.  See the caveat
+about <a
+href="../products/spectra/index.html#specphotomismatch">mismatches
+between spectra and images</a> on the data products page for
+spectra.</p>
+
+
+<hr>
+Something in this file was modified on $Date: 2008/06/22 22:48:37 $ (UT)
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

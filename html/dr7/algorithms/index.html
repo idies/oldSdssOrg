@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Algorithms - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+<h1>Algorithms</h1>
+
+<p><b>Caution:</b> This page contains detailed information about the algorithms used to process 
+SDSS data, and is intended for people already familiar with the SDSS. For information about how these 
+algorithms fit into the context of SDSS data processing, see the <a href="dataProcessing.html">Data Processing</a> page.</p>
+
+<p>Apart from reading this page, you should also refer to the <a
+href="../start/index.html">Where to start</a> page and <a
+href="../start/aboutdr7.html">About DR7</a>. The <a
+href="../products/index.html">Data products</a> page contains an
+introduction on how to use the data.</p>
+
+<table border=0>
+<tr><th width="45%" align="left"><h2>Imaging</h2></th><th width="45%" align="left"><h2>Spectroscopy</h2></th></tr>
+<tr>
+  <td valign="top">
+      <ul>
+	<li><a href="photometry.html">Magnitudes</a>
+	    <ul>
+	      <li><a href="photometry.html#mag_fiber">Fiber</a></li>
+	      <li><a href="photometry.html#mag_model">Model</a></li>
+	      <li><a href="photometry.html#cmodel">cModel</a>
+	      <li><a href="photometry.html#mag_petro">Petrosian</a></li>
+	      <li><a href="photometry.html#mag_psf">PSF</a></li>
+	      <li><a href="photometry.html#photo_profile">Radial
+		  Profiles</a></li>
+	      <li><a href="photometry.html#which_mags">Which magnitude
+		  should I use?</a></li>
+	    </ul>
+	</li>
+	<li><a href="classify.html">Classification & Morphology</a>
+	    <ul>
+	      <li><a href="classify.html#photo_class">Star/Galaxy Separation</a></li>
+	      <li><a href="classify.html#photo_fits">Model Fits</a></li>
+	      <li><a href="classify.html#photo_sb">Surface Brightnesses</a></li>
+	      <li><a href="classify.html#photo_stokes">Ellipticities</a></li>
+	      <li><a href="classify.html#photo_adapt">Adaptive Moments</a></li>
+	      <li><a href="classify.html#photo_iso">Isophotal Quantities</a></li>
+	    </ul>
+	</li>
+	<li><a href="../products/catalogs/flags.html">Photometric processing flags</a> <font color="red">IMPORTANT!</font></li>
+	<li><a href="./fluxcal.html">Photometric flux
+	calibration</a>
+	  <ul>
+	    <li><a href="./fluxcal.html#assessment">Assessment of
+	    photometric calibration</a></li>
+	    <li><a href="./fluxcal.html#counts2mag">Converting SDSS
+	    counts to SDSS (asinh) magnitudes</a> (and <em>vice versa</em>)</li>
+	    <li><a href="./fluxcal.html#sdss2ab">Converting SDSS to AB
+	    magnitudes</a></li>
+	    <li><a href="./fluxcal.html#sdss2flux">Converting SDSS
+	    asinh magnitudes to fluxes.</a></li>
+	    <li>In the CAS, we provide tables with <a
+		href="./fluxcal.html#ubercal">an improved photometric
+		calibration (&quot;&Uuml;bercal&quot;)</a>.</li>
+		<li>Caveat: <a href="../products/images/index.html#skylev">
+		Overestimation of sky levels near bright galaxies</a></li>
+	  </ul>
+	  
+      <li><a href="./sdssUBVRITransform.html">Conversion between SDSS
+	  magnitudes and UBVR<sub>c</sub>I<sub>c</sub>, and ugriz colors of Vega
+	  and the Sun</a></li>
+	  
+      </li>
+	
+	<li><a href="./astrometry.html">Astrometric calibration</a></li>
+	<li><a href="./photo-z.html">Photometric redshifts</a></li>
+	<li><a href="./psPhot.html">Crowded field photometry (psPhot)</a></li>
+	<li><a href="./flatfield.html">Flat-field creation and quality</a></li>
+	<li><a href="./sky.html">Sky measurement</a></li>
+	<li>Centroiding and psf determination (see <a
+	    href="../products/images/read_psf.html">how to reconstruct
+	    the PSF at any position</a>).</li>
+	<li><a href="./deblend.html">Deblending</a></li>
+	<li><a href="./resolve.html">Resolve:</a> making sure an object from overlapping
+	    observations is only included in a catalogue once.</li>
+	<li><a href="./masks.html">Creation of imaging masks</a></li>
+	<li><a href="../products/qa/index.html">Photometry QA description</a></li>
+      </ul>
+  </td>
+      <!-- Spectroscopy cell -->
+  <td valign="top">
+      <ul>
+	<li><a href="target.html">Target selection</a>
+	    <ul>
+	      <li><a href="target.html#main">Main Galaxy Sample</a></li>
+	      <li><a href="target.html#lrg">Luminous Red Galaxies (LRG)</a></li>
+	      <li><a href="target.html#qso">Quasars</a></li>
+	      <li><a href="target.html#stars">Stars</a></li>
+	      <li><a href="target.html#ROSAT">ROSAT All-Sky Survey sources</a></li>
+	      <li><a href="target.html#serendip">Serendipity</a></li>
+	      <li><a href="target.html#SEGUE">SEGUE</a></li>
+	    </ul>
+	</li>
+	<li><a href="tiling.html">Tiling</a> (assigning fibers & plate
+	    centers)</li>
+	<li><a href="wavelength.html">Wavelength Calibration</a></li>
+    <li><a href="spectrophotometry.html">Spectrophotometry</a></li>	    
+    <li><a href="./speclinefits.html">Continuum fits and line measurements</a></li>
+<!--	<li>Reduction of spectroscopic data
+	    <ul>
+	      <li>Extraction of 1d spectra</li>
+	      <li>Wavelength calibration</li>
+	      <li>Flux calibration: <a
+		  href="spectrophotometry.html">spectrophotometry</a></li>
+	      <li><a href="./speclinefits.html">Continuum fits and line measurements</a></li>
+	    </ul>
+	</li>-->
+	<li><a href="redshift_type.html">Spectral type determination
+	    and redshift measurement</a>
+	    <ul>
+	      <li><a
+		  href="./spectemplates/index.html">Cross-correlation
+		  templates</a></li>
+	    </ul>
+	</li>
+	<li><a href="veldisp.html">Velocity dispersion
+	    measurements</a></li>
+	<li><a href="../../segue/stellarpars.html">Stellar
+	parameter estimation in SEGUE</a>
+      </ul>
+  </td></tr></table>
+<hr>
+Last modified on $Date: 2009/03/25 18:47:01 $ (UT)
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

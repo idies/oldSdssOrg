@@ -1,0 +1,120 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="William N. Boroski">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <TITLE>Third APO Measurement Trip</TITLE>
+</HEAD>
+<BODY LINK="#0000FF" VLINK="#800080">
+
+<DIV ALIGN=right>TR97030</DIV>
+
+<CENTER><B>SDSS Trip Report</B></CENTER>
+
+<CENTER><B><FONT SIZE=+2>Rotator and Azimuth Drive Measurements</FONT></B></CENTER>
+
+<CENTER><B>July 23 to 27, 1997</B><BR>
+<BR></CENTER>
+
+<p align="center"><A HREF="mailto:Rivetta@fnal.gov">Claudio Rivetta</a> and Sten Hansen, Physics Division<BR>
+
+Fermi National Accelerator Laboratory</BR>
+
+Batavia, IL&nbsp;&nbsp; USA&nbsp;&nbsp;&nbsp; 60510</p>
+
+<HR SIZE=4 WIDTH="100%">
+<BR><BR>
+
+<body>
+
+<p><B>SUMMARY</B></P>
+
+<P>A third measurement trip was made to APO, initially to 
+characterize the rotator axis and to assist Charlie Briegel in setting 
+up to run this axis under the control of an MEI board. The goals were 
+expanded after being informed by French Leger that the azimuth axis 
+preload settings were nowhere near their nominal settings. We were able
+to get a good data set for all three axes.</P>
+
+<p>The MEI controller can be used to move the rotator axis. A
+tachometer feedback path for the rotator must be implemented. The
+friction of the azimuth is double what it was in January and the
+rotational asymmetry of the azimuth friction has disappeared.</p>
+<br>
+
+<p><B>ACTIVITIES</B></P>
+
+<p>On Wednesday Angela Prosapio and I unpacked the instruments, brought them
+to the 2.5m telescope enclosure, hooked up the Glentek amplifier and Inland Motor
+tachometer on the elevation axis, and took a lot of data.
+Looking at the data that night, it was evident that it differed greatly
+from the data we took in January. On Thursday morning we found squashed
+moth guts on the drive disk. After cleaning the disks, a new data run 
+produced results that closely matched our January numbers. </P>
+
+<p>On Thursday morning I took more elevation data and that 
+afternoon Angela and I moved the power amplifier and tachometer to the
+rotator axis. We collected all the necessary data and we left the system
+set up for Charlie Briegel's closed-loop tests with the MEI. </P>
+
+<p>On Friday morning Charlie Briegel and I moved the 
+rotator and he read the encoder with the MEI in an open loop
+configuration. All the pieces worked OK and then during the afternoon we
+set up and tuned the PID loop. In general it works OK; however, we found the
+program for tuning the parameters of PID to be inadequate on its own.
+Something more comprehensive will have to be developed. The other
+problem is that, due to the harmonic drive reduction mechanism, the motor
+shaft has an oscillatory response. You cannot see the oscillations on
+the encoder on the instrument rotator, but by monitoring the motor shaft
+tachometer voltage the oscillatory response is clearly seen. I'd like to
+feed back that tach signal into the control loop - either into the analog
+input to the MEI or into the summing node at the input of the Glentek
+Box. It is only necessary to run one additional shielded cable from the
+motor drive to the MEI or Glentek rack. I talked a little to Angela and
+Paul Czarapata about it. I'll talk later with Paul in more detail. </P>
+
+<p>I made an attempt Friday night at modelling the rotator axis
+based on the measurements taken during the day, but I had some problems
+with my simulation. This now becomes a new homework problem, but we know
+that for phase 1a or 1b the rotator can be moved and parked at any
+arbitrary position using the MEI controller. </P>
+
+<p>On Saturday with Sten now at APO, we started working on collecting 
+azimuth data while Angela and Charlie worked on the instrument lift. (I
+think this is the first time the schedule on the telescope has two
+groups working on it simultaneously!) We spent almost the whole morning
+trying to understand and get rid of noise induced onto the tach signal.
+By early afternoon, we gave up and decided to take data with the noise and
+then filter it out "offline". The azimuth axis has almost twice as much
+friction as we recorded in January and now the friction is symmetric
+between directions of rotation. But still we found that if someone was
+walking on the wind screen or on the building floor, the vibration was
+coupled to the telescope (the velocity signal from the tach was showing
+low frequency noise). Sten double checked the coupling between the
+wind-screen and the telescope and finally we found that Carl Lindenmeyer
+had put four tabs made of stainless steel on the telescope fork that
+cover the gap between the fork and the wind-screen. These tabs allow
+the instrument cart to move easily between the wind-screen and the fork.
+One of them was touching the wind screen floor and coupling the
+vibrations between both parts. We bent up this tab with a screw driver
+and after that, you could jump up and down on the wind-screen and not
+see anything on the tach signal. We lost the better part of a morning
+but we now know how sensitive the telescope is. </P>
+
+<p>For the remainder of the afternoon and evening we took the 
+rest of the data, and re-took some of the data that had been corrupted
+by the noise and declared this to be sufficient for this trip. By 11pm 
+we had those instruments we intended to send back to FNAL packed in their 
+boxes. </P>
+
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this trip report should be addressed to Claudio Rivetta by phone at (630) 840-8035 or by e-mail at <A HREF="mailto:rivetta@fnal.gov">rivetta@fnal.gov</A>.
+<BR>&nbsp;
+
+<P><I><FONT SIZE=-1>Last modified 02/23/99</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+</body>
+</html>

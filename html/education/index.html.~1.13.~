@@ -1,0 +1,139 @@
+<!--#include virtual="../includes/sdss_page_top.html"-->
+
+<br>
+<center>
+<table bgcolor="#cccccc" class="topnav"><tr><td align="center">
+<a href="#tools">Tools for Educators</a> | 
+<a href="#presentations">Presentations for Outreach</a> | 
+<a href="reportingform.html">EPO Reporting Form</a>
+</td></tr></table>
+</center>
+
+<h2>SDSS Education and Outreach</h2>
+
+<p> 
+The Sloan Digital Sky Survey offers teachers and informal educators a 
+wealth of astronomical data and images through lesson plans, interactive 
+media, presentations and more.</p>
+
+<p>
+Our materials will show your students everything from asteroids in our 
+own solar system to the most distant quasars ever observed! Students can 
+explore truly exotic objects such as carbon stars, methane dwarfs, and 
+supernovae, all using the same high-quality data that professional 
+astronomers use.</p>
+
+<a name="tools"></a><h3>Tools for Educators</h3>
+<ul>
+
+<li> <a href="http://cas.sdss.org/dr5/en/">SkyServer</a> &mdash; Visit
+the Science Projects section for lessons, activities and games
+appropriate for kids of all ages. Most use the SDSS data exclusively. A 
+parallel set of project pages <a 
+href="http://cas.sdss.org/dr5/en/proj/teachers/">specifically for
+educators</a> include a project overview, background, lesson plan,
+teaching tips, assessments and information on how each project links to
+national science, math and technology standards.
+<br><br>
+
+<li> <a
+href="http://sciencebulletins.amnh.org/astro/f/sdss.20051208/">American
+Museum of Natural History's Science Bulletins feature on the SDSS</a>
+&mdash; The bulletin features essays on the survey, interactive media and
+videos. A separate area provides <a
+href="http://sciencebulletins.amnh.org/astro/f/sdss.20051208/activity.php">resources
+for educators</a>. 
+<br><br>
+
+<li> <a href="http://worldwind.arc.nasa.gov/">World Wind</a> &mdash; This
+open source software for Windows lets you zoom through the sky using the
+SDSS data set. Start by downloading and installing World Wind from <a
+href="http://worldwind.arc.nasa.gov/">worldwind.arc.nasa.gov</a>. Then
+download and install the SDSS add-on from <a
+href="http://www.worldwindcentral.com/wiki/Add-on:SDSS">www.worldwindcentral.com</a>.
+<br><br>
+
+<li> <a href="http://astro.uchicago.edu/cosmus/projects/">COSMUS</a> 
+&mdash; The COSMUS group produces visualizations that explain scientific 
+concepts and data. They have created several visualization tools for SDSS 
+including an interactive 3D fly-through of the universe and an 
+interactive walkthrough of Apache Point Observatory.
+<br><br>
+
+<li> <table align="right" hspace="10" vspace="5" width="250"><tr><td><img
+src="intechexhibit.jpg" vspace="5"><br><i><font size="-1">Professor Nichol 
+(ICG
+Portsmouth) shows children from Avon Valley College around the new SDSS
+exhibit at the Intech Science Center.</font></i></td></tr></table> 
+
+If you're in Winchester UK, visit the <a hspace="10"
+href="http://www.dsg.port.ac.uk/~nicholb/intech/">SDSS Exlore the Universe
+exhibit</a> at the <a href="http://www.intech-uk.com/">Intech Science
+Center</a>. 
+<br><br>
+
+<li> <a href="http://cosmo.nyu.edu/hogg/rc3/">SDSS/RC3 Atlas</a> &mdash; This 
+atlas, but together by the cosmology group at NYU (led by David Hogg), has high-quality
+images of RC3 galaxy catalog members in the Sloan footprint.
+<br><br>
+
+</ul>
+</p>
+
+<a name="presentations"></a><h3>Presentations for Outreach</h3>
+
+The materials below are provided for noncommerical use. Please credit the
+author and SDSS when using the complete presentations or any part of the
+materials. If you distribute any part of these presentations or printed
+copies of any SDSS material, please abide by the <a
+href="../collaboration/credits.html">guidelines set out by the
+collaboration for acknowledging credit.</a>
+
+<ul>
+
+<li> David Hogg's SDSS full-survey zoom &mdash; a 13-frame animation 
+which centers on M51 and zooms out to the full survey volume. When 
+showing this animation in presentations, please give credit to the author by 
+showing it through to the last frame.<br><br>
+	<ul>
+	<li> <a href="m51zoom.mpg">.mpg format</a> (1.1MB)
+	<li> <a href="m51zoom.mov">.mov format</a> (3.5MB)
+	<li> <a href="m51zoom.pdf">.pdf format</a> (2.7MB)
+	<li> <a href="m51zoom.ppt">.ppt format</a> (2.8MB)
+	</ul>
+<br>
+
+<li> Steph Snedden and Mike Harvanek's presentation
+<br><br>
+<ul><li><a href="Nightinthelife.ppt">A Night in the Life of an SDSS 
+Observer</a> &mdash; .ppt format (248.3MB)</ul> <br>
+
+<li> Rich Kron's SDSS presentations<br><br>
+	<ul>
+	<li><a href="kron_ARCS.pdf">Measuring the Masses of Galaxies in the 
+Sloan Digital Sky Survey</a> &mdash; .pdf format (10.9MB)
+	<li><a href="kron_HOU.pdf">Active Nuclei and Their Host Galaxies</a> 
+&mdash; .pdf format (11.6MB)
+	<li><a href="kron_quasars.pdf">Quasars in the Sloan Digital Sky 
+Survey</a> &mdash; .pdf format (4.2MB)
+	</ul>
+<br>
+
+<li> Julie Lutz and Kristine Washburn's presentation and bookmark. Please 
+feel free to print the bookmark on cardstock and distribute to colleagues.
+<br><br>
+	<ul>
+	<li><a href="lutz_epo_talk.ppt">The Sloan Digital Sky Survey: A Resource for College and High School 
+Astronomy Courses</a> (presentation) &mdash; .ppt format (3.9MB)
+	<li><a href="sdssepo_bookmark.jpg">The Sloan Digital Sky Survey: A 
+Resource for Educators</a> (bookmark) &mdash; .jpg format (308KB)
+	<li><a href="ws_outline.html">Workshop outline</a>
+	</ul>
+<br><br>
+
+</ul>
+</p>
+
+<BR>
+
+<!--#include virtual="../includes/sdss_page_bottom.html"-->

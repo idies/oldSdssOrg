@@ -1,0 +1,385 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Data products: Value-added catalogs - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Value-Added Catalogs</h1>
+
+Back to <a href="../index.html">Data Products</a><br /><br />
+
+Jump to catalogs associated with:<br />
+<table border="0" width="100%">
+  <tr>
+    <td align="center"><a href="#galaxies">Galaxies</a></td>
+    <td align="center"><a href="#quasars">Quasars</a></td>    
+    <td align="center"><a href="#groups">Groups and Clusters</a></td>
+    <td align="center"><a href="#stripe82">Stripe 82</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="#stars">Stars</a></td>   
+    <td align="center"><a href="#solarsystem">Solar System</a></td>    
+    <td align="center"><a href="#other">Other</a></td>
+    <td align="center"><a href="alpha.html">Alphabetical List</a></td>    
+  </tr>
+</table>
+
+
+
+<a name="galaxies"></a>
+<h2>Galaxies</h2>
+
+<ul class="pad">
+<li><b><a href="http://das.sdss.org/va/OhLineMeasures">Line index measures for Galaxies</a></b>:
+ The <a href="http://adsabs.harvard.edu/abs/2011ApJS..195...13O">Oh, K., Sarzi, M., Schawinski, K, and Yi, S. K. 2011 ApJS 195, 13</a> Spectral line strength measurement database by the OSSY group
+ contains the values of spectral line measurements (stellar absorption 
+line strengths, nebular emission line fluxes, quality-assessment parameters, 
+velocity dispersions, line widths, sky-line contamination flag etc.). 
+ The archived value added tables may be downloaded from here by clicking and saving:  
+	A: <a href="http://das.sdss.org/va/OhLineMeasures/OSSY_absorption.tar">Absorption line meaurements</a>
+	B: <a href="http://das.sdss.org/va/OhLineMeasures/OSSY_emission.tar">Emission line measurements and velocity dispersions</a>  and 
+	C: <a href="http://das.sdss.org/va/OhLineMeasures/OSSY_quality_assessment.tar">Fitting quality assessments</a>
+	 The contents of the data tables are described in the paper.  The best fitting continuum files are also available upon request to the authors.  User manuals and updates are available from the OSSY group website <a href="http://gem.yonsei.ac.kr/ossy/">[gem.yonsei.ac.kr]</a>.
+
+<li><b><a href="http://das.sdss.org/va/photoz2">Photometric Redshift 2 catalog, with probability distributions</a></b>: 
+    contains links to a text version of the photoz2 table of the CAS,
+    with additional columns representing the probability distribution
+    function (PDF) for each object with a photometric redshift. The
+    PDF for each object consists of values between 0 and 1 in 100
+    redshift bins which run from 0.03 to 1.47 where dz = 1.44/99.  The
+    PDF information is only available as a value-added catalog,
+    whereas the photometric redshift catalog is available in the CAS
+    for SQL searches (joined to the main galaxy database).  The
+    catalog was developed by Huan Lin of Fermilab, Carlos Cunha of the
+    University of Michigan and collaborators at the University of
+    Chicago: <a href="http://adsabs.harvard.edu/abs/2009MNRAS.396.2379C">Cunha et al. (2009)</a>. 
+	The <a href="http://das.sdss.org/va/photoz2/README">README</a> file contains column descriptions.
+</li>
+
+<li><b><a href="http://sdss.physics.nyu.edu/vagc/">NYU Value-Added Galaxy Catalog</a></b>:
+    a cross-matched collection of galaxy catalogs, including the SDSS,
+    maintained for the study of galaxy formation and evolution. It includes
+    carefully constructed large-scale structure samples useful for calculating
+    power spectra, etc, and includes, e.g., the "LSS Sample12" described in
+    various Blanton et al. and Tegmark et al. SDSS papers.</li>
+
+<li><b><a href="http://nvogre.astro.washington.edu/vac/">CMU-PITT SDSS Value Added Catalog (VAC)</b></a>: 
+    a database that allows users to conduct scientific analyses on the SDSS spectroscopic galaxy data. It
+    allows for easy use of spectral information (i.e. emission line-widths), and
+    for anybody to upload Science Derivatives for SDSS galaxies. 
+    (<a href="http://frank.phyast.pitt.edu/dr3/">DR3 catalog</a>)</li>
+
+<li><b><a href="http://www.mpa-garching.mpg.de/SDSS/">MPA/JHU value-added galaxy catalog</a></b>: 
+    contains results from a custom galaxy spectral fitting code (line fluxes, continuum indices, 
+    line widths, EWs etc.) mostly written by Christy Tremonti and described in 
+    <a href="http://adsabs.harvard.edu/abs/2004ApJ...613..898T">Tremonti et al (2004)</a>.
+    The following derived data are also available:
+      <ul>
+        <li>Stellar masses following the precepts of 
+        <a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003MNRAS.341...33K">Kauffmann et al. (2003)</a></li>
+        <li>Star formation rates following 
+        <a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2004MNRAS.351.1151B">Brinchmann et al. (2004)</a></li>
+        <li>Gas-phase metallicities as in 
+        <a href="http://adsabs.harvard.edu/abs/2004ApJ...613..898T">Tremonti et al (2004)</a></li>
+      </ul>   
+</li>
+
+<li><b><a href="http://www.2slaq.info/">The 2SLAQ LRG Catalog</a></b>: As described in
+<a href="http://adsabs.harvard.edu/abs/2006MNRAS.372..425C">Cannon et al. 2006</a> 
+<em>(MNRAS, 372, 425 (2006))</em>, 
+this is a spectroscopic survey of nearly 15,000 intermediate-redshift 
+luminous red galaxies (LRGs) brighter than i=19.8, selected 
+from SDSS photometry and observed with the 2dF spectrograph 
+on the AAT to probe higher redshift and lower luminosity 
+galaxies than the SDSS LRG sample, over an area of 180 deg<sup>2</sup>.</li>
+
+
+</ul>
+
+
+
+<a name="quasars"></a>
+<h2>Quasars</h2>
+
+<ul class="pad">
+
+<li><b><a href="http://das.sdss.org/va/qso_properties_dr7/dr7.htm">A Catalog of Quasar Properties from SDSS DR7</a></b>: We present a compilation of properties of the 105,783 quasars in the SDSS Data Release 7 (DR7) quasar catalog. In this value-added product, we compile continuum and emission line measurements around the Halpha, Hbeta, MgII and CIV regions, as well as other quantities such as radio properties, broad absorption line quasar (BALQSO) flags, and disk emitters. We also compile virial black hole mass estimates based on various calibrations. For the fiducial virial mass estimates we use the Vestergaard & Peterson (VP06) calibrations for Hbeta and CIV, and our own calibration for MgII which matches the VP06 Hbeta masses on average. We describe the construction of this catalog, and discuss its limitations. The catalog and its future updates will be made publicly available online. 
+
+<li><b><a href="http://das.sdss.org/va/Allen_etal_NMF/">CIV 1550-region Broad Absorption Line quasar continuum reconstructions</a></b>: 
+Non-negative Matrix Factorisation (NMF) reconstructions, as described
+in <a href="http://adsabs.harvard.edu/abs/2011MNRAS.410..860A">Allen
+et al. (2011)</a>, are available for 48146 quasar spectra. A FITS file
+is provided for each quasar in DR6 with wavelength coverage allowing
+the calculation of the CIV Balnicity Index (BI). The original SDSS
+spectrum and an absorption-free `continuum' reconstruction that covers
+the CIV emission and absorption regions are provided. See the
+enclosed <a href="http://das.sdss.org/va/Allen_etal_NMF/readme.txt">readme.txt</a>
+for more information.
+
+<li><b><a href="http://das.sdss.org/va/dr7_qsocat_skysub/">Sky-residual subtracted spectra</a></b> generated using the 
+<a href="http://adsabs.harvard.edu/abs/2005MNRAS.358.1083W">
+Wild and Hewett scheme</a> of the SDSS
+DR7 Legacy Release spectra of the objects in the
+<a href="http://adsabs.harvard.edu/abs/2010AJ....139.2360S">Schneider et al. (2010) quasar catalogue</a>.
+A total of 106006
+spectra/objects are included and the release is described in 
+<a href="http://adsabs.harvard.edu/abs/2010arXiv1010.2500W">Wild and Hewett (2010)</a>.
+
+<li><b><a href="http://das.sdss.org/va/Hewett_Wild_dr7qso_newz/">Redshifts for DR7 Quasars</a></b>, 
+generated using the 
+<a href="http://adsabs.harvard.edu/abs/2010MNRAS.405.2302H">Hewett and Wild scheme</a>,
+of the SDSS DR7 Legacy Release spectra of the objects in the 
+<a href="http://adsabs.harvard.edu/abs/2010AJ....139.2360S">Schneider
+et al. (2010)</a> quasar catalogue. A total of 107194 spectra/objects
+are included. Release-specific information is described in the 
+<a href="http://das.sdss.org/va/Hewett_Wild_dr7qso_newz/readme.txt">README</a> file.
+
+<li><b><a href="./qsocat_dr7.html">DR7 edition of the SDSS Quasar
+     Catalog</a></b>: As decribed in <a
+     href="http://arxiv.org/abs/1004.1167">Schneider
+     et al. 2010</a>, this catalog contains 105,783
+     quasars from DR7 that have i-band luminosities brighter than -22,
+     at least one broad emission line, and highly reliable
+     redshifts. The catalog is now available in <a href=http://das.sdss.org/va/qsocat/dr7qso.dat>ASCII</a> and <a href=http://das.sdss.org/va/qsocat/dr7qso.fit>FITS</a> binary table format.</li>
+
+<li><b><a href="./qsocat_dr5.html">Fourth edition of the SDSS Quasar
+     Catalog</a></b>: As decribed in <a
+     href="http://adsabs.harvard.edu/abs/2007AJ....134..102S">Schneider
+     et al. 2007, AJ 134, 102</a>, this catalog contains 77,429
+     quasars from DR5 that have i-band luminosities brighter than -22,
+     at least one broad emission line, and highly reliable
+     redshifts. The catalog is now available in ASCII and FITS binary
+     table format.</li>
+
+ <li><b><a href="./reyes08_qso2.dat">Type 2 (Obscured) Quasar
+ catalog</a></b>: As reported in the paper <em>Space Density of
+ Optically-Selected Type 2 Quasars</em> by <a
+ href="http://arxiv.org/abs/0801.1115">Reyes, Zakamska, Strauss et
+ al. 2008 (submitted to Astronomical Journal; arXiv:0801.1115)</a>. The
+ catalog contains 887 objects from post-DR5 data.</li>
+
+  <li><b>Composite red quasar spectra</b>: As described in <a
+      href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003AJ....126.1131R&amp;db_key=AST">Richards
+      et al. 2003, AJ 126, 1131</a>, <em>Red and Reddened Quasars in
+      the SDSS</em>, these spectra are composites as a function of
+      relative <var>g-i</var> color, with input objects normalized
+      such that both the absolute magnitude and redshift distributions
+      are the same in like composites.  We provide this <a
+      href="redqsospectra.tar.gz">tarball of composite red quasar
+      spectra</a> for download.</li>
+
+<li><b>Composite broad-absorption line (BAL) quasar spectra</b>: as a
+      function of BALQSO type from 
+      <a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003AJ....125.1711R&db_key=AST">Reichard 
+      et al. 2003</a>, <em>A Catalog of Broad Absorption Line Quasars from the Sloan Digital Sky
+      Survey Early Data Release</em>, AJ, 125, 1711 and <a
+      href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2003AJ....126.2594R&amp;db_key=AST">Reichard
+      et al. 2003, AJ 126, 2594</a>, <em>Continuum and Emission-Line
+      Properties of Broad Absorption Line Quasars</em>.  We provide
+      this <a href="sdssedrqsobal.tar.gz">tarball of composite BAL
+      quasar spectra from the SDSS Early Data Relase</a>; see the
+      enclosed README file for more information.</li>
+
+
+  <li><b>SDSS Unusual BAL Quasars</b>: A sample of 23 unusual Broad Absorption Line Quasars
+    has been assembled from both the SDSS EDR and some post-EDR data.  Calibrated
+    SDSS and followup spectra of all 23 objects, plus IRAF and SM code for
+    calculating the traditional and revised balnicity indices, are available in a
+    gzipped tar file.
+      <ul>
+
+	<li><a href="./sb1-aas.ps.gz">gzip-compressed PostScript
+	    file</a>  (2.3 Mbytes) of <a
+	    href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002ApJS..141..267H">Hall
+	    et al. 2002, ApJS 141, 267</a></li>
+      
+	<li><a href="./sb1data.tar.gz">gzip-compressed tar file sb1data.tar.gz</a> (1.1 Mbytes) containing
+	    spectra of all unusual BAL quasars in the paper along with the
+	    IRAF and SM code for calculating traditional and revised
+	    balnicities.</li>
+      </ul>
+  </li>
+  
+  <li><a href="http://www.2slaq.info/"><b>The 2SLAQ Quasar Catalog</b></a>: 
+  As described in <a href="http://arxiv.org/abs/0810.4955">Croom et al. in press</a> 
+  (MNRAS, in press, ArXiv:0810.4955), this is a spectroscopic catalog of 16,326 objects, 8,764 of
+which are quasars, selected from SDSS imaging and observed with the 2dF spectrograph 
+on the AAT to create a sample roughly 2.5 magnitudes deeper than the low-redshift (z<3) 
+SDSS spectroscopic quasar sample over an area of 192 deg<sup>2</sup>.</li>
+
+
+  <li><a href="ftp://ftp.astro.princeton.edu/lee/continua/"><b>DR7 Lyman-alpha Forest Continua</b></a>: 
+  As described in <a href="http://arxiv.org/abs/1108.6080">Lee, Suzuki, & Spergel</a> 
+  (submitted to AJ, ArXiv:0810.4955), this catalog gives continuum fits to quasar spectra 
+  for use in studies of the Lyman-alpha forest.</li>
+  
+</ul>
+
+
+
+<a name="groups"></a>
+<h2>Groups and Clusters</h2>
+
+<ul class="pad">
+      <li><a href="http://www.journals.uchicago.edu/doi/abs/10.1086/509599">
+      The MaxBCG Catalog of 13,823 Galaxy Clusters</a>:  Koester, B.P. et al 2007 ApJ 660,
+239 (<a href="http://adsabs.harvard.edu/abs/2007ApJ...660..239K">http://adsabs.harvard.edu/abs/2007ApJ...660..239K)</a></li>
+
+        <li><a href="http://www.journals.uchicago.edu/doi/abs/10.1086/509599">Percolation Galaxy Groups and Clusters</a>:  Berlind, A.A. et al 2006 ApJS 167, 1
+(<a href="http://adsabs.harvard.edu/abs/2006ApJS..167....1B">http://adsabs.harvard.edu/abs/2006ApJS..167....1B</a>)</li>
+
+        <li><a href="http://www.journals.uchicago.edu/doi/abs/10.1086/509599">The C4 Clustering Algorithm: 
+        Clusters of Galaxies</a>:  Miller, C.J. et al. 2005 AJ
+130, 968 (<a href="ttp://adsabs.harvard.edu/abs/2005AJ..130..968M">http://adsabs.harvard.edu/abs/2005AJ....130..968M</a>)</li>
+
+  <li><b><a
+      href="http://www.ir.isas.jaxa.jp/~tomo/ce/">The SDSS Cut &amp; Enhance
+      galaxy cluster catalog</a></b> The Sloan Digital Sky
+      Survey CE galaxy cluster catalog (<a
+      href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.1807G">Goto
+      et al. 2002, AJ 123, 1807)</a> uses color cuts
+      combined with a density enhancement algorithm to detect clusters
+      of galaxies. The SDSS CE galaxy cluster catalog contains an
+      estimated redshift and richness for each cluster found in 350
+      sq. deg. of SDSS commissioning data.</li>
+</ul>
+
+
+
+
+<a name="stripe82"></a>
+<h2>Stripe 82</h2>
+
+<ul class="pad">
+  <li><b><a href="http://das.sdss.org/va/coadd_galaxies/">
+The SDSS Coadd photometric redshift catalog</a></b>, as reported 
+by 
+<a href="http://adsabs.harvard.edu/abs/2012ApJ...747...59R">Reis et al. 2012, ApJ 747, 59</a> lists photometric redshifts for 13.5 million galaxies with r-band 
+magnitudes up to 24.5 in the SDSS Stripe 82 Coadd. 
+It adds photometric redshift information to the Coadd data reported 
+by <a href="http://adsabs.harvard.edu/abs/2011arXiv1111.6619A">Annis et al. 2012, ApJ in press, arXiv:1111.6619</a>. 
+The catalog includes a <a href="http://das.sdss.org/va/coadd_galaxies/sdss_coadd_glxs_v12.04.fit">FITS binary table</a> (667MB, tarball available <a href="http://das.sdss.org/va/coadd_galaxies/sdss_coadd_glxs_v12.04.fit.tar">here</a>) containing <a href="http://skyserver.sdss.org/public/en/help/browser/browser.asp">standard SDSS tags </a>
+plus photoz and photozerr, and an ascii table containing the estimated photoz 
+<a href="http://das.sdss.org/va/coadd_galaxies/bias.txt">bias</a> as a function of redshift. 
+The coadd <a href="http://das.sdss.org/www/html/imaging/dr-75.html">images</a> and catalogs are available at the 
+<a href="http://das.sdss.org/www/html/">SDSS Data Archive Server</a> and <a href="http://cas.sdss.org/stripe82/en/">Stripe 82 Catalog Archive Server (CAS)</a> (and see <a href="http://www.sdss.org/dr7/coverage/sndr7.html">the stripe 82 run list</a> notes for
+information about accessing the stripe 82 catalogs).
+</li>
+
+  <li><b><a href="http://das.sdss.org/va/stripe_82_variability/SDSS_82_public/">
+    The Light-Motion-Curve Catalogue (LMCC)</a></b> and <b>Higher-Level Catalogue (HLC)</b>: 
+    described in 
+    <a href="http://adsabs.harvard.edu/abs/2008MNRAS.386..887B">Light and motion in SDSS Stripe 82: the catalogues</a>, 
+    by Bramich, Vidrih, Wyrzykowski et al. 2008 <i>MNRAS</i> 386, 887.
+</li>
+
+  <li><b><a href="http://www.astro.washington.edu/ivezic/sdss/catalogs/stripe82.html">The
+      SDSS Stripe 82 Standard Star Catalog</a></b>, as reported by <a
+      href="http://adsabs.harvard.edu/abs/2007AJ....134..973I">Ivezic
+      et al. 2007, AJ 134, 973</a>, lists positions and 1% ugriz
+      photometry for a million candidate standard stars from SDSS
+      stripe 82 (|Dec|&lt;1.266 deg and RA in the range 20h 34m to 4h
+      00m; about 300 sq.deg.).</li>
+
+  <li><b><a href="http://www.astro.washington.edu/bsesar/varStripe82">
+      The SDSS-I Stripe 82 Variable Star Catalog</a></b>, as reported by
+      <a
+      href="http://adsabs.harvard.edu/abs/2007AJ....134.2236S">Sesar
+      et al. 2007, AJ 134, 2236</a>, lists positions, ugriz photometry
+      (median magnitudes), and various low-order lightcurve statistics
+      for 13,051 candidate variable sources.</li>
+
+  <li><b><a href="http://das.sdss.org/va/SNcosmology/">
+    Supernova Light Curve Fits</a></b> contains the light curve fit results
+    corresponding to Kessler et al 2009.
+  </li>
+
+</ul>
+
+
+
+<a name="stars"></a>
+<h2>Stars</h2>
+
+<ul class="pad">
+  <li><b><a href="http://das.sdss.org/va/wdcat/dr4">The DR4 White Dwarf
+     catalog</a></b> as reported by <a
+     href="http://adsabs.harvard.edu/abs/2006ApJS..167...40E">Eisenstein
+     et al. 2006, ApJS 167, 40</a>, <em>A Catalog of Spectroscopically
+     Confirmed White Dwarfs from the Sloan Digital Sky Survey Data
+     Release 4</em>.  The catalog contains 9,316 spectroscopically
+     confirmed white dwarfs and 928 hot subdwarfs 
+     (<a href="../wdcat/dr1/">DR1 catalog</a>).</li>
+
+
+ <li><b><a href="./anjohnson08_clusterphotometry.html">ugriz DAOPHOT photometry
+of SDSS+SEGUE Globular and Open Clusters</a></b>: by Deokkeun An and Jennifer
+Johnson, ApJS in press, arXiv:0808.0001.</li>
+
+<li><b><a href="./wdcat/dr1/">The DR1 White Dwarf catalog</a></b> as reported by
+      <a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2004ApJ...607..426K">Kleinman
+      et al. 2004, ApJ 607, 426</a> <em>A Catalog of Spectroscopically
+      Identified White Dwarf Stars in the First Data Release of the
+      Sloan Digital Sky Survey</em> (also available at <a
+      href="http://arxiv.org/abs/astro-ph/0402209">astro-ph/0402209</a>).</li>
+      
+</ul>
+
+
+
+<a name="solarsystem"></a>
+
+<h2>Solar System</h2>
+
+<ul class="pad">
+<li><b><a href="http://www.astro.washington.edu/ivezic/sdssmoc/sdssmoc.html">The Fourth 
+      release of the SDSS Moving Object Catalog (MOC)</a></b> lists astrometric and
+      photometric data for 471,569 moving objects observed prior to March 
+      2007. Of those, 220,101 are linked to 104,449 unique objects from
+      the <a href="ftp://ftp.lowell.edu/pub/elgb/astorb.html">ASTORB file</a>, and their orbital
+      elements are also listed. This is a cumulative release, and it
+      supersedes the previous versions (<a
+      href="http://www.astro.washington.edu/ivezic/sdssmoc/sdssmoc1.html">first
+      MOC release</a>, <a
+      href="http://www.astro.washington.edu/ivezic/sdssmoc/sdssmoc2.html">second
+      MOC release</a>, and <a href="http://www.astro.washington.edu/ivezic/sdssmoc/sdssmoc3.html">third 
+      MOC release</a>).</li>
+</ul>
+
+
+
+<a name="other"></a>
+<h2>Other</h2>
+
+<ul class="pad">
+  <li><b><a href="http://spectro.princeton.edu">The Princeton spectra</a></b>
+      are the newer of two parallel codes to determine spectroscopic classification and redshift; they are 
+      also known as SpecBS. The determination of redshifts and classifications direct chi-squared fitting 
+      of templates to spectra. These reductions are included in DR7, with documentation available 
+      at the <a href="http://spectro.princeton.edu/">Princeton Spectra site</a>.</li>
+
+  <li><b><a
+      href="http://photo.astro.princeton.edu/oriondatarelease/">The SDSS
+      Orion data release</a></b> contains imaging near the Galactic plane outside
+    of the nominal survey boundaries, and the runs are not part of the standard
+    SDSS data releases. This public release of about 470 square degrees includes
+    the star-forming region NGC 2068/NGC 2071/HH24 and a large part of Barnard's
+    loop. See 
+      <a href="http://adsabs.harvard.edu/abs/2004AJ....128.2577F">Finkbeiner et al. 2004 AJ 128, 2577</a></li>
+    
+</ul>
+   
+
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Thurs Oct 2 14:04 ET 2008
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>
+

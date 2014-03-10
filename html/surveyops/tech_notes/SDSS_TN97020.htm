@@ -1,0 +1,258 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (WinNT; I) [Netscape]">
+   <title> Lightning Protection for Apache Point </title>
+<X-CLARIS-WINDOW TOP=114 BOTTOM=624 LEFT=16 RIGHT=546>
+<X-CLARIS-TAGVIEW MODE=minimal>
+</head>
+<body>
+
+<h1>
+Lightning Protection for Apache Point</h1>
+<i>Sloan Digital Sky Survey Telescope Technical Note TN97020</i>
+
+<br>&nbsp;
+<address>
+<a href="mailto:droege@fnal.gov">Tom Droege</a> July 27, 1997</address>
+<BR><HR>
+
+<p>This note will try to address some of the problems of designing protection
+for the electronics at Apache Point. It may seem very complicated, but
+it is not. It is simply a matter of a certain attitude when connecting
+things together. It is just as easy to connect things up to reduce the
+chance of electrical transient damage as to hook them up in any other way.
+In general there is a bonus, since good practice for transient shielding
+tends to be good for low noise signal transmission. Correcting bad wiring
+practice later generally involves tearing everything apart and starting
+over. No one I have advised has ever done this, though they have often
+expended more effort than this would have required in various efforts to
+reduce noise. They don't take my advice and just find another consultant.
+
+<p>Since not many will wish to ponder the philosophy of lightning protection
+we will cut to the chase and list the rules first. If you don't understand
+a rule you may wish to read the text.
+<UL>
+<li>Rule #1 Very Separate Locations should have no conductive path between
+them. (See text).<BR><BR>
+
+<li>Rule #2 Everything for Layers 2,3, and 4 should be completely inside
+the levels of a Faraday cage. (See text)<BR><BR>
+
+<li>Rule #3 There should be lightning protection on the mains where they
+enter the transformer for Layer 2.<BR><BR>
+
+<li>Rule #4 The transformer that supplies Layer 2 should have its primary
+in Layer 1 and it's secondary in Layer 2. It should be specially selected
+to have a good electrostatic shield between the primary and the secondary,
+and should stand a high surge voltage between primary and secondary. The
+electrostatic shield should be connected to the outside of Layer 2.<BR><BR>
+
+<li>Rule #5 The motor generator set that connects Layer 3 to Layer 4 should
+be specially selected to minimize the chance that an arc can follow the
+shaft.<BR><BR>
+
+<li>Rule #6 Fiber optic cables (and other non conductors) entering Level
+2 should be coverd with a close fitting shield for 20 diameters. The shield
+should be connected to the outside of Layer 2.<BR><BR>
+
+<li>Rule #7 There should be no "holes" in Layer 2 larger than 1/2". Particular
+attention should be paid to long slits - as in door openings. Metal tape
+or finger stock should be used to minimize the energy that can get through
+such a long slit.<BR><BR>
+
+<li>Rule #8 Special attention should be paid to the fiber optics cables
+entering Layer 4. I would propose two layers of protection at this point.
+I will be happy to discuss how this might be done. At the very least, the
+shield at this entry should be very long. 200 diameters and several layers
+of braid.
+</ul>
+
+<P><U>General Philosophy</U></P>
+
+<p>My general idea of lightning protection is one of layers. One hopes
+to attenuate the problem at each layer. Direct strikes are going to kill
+some stuff, because they can vaporize a lot of metal. One tries to offer
+some metal as a sacrifice to Thor that is expendable. The camera should
+have the most protection as it is the most valuable.
+
+<p><U>Layer #0</U>:  In my tour of Apache Point, I did not observe any lightning rods. I
+would put up a few towers with lightning rods. I am not up to date on lightning
+theory, but I recall that lightning rods work by both bleeding off the
+charge and as a preferred strike location. In any case, if lightning is
+going to strike (it is, a lot, at Apache Point), then I would like to know
+where it is going to strike (usually) and be prepared. This means that
+one gives it a nice path to ground that does not include any CCD chips.
+Note that power companies know and understand this and string a ground
+wire above their transmission lines. Several wires strung along the path
+between the 3.5 meter, the control room, and the 2.5 meter would probably
+get hit first and save other things. The MT should have a preferred place
+for lightning to strike.
+
+
+<p><U>Layer #2</U>:   Star construction. All electrical wiring between objects that
+communicate with each other should be wired in a star. This is a problem
+in that I suspect this had not been considered and has already been violated.
+I assume that the control room and the 2.5 meter location already have
+separate transformer feeds from primary power. So we must consider the
+two as "Very Separate Locations".
+
+<p>Rule #1:  Very Separate Locations should have no conductive path between
+them. OK, how do we connect "Very Separate Locations" if we must. First
+this is where we can use fiber optics. I would bury them in a conductive
+conduit. As in the ASCII art below:
+<Pre>
+                    ________________
+                                    |   Conduit Shield
+-----------------------------       |-----------------------------
+                                        Fiber Optic Cable 
+------------------------------------------------------------------
+------------------------------------------------------------------
+                                        (Non Conductive)
+-----------------------------       |-----------------------------
+                     _______________|
+</pre>
+
+<p>The conduits from each side are tied to their respective "grounds" at
+their two star ground ends. One hopes that a lightning strike that finds
+the conduit travels over the surface to the star end that it strikes and
+does not arc across the gap. The cables inside see greatly reduced electric
+fields. I would insulate the whole mess from "ground" by placing it in
+plastic pipe or some such insulator. 
+
+<p>At each location we then have a "star"
+shielding structure. OK, we can't do this because our buildings are already
+grounded at many locations. So we have a: 
+
+<p><u>Layer #1</U>: This is the building
+and its structure. It is grounded in many places. Because of this and the
+varying conductivities of its sturcture, a lightning strike will cause
+large potentials to appear between different points. It can serve as an
+attenuator if properly used. Layer #1 completely encloses Layer #2. Layer
+#1 is leaky, in that it has openings and windows and the like. It does
+serve as a first layer electrostatic shield. It is recommended that in
+order to get the full benefit of having a Layer #1 that Layer #2 be completely
+within it. 
+
+<p>Layer #2 is thus fabricated within the structure of Layer #1.
+It should be a completely enclosed Faraday cage with an inside and an outside.
+
+<p>Rule #2:  Everything should be completely inside a Faraday cage. 
+
+<p>Inside is
+the secondary of the feed transformer. The electrostatic shield of the
+transformer is is connected to the outside of Layer #2. This is a good
+point for the single connection from layer #2 to ground. The electrical
+code will require this ground point anyway. It will be tricky to sort out
+what is "inside" and what is "outside" of layer #2. The code will require
+carying a "green wire" ground around inside the conduit of layer #2. This
+just makes sure that everything is connected together and that there are
+no breaks in the conduit. This is so you don't get killed grabbing hold
+of the conduit when a wire breaks loose inside and touches it. 
+
+<p>OK, it will be hard to float Layer #2 everywhere. One pictures a main 
+entrance box that is tied to the ground rod with conduit running off in 
+all directions (but in a star). The key thing is that everything is "inside". </P>
+
+<Pre>
+                       ______________________
+                      |                      |
+                      |  Equipment Rack      |
+                      |                      |
+    _________         |                      |
+   |         |        |                      |
+   |         |        |                      |________________________
+   |         |________|                        Conduit to Entrance Box
+   |Something                                 ________________________
+   |Else                                     |
+   |          ________                       |
+   |         |        |                      |
+   |         |        |                      |
+   |_________|        |                      |
+                      |                      |
+                      |                      |
+                      |                      |
+                      |______________________|
+
+</pre>
+
+<p>Let us suppose that the "Something Else" in the illustration above is a
+position sensor on the telescope. It's wires should be inside a shield
+that is connected to the enclosure formed by the equipment rack. It should
+be completely enclosed by a shield. 
+
+<p>Note that one tries to carry the "star"
+concept everywhere. Usually this is difficult without a lot of pre-planning.
+Consider a string of racks A, B, and C out from the entrance box. Consider
+also D, E, and F on another star string out from the entrance box. One
+would like to restrict connections between racks to cases like D to E,
+E to F, and A to B, etc.. One really wants to avoid connections like A
+to D and B to F, etc.. These form "ground loops" that are really not so
+bad if the signals are properly carried between the racks. Note that in
+the case of a lightning strike nearby, there can be a large field enclosed.
+These can induce high currents in such a ground loop. This is OK if the
+conduction path is perfect as the currents then go on the surface of the
+enclosure and signals do not penetrate inside. But a less that perfect
+ground bond can create large potential differences in such a case, and
+thus high electric fields appear "inside". Better to keep the star connection.
+If one wants to connect C to F then the best path is really inside the
+conduit from C to B to A to entrance box to D to E to F. 
+
+<p><u>Layer #3</U>:</p> The problem
+with Layer #2 is that it connects (electrically) to the outside world and
+all the terrible things attracted by the power line. There are special
+transformer designs (like the membrane transformer) that have near perfect
+electrostatic shielding. We probably have to live with what we have, so
+one has to expect terrible things to come in on the mains. This can include
+a lightning strike arcing across from primary to secondary and thus getting
+inside the enclosure of Layer #2. This will then find it's way to the enclosure
+of layer #2 to find ground. It will fry whatever is in its path. We can
+stand for this to happen to most things, the camera is another matter.
+We thus put the camera inside Layer #4, which is inside Layer #3 which
+is inside Layer #2, which is inside Layer #1 which is protected by Layer
+#0. 
+
+<p>The problem with layer #3 is getting power there. We do not want any
+penitrations in layer #3 that might be a path for lightning. This poses
+a special problem for the camera which I will discuss later. The easy way
+to do this is with a motor generator set. We have a motor which is outside
+layer #3 in layer #2. A shaft from the motor is the penetration through
+layer #3 where it drives a generator inside layer #3. Resist the temptation
+to bring out control wires. When the power line arcs over the windings
+we want it to see the "ground" of layer #2 first. Thus one wants a squirrel
+cage motor. No field windings to arc over to the shaft which might make
+a path inside layer #3. 
+
+<p>Layer #4 is inside layer #3 and contains the camera.
+The generator inside Layer #3 drives the primary of the power supplies.
+These should have good electrostatic shields that are bonded to layer #4.
+The primary to secondary insulation of the power supply transformers is
+then the penultimate protection. The final layer of protection should then
+be passive clamps on all the critical voltages. 
+
+<p>Alas, the camera chips
+are exposed to the sky, and thus are subject to the electric fields associated
+with a nearby strike. The cage of the telescope structure helps, as it
+will tend to screen the electric field transient. Still, by its very nature
+it is a big capacitor to the sky. This is why it is important to put clamps
+on all the critical CCD leads. I wold put diodes on all the clock and signal
+lines to the supply voltages. There is not much more that one can do. For
+my own camera design, I have placed the switches that form the clock signals
+inside the camera head. I bring the signals that drive the switches in
+on diode clamped leads. I bring the DC clock levels in on well filtered
+leads. While the CCD chip is exposed to the sky, it only sees it through
+the length of a camera lens. Lots of metal and a long path. So I try to
+practice what I preach. I think Jim Gunn's design is similar, except for
+all that capacity to the sky. Just some thoughts on protection.
+
+<BR>
+<HR SIZE="4" WIDTH="100%">
+<BR>Questions regarding this note should be addressed to Tom Droege by phone at (630) 840-3286 or by e-mail at <A HREF="mailto:droege@fnal.gov">droege@fnal.gov</A>.
+
+
+<P><I><FONT SIZE=-1>Last modified 03/09/99</FONT></I>
+<BR><I><FONT SIZE=-1><A HREF="mailto:boroski@fnal.gov">boroski@fnal.gov</A></FONT></I>
+
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+<CENTER>
+<H1>
+
+Telescope Performance Monitor Real-Time&nbsp; System: Modifications as
+of 30 Sept 1999</H1></CENTER>
+
+<CENTER>Peregrine M. McGehee
+<BR>Los Alamos National Laboratory
+<BR><I>Last Revision: 30 September 1999</I></CENTER>
+
+<H1>
+1. Introduction</H1>
+This report describes enhancements to the <A 
+HREF="/surveyops/docs/tpmtools/tpm-rt.html">SDSS
+Telescope Performance Monitor Real-Time Displays</A> effective 30 September
+1999. Enhancements include access to the MCP and TCC PVT (Position-Velocity-Time)
+Triplets and simple checks on telescope tracking performance.
+
+<P>No changes have been made to the access methods on <B>sdsshost</B> or
+to the user environment requirements. With the exception of the MIG readbacks
+all data is obtained or derived from what the MCP writes into the MCP-TPM
+shared memory.
+<P><FONT FACE="Times New Roman,Times">This software is maintained by Peregrine
+M. McGehee.</FONT>
+<BR><B><FONT FACE="Times New Roman,Times">LANL contact info:</FONT></B><FONT FACE="Times New Roman,Times">
+peregrine@lanl.gov, (505) 667-3273</FONT>
+<BR><FONT FACE="Times New Roman,Times"><B>APO contact info:</B>&nbsp; peregrin@sdsshost.apo.nmsu.edu,
+(505) 437-6822</FONT>
+<H1>
+2. Main Display (tpm.dl)</H1>
+
+The purpose of the main TPM display is to provide a summary of the telescope
+configuration. This is accomplished through a number of text and graphical
+indicators and related display menus.
+<H2>
+2.1 Parameters Visible on the Main Display</H2>
+For the TPM IOC (vxWorks CPU):
+<UL>
+<LI>
+Time since last TPM (or MCP) Reboot in Hours</LI>
+</UL>
+For the Altitude, Azimuth, and Rotator Axes:
+<UL>
+<LI>
+Axis Tracking Status (Green=OK,Red=Not OK). See <A HREF="#axisok">section
+2.2.4.2</A> for details.</LI>
+
+<LI>
+Axis Position in Degrees</LI>
+
+<LI>
+Servo Error in Encoder Counts</LI>
+
+<LI>
+Drive Current in ADC Counts</LI>
+</UL>
+For the Windscreen:
+<UL>
+<LI>
+Altitude LVDT in Counts</LI>
+
+<LI>
+Azimuth LVDT in Counts</LI>
+</UL>
+For the Primary and Secondary Mirror Support Systems (MIG readbacks):
+<UL>
+<LI>
+M1 Axial A, B, and C Positions in Inches</LI>
+
+<LI>
+M1 Lateral E (East) and Lateral F (West) Positions in Inches</LI>
+
+<LI>
+M2 Axial A, B, and C Positions in Inches</LI>
+
+</UL>
+
+<H2>
+2.2 Related Display Menus</H2>
+
+<H3>
+2.2.1 About</H3>
+No change in functionality since last release. The "About" display's purpose
+is to provide software version and developer contact information.
+<H3>
+2.2.2 XY Plots</H3>
+No change in functionality since last release. This simple utility allows
+the creation of real-time XY plots of up to three variables against a single
+variable on the same axis. Implemented in Tcl/Tk with BLT graph widgets
+and the EPICS Channel Access client interface library.
+<BR>The menu options are:
+<UL>
+<LI>
+
+Alt/Az Plot&nbsp; - Altitude versus Azimuth</LI>
+
+<LI>
+Rot/Az Plot - Rotator Position versus Azimuth</LI>
+
+<LI>
+Generic Plot - Template for User-Defined Plots</LI>
+</UL>
+
+<H3>
+2.2.3 DETAILS</H3>
+
+The Details menu calls up displays that contain detailed information about
+the state of the telescope and mount.
+<H4>
+2.2.3.1 AXIS</H4>
+No change in functionality since last release. This display provides text
+update fields of the encoder, current, and voltage readbacks from the altitude,
+azimuth, and rotator axes.
+<H4>
+2.2.3.2 PVTs</H4>
+This display provides a text readback of the Telescope Control Computer
+and Mount Control Processor PVT triplets for the Altitude, Azimuth, and
+Rotator axes. This information is read from the MCP-TPM shared memory at
+a rate of 5Hz.
+<P>The units are:
+<UL>
+<LI>
+Position in Encoder Counts</LI>
+
+<LI>
+Velocity in Encoder Counts/Second</LI>
+
+<LI>
+Time in Milliseconds</LI>
+</UL>
+
+<H3>
+2.2.4 SYSTEM CHECKS</H3>
+This menu provides access to an interlock status display and to the configuration
+screens for the axis tracking tests. The menu options are:
+<UL>
+<LI>
+INTERLOCK</LI>
+
+<LI>
+ALT OK?</LI>
+
+<LI>
+AZ OK?</LI>
+
+<LI>
+ROT OK?</LI>
+</UL>
+
+<H4>
+2.2.4.1 INTERLOCK</H4>
+No change in functionality since last release. The Interlock display is
+meant to show the axis interlocks that are currently activated.
+<H4>
+<A NAME="axisok"></A>2.2.4.2 AXIS OK?</H4>
+
+The ALT OK?, AZ OK?, and ROT OK? displays are based on the same template
+screen for configuration of a simple test for axis tracking performance.
+<P>The test implemented is:
+<BLOCKQUOTE>If the axis servo errors are greater than some limit <B>and</B>
+<BR>If the axis velocity is less than a certain limit (indicating tracking)<B>
+then</B>
+<BR>We should alert the observer to this condition.</BLOCKQUOTE>
+The axis servo error is computed as the different between the commanded
+axis position and the encoder readback. Large errors are possiible when
+an axis has been moved manually. The servo error is in encoder counts.
+<P>The axis velocity is the velocity component of the MCP PVT Triplet and
+is in encoder counts per second.
+<BR>The limits on the servo error and the tracking velocity can be entered
+by the user using the text input fields on the righthand side of the display.
+The default values are:
+<UL>
+<LI>
+Max Tracking Velocity: 10000 counts per second (~135 arcseconds per second)</LI>
+
+<LI>
+Max Servo Error: 100 counts (~1.4 arcseconds)</LI>
+</UL>
+The OK/not-OK state of the test is shown on the far righthand side of the
+display and is duplicated on the main TPM display. The test is executed
+at 5Hz within the TPM IOC using an EPICS CALCULATION database record.
+<H3>
+2.2.5 TIME SERIES</H3>
+This menu allows selection of a number of EPICS StripTool configurations
+to proviide for time-series plots of telescope engineering parameters.
+<BR>The menu options are:
+<UL>
+<LI>
+GENERIC - Template for User-Defined Stripcharts.</LI>
+
+<LI>
+
+POSITION ERRORS - Altitude, Azimuth, and Rotator servo errors.</LI>
+
+<LI>
+ROTATOR - Encoder, Motor Current, Motor Voltage.</LI>
+
+<LI>
+ALTITUDE - Encoders 1 and 2, Motor Currents 1 and 2, Motor Voltages 1 and
+2.</LI>
+
+<LI>
+AZIMUTH - Encoders 1 and 2, Motor Currents 1 and 2, Motor Voltages 1 and
+2.</LI>
+
+<LI>
+CURRENTS - Altoitude Motor Current 1, Azimuth Motor Current 2, Rotator
+Motor Current.</LI>
+
+</UL>
+
+<H1>
+3. Additions to the Real-Time EPICS Database</H1>
+
+<H2>
+3.1 Database Descriptions</H2>
+Each record in the real-time EPICS database is described by a number of
+fields (see the <A 
+HREF="http://epics.aps.anl.gov/epics/EpicsDocumentation/AppDevManuals/RecordRef/Recordref-1.html">EPICS
+Record Reference Manua</A>l). For the purpose of this document we will
+list the following set of attributes:
+<UL>
+<LI>
+Name - the location of the record in the EPICS global namesake implemented
+on the local SDSS Internet. This is the string that clients across the
+network use to access this record. The name is what can be used by any
+operator tool including the display manager, Strip Tool, and Tcl/Tk applications.</LI>
+
+<LI>
+Description - the information contained in the record.</LI>
+
+<LI>
+Type - the nature of the database record.</LI>
+
+<LI>
+Units - the units that the record value is in.</LI>
+
+<LI>
+Scan Rate - the frequency at which the record is updated.</LI>
+</UL>
+
+<H2>
+3.2 MIG Channels</H2>
+
+<UL>&nbsp;
+<TABLE BORDER COLS=5 WIDTH="100%" NOSAVE >
+<TR>
+<TD><B>Name</B></TD>
+
+<TD><B>Description</B></TD>
+
+<TD><B>Type</B></TD>
+
+<TD><B>Units</B></TD>
+
+<TD><B>Scan Rate</B></TD>
+</TR>
+
+<TR>
+<TD>tpm_MIG1</TD>
+
+<TD>MIG: M1 Axial A</TD>
+
+<TD>AnalogIn</TD>
+
+<TD>Inches</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_MIG2</TD>
+
+<TD>MIG: M1 Axial B</TD>
+
+<TD>AnalogIn</TD>
+
+<TD>Inches</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_MIG3</TD>
+
+<TD>MIG: M1 Axial C</TD>
+
+<TD>AnalogfIn</TD>
+
+<TD>Inches</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_MIG4</TD>
+
+<TD>MIG: M2 Axial&nbsp;A</TD>
+
+<TD>AnalogIn</TD>
+
+<TD>Inches</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_MIG5</TD>
+
+<TD>MIG: M1 Lateral E&nbsp;(East)</TD>
+
+<TD>AnalogIn</TD>
+
+<TD>Inches</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_MIG6</TD>
+
+<TD>MIG: M1 Lateral F (West)</TD>
+
+<TD>AnalogIn</TD>
+
+<TD>Inches</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_MIG7</TD>
+
+<TD>MIG: M2&nbsp;Axial B</TD>
+
+<TD>AnalogIn</TD>
+
+<TD>Inches</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_MIG8</TD>
+
+<TD>MIG: M2 Axial C</TD>
+
+<TD>AnalogIn</TD>
+
+<TD>Inches</TD>
+
+<TD>5Hz</TD>
+</TR>
+</TABLE>
+</UL>
+
+<H2>
+3.2 TCC&nbsp;PVT Triplets</H2>
+
+<UL>&nbsp;
+<TABLE BORDER COLS=5 WIDTH="100%" NOSAVE >
+<TR>
+<TD><B>Name</B></TD>
+
+<TD><B>Description</B></TD>
+
+<TD><B>Type</B></TD>
+
+<TD><B>Units</B></TD>
+
+<TD><B>Scan Rate</B></TD>
+</TR>
+
+<TR>
+<TD>tpm_ALTCCPOS</TD>
+
+<TD>TCC Alt Position</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_ALTCCVEL</TD>
+
+<TD>TCC Alt Velocity</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts/Sec</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_ALTCCTIM</TD>
+
+<TD>TCC&nbsp;Alt Time</TD>
+
+<TD>LongIn</TD>
+
+<TD>Milliseconds</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_AZTCCPOS</TD>
+
+<TD>TCC Az Position</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_AZTCCVEL</TD>
+
+<TD>TCC&nbsp;Az Velocity</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts/Sec</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_AZTCCTIM</TD>
+
+<TD>TCC Az Time</TD>
+
+<TD>LongIn</TD>
+
+<TD>Milliseconds</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_ROTCCPOS</TD>
+
+<TD>TCC Rotator Position</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_ROTCCVEL</TD>
+
+<TD>TCC Rotator Velocity</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts/Sec</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_ROTCCTIM</TD>
+
+<TD>TCC&nbsp;Rotator Time</TD>
+
+<TD>LongIn</TD>
+
+<TD>Milliseconds</TD>
+
+<TD>5Hz</TD>
+</TR>
+</TABLE>
+</UL>
+
+<H2>
+3.3 MCP&nbsp;PVT Triplets</H2>
+
+<UL>&nbsp;
+<TABLE BORDER COLS=5 WIDTH="100%" NOSAVE >
+<TR>
+<TD><B>Name</B></TD>
+
+<TD><B>Description</B></TD>
+
+<TD><B>Type</B></TD>
+
+<TD><B>Units</B></TD>
+
+<TD><B>Scan Rate</B></TD>
+</TR>
+
+<TR>
+<TD>tpm_ALMCPPOS</TD>
+
+<TD>MCP Alt Position</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_ALMCPVEL</TD>
+
+<TD>MCP Alt Velocity</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts/Sec</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_ALMCPTIM</TD>
+
+<TD>MCP&nbsp;Alt Time</TD>
+
+<TD>LongIn</TD>
+
+<TD>Milliseconds</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_AZMCPPOS</TD>
+
+<TD>MCP Az Position</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_AZMCPVEL</TD>
+
+<TD>MCP&nbsp;Az Velocity</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts/Sec</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_AZMCPTIM</TD>
+
+<TD>MCP Az Time</TD>
+
+<TD>LongIn</TD>
+
+<TD>Milliseconds</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_ROMCPPOS</TD>
+
+<TD>MCP Rotator Position</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_ROMCPVEL</TD>
+
+<TD>MCP Rotator Velocity</TD>
+
+<TD>LongIn</TD>
+
+<TD>Counts/Sec</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_ROMCPTIM</TD>
+
+<TD>MCP Rotator Time</TD>
+
+<TD>LongIn</TD>
+
+<TD>Milliseconds</TD>
+
+<TD>5Hz</TD>
+</TR>
+</TABLE>
+</UL>
+
+<H2>
+3.4&nbsp; Tracking Checks</H2>
+The Calculation record fields used for the tracking checks are:
+<UL>
+
+<LI>
+<B>INPA</B> - Link to Axis Velocity (from MCP PVT Triplet)</LI>
+
+<LI>
+<B>B </B>- Maximum Tracking Velocity (user input)</LI>
+
+<LI>
+<B>INPC</B> - Link to Axis Servo Error (computed)</LI>
+
+<LI>
+<B>D</B> - Maximum Servo Error (user input)</LI>
+
+<LI>
+<B>CALC</B> - (ABS(A)&lt;B)&amp;(ABS(C)>D)</LI>
+</UL>
+
+<UL>
+<TABLE BORDER COLS=5 WIDTH="100%" NOSAVE >
+
+<TR>
+<TD><B>Name</B></TD>
+
+<TD><B>Description</B></TD>
+
+<TD><B>Type</B></TD>
+
+<TD><B>Units</B></TD>
+
+<TD><B>Scan Rate</B></TD>
+</TR>
+
+<TR>
+<TD>tpm_altok</TD>
+
+<TD>Altitude Tracking Check</TD>
+
+<TD>Calculation</TD>
+
+<TD>0=OK/1=Not OK</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_azok</TD>
+
+<TD>Azimuth Tracking Check</TD>
+
+<TD>Calculation</TD>
+
+<TD>0=OK/1=Not OK</TD>
+
+<TD>5Hz</TD>
+</TR>
+
+<TR>
+<TD>tpm_rotok</TD>
+
+<TD>Rotator Tracking Check</TD>
+
+<TD>Calculation</TD>
+
+<TD>0=OK/1=Not OK</TD>
+
+<TD>5Hz</TD>
+</TR>
+</TABLE>
+
+</UL>
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->
+

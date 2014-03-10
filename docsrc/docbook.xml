@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                         "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<article>
+<articleinfo>
+  <title>Using Ant and Docbook in sdss.org</title>
+  <author>
+    <firstname>Eric</firstname>
+    <othername>H.</othername>
+    <surname>Neilsen</surname>
+    <lineage>Jr.</lineage>
+  </author>
+</articleinfo>
+
+<section><title>Introduction</title>
+
+<para>
+<ulink url="http://en.wikipedia.org/wiki/DocBook">DocBook</ulink> is
+an XML markup language designed for writing technical documentation,
+and is used by many projects, including the Linux Documentation
+Project, the documentation of the Linux kernel itself, GNOME, and
+KDE. It is particularly nice in that it can be easily converted into
+anything from html to pdf to the MS Word RTF format.</para>
+
+<para>Automated building of the web site is done through
+<ulink url="http://ant.apache.org/">ant</ulink>, which is most popular
+in the java world but can be used for other systems (such as web
+sites) as well.
+</para>
+
+</section>
+
+<section><title>Using ant to build DocBook</title>
+
+<para>Several utilities can be used to convert DocBook to html, and
+two different systems are included in most modern Linux distributions.
+One of them, supplied by the
+<systemitem>docbook-style-xsl</systemitem>
+<application>rpm</application> package in Fermi Linux, is simply a
+collection of style sheets, and the build can be implemented in ant
+with a <filename>build.xml</filename> file that looks like
+this:</para>
+
+<programlisting><![CDATA[
+<?xml version="1.0"?>
+
+<project name="sdssorg" default="html" basedir=".">
+
+<property name="stylesheetHome"
+          value="/usr/share/sgml/docbook/xsl-stylesheets-1.61.2-2"/>
+
+<target name="html">
+    <style basedir="docsrc" 
+           destdir="doc/html"
+           style="${stylesheetHome}/html/docbook.xsl">
+	<include name="maintenance.xml"/>
+	<include name="faq.xml"/>
+    </style>
+</target>
+
+</project>
+]]>
+</programlisting>
+
+<para>Unfortunately, the default xslt processor in my ant in very slow,
+and sometimes fails altogether. <application>xsltproc</application> is
+much faster, and always seems to work on valid files.</para>
+
+<programlisting><![CDATA[
+<?xml version="1.0"?>
+
+<project name="sdssorg" default="html" basedir=".">
+<property name="stylesheetHome"
+          value="/usr/share/sgml/docbook/xsl-stylesheets-1.61.2-2"/>
+
+<target name="xhtml">
+    <mkdir dir="doc/xhtml"/>
+    <!-- It is possible to use the ant "style" task, but whatever processor
+         my version of ant uses sometimes fails, and in much slower than
+	 xsltproc even when it succeeds. -->
+    <apply executable="xsltproc" dest="doc/xhtml" parallel="false">
+        <arg value="--output"/>
+	<targetfile/>
+        <arg value="${stylesheetHome}/xhtml/docbook.xsl"/>
+	<srcfile/>
+	<fileset dir="./docsrc" includes="*.xml"/>
+	<mapper type="glob" from="*.xml" to="*.html"/>
+    </apply>
+</target>
+]]></programlisting>
+
+<para>There is yet another method, supplied by the
+<systemitem>docbook-utils</systemitem>
+<application>rpm</application> package in Fermi Linux, has prettier results. The
+corresponding <filename>build.xml</filename> file looks like this:</para>
+
+<programlisting><![CDATA[
+<?xml version="1.0"?>
+
+<project name="sdssorg" default="html" basedir=".">
+
+<target name="html" depends="prepare">
+    <mkdir dir="doc/html"/>
+    <apply executable="docbook2html">
+        <arg line="--nochunks"/>
+	<arg line="--output doc/html"/>
+	<fileset dir="./docsrc" includes="*.xml"/>
+    </apply>
+</target>
+
+</project>
+]]>
+</programlisting>
+
+<para>For ant to build this properly, the Sun Java must
+be used.</para>
+
+</section>
+
+</article>

@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+<html>
+<head>
+<meta name="Description" content="SDSS Survey Status: Imaging Survey">
+<title>SDSS Survey Status: Imaging Survey</title>
+</head>
+<sdss-page>
+<h2>SDSS Survey Status: Imaging Survey</h2>
+<p>
+<IMG SRC="imagingStatus.gif" >
+<BR>
+<text-navbar>
+<sdss-address>
+</sdss-page>
+</html>

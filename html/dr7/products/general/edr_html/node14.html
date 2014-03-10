@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>SDSS Query Tool (sdssQT)</TITLE>
+<META NAME="description" CONTENT="SDSS Query Tool (sdssQT)">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html263" HREF="node15.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html261" HREF="node13.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html255" HREF="node13.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html264" HREF="node15.html">MAST SDSS skyServer Interface</A>
+<B>Up:</B> <A NAME="tex2html262" HREF="node13.html">User Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html256" HREF="node13.html">User Interfaces</A>
+<BR> <P>
+<H3><A NAME="SECTION00024100000000000000">SDSS Query Tool (sdssQT)</A></H3>
+<P>
+<A NAME="ddinterfacessdssqt">&#160;</A>
+<P>
+The sdssQT is a stand-alone application to manage and perform catalog
+archive server queries, and is available for download from our web
+sites, along with a detailed user's manual.  The discussion that follows
+is a brief introduction to its use, to illustrate its capabilities.
+There are options to choose the output format (ASCII or binary),
+facilities to save queries, a simple text editor to create and modify
+queries, and communication with the Catalog Archive Server to follow
+the progress (and predict the time to completion) of active queries.
+An additional tool converts our binary output format to a FITS binary table.
+<P>
+The query language we developed is very similar to the Structured
+Query Language (SQL).  The sdssQT includes several example queries,
+and the online user's guide provides additional explanations of the
+language and how to use it efficiently. The use of associations
+(&#167;&nbsp;<A HREF="node5.html#ddclasses">2.2.1</A>)
+provides a powerful way to extract object data from many different
+classes simultaneously.  Similarly, the inheritance properties of
+classes and their subclasses makes queries written for a given class
+run on all of its subclasses or sibling classes.
+<P>
+The grammar of this language is to select a set of <TT>parameters</TT>
+from a <TT>class</TT> that satisfy specified <TT>conditions</TT>.  The SDSS
+Query Tool allows full access to all of the classes and parameters in
+the Catalog Archive Server.  For example, the query:
+<PRE>SELECT ra,dec FROM SpecObj WHERE (z &gt; 2)</PRE>
+returns the parameters <TT>ra</TT> and <TT>dec</TT> (right ascension and declination)
+for all spectroscopic objects (i.e., from the class <TT>SpecObj</TT>)
+with redshift greater than 2.
+<P>
+One class must appear in the <TT>WHERE</TT>
+clause. One or more 
+of the parameters from the classes may be listed in the <TT>SELECT</TT> clause and used in
+the <TT>WHERE</TT> clause, as long as they are included in the class
+mentioned in the <TT>FROM</TT> clause.
+<P>
+The <TT>PhotoObj</TT> class, containing the detected objects in the
+images, has the most entries, over 13 million.  To facilitate 
+selecting from these entries, we have designated a subset of the
+most commonly used parameters in
+the <TT>PhotoObj</TT> class to be part of a special class called <TT>Tag</TT>.
+The final column of Table&nbsp;<A HREF="node65.html#tblphoto">6</A> indicates which parameters are in
+the <TT>Tag</TT> class.  The database is structured in such a way that
+searches that select on these <TT>Tag</TT> parameters run significantly
+faster.
+<P>
+Additionally, many of the classes, like <TT>Tag</TT>, have numerous
+subclasses (<TT>Primary, Secondary, Galaxy, Star</TT>), described in the
+above mentioned tables.  These subclasses all <I>inherit</I> the
+properties of the umbrella class. The same parameters are available in
+the subclasses as in the umbrella class, but they will be faster to
+query as each contains only a portion of the total objects. For
+example, users wanting data only on galaxies can execute queries on
+the <TT>Galaxy</TT> class; this avoids having to specify that <TT>
+objType=Galaxy</TT> if it were run on the entire <TT>Tag</TT> class, and will
+run faster as fewer objects are searched.
+<P>
+To access <EM>associated</EM>, or linked parameters, we use the ``.''
+modifier.  For example, spectroscopic objects from the <TT>SpecObj</TT>
+class all have a link back to the photometric object in the <TT>Tag</TT>
+class. This allows retrieval of parameters from both classes simultaneously.
+Use the syntax <TT>tag.r</TT>, for example, to obtain a spectroscopic target's
+<IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline2863" SRC="img21.gif"> magnitude.  In Table&nbsp;<A HREF="node65.html#tblspecobj">11</A>, the parameter <TT>
+phototag</TT> has type <TT>OneAssoc(PhotoTag)</TT>, so the query
+<PRE>SELECT ra,dec,phototag.r FROM SpecObj</PRE>
+returns the position and <IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline2863" SRC="img21.gif"> magnitude for all objects with spectra.
+<P>
+Some associations tie many objects in a class to one object of
+another class.  For example, there can be many lines measured in one
+spectrum.  The parameter <TT>measured</TT> in the <TT>SpecObj</TT> class has
+the type <TT>ManyAssoc(SpecLine)</TT>.  The following <EM>Association Query</EM>
+returns parameters for all of the lines of the selected spectrum:
+<PRE>SELECT name.name,wave,ew FROM
+(SELECT measured FROM SpecObj WHERE
+	plate.plateID == 384 &amp;&amp; fiberID == 284)</PRE>
+<P>
+The online user's guide to the SDSS Query tool contains a detailed
+description of the language, examples to help construct advanced queries,
+and details about macros to perform logical and arithmetic operations
+within queries.
+<P>
+<HR><A NAME="tex2html263" HREF="node15.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html261" HREF="node13.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html255" HREF="node13.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html264" HREF="node15.html">MAST SDSS skyServer Interface</A>
+<B>Up:</B> <A NAME="tex2html262" HREF="node13.html">User Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html256" HREF="node13.html">User Interfaces</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

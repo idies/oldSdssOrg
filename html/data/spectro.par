@@ -1,0 +1,7 @@
+typedef struct {
+int plate;
+int mjd;
+int sprerun;
+} PMR
+
+PMR 513 51989 19

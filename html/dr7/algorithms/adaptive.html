@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Algorithms: Adaptive Moments - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<a name="top"></a>
+<h1>Adaptive Moments</h1>
+Adaptive moments are the second moments of the object intensity, measured using
+a particular scheme designed to have near-optimal signal-to-noise ratio.
+Moments are measured using a radial weight function interactively adapted to the
+shape (ellipticity) and size of the object.  This ellipticial weight function
+has a signal-to-noise advantage over axially symmetric weight functions.  In
+principle there is an optimal (in terms of signal-to-noise) radial shape for
+the weight function, which is related to the light profile of the object
+itself.  In practice a gaussian with size matched to that of the object is
+used, and is nearly optimal. Details can be found in <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v123n2/201306/201306.html">Bernstein & Jarvis (2002)</a>.
+<br><p>
+The outputs included in the SDSS data release are the following:
+<ol>
+<li>The sum of the second moments in the CCD row and column direction:<br>
+<code>m<sub>rr_cc</sub> = &lt;col<sup>2</sup>&gt; + &lt;row<sup>2</sup>&gt;</code><br>
+and its error <code>m<sub>rr_cc_err</sub></code>. <br>
+The second moments are defined in the following way:<br>
+<code> &lt;col<sup>2</sup>&gt;= sum[I(col,row) w(col,row) col<sup>2</sup>]/sum[I*w]</code><br>
+where <code>I</code> is the intensity of the object and <code>w</code> is the weight function.
+</li>
+<li>The ellipticity (polarization) components:<br>
+<code>m<sub>e1</sub> = &lt;col<sup>2</sup>&gt; - &lt;row<sup>2</sup>&gt;)/m<sub>rr_cc</sub><br>
+m<sub>e2</sub> = 2.*&lt;col*row&gt;/m<sub>rr_cc</sub></code><br>
+and square root of the components of the covariance matrix:<br>
+<code>
+m<sub>e1e1err</sub> = sqrt( Var(e1) )<br>
+m<sub>e1e2err</sub> = sign(Covar(e1,e2))*sqrt( abs( Covar(e1,e2) ) )<br>
+m<sub>e2e2err</sub> = sqrt( Var(e2) )</code><br>
+</li>
+<li>A fourth-order moment<br>
+<code>m<sub>cr4</sub> = &lt;r<sup>4</sup>&gt;/sigma<sup>4</sup><br></code>
+where <code>r<sup>2</sup> = col<sup>2</sup> + row<sup>2</sup></code>, and sigma is the size of the gaussian weight. No error is quoted on this quantity.
+</li>
+<li>These quantities are also measured for the PSF, reconstructed at the position
+   of the object.  The names are the same with an appended <code>_psf</code>.  No errors are
+   quoted for PSF quantities.  These PSF moments can be used to correct the
+   object shapes for smearing due to seeing and PSF anisotropy. See <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v123n2/201306/201306.html">Bernstein &
+   Jarvis (2002)</a> and <a href="http://lanl.arXiv.org/abs/astro-ph/?0301054">Hirata & Seljak (2003)</a> for details.
+</ol>
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Wed Feb 12 13:14:39 CST 2003
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+</html>

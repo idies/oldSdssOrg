@@ -1,0 +1,4 @@
+NGC 5053 is one of the sparsest globular clusters known, and when originally
+discovered there was some uncertainty whether it was a large open cluster.
+The color-magnitude diagram, a plot which relates the colors of stars to their
+brightness, confirms that NGC 5053 is indeed a globular cluster.

@@ -1,0 +1,330 @@
+<html>
+<head>
+
+<script>
+
+// Code to print out a window with object position, etc.  This page is
+// called with a slew of arguments passed in the query string.
+
+function dms(deg) {
+   if (deg < 0) {
+	sign = '-'
+	deg = Math.abs(deg)
+	}
+   else {
+	sign = ' '
+	}
+   dd = Math.floor(deg)
+   mm = Math.floor(60*(deg - dd))
+   ss = Math.floor(6000 * (60 * (deg - dd) - mm))/100.
+   if (dd < 10) {
+	dd = "0" + dd
+	}
+   if (mm < 10) {
+	mm = "0" + mm
+	}
+   if (ss < 10) {
+	ss = "0" + ss
+	}
+   return (sign + dd + ":" + mm + ":" + ss)
+   }
+
+// Format for html input
+
+function dmshtml(deg, type) {
+   if (deg < 0) {
+	sign = '-'
+	deg = Math.abs(deg)
+	}
+   else {
+	if (type == "ra") {
+	   sign = ''
+	   }
+	else {
+	   sign = '%2B'
+	   }
+	}
+   dd = Math.floor(deg)
+   mm = Math.floor(60*(deg - dd))
+   ss = Math.floor(6000 * (60 * (deg - dd) - mm))/100.
+   if (dd < 10) {
+	dd = "0" + dd
+	}
+   if (mm < 10) {
+	mm = "0" + mm
+	}
+   if (ss < 10) {
+	ss = "0" + ss
+	}
+   return (sign + dd + "+" + mm + "+" + ss)
+   }
+
+function hms(deg) {
+   return (dms(deg/15.))
+   }
+
+function hmshtml(hrs, type) {
+   return (dmshtml(hrs/15., type))
+   }
+
+</script>
+
+</head>
+
+<body>
+
+<script>
+
+s = new String(window.location)
+q = s.indexOf("?")
+if (q >= 0) {
+// Parse the input query string.  Work around javascripts limitations
+
+   query = new String(window.location.search.substr(1))
+   arglist = query.split("&")
+   n = arglist.length
+
+// Initialize array with no elements
+   myArr = new Array()
+
+   for (i=0; i<n; i++) {
+	args = arglist[i].split("=")
+
+// Thankfully this syntax works.
+	myArr[args[0]] = args[1]
+	} 
+   
+// Extract values into scalar elements.  Wish I could do this in a "foreach"
+// loop...
+
+//   a = 241.8650
+//   b = .0001099
+//   c = 2.5e-8
+//   d = 0.55224
+//   e = 4.5e-11
+//   f = .00011
+//   node = 285.0662*Math.PI/180.
+//   incl = 9.55e-3*Math.PI/180.
+
+
+// Explicitly force numbers - implicit conversions don't always happen later.
+   run = new Number(myArr["run"])
+   camcol = new Number(myArr["camcol"])
+   field = new Number(myArr["field"])
+   x = new Number(myArr["x"])
+   y = new Number(myArr["y"])
+   a = new Number(myArr["a"])
+   b = new Number(myArr["b"])
+   c = new Number(myArr["c"])
+   d = new Number(myArr["d"])
+   e = new Number(myArr["e"])
+   f = new Number(myArr["f"])
+   node = new Number(myArr["node"])
+   incl = new Number(myArr["incl"])
+   taiEnd = new Number(myArr["taiEnd"])
+   rate = new Number(myArr["rate"])
+   date = myArr["date"]
+
+// Multiply by 2, since these are compressed images
+   col = 2.*x
+   row = 2.*y
+
+// Do conversions to radians here
+
+   node = node*Math.PI/180.
+   incl = incl*Math.PI/180.
+
+// Great circle coords in radians
+   mu = (a + b*row + c*col)*Math.PI/180.
+   nu = (d + e*row + f*col)*Math.PI/180.
+
+// Convert to ra, dec
+   xg = Math.cos(mu - node) * Math.cos(nu)
+   yg = Math.sin(mu - node) * Math.cos(nu)
+   zg = Math.sin(nu)
+
+   x = xg
+   y = yg * Math.cos(incl) - zg * Math.sin(incl)
+   z = yg * Math.sin(incl) + zg * Math.cos(incl)
+   ra = (Math.atan2 (y,x) + node) * 180. / Math.PI
+   dec = Math.asin (z) * 180. / Math.PI
+
+   if (ra > 360.) {
+	ra = ra - 360.
+	}
+   if (ra < 0) {
+	ra = ra + 360.
+	}
+
+// convert to hhmmss etc.
+   radeg = Math.round(ra*1.e4)/10000.
+   decdeg = Math.round(dec*1.e4)/10000.
+
+   rahtml = hmshtml(ra, "ra")
+   dechtml = dmshtml(dec, "dec")
+
+   ra = hms(ra)
+   dec = dms(dec)
+
+// Begin and end times for this pixel
+
+   taiEnd = taiEnd + (row/rate)/3600.
+   taiBegin = taiEnd - (2048/rate)/3600.
+
+// convert to hhmmss
+   taiBegin = dms(taiBegin)
+   taiEnd = dms(taiEnd)
+
+   document.writeln("Date: ", date)
+   document.writeln("<table align=left border=2 cellpadding=5>")
+   document.writeln("<tr>")
+   document.writeln("<td align=center> TAI Begin", "<td align=center>",
+	taiBegin,
+	"<td align=center> TAI End", "<td align=center>", taiEnd)
+   document.writeln("<tr>")
+   document.writeln("<td align=center> Row", "<td align=center>", row,
+	"<td align=center> Col", "<td align=center>", col)
+   document.writeln("<tr>")
+   document.writeln("<td> Ra(2000)", "<td>",ra, "<td> Dec(2000)", "<td>", dec)
+   document.writeln("<tr>")
+   document.writeln("<td> Ra(2000)", "<td>", radeg, " (deg)", "<td> Dec(2000)",
+	"<td>", decdeg, " (deg)")
+   document.writeln("</table>")
+
+   document.writeln("<div align=right>")
+   document.write("<a href=")
+   document.write("http://nedwww.ipac.caltech.edu/cgi-bin/nph-objsearch?")
+   document.write("in_csys=Equatorial&")
+   document.write("in_equinox=J2000&")
+   document.write("lon=",radeg,"d&")
+   document.write("lat=",decdeg,"d&")
+   document.write("radius=1.0&")
+   document.write("z_constraint=Unconstrained&")
+   document.write("z_value1=&")
+   document.write("z_value2=&")
+   document.write("z_unit=z&")
+   document.write("ot_include=ANY&")
+   document.write("out_csys=Equatorial&")
+   document.write("out_equinox=J2000&")
+   document.write("obj_sort=Distance+to+search+center&")
+   document.write("zv=b&")
+   document.write("zv_breaker=10000.0&")
+   document.writeln("search_type=Near+Position+Search")
+   document.writeln(" target=NED> Search NED via Internet</a>")
+   document.writeln("</div>")
+
+   document.writeln("<br>")
+
+
+   document.writeln("<div align=right>")
+   document.write("<a href=")
+   document.write("http://archive.stsci.edu/cgi-bin/nph-xcorr?")
+   document.write("target=", radeg, "%2C", decdeg, "&")
+   document.write("catalog=single_row&")
+   document.write("resolver=SIMBAD&")
+   document.write("missions=IUE&")
+   document.write("missions=UIT&")
+   document.write("missions=HUT&")
+   document.write("missions=WUPPE&")
+   document.write("missions=COPRAW&")
+   document.write("missions=WFPC2&")
+   document.write("missions=STIS&")
+   document.write("missions=NICMOS&")
+   document.write("missions=FOC&")
+   document.write("missions=FOS&")
+   document.write("missions=GHRS&")
+   document.write("missions=WFPC1&")
+   document.write("missions=FGS&")
+   document.write("missions=HSP")
+   document.write("")
+   document.writeln(" target=NED> Search MAST via Internet</a>")
+   document.writeln("</div>")
+
+   document.writeln("<br>")
+
+// First catalog
+
+   document.writeln("<div align=right>")
+   document.write("<a href=")
+   document.write("http://sundog.stsci.edu/cgi-bin/searchfirst?")
+   document.write("RA=", rahtml, "&")
+   document.write("Dec=", dechtml, "&")
+   document.write("Equinox=J2000&")
+   document.write("Radius=30&")
+   document.write("Links=&")
+   document.write("Constraints=")
+   document.write("")
+   document.writeln(" target=NED> Search FIRST via Internet</a>")
+   document.writeln("</div>")
+
+   document.writeln("<br>")
+
+
+// Simbad catalog
+
+   document.writeln("<div align=right>")
+   document.write("<a href=")
+   document.write("http://simbad.u-strasbg.fr/sim-id.pl?")
+   document.write("protocol=html&")
+   document.write("Ident=", rahtml,dechtml, "&")
+   document.write("Equinox=J2000&")
+   document.write("CooEqui=2000&")
+   document.write("-source=simbad&")
+   document.write("Constraints=&")
+   document.write("NbIdent=1&")
+   document.write("Radius=1&")
+   document.write("Radius.unit=arcmin&")
+   document.write("output.max=all&")
+   document.write("o.catall=on&")
+   document.write("output.mesdisp=N&")
+   document.write("Bibyear1=1983&")
+   document.write("Bibyear2=1999&")
+   document.write("Equi1=2000.0&")
+   document.write("Equi2=1950.0")
+   document.writeln(" target=NED> Search SIMBAD via Internet</a>")
+   document.writeln("</div>")
+
+   document.writeln("<br>")
+
+// Fetch coords from dervish
+
+   document.writeln("<div align=right>")
+   document.write("<a href=")
+   document.write("tsObj.tml?")
+   document.write("run=", run, "&")
+   document.write("camcol=", camcol, "&")
+   document.write("field=", field, "&")
+   document.write("row=", row, "&")
+   document.write("col=", col, "&")
+   document.write("window=5")
+   document.writeln(" target=NED> Fetch photo params</a>")
+   document.writeln("</div>")
+
+   document.writeln("<br>")
+
+// Fetch target selection coords from dervish
+
+   document.writeln("<div align=right>")
+   document.write("<a href=")
+   document.write("/template/tsObjOut.tml?")
+   document.write("run=", run, "&")
+   document.write("camcol=", camcol, "&")
+   document.write("field=", field, "&")
+   document.write("row=", row, "&")
+   document.write("col=", col, "&")
+   document.write("window=5")
+   document.writeln(" target=NED> Fetch target selection params</a>")
+   document.writeln("</div>")
+
+   document.writeln("<br>")
+
+} else {
+   document.write("Click on image to get coordinates<br>")
+   document.write("(You must have javascript enabled)<br>")
+   }
+
+</script>
+
+</body>
+</html>
+

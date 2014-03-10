@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Assessment of Photometric Calibration</TITLE>
+<META NAME="description" CONTENT="Assessment of Photometric Calibration">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html644" HREF="node49.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html642" HREF="node44.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html638" HREF="node47.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html645" HREF="node49.html">Imaging Data Quality Assessment</A>
+<B>Up:</B> <A NAME="tex2html643" HREF="node44.html">Photometric Calibration</A>
+<B> Previous:</B> <A NAME="tex2html639" HREF="node47.html">The Final Calibration Pipeline</A>
+<BR> <P>
+<H3><A NAME="SECTION00045400000000000000">Assessment of Photometric Calibration</A></H3>
+<P>
+<A NAME="swphotocalassess">&#160;</A>
+<P>
+The primary sources of error are uncorrected extinction variations
+that affect both the PT patches and the 2.5m scans, incidents of bad
+seeing in the 2.5m scans coinciding with the crossing of PT patches,
+and statistical errors due to the small number of matching stars in
+certain PT patches in areas of the sky with low star density.
+Consequently, after final calibration, the data are subjected to a suite
+of tests to assess the reproducibility of photometric calibrations.
+These tests are neither exhaustive nor precise, but they do catch
+egregious errors.  They are designed to uncover systematic calibration
+errors in the scan direction and across the imaging camera.
+<P>
+The principal tests for photometric accuracy include: 
+<UL>
+<LI> Comparison of photometry of objects in overlaps between
+adjacent runs.  Figure&nbsp;<A HREF="node65.html#figoverlaperrors">11</A> contains a typical set
+of plots, for the difference in our calibrated magnitudes for objects
+measured in the overlap region in one camera column (<TT>camCol</TT>=3)
+for one pair of runs (752/756) for the five filters.
+<LI> Calculation of fiducial points in the color-color diagrams of
+stars.  Stars lie for the most part on a narrow one-dimensional locus in SDSS
+color-color space newberg97, fan99a, finlator00.  This locus is not
+straight, but shows some bends, in particular between K and M stars in the
+plot of <IMG WIDTH=64 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3291" SRC="img126.gif"> vs. <IMG WIDTH=67 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3293" SRC="img127.gif"> We measure the location of this break in
+color to high accuracy with the stars in 10-frame intervals, and look for
+trends in each run as a function of frame number.  Figure&nbsp;<A HREF="node65.html#figzhed">12</A> shows
+that the location of the stellar locus is stable in the EDR, with systematic
+drifts less than 0.01 mag.  The <I>ri Position</I> and <I>gr Position</I> are the
+location of the bend in the stellar locus in the <IMG WIDTH=49 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline3299" SRC="img128.gif"> vs. <IMG WIDTH=52 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3301" SRC="img129.gif">
+color-color diagram, Figure&nbsp;<A HREF="node65.html#figedr_quasarccplot">13</A>.  The <I>iz Position</I> is
+the mean <IMG WIDTH=50 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline3305" SRC="img130.gif"> for stars near that bend.
+<LI> Comparison of calibration zero points with
+the mean sky brightness of a given run.  Although the sky
+brightness varies in any given band as a
+function of time, it is close to constant at a given time across the
+camera.  Thus variations of the <EM>measured</EM> sky brightness as a
+function of camera column are an indication of photometric zeropoint
+errors.
+<LI> Examination of systematics in the photometry of stars as
+measured by the 2.5m and the PT in regions of
+overlap (see Figure&nbsp;<A HREF="node65.html#fignfcalibghosting">10</A>).
+<P>
+</UL>
+<P>
+These tests consistently indicate that the photometric zeropoints for
+the EDR data are internally consistent to within <IMG WIDTH=21 HEIGHT=22 ALIGN=MIDDLE ALT="tex2html_wrap_inline3307" SRC="img131.gif">% in all
+bands for 90% of the
+frames in the EDR data.  The worst outliers are all in <I>u</I>, and are
+up to 10% peak-to-peak in the worst of our data; as we saw above, these are due to
+ghosting in the <I>u</I> chip.
+<P>
+Because errors in different bands are often correlated, the colors
+of objects have smaller errors than might otherwise be indicated;
+stellar locii from different columns are typically aligned 
+to better than 1% (measured in the <I>g r i z</I> bands). The median 
+stellar locii from different runs are also aligned to better
+than 1%.
+<P>
+We discussed in &#167;&nbsp;<A HREF="node41.html#swphotoflux">4.4.5</A> that the estimated PSF magnitude errors
+are accurate to 10-20%.  The errors themselves are impressively
+small, as is manifest by the width of the stellar locus; the rms
+scatter in bright star PSF photometry (where photon statistics are
+negligible), after correcting for zero-point offsets, is 0.02 mag in
+<IMG WIDTH=15 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline2829" SRC="img10.gif">, <IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline2863" SRC="img21.gif">, and <IMG WIDTH=12 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3201" SRC="img110.gif">, and 0.03 mag in <IMG WIDTH=16 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3203" SRC="img111.gif"> and <IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3205" SRC="img112.gif">.  The
+separation between the stellar locus and quasars in
+Figure&nbsp;<A HREF="node65.html#figedr_quasarccplot">13</A> is due to this excellent photometry.
+<P>
+In addition to errors on the internal consistency of the photometry,
+the tie of the 2.5m photometry to an AB system has additional
+errors.
+<P>
+<UL>
+<LI> The transfer of zeropoints from the USNO to the 2.5m
+currently does not use any color terms, thereby introducing
+errors in two places (USNO to PT and PT to 2.5m, as described above).
+The error so introduced is of order <IMG WIDTH=22 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3325" SRC="img132.gif">, although it may be somewhat
+smaller in <I>r</I>, <I>i</I> and <I>z</I>.
+<LI> AB systems are based on absolute spectrophotometric measurements
+ of standard stars, and knowledge of the broad-band response
+functions, as well as the overall spectrophotometric scale tied to
+Vega; these factors together produce uncertainties at the level of 5%.
+<LI> The zeropoints given in fukugita96 ignore atmospheric 
+absorption in the bandpass shapes, introducing an error of order
+<IMG WIDTH=23 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3331" SRC="img133.gif"> in <I>u</I> and 1% in <I>g</I>.
+<P>
+</UL>
+<P>
+Thus the system zeropoints could differ from the AB zeropoints by as much
+as <IMG WIDTH=30 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3337" SRC="img134.gif">.
+<P>
+<HR><A NAME="tex2html644" HREF="node49.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html642" HREF="node44.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html638" HREF="node47.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html645" HREF="node49.html">Imaging Data Quality Assessment</A>
+<B>Up:</B> <A NAME="tex2html643" HREF="node44.html">Photometric Calibration</A>
+<B> Previous:</B> <A NAME="tex2html639" HREF="node47.html">The Final Calibration Pipeline</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

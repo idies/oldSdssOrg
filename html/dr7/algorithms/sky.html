@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Algorithms: Sky Levels - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<a name="top"></a>
+<h1>Measuring and recreating the sky value</h1>
+<h2>How Sky Values are Measured</h2>
+It is quite clear what astronomers mean by `sky': the <em>mean</em>
+value of all pixels in an image which are not explicitly identified as
+part of any detected object.  It is this quantity which, when
+multiplied by the effective number of pixels in an object, tells us
+how much of the measured flux is not in fact associated with the
+object of interest.  Unfortunately, means are not very robust, and the
+identification of <em>pixels not explicitly identified as part
+of any detected object</em> is fraught with difficulties.
+<br><p>
+There are two main strategies employed to avoid these difficulties:
+the use of clipped means, and the use of rank statistics such as the
+median.
+<br><p>
+
+<a href="../glossary/index.html#photo"><code>Photo</code></a> performs two levels of sky subtraction; when first processing
+each frame it estimates a global sky level, and then, while searching
+for and measuring faint objects, it re-estimates the sky level locally
+(but not individually for every object).
+<br><p>
+
+The initial sky estimate is taken from the median value of every pixel
+in the image (more precisely, every fourth pixel in the image),
+clipped at 2.32634 sigma.  This estimate of sky is corrected for the
+bias introduced by using a median, and a clipped one at that.  The
+statistical
+error in this value is then estimated from the values of sky determined
+separately from the four quadrants of the image.
+<br><p>
+
+Using this initial sky estimation, <code>Photo</code> proceeds to find all the
+bright objects (typically those with more than 60 sigma detections).
+Among these are any saturated stars present on the frame, and <code>Photo</code>
+is designed to remove the scattering wings from at least the brighter
+of these --- this should include the scattering due to the
+atmosphere, and also that due to scattering within the CCD membrane,
+which is especially a problem in the i band.  In fact, we have chosen
+<em>not</em> to aggressively subtract the wings of stars, partly because
+of the difficulty of handling the wings of stars that do not fall on
+the frame, and partly due to our lack of a robust understanding of the
+outer parts of the PSF .  With the parameters
+employed, only the very cores of the stars (out to 20 pixels) are ever
+subtracted, and this has a negligible influence on the data.  Information
+about star-subtraction is recorded in the <a href="../glossary/index.html#fpBin"><code>fpBIN</code></a> files, in
+HDU 4.
+<br><p>
+Once the <a href="../products/catalogs//flags_detail.html#bright"><code>BRIGHT</code></a> detections have been processed, <code>Photo</code>
+proceeds with a more local sky estimate.  This is carried out by
+finding the same clipped median, but now in 256x256 pixel
+boxes, centered every 128 pixels.  These values are again debiased.
+<br><p>
+This estimate of the sky is then subtracted from the data, using
+linear interpolation between these values spaced 128 pixels apart; the
+interpolation is done using a variant of the well-known Bresenham
+algorithm usually employed to draw lines on
+pixellated displays.
+<br><p>
+This sky image, sampled every 128x128 pixels is written out to
+the <code>fpBIN</code> file in HDU 2; the estimated uncertainties in the sky
+(as estimated from the interquartile range and converted to a standard
+deviation taking due account of clipping) is stored in HDU 3.  The
+value of sky in each band and its error, as interpolated to the center
+of the object, are written to the <a href="../glossary/index.html#fpObjc"><code>fpObjc</code></a> files along with all
+other measured quantities.
+<br><p>
+After all objects have been detected and removed,
+<code>Photo</code> has the option of redetermining the sky using the same
+256x256 pixel boxes; in practice this has not proved to
+significantly affect the photometry.
+
+<H2><a name=caveats>Caveats</a></H2> 
+
+<!--#include virtual="../products/images/u_sky.html"-->
+
+<hr>
+<!-- hhmts start -->Last modified: Tue Apr 15 12:00:12 CDT 2003
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body>
+</html>

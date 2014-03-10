@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>WCS</TITLE>
+<META NAME="description" CONTENT="WCS">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html497" HREF="node35.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html495" HREF="node32.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html491" HREF="node33.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html498" HREF="node35.html">The Postage Stamp Pipeline</A>
+<B>Up:</B> <A NAME="tex2html496" HREF="node32.html">Astrometric Pipeline</A>
+<B> Previous:</B> <A NAME="tex2html492" HREF="node33.html">Astrometric Quality</A>
+<BR> <P>
+<H3><A NAME="SECTION00042200000000000000">WCS</A></H3>
+<P>
+<A NAME="secastrom_wcs">&#160;</A>
+The bias-subtracted, flatfielded data frames in the EDR
+include World Coordinate System (WCS) information in the FITS file headers.
+This information enables some display and analysis software to provide RA
+and DEC information on a pixel by pixel basis and also to overlay an
+equatorial coordinate grid over the image.
+<P>
+Present WCS proposed standards calabretta01 do not fully support
+a rigorous transformation from great circle to equatorial coordinates.
+As a result, the WCS representation does not reflect the full accuracy of
+the astrometric solution, but the accuracy is better than one pixel (about
+0.4'') within a frame.
+<P>
+The conversion from (<I>row</I>,<I>col</I>) measured in a field to <IMG WIDTH=38 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline2847" SRC="img15.gif">(J2000
+degrees) is
+<BR><IMG WIDTH=655 HEIGHT=46 ALIGN=BOTTOM ALT="eqnarray471" SRC="img56.gif"><BR>
+where <IMG WIDTH=165 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline3027" SRC="img57.gif"> and <IMG WIDTH=178 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline3029" SRC="img58.gif">, and <TT>CRVAL1</TT>, <TT>CRVAL2</TT>, <TT>CRPIX1</TT>, <TT>
+CRPIX2</TT>, <TT>CD1_1</TT>, <TT>CD1_2</TT>, <TT>CD2_2</TT>, and <TT>CD2_1</TT>
+are parameters defined in the <TT>FITS</TT> header for each field.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

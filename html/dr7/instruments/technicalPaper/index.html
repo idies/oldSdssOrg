@@ -1,0 +1,1111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- This template is for "3rd level", 2 directories below DR1/doc -->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>The Sloan Digital Sky Survey: Technical Summary</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1 align="center">The Sloan Digital Sky Survey: Technical Summary</h1>
+
+<div class="p">
+<!---->
+</div>
+
+<h3 align="center">Donald G. York, J. Adelman, John E. Anderson, Jr., Scott
+F. Anderson, James Annis, Neta A. Bahcall, J. A. Bakken, Robert Barkhouser,
+Steven Bastian, Eileen Berman, William N. Boroski, Steve Bracker, Charlie
+Briegel, John W. Briggs, J. Brinkmann, Robert Brunner, Scott Burles, Larry
+Carey, Michael A. Carr, Francisco J. Castander, Bing Chen, Patrick L.
+Colestock, A. J. Connolly, J. H. Crocker, István Csabai, Paul C. Czarapata,
+John Eric Davis, Mamoru Doi, Tom Dombeck, Daniel Eisenstein, Nancy Ellman,
+Brian R. Elms, Michael L. Evans, Xiaohui Fan, Glenn R. Federwitz, Larry
+Fiscelli, Scott Friedman, Joshua A. Frieman, Masataka Fukugita, Bruce
+Gillespie, James E. Gunn, Vijay K. Gurbani, Ernst de Haas, Merle Haldeman,
+Frederick H. Harris, J. Hayes, Timothy M. Heckman, G. S. Hennessy, Robert B.
+Hindsley, Scott Holm, Donald J. Holmgren, Chi-hao Huang, Charles Hull, Don
+Husby, Shin-Ichi Ichikawa, Takashi Ichikawa, Zeljko Ivezi\'c, Stephen Kent,
+Rita S.J. Kim, E. Kinney, Mark Klaene, A. N. Kleinman, S. Kleinman, G. R.
+Knapp, John Korienek, Richard G. Kron, Peter Z. Kunszt, D.Q. Lamb, B. Lee, R.
+French Leger, Siriluk Limmongkol, Carl Lindenmeyer, Daniel C. Long, Craig
+Loomis, Jon Loveday, Rich Lucinio, Robert H. Lupton, Bryan MacKinnon, Edward
+J. Mannery, P. M. Mantsch, Bruce Margon, Peregrine McGehee, Timothy A. McKay,
+Avery Meiksin, Aronne Merelli, David G. Monet, Jeffrey A. Munn, Vijay K. 
+Narayanan, Thomas Nash, Eric Neilsen, Rich Neswold, Heidi Jo Newberg, R. C.
+Nichol, Tom Nicinski, Mario Nonino, Norio Okada, Sadanori Okamura, Jeremiah
+P. Ostriker, Russell Owen, A. George Pauls, John Peoples, R. L. Peterson,
+Donald Petravick, Jeffrey R. Pier, Adrian Pope, Ruth Pordes, Angela Prosapio,
+Ron Rechenmacher, Thomas R. Quinn, Gordon T. Richards, Michael W. Richmond,
+Claudio H. Rivetta, Constance M. Rockosi, Kurt Ruthmansdorfer, Dale Sandford,
+David J. Schlegel, Donald P. Schneider, Maki Sekiguchi, Gary Sergey, Kazuhiro
+Shimasaku, Walter A. Siegmund, Stephen Smee, J. Allyn Smith, S. Snedden, R.
+Stone, Chris Stoughton, Michael A. Strauss, Christopher Stubbs, Mark
+SubbaRao, Alexander S. Szalay, Istvan Szapudi, Gyula P. Szokoly, Anirudda R.
+Thakar, Christy Tremonti, Douglas L. Tucker, Alan Uomoto, Dan VandenBerk,
+Michael S. Vogeley, Patrick Waddell, Shu-i Wang, Masaru Watanabe, David H.
+Weinberg, Brian Yanny,  and Naoki Yasuda (The SDSS Collaboration) </h3>
+
+<h2>Abstract</h2>
+The Sloan Digital Sky Survey (SDSS) will provide the data to support detailed
+investigations of the distribution of luminous and non-luminous matter in the
+Universe: a photometrically and astrometrically calibrated digital imaging
+survey of <font face="symbol">p</font> steradians above about Galactic
+latitude 30<sup><font face="symbol">?</font></sup> in five broad optical
+bands to a depth of g<font face="symbol">'</font><font face="symbol"> ~
+</font>23<sup>m</sup>, and a spectroscopic survey of the approximately
+10<sup>6</sup> brightest galaxies and 10<sup>5</sup> brightest quasars found
+in the photometric object catalog produced by the imaging survey. This paper
+summarizes the observational parameters and data products of the SDSS, and
+serves as an introduction to extensive technical on-line documentation.
+
+<div class="p">
+<!---->
+</div>
+
+<h2><a name="tth_sEc1">1</a>&nbsp;&nbsp;Introduction</h2>
+
+<div class="p">
+<!---->
+</div>
+At this writing (May 2000) the Sloan Digital Sky Survey (SDSS) is ending its
+commissioning phase and beginning operations. The purpose of this paper is to
+provide a concise summary of the vital statistics of the project, a
+definition of some of the terms used in the survey and, via links to
+documentation in electronic form, access to detailed descriptions of the
+project's design, hardware, and software, to serve as technical background
+for the project's science papers. The electronic material is extracted from
+the text (the "Project Book") written to support major funding proposals, and
+is available at the <i>Astronomical Journal</i> web site via the on-line
+version of this paper.  The official SDSS web site
+(<tt>http://www.sdss.org</tt>) also provides links to the on-line Project
+Book, and it can be accessed directly at
+<tt>http://www.astro.princeton.edu/PBOOK/welcome.htm</tt>. In the discussion
+below we reference the chapters in the Project Book by the last part of the
+URL, i.e. that following <tt>PBOOK/</tt>. The versions accessible at the SDSS
+web sites also contain extensive discussions and summaries of the scientific
+goals of the survey, which are not included here.
+
+<div class="p">
+<!---->
+</div>
+The text of the on-line Project Book was last updated in August 1997.  While
+there have been a number of changes in the hardware and software described
+therein, the material accurately describes the design goals and the
+implementation of the major observing subsystems. As the project becomes
+operational, we will provide a series of formal technical papers (most still
+in preparation), which will describe in detail the project hardware  and
+software in its actual operational state.
+
+<div class="p">
+<!---->
+</div>
+Section 2 describes the Survey's objectives: the imaging depth, sky coverage,
+and instrumentation. Section 3 summarizes the software and data reduction
+components of the SDSS and its data products.  Section 4 reviews some recent
+scientific results from the project's initial commissioning data runs, which
+demonstrate the ability of the project to reach its technical goals. All
+Celestial coordinates are in epoch J2000.
+
+<div class="p">
+<!---->
+</div>
+
+<h2><a name="tth_sEc2">2</a>&nbsp;&nbsp;Survey Characteristics</h2>
+
+<div class="p">
+<!---->
+</div>
+The Sloan Digital Sky Survey will produce both imaging and spectroscopic
+surveys over a large area of the sky.  The survey uses a dedicated 2.5 m
+telescope equipped with a large format mosaic CCD camera to image the sky in
+five optical bands, and two digital spectrographs to obtain the spectra of
+about one million galaxies and 100,000 quasars selected from the imaging data.
+
+<div class="p">
+<!---->
+</div>
+The SDSS calibrates its photometry using observations of a network of
+standard stars established by the United States Naval Observatory (USNO) 1 m
+telescope, and its astrometry using observations by an array of astrometric
+CCDs in the imaging camera.
+
+<div class="p">
+<!---->
+</div>
+
+<h3><a name="tth_sEc2.1">2.1</a>&nbsp;&nbsp;Telescope</h3>
+
+<div class="p">
+<!---->
+</div>
+The SDSS telescope is a 2.5m f/5 modified Ritchey-Chrétien wide-field
+altitude-azimuth telescope (see <tt>telescop/telescop.htm</tt>) located at
+the Apache Point Observatory (APO), Sunspot, New Mexico
+(<tt>site/site.htm</tt>). The telescope achieves a very wide (3<sup><font
+face="symbol">?</font></sup>) distortion-free field by the use of a large
+secondary mirror and two corrector lenses. It is equipped with the
+photometric/astrometric mosaic camera (<tt>camera/camera.htm</tt>, Gunn et
+al. 1998) and images the sky by scanning along great circles at the sidereal
+rate. The imaging camera mounts at the Cassegrain focus. The telescope is
+also equipped with two double fiber-fed spectrographs, permanently mounted on
+the image rotator,  since the spectrographs are fiber fed. This ensures that
+the fibers do not flex during an exposure. The telescope is changed from
+imaging mode to spectroscopic mode by removing the imaging camera and
+mounting at the Cassegrain focus a fiber plug plate, individually drilled for
+each field, which feeds the spectrographs. In survey operations, it is
+expected that up to nine spectroscopic plates per night will be observed,
+with the necessary plates being plugged with fibers during the day.  The
+telescope mounting and enclosure allow easy access for rapid changes between
+fiber plug plates and between spectroscopic and imaging modes.  This strategy
+allows imaging to be done in pristine observing conditions (photometric sky,
+image size  <font face="symbol">?</font> 1.5" FWHM) and spectroscopy to be
+done during less ideal conditions. All observing will be done in moonless sky.
+
+<div class="p">
+<!---->
+</div>
+Besides the 2.5m telescope, the SDSS makes use of three subsidiary
+instruments at the site. The <i>Photometric Telescope</i> (PT) is a 0.5m
+telescope equipped with a CCD camera and the SDSS filter set. Its task is to
+calibrate the photometry. Two instruments, a <i>seeing monitor</i> and a
+10<font face="symbol">m</font>m <i>cloud scanner</i> (Hull et al. 1995;
+<tt>site/site.htm</tt>) monitor the astronomical weather.
+
+<div class="p">
+<!---->
+</div>
+
+<h3><a name="tth_sEc2.2">2.2</a>&nbsp;&nbsp;Imaging Camera</h3>
+
+<div class="p">
+<!---->
+</div>
+The SDSS imaging camera contains two sets of CCD arrays: the imaging array
+and the astrometric arrays (<tt>camera/camera.htm</tt>, Gunn et al. 1998).
+
+<div class="p">
+<!---->
+</div>
+The <i>imaging array</i> consists of 30 2048 × 2048 Tektronix CCDs, placed
+in an array of six columns and five rows.  The telescope scanning is aligned
+with the columns.  Each row observes the sky through a different filter, in
+temporal sequence r<font face="symbol">?</font>, i<font
+face="symbol">?</font>, u<font face="symbol">?</font>, z<font
+face="symbol">?</font>, and g<font face="symbol">?</font>. The pixel size is
+24<font face="symbol">m</font>m (0.396" on the sky). The imaging survey is
+taken in drift-scan (time-delay-and-integrate, or TDI) mode, i.e. the camera
+continually sweeps the sky in great circles, and a given point on the sky
+passes through the five filters in succession. The effective integration time
+per filter is 54.1 seconds, and the time for passage over the entire
+photometric array is about 5.7 minutes (<tt>strategy/strategy.htm</tt>; Gunn
+et al. 1998). Since the camera contains six columns of CCDs, the result is a
+long <i>strip</i> of six <i>scanlines</i>, containing almost simultaneously
+observed five-color data for each of the six CCD columns.  Each CCD observes
+a swath of sky 13.52<font face="symbol">?</font> wide.  The CCDs are
+separated in the <i>row</i> direction (i.e. perpendicular to the scan
+direction) by 91.0 mm (25.2<font face="symbol">?</font> on the sky)
+center-to-center. The observations are filled in by a second strip, offset
+from the first by 93% of the  CCD width, to produce a filled <i>stripe</i>,
+2.54<sup><font face="symbol">?</font></sup> wide, with 8% (1<font
+face="symbol">?</font>) lateral overlap on each side. Because of the camera's
+large field of view, the TDI tracking must be done along great circles.  The
+Northern Galactic Cap is covered by 45 great-circle arcs (shown projected on
+the sky in Figures 1 and 2).
+
+<div class="p">
+<!---->
+</div>
+
+<h3><a name="tth_sEc2.3">2.3</a>&nbsp;&nbsp;Photometry and Photometric
+Calibration</h3>
+
+<div class="p">
+<!---->
+</div>
+The five filters in the imaging array of the camera, [u<font
+face="symbol">?</font>, &nbsp; g<font face="symbol">?</font>, &nbsp; r<font
+face="symbol">?</font>, &nbsp; i<font face="symbol">?</font> and z<font
+face="symbol">?</font>] have effective wavelengths of [3590 Å, 4810 Å, 6230
+Å, 7640 Å and 9060 Å] (Fukugita et al. 1996; Gunn et al. 1998). An a
+priori model estimate of the telescope and camera throughputs and of the sky
+brightness predicted that we would reach the 5<font face="symbol">s</font>
+detection limit for point sources in 1" seeing at [22.3, 23.3, 23.1, 22.3,
+20.8] in the (u<font face="symbol">?</font>,g<font
+face="symbol">?</font>,r<font face="symbol">?</font>,i<font
+face="symbol">?</font>,z<font face="symbol">?</font>) filters, respectively,
+at an airmass of 1.4. We have put formal requirements on throughput at 75% of
+the values used for the above estimation, and have demonstrated that we meet
+this requirement in all bands with the possible exception of z<font
+face="symbol">?</font>. The sensitivity limit can be tested by finding the
+magnitude at which repeat observations of a given area of sky yield 50%
+reproducibility of the objects detected.  This has been tested most
+thoroughly with data taken in less than optimal seeing (1.3"<font
+face="symbol">-</font>1.6"); nevertheless, the 50% reproducibility level lies
+within a few tenths of a magnitude of the above-quoted 5<font
+face="symbol">s</font> detection limit in all five bands (see Ivezi\'c et al.
+2000). The SDSS science requirements demand that photometric calibration
+uncertainties for point sources be 0.02 in r<font face="symbol">?</font>,
+0.02 in r<font face="symbol">?</font><font face="symbol">-</font>i<font
+face="symbol">?</font> and g<font face="symbol">?</font><font
+face="symbol">-</font>r<font face="symbol">?</font>, and 0.03 in u<font
+face="symbol">?</font><font face="symbol">-</font>g<font
+face="symbol">?</font> and i<font face="symbol">?</font><font
+face="symbol">-</font>z<font face="symbol">?</font>.  To meet these stringent
+requirements in both signal-to-noise ratio and photometricity, imaging data
+are declared to be survey quality only if the PT determines that the night is
+photometric, with a zero-point uncertainty below 1%, and if the seeing is
+better than 1.5". The imaging data saturate at about [13,  14,  14,  14, 12]
+magnitudes for point sources.
+
+<div class="p">
+<!---->
+</div>
+The magnitude scale is on the AB<sub><font face="symbol">n</font></sub>
+system (Oke 1969, unpublished), which was updated to the AB<sub>79</sub>
+system by Oke &amp; Gunn (1983) and to AB<sub>95</sub> by Fukugita et al.
+(1996). The magnitudes m are related to flux density f by m<font
+face="symbol"> ~ </font>sinh<sup><font face="symbol">-</font>1</sup>(f)
+rather than logarithmically (see Lupton, Gunn &amp; Szalay 1999  and Fan et
+al. 1999). This definition is essentially identical to the logarithmic
+magnitude at signal-to-noise ratios greater than about 5 and is well behaved
+for low and even zero and negative flux densities.
+
+<div class="p">
+<!---->
+</div>
+The calibration and definition of the magnitude system is carried out by the
+USNO 1 m telescope and the 0.5m PT. The SDSS photometry is placed on the
+AB<sub><font face="symbol">n</font></sub> system using three <i>fundamental
+standards</i> (<span class="roman">BD</span><span class="roman">+</span><span
+class="roman">17</span><sup><font face="symbol">?</font></sup><span
+class="roman">4708</span>, <span class="roman">BD</span><span
+class="roman">+</span><span class="roman">26</span><sup><font
+face="symbol">?</font></sup><span class="roman">2606</span>, and <span
+class="roman">BD</span><span class="roman">+</span><span
+class="roman">21</span><sup><font face="symbol">?</font></sup><span
+class="roman">609</span>), whose magnitude scale is as defined by Fukugita et
+al. (1996); a set of 157 <i>primary standards</i>, which are calibrated by
+the above fundamental standards using the USNO 1m telescope, and which cover
+the whole range of right ascension and enable the calibration system to be
+made self-consistent; and a set of <i>secondary calibration patches</i> lying
+across the imaging stripes, containing stars fainter than 14<sup>m</sup>
+whose magnitudes are calibrated by the PT with respect to those of the
+primary standards and which transfer that calibration to the imaging survey. 
+The locations of these patches on the survey stripes are shown in Figure 1.
+On nights when the 2.5 m is observing, the PT observes primary standard stars
+to provide the atmospheric extinction coefficients over the night and to
+confirm that the night is photometric. The standard star network is described
+in <tt>photcal/photcal.htm</tt> - note that the telescope described there has
+now been replaced by the 0.5m PT.
+
+<div class="p">
+<!---->
+</div>
+
+<h3><a name="tth_sEc2.4">2.4</a>&nbsp;&nbsp;Astrometric Calibration</h3>
+
+<div class="p">
+<!---->
+</div>
+The camera also contains leading and trailing <i>astrometric arrays</i> -
+narrow (128×2048), neutral-density-filtered, r<font
+face="symbol">?</font>-filtered CCDs covering the entire width of the camera.
+ These arrays can measure objects in the magnitude range r<font
+face="symbol">?</font><font face="symbol"> ~ </font> 8.5 - 16.8, i.e. they
+cover the dynamic range between the standard astrometric catalog stars and
+the brightest unsaturated stars in the photometric array. The astrometric
+calibration is thereby referenced to the fundamental astrometric catalogues
+(see <tt>astrom/astrom.htm</tt>), using the Hipparcos and Tycho Catalogues
+(ESA 1997) and specially observed equatorial fields (Stone et al. 1999).
+Comparison with positions from the FIRST (Becker et al. 1995) and 2MASS
+(Skrutskie 1999) catalogues shows that the rms astrometric accuracy is
+currently better than 150 milliarcseconds (mas) in each coordinate.
+
+<div class="p">
+<!---->
+</div>
+
+<h3><a name="tth_sEc2.5">2.5</a>&nbsp;&nbsp;Imaging Survey: North Galactic
+Cap</h3>
+
+<div class="p">
+<!---->
+</div>
+The imaging survey covers about 10,000 contiguous square degrees in the
+Northern Galactic Cap.  This area lies basically above Galactic latitude
+30<sup><font face="symbol">?</font></sup>, but its footprint is adjusted
+slightly to lie within the minimum of the Galactic extinction contours
+(Schlegel, Finkbeiner &amp; Davis 1998), resulting in an elliptical region. 
+The region is centered at <font face="symbol">a</font>&nbsp; = &nbsp;
+12<sup>h</sup> &nbsp; 20<sup>m</sup>, <font face="symbol">d</font>&nbsp; =
+&nbsp;+32.5<sup><font face="symbol">?</font></sup>.  The minor axis is at an
+angle 20<sup><font face="symbol">?</font></sup> East of North with extent
+<font face="symbol">?</font>55<sup><font face="symbol">?</font></sup>.  The
+major axis is a great circle perpendicular to the minor axis with extent
+<font face="symbol">?</font>65<sup><font face="symbol">?</font></sup>.  The
+survey footprint with the location of the stripes is shown in Figure 2 - see
+<tt>strategy/strategy.htm</tt> for details.
+
+<div class="p">
+<!---->
+</div>
+
+<h3><a name="tth_sEc2.6">2.6</a>&nbsp;&nbsp;Imaging Survey: The South
+Galactic Cap</h3>
+
+<div class="p">
+<!---->
+</div>
+In the South Galactic Cap, three stripes will be observed, one along the
+Celestial Equator and the other two north and south of the equator (see
+Figure 2). The <i>equatorial stripe</i> (<font face="symbol">a</font> =
+20.7<sup>h</sup> to 4<sup>h</sup>, <font face="symbol">d</font> = 0<sup><font
+face="symbol">?</font></sup>) will be observed repeatedly, both to find
+variable objects and, when co-added, to reach magnitude limits about
+2<sup>m</sup> deeper than the Northern imaging survey.
+
+<div class="p">
+<!---->
+</div>
+The other two stripes will cover great circles lying between <font
+face="symbol">a</font>,&nbsp;<font face="symbol">d</font> of
+(20.7<sup>h</sup>, -5.8<sup><font face="symbol">?</font></sup> <font
+face="symbol">?</font> 4.0<sup>h</sup>, -5.8<sup><font
+face="symbol">?</font></sup>) and (22.4<sup>h</sup>, 8.7<sup><font
+face="symbol">?</font></sup> <font face="symbol">?</font> 2.3<sup>h</sup>,
+13.2<sup><font face="symbol">?</font></sup>).
+
+<div class="p">
+<!---->
+</div>
+
+<h3><a name="tth_sEc2.7">2.7</a>&nbsp;&nbsp;The Spectroscopic Survey</h3>
+
+<div class="p">
+<!---->
+</div>
+Objects are detected in the imaging survey, classified as point source or
+extended, and measured, by the image analysis software (see below). These
+imaging data are used to select in a uniform way different classes of objects
+whose spectra will be taken.  The final details of this <i> target
+selection</i> will be described once the survey is well underway; the
+criteria discussed here are likely to be very close to those finally used.
+
+<div class="p">
+<!---->
+</div>
+Two samples of <i>galaxies</i> are selected from the objects classified as
+"extended".  About 9 ×10<sup>5</sup> galaxies will be selected to have
+Petrosian (1976) magnitudes r<font face="symbol">?</font><sub>P</sub> &nbsp; 
+<font face="symbol">?</font>  17.7. Galaxies with a mean  r<font
+face="symbol">?</font> band surface brightness within the half light radius
+fainter than 24 magnitudes/<span class="roman">arc</span>&nbsp;<span
+class="roman">second</span><sup><span class="roman">2</span></sup> will be
+removed, since spectroscopic observations are unlikely to produce a redshift.
+For illustrative purposes, a simulation of a slice of the SDSS redshift
+survey is shown in Figure  3 (from Colley et al. 2000).  Galaxies in this CDM
+simulation are `selected' by the SDSS selection criteria. As Figure 3
+demonstrates, the SDSS volume is large enough to contain a statistically
+significant sample of the largest structures predicted.
+
+<div class="p">
+<!---->
+</div>
+The second sample, of approximately 10<sup>5</sup> galaxies, exploits the
+characteristic very red color and high metallicity (producing strong
+absorption lines) of the most luminous galaxies: the "Brightest Cluster
+Galaxies" or "Bright Red Galaxies" (BRGs); redshifts can be well measured
+with the SDSS spectra for these galaxies to about r<font
+face="symbol">?</font> = 19.5. Galaxies located at the dynamical centers of
+nearby dense clusters often have these properties. Reasonably accurate
+photometric redshifts (Connolly et al. 1995) can be determined for these
+galaxies, allowing the selection by magnitude and g<font
+face="symbol">?</font>r<font face="symbol">?</font>i<font
+face="symbol">?</font> color of an essentially <i>distance limited</i> sample
+of the highest-density regions of the Universe to a redshift of about 0.45
+(see Figure 4 for a simulation).
+
+<div class="p">
+<!---->
+</div>
+With their power-law continua and the influence of Lyman-<font
+face="symbol">a</font> emission and the Lyman-<font face="symbol">a</font>
+forest, <i>quasars</i> have u<font face="symbol">?</font>g<font
+face="symbol">?</font>r<font face="symbol">?</font>i<font
+face="symbol">?</font>z<font face="symbol">?</font> colors quite distinct
+from those of the vastly more numerous stars over most of their redshift
+range (Fan 1999).  Thus about 1.5 ×10<sup>5</sup> <i>quasar candidates</i>
+are selected for spectroscopic observations as outliers from the stellar
+locus (cf., Krisciunas et al.  1998; Lenz et al. 1998; Newberg et al. 1999;
+Figure 5 below) in color-color space.  At the cost of some loss of
+efficiency, selection is allowed closer to the stellar locus around z = 2.8,
+where quasar colors approach those of early F and late A stars (Newberg &amp;
+Yanny 1997; Fan 1999).  Some further regions of color-color space outside the
+main part of the stellar locus where quasars are very rarely found are also
+excluded, including the regions containing M dwarf-white dwarf pairs, early A
+stars, and white dwarfs (see Figure 5).  The SDSS will compile a sample of
+quasars brighter than i<font face="symbol">?</font> <font
+face="symbol">?</font> 19 at z  &lt;  3.0; at redshifts between 3.0 and about
+5.2, the limiting magnitude will be about i<font face="symbol">?</font> = 20.
+Objects are also required to be point sources, except in the region of
+color-color space where low-redshift quasars are expected to be found. 
+Stellar objects brighter than i<font face="symbol">?</font> =20 which are
+FIRST sources (Becker, White and Helfand 1995) are also selected.  Based on
+early spectroscopy, we estimate that roughly 65% of our quasar candidates are
+genuine quasars; comparison with samples of known quasars indicates that our
+completeness is of order 90%.
+
+<div class="p">
+<!---->
+</div>
+In all cases, the magnitudes of the objects are corrected for Galactic
+extinction before selection, using extinction in the SDSS bands calculated
+from the reddening map of Schlegel, Finkbeiner &amp; Davis (1998).  Objects
+are then selected to have a magnitude limit <i>outside</i> the Galaxy. If
+this correction were not made, the systematic effects of Galactic extinction
+over the survey area would overwhelm the statistical uncertainties in the
+SDSS data set. After the imaging and spectroscopic survey is completed in a
+given part of the sky, the reddening and extinction will be recalculated
+using internal standards extracted from the imaging data.  The SDSS plans to
+use a variety of extinction probes, including very hot halo subdwarfs, halo
+turnoff stars, and elliptical galaxies whose intrinsic colors can be
+estimated from their line indices.
+
+<div class="p">
+<!---->
+</div>
+Together with various classes of calibration stars and fibers which observe
+blank sky to measure the sky spectrum, the selected galaxies and quasars are
+mapped onto the sky, and `tiled', i.e. their location on a 3<sup><font
+face="symbol">?</font></sup> diameter plug plate determined (<tt>
+tiling/tiling.htm</tt>).  The centers of the tiles are adjusted to provide
+closer coverage of regions of high galactic surface density, to make the
+spectroscopic coverage optimally uniform. Excess fibers are allocated to
+several classes of rare or peculiar objects (for example objects which are
+positionally matched with ROSAT sources, or those whose parameters lie
+outside any known range - these are <i>serendipitous</i> objects) and to
+samples of stars. The spectra are observed, 640 at a time (with a total
+integration time of 45 - 60 minutes depending on observing conditions) using
+a pair of fiber-fed double spectrographs (<tt>spectro/spectro.htm</tt>).  The
+wavelength coverage of the spectrographs is continuous from about 3800 Å to
+9200 Å, and  the wavelength resolution, <font face="symbol">l</font>/<font
+face="symbol">d</font><font face="symbol">l</font>, is 1800 (Uomoto et al.
+1999). The fibers are located at the focal plane via plug plates constructed
+for each area of sky. The fiber diameter is 0.2 mm (3" on the sky), and
+adjacent fibers cannot be located more closely than 55" on the sky.  Both
+members of a pair of objects closer than this separation can be observed
+spectroscopically if they are located in the overlapping regions of adjacent
+tiles.
+
+<div class="p">
+<!---->
+</div>
+Tests of the redshift accuracy using observations of stars in M67 whose
+radial velocities are accurately known (Mathieu et al. 1986) show that the
+SDSS radial velocity measurements  for stars have a scatter of about 3.5
+<span class="roman">km</span>&nbsp;<span class="roman">s</span><sup><font
+face="symbol">-</font><span class="roman">1</span></sup>.
+
+<div class="p">
+<!---->
+</div>
+
+<h2><a name="tth_sEc3">3</a>&nbsp;&nbsp;Software and Data Products</h2>
+
+<div class="p">
+<!---->
+</div>
+The operational software is described in <tt>datasys/datasys.htm</tt>. The
+data are obtained using the Data Acquisition (DA) system at APO (Petravick et
+al. 1994) and recorded on DLT tape. The imaging data consist of full images
+from all CCDs of the imaging array, cut-outs of detected objects from the
+astrometric array, and bookkeeping information.  These tapes are shipped to
+Fermilab by express courier and the data are automatically reduced through an
+interoperating set of software pipelines operating in a common computing
+environment.
+
+<div class="p">
+<!---->
+</div>
+The <i>photometric pipeline</i> reduces the imaging data; it corrects the
+data for data defects (interpolation over bad columns and bleed trails,
+finding and interpolating over `cosmic rays', etc), calculates overscan
+(bias), sky and flat field values, calculates the point spread functions
+(psf) as a function of time and location on the CCD array, finds objects,
+combines the data from the five bands, carries out simple model fits to the
+images of each object, deblends overlapping objects, and measures positions,
+magnitudes (including psf and Petrosian magnitudes) and shape parameters. 
+The photometric pipeline uses position calibration information from the
+astrometric array reduced through the <i>astrometric pipeline</i> and
+photometric calibration data from the photometric telescope (reduced through
+the <i>photometric telescope pipeline</i>).  Final calibrations are applied
+by the <i>final calibration pipeline</i>, which allows refinements in the
+positional and photometric calibration as the survey progresses.  The
+photometric pipeline is extensively tested using repeat observations,
+examination of the outputs, observations of regions of the sky previously
+observed by other telescopes (HST fields, for example) and a set of
+simulations, described in detail in <tt>simul/simul.htm</tt>.  For an example
+of the repeatability of SDSS photometry over several timescales, see Ivezi\'c
+et al. (2000). These repeat observations show that the mean errors (for point
+sources) are about 0.03<sup>m</sup> to 20<sup>m</sup>, increasing to about
+0.05<sup>m</sup> at 21<sup>m</sup> and to 0.12<sup>m</sup> at 22<sup>m</sup>.
+ These observed errors are in good agreement with those quoted by the
+photometric pipeline.  They apply only to the g<font face="symbol">?</font>,
+r<font face="symbol">?</font> and i<font face="symbol">?</font> bands - in
+the less sensitive u<font face="symbol">?</font> and z<font
+face="symbol">?</font> bands, the errors at the bright end are about the same
+as those in g<font face="symbol">?</font>r<font face="symbol">?</font>i<font
+face="symbol">?</font>, but increase to 0.05<sup>m</sup> at 20<sup>m</sup>
+and 0.12<sup>m</sup> at 21<sup>m</sup>.
+
+<div class="p">
+<!---->
+</div>
+The outputs, together with all the observing and processing information, are
+loaded into the <i>operational data base</i> which is the central collection
+of scientific and bookkeeping data used to run the survey. To select the
+spectroscopic targets, objects are run through the <i>target selection
+pipeline</i> and flagged if they meet the spectroscopic selection criteria
+for a particular type of object. The criteria for the primary objects
+(quasars, galaxies and BRGs) will not be changed once the survey is underway.
+ Those for serendipitous objects and samples of interesting stars  can be
+changed throughout the survey. A given object can in principle receive
+several target flags. The selected objects are tiled as described above, plug
+plates are drilled, and the spectroscopic observations are made.  The
+spectroscopic data are automatically reduced by the <i>spectroscopic
+pipeline</i>, which extracts, corrects and calibrates the spectra, determines
+the spectral types, and measures the redshifts. The reduced spectra are then
+stored in the operational data base. The contents of the operational data
+base are copied at regular intervals into the <i>science data base</i> for
+retrieval and scientific analysis (see <tt>appsoft/appsoft.htm</tt>). The
+science data base is indexed in a hierarchical manner: the data and other
+information are linked into `containers' that  can be divided and subdivided
+as necessary, to define easily searchable regions with approximately the same
+data content. This hierarchical scheme is consistent with those being adopted
+by other large surveys, to allow cross referencing of multiple surveys.  The
+science data base also incorporates a set of query tools and is designed for
+easy portability.
+
+<div class="p">
+<!---->
+</div>
+The photometric data products of the SDSS include: a <i>catalog</i> of all
+detected objects, with measured positions, magnitudes, shape parameters,
+model fits and processing flags; <i>atlas images</i> (i.e. cutouts from the
+imaging data in all five bands) of all detected objects and of objects from
+the FIRST and ROSAT catalogs; a 4 ×4 binned image of the corrected images
+with the objects removed: and a <i>mask</i> of the areas of sky not processed
+(because of saturated stars, for example) and of corrected pixels (e.g. those
+from which cosmic rays were removed). The atlas images are sized to enclose
+the area occupied by each object plus the PSF width, or the object size given
+in the ROSAT or FIRST catalogues. The photometric outputs are described  in
+<tt>http://www.astro.princeton.edu/SDSS/photo.html</tt>. The data base will
+also contain the calibrated 1D <i>spectra</i>, the derived <i>redshift</i>
+and <i>spectral type</i>, and the bookkeeping information related to the
+spectroscopic observations.  In addition, the positions of astrometric
+calibration stars measured by the astrometric pipeline and the magnitudes of
+the faint photometric standards measured by the photometric telescope
+pipeline will be published at regular intervals.
+
+<div class="p">
+<!---->
+</div>
+
+<h2><a name="tth_sEc4">4</a>&nbsp;&nbsp;Early Science from the SDSS
+Commissioning Data</h2>
+
+<div class="p">
+<!---->
+</div>
+The goal of the SDSS is to provide the data necessary for studies of the
+large scale structure of the Universe on a wide range of scales. The imaging
+survey should detect <font face="symbol"> ~ </font>5 ×10<sup>7</sup>
+galaxies, <font face="symbol"> ~ </font>10<sup>6</sup> quasars and <font
+face="symbol"> ~ </font>8 ×10<sup>7</sup> stars to the survey limits. These
+photometric data, via photometric redshifts and various statistical
+techniques such as the angular correlation function, support studies of large
+scale structure well past the limit of the spectroscopic survey.  On even
+larger scales, information on structure will come from quasars.
+
+<div class="p">
+<!---->
+</div>
+The science justification for the SDSS is discussed in several conference
+papers (e.g. Gunn &amp; Weinberg 1995; Fukugita 1998; Margon 1999). The
+Project Book science sections can be accessed at
+<tt>http://www.astro.princeton.edu/PBOOK/science/science.htm</tt>.  Much of
+the science for which the SDSS was built, the study of large scale structure,
+will come when the survey is complete, but the initial test data have already
+led to significant scientific discoveries in many fields. In this section, we
+show examples of the first test data and some initial results. To date (May
+2000), the SDSS has obtained test imaging data for some 2000 square degrees
+of sky and about 20,000 spectra.  Examples of these data are shown in Figures
+5 (sample color-color and color-magnitude diagrams of point-source objects),
+6 (sample spectra) and 7 (a composite color image of a piece of the sky which
+contains the cluster Abell 267),
+
+<div class="p">
+<!---->
+</div>
+Fischer et al. (2000) have detected the signature of the weak lensing of
+background galaxies by foreground galaxies, allowing the halos and total
+masses of the foreground galaxies to be measured.
+
+<div class="p">
+<!---->
+</div>
+The searches by Fan et al. (1999a,b; 2000a,c), Schneider et al. (2000) and
+Zheng et al. (2000) have greatly increased the number of known high redshift
+(z &gt; 3.6) quasars and include several quasars with z  &gt;  5. Fan et al.
+(1999b) have found the first example of a new kind of quasar: a high redshift
+object with a featureless spectrum and without the radio emission and
+polarization characteristics of BL Lac objects.  The redshift for this object
+(z = 4.6) is found from the Lyman-<font face="symbol">a</font> forest
+absorption in the spectrum.
+
+<div class="p">
+<!---->
+</div>
+Some 150 distant probable RR Lyrae stars have been found in the Galactic
+halo, enabling the halo stellar density to be mapped; the distribution may
+have located the edge of the halo at approximately 60 kpc (Ivezi\'c et al.
+2000).  The distribution of RR Lyrae stars and other horizontal branch stars
+is very clumped, showing the presence of possible tidal streamers in the halo
+(Ivezi\'c et al. 2000; Yanny et al. 2000). Margon et al. (1999) describe the
+discovery of faint high latitude carbon stars in the SDSS data.
+
+<div class="p">
+<!---->
+</div>
+Strauss et al. (1999), Schneider et al. (2000), Fan et al. (2000b), Tsvetanov
+et al. (2000), Pier et al. (2000) and Leggett et al. (2000) report the
+discovery of a number of very low mass stars or substellar objects, those of
+type `L' or `T', including the first field methane (`T') dwarfs and the first
+stars of spectral type intermediate between `L' and `T'.  The detection rate
+to date shows that the SDSS is likely to identify several thousand  L and T
+dwarfs.  These objects are found to occupy very distinct regions of
+color-color and color-magnitude space, which will enable the completeness of
+the samples to be well characterized.
+
+<div class="p">
+<!---->
+</div>
+Measurements of the psf diameter variations and the image wander allow
+variations in the turbulence in the Earth's atmosphere to be tracked. These
+data demonstrate the presence of anomalous refraction on scales at least as
+large as the <span class="roman">2</span><span class="roman">.</span><span
+class="roman">3</span><sup><font face="symbol">?</font></sup> field of view
+of the camera (Pier et al. 1999).
+
+<div class="p">
+<!---->
+</div>
+Of course the most exciting possibility for any large survey which probes new
+regions of sensitivity or wavelength is the discovery of exceedingly rare or
+entirely new classes of objects.  The SDSS has already found a number of very
+unusual objects; the nature of some of these remains unknown (Fan et al.
+1999c). These and other investigations in progress show the promise of SDSS
+for greatly advancing astronomical work in fields ranging from the behavior
+of the Earth's atmosphere to structure on the scale of the horizon of the
+Universe.
+
+<h2>Acknowledgements</h2>
+
+<p>The Sloan Digital Sky Survey (SDSS) is a joint project of The University
+of Chicago, Fermilab, the Institute for Advanced Study, the Japan
+Participation Group, The Johns Hopkins University, the Max-Planck-Institute
+for Astronomy, Princeton University, the United States Naval Observatory, and
+the University of Washington.  Apache Point Observatory, site of the SDSS, is
+operated by the Astrophysical Research Consortium.  Funding for the project
+has been provided by the Alfred P. Sloan Foundation, the SDSS member
+institutions, the National Aeronautics and Space Administration, the National
+Science Foundation, the U.S. Department of Energy, and Monbusho.  The
+official SDSS web site is <tt>www.sdss.org</tt>.</p>
+
+<h2>References</h2>
+
+<p>Bade, N., Engels, D., Voges, W., et al. 1998, A&amp;AS, 127, 145</p>
+
+<div class="p">
+<!---->
+</div>
+Becker, R.H., White, R.L., &amp; Helfand, D.J. 1995, ApJ, 450, 559
+
+<div class="p">
+<!---->
+</div>
+Berger, J., &amp; Fringant, A.-M., 1985, A&amp;AS, 61, 191
+
+<div class="p">
+<!---->
+</div>
+Colley, W. N., Gott, J. R., Weinberg, D. H., Park, C., &amp; Berlind, A. A.
+2000, ApJ, 529, 795
+
+<div class="p">
+<!---->
+</div>
+Connolly, A.J., Csabai, I., Szalay, A.S., Koo, D.C., Kron, R.G., &amp; Munn,
+J.A. 1995, AJ, 110, 2655
+
+<div class="p">
+<!---->
+</div>
+Crawford, C.S., Allen, S.W., Ebeling, H., A.C., &amp; Fabian, A.C. 1999,
+MNRAS, 306, 857
+
+<div class="p">
+<!---->
+</div>
+ESA 1997, The Hipparcos and Tycho Catalogues, ESA SP-1020
+
+<div class="p">
+<!---->
+</div>
+Fan, X. 1999, AJ, 117, 2528
+
+<div class="p">
+<!---->
+</div>
+Fan, X., Strauss, M. A., Schneider, D.P., et al.  1999a, AJ, 118, 1
+
+<div class="p">
+<!---->
+</div>
+Fan, X., Strauss, M.A., Gunn, J.E. et al. 1999b, ApJ 526, L57
+
+<div class="p">
+<!---->
+</div>
+Fan, X., Strauss, M.A., Schneider, D.P., Gunn, J.E., Lupton, R.L., Knapp,
+G.R., &amp; Yanny, B. 1999c, AAS, 73.15
+
+<div class="p">
+<!---->
+</div>
+Fan, X., Strauss, M. A., Schneider, D.P., et al.  2000a, AJ, 119, 1
+
+<div class="p">
+<!---->
+</div>
+Fan, X., Knapp, G.R., Strauss, M.A., et al. 2000b, AJ, 119, 928
+
+<div class="p">
+<!---->
+</div>
+Fan, X., White, R.L., Davis, M.,  et al. 2000c, submitted to AJ
+
+<div class="p">
+<!---->
+</div>
+Fischer, P., McKay, T., Sheldon, E. et al. 2000, submitted to AJ
+(astro-ph/9912119)
+
+<div class="p">
+<!---->
+</div>
+Fukugita, M. 1998, in Highlights of Astronomy, 11A, ed. J Andersen, 449.
+
+<div class="p">
+<!---->
+</div>
+Fukugita, M., Ichikawa, T., Gunn, J.E., Doi, M., Shimasaku, K., &amp;
+Schneider, D.P. 1996, AJ, 111, 1748
+
+<div class="p">
+<!---->
+</div>
+Gunn, J.E., Carr, M.A., Rockosi, C.M., Sekiguchi, M., et al. 1998, AJ, 116,
+3040
+
+<div class="p">
+<!---->
+</div>
+Gunn, J.E., &amp; Weinberg, D.H. 1995, in "Wide Field Spectroscopy and the
+Distant Universe", ed. S. Maddox &amp; A. Aragòn-Salamanca, World Scientific
+(Singapore), 3 
+
+<div class="p">
+<!---->
+</div>
+Hull, C., Limmongkol, S., &amp; Siegmund, W. 1994, Proc. S.P.I.E., 2199
+
+<div class="p">
+<!---->
+</div>
+Ivezi\'c, Z., Goldston, J., Finlator, K., et al. 2000, AJ (in press:
+astro-ph/0004130)
+
+<div class="p">
+<!---->
+</div>
+Krisciunas, K., Margon, B., &amp; Szkody, P. 1998, PASP, 110, 1342
+
+<div class="p">
+<!---->
+</div>
+Lenz, D.D., Newberg, H.J., Rosner, R., Richards, G.T., &amp; Stoughton, C.
+1998, ApJS, 119, 121
+
+<div class="p">
+<!---->
+</div>
+Lupton, R.H., Gunn, J.E., &amp; Szalay, A. 1999, AJ, 118, 1406
+
+<div class="p">
+<!---->
+</div>
+Mathieu, R.D., Latham, D.W., Griffin, R.F., &amp; Gunn, J.E. 1986, AJ, 92,
+1100
+
+<div class="p">
+<!---->
+</div>
+Margon, B. 1999, Philosophical Transactions of the Royal Society of London A,
+357, 93.
+
+<div class="p">
+<!---->
+</div>
+Margon, B., Anderson, S.F., Deutsch, E., &amp; Harris, H. 1999, BAAS 195.8006
+
+<div class="p">
+<!---->
+</div>
+Morris, S.L., Weymann, R.J., Anderson, S.F., Hewett, P.C., Foltz, C.B.,
+Chaffee, F.H., Francis, P.J., &amp; MacAlpine, G.M. 1991, AJ, 102, 1627
+
+<div class="p">
+<!---->
+</div>
+Newberg, H.J., &amp; Yanny, B. 1997, ApJS, 113, 89
+
+<div class="p">
+<!---->
+</div>
+Newberg, H.H., Richards, G.T., Richmond, M.W., &amp; Fan, X. 1999, ApJS, 123,
+377
+
+<div class="p">
+<!---->
+</div>
+Oke, J.B., &amp; Gunn, J.E. 1983, ApJ, 266, 713
+
+<div class="p">
+<!---->
+</div>
+Petravick, D., et al.  1994, S.P.I.E., 2198, 935
+
+<div class="p">
+<!---->
+</div>
+Petrosian, V. 1976, ApJ, 209, L1
+
+<div class="p">
+<!---->
+</div>
+Pier, J.R., Leggett, S.K., Strauss, M.A., et al. 2000, in "From Giant Planets
+to Cool Stars", ed.C. Griffith &amp;&nbsp;M. Marley, ASP Conf. Ser., in press 
+
+<div class="p">
+<!---->
+</div>
+Pier, J.R., Munn, J.A., Hennessy, G.S., Hindsley, R.H., &amp; Kent, S.M.
+1999, AAS, 195, 81.04
+
+<div class="p">
+<!---->
+</div>
+Schlegel, D.J., Finkbeiner, D.P., &amp; Davis, M. 1998, ApJ, 500, 525
+
+<div class="p">
+<!---->
+</div>
+Schneider, D.P., Hill, G.J., Fan, X., et al. 2000, PASP, 112, 6
+
+<div class="p">
+<!---->
+</div>
+Skrutskie, M.F. 1999, AAS, 195, 34.01
+
+<div class="p">
+<!---->
+</div>
+Strauss, M.A., Fan, X., Gunn, J.E., et al.,  1999, ApJ, 522, L61
+
+<div class="p">
+<!---->
+</div>
+Stone, R.C., Pier, J.R., &amp; Monet, D.G. 1999, AJ, 118, 2488
+
+<div class="p">
+<!---->
+</div>
+Tsvetanov, Z.I., Golimowski, D., Zheng, W., et al. 2000, ApJ, 513, L61
+
+<div class="p">
+<!---->
+</div>
+Uomoto, A., Smee, S., Rockosi, C., Burles, S., Pope, A., Friedman, S.,
+Brinkmann, J., Gunn, J.E., &amp; Nichol, R, 1999, AAS, 195.87.01
+
+<div class="p">
+<!---->
+</div>
+Yanny, B., Newberg, H., Kent,  S., et al. 2000,  AJ (in press:
+astro-ph/0004128)
+
+<div class="p">
+<!---->
+</div>
+Zheng, W., Tsvetanov, Z.I., Schneider, D.P., et al. 2000, submitted to AJ
+(astro-ph/0005247)
+
+<div class="p">
+<!---->
+</div>
+
+<div class="p">
+<!---->
+</div>
+<a name="tth_fIg1"></a> <a href="gk1.ps">Figure</a> <br>
+Figure 1. Projection on the sky of the northern SDSS survey area. The
+positions of the Yale Bright Star Catalogue stars are shown.  The largest
+symbols are stars of 0<sup>m</sup> and the smallest stars of 5<sup>m</sup> -
+7<sup>m</sup>. The secondary calibration patches are shown by squares.
+
+<div class="p">
+<!---->
+</div>
+
+<div class="p">
+<!---->
+</div>
+<a name="tth_fIg1"></a> <a href="gk2.ps">Figure</a> <br>
+Figure 2. Projection on the sky (Galactic coordinates) of the Northern and
+Southern SDSS surveys.  The lines show the individual stripes to be scanned
+by the imaging camera.  These are overlaid on the extinction contours of
+Schlegel, Finkbeiner and Davis (1998).  The Survey pole is marked by the `X'.
+
+<div class="p">
+<!---->
+</div>
+
+<div class="p">
+<!---->
+</div>
+<a name="tth_fIg1"></a> <a href="gk3.ps">Figure</a> <br>
+Figure 3. A six-degree wide slice of the Simulated Sloan Digital Sky Survey
+(from Colley et al. 2000), showing about 1/20 of the survey.
+
+<div class="p">
+<!---->
+</div>
+
+<div class="p">
+<!---->
+</div>
+
+<div class="p">
+<!---->
+</div>
+<a name="tth_fIg1"></a> <a href="gk4.ps">Figure</a> <br>
+Figure 4. Simulated redshift distribution in a 6<sup><font
+face="symbol">?</font></sup> slice of the SDSS.  Small  dots: main galaxy
+sample (cf. Figure 3). Large dots: the BRG sample, showing about 1/30 of the
+survey.
+
+<div class="p">
+<!---->
+</div>
+
+<div class="p">
+<!---->
+</div>
+<a name="tth_fIg1"></a> <a href="gk5.ps">Figure</a> <br>
+Figure 5. Color-color and color-magnitude plots of about 117,000 point
+sources brighter than 21<sup>m</sup> at i<sup>*</sup> and detected at greater
+than 5<font face="symbol">s</font> in each band from 25 square degrees of
+SDSS imaging data, reduced by the photometric pipeline (the i<sup>*</sup>
+designation is used for preliminary SDSS photometry). The contours are drawn
+at intervals of 10% of the peak density of points.  The redder stars extend
+to fainter magnitudes than do the bluer stars, due to the i<sup>*</sup> limit.
+
+<div class="p">
+<!---->
+</div>
+
+<div class="p">
+<!---->
+</div>
+<a name="tth_fIg1"></a> <a href="gk6.ps">Figure</a> <br>
+Figure 6. Representative SDSS spectra taken from a single spectroscopic plate
+observed on 4 October 1999 for a total of one hour of integration time,
+processed by the SDSS spectroscopic pipeline. For display purposes, all
+spectra have been smoothed with a 3-pixel boxcar function. All spectra show
+significant residuals due to the strong sky line at 5577Å. The objects
+depicted are: a.  An r<sup>*</sup><sub>P</sub> = 18.00 galaxy; z = 0.1913. 
+This object is slightly fainter than the main galaxy target selection limit. 
+Note the H<font face="symbol">a</font>/[N II] emission at <font
+face="symbol"> ~ </font>7800Å, [OII] emission at <font face="symbol"> ~
+</font>4450Å, and  Ca II H and K absorption at <font face="symbol"> ~
+</font>4700Å. b. An r<sup>*</sup><sub>P</sub> = 19.41 galaxy, z = 0.3735. 
+This object is close to the photometric limit of the Bright Red Galaxy
+sample.  The H and K lines are particularly strong. c. A star-forming galaxy
+with r<sup>*</sup><sub>P</sub> = 16.88, at z = 0.1582. d. A z = 0.3162
+quasar, with r<sup>*</sup><sub>psf</sub> = 16.67. Note the unusual profile
+shape of the Balmer lines. This quasar is LBQS 0004+0036 (Morris et al.
+1991). e. A z = 2.575 quasar with r<sup>*</sup><sub>psf</sub> = 19.04; note
+the resolution of the Lyman-<font face="symbol">a</font> forest.  This quasar
+was discovered by Berger &amp; Fringant (1985). f. A hot white dwarf, with
+r<sub>psf</sub><sup>*</sup> = 18.09.
+
+<div class="p">
+<!---->
+</div>
+
+<div class="p">
+<!---->
+</div>
+<a name="tth_fIg1"></a> <a href="gk7.ps">Figure</a> <br>
+Figure 7. A sample frame (13<font face="symbol">?</font>×9<font
+face="symbol">?</font>) from the SDSS imaging commissioning data.  The image,
+a  color composite made from the g<font face="symbol">?</font>, r<font
+face="symbol">?</font>, and i<font face="symbol">?</font> data, shows a field
+containing the distant cluster Abell 267 (<font face="symbol">a</font>&nbsp;
+= &nbsp; 01<sup>h</sup>&nbsp;52<sup>m</sup>&nbsp;41.0<sup>s</sup>, &nbsp;
+<font face="symbol">d</font>&nbsp; = &nbsp;+01<sup><font
+face="symbol">?</font></sup>&nbsp;00<font face="symbol">?</font>&nbsp;24.7",
+redshift z = 0.23, Crawford et al. 1999); this is the cluster of galaxies 
+with yellow colors in the lower center of the frame.  The frame also
+contains, in the upper center, the nearby cluster RX J0153.2+0102, estimated
+redshift <font face="symbol"> ~ </font>0.07 (Bade et al. 1998) (<font
+face="symbol">a</font>&nbsp; = &nbsp;
+01<sup>h</sup>&nbsp;53<sup>m</sup>&nbsp;15.15<sup>s</sup>, &nbsp; <font
+face="symbol">d</font>&nbsp; = &nbsp; +01<sup><font
+face="symbol">?</font></sup>&nbsp;02<font face="symbol">?</font>&nbsp;18.8").
+The psf (optics plus seeing) was about <span class="roman">1</span><span
+class="roman">.</span><span class="roman">6</span>". Right ascension
+increases from bottom to top of the frame, declination from left to right.
+
+<div class="p">
+<!---->
+</div>
+<!-- end page content-->
+
+<hr>
+<!-- hhmts start -->
+Last modified: Mon Mar  3 15:22:59 CST 2003 <!-- hhmts end -->
+ <!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

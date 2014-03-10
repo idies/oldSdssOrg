@@ -1,0 +1,714 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Image processing flags - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<h1>Understanding the image processing flags - Summary table</h1>
+
+<p>For objects in the calibrated object lists (<a
+href="../../glossary/index.html#tsobj">tsObj</a> files and
+the <a
+href="http://cas.sdss.org/astro/en/help/docs/intro.asp#phototables">tables
+with photometric data in the Catalog Archive Server database</a>), the
+photometric pipeline sets a number of flags that indicate the status
+of each object, warn of possible problems with the image itself, and
+warn of possible problems in the measurement of various quantities
+associated with the object. They are briefly described here, with
+links to a companion page with <a href="./flags_detail.html">details
+about the flags</a>. For yet more details, refer to <a
+href="http://www.astro.princeton.edu/~rhl/flags.html">Robert Lupton's
+flags document</a>.</p>
+
+<p>Possible problems associated with individual pixels in the reduced
+images ("corrected frames") are traced in the <a
+href="../images/use_masks.html">image masks</a>.</p>
+
+Objects in the catalog have two major sets of flags:
+<ul>
+  <li>The <a href="#status">status flags</a> in the
+      <code>tsObj</code> table, with information needed to discount
+      duplicate detections of the same object in the catalog.</li>
+  <li>The <a href="#flagsdesc">object flags</a>, with information
+      about the success of measuring the object's location, flux, or
+      morphology.</li>
+</ul>
+
+<a name="status"></a><h2>The "status" of an object</h2>
+
+<p>The catalogs contain multiple detections of objects from
+overlapping CCD frames. For most applications, remove duplicate
+detections of the same objects by considering only those which have
+the "primary" flag set in the <a
+href="../../dm/flatFiles/tsObj.html#status"><code>status</code> entry of the
+tsObj file</a>.</p>
+
+<p>A description of status is provided on the <a
+href="./flags_detail.html#status">details page</a>. The details of
+determining primary status and of the remaining flags stored in
+<code>status</code> are found on the <a
+href="../../algorithms/resolve.html">algorithms page describing the
+resolution of overlaps (resolve)</a>.
+
+<a name="flags"></a><h2>Object "flags"</h2>
+
+<p>The photometric pipeline's flags describe how certain measurements
+were performed for each object, and which measurements are considered
+unreliable or have failed altogether. <strong>You must interpret the
+flags correctly to obtain meaningful results.</strong></p>
+
+For each object, there are 59 flags stored as bit fields in two 32-bit
+table columns in the <code>tsObj</code> file, <var>flags</var> and
+<var>flags2</var>. There are two sets of these flag variables for each
+object: <ul>
+  <li><var>flags</var> and <var>flags2</var> as arrays of five flags,
+      one each for <var>u, g, r, i, z</var>.</li>
+  <li><var>objc_flags</var> and <var>objc_flags2</var> are
+      scalars. These are a
+      combination of the per-filter flags appropriate for the whole
+      object.</li>
+</ul>
+
+Here we describe which flags should be checked for which measurements,
+including whether you need to look at the flag in each filter, or at
+the <var>objc_flag</var>.
+
+<h2>Recommendations</h2>
+
+<h4>Clean sample of point sources</h4>
+
+<p>In a given band, first select objects with <a
+href="./flags_detail.html#status"><code>PRIMARY</code> status</a> and
+apply the SDSS star-galaxy separation. Then, define the following
+meta-flags:</p>
+<pre> DEBLEND_PROBLEMS = PEAKCENTER || NOTCHECKED || (DEBLEND_NOPEAK && psfErr>0.2)
+ INTERP_PROBLEMS = PSF_FLUX_INTERP || BAD_COUNTS_ERROR ||
+(INTERP_CENTER && CR)
+</pre>
+
+Then include only objects that satisfy the following in the band in
+question:</p> <pre> BINNED1 && !BRIGHT && !SATURATED && !EDGE && (!BLENDED || NODEBLEND) &&
+ !NOPROFILE && !INTERP_PROBLEMS && !DEBLEND_PROBLEMS </pre>
+
+<p>If you are very picky, you probably will want not to include the
+<code>NODEBLEND</code> objects. <strong>Note</strong> that selecting
+<code>PRIMARY</code> objects implies <code>!BRIGHT && (!BLENDED ||
+NODEBLEND || nchild == 0)</code></p>
+
+<p>These are used in the SDSS quasar target selection code which is
+quite sensitive to outliers in the stellar locus.
+If you want to select very rare outliers in color space, especially
+single-band detections, add cuts to <code>MAYBE_CR</code> and
+<code>MAYBE_EGHOST</code> to the above list.</p>
+
+<h4>Clean sample of galaxies</h4>
+
+<p>As for point sources, but don't cut on <b><code>EDGE</code></b> (large galaxies
+often run into the edge). Also, you may not need to worry about the
+<b><code>INTERP</code></b> problems.  The <b><code>BRIGHTEST_GALAXY_CHILD</code></b> may be
+useful if you are looking at bright galaxies; it needs further
+testing.</p>
+
+<p> If you want to select (or reject against) moving objects
+(asteroids), cut on the <b><code>DEBLENDED_AS_MOVING</code></b> flag, and then cut
+on the motion itself.  See the <a
+href="http://www.astro.washington.edu/ivezic/sdssmoc/sdssmoc.html">
+SDSS Moving Objects Catalog</a> for more details.  An interesting
+experiment is to remove the restriction on the
+<b><code>DEBLENDED_AS_MOVING</code></b> flag to find objects with very small proper
+motion (i.e., those beyond Saturn).</p>
+
+<a name="flagsdesc"></a><h2>Descriptions of all flags</h2>
+
+<h3>Flags that affect the object's status</h3>
+
+<p><strong>These flags must be considered to reject duplicate catalog
+entries of the same object.</strong> By using only objects with
+<code>PRIMARY</code> status (see <a href="#status">above</a>), you automatically
+account for the most common cases: those objects which are <code>BRIGHT</code>, or
+which have been deblended (decomposed) into one or more child objects
+which are listed individually.</p>
+
+<p>In the tables, Flag names link to detailed descriptions. The objc
+column indicates that this flag will be set in <var>objc_flags</var>
+or <var>objc_flags2</var> if this flag is set in any of the
+filters. "bit" is the number of the bit; to check whether bit
+<var>n</var> in flags1 is set, compute <code>flags1 & 2**n</code>
+where <code>&</code> is the bitwise <code>AND</code> operator.</p>
+
+<table border="1">
+  <tr>
+    <th>Flag</th>
+    <th>1/2</th>
+    <th>bit</th>
+    <th>objc</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#binned"><code>BINNED1</code></a></td>
+    <td>1</td>
+    <td>28</td>
+    <td></td>
+    <td>detected at &gt;=5 sigma in original imaging frame</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#binned"><code>BINNED2</code></a></td>
+    <td>1</td>
+    <td>29</td>
+    <td></td>
+    <td>detected in 2x2 binned frame; often outskirts
+	of bright galaxies, scattered light, low surface brightness galaxies</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#binned"><code>BINNED4</code></a></td>
+    <td>1</td>
+    <td>30</td>
+    <td></td>
+    <td>detected in 4x4 binned frame; few are genuine astrophysical objects</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#detected"><code>DETECTED</code></a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Flag internal to the pipeline code, <code>BINNED1</code> | <code>BINNED2</code> | <code>BINNED4</code></td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#bright"><code>BRIGHT</code></a></td>
+    <td>1</td>
+    <td>1</td>
+    <td>X</td>
+    <td>duplicate detection of &gt; 200 sigma objects, discard.</td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#blended"><code>BLENDED</code></a></td>
+    <td>1</td>
+    <td>3</td>
+    <td>X</td>
+    <td>Object has more than one peak, there was an attempt to deblend
+    it into several <code>CHILD</code> objects. Discard unless <code>NODEBLEND</code> is set.</td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#blended"><code>NODEBLEND</code></a></td>
+    <td>1</td>
+    <td>6</td>
+    <td>X</td>
+    <td>Object is a blend, but was not deblended because it is:
+	<ul>
+	  <li>too close to an edge (<code>EDGE</code> already set),</li>
+	  <li>too large	(<code>TOO_LARGE</code>), or </li>
+	  <li>a child overlaps an edge (<code>EDGE</code> will be set).</li>
+	  </ul>
+      </td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#blended"><code>CHILD</code></a></td>
+    <td>1</td>
+    <td>4</td>
+    <td>X</td>
+    <td>Object is part of a <code>BLENDED</code> "parent" object. May be <code>BLENDED</code> itself.</td>
+  </tr>
+</table>
+
+<h3> Flags that indicate problems with the raw data</h3>
+
+These flags are mainly informational and important only for some
+objects and science applications.
+
+<table border="1">
+  <tr>
+    <th>Flag</th>
+    <th>1/2</th>
+    <th>bit</th>
+    <th>objc</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#saturated"><code>SATURATED</code></a></td>
+    <td>1</td>
+    <td>18</td>
+    <td>X</td>
+    <td>contains saturated pixels; affects star-galaxy separation</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#saturated"><code>SATURATED_CENTER</code></a></td>
+    <td>2</td>
+    <td>11</td>
+    <td></td>
+    <td>as <code>SATURATED</code>, affected pixels close to the center</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#edge"><code>EDGE</code></a></td>
+    <td>1</td>
+    <td>2</td>
+    <td></td>
+    <td>object was too close to edge of frame to be measured; should not affect
+    point sources</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#edge"><code>LOCAL_EDGE</code></a></td>
+    <td>2</td>
+    <td>7</td>
+    <td></td>
+    <td>like <code>EDGE</code>, but for rare cases when one-half of a <code>CCD</code> failed</td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#edge"><code>DEBLENDED_AT_EDGE</code></a></td>
+    <td>2</td>
+    <td>13</td>
+    <td></td>
+    <td>object is near <code>EDGE</code>, but so large that it was deblended
+	anyway. Otherwise, it might have been missed.</td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#interp"><code>INTERP</code></a></td>
+    <td>1</td>
+    <td>17</td>
+    <td></td>
+    <td>object contains interpolated-over pixels (bad columns, cosmic
+	rays, bleed trails); should not affect photometry for
+	single bad column or cosmic ray</td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#interp"><code>INTERP_CENTER</code></a></td>
+    <td>2</td>
+    <td>12</td>
+    <td></td>
+    <td>interpolated pixel(s) within 3 pix of the center. Photometry
+	may be affected.</td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#interp"><code>PSF_FLUX_INTERP</code></a></td>
+    <td>2</td>
+    <td>15</td>
+    <td></td>
+    <td>more than 20% of PSF flux is interpolated over. May cause
+	outliers in color-color plots, e.g.</td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#interp"><code>BAD_COUNTS_ERROR</code></a></td>
+    <td>2</td>
+    <td>8</td>
+    <td></td>
+    <td>interpolation affected many pixels; PSF flux error is
+	inaccurate and likely underestimated.</td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#interp"><code>COSMIC_RAY</code> (<code>CR</code>)</a></td>
+    <td>1</td>
+    <td>12</td>
+    <td></td>
+    <td>object contains cosmic rays which have been interpolated over;
+    should not affect photometry</td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#interp"><code>MAYBE_CR</code></a></td>
+    <td>2</td>
+    <td>24</td>
+    <td></td>
+    <td>object may be a cosmic ray; <em>not</em> interpolated
+	over. Useful in searches for single-filter detections.</td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#interp"><code>MAYBE_EGHOST</code></a></td>
+    <td>2</td>
+    <td>25</td>
+    <td></td>
+    <td>object may be an electronics ghost of a bright star. Be
+	suspicious about faint single-filter detections.</td>
+  </tr>
+
+</table>
+
+
+<h3>Flags that indicate problems with the image</h3>
+
+These flags may be hints that an object may not be real or that a
+measurement on the object failed.
+
+<table border="1">
+  <tr>
+    <th>Flag</th>
+    <th>1/2</th>
+    <th>bit</th>
+    <th>objc</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#centroid"><code>CANONICAL_CENTER</code></a></td>
+    <td>1</td>
+    <td>0</td>
+    <td></td>
+    <td>could not determine a centroid in this band; used centroid in
+	<code>CANONICAL_BAND</code> instead</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#centroid"><code>PEAKCENTER</code></a></td>
+    <td>1</td>
+    <td>5</td>
+    <td></td>
+    <td>used brightest pixel as centroid; hint that an object may not
+	be real</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#centroid"><code>DEBLEND_NOPEAK</code></a></td>
+    <td>2</td>
+    <td>14</td>
+    <td></td>
+    <td>object is a <code>CHILD</code> of a <code>DEBLEND</code> but has no peak; hint that an
+	object may not be real</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#centroid"><code>NOPROFILE</code></a></td>
+    <td>1</td>
+    <td>7</td>
+    <td></td>
+    <td>only 0 or 1 entries for the radial flux profile; photometric
+	quantities derived from profile are suspect</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#centroid"><code>NOTCHECKED</code></a></td>
+    <td>1</td>
+    <td>19</td>
+    <td></td>
+    <td>object contains pixels which were not checked for peaks by
+	deblender; deblending may be unreliable</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#centroid"><code>NOTCHECKED_CENTER</code></a></td>
+    <td>2</td>
+    <td>26</td>
+    <td></td>
+    <td>as <code>NOTCHECKED</code>, but affected pixels are near object's center</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#centroid"><code>TOO_LARGE</code></a></td>
+    <td>1</td>
+    <td>24</td>
+    <td></td>
+    <td>object is larger than outermost radiale profile bin (<var>r
+	&gt; 4</var>arcmin), or a <code>CHILD</code> in a deblend is &gt; 1/2
+	frame. Very large object, poorly determined sky, or bad
+	deblend. Photometry questionable.</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#centroid"><code>BADSKY</code></a></td>
+    <td>1</td>
+    <td>22</td>
+    <td></td>
+    <td>local sky measurement failed, object photometry is meaningless</td>
+  </tr>	  
+</table>
+
+
+<h3>Problems associated with specific quantities</h3>
+
+Some simply say that the quantity in question could not be
+measured. Others indicate more subtle aspects of the measurements,
+particular of <a
+href="../../glossary/index.html#mag_petro">Petrosian
+quantities</a>.
+
+<table border="1">
+  <tr>
+    <th>Flag</th>
+    <th>1/2</th>
+    <th>bit</th>
+    <th>objc</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#nostokes"><code>NOSTOKES</code></a></td>
+    <td>1</td>
+    <td>21</td>
+    <td></td>
+    <td>Stokes Q and U (isophotal shape parameters) undetermined</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#nostokes"><code>ELLIPFAINT</code></a></td>
+    <td>1</td>
+    <td>27</td>
+    <td></td>
+    <td>no isophotal fits performed</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#petro"><code>PETROFAINT</code></a></td>
+    <td>1</td>
+    <td>23</td>
+    <td></td>
+    <td>Petrosian radius measured at very low surface
+	brightness. Petrosian magnitude still usable.</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#petro"><code>NOPETRO</code></a></td>
+    <td>1</td>
+    <td>8</td>
+    <td></td>
+    <td>no Petrosian radius could be determined. Petrosian magnitude
+	still usable.</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#petro"><code>NOPETRO_BIG</code></a></td>
+    <td>1</td>
+    <td>10</td>
+    <td></td>
+    <td>Petrosian radius larger than extracted radial profile. Happens
+    for noisy sky or low S/N objects.</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#petro"><code>MANYPETRO</code></a></td>
+    <td>1</td>
+    <td>9</td>
+    <td></td>
+    <td>more than 1 value was found for the Petrosian radius.</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#petro"><code>MANY_R50</code> / <code>MANY_R90</code></a></td>
+    <td>1</td>
+    <td>13/14</td>
+    <td></td>
+    <td>object's radial profile dips below 0 and more than one radius
+	was found enclosing 50%/90% of the light. Rare.</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#petro"><code>INCOMPLETE_PROFILE</code></a></td>
+    <td>1</td>
+    <td>16</td>
+    <td></td>
+    <td>Petrosian radius hits edge of frame. Petrosian quantities
+	should still be reasonable.</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#moving"><code>DEBLENDED_AS_MOVING</code></a></td>
+    <td>2</td>
+    <td>0</td>
+    <td></td>
+    <td>object recognised to be moving between different
+	filters. <strong>For most purposes, consider <em>only</em> this flag to
+    find moving objects.</strong></td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#moving"><code>MOVED</code></a></td>
+    <td>1</td>
+    <td>31</td>
+    <td></td>
+    <td>candidate for moving object. <strong>Does not mean it did move
+    - consider <code>DEBLENDED_AS_MOVING</code> instead!</strong> Not useful.</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#moving"><code>NODEBLEND_MOVING</code></a></td>
+    <td>2</td>
+    <td>1</td>
+    <td>X</td>
+    <td>candidate moving object (<code>MOVED</code>) but was not deblended as moving</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#moving"><code>TOO_FEW_DETECTIONS</code></a></td>
+    <td>2</td>
+    <td>2</td>
+    <td></td>
+    <td>object detected in too few bands for motion determination</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#moving"><code>TOO_FEW_GOOD_DETECTIONS</code></a></td>
+    <td>2</td>
+    <td>16</td>
+    <td></td>
+    <td>even though detected, no good centroid found in enough bands
+	for motion determination</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#moving"><code>STATIONARY</code></a></td>
+    <td>2</td>
+    <td>4</td>
+    <td></td>
+    <td>A "moving" object's velocity is consistent with zero.</td>
+  </tr>	  
+    <td><a href="./flags_detail.html#moving"><code>BAD_MOVING_FIT</code></a></td>
+    <td>2</td>
+    <td>3</td>
+    <td></td>
+    <td>motion inconsistent with straight line, not deblended as moving</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#moving"><code>BAD_MOVING_FIT_CHILD</code></a></td>
+    <td>2</td>
+    <td>9</td>
+    <td></td>
+    <td>in a complicated blend, child's motion was inconsistent with
+	straight line and parent was not deblended as moving</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#moving"><code>CENTER_OFF_AIMAGE</code></a></td>
+    <td>2</td>
+    <td>17</td>
+    <td></td>
+    <td>nominal motion moves object off atlas image in this band</td>
+  </tr>	  
+  <tr>
+    <td><a
+  href="./flags_detail.html#mmoment"><code>AMOMENT_UNWEIGHTED</code></a>
+  <br /> (also called <a
+  href="./flags_detail.html#mmoment"><code>AMOMENT_FAINT</code></a>)</td>
+    <td>2</td>
+    <td>21</td>
+    <td></td>
+    <td>'adaptive' moment are actually unweighted for this object. NB:
+    to find out if a moment measurement failed entirely, check the
+	error field.</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#mmoment"><code>AMOMENT_SHIFT</code></a></td>
+    <td>2</td>
+    <td>22</td>
+    <td></td>
+    <td>centroid shifted too far during calculation of moments,
+	<strong>moment calculation failed and <code>M_e1,M_e2</code> give the value
+    of the shift</strong></td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#mmoment"><code>AMOMENT_MAXITER</code></a></td>
+    <td>2</td>
+    <td>23</td>
+    <td></td>
+    <td>moment calculation did not converge</td>
+  </tr>	  
+</table>
+
+<p>All flags so far indicate some problem or failure of a
+measurement. The following flags provide information about the
+processing, but do not indicate a severe problem or failure.</p>
+
+<a name="information.deblend"></a>
+<h3>Informational flags related to deblending</h3>
+
+<table border="1">
+  <tr>
+    <th>Flag</th>
+    <th>1/2</th>
+    <th>bit</th>
+    <th>objc</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#deblend"><code>DEBLEND_TOO_MANY_PEAKS</code></a></td>
+    <td>1</td>
+    <td>11</td>
+    <td></td>
+    <td>object has more than 25 peaks; only first 25 were deblended
+	and contain all of the parent's flux</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#deblend"><code>DEBLEND_UNASSIGNED_FLUX</code></a></td>
+    <td>2</td>
+    <td>10</td>
+    <td>X</td>
+    <td>more than 5% of the parent's Petrosian flux was initially not assigned to
+	children; all this flux has been redistributed among children</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#deblend"><code>DEBLEND_PRUNED</code></a></td>
+    <td>1</td>
+    <td>26</td>
+    <td></td>
+    <td>parent containing peaks which were not deblended</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#deblend"><code>PEAKS_TOO_CLOSE</code></a></td>
+    <td>2</td>
+    <td>5</td>
+    <td></td>
+    <td>some peaks were too close to be deblended</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#deblend"><code>DEBLEND_DEGENERATE</code></a></td>
+    <td>2</td>
+    <td>18</td>
+    <td></td>
+    <td>some peaks had degenerate templates<!-- XXX What does this mean? --></td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#deblend"><code>BRIGHTEST_GALAXY_CHILD</code></a></td>
+    <td>2</td>
+    <td>19</td>
+    <td></td>
+    <td>brightest child among one parent's children</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#deblend"><code>DEBLENDED_AS_PSF</code></a></td>
+    <td>1</td>
+    <td>25</td>
+    <td></td>
+    <td>child is unresolved</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#deblend"><code>HAS_SATUR_DN</code></a></td>
+    <td>2</td>
+    <td>27</td>
+    <td></td>
+    <td>object is saturated, but attempted to add counts from bleed
+	trail back in</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#deblend"><code>DEBLEND_PEEPHOLE</code></a></td>
+    <td>2</td>
+    <td>28</td>
+    <td></td>
+    <td>object was found in a second deblender pass attempting to
+	catch special cases</td>
+  </tr>	  
+</table>
+
+
+<a name="other"></a><h3>Further informational flags</h3>
+
+<table border="1">
+  <tr>
+    <th>Flag</th>
+    <th>1/2</th>
+    <th>bit</th>
+    <th>objc</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#other"><code>BAD_RADIAL</code></a></td>
+    <td>1</td>
+    <td>15</td>
+    <td></td>
+    <td>last bin in radial profile &lt; 0; usually can be ignored</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#other"><code>CANONICAL_BAND</code></a></td>
+    <td>2</td>
+    <td>20</td>
+    <td></td>
+    <td>object is undetected in <var>r</var>-band; this band was used
+	to determine Petrosian and Model radii</td>
+  </tr>
+  <tr>
+    <td><a href="./flags_detail.html#other"><code>SUBTRACTED</code></a></td>
+    <td>1</td>
+    <td>20</td>
+    <td></td>
+    <td>object is part of extended wing of a bright star</td>
+  </tr>	  
+  <tr>
+    <td><a href="./flags_detail.html#other"><code>BINNED_CENTER</code></a></td>
+    <td>2</td>
+    <td>6</td>
+    <td></td>
+    <td>object was extended and centroid was determined on 2x2 binned
+	frame. Avoid for astrometric work, e.g.</td>
+  </tr>	  
+</table>
+
+<hr>
+<!-- hhmts start -->Last modified: Wed Dec  6 11:12:44 CET 2006
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorial: Proximity Search - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content  -- This could be updated for small changes  XXX -->
+
+<h2>Tutorial: Proximity Search using the CAS Imaging 
+Query Server</h2>
+ 
+Given a list of objects (or coordinates), the following procedure
+outlines how to find the closest object in the SDSS database to these
+coordinates. The Imaging Query Server (IQS) is used to conduct the
+search.
+
+<ol class="tut">
+  <li>Access the <a href="http://cas.sdss.org/astro/en/tools/search/IQS.asp">Imaging Query Server</a> interface.</li>
+  <li>Select the Imaging parameters that you want returned. </li>
+  <li>Select Target Imaging and/or Best Imaging.</li>
+  <li>Click the &quot;Proximity Search&quot; button.</li>
+  <li>Enter the ra, dec and search radius in the &quot;List of&quot; box. 
+  The first line must contain the text &quot;ra, dec, sep&quot; (NB not &quot;radius&quot;). The order is not 
+  important, but must be specified. 
+  Units for &quot;separation&quot; are arcseconds. You may also use a local file by specifying it in the upload box. </li>
+  <li>Select imaging constraints.</li>
+  <li>Submit.</li>
+</ol>
+
+<h2>Caveats</h2>
+<ol class="tut">
+  <li>  Only one (1) object will be 
+  returned per entry.</li>
+  <li>  Maximum search radius was 10 arc-sec around the submitted coordinates.</li>
+  <li>  For more than one returned object, 
+  you want to use the &quot;Cone Search&quot;</li>
+  <li>  A return of all zeros (0) indicates 
+  no object was found within the search radius, or the search area is not in the 
+  DR5 area.</li>
+  per submission to avoid clogging the database server.</li>
+</ol>
+
+<h2>Example</h2>
+
+<p>Cut and paste these coordinates:</p><pre>
+ra, dec, sep
+159.90897, -0.08782, 10
+195.0, 63.0, 10
+190.0, 55.0, 10
+0,90, 0</pre>
+
+<p>Since SDSS hasn't observed the north pole region, only three
+matches are returned.</p>
+
+<hr>
+<!-- hhmts start -->Last modified: Wed Jun 21 18:55:34 BST 2006
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+
+</html>

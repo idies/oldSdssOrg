@@ -1,0 +1,12 @@
+Wed May 12 2004
+	# Making a branch to conserve state of DR4 while converting trunk
+	# to be DR5 web site:
+	cvs tag vDR4_branchroot #  set a tag at head of DR4 web branch
+	cvs rtag -r vDR4_branchroot -b vDR4_branch drweb # make the branch
+	# Check out the DR4 branch of drweb into directory drweb_DR4
+	cvs co -r vDR4_branch -d drweb_DR4 drweb
+	# Check out the trunk of drweb: as before
+	cvs co drweb
+	# If changes need to be made to both branch and trunk, they need to
+	# be made and checked in separately on both the branch and trunk version
+	# of the affected file(s).

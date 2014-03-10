@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Imaging Files</TITLE>
+<META NAME="description" CONTENT="Imaging Files">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html303" HREF="node19.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html301" HREF="node17.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html295" HREF="node17.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html304" HREF="node19.html">Spectroscopy Files</A>
+<B>Up:</B> <A NAME="tex2html302" HREF="node17.html">Access to Files</A>
+<B> Previous:</B> <A NAME="tex2html296" HREF="node17.html">Access to Files</A>
+<BR> <P>
+<H3><A NAME="SECTION00025100000000000000">Imaging Files</A></H3>
+<P>
+Image data are available from the main Data Archive Server page.  
+Data for individual runs are in subdirectories specified by <TT>$run/$rerun</TT>,
+where valid
+<TT>$run/$rerun</TT>
+combinations for the EDR are
+94/7,125/7, 752/8, 756/8, 1336/2, 1339/2, 1356/2, and 1359/3.
+Corrected frames are accessed under this root URL via 
+<PRE>corr/$camCol/fpC-$run-$rerun-$filter$camCol-$field.fit.gz,</PRE>
+where <TT>$camCol</TT> is the camera column (1 through 6),
+<TT>$run</TT> is the run number (6 digits with leading zeroes),
+<TT>$filter</TT> is the filter name (<TT>u</TT>, <TT>g</TT>, <TT>r</TT>, <TT>i</TT>, <TT>z</TT>), and <TT>$field</TT> is
+the field number (4 digits with leading zeroes).
+Binned images are accessed in a similar fashion, via
+<PRE>objcs/$camCol/fpBIN-$run-$filter$camCol-$field.fit.gz,</PRE>
+as are the Mask images, via
+<PRE> 
+objcs/$camCol/fpM-$run-$filter$camCol-$field.fit</PRE>
+<P>
+The <TT>fpAtlas</TT> files in that same directory contain all of the
+atlas images for each field, but it is generally more convenient to
+access them with the Data Archive Server.
+<P>
+The catalogs of detected objects for each field are accessed via
+<PRE>objcs/$camCol/fpObjc-$run-$camCol-$field.fit</PRE>
+but these files do not yet include photometric or astrometric
+calibration.
+<P>
+Summary information for each field processed is accessed via
+<PRE>objcs/$camCol/fpFieldStat-$run-$camCol-$field.fit</PRE>
+and results of the <TT>psp</TT> pipeline, which characterizes the point
+spread function for a field (&#167;&nbsp;<A HREF="node35.html#swpsp">4.3</A>), are accessed via 
+<PRE>objcs/$camCol/fpField-$run-$camCol-$field.fit</PRE>
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,5 @@
+The SDSS imaging camera collects data using array of 30 CCD's arranged
+in six columns. Each of the five rows collects data through a different
+filter. An additional 24 CCD's are arranged before and after these to
+measure the positions of bright stars, allowing more precise
+determination of the telescope pointing.

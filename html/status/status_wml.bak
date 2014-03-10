@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+#use "sdss_macros.wml"
+<html>
+<head>
+<meta name="Description" content="SDSS Survey Status">
+<title>SDSS Survey Status</title>
+</head>
+<sdss-page select="status">
+<h2>SDSS Survey Status</h2>
+
+
+<!--Table Goes Here -->
+<table width="100%" border="15">
+<tr>
+<td></td> <td>Target</td> <td>Done</td>
+ <td>Percent Complete</td>
+</tr>
+<!--END Table Row ----------------------------------------!>
+<tr>
+<td>
+<a href="ImagingSurvey.html">Imaging</a>
+</td>
+<td>
+7752 (Scanned Square Degrees)
+</td> 
+<td>
+2744
+</td>
+<td>
+<IMG SRC=image.png>
+<BR>35 % as of 2001 Jul 19
+</td>
+</tr>
+<!--END Table Row -----------------------------------!>
+<tr>
+<td>
+<a href="SpecSurvey.html">Spectroscopy</a>
+</td>
+<td>
+1689 (Tiles)
+</td>
+<td>
+268
+</td>
+<td>
+<IMG SRC=spec.png>
+<BR>15 % as of 2001 Jul 26
+</td>
+</tr>
+<!--END Table Row --------------------------------!>
+<tr>
+<td>
+<a href="MTSurvey.html">MT Secondary Patches</a>
+</td>
+<td>
+1520 (Patches)
+</td>
+<td>
+719
+</td>
+<td>
+<IMG SRC=patch.png>
+<BR>47 % as of 2001 Jul 17
+</td>
+</tr>
+<!--END Table Row ---------------------------------!>
+</table>
+
+<BR>
+<text-navbar>
+<sdss-address>
+</sdss-page>
+</html>

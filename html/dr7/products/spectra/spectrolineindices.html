@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Data products: Spectra - Quality of stellar radial
+velocities - SDSS DR5</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>The SEGUE Stellar Parameter Pipeline 'sppLines' Table</h1>
+Up to  <a href="./index.html">Spectra</a>
+
+<p>Spectra for over 464,000 Galactic stars of all common
+spectral types are available with DR7
+These Spectra were processed with a pipeline called the 'SEGUE Stellar
+Parameter Pipeline' (sspp) which computes line indices for
+a wide range of common features at the radial velocity of the
+star in question.
+These outputs are stored in the CAS in a table called 'sppLines',
+indexed on the 'specObjID' key index parameter for queries joining
+to other tables such as specobjall and photoobjall.</p>
+
+<p>The fields available in the sppLines table in the CAS <a
+href="http://cas.sdss.org/dr7/en/help/browser/description.asp?n=sppLines&t=U">(also
+see sppLines description in CAS schema browser)</a> are:</p>
+
+<pre>
+The star is identified with these numbers:
+
+specobjid 	int64 Unique spectrum id f(plate,mjd,fiberid) bigint(8 bytes)	
+plate 		int 
+mjd 		int 
+fiberid 	int 
+
+Then for each star, for each index below, 
+the 'side band' EqW (A) and the 'continuum' EqW (A) along with an 
+Error (A) and a mask (0=bad, 1=ok) value are tablulated:
+
+The name of the index, the central wavelength and width of the 
+on and off bands are recorded here (in Angstroms).
+
+Index_name         Lambda0 Width Upper_refband width Lower_ref width
+----------------------------------------------------------------
+           H8w3   3889.0   3.0   3912.0   8.0   3866.0   8.0
+          H8w12   3889.1  12.0   4010.0  20.0   3862.0  20.0
+          H8w24   3889.1  24.0   4010.0  20.0   3862.0  20.0
+          H8w48   3889.1  48.0   4010.0  20.0   3862.0  20.0
+          KPw12   3933.7  12.0   4010.0  20.0   3913.0  20.0
+          KPw18   3933.7  18.0   4010.0  20.0   3913.0  20.0
+           KPw6   3933.7   6.0   4010.0  20.0   3913.0  20.0
+          CaIIK   3933.6  30.0   4010.0   5.0   3910.0   5.0
+        CaIIHKp   3962.0  75.0   4010.0   5.0   3910.0   5.0
+           Heps   3970.0  50.0   4010.0   5.0   3910.0   5.0
+          KPw16   3933.7  16.0   4018.0  20.0   3913.0  10.0
+             Sr   4077.0   8.0   4090.0   6.0   4070.0   4.0
+            HeI   4026.2  12.0   4154.0  20.0   4010.0  20.0
+      Hdeltaw12   4101.8  12.0   4154.0  20.0   4010.0  20.0
+      Hdeltaw24   4101.8  24.0   4154.0  20.0   4010.0  20.0
+      Hdeltaw48   4101.8  48.0   4154.0  20.0   4010.0  20.0
+         Hdelta   4102.0  64.0   4154.0  20.0   4010.0  20.0
+            CaI   4226.0   4.0   4232.0   4.0   4211.0   6.0
+         CaIw12   4226.7  12.0   4257.0  20.0   4154.0  20.0
+         CaIw24   4226.7  24.0   4257.0  20.0   4154.0  20.0
+          CaIw6   4226.7   6.0   4257.0  20.0   4154.0  20.0
+              G   4305.0  15.0   4367.0  10.0   4257.0  20.0
+      Hgammaw12   4340.5  12.0   4425.0  20.0   4257.0  20.0
+      Hgammaw24   4340.5  24.0   4425.0  20.0   4257.0  20.0
+      Hgammaw48   4340.5  48.0   4425.0  20.0   4257.0  20.0
+         Hgamma   4340.5  54.0   4425.0  20.0   4257.0  20.0
+           HeIa   4471.7  12.0   4500.0  20.0   4425.0  20.0
+         G_blue   4305.0  26.0   4507.0  14.0   4090.0  12.0
+        G_whole   4321.0  28.0   4507.0  14.0   4096.0  12.0
+             Ba   4554.0   6.0   4560.0   4.0   4538.0   4.0
+         12C13C   4737.0  36.0   4770.0  20.0   4423.0  10.0
+           CC12   4618.0 256.0   4780.0   5.0   4460.0  10.0
+         metal1   4584.0 442.0   4805.8   5.0   4363.0   5.0
+       Hbetaw12   4862.3  12.0   4905.0  20.0   4790.0  20.0
+       Hbetaw24   4862.3  24.0   4905.0  20.0   4790.0  20.0
+       Hbetaw48   4862.3  48.0   4905.0  20.0   4790.0  20.0
+          Hbeta   4862.3  60.0   4905.0  20.0   4790.0  20.0
+             C2   5052.0 204.0   5230.0  20.0   4935.0  10.0
+         C2+MgI   5069.0 238.0   5230.0  20.0   4935.0  10.0
+     MgH+MgI+C2   5085.0 270.0   5230.0  20.0   4935.0  10.0
+        MgH+MgI   5198.0  44.0   5230.0  20.0   4935.0  10.0
+            MgH   5210.0  20.0   5230.0  20.0   4935.0  10.0
+            CrI   5206.0  12.0   5239.0   8.0   5197.5   5.0
+       MgI+FeII   5175.0  20.0   5240.0  10.0   4915.0  10.0
+            MgI   5183.0   2.0   5240.0  10.0   4915.0  10.0
+           MgIa   5170.5  12.0   5285.0  20.0   5110.0  20.0
+           MgIb   5176.5  24.0   5285.0  20.0   5110.0  20.0
+           MgIc   5183.5  12.0   5285.0  20.0   5110.0  20.0
+            NaI   5890.0  20.0   5918.0   6.0   5865.0  10.0
+          Naw12   5892.9  12.0   5970.0  20.0   5852.0  20.0
+          Naw24   5892.9  24.0   5970.0  20.0   5852.0  20.0
+      Halphaw12   6562.8  12.0   6725.0  50.0   6425.0  50.0
+      Halphaw24   6562.8  24.0   6725.0  50.0   6425.0  50.0
+      Halphaw48   6562.8  48.0   6725.0  50.0   6425.0  50.0
+      Halphaw70   6562.8  70.0   6725.0  50.0   6425.0  50.0
+            CaH   6788.0 505.0   7434.0  10.0   6532.0   5.0
+            TiO   7209.0 333.3   7434.0  10.0   6532.0   5.0
+             CN   6890.0  26.0   7795.0  10.0   6870.0  10.0
+         OItrip   7775.0  30.0   7805.0  10.0   7728.0  10.0
+             KI   7687.0  34.0   8080.0  10.0   7510.0  10.0
+            KIa   7688.0  95.0   8132.0   5.0   7492.0   5.0
+           NaIa   8187.5  15.0   8190.0  55.0   8150.0  10.0
+         NaIred   8190.2  33.0   8248.6   5.0   8140.0   5.0
+        CaIIw26   8498.0  26.0   8520.0  10.0   8467.5  25.0
+     Paschenw13   8467.5  13.0   8570.0  14.0   8457.0  10.0
+           CaII   8498.5  29.0   8570.0  14.0   8479.0  10.0
+        CaIIw40   8542.0  40.0   8570.0  14.0   8479.0  10.0
+          CaIIa   8542.0  16.0   8600.0  60.0   8520.0  20.0
+     Paschenw42   8598.0  42.0   8630.5  23.0   8570.0  14.0
+          CaIIb   8662.1  16.0   8694.0  12.0   8600.0  60.0
+       CaIIaw40   8662.0  40.0   8712.5  25.0   8630.5  23.0
+    Paschenaw42   8751.0  42.0   8784.0  16.0   8712.5  25.0
+           TiO5   7134.4   5.0   7134.4   5.0   7045.9   4.0
+           TiO8   8457.3  30.0   8457.3  30.0   8412.3  20.0
+           CaH1   6386.7  10.0   6415.0  10.0   6351.7  10.0
+           CaH2   6831.9  32.0   7045.9   4.0   7045.9   4.0
+           CaH3   6976.9  30.0   7045.9   4.0   7045.9   4.0
+
+------------------------------------------------------------------
+
+Try sending this query:
+
+select top 10 * from sppLines
+
+to get a feel for the columns.
+
+Here's a sample query which selects red stars (spectral type K)
+that are bright (g0 < 17), with large CaII triplet eq widths, with low errors
+on the CaII triplet eq widths:
+
+select sp.plate,sp.mjd,sp.fiberid,sp.g0,sp.gmr0,
+	sl.caII,sl.caIIerr,sl.caIIa,sl.caIIaerr,
+	sl.caIIb,sl.caIIberr,sl.caII+sl.caIIa+sl.caIIb as caIItripsum,
+	sp.feha,sp.fehaerr,sp.fehan,sp.logga,sp.loggaerr,sp.loggan 
+		from sppLines as sl, sppParams as sp where
+	sl.CaII + sl.CaIIa + sl.CaIIb > 12 and 
+	sl.CaIImask = 1 and sl.CaIIamask =1 and 
+	sl.CaIIbmask = 1 and sl.caIIerr < 2 and 
+	sl.caIIaerr < 2 and sl.caIIberr < 2 and 
+	sl.caII > 0 and sl.caIIa > 0 and sl.caIIb > 0 and 	
+	gmr0 between 0.8 and 1.1 
+	and g0 < 17
+	and sl.specobjid = sp.specobjid 
+
+
+(returns 9 stars).
+
+
+
+</pre>
+
+<hr>
+<!-- hhmts start -->Last modified: Tue Jun 26 14:52:41 CEST 2007
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

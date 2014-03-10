@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Luminous Red Galaxies</TITLE>
+<META NAME="description" CONTENT="Luminous Red Galaxies">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html700" HREF="node54.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html698" HREF="node51.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html692" HREF="node52.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html701" HREF="node54.html">Quasars</A>
+<B>Up:</B> <A NAME="tex2html699" HREF="node51.html">Target Selection</A>
+<B> Previous:</B> <A NAME="tex2html693" HREF="node52.html">Galaxies</A>
+<BR> <P>
+<H3><A NAME="SECTION00048200000000000000">Luminous Red Galaxies</A></H3>
+<P>
+<A NAME="swtargetLRGs">&#160;</A>
+<P>
+It has long been known that the most luminous galaxies in clusters are a very
+homogeneous population (e.g., Postman &amp; Lauer 1995 and references therein);
+they have a very narrow range of color and intrinsic luminosity.  Because 
+these objects are intrinsically very luminous, they can be observed to great
+distance.
+<P>
+We therefore selected such objects by a variant of the method of
+photometric redshifts (connolly95b), with the aim of selecting
+a uniform, approximately volume-limited sample of objects with the
+reddest colors in the rest frame eisenstein01.  We term these
+objects ``Luminous Red Galaxies'', or LRGs. 
+It turns out that this can be
+simply done with cuts in the <IMG WIDTH=52 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3301" SRC="img129.gif">, <IMG WIDTH=49 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline3299" SRC="img128.gif">, <IMG WIDTH=14 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline2863" SRC="img21.gif">
+color-color-magnitude cube.  Because the 4000&#197; break
+moves from the <I>g</I> band to the <I>r</I> band at <IMG WIDTH=52 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3387" SRC="img144.gif">, two
+different sets of selection criteria are used, which we term Cut I and
+Cut II.  First, we rotate to a
+color basis that is aligned with the galaxy locus in the <IMG WIDTH=52 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3301" SRC="img129.gif">,
+<IMG WIDTH=49 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline3299" SRC="img128.gif"> plane as follows:
+<BR><IMG WIDTH=533 HEIGHT=49 ALIGN=BOTTOM ALT="eqnarray1068" SRC="img145.gif"><BR>
+All colors are measured using model magnitudes, and all quantities are
+corrected for Galactic reddening following schlegel98.
+<P>
+Cut I and Cut II objects used star-galaxy separation criteria that
+changed from one chunk to another (Table&nbsp;<A HREF="node65.html#tbltargetcriteria">29</A>).
+For Cut I, the flux and color cuts are: 
+<BR><A NAME="eqlrgcutI">&#160;</A><IMG WIDTH=648 HEIGHT=104 ALIGN=BOTTOM ALT="eqnarray1072" SRC="img146.gif"><BR>
+<P>
+This gives an approximately
+volume-limited sample of galaxies to <I>z</I> = 0.37 with additional galaxies
+up to <IMG WIDTH=61 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3351" SRC="img138.gif">.  These objects are flagged <TT>GALAXY_RED</TT>.
+<P>
+To reach higher redshifts, we use Cut II:
+<BR><A NAME="eqlrgII">&#160;</A><IMG WIDTH=581 HEIGHT=104 ALIGN=BOTTOM ALT="eqnarray1083" SRC="img147.gif"><BR>
+This selects red galaxies at 0.42 &lt; <I>z</I> &lt; 0.55.  The surface brightness cut,
+and the value of the <IMG WIDTH=52 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3301" SRC="img129.gif"> color cut offset, <IMG WIDTH=42 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline3401" SRC="img148.gif">, was different
+in different versions of target selection, as indicated in
+Table&nbsp;<A HREF="node65.html#tbltargetcriteria">29</A>.  Despite the deeper flux cut, this sample is
+still flux-limited rather than luminosity-limited.  These Cut II objects are
+flagged both as <TT>GALAXY_RED_II</TT> and <TT>GALAXY_RED</TT>.
+<P>
+The luminosity cut in Cut I
+(eq.&nbsp;[<A HREF="node53.html#eqlrgcutI">17</A>]) is a good approximation to a passively-evolving
+old stellar population from <IMG WIDTH=61 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3403" SRC="img149.gif"> to <IMG WIDTH=61 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3351" SRC="img138.gif">, but
+is too permissive at lower redshift.  At <I>z</I>&lt;0.20, one
+should not use the <TT>GALAXY_RED</TT> flag to extract the low-redshift extension
+of the LRG volume-limited sample.  Rather, one must use the redshift
+extracted from the main galaxy sample to construct the absolute magnitude
+and rest-frame color and select galaxies that fall in the region populated
+by the high-redshift LRGs.  This is described in more detail in
+eisenstein01.
+<P>
+The resulting LRG sample has nearly constant comoving number density
+to <IMG WIDTH=52 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3387" SRC="img144.gif"> with a passively-evolved luminosity threshold that
+is close to constant.  This suggests that the sample is indeed
+close to the volume-limited goal.  At <I>z</I>&gt;0.4, the sample is
+effectively flux-limited but still selects intrinsically red galaxies.
+The sample selection is also quite efficient: 97% of the selected
+targets are at <I>z</I>&gt;0.15.
+<P>
+The two LRG Cuts together give roughly 12 targets per square degree
+that are not already in the main galaxy target selection sample,
+typically 10 of which are Cut I targets and 2 of which are Cut II targets.
+<P>
+<HR><A NAME="tex2html700" HREF="node54.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html698" HREF="node51.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html692" HREF="node52.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html701" HREF="node54.html">Quasars</A>
+<B>Up:</B> <A NAME="tex2html699" HREF="node51.html">Target Selection</A>
+<B> Previous:</B> <A NAME="tex2html693" HREF="node52.html">Galaxies</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,1323 @@
+<!--#include virtual="/includes/sdss_page_top.html"-->
+<!--#include virtual="/includes/sdss_page_surveyops.html"-->
+
+
+<b><font size=+2>PERFORMANCE REQUIREMENTS
+FOR THE SDSS PHOTOMETRIC PIPELINE</font></b>
+<p>Steve Kent (Fermilab) and Jill Knapp (Princeton)<br>
+January 29, 1998
+<br>
+<hr WIDTH="100%">
+<br><br>
+The following document is an edited version of two parts of "Data Processing
+Requirements for SDSS Offline Software", written by Steve Kent (January
+9 1995; sdss-sac #52).&nbsp; The first part is the introduction, containing
+the overall requirements for the entire offline data processing system,
+and the second is the section dealing with the photometric pipeline. This
+section has been updated to take into account two changes.&nbsp; First,
+we no longer expect to process any data taken by the Fermilab Drift Scan
+Camera on the 3.5 m telescope, and second, the postage stamp extraction
+is now done by a new pipeline, the serial stamp collecting pipeline, instead
+of by the DA system.
+<p>Photo now consists of three pipelines:
+<p>The SSC, which cuts and orders the five color data to make the frames,
+and cuts several sets of postage stamps: 65x65 pixel stamps at the positions
+of stars found in the astrometric chips, 200x200 pixel stamps at the positions
+of stars brighter than 14m to measure the wings (one star per frame), and
+every 30 frames or so, extracts an entire frame with a very bright star
+to measure the image ghosts.&nbsp; Since SSC is basically a bookkeeping
+task, there are no requirements per se on this pipeline.
+<p>The PSP, which processes the quartile data from the DA and the postage
+stamp data from SSC and produces the run of sky, flat and PSF data for
+an entire run.
+<p>Frames, which processes the data frame by frame, finds and measures
+objects and writes a series of output files and images.
+<p>Apart from these changes and fixing the occasional typo, no changes
+have been made to the requirements as presented in the Jan 1995 document,
+though some outputs have been added to Photo and we could fill in quite
+a few of the TBDs; the goal is to compare these requirements with Photo's
+current performance.
+<p>The entire software document is included at the end for reference.
+<p>==============================================================================
+<p><b>1. DATA PROCESSING REQUIREMENTS FOR SDSS OFFLINE SOFTWARE - GENERAL</b>
+<p>[All data processing requirements are subject to instrumental and astronomical
+limitations.]
+<p>[All level 1 software will be tested using simulated data and, if available,
+test data from existing telescopes and instrumentation.&nbsp; All level
+2 software will be tested using 2.5 m data]
+<p>The data processing software shall perform the following:
+<p>1. Maintain a survey strategy system to
+<br>&nbsp;&nbsp; a. Define survey layout and all input catalogs needed
+for data processing
+<br>&nbsp;&nbsp; b. Track survey progress
+<br>&nbsp;&nbsp; c. Monitor quality of processed data and accept or reject
+<p>2. Process data tapes from photometric and astrometric imager cameras
+(excepting focus CCD's) and monitor telescope taken under photometric dark
+sky conditions with FWHM 0.8" to 1.5" in North Galactic Cap region (worst
+case l=0, b=30) to produce
+<br>&nbsp;&nbsp; a. Excluding 5% of sky for bright stars, derive positions,
+parameters, and atlas images in 5 colors for<br>
+&nbsp;i) All galaxies with diam &lt; 2' to m(r')=19 completeness at >95%,
+contamination of &lt;5%; enhanced goal of all galaxies to m(r')=21
+<br>&nbsp;ii) All detected objects to m(u')=21.9, m(g')=22.5, m(r')=22.5,&nbsp;
+m(i')=22.0, m(z')=20.4, with no completeness requirement. Enhanced
+<br>&nbsp;&nbsp;&nbsp; goal: 0.5 mag fainter
+<br>&nbsp;b. Atlas images only for all objects in select catalogs
+<br>&nbsp;&nbsp; c. Corrected pixel map
+<br>&nbsp;&nbsp; d. Systematic photometric errors outside the atmosphere
+of &lt;2% rms all sky at m(r') and &lt;2% rms in (g-r), (r-i) and &lt;(u-g),
+(i-z)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; averaged over 1 degree patches.&nbsp;
+Enhanced goal of 1% in magnitudes and colors.
+<br>&nbsp;
+<p>3. Produce target lists for spectroscopy of
+<br>&nbsp;&nbsp; a. Galaxies (density&nbsp; 100/sq deg), prob. of redshift
+>95%
+<br>&nbsp;&nbsp; b. QSO candidates (density of 15/sq deg), prob of success
+>65%
+<br>&nbsp;&nbsp; c. Additional high redshift (high-z) QSO candidates of
+arbitrary magnitude
+<br>&nbsp;&nbsp; d. Brightest cluster galaxies up to 1 mag fainter than
+field galaxies
+<br>&nbsp;&nbsp; e. Additional galaxies and QSO candidates for QA purposes
+<br>&nbsp;&nbsp; f. Guide stars for spectroscopy
+<br>&nbsp;&nbsp; g. Reddening standards
+<br>&nbsp;&nbsp; h. Stars with some TBD criteria (treat as serendipitous
+objects)
+<br>&nbsp;&nbsp; i. Other serendipitous objects
+<br>&nbsp;&nbsp; j. Blank sky
+<br>&nbsp;&nbsp; k. Spectrophotometric standards
+<p>4. Produce tiled target lists with coord for drilling machine, errors
+of
+<br>&nbsp;&nbsp; &lt;260 mas rms, with a turnaround time from delivery
+of data at Fermilab
+<br>&nbsp;&nbsp; to delivery of drilling coord of 1 week (last 3 years
+of survey only).
+<p>5. Process spectroscopic data tapes and produce
+<br>&nbsp;&nbsp; a. For all galaxies, redshifts with systematic errors
+of &lt;30 km/s rms
+<br>&nbsp;with success rate of 95% of maximum feasible.
+<br>&nbsp;&nbsp; b. Enhanced goal: for galaxies with S/N per angstrom greater
+than 17 at
+<br>&nbsp;5000 A, velocity dispersions with systematic errors of 20% rms
+for
+<br>&nbsp;dispersions greater than 100 km/s
+<br>&nbsp;&nbsp; c. For QSOs, redshifts and other parameters with success
+rate of 95%
+<br>&nbsp;of maximum feasible with rms errors &lt;1000 km/s.
+<br>&nbsp;&nbsp; d. Enhanced goal: for all spectra, relative spectrophotometry
+with peak
+<br>&nbsp;systematic error of 10% over range 3800-9000A for objects observed
+<br>&nbsp;at airmass &lt;1.4.
+<br>&nbsp;&nbsp; e. Enhanced goal: For all spectra, all emission lines,
+peaks, widths,
+<br>&nbsp;and positions.
+<p>============================================================================
+<br><b>2.&nbsp; REQUIREMENTS FOR PHOTOMETRIC PIPELINE</b>
+<p>Photometric/postage stamp pipeline will process postage stamp files,
+calibration files, and 5 color imaging data to produce object lists
+<br>and parameters.
+<p>INPUT
+<p>1. One column (1 to 5 colors) of CCD data interleaved on one or more
+tapes
+<br>2. Astrometric calibration with errors of no worse than 0.5" rms radius
+astrometric
+<br>3. MT photometric calibrations from one 27.3' square field per hour
+with stars brighter u'=16.3, g'=15.4, r'=15.6, i'=15.2, z'=TBD.
+<br>4. Extinction coefficients at approximately 1 set of values per hour
+<br>5. Dark drift, quartile, and bad column calibrations
+<br>6. Positions, magnitudes, diameters, PA's, and errors for all known
+globular clusters and known galaxies with diameters > 1'.
+<br>7. Positions, magnitudes, and errors for all stars brighter than V=9.
+<br>8. Positions and errors for objects in the following catalogs: IRAS
+FSC, FIRST, ROSAT, 2MASS.
+<p>Data will be obtained with the following observing conditions:
+<p>1. Seeing: 0.8" to 1.5" FWHM
+<br>2. Photometric zero-point fluctuations in one night of &lt; 0.1 mag
+at r'
+<br>&nbsp;&nbsp; (TBD: This spec needs refinement)
+<br>3. Max star density corresponding to l=0, b=30.
+<br>4. Sky brightness of nominal dark sky (APO) plus TBD extra (faint moon).
+<br>5. Defects: Double column defects may exist anywhere in u' CCD; double
+columns
+<br>&nbsp;&nbsp; defects in outer 10% of any other imaging CCD except r';
+single column
+<br>&nbsp;&nbsp; defects anywhere.
+<p>SCIENCE GOALS
+<p>1. Excluding 5% of sky for bright stars, derive positions, parameters,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and atlas images in 5 colors for
+<br>&nbsp;i) All objects to 5 sigma above sky (smoothed over PSF area)
+<br>&nbsp;&nbsp;&nbsp; with no completeness requirement.
+<br>&nbsp;ii) All galaxies with diam &lt;2' to m(r')=19 completeness of
+>95%,
+<br>&nbsp;&nbsp;&nbsp; contamination of &lt;5%.
+<br>&nbsp;iii) Enhanced goal: All galaxies to 10 sigma smoothed over a
+galaxy
+<br>&nbsp;&nbsp;&nbsp; diameter, completeness of &lt;90%, contamination
+of &lt;10%.
+<br>2. Positions for all galaxies with diam >2'
+<br>3. Enhanced goal: Atlas images for all objects in the following catalogs:
+IRAS FSC, FIRST, ROSAT, 2MASS.
+<br>4. Produce a Corrected pixel map
+<p>5. Systematic photometric errors outside the atmosphere of
+<br>&nbsp;&nbsp; a. &lt;2% rms all sky at m(r') and &lt;2% rms in all colors
+<br>&nbsp;(3% u-g and i-z) averaged over 1 degree patches.&nbsp; Enhanced
+goal
+<br>&nbsp;of 1% in magnitudes and colors.
+<p>&nbsp;&nbsp; b. Relative stellar magnitudes, within a single frame,
+to an accuracy of 1% for isolated unsaturated stars brighter than u'=19.9,
+g'=20.9,
+<br>&nbsp;r'=20.5, i'=20.0, z'=18.4.
+<p>&nbsp;&nbsp; c. Systematic photometric error on individual galaxies
+of 0.1 mag rms to m(r') = 18.0 and 0.5 mag rms for fainter
+<p>&nbsp;&nbsp; TBD: Spec on how well we can handle crowded objects
+<p>RETAINED OUTPUT
+<p>1. Postage Stamp Pipeline
+<br>&nbsp;&nbsp; a. PSF parameters, one set per frame per color
+<br>&nbsp;&nbsp; b. Sky brightness in each band
+<br>&nbsp;&nbsp; c. Photometric calibration for each frame
+<p>2. Frames Pipeline
+<p>&nbsp;&nbsp; a. Corrected frames.&nbsp; For each frame, a noise mask
+(8 bit) and an object mask (8 bit).
+<br>&nbsp;&nbsp; b. For each frame, the correction (FF) and bias vectors
+<br>&nbsp;&nbsp; c. For objects present in a list of catalogues, Atlas
+Images
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TBD: Size of each image
+<br>&nbsp;&nbsp; d. For each object:
+<p>&nbsp;A unique identifier
+<p>&nbsp;A single reference position, with errors
+<br>&nbsp;Offsets in each colors w.r.t. reference position, with errors
+<p>&nbsp;PSF magnitudes in each band, with errors.
+<p>&nbsp;3" aperture magnitudes in each band, with errors, smoothed
+<br>&nbsp;to largest canonical seeing (1.5 arcsec).
+<p>&nbsp;Centroid, PA of major axis, and ellipticity, derived from weighted
+<br>&nbsp;moments, in each band, within an isophote corresponding to 1
+sigma
+<br>&nbsp;(TBD: per pixel?) above sky for the brightest sky (TBD: gotta
+<br>&nbsp;specify these numbers).&nbsp; Also, parameters for the best fitting
+<br>&nbsp;ellipse at that isophote.
+<p>&nbsp;Radial profile in each band in logarithmically spaced circular
+annular apertures centred on the canonical position (see above). Each
+<br>&nbsp;aperture will have a mean, a median, and a measure of the variance.&nbsp;
+The number of annuli measured will depend on the brightness of the
+<br>&nbsp;object, with the last point corresponding to TBD.
+<p>&nbsp;Petrosian magnitude and radius, and a suitable measure of surface
+brightness for each band, for each band, inside the r' radius
+<br>&nbsp;corrected for seeing.
+<p>&nbsp;A parameter P that gives the likelihood of an object being a star,
+<br>&nbsp;one per band.
+<p>&nbsp;Morphology index in each band for all objects, with quality measure,
+<br>&nbsp;from radial profile fit to DeVaucouleurs law and exponential
+profile.
+<p>&nbsp;Atlas Images in 5 colors. (TBD: What is the maximum radius?)
+<p>&nbsp;For all photometric quantities, additional parameters as needed
+<br>&nbsp;to correct for -0.3 to +0.1 mag correction in photometric zero-point
+<br>&nbsp;(reddening plus revised photometric calibration).
+<p>&nbsp;For all parameters, errors
+<p>&nbsp;&nbsp; e. `Mask objects', i.e. structures describing the regions
+masked and not
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; searched for objects, or not searched
+so deeply, for LSS
+<p>&nbsp;&nbsp; f. For each frame:
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Number of stars, number of galaxies,
+number of other classified objects,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number of unclassified objects (`junks'?)
+per frame, using an
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a priori value of P for each color.
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Zero or one "blank sky" positions, with
+Atlas image, plus parameters.
+<p>&nbsp;&nbsp; g. For each Big Galaxy (D>2'):
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Position in 5 colors
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Atlas image
+<p>&nbsp;&nbsp; h. No atlas images will be cut for deblended images; rather
+children
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; will be specified either as parameter
+lists or as 8-bit weight masks.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No atlas images will be cut for saturated
+stars in the Bright Object
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catalog.
+<p>&nbsp;&nbsp; i. For each frame:
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A small number of "blank sky" regions,
+with atlas images, which can be used to locate sky fibers during spectroscopy.
+<p>TECHNICAL PERFORMANCE
+<p>1. Reduce 8 hours worth of data in all of the 5 filters in 16 hours
+on an R4400 class cpu in 128 Mbytes or less.
+<p>2. Run pipeline on 8 hours of data without needing to be restarted.
+<p>3. Reject not more than 0.1% of frames for reasons other than the presence
+of bright objects&nbsp; over the entire survey region.
+<p>==============================================================================
+<p>This is the science software requirements document written by Steve
+Kent, January 9 1995&nbsp; The original is sdss-sac #52.&nbsp; In that
+message, Steve had flagged changes from previous versions - these flags
+have been removed for easier reading, but otherwise the document is untouched.&nbsp;
+Markup is HTML.
+<br>&nbsp;
+<p>==============================================================================
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DATA PROCESSING REQUIREMENTS
+FOR SDSS OFFLINE SOFTWARE
+<p>[All data processing requirements are subject to instrumental and astronomical
+limitations.]
+<p>[All level 1 software will be tested using simulated data and, if available,
+<br>test data from existing telescopes and instrumentation.&nbsp; All level
+2 software
+<br>will be tested using 2.5 m data]
+<p>The data processing software shall perform the following:
+<p>1. Maintain a survey strategy system to
+<br>&nbsp;&nbsp; a. Define survey layout and all input catalogs needed
+for data processing
+<br>&nbsp;&nbsp; b. Track survey progress
+<br>&nbsp;&nbsp; c. Monitor quality of processed data and accept or reject
+<p>2. Process data tapes from photometric and astrometric imager cameras
+<br>&nbsp;&nbsp; (excepting focus CCD's) and monitor telescope taken under
+photometric
+<br>&nbsp;&nbsp; dark sky conditions with FWHM 0.8" to 1.5" in North Galactic
+Cap
+<br>&nbsp;&nbsp; region (worst case l=0, b=30) to produce
+<br>&nbsp;&nbsp; a. Excluding 5% of sky for bright stars, derive positions,
+parameters,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and atlas images in 5 colors for
+<br>&nbsp;i) All galaxies with diam &amp;lt; 2' to m(r')=19 completeness
+at of &amp;gt;95%,
+<br>&nbsp;&nbsp;&nbsp; contamination of &amp;lt; 5%; enhanced goal of all
+galaxies to m(r')=21
+<br>&nbsp;ii) All detected objects to m(u')=21.9 m(g')=22.5 m(r')=22.5
+<br>&nbsp;&nbsp;&nbsp; m(i')=22.0 m(z')=20.4 with no completeness requirement.
+Enhanced
+<br>&nbsp;&nbsp;&nbsp; goal: 0.5 mag fainter
+<br>&nbsp;&nbsp; b. Atlas images only for all objects in select catalogs
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (none extant at present).
+<br>&nbsp;&nbsp; c. Corrected pixel map
+<br>&nbsp;&nbsp; d. Systematic photometric errors outside the atmosphere
+of &amp;lt; 2% rms all
+<br>&nbsp;sky at m(r') and &amp;lt; 2% rms in (g-r), (r-i) and 3% (u-g),
+(i-z) averaged
+<br>&nbsp;over 1 degree patches.&nbsp; Enhanced goal of 1% in magnitudes
+and colors.
+<p>2a. Process data tapes from Drift Scan Camera and 3.5m telescope
+<p>3. Produce target lists for spectroscopy of
+<br>&nbsp;&nbsp; a. Galaxies (density of 100/sq deg), prob. of redshift
+&amp;gt; 95%
+<br>&nbsp;&nbsp; b. QSO candidates (density of 15/sq deg), prob of success
+&amp;gt; 65%
+<br>&nbsp;&nbsp; c. Additional high redshift (high-z) QSO candidates of
+arbitrary magnitude
+<br>&nbsp;&nbsp; d. Brightest cluster galaxies up to 1 mag fainter than
+field galaxies
+<br>&nbsp;&nbsp; e. Additional galaxies and QSO candidates for QA purposes
+<br>&nbsp;&nbsp; f. Guide stars for spectroscopy
+<br>&nbsp;&nbsp; g. Reddening standards
+<br>&nbsp;&nbsp; h. Stars with some TBD criteria (treat as serendipitous
+objects)
+<br>&nbsp;&nbsp; i. Other serendipitous objects
+<br>&nbsp;&nbsp; j. Blank sky
+<br>&nbsp;&nbsp; k. Spectrophotometric standards
+<p>4. Produce tiled target lists with coord for drilling machine, errors
+of
+<br>&nbsp;&nbsp; &amp;lt; 260 mas rms, with a turnaround time from delivery
+of data at Fermilab
+<br>&nbsp;&nbsp; to delivery of drilling coord of 1 week (last 3 years
+of survey only).
+<p>5. Process spectroscopic data tapes and produce
+<br>&nbsp;&nbsp; a. For all galaxies, redshifts with systematic errors
+of &amp;lt; 30 km/s rms
+<br>&nbsp;with succes rate of 95% of maximum feasible.
+<br>&nbsp;&nbsp; b. Enhanced goal: for galaxies with S/N per angstrom greater
+than 17 at
+<br>&nbsp;5000 A, velocity dispersions with systematic errors of 20% rms
+for
+<br>&nbsp;dispersions greater than 100 km/s
+<br>&nbsp;&nbsp; c. For QSOs, redshifts and other parameters with success
+rate of 95%
+<br>&nbsp;of maximum feasible with rms errors &amp;lt; 1000 km/s.
+<br>&nbsp;&nbsp; d. Enhanced goal: for all spectra, relative spectrophotometry
+with peak
+<br>&nbsp;systematic error of 10% over range 3800-9000A for objects observed
+<br>&nbsp;at airmass &amp;lt; 1.4.
+<br>&nbsp;&nbsp; e. Enhanced goal: For all spectra, all emission lines,
+peaks, widths,
+<br>&nbsp;and positions.
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+REQUIREMENTS FOR PHOTOMETRIC PIPELINE
+<p>Photometric/postage stamp pipeline will process postage stamp files,
+<br>calibration files, and 5 color imaging data to produce object lists
+<br>and parameters.
+<p>INPUT
+<p>1. One column (1 to 5 colors) of CCD data interleaved on one or more
+tapes
+<br>2. NOT: Binned data from 2.5m telescope
+<br>3. Also, Drift Scan Camera 3.5m data (1 color) on one or more tapes
+<br>4. Astrometric calibration with errors of no worse than
+<br>&nbsp;&nbsp; 0.5" rms radius astrometric
+<br>5. MT photometric calibrations from one 27.3' square field
+<br>&nbsp;&nbsp; per hour with stars brighter u'=16.3, g'=15.4, r'=15.6,
+i'=15.2,
+<br>&nbsp;&nbsp; z'=TBD.
+<br>6. Extinction coefficients at approximately 1 set of values
+<br>&nbsp;&nbsp; per hour
+<br>7. Dark drift, quartile, and bad column calibrations
+<br>8. Up to 40 29x29 excised subframes of unsaturated bright
+<br>&nbsp;&nbsp; stars and other objects per frame per color of CCD data.
+<br>9. Positions, magnitudes, diameters, PA's, and errors for all known
+<br>&nbsp;&nbsp; globular clusters and known galaxies with diameters &amp;gt;
+1'.
+<br>10. Positions, magnitudes, and errors for all stars brighter than V=9.
+<br>11. Positions and errors for objects in the following catalogs: IRAS
+FSC,
+<br>&nbsp;FIRST, ROSAT, 2MASS.
+<p>Data will be obtained with the following observing conditions:
+<p>1. Seeing: 0.8" to 1.5" FWHM
+<br>2. Photometric zero-point fluctuations in one night of &amp;lt; 0.1
+mag at r'
+<br>&nbsp;&nbsp; (TBD: This spec needs refinement)
+<br>3. Max star density corresponding to l=0, b=30.
+<br>4. Sky brightness of nominal dark sky (APO) plus TBD extra (faint moon).
+<br>5. Defects: Double column defects may exist anywhere in u' CCD; double
+columns
+<br>&nbsp;&nbsp; defects in outer 10% of any other imaging CCD except r';
+single column
+<br>&nbsp;&nbsp; defects anywhere.
+<p>SCIENCE GOALS
+<p>1. Excluding 5% of sky for bright stars, derive positions, parameters,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and atlas images in 5 colors for
+<br>&nbsp;i) All objects to 5 sigma above sky (smoothed over PSF area)
+<br>&nbsp;&nbsp;&nbsp; with no completeness requirement.
+<br>&nbsp;ii) All galaxies with diam &amp;lt; 2' to m(r')=19 completeness
+of &amp;gt;95%,
+<br>&nbsp;&nbsp;&nbsp; contamination of &amp;lt; 5%.
+<br>&nbsp;iii) Enhanced goal: All galaxies to 10 sigma smoothed over a
+galaxy
+<br>&nbsp;&nbsp;&nbsp; diameter, completeness of &amp;gt;90%, contamination
+of &amp;lt; 10%.
+<br>2. Positions for all galaxies with diam &amp;gt; 2'
+<br>3. Enhanced goal: Atlas images for all objects in the
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; following catalogs: (IRAS FSC, FIRST,
+ROSAT, 2MASS).
+<br>4. Produce a Corrected pixel map
+<p>5. Systematic photometric errors outsize the atmosphere of"
+<br>&nbsp;&nbsp; a. &amp;lt; 2% rms all sky at m(r') and &amp;lt; 2% rms
+in all colors
+<br>&nbsp;(3% u-g and i-z) averaged over 1 degree patches.&nbsp; Enhanced
+goal
+<br>&nbsp;of 1% in magnitudes and colors.
+<p>&nbsp;&nbsp; b. Relative stellar magnitudes, within a single frame,
+to an accuracy of
+<br>&nbsp;1% for isolated unsaturated stars brighter than u'=19.9, g'=20.9,
+<br>&nbsp;r'=20.5, i'=20.0, z'=18.4.
+<p>&nbsp;&nbsp; c. Systematic photometric error on individual galaxies
+of 0.1 mag rms.
+<br>&nbsp;to m(r') = 18.0 and 0.5 mag rms for fainter
+<p>&nbsp;&nbsp; TBD: Spec on how well we can handle crowded objects
+<p>RETAINED OUTPUT
+<p>1. Postage Stamp Pipeline
+<br>&nbsp;&nbsp; a. PSF parameters, one set per frame per color
+<br>&nbsp;&nbsp; b. Sky brightness in each band
+<br>&nbsp;&nbsp; c. Photometric calibration for each frame
+<p>2. Frames Pipeline
+<p>&nbsp;&nbsp; a. Corrected frames.&nbsp; For each frame, a noise mask
+(8 bit) and an object
+<br>&nbsp;mask (8 bit).
+<p>&nbsp;&nbsp; b. For each frame, the correction (FF) and bias vectors
+<br>&nbsp;&nbsp; b. For objects present in a list of catalogues, Atlas
+Images
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TBD: Size of each image
+<p>&nbsp;&nbsp; d. For each object:
+<p>&nbsp;A unique identifier
+<p>&nbsp;A single reference position, with errors
+<br>&nbsp;Offsets in each colors w.r.t. reference position, with errors
+<p>&nbsp;PSF magnitudes in each band, with errors.
+<p>&nbsp;3" aperture magnitudes in each band, with errors, smoothed
+<br>&nbsp;to largest canonical seeing (1.5 arcsec).
+<p>&nbsp;Centroid, PA of major axis, and ellipticity, derived from weighted
+<br>&nbsp;moments, in each band, within an isophote corresponding to 1
+sigma
+<br>&nbsp;(TBD: per pixel?) above sky for the brightest sky (TBD: gotta
+<br>&nbsp;specify these numbers).&nbsp; Also, parameters for the best fitting
+<br>&nbsp;ellipse at that isophote.
+<p>&nbsp;Radial profile in each band in logarithmically spaced circular
+<br>&nbsp;annular apertures centred on the canonical position (see above).
+Each
+<br>&nbsp;aperture will have a mean, a median, and a measure of the variance.
+<br>&nbsp;The number of annuli measured will depend on the brightness of
+the
+<br>&nbsp;object, with the last point corresponding to TBD.
+<p>&nbsp;Petrosian magnitude and radius, and a suitable measure of surface
+<br>&nbsp;brightness for each band, for each band, inside the r' radius
+<br>&nbsp;corrected for seeing.
+<p>&nbsp;A parameter P that gives the likelihood of an object being a star,
+<br>&nbsp;one per band.
+<p>&nbsp;Morphology index in each band for all objects, with quality measure,
+<br>&nbsp;from radial profile fit to DeVaucouleurs law and exponential
+profile.
+<p>&nbsp;Atlas Images in 5 colors. (TBD: What is the maximum radius?)
+<p>&nbsp;For all photometric quantities, additional parameters as needed
+<br>&nbsp;to correct for -0.3 to +0.1 mag correction in photometric zero-point
+<br>&nbsp;(reddening plus revised photometric calibration).
+<p>&nbsp;For all parameters, errors
+<p>&nbsp;&nbsp; d. `Mask objects', i.e. structures describing the regions
+masked and not
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; searched for objects, or not searched
+so deeply, for LSS
+<p>&nbsp;&nbsp; e. For each frame:
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Number of stars, number of galaxies,
+number of other classified objects,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number of unclassified objects (`junks'?)
+per frame, using an
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a priori value of P for each color.
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Zero or one "blank sky" positions, with
+Atlas image, plus parameters.
+<p>&nbsp;&nbsp; f. For each Big Galaxy (D&amp;gt;2'):
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Position in 5 colors
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Atlas image
+<p>&nbsp;&nbsp; g. No atlas images will be cut for deblended images; rather
+children
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; will be specified either as parameter
+lists or as 8-bit weight masks.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No atlas images will be cut for saturated
+stars in the Bright Object
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catalog.
+<p>TECHNICAL PERFORMANCE
+<p>1. Reduce 8 hours worth of data in all of the 5 filters in 16 hours
+<br>&nbsp;&nbsp; on an R4400 class cpu in 128 Mbytes or less.
+<p>2. Run pipeline on 8 hours of data without needing to be restarted.
+<p>3. Reject not more than 0.1% of frames for reasons other than the presence
+<br>&nbsp;&nbsp; of bright objects&nbsp; over the entire survey region.
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+REQUIREMENTS FOR IMAGING TEST DATA
+<p>Positions and magnitudes of artifial stars plus
+<br>maging data will be generated to simulate two 1-hour interleaved
+<br>strips at survey lat=long=0 degrees plus one 1-hour scanline at
+<br>l=0, b=30.
+<p>INPUTS
+<p>1. Positional standard stars from the Guide Star Catalog and the ACRS.
+<p>2. Realistic colors for Astrometric(/MT) standard stars
+<br>&nbsp;&nbsp; (based on Bahcall-Soneira model).
+<p>3. Actual CCD dark images with SDSS electronics (with the same exposure
+time,
+<br>&nbsp;&nbsp; real noise and gain).
+<p>4. Calculated ghost patterns (TBD: From where?)
+<p>5. Real galaxy images
+<p>OUTPUTS
+<p>1. Catalog (AKA the Mamoru/Weinberg catalog) of galaxy, star, and QSO
+positions,
+<br>&nbsp;&nbsp; stars brighter than magnitude r'=25 (2 mag fainter than
+survey limit
+<br>&nbsp;&nbsp; in each color), galaxies brighter than as above, QSOs
+<br>&nbsp;&nbsp; brighter than as above, star densities corresponding to
+|b| &amp;gt; 30 degrees.
+<p>2. Photometric CCDs, 12 scanlines, each 1 hour in length, 5 colors.
+<p>3. Astrometric frame data (22 CCDs per strip)
+<p>4. Monitor telescope overlap patches (Two sets of 6 fields each at beginning
+<br>&nbsp;&nbsp; and end of above scans)
+<br>&nbsp;
+<p>5. Monitor telescope primary standard star frames (10 stars total, each
+in
+<br>&nbsp;&nbsp; 5 colors)
+<p>SIMULATED EFFECTS
+<p>1. Bad columns
+<br>2. Variable sky levels and psf, up to limits required
+<br>3. Minor planets
+<br>4. For QSO: See section below on QSO TEST DATA
+<br>5. "Airplane trails" and meteor trails
+<br>&nbsp;
+<p>TECHNICAL REQUIREMENTS
+<p>1. Headers: (need requests from pipelines).
+<br>2. Consistent observational parameters (Date&amp;amp;time, sec z, telescope
+angle)
+<br>3. Code is distributable and documented; capable of generating "small"
+<br>&nbsp;&nbsp; volumes of simulated data
+<br>4. Enhanced goal: Convert from Mirage to Dervish
+<p>OBSERVATIONAL TEST DATA
+<p>1. Actual CCD frames with
+<br>&nbsp;a. Cosmic rays
+<br>&nbsp;b. Ghosts, satellite trails, bleed trails
+<br>&nbsp;c. Big bright galaxies &amp;gt; 2', clusters of galaxies (redshift
+0.03 to 0.2)
+<br>&nbsp;&nbsp;&nbsp; merging groups, planetaries, etc.
+<p>2. Bright star images
+<br>&nbsp; Ghosts, PSFs as a function of time for 3.5 telescope.
+<br>&nbsp; CCD response including bleed trails, CCD hysteresis and (low)
+CTE.
+<br>&nbsp; Big objects (nebulae, Galactic clusters, galaxies,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+clusters of galaxies, satellites, minor planets...)
+<p>3. DSC scans of 3 x 3 degree pieces of sky at at least 2 different directions
+<br>&nbsp;&nbsp; in the survey area with different stellar densities. (Enhanced
+goal:
+<br>&nbsp;&nbsp; one position at NGP, one position at l=0, b=30).&nbsp;
+MT overlap data for
+<br>&nbsp;&nbsp; above.
+<p>4. DSC scans of HST medium deep survey fields.
+<p>5. DSC scans of fields selected from the IRAS FSC
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; REQUIREMENTS FOR SPECTROSCOPIC
+PIPELINE
+<p>The spectroscopic pipeline will accept as input:
+<p>For up to 10 fields per night,
+<p>1. For each field, one or more sets of CCD frames,
+<br>&nbsp;&nbsp; each set consisting of two pairs of blue/red CCD
+<br>&nbsp;&nbsp; frames of 320 fiber spectra each, of stars, galaxies,
+<br>&nbsp;&nbsp; QSOs, sky, scattered light, and serendipitous objects
+<p>2. Flatfields
+<p>3. Bias frames
+<p>4. Calibration arc frames
+<p>5. Absolute fluxes in 5 bands in 3" aperture (from
+<br>&nbsp;&nbsp; photometric pipeline) and positions
+<br>5a. Enhanced requirement: 5 absolute fluxes per band,
+<br>&nbsp;&nbsp; including 4 sets of exposures offset by 1.5" N, S, E,
+<br>&nbsp;&nbsp; and W of the nominal target position (from photometric
+<br>&nbsp;&nbsp; pipeline)
+<p>6. Enhanced requirement: Four sets of exposures with
+<br>&nbsp;&nbsp; the telescope offset by 1'' N, S, E, and W of the
+<br>&nbsp;&nbsp; nominal target position
+<p>Data will be accepted under the following observing
+<br>&nbsp;&nbsp; conditions:
+<p>1. Seeing 2" FWHM or better
+<p>2. Sky brightness of nominal dark sky (APO) plus moon
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; no brighter than V = 19th
+mag/sq arcsec
+<p>3. Variable transparency
+<p>4. Defects: Single column defects
+<p>SCIENCE GOALS
+<p>1. For all galaxy candidate spectra:
+<br>&nbsp;&nbsp; a. Measure parameters and redshifts with total rms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; errors less than 30 km/s
+and completeness of 95%
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; of all feasible.
+<br>&nbsp;&nbsp; b. For all galaxy candidate spectra with detected
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flux greater than m(r')=19,
+a velocity dispersion
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with systematic errors less
+than 75 km/s rms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and 50% completeness
+<br>&nbsp;&nbsp; c. Enhanced goal: velocity dispersion error of 10%
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; above 200 km/s
+<br>&nbsp;&nbsp; d. Enhanced goal: 90% completeness
+<p>2. For all QSO candidate spectra:
+<br>&nbsp;&nbsp; a. Identify QSO spectra as such with a completeness
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; of 95% and an error rate
+of 5%.
+<br>&nbsp;&nbsp; b. Measure parameters and redshifts of QSOs with
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; systematic errors less than
+100 kms/s rms and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a completeness of 90% (enhanced
+goal 95%) of
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; all feasible.
+<p>3. Enhanced goal: For all object spectra, obtain a
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spectrophotometric calibration
+with relative
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; systematic errors less than
+10% maximum.
+<p>3a. Enhanced goal: For all object spectra, obtain a
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spectrophotometric calibration
+with absolute
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; systematic errors less than
+10% maximum.
+<p>4. Enhanced goal: For all stars, identify spectral type and radial velocity
+<p>RETAINED OUTPUT
+<p>1. Corrected 2D frames
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Storage memory: 57GB
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (10^6 x 2 color x [2192x2068
+pix] x 2 bytes/ 320 fbrs)
+<p>2. For all object spectra, a corrected rebinned red-blue
+<br>&nbsp;&nbsp; combined 1-D spectrum with errors, photometry, wavelenght,
+<br>&nbsp;&nbsp; dispersion relation, and continuum fit (DPS says no to
+continuum fit).
+<br>&nbsp;&nbsp; No covariance arrays.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Storage memory: 41GB
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (10^6 x 4096 pix x 10 bytes)
+<p>3. For all galaxy candidates:
+<br>&nbsp;&nbsp; a. An absorption line redshift with r value, a peak
+<br>&nbsp;likelihood estimate, z and r for second highest
+<br>&nbsp;peak best fit template id; Enhanced goal: velocity dispersion
+<br>&nbsp;&nbsp; b. Enhanced goal: For each absorption line, wavelength,
+FWHM, equivalent
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width, and errors.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Storage memory: 0.5GB
+<p>4. For all galaxies and QSO candidates:
+<br>&nbsp;&nbsp; a. For each emission line, wavelength, FWHM, equivalent
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width, and errors. (QSO's:
+This is enhanced goal only).
+<br>&nbsp;&nbsp; b. A redshift and estimated error with total rms error
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;lt; 30 km/s for galaxies
+and &amp;lt; 1000 km/s for QSOs,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; using both QSO and galaxy
+emission line lists
+<p>5. Enhanced goal: For all object spectra, a spectrophotometric
+<br>&nbsp;&nbsp; calibration in the form of polynomial coefficients giving
+a
+<br>&nbsp;&nbsp; function going from wavelength or pixel to sensitivity
+(TBD)
+<br>&nbsp;&nbsp; (counts)/(ergs/sec/cm^2/Ang).
+<p>6. For each set of 4-point frames, extracted 1-D spectra.
+<p>TECHNICAL PERFORMANCE
+<p>1. Process all frames for one field in 3 hours elapsed time
+<br>&nbsp;&nbsp; without failure.
+<p>COMPUTER MEMORY
+<p>1. Input data: 320MB scratch disk
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; For 1 spectrograph, 1 color,
+320 fibers, need 9 input
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data frames, each 2192x2068
+x 2bytes = 9MB:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 He-Ne-Ar arc
+lamp calibrations
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 bias (avg
+of many)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 flat field
+(avg of many)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 `nodding frames'
+or
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4 `diamond pointings'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3 data frames
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -------------
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9 frames x 9MB
+= 81MB
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (these are read
+from the data tape off the mountain
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to spinning
+disk)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IRAF runs on these frames,
+generating about 4 times
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this in temporary storage:
+4x81 = 324MB
+<p>2. Analysis: 70-140 RAM memory
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2-D to 1-D IRAF extraction
+needs 8 x 2192x2068 floating
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; points in memory at once
+= 145MB max. If pushed, we may
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; be able to do this in 70MB
+RAM.
+<p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+REQUIREMENTS FOR SPECTROSCOPIC TEST DATA
+<p>Test data will be generated to simulate observations of 4
+<br>spectroscopic target fields.
+<p>Spectra shall be simulated for the following types of objects:
+<br>&nbsp;&nbsp; a. Sky (10 fibers per field)
+<br>&nbsp;&nbsp; b. F subdwarf (2 fibers per field)
+<br>&nbsp;&nbsp; c. Galaxies and QSO's from Mamoru/Weinberg simulations.
+<br>&nbsp;&nbsp; d. Stars (chosen from white dwarfs (low res), M star,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; K giants/dwarf, A, B F G
+stars, 10 to 100 per field)
+<br>&nbsp;
+<p>INPUTS:
+<p>1. Mamoru/Weinberg catalog
+<br>&nbsp;&nbsp; Enhanced goal: Extract the above file from a survey database
+<br>&nbsp;&nbsp; which contains photometric pipeline output of a photometric
+<br>&nbsp;&nbsp; simulation.
+<p>2. Filippenko spectrophotometric atlas of galaxies
+<p>3. QSO simulator.
+<p>OUTPUTS
+<p>An "exposure" is a set of 4 FITS format CCD frames, corresponding
+<br>&nbsp;&nbsp; to blue &amp;amp; red channels for 2 spectrographs, with
+320 fibers per
+<br>&nbsp;&nbsp; frame.
+<p>Each target field will have the following sets of exposures
+<br>&nbsp;&nbsp; a. A flatfield exposure
+<br>&nbsp;&nbsp; b. A bias exposure
+<br>&nbsp;&nbsp; c. A comparison lamp exposure
+<br>&nbsp;&nbsp; d. 3 exposures of the targeted field
+<br>&nbsp;&nbsp; e. Documenting files
+<br>&nbsp;&nbsp; f. Enhanced goal: 4 binned exposures based on a "diamond"
+raster
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pattern
+<p>A TCL interface and documentation to run the simulator.
+<br>&nbsp;
+<p>SIMULATED EFFECTS
+<br>&nbsp;
+<br>1. Sky continuum and prominent night sky emission lines,
+<br>&nbsp;&nbsp; plus prominent telluric absorption features ( 7600 A band,
+<br>&nbsp;&nbsp; 6880 B band 8200 H2O band)
+<p>2. Optionally, photon noise and read noise.
+<br>&nbsp;&nbsp; a. Spectra may have regions of unusually high noise
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; due to low signal, telluric abs, or
+near edge of chip.
+<p>3. Spectra should have resolution and sampling similar to the
+<br>&nbsp;&nbsp; expected spectrograph resolution over the full range of
+<br>&nbsp;&nbsp; wavelength coverage (3900-9000A). 1.5A/pixel sampling,
+3A
+<br>&nbsp;&nbsp; resolution. This restriction will be relaxed somewhat
+for
+<br>&nbsp;&nbsp; 'spectra obtained from the literature' since little existing
+<br>&nbsp;&nbsp; data has that large wavelength range coverage at that
+<br>&nbsp;&nbsp; resolution.
+<p>4. Object types:
+<p>&nbsp;&nbsp; a. Blank noise (broken fiber or bias/flat image)
+<br>&nbsp;&nbsp; b. Galaxies
+<br>&nbsp;spiral, elliptical, irregular, em-lines
+<br>&nbsp;redshifts from -0.01 to 1.
+<br>&nbsp;&nbsp; c. QSOs
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; range of spectral indicies
+for continuum slope
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; broad emission lines O VI,
+Ly-Alpha, CIV, OIV, NV, MgII, [CII,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [CIII, Mg II, Hbeta, Halpha,
+siIV, etc
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; narrow absorption features
+including ly-alpha forest,
+<br>&nbsp;damped Ly alpha systems, Lyman-limit systems, C IV and Mg II
+doublets
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; of varying depths.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; redshifts from 0 to 7. At
+high redshifts, deep Ly-alpha
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BAL spectra
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Continuum slope -2.5 to
++0.5 f_nu
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; absorption and Gunn-Peterson
+depression of continuum
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; should be included.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Include reddening from local
+QSO environment
+<br>&nbsp;Redshifted wavelength range 3000 to 11000 A
+<br>&nbsp;&nbsp; d. Stars
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Range of spectral types,
+O,B,A,G,K,M,KI,KV, etc
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Extended goal: White dwarf
+and peculiar stars, WD+red dwarf
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; binaries redshifts +/- 1000
+km/s
+<p>Templates for these types to be drawn from the existing literature
+<br>or may be generated 'from simple models' (black bodies, power laws
+<br>plus gaussian absorption and emission feature and noise.
+<p>5. Specific to 2-D simulations:
+<br>&nbsp;&nbsp; a. Pincushion distortion up to 6 pixels top to bottom.
+<br>&nbsp;&nbsp; b. Broadening of spectra with position (spectra are broader
+near
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; corners of chip)
+<br>&nbsp;&nbsp; c. Broken fibers
+<br>&nbsp;&nbsp; d. Cosmic rays
+<br>&nbsp;
+<p>6. Specific to 1-D simulations:
+<br>&nbsp;&nbsp; a. Full length red and blue joined spectra to be simulated
+<br>&nbsp;&nbsp; b. with or without sky lines.
+<br>&nbsp;&nbsp; c. with or without residual cosmic rays.
+<br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+REQUIREMENTS FOR QSO TEST DATA
+<p>1. Simulated QSO spectra:
+<br>&nbsp;&nbsp; a. The simulations consist of a QSO power law continuum
+<br>&nbsp;of slope f(nu)=nu^(alpha) where alpha ranges from -2 to 2,
+<br>&nbsp;centered at -0.7.
+<br>&nbsp;&nbsp; b. The continuum is modified by a ly-alpha forest of
+<br>&nbsp;depth which increases as a function of z
+<br>&nbsp;&nbsp; c. The spectra are modified by strong broad emission lines
+of
+<br>&nbsp;Ly-alpha, Ly-beta, OVI, NV, CIV, MgII, NeIII, CII],
+<br>&nbsp;CIII], etc.&nbsp; The lines have varying equivalent width
+<br>&nbsp;from 10 to 1000 Angstroms, the ratios of the
+<br>&nbsp;equivalent widths vary to a smaller extent.
+<br>&nbsp;&nbsp; d. Redshifts z=0 to z=7.
+<br>&nbsp;&nbsp; e. The spectra are modified by a set of QSO absorption
+lines&nbsp; at
+<br>&nbsp;intermediate redshift, such as CIV and MgII doublets.
+<br>&nbsp;&nbsp; f. Some variable amount of internal and external reddening
+<br>&nbsp;should be added to the QSO spectra, up to several mags
+<br>&nbsp;of reddening for very high redshift objects.
+<br>&nbsp;&nbsp; g. Resolution 3 Angstroms,&nbsp; sample at 1.5 A/pixel
+over 3900-9000Angstroms.
+<br>&nbsp;
+<br>2. Simulated QSO colors:
+<br>&nbsp;&nbsp; a. The above spectra shall be used to generate QSO magnitudes
+in 5 bands
+<br>&nbsp;Extrapolations shall be made for u and z filters which are
+<br>&nbsp;mostly outside the 3900-9000A spectral coverage range.
+<br>&nbsp;&nbsp; b. Check&nbsp; simulated colors against existing QSO spectra
+and color catalogs
+<br>&nbsp;to determine if they are realistic in the regions where QSOs
+are
+<br>&nbsp;known to exist. Additionally, existing QSO spectra and colors
+from the
+<br>&nbsp;literature are to be converted to the SDSS filter system
+<br>&nbsp;to investigate scatter in colors and relative density
+<br>&nbsp;of QSOs in different parts of the color-color-color cube.
+<br>
+<br>&nbsp;REQUIREMENTS FOR ASTROMETRIC PIPELINE
+<p>The astrometric pipeline shall:
+<p>1. Provide astrometric calibration for photometric (and Monitor Telescope)
+<br>&nbsp;&nbsp; frames, on a frame-by-frame basis, with an accuracy (excluding
+errors
+<br>&nbsp;&nbsp; due to differential refraction) such that
+<br>&nbsp;&nbsp; a. For photometric frames, the rms error of the position
+of any point over
+<br>&nbsp;any contiguous 3 degree field in the survey area is no worse
+than 260
+<br>&nbsp;milliarcseconds (mas), and,
+<br>&nbsp;&nbsp; b. For Monitor Telescope Secondary Field frames, the rms
+error of the
+<br>&nbsp;position of any point in the frame is no worse than 2 arcseconds.
+<p>&nbsp;&nbsp; Extremes:&nbsp;&nbsp; all of survey area; airmass &amp;lt;=
+1.7; scan lengths &amp;gt;= 20 minutes,
+<br>&nbsp;&nbsp; seeing &amp;lt;= 1.5 arcsec
+<p>&nbsp;&nbsp; Enhance goal: For photometric frames, rms error of no worse
+than 80
+<br>&nbsp;milliarcsec; no requirement on turnaround time
+<p>&nbsp;&nbsp; INPUT DATA
+<br>&nbsp;&nbsp; a. CCD star positions and magnitudes from astrometric,
+photometric,
+<br>&nbsp;and Monitor Telescope ccds (frame-by-frame)
+<br>&nbsp;&nbsp; b. Telescope pointing/timing information and ambient conditions
+<br>&nbsp;for each frame
+<br>&nbsp;&nbsp; c. Catalog star positions from astrometric reference frame
+catalog(s)
+<p>&nbsp;&nbsp; OUTPUT DATA
+<br>&nbsp;&nbsp; a. Translation coefficients (row/column to coordinates
+on the sky)
+<br>&nbsp;for each frame
+<p>2. Provide capability to compute corrections due to astrometric errors
+<br>&nbsp;&nbsp; introduced by aberration and atmospheric differential
+refraction, over
+<br>&nbsp;&nbsp; a 3 degree field, for representative objects of given
+Survey colors, to
+<br>&nbsp;&nbsp; an accuracy of 250 mas.
+<p>&nbsp;&nbsp; Extremes: all of survey area; airmass &amp;lt;= 1.7
+<p>&nbsp;&nbsp; INPUT DATA
+<br>&nbsp;&nbsp; a. Observing conditions (ambient temperature, barometric
+pressure,
+<br>&nbsp;relative humidity)
+<br>&nbsp;Telescope coordinates and length of observation
+<br>&nbsp;Bandpass of observations
+<br>&nbsp;Spectral energy distribution of objects (e.g., Survey colors)
+<p>&nbsp;&nbsp; OUTPUT DATA
+<br>&nbsp;&nbsp; a. Corrections for apparent position as function of object
+color and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position in focal plane
+<p>3. Provide the capability to predict the effects telesopce optics has
+on
+<br>&nbsp;&nbsp; astrometric accuracy as a function of position in the
+focal plane, color of
+<br>&nbsp;&nbsp; objects, and observed bandpass.
+<p>4. Provide the capability to evaluate and monitor the rigidity and the
+overall
+<br>&nbsp;&nbsp; astrometric capability and stability of imaging camera
+observations.
+<p>&nbsp;&nbsp; Extremes: all of survey area; airmass &amp;lt;= 1.7
+<p>&nbsp;&nbsp; INPUT DATA
+<br>&nbsp;&nbsp; a. High density (circa 40 stars per square degree) star
+catalog of
+<br>&nbsp;calibration patches with accurate (circa 35mas) coordinates.
+<br>&nbsp;&nbsp; b. CCD star positions and magnitudes from astrometric
+and photometric
+<br>&nbsp;ccds (frame-by-frame) taken specifically for astrometric
+<br>&nbsp;calibration purposes at a frequency TBD.
+<br>&nbsp;&nbsp; c. Telescope pointing/timing information for each frame
+<p>&nbsp;&nbsp; OUTPUT DATA
+<br>&nbsp;&nbsp; a. Translation coefficients (row/column to coordinates
+on the sky)
+<br>&nbsp;for each frame
+<p>5. Provide a suite of astrometric software routines for survey-wide
+use, with
+<br>&nbsp;&nbsp; tcl interfaces (e.g. coordinate transformations, precession).
+<p>6. Maintain catalogs of astrometric reference frame objects in a format
+<br>&nbsp;&nbsp; suitable for insertion into survey database. Provide capability
+to extract
+<br>&nbsp;&nbsp; reference frame objects for survey bricks and strips.&nbsp;
+Include the
+<br>&nbsp;&nbsp; following catalogs:
+<br>&nbsp;&nbsp; a. ACRS
+<br>&nbsp;&nbsp; b. High density astrometric calibration patch star catalogs
+<br>&nbsp;&nbsp; c. USNO twin astrograph catalog (when available)
+<br>&nbsp;&nbsp; d. Hipparcos Input Catalog (and final Hipparcos catalog
+when available)
+<br>&nbsp;&nbsp; e. Tycho Input Catalog (and final Tycho catalog when available)
+<br>
+<br>&nbsp;REQUIREMENTS FOR MONITOR TELESCOPE PIPELINE
+<p>The monitor telescope pipeline shall accept multiple nights of CCD frames
+<br>of primary and secondary photometric standard star fields and produce
+<br>calibrations sufficient to calibrate an arbitrary secondary standard
+star
+<br>with an rms error of 1% per filter and 1% in any color averaged over
+<br>1 field.&nbsp; The pipeline shall also accept comparable data for primary
+and
+<br>secondary spectrophotometric standard stars and shall achieve an rms
+<br>accuracy of no less than 3% per filter.
+<p>INPUT
+<p>1. A set of primary standard stars with photometry in 5 colors.
+<p>2. Sets of primary standard star CCD frames, each field in 5 colors
+<br>&nbsp;&nbsp; approximately 6 fields per hour.
+<p>3. Sets of secondary star CCD frames, each field in 5 colors,
+<br>&nbsp;&nbsp; approximately 3 fields per hour.
+<p>4. Bias and flatfield frames
+<p>5. Sets of primary spectrophotometric star CCD frames, each field in
+<br>&nbsp;&nbsp; 12 colors, approximately 3 fields per hour
+<p>6. Sets of secondary spectrophotometric star CCD frames, each field
+in
+<br>&nbsp;&nbsp; 12 colors, approximately 2 fields per hour.
+<br>&nbsp;
+<p>CONDITIONS
+<p>1. Pointing errors 15" rms
+<br>2. Primary standard star field: highest star density l=0, b=20,
+<br>&nbsp;&nbsp; standard star no fainter than V=12.5
+<br>&nbsp;&nbsp; no other star brighter than V=9, no other star brighter
+than V=18 closer
+<br>&nbsp;&nbsp; than 10"
+<br>3. Photometric secondary star exposures 1 minute (2 in u'), no stars
+<br>&nbsp;&nbsp; brighter than V=10, highest star density
+<br>&nbsp;&nbsp; l=0, b=30.
+<br>4. Spectrophotometric secondary star exposures 1 min sec (2 in u'),
+no stars
+<br>&nbsp;&nbsp; brighter than r=15, highest star density l=0, b=30.
+<br>&nbsp;&nbsp; (TBD: This needs further thought)
+<br>5. FWHM &amp;lt; 5"
+<br>6. Air mass &amp;lt;= 2.2
+<p>OUTPUT
+<p>1. Three parameters per filter:
+<br>&nbsp;&nbsp; a. Zero point offset, one per night
+<br>&nbsp;&nbsp; b. Color term, one per month
+<br>&nbsp;&nbsp; c. Extinction coefficient one per hour
+<p>2. Calibrated secondary star magnitudes and instrumental positions
+<p>
+<br>&nbsp;&nbsp; REQUIREMENTS FOR SURVEY DEFINITION/SURVEY PROGRESS
+<p>Survey Definition will meet the following requirements:
+<p>1. Maintain a description of the North imaging survey area.&nbsp; The
+area
+<br>&nbsp;&nbsp; will be defined by:
+<br>&nbsp;&nbsp; a) Survey Pole = 12h 20m, 32.8d
+<br>&nbsp;&nbsp; b) Survey limits satisfy A(V) &amp;lt; 0.3, dec &amp;gt;
+-22 degrees; dec &amp;lt; 88 degrees.
+<br>&nbsp;&nbsp; c) Scanline pattern defined with overlap of 1.0 arcmin;
+stripes overlap by
+<br>&nbsp;3 arcmin.
+<br>&nbsp;&nbsp; d) Survey longitude limits for each stripe to be used
+for target selection.
+<p>2. Construct a list of know objects.&nbsp; Include:
+<br>&nbsp;&nbsp; a) All stars with V &amp;lt; 14
+<br>&nbsp;&nbsp; b) All globular clusters
+<br>&nbsp;&nbsp; c) All known galaxies with diam &amp;gt; 1 arcmin or V
+&amp;lt; 14, |b| &amp;gt; 25,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dec &amp;gt; -22 deg.
+<br>&nbsp;&nbsp; d) All planetary nebulae
+<br>&nbsp;&nbsp; e) All reflection nebulae
+<br>&nbsp;&nbsp; Parameters:
+<br>&nbsp;&nbsp; a) ra, dec with errors no worse than 6 arcsec (absolute?
+rms?)
+<br>&nbsp;&nbsp; b) V magnitude with unspecified error
+<br>&nbsp;&nbsp; c) For galaxies, globular clusters, planetaries, and reflection
+nebulae,
+<br>&nbsp;position angle in degrees; major and minor axis diameters in
+arcmin
+<br>&nbsp;&nbsp; d) B-V for stars, if known.
+<br>&nbsp;&nbsp; Required query capability
+<br>&nbsp;&nbsp; a) Position (ra/dec and great circle coordinates for survey-defined
+<br>&nbsp;great circles)
+<br>&nbsp;&nbsp; b) Magnitude
+<p>3. Construct a list of primary astrometric standards:
+<br>&nbsp;&nbsp; a) Density &amp;gt; 2 star/deg^2 at all positions in the
+sky
+<br>&nbsp;&nbsp; b) J2000 position errors &amp;lt; 0.3 arcsec rms per coord.
+<br>&nbsp;&nbsp; c) Covers sky in North and South survey region
+<br>&nbsp;&nbsp; Parameters:
+<br>&nbsp;&nbsp; a) Ra, dec, errors, proper motions, errors, epochs
+<br>&nbsp;&nbsp; b) V mag
+<br>&nbsp;&nbsp; c) B-V
+<br>&nbsp;&nbsp; d) Identifier
+<br>&nbsp;&nbsp; Required query capability
+<br>&nbsp;&nbsp; a) RA and DEC
+<br>&nbsp;&nbsp; b) Great circle coord for survey defined great circles
+<br>&nbsp;&nbsp; c) Magnitude
+<p>4. Construct a database of high density astrometric standards:
+<br>&nbsp;&nbsp; a) Density &amp;gt; 20 star/deg^2 at all positions
+<br>&nbsp;&nbsp; b) J2000 position errors &amp;lt; 0.1 arcsec rms per coord.
+<br>&nbsp;&nbsp; c) Covers 4 regions 2.5 deg square spaced along celestial
+equator
+<br>&nbsp;&nbsp; Parameters:
+<br>&nbsp;&nbsp; a) Ra, dec, errors, proper motions, errors, epochs
+<br>&nbsp;&nbsp; b) V mag
+<br>&nbsp;&nbsp; c) B-V
+<br>&nbsp;&nbsp; d) Identifier
+<br>&nbsp;&nbsp; Required query capability
+<br>&nbsp;&nbsp; a) RA and DEC
+<br>&nbsp;&nbsp; b) Great circle coord for survey defined great circles
+<br>&nbsp;&nbsp; c) Magnitude
+<p>5. Construct a list of primary photometric standards:
+<br>&nbsp;&nbsp; a) 50 standards spaced uniformly between dec = 0 to 60
+deg and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |b| &amp;gt; 25 deg
+<br>&nbsp;&nbsp; b) Distribution over stellar types O5 to M0(V) or M0(III)
+<br>&nbsp;&nbsp; c) Must not saturate MT camera and have better than 1%
+statistics for
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exposure times 5-10 s (g'
+to z') or 5-20s (u')
+<br>&nbsp;&nbsp; Parameters:
+<br>&nbsp;&nbsp; a) Ra, dec, errors, good to ?? arcsec
+<br>&nbsp;&nbsp; b) 5 standard colors
+<br>&nbsp;&nbsp; c) Identifier
+<br>&nbsp;&nbsp; d) Relative positions and r' mags for all stars r' &amp;lt;
+15 within 15' of
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; standard to accuracy of
+0.2 arcsec rms
+<br>&nbsp;&nbsp; Required query capability:
+<br>&nbsp;&nbsp; a) RA and DEC
+<br>&nbsp;&nbsp; b) Airmass, give a date and TAI
+<br>&nbsp;&nbsp; c) g'-r'
+<p>6. Construct a list of secondary photometric patches with the following
+<br>&nbsp;&nbsp; properties:
+<br>&nbsp;&nbsp; a) 22 arcminute square patches distributed on pairs of
+adjacent scanlines
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; in each survey stripes with a mean density
+of one patch per hour
+<br>&nbsp;&nbsp; b) No stars with v &amp;lt; 10
+<br>&nbsp;&nbsp; c) Enhanced goal: No patch with nearby stars, such that
+radius &amp;gt; (2200
+<br>&nbsp;arcminutes) * 10 ^(V/5).
+<br>&nbsp;&nbsp; Required query capability:
+<br>&nbsp;&nbsp; a) position (ra, dec and great circle coordinates)
+<p>7. Contruct a list of spectrophotometric calibration standards for primary
+<br>&nbsp;&nbsp; spectrophotometric flux calibration with the following
+properties
+<br>&nbsp;&nbsp; a) 10 F subdwarfs located with |b| &amp;gt; 25 degrees
+<br>&nbsp;&nbsp; b) Magnitude range: 8 &amp;lt; V &amp;lt; 10
+<br>&nbsp;&nbsp; Parameters:
+<br>&nbsp;&nbsp; a) ra, dec, and errors, with positions better than
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 arcsecond.
+<br>&nbsp;&nbsp;&nbsp; o spectrophotometric calibration with &amp;lt; 5%
+peak error
+<p>8. Construct an a priori reddening map with the following properties:
+<br>&nbsp;&nbsp; a) Coverage |b| &amp;gt; 25 degrees
+<br>&nbsp;&nbsp; b) Provides extinction in 5 colors
+<br>&nbsp;&nbsp; c) Angular resolution of 5 degrees (TBD: Can we do better?)
+<br>&nbsp;&nbsp; d) Maximum error at r' of 0.15 mag
+<p>Survey progress will provide a user interface to view and maintain the
+<br>following:
+<p>1. Status of completed photometric runs. The status information will
+be:
+<br>&nbsp;&nbsp; a) In an arbitrary range of survey longitude per strip:
+data exists
+<br>&nbsp;(including repeat observations); data accepted/rejected/no decision;
+<br>&nbsp;data has quality factor Q.
+<br>&nbsp;&nbsp; b) In an arbitrary range of survey longitude per stripe:
+data tiled.
+<br>&nbsp;&nbsp; c) In an aribtrary tile, list of targets encoded by type
+<p>&nbsp;&nbsp; INPUT: 2.5m imaging observing report; MT, astrometric,
+photo data processing
+<br>&nbsp;reports; tiling report
+<p>2. Status of completed MT primary star and overlap patches.&nbsp; The
+status
+<br>&nbsp;&nbsp; information will be:
+<br>&nbsp;&nbsp; a) For primary standards, number of times observed.
+<br>&nbsp;&nbsp; b) For secondary patches, number of times observed; data
+accepted/rejected/
+<br>&nbsp;no decision.
+<br>&nbsp;&nbsp; c) For spectrophotometric primary standards, number of
+times observed;
+<br>&nbsp;data accepted/rejected/no decision.
+<p>&nbsp;&nbsp; INPUT: MT observing report; MT data processing report
+<p>3. Maintain list and status of spectroscopic tiles and plates
+<br>&nbsp;&nbsp; a) For tiles, maintain field centers; list of targets;
+guide stars
+<br>&nbsp;&nbsp; b) For plates, maintain id; hour angle and temperature
+ranges; number of
+<br>&nbsp;times observed; data accepted/rejected/no decision
+<p>&nbsp;&nbsp; INPUT: Tiling report; spectroscopic observing report.
+<p>&nbsp;&nbsp; Required query capability:
+<br>&nbsp;&nbsp; a) ra and dec;
+<br>&nbsp;&nbsp; b) plate identifier
+<br>&nbsp;
+<p>4. Provide ability to view one or more of the following items:
+<br>&nbsp;&nbsp; a) Northern and/or southern survey boundaries.
+<br>&nbsp;&nbsp; b) Reddening map
+<br>&nbsp;&nbsp; c) Location of secondary photometric patches with completion
+status
+<br>&nbsp;&nbsp; d) Photometric run status with completion status
+<br>&nbsp;&nbsp; e) Spectroscopic status (by tile) with completion status
+<p>
+<br>&nbsp;REQUIREMENTS FOR TARGET SELECTION
+<p>Target selection will take objects identified in the photometric pipeline
+<br>and generate coordinate lists for plate drilling.
+<p>1. Final Object List: merge multiple detections of objects from
+<br>&nbsp;&nbsp; individual runs and apply astrometric and photometric
+calibrations and
+<br>&nbsp;&nbsp; reddening corrections.&nbsp; The following operations
+will be provided:
+<br>&nbsp;&nbsp; a) Match multiple detections of same object in arbitrary
+independent
+<br>&nbsp;runs (TBD: This may be a QA function instead?)
+<br>&nbsp;&nbsp; b) Flag which of multiple detections to be used for target
+selection
+<br>&nbsp;based on: survey coordinates; quality factor Q of each run
+<br>&nbsp;&nbsp; c) Apply astrometric, photometric calibrations.
+<br>&nbsp;&nbsp; d) Apply reddening corrections
+<p>&nbsp;&nbsp; INPUTS:
+<br>&nbsp;&nbsp; a) A specified area of sky or set of runs
+<br>&nbsp;&nbsp; b) A list of objects with instrumental parameters
+<br>&nbsp;&nbsp; c) A set of current calibrations
+<p>&nbsp;&nbsp; OUTPUTS: Final Object List
+<br>&nbsp;&nbsp; a) Ra, Dec (J2000) with errors
+<br>&nbsp;&nbsp; b) Petrosian magnitude in r', corrected for reddening
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; correction applied and error
+<br>&nbsp;&nbsp; c) PSF magnitude in r', with reddening correction applied
+and error
+<br>&nbsp;&nbsp; d) Colors (u'-g', g'-r', r'-i', i'-z') with reddening
+correction applied
+<br>&nbsp;and errors
+<br>&nbsp;&nbsp; e) Surface brightness in r', with final calibration and
+reddening
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; correction applied and error
+<br>&nbsp;&nbsp; f) P parameter in r' band for star/galaxy separation
+<br>&nbsp;&nbsp; g) Ad-hoc target designation flag, for serendipity (TBD:
+Additional
+<br>&nbsp;parameters needed by serendipity?&nbsp; Where does the flag get
+set?
+<br>&nbsp;Whose job is it to look for coincidences with other catalogs?)
+<br>&nbsp;&nbsp; h) BCM target designation flag (TBD: Who does the cluster
+finding and
+<br>&nbsp;identification?&nbsp; Where does the flag get set?)
+<br>&nbsp;&nbsp; i) Reddening correction for each color
+<br>&nbsp;&nbsp; j) r' logarithmic raidal profile
+<p>&nbsp;&nbsp; Required query capability: All of above parameters
+<p>1a. Enhanced goal: (For serendipity)
+<br>&nbsp;&nbsp; Created cross-identifications with external catalogs.&nbsp;
+Merge parameters
+<br>&nbsp;&nbsp; from those catalogs with final object list.
+<p>2. Target Selection: Create a list of target candidates with the following
+<br>&nbsp;&nbsp; criteria:
+<br>&nbsp;&nbsp; a) Galaxy: all objects with reddening corrected Petrosian
+magnitude in r'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;lt; 18; SB(r') &amp;lt; 22; star/galaxy
+shape parameter P &amp;lt; some value.
+<br>&nbsp;&nbsp; a') Big galaxies: All
+<br>&nbsp;&nbsp; b) QSO: all objects with reddening corrected PSF magnitudes
+and colors
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; satisfying criteria defined by the QSO
+working group
+<br>&nbsp;&nbsp; c) High z QSO: all objects with reddening corrected PSF
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; magnitudes and colors satisfying color
+criteria defined by the QSO
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; working group
+<br>&nbsp;&nbsp; d) Brightest cluster member: all objects with the BCM
+target selection
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flag set
+<br>&nbsp;&nbsp; e) Blank Sky: As selected by Photo.
+<br>&nbsp;&nbsp; f) Reddening Stars: shape and color selection criteria
+as defined by the
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stars working group
+<br>&nbsp;&nbsp; g) Spectrophotometric Standards: all objects with PSF
+magnitude
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 14 &amp;lt; r &amp;lt; 16; star/galaxy
+shape parameter P &amp;gt; some value; colors
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; satisfy TBD F subdwarf requirement defined
+by the stars working group,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; no stars with V&amp;lt;9 within 22'
+radius.
+<br>&nbsp;&nbsp; h) Guide Stars: have PSF magnitude in 14 &amp;lt; r &amp;lt;
+15; star/galaxy
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shape parameter satisfies the "star"
+requirement defined by the stellar
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; working group; colors TBD by USNO
+<br>&nbsp;&nbsp; i) QA: selected with criteria with the algorithm for galaxy
+and QSO
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; positions, but with the parameters set
+looser (TBD: What does this
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mean?)
+<br>&nbsp;&nbsp; j) Serendipitous: all objects with the ad-hoc target selection
+flag set
+<br>&nbsp;&nbsp; k) Stars: shape and color selection criteria TBD
+<br>&nbsp;&nbsp; l) Bright stars: All cataloged stars with V &amp;lt; 9
+<p>3. Tiling: Group target candidates into "tiles" of diameter 3.0 deg
+<br>&nbsp;&nbsp; and 640 fibers optimized to minimize time-to-completion
+of survey.
+<p>&nbsp;&nbsp; The following operations will be performed:
+<p>&nbsp;&nbsp; a) Create Tilable Object List: Combine the lists of galaxy,
+QSO, High z QSO,
+<br>&nbsp;and BCM targets and reconcile close pairs as follows.&nbsp; Scan
+for pairs
+<br>&nbsp;of targets closer than 50 arcseconds. Eliminate one of member
+<br>&nbsp;by a random lottery, except that high Z QSOs will always be retained.
+<br>&nbsp;The excluded target is put at the top of the "as fibers are
+<br>&nbsp;available" list.
+<br>&nbsp;&nbsp; b) Tile: Assign each tile to a position
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; based on the local density of targets,
+assign the plate centers. Use an
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; algorithm that optimizes the time to
+completion for the survey. Note
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; that the efficiency of the algorithm
+may be affected by the shape of the
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; region. We allow 10^-3 of the targets
+to be missed when their
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inclusion seriously affects the tiling
+efficiency. The central 3.2mm of
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the tile can not contain a target. Plate
+"jiggling" may be used
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to meet this requirement.&nbsp; The
+plate diameter is 3 degrees.
+<p>&nbsp;&nbsp; INPUTS:
+<br>&nbsp;i) Tilable object list (Objects within 1 degree of the outer
+boundary
+<br>&nbsp;of the photometric survey are not required to be selected)
+<br>&nbsp;&nbsp;&nbsp; ii) Number of tiles to be used
+<br>&nbsp;iii) Number of fibers reserved for tilable objects (561) (TBD:
+Is
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this OK?)
+<p>&nbsp;&nbsp; OUTPUTS (tiling report):
+<br>&nbsp;i) Ra, Dec (J2000) for each tile
+<br>&nbsp;&nbsp;&nbsp; ii) List of objects per tile
+<p>&nbsp;&nbsp; c) Assign reserved targets to tiles as follows:
+<br>&nbsp;i) Blank sky: 20 (Uniform distribution)
+<br>&nbsp;ii) Reddening stars: 5 (TBD OK?) (Uniform distribution)
+<br>&nbsp;iii) Secondary spectrophotometric standards: 3
+<br>&nbsp;iv) Tracking stars: 10 total (no fibers)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v) Sky monitor fiber: 1
+(special purpose fiber)
+<br>&nbsp;&nbsp; d) Assign targets to free fibers: The "as fibers are available"
+targets
+<br>&nbsp;are used with the following priority:
+<br>&nbsp;i) Targets excluded by the minimum separation requirement
+<br>&nbsp;ii) Remaining targets with the following percentages: stars 26%;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; serendipity 12%; QA
+62%
+<br>&nbsp;&nbsp; e) Light traps for bright stars: TBD: How will we deal
+with these at
+<br>&nbsp;plugging time???????
+<p>4. Plate Design: Convert celestial coordinates to rectilinear coordinates
+<br>&nbsp;&nbsp; for drilling with rms mapping error no worse than 20 marcsec
+rms.
+<p>&nbsp;&nbsp; INPUT:
+<br>&nbsp;&nbsp; a) Ra, Dec for plate target list
+<br>&nbsp;&nbsp; b) Ra, Dec for plate center
+<br>&nbsp;&nbsp; c) Temperature, Hour Angle, date
+<br>&nbsp;&nbsp; d) Exposure time
+<p>&nbsp;&nbsp; OUTPUT (Drilling plan):
+<br>&nbsp;&nbsp; a) x, y position in mm
+<br>&nbsp;&nbsp; b) Temperature range
+<br>&nbsp;&nbsp; c) Hour angle range
+<br>&nbsp;&nbsp; d) Date range
+<p>&nbsp;&nbsp; Correct for the following effects:
+<br>&nbsp;&nbsp; a) Aberration
+<br>&nbsp;&nbsp; b) Atmospheric refraction
+<br>&nbsp;&nbsp; c) Optical mapping from sky to focal plane
+<br>&nbsp;&nbsp; d) Plate bending distortions;
+<br>&nbsp;&nbsp; e) Temperature (TBD: where does this occur?)
+<p>
+<br>&nbsp;REQUIREMENT FOR QUALITY ANALYSIS
+<p>QA will provide a mechanism to monitor the scientific and technical
+performance
+<br>of all systems.
+<p>QA will perform the following activities:
+<p>1. Match multiple detections of same object in arbitrary independent
+<br>&nbsp;runs (TBD: This may be a target selection function instead?);
+<br>&nbsp;compute average and residuals in position, mag.
+<p>2. Match object detections against arbitrary input catalogs.&nbsp; Each
+<br>&nbsp;&nbsp; catalog provides the following information: Ra, Dec (J2000),
+error,
+<br>&nbsp;&nbsp; magnitude in some band; compute average and residuals
+in position, mag.
+<br>&nbsp;
+<p>3. Query all retained output for the following information:
+<br>&nbsp;&nbsp; a) All retained instrumental quantities
+<br>&nbsp;&nbsp; b) All reduced quantities
+<br>&nbsp;&nbsp; c) All internal quantities
+<br>&nbsp;&nbsp; d) For an arbitrary object, return observing conditions
+(TBD: what are
+<br>&nbsp;needed? Moon phase is not kept anywhere)
+<p>4. Present graphical interface to the following quantites:
+<br>&nbsp;&nbsp; a) For an arbitrary run, seeing, mean sky level, # detected
+stars,
+<br>&nbsp;# detected galaxies per frame
+<p>5. For objects with spectra, comparison of flux derived from spectrum
+vs.
+<br>&nbsp;&nbsp; magnitude from photometry
+<br>&nbsp;
+<br>&nbsp;
+
+<!--#include virtual="/includes/sdss_page_bottom.html"-->

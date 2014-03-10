@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR7 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR7 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR7 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Data access - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Tools for data access</h1>
+
+<p>DR7 data are distributed via the <a href="#CAS">Catalog Archive
+Server (CAS)</a>, an SQL database with fast search capabilities, and
+the <a href="#DAS">Data Archive Server (DAS)</a>, a collection of fits
+images and tables containing the outputs of the imaging and
+spectroscopic reduction pipelines. In addition, the SDSS collaboration
+has created catalogs and other data products based on public survey
+data that we link from our <a href="../products/value_added/index.html">Value
+Added Data Products</a> page.</p>
+
+<a name="CAS"></a>
+<h2>Catalog Archive Server (CAS) Search</h2>
+
+<h3>Web interfaces</h3>
+
+<table border="1">
+  <tbody valign="top">
+  <tr>
+<td><a href="http://cas.sdss.org/astrodr7">Catalog Archive Server (DR7 CAS)</a></td>
+    <td>The Catalog Archive Server offers efficient search tools for
+  querying the imaging and spectro catalogs from SDSS, including
+  SEGUE and the stripe82 coadd. There are multiple entry URLs for
+  using the visual tools and query forms for the different databases:
+	<table>
+	  <tr><td><a
+  href="http://cas.sdss.org/astrodr7/">cas.sdss.org/astrodr7/</a></td>
+	  <td>Legacy and SEGUE-area imaging and all spectra</td></tr>
+	  <tr><td><a
+  href="http://cas.sdss.org/seguetargdr7/">cas.sdss.org/seguetarg/</a></td>
+	  <td>Target-era imaging data from low-galactic latitude SEGUE area</td></tr>
+	  <tr><td><a
+  href="http://cas.sdss.org/stripe82/">cas.sdss.org/stripe82/</a></td>
+	  <td>Stripe 82 coadd imaging (greyscale jpegs only)</td></tr>
+	  <tr><td><a
+  href="http://cas.sdss.org/runs/">cas.sdss.org/runs/</a></td>
+	  <td>Images and object tables from most SDSS images ever
+  taken, including multi-epoch and supernova data from stripe82</td></tr>
+
+    </table>
+    Below, we just link to the Legacy versions of the search and
+  browse interface, but they exist analogously for all data sets. For
+    SQL queries, the different URLs just use different default
+    databases, but all others are selectable via the usual syntax.
+    </td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr7/en/tools/search/SQS.asp">Spectro&nbsp;Query&nbsp;Server</a></td>
+    <td>Search spectra by
+	position, or by spectral or photometric parameters. Retrieve survey
+	files.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr7/en/tools/search/IQS.asp">Imaging&nbsp;Query&nbsp;Server</a></td>
+    <td>Search photometry catalog by position or by photometric
+	parameters. Retrieve survey files.
+	</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr7/en/tools/crossid/speclist.asp">SpecList</a></td>
+    <td>Upload plate,MJD,fiber list as part of a SQL query</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr7/en/tools/crossid/upload.asp">Imaging cross-ID</a></td>
+    <td>Find SDSS matches for a list of objects.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr7/en/tools/search/sql.asp">SQL search</a></td>
+    <td>Directly search the database using your own SQL queries (also see
+	<a href="http://cas.sdss.org/astrodr7/en/help/">skyserver help pages</a>).</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://casjobs.sdss.org/casjobs">CasJobs</a></td>
+    <td>Use this batch job server for direct SQL searches of the
+	database with generous timeout setting. Share result sets with your
+	collaborators. Access to BEST, TARGET, SEGUE verions of sky.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr7/en/tools/chart/navi.asp">Navigate</a></td>
+    <td>Point and click on SDSS images.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr7/en/tools/chart/chart.asp">Finding charts</a></td>
+    <td>Generate jpeg finding charts from SDSS images.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr7/en/tools/chart/list.asp">Image lists</a></td>
+    <td>Get jpeg cutouts of SDSS imaging for object lists with link to
+	finding chart. Option to generate object list from SQL
+	query.</td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>Query clients</h3>
+
+<p>In addition to using the web interfaces above, you can directly
+connect to the database server to perform  your own SQL queries using
+these clients.</p>
+
+<table border="1">
+  <tbody valign="top">
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr7/en/help/download/sqlcl/default.asp">sqlcl</a></td>
+    <td><a href="http://www.python.org">python</a> script to submit
+	SQL queries from the command-line</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://www.astro.princeton.edu/~rhl/skyserver/">skyserver.el</a></td>
+    <td>Submit SQL queries from an emacs buffer</td>
+  </tr>
+  </tbody>
+</table>
+
+<a name="DAS"></a>
+<h2>Data Archive Server (DAS)</h2>
+
+<p>The DAS
+contains</p>
+<ul>
+  <li><strong>images of the night sky</strong> ("corrected frames")
+      in fits and jpeg format</li>
+  <li><strong>calibrated object lists</strong> with photometric
+      parameters as fits binary tables</li>
+  <li><strong>reduced spectra and spectral parameters</strong> as fits
+      binary tables and ps/gif plots, both individually and 
+      <a href="../products/spectra/getspectra.html">bundled for mass download</a>.
+      </li>
+</ul>
+
+<p>Files and directories within the DAS are designated by survey
+identifiers of the desired data:
+<strong>run/rerun/camcol/field</strong> for imaging;
+<strong>plate/MJD/fiberID</strong> for spectroscopy. The easiest way
+to obtain this designation is by one of the query forms provided. See
+the <a
+href="http://das.sdss.org/www/html/manual/das_quickref.html">DAS quick
+reference</a> and the the <a href="../data/index.html">DAS structure
+and contents</a> pages for what it contains.</p>
+
+<h3>Search & Retrieve</h3>
+<table border="1">
+  <tbody valign="top">
+  <tr><td> <a href="http://das.sdss.org/www/html/post_coords.html">DAS&nbsp;Coordinate&nbsp;search</a></td> 
+  <td>Find the imaging fields corresponding to a list of (list of) RA, Dec. coordinates</td>
+  </tr>
+  <tr>
+    <td><a href="http://das.sdss.org">DR7 DAS retrieval form</a></td>
+    <td>Retrieve data for lists of object positions, or photometric or
+	spectroscopic SDSS ids (e.g. run/camcol/field or
+	plate/fiber) generated via one of the query forms above.
+	The <a
+	href="../coverage/index.html">coverage page</a> explains runs,
+	reruns etc. 
+    </td>
+  </tr>
+  <tr>
+    <td><a
+    href="http://das.sdss.org/imaging/">das.sdss.org/imaging</a><br
+    />
+    <a href="http://das.sdss.org/spectro/">das.sdss.org/spectro</a></td><td>Direct
+    access to Imaging / Spectro runs. For spectra, try: 2d_26 for
+    plate files, latest sprerun.<br />
+    Recommended method for retrieving all Imaging or Spectro data. 
+        Use your web browser or other http clients like <a
+	href="http://wget.sunsite.dk/"><code>wget</code></a>. 
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<hr />
+<!-- Created: Tue Jul 30 21:49:21 DST 2002 -->
+This page was last modified on $Date: 2008/12/19 19:39:24 $ (UT).
+<!--#include virtual="../includes/footer.html"-->
+  </body>
+</html>

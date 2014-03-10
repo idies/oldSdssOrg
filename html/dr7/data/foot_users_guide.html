@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR2 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR2 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR2 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>FOOT User's Guide - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>FOOT User's Guide</h1>
+
+<b>Use the Footprint Server to create JPEG finder charts
+   for a list of sky positions (RA, DEC in J2000).</b>
+
+<HR>
+
+<P>
+Table of contents:
+<UL>
+<LI><a href="#ListofCoordinates">List of Coordinates</a>
+<LI><a href="#OutputContent">Output Content</a>
+</UL>
+<P>
+<hr>
+<P>
+
+<h1><a name="ListofCoordinates">List of Coordinates</a></h1>
+<P>
+<i>Provide a list of coordinates for which you want JPEG finder charts
+and/or GIF spectrograms.</i>
+<P>
+The list can be either entered directly into the webform box or uploaded
+as a file from your machine.  In either case, it must be a comma
+separated list containing fields for ra and dec.
+The <i>order</i> of these fields in the list is unimportant, 
+but the first line of the list must contain the order
+of the fields in comma-separated format; e.g.:
+<pre>
+ra,dec
+</pre>
+<P>
+Valid formats (J2000):
+<LI> ra in decimal degrees (D.ddddd) 
+<LI> dec in decimal degrees (+/-DD.ddddd) 
+
+
+
+<hr>
+
+<P>
+<P>
+<h1><a name="OutputContent">Output Content</a></h1>
+<i> Indicate what content you want outputted by your query.</i>
+<P>
+<LI><b>Imaging (target version) run/rerun/camcol/field/rowc/colc</b>:
+    create a JPEG finder chart image based upon the target version of
+    the imaging data
+<LI><b>Imaging (best version) run/rerun/camcol/field/rowc/colc</b>:
+    create a JPEG finder chart image based upon the best version of
+    the imaging data
+
+<hr>
+
+<P>
+
+<!-- end page content-->
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar 8 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

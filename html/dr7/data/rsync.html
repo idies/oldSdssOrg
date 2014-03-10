@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>rsync Help - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Rsync Help for SDSS DAS Users</h1>
+
+<p>Users of the SDSS Data Archive Server (DAS) may use <em>rsync</em>,
+an open source utility that provides fast incremental file
+transfer. Rsync is available for download at
+the <a href="http://samba.anu.edu.au/rsync/">rsync website</a>. (Note
+that <a href="http://www.gnu.org/software/wget/">wget</a> and other
+http-based mass download tools can be used to accomplish the same
+task, as described on the <a href="http://das.sdss.org/collab">DAS
+homepage</a>.) Here we provide detailed instructions for installation
+and use of rsync on a variety of platforms.</p>
+
+<p>The same instructions apply for mirroring all or parts of the data
+archive server through each of the rsync URLs
+<ul>
+<li><code>rsync://user@rsync.sdss.org/imaging</code></li>
+<li><code>rsync://user@rsync.sdss.org/spectro</code></li>
+<li><code>rsync://user@rsync.sdss.org/pt</code></li>
+<li><code>rsync://user@rsync.sdss.org/nightly</code></li>
+<li><code>rsync://user@rsync.sdss.org/unprocessed</code></li>
+</ul>
+with password <code>sdss</code>.</p>
+
+<ul>
+  <li><a href="#unix">Unix and linux</a></li>
+  <li><a href="#windows">Windows</a></li>
+  <li><a href="#mac">Macintosh</a></li>
+</ul>
+
+<a name="unix"> <h2>BSD/Unix/Linux</h2>
+
+<p>Rsync is often installed by default on BSD/Unix/Linux systems. It
+is included in Mac OS X, for instance. If it is not installed on your
+system, or you would like to upgrade to the latest version, you can
+find links to the <a
+href="http://samba.anu.edu.au/rsync/download.html">available
+downloads</a>. We recommend downloading and compiling the source,
+rather than retrieving the binary. </p>
+
+<p> The source can be downloaded directly from the <a
+href="http://samba.anu.edu.au/ftp/rsync/">rsync download area</a>. You
+will need to gunzip and untar the file if your browser does not do so
+automatically. A directory called rsync-2.5.6 is created; just
+<em>cd</em> into that directory, and execute<br>
+<em>./configure</em><br> This will create a Makefile and config.h
+appropriate for your system. Then type<br> <em>make</em><br> to
+compile the code. Finally, to put rsync in your path, either add it by
+hand, or type<br> <em>make install</em>.</p>
+
+<p>At this point, you are ready to use rsync. You can use <a
+href="http://das.sdss.org/collab">DAS access page</a> to generate a
+  file that can be used by rsync to download the data set you can
+  specify:
+<ol>
+<li>Follow the "Upload a user generated list of spectroscopic fibers"
+  or "Upload a user generated list of imaging fields" depending on
+  whether you want spectroscopic or imaging data.</li>
+<li>Select a data release and supply a table describing the data you
+  want, as instructed on the form.</li>
+<li>Follow the "this form" link in the "Download selection" section
+  of the resultant page.</li>
+<li>Select the filters (for imaging) and file types you want, and
+  check "rsync" for the download method.</li>
+<li>Submit the form, and save the result. The default name of the
+  saved file will be of the form <b>sdss-rsync-XXXXX.lis</b>.</li>
+</ol>
+This file contains a listing of all the data files to be pulled
+over by rsync. Then, change the working directory to where you want
+the downloaded directory tree to be placed and execute
+<br> <code>rsync
+-vtrLPRH --copy-unsafe-links --include-from=sdss-rsync-XXXXX.lis
+rsync://user@rsync.sdss.org/imaging/ ./ </code><br>
+or
+<br> <code>rsync
+-vtrLPRH --copy-unsafe-links --include-from=sdss-rsync-XXXXX.lis
+rsync://user@rsync.sdss.org/spectro/ ./ </code><br>
+to retrieve your
+files. (If you use rsync for mirroring the archive, you can create
+your own include file, or point rsync directly to a specific directory
+if only one directory is to be downloaded.) You will be prompted for a
+password, which is dr7. If you will
+be downloading often, you can set an environment variable of this
+password by adding<br>
+<code>setenv RSYNC_PASSWORD XXXX</code><br> to your .cshrc file, or
+<br> <code>export RSYNC_PASSWORD=XXXX</code><br> to your .bashrc
+file.</p>
+
+<p><b>NOTE:</b>If you are behind a firewall, you will need to<br>
+<code>setenv RSYNC_PROXY host:port</code><br> (or the equivalent
+<code>export</code> in non-csh-like shells) to point to your
+institution's proxy server and port number.</p>
+
+<a name="windows">
+<h2>Windows</h2>
+
+<p>Windows users cannot download and run rsync directly. You will
+first have to install <b>cygwin</b>, a linux emulator. It works with
+all non-beta, non "release candidate", ix86 versions of Windows since
+Windows 95, with the exception of Windows CE. Cygwin is available for
+<a href="http://www.cygwin.com/">download here</a>, free of charge.
+Click on the "Install Now" link, and a file called <b>setup.exe</b>
+will be downloaded. Running this will allow you to install
+Cygwin. </p>
+
+<p> Because <b>rsync</b> is not included with Cygwin, you
+will also need to download and install rsync. Use your web browser to
+<a
+href="http://samba.anu.edu.au/ftp/rsync/">download
+the rsync source code</a>. Open a Cygwin session, <em>cd</em> to the
+location of the source, and follow <a href="#unix">the instructions in
+the Unix section above</a> to install rsync.</p>
+
+<a name="mac">
+<h2>Macintosh</h2>
+
+<p>Mac users with OSX can follow <a href="#unix">the instructions in
+the Unix section above</a> to download and install rsync. Users with
+OS9.x will unfortunately not be able to use this utility.</p>
+
+<hr>
+<!-- hhmts start -->Last modified: Thu Jun 14 18:10:45 CEST 2007
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>List of fields that are meant to be missing - SDSS DR7</title>
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+<h1>List of "missing" fields that are not meant to be in DR2/DR3</h1>
+
+<p>Usually, the range of <a
+href="../glossary/index.html#field">field</a> numbers within a <a
+href="../glossary/index.html#run">run</a> is identical for all six
+camera columns. But this is not always the case.  If you have
+discovered that some fields are missing for some camera columns of
+some runs, check this list for the exceptions. The "symptom" is a
+mis-match of startfield and/or endfield in the <a
+href="../glossary/index.html#chunk">chunk</a> file across 1 or more
+columns.</p>
+
+<p>Note: If any of the terms on this page do not mean anything to you, you can
+safely ignore this page.</p>
+
+<pre>
+Note: SF=startfield, EF=endfield
+
+                      TSSEG  |    DAS Directories        |      Issue
+RUN  RR     COL      SF   EF |   corr    objcs    Zoom   | "appears missing"
+======================================================================================
+1889  1,40  1,4-6    40  122 |  40-122   40-122    NA    | Col 1, 4-6 Fields 123-131
+1889  1,40  1,4-6   162  170 | 162-170  162-170    NA    | Col 1, 4-6 Fields 160-161
+1889  1,40  2,3      40  132 |  40-132   40-132    NA    | 
+1889  1,40  2,3     160  170 | 160-170  160-170    NA    | 
+--------------------------------------------------------------------------------------
+2075  0,40  1,4-6    30   69 |  30-69    30-69     NA    | 
+2075  0,40  2,3      40   67 |  40-67    40-67     NA    | Col 2-3 Fields 30-39, 68-69
+======================================================================================
+
+
+OTHER ITEMS 
+======================================================================================
+2248  0,40  1-6      28  197 |  28-197   28-197   28-197 | Fields 186-196 are holes, 
+						           but objects are present 
+							   and should be disregarded
+						           due to tracking glitch
+======================================================================================
+</pre>
+
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Thu Mar  4 19:32:51 CST 2004
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

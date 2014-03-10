@@ -1,0 +1,473 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Image processing flag details - SDSS DR7</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<h1>Understanding the image processing flags - Details</h1>
+
+<p>In the process of measuring the properties of all objects detected in
+the SDSS images, the image-processing software sets an extensive
+series of flags that indicate the status of each object, warn of
+possible problems with the image itself, and warn of possible problems
+in the measurement of various quantities associated with the object.
+These flags are described one by one in <a
+href="http://www.astro.princeton.edu/~rhl/flags.html">Robert Lupton's
+flags document</a>.  There is a separate set of flags (in the quantity
+termed 'status') that give geometrical information on how the object
+in question is determined to be a unique detection, given the overlap
+of the SDSS data.  There are further status flags set for each field,
+which indicate possible problems in processing that field. </p>
+
+The present document describes the flags in different categories, and
+tries to make clear how they can best be used.  For full
+understanding, one should read this in parallel with <a
+href="http://www.astro.princeton.edu/~rhl/flags.html">Robert Lupton's
+flags document</a> containg even more detailed descriptions of the
+individual flags.
+
+<a name="status"></a><h2>The "status" of an object</h2>
+
+<p>The geometry of the SDSS imaging scans involves overlaps of a variety
+of types: the two strips of a stripe can overlap; runs from adjacent
+stripes can overlap, two runs along the same stripe can overlap, and
+within a scanline, the data are divided up into partially overlapping
+fields.  We wish to define a unique sample of objects, with no overlap
+either from repeat observations of a given object (independent
+photons), or objects in the overlap between fields (the same photons).
+Bits within the status flag (a quantity available for each object
+detected in SDSS) explain how this is done, as described in detail in
+the <a href="../../algorithms/resolve.html">description
+of the resolution of overlaps</a>.  In addition, these bits use
+information from the flags set by the photometric pipeline itself
+(described below).  Thus the resolving is carried out only on those
+objects whose flags indicate them to be "good", in the sense of being
+worthy of further investigation.  The definition of "good" is:<br>
+<b>GOOD</b> = !BRIGHT && (!BLENDED || NODEBLEND || nchild == 0)<br> BRIGHT,
+<b>BLENDED</b>, and <b>NODEBLEND</b> are defined below.  In brief, objects labelled
+<b>BRIGHT</b> are duplicate entries in the SDSS catalog; those flagged as
+<b>BLENDED</b> or with nchild &gt; 0 have been deblended into 2 or more
+children; to include them would give duplication between a parent and
+its children.  <p> The <b>GOOD</b> objects are then queried for their
+possible overlap with other data.  Objects flagged <b>OK_RUN</b> are resolved
+as far as the overlap with adjacent fields in the same run/rerun/camCol is
+concern.  Again, an
+object which is not flagged <b>OK_RUN</b> will have a separate detection in
+the adjacent field, using the <i>same</i> photons.  The division
+between fields is artificial.  <p> <b>OK_SCANLINE</b> objects are further
+resolved as far as the overlap between adjacent scanlines in the two
+strips in a stripe is concerned.</p>
+<p>
+Adjacent stripes overlap as well, quite substantially so near the
+survey poles.  <b>OK_STRIPE</b> resolves this overlap as well.  This can
+cause confusion, as this is applied purely geometrically, and often
+before the adjacent stripe has been observed.  Thus there are regions
+of the DR1 in the outermost stripes where it might make sense not to
+apply this cut.  <p> Occasionally, runs will cross over the official
+SDSS survey boundaries.  This is the last cut; objects that lie within
+the survey area, and satisfy all the other cuts described above, are
+labelled <b>PRIMARY</b>.  For most scientific applications, the <b>PRIMARY</b>
+detections are the only ones needed.  Objects labelled <b>OK_RUN</b> but
+which are duplicate in one of the senses above, are labelled
+<b>SECONDARY</b>.  The overlap between adjacent scanlines and between stripes
+is used extensively by SDSS quality assurance to confirm our
+photometric and astrometric accuracy.
+<p>
+<b>RESOLVED</b> simply indicates that this <b>OK_RUN</b> object has been
+through this resolve process;  all <b>RESOLVED</b> objects should be marked
+as either <b>PRIMARY</b> or <b>SECONDARY</b>
+
+<a name="flags"></a><h2> The nature of the flags output by the photometric pipeline</h2>
+
+The SDSS imaging data consist of images in five photometric bands.
+The measurement of the properties of the objects is carried out in the
+five bands separately, and flag bits are set in each band.  There are
+enough flag bits to fill up two 32-bit quantities, thus these are
+encoded in <i>two</i> quantities, called generically <i>flags</i> and
+<i>flags2</i>.  There is one such pair for each of the five bands, u,
+g, r, i, and z.  These are combined in various ways to make flags
+appropriate for the whole object in all five bands; these are called
+<i>objc_flags</i> and <i>objc_flags2</i>.  Beware of interpreting the
+objc_flags blindly!  For example, the <b>NOPETRO</b> flag is set in
+objc_flags if the Petrosian radius cannot be measured in <i>any</i> of
+u, g, r, i, and z.  Imagine our horror when the SDSS galaxy
+spectroscopic sample (which is defined in terms of Petrosian
+magnitudes in r) had 50% of the objects flagged <b>NOPETRO</b>!  The reason is
+because the u and z bands are low S/N, and many objects had <b>NOPETRO</b> set
+in u or z, and therefore in the objc_flags as well.  Only 2% of galaxy
+targets have <b>NOPETRO</b> set in r. 
+
+<h3>Flags that affect the object's status</h3>
+
+<a name="binned"></a><p><b>BINNED</b> An object that is detected
+as greater than a 5 sigma peak (after smoothing with the local PSF) in
+a given band is flagged <b>BINNED1</b> in that band.  The object-finder then
+masks all detected objects thus far, bins the image 2x2, and runs the
+detection algorithm again; objects discovered at this stage are
+flagged <b>BINNED2</b>.  This is repeated again (i.e., now binning 4x4);
+detections are labelled <b>BINNED4</b>.  Many <b>BINNED2</b> detections include the
+outskirts of bright galaxies, and scattered light from bright stars
+(as well as genuine low surface brightness galaxies); very few <b>BINNED4</b>
+detections seem to be real astrophysical objects.  </p>
+
+<p><a name="detected"></a><b>DETECTED</b>is a flag that is used only
+internally in the pipeline, but not written to files. <b>DETECTED</b>
+is the OR of <b>BINNED1</b>, <b>BINNED2</b>, and <b>BINNED4</b>, in a
+given band.  Even if the object is not flagged <b>DETECTED</b> in a
+given band (usually because it was detected only in another band),
+photometry is still carried out on it, allowing, e.g., a 3-sigma
+detection of a point source.</p>
+
+<p><a name="bright"></a><b>BRIGHT</b> As described in the EDR paper, objects detected at more than 200
+sigma in the r band have their properties measured twice: once with a
+global sky and once with a local sky.  The former entry in the SDSS
+catalogs is flagged <b>BRIGHT</b>, and in practice is rarely used to do
+science.  One should always reject such objects.  This will be set in
+all the bands, as well as objc_flags.</p>
+
+<p><a name="blended"></a><b>BLENDED, NODEBLEND, CHILD</b> Each detected object is
+examined to see if it is composite; if it is, it is flagged <b>BLENDED</b> in
+all bands, as well as objc_flags.  An attempt is made to deblend it.
+If for some reason it is not deblended (usually because it is too
+close to the edge), it will be flagged <b>NODEBLEND</b>.  Otherwise, its
+children will have their properties measured as well, and one wants to
+reject <b>BLENDED</b> objects not flagged <b>DEBLENDED</b> in order to avoid
+duplicate entries.  Note that selecting <b>PRIMARY</b> objects does this, and
+the cut on <b>BRIGHT</b> entries, automatically.  <p> The children of a
+deblend are flagged <b>CHILD</b>.  It is possible for multiple peaks to be
+detected in the <b>CHILD</b>, and for it to also be labelled <b>BLENDED</b> as well.
+
+There are further flags related to deblending that are mostly
+informational in nature; see <a href="#deblend">below</a>.
+
+<h3> Flags that indicate problems with the raw data</h3>
+
+<p><a name="saturated"></a><b>SATURATED, SATURATED_CENTER</b> The
+photometry of saturated objects is questionable, needless to say (in
+fact, the total PSF counts of mildly saturated stars should not be too
+much in error, as it attempts to include all photons, including those
+in the saturated core and the bleed trail).  The <b>SATURATED</b> flag is set
+in each band that includes saturated pixels; if it is set in any band,
+it is also set in objc_flags.  Objects that are saturated can be
+deblended if they show multiple peaks.  Note that a galaxy with a
+superposed saturated star in its disk, even if successfully deblended,
+will be flagged <b>SATURATED</b>, as some of the pixels in the object
+footprint are indeed saturated.
+
+<p> <b>SATURATED_CENTER</b> indicates that the saturated pixels are close to
+the center of the object.  This can be used to distinguish, e.g.,
+galaxies which are flagged <b>SATURATED</b> because of a superposed star,
+from those with a very bright Seyfert nucleus, although it still needs
+further testing.  Note that star-galaxy separation is not very
+effective for saturated objects; many saturated stars are
+misclassified as galaxies.</p>
+
+<p><a name="edge"></a><b>EDGE, LOCAL_EDGE, DEBLENDED_AT_EDGE</b> The
+photometric pipeline works on one field at a time.  An object which is
+too close to the edge of a frame is flagged <b>EDGE</b> in that band.  Among
+<b>PRIMARY</b> objects (which have been resolved in overlaps, and thus should
+remove most <b>EDGE</b> objects), only large extended objects should be
+flagged <b>EDGE</b>.  Thus, if you are interested in point sources, you will
+probably not need to worry about the <b>EDGE</b> flag (or at least be
+suspicious of objects with <b>EDGE</b> and <b>PRIMARY</b> set).  On rare occasions,
+it has happened that half of a chip has gone on the blink; objects
+close to the new edge there are flagged <b>LOCAL_EDGE</b> in the appropriate
+band.<p>
+
+<p>The deblending algorithm has to work harder for objects close to the
+edge; it runs only for big objects which otherwise might be missed.
+If so, the flag <b>DEBLENDED_AT_EDGE</b> is set.  This is an informational
+flag; it by itself does not indicate any trouble. 
+
+<p>If the photometric pipeline recognizes a pixel as bad (due to a bad
+column, a cosmic ray, or a bleed trail), it is interpolated over.  If
+this is true for any pixel within the object, it is flagged
+<b>INTERP</b>.  This by itself it just informational; if the
+interpolation is over a cosmic ray or a single bad column, for
+example, the photometry should be essentially perfect.  Further flags
+give additional information.</p>
+
+<ul>
+  <li> <b>CR</b> means that the object contained a cosmic ray that was
+      interpolated over.  This does <i>not</i> mean that the object in
+      question <i>is</i> a cosmic ray!  Again, the photometry of objects
+      flagged <b>CR</b> is usually fine.  Thus this is mostly an informational flag.</li>
+  <li> <b>MAYBE_CR</b> is an indication that object may be a cosmic ray.  It is
+      <i>not</i> interpolated over; it is set with a threshold lower than
+      the main cosmic-ray finding algorithm.  It is a useful flag to trigger
+      on if one is looking, e.g., for objects detected in a single band
+      (such as the high-redshift quasars and T dwarfs, which can show up
+      only in the z band).</li>
+  <li> <b>MAYBE_EGHOST</b> says that the object in question is in a position
+      that it may be an electronics ghost of a bright star in the given
+      band.  You should be suspicious of objects with this flag that are
+      faint and detected in only one band.</li>
+  <li> <b>INTERP_CENTER</b> means that the interpolated pixel(s) in question
+      fell within 3 pixels of the center of the object.  This is a warning
+      that perhaps the photometry of this object may be affected.  You
+      should really get concerned when</li>
+  <li> <b>PSF_FLUX_INTERP</b> is set.  This means that more than 20% of the
+      PSF flux is interpolated over in the band in question, which may make
+      one suspicious of the accuracy of the flux.  In practice, most objects
+      with this flag set still appear to have perfectly good PSF photometry,
+      but the number of outliers (say, in a color-color plot) is definitely
+      larger than usual. </li>
+  <li> You should be especially suspicious if <b>BAD_COUNTS_ERROR</b> is set in
+      a given band,
+      which says that the interpolation over bad pixels is so significant
+      that you should not believe the PSF flux error; it is probably
+      underestimated.</li>
+</ul>
+
+<h3>Flags that indicate problems with the image</h3>
+
+<p><a name="centroid"></a><b>CANONICAL_CENTER, PEAKCENTER,
+DEBLEND_NOPEAK, NOPROFILE, NOTCHECKED, NOTCHECKED_CENTER, TOO_LARGE,
+BADSKY</b> 
+Often, in deblending, objects near the edge, and at low S/N, various
+flags will be set indicating trouble defining the center of the
+object.  This should make one suspicious of its detailed photometric
+properties.  In particular:
+<ul>
+  <li><b>CANONICAL_CENTER</b>: The centroid of a given object is usually determined separately
+      in each band.  If in some band, it is impossible to measure the center
+      (due to being at the edge), one uses the center in another band,
+      transformed according to the relative astrometry between the bands,
+      and this flag is set. </li>
+  <li><b>PEAKCENTER</b>: If the centroiding algorithm can't find a better center, it will
+      often simply report the position of the peak pixel in a given band.
+      This often happens with little wisps of objects deblended from
+      something bright; the flag <b>PEAKCENTER</b> is set.  It is a hint that this
+      object may not be real.  A related flag is </li>
+  <li><b>DEBLEND_NOPEAK</b>: indicates that after deblending, the child in question doesn't have a
+      peak.  Objects with either of these flags set (especially nominal
+      point sources in a nominally high S/N band) should be treated with
+      suspicion. </li>
+  <li> An object with <b>NOPROFILE</b> set in a given band had (as the name
+      implies) zero or one entries in the radial profile; most photometric
+      quantities measured from it are likely to be suspect. </li>
+  <li><b>NOTCHECKED</b>: An object includes pixels which were not checked for peaks by the
+      deblender; this can happen close to the edge, and in the cores of
+      saturated stars.  Be suspicious of the
+      performance of the deblender in this case.  If the flag</li>
+  <li><b>NOTCHECKED_CENTER</b> is also set, the situation is worse; the center of
+      the object is in a not-checked region.  This should not happen for any
+      <b>BINNED1</b> object. </li>
+  <li> The flag <b>TOO_LARGE</b> indicates an object which is still detected at
+      the outermost point of the radial profile (a radius of over 4 arcmin),
+      or at least one child in a deblend is larger than 1/2 a frame.  This
+      is indicative either of a very large object, or a poorly determined
+      sky, or a particularly horrific deblend.  The detailed photometry of
+      this object is questionable. </li>
+  <li><b>BADSKY</b>: If the local sky is badly determined (as occasionally
+      happens in regions with complex backgrounds), the core of an object
+      can be strongly negative.  This 
+      is bad; the photometry of such objects is meaningless.</li>
+</ul>
+
+<h3> Problems associated with specific quantities</h3>
+
+Some of these are easy; they simply say that the quantity in question
+could not be measured.  In particular:
+<a name="nostokes"></a>
+<ul>
+<li><b>NOSTOKES</b>: Objects whose Q and U (Stokes parameters) were not measured in a
+given band.</li>
+<li><b>ELLIPFAINT</b>: Objects whose isophotal shape could not be measured.
+</ul>
+
+
+<p>Three types of measurement generate a lot of flags: Petrosian
+quantities, the proper motion of objects, and adaptive shape moments.
+These are:</p>
+
+<a name="petro"></a><h4>Flags associated with the measurement of
+Petrosian quantities</h4>
+
+<p>The pipeline measures Petrosian radii, fluxes, 50% and 90% radii,
+and errors for all these quantities.  This is described in detail in
+Appendix A to <a
+href="http://www.journals.uchicago.edu/AJ/journal/issues/v124n3/202037/202037.html">Strauss
+et al. (2002)</a>, which discusses the flags as well.  The Petrosian
+radius (and there can be more than one of them) is often measured at a
+fairly low S/N point in the profile of an object.  Thus the most
+common flags that are set (especially at the faint end) are</p> <ul>
+  <li><b>PETROFAINT</b> the
+Petrosian radius is measured at a very low surface brightness level,
+and</li>
+  <li><b>NOPETRO</b> the code was unable to measure the Petrosian
+radius.</li> </ul>
+
+<p>These two often appear together.  In this case
+(and in the absence of other warning flags such as <b>BADSKY</b> or
+<b>NOPROFILE</b>, which mean real trouble), the code still returns a
+meaningful magnitude (i.e., the total flux within the aperture with
+detected counts), so the Petrosian magnitude will still be usable.  A
+related flag is <b>NOPETRO_BIG</b>, which indicates that the Petrosian
+radius appears to be larger than the outermost point of the extracted
+radial profile.  This can happen in regions in which the background
+sky is noisy, or for low S/N objects.</p>
+
+<p> Other Petrosian flags, mostly informational in nature, include:
+<ul> <li><b>MANYPETRO</b> For galaxies with composite profiles, it is
+possible for there to be more than one Petrosian radius.</li>
+<li><b>MANY_R50, MANY_R90</b> Galaxies which have a radial profile
+    which dips below zero can have more than one radius including 50%
+or 90% of the light.  This is a rare
+    occurrence.</li>
+
+<li> If the Petrosian radius hits the edge of the frame, the flag
+<b>INCOMPLETE_PROFILE</b> is set.  The radial profile, and thus the Petrosian
+quantities, are still calculated in an unbiased way, and the results
+should be reasonable.</li>
+</ul>
+
+<a name="moving"></a><h4>Flags associated with moving objects</h4>
+
+A main-belt asteroid will show a parallax of a few arcseconds between
+the r and g exposure in the SDSS camera.  The photometric pipeline,
+and in particular, the deblending algorithm, explicitly tests for
+this, and measures the motion as appropriate.  There are quite a few
+flags associated with this process.  For most purposes, the
+<i>only</i> flag you need to examine is <b>DEBLENDED_AS_MOVING</b>, whose
+name should be self-explanatory.  If one wants a catalog of moving
+objects, for example, cut on this flag, as well as the derived motion
+(rowv, colv) and associated errors.  It is possible that objects with
+small enough motion will have a statistically significant proper
+motion, but not trigger this flag; this requires further exploration.
+There are no doubt a number of Kuiper Belt objects to be discovered in
+the SDSS data!
+<p>
+The remaining flags related to moving objects are mostly informational
+in nature, but are useful in understanding why a specific object
+was not deblended as moving:
+<ul>
+  <li><b>MOVED</b> indicates that the object is a candidate to be deblended as
+      moving.  This is not a terribly useful flag.  In particular, despite
+      its name, it does
+      <i>not</i> mean that the object is actually determined to be moving!</li>
+  <li><b>NODEBLEND_MOVING</b> Objects flagged <b>MOVED</b> that are
+      not deblended as moving.  Not terribly useful.</li>
+  <li> Objects with detections in only a few bands will not be able to
+      be tested for motion; they are flagged <b>TOO_FEW_DETECTIONS</b>.   Even if
+      the object passes this threshold, it may turn out that the centroids
+      are not good in a few of the bands, in which case the flag
+      <b>TOO_FEW_GOOD_DETECTIONS</b> is also set. </li>
+  <li><b>BAD_MOVING_FIT</b> the motion of the object is inconsistent
+      with a straight line and it is not deblended as moving.  A related
+      flag is</li>
+  <li><b>BAD_MOVING_FIT_CHILD</b>, which states that in a complicated
+      deblend putatively involving both a moving and stationary object, a
+      child's velocity fit is too poor, so the parent wasn't deblended as moving.</li>
+  <li><b>STATIONARY</b> the moving object's velocity is consistent with zero</li>
+  <li><b>CENTER_OFF_AIMAGE</b> the nominal motion moves the object right off the edge of the
+      atlas image in some band.</li>
+</ul>
+
+<a name="mmoment"></a><h4> Flags associated with the measurement of
+adaptive moments</h4>
+
+<p>The imaging pipeline carries out the calculations of optimally
+weighted second moments of objects in order to determine their shapes
+(especially for weak lensing studies).  The flags indicate trouble
+with this process for a given object in a given band, usually at low
+S/N and such moment measurements should not be used.</p>
+
+<ul>
+  
+  <li><b>AMOMENT_UNWEIGHTED</b> (also called <b>AMOMENT_FAINT</b>) the
+      calculation of the weights failed, the adaptive moments are
+      calculated without weights</li>
+  <li><b>AMOMENT_SHIFT</b> in the determination of adaptive moments, the centroid is
+      recalculated; if it shifts too far, the flag <b>AMOMENT_SHIFT</b> is set, and
+      M_e1 and M_e2 give the value of shift</li>
+  <li><b>AMOMENT_MAXITER</b> the moment calculation did not converge</li> 
+</ul>
+
+<a name="deblend"></a>
+<h3> Further flags related to deblending (all informational)</h3>
+
+<p>A complicated object may have many peaks in it (think of the core
+of a globular cluster as the worst-case scenario!). However
+complicated an object is, the deblender conserves flux, in so much as
+the flux in each pixel is split among the children.  Still, no effort
+is made to ensure that the sum of the children is exactly equal to the
+parent, so rounding error could lead to discrepancies of one or two
+DN. A number of informational flags point out cases where deblending
+was complicated.</p>
+
+<p>If the number of peaks is larger than 25, the flag
+<b>DEBLEND_TOO_MANY_PEAKS</b> is set (in the parent, *not* the child),
+and only the 25 most significant peaks are deblended.
+<b>DEBLEND_UNASSIGNED_FLUX</b> indicates that initially, &gt;5% of the
+parent's flux was not assigned to any of the children and that this
+flux has been redistributed among them.  Thus this is not an indicator
+of any problem with the deblender; this is an informational flag
+only.</p>
+
+<p>It is occasionally true (especially in complicated deblends) that
+some of the peaks are not deblended, for one of two reasons.  The
+parents in such cases are labelled <b>DEBLEND_PRUNED</b>.  The two
+reasons are that these peaks lie too close to other peaks (in which
+case the flag <b>PEAKS_TOO_CLOSE</b> is set), or that the templates
+associated with the peak is degenerate with others (in which case
+<b>DEBLEND_DEGENERATE</b> is set - see <a
+href="http://www.sdss.org/dr1/algorithms/dr1changes.html#deblender">deblender
+description in DR1 changes document</a>).</p>
+
+<p> In a complicated deblend, especially those involving galaxies,
+there can be many children, and it is not always obvious (without
+looking at the image by eye) which child is the main galaxy.  The flag
+<b>BRIGHTEST_GALAXY_CHILD</b> flags that object which the code
+believes to be the brightest galaxy child.
+
+If the deblending algorithm recognizes a given child as unresolved, it
+will use that information in the deblend, and flag it as
+<b>DEBLENDED_AS_PSF</b>.</p>
+
+<p><b>HAS_SATUR_DN</b> indicates that the object is saturated in this
+band and the bleed trail doesn't touch the edge of the frame. In such
+cases, an attempt is made to add up all the flux in the bleed trails,
+and to include it in the object's photometry. Note: some of the CCDs
+saturate at over 65535 DN; for these chips, the bled flux will be
+underestimated.</p>
+
+<p> After the regular deblender had completed, photo took another pass
+looking for some special cases, and the deblend was modified based on
+this analysis are flagged <b>DEBLEND_PEEPHOLE</b>. Currently, only one
+special case is considered: objects that, when merged together, were
+consistent with a moving object that the deblender had missed in the
+first pass.</p>
+
+
+<a name="other"></a><h3> Further informational flags</h3>
+
+<p>It is often true that the last bin in the radial profile of an
+object goes slightly negative.  When this happens, the <b>BAD_RADIAL</b> flag
+is set; it can usually be ignored.</p>
+
+<p>    The Petrosian and model magnitude calculations make reference to
+a canonical band, which defaults to the r band.  In the case that the
+object is undetected in r, the canonical band is set to the highest
+S/N band.  The band in question is flagged <b>CANONICAL_BAND</b>.
+
+<p>    The extended wings around bright stars are subtracted; such
+objects are flagged <b>SUBTRACTED</b>. 
+
+<p>    For sufficiently extended objects, the PSF-weighted centroid is not optimal,
+and the centroid is found using a 2x2-binned images.  Such objects are
+flagged <b>BINNED_CENTER</b>; such objects probably should not be used, e.g.,
+as part of a local astrometric reference frame. 
+
+
+
+<hr>
+<!-- hhmts start -->Last modified: Wed Dec  6 11:13:55 CET 2006
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

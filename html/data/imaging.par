@@ -1,0 +1,11 @@
+typedef struct {
+int run;
+int rerun;
+int camcol;
+int field;
+char filter[2];
+} RRCFF
+
+RRCFF 1356 2 3 86 r
+RRCFF 1356 2 3 87 r
+RRCFF 1356 2 3 88 r

@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+#use "sdss_macros.wml"
+
+<html>
+
+<head>
+<meta name="Description" content="SDSS Server Status">
+<title>SDSS Server Status</title>
+</head>
+
+<sdss-page select="status">
+
+<h1>SDSS Server Status</h1>
+
+%%BODY%%
+
+</sdss-page>
+
+</html>

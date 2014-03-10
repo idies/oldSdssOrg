@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Quasars</TITLE>
+<META NAME="description" CONTENT="Quasars">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html710" HREF="node55.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html708" HREF="node51.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html702" HREF="node53.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html711" HREF="node55.html">Other Science Targets</A>
+<B>Up:</B> <A NAME="tex2html709" HREF="node51.html">Target Selection</A>
+<B> Previous:</B> <A NAME="tex2html703" HREF="node53.html">Luminous Red Galaxies</A>
+<BR> <P>
+<H3><A NAME="SECTION00048300000000000000">Quasars</A></H3>
+<P>
+<A NAME="swtargetqsos">&#160;</A>
+<P>
+Images of quasars are characterized in the optical by high luminosity
+and very high surface brightness, making them morphologically
+indistinguishable from stars at all but very low redshifts (<IMG WIDTH=52 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline3415" SRC="img150.gif"> at the resolution of the SDSS).  Quasar spectra, however, are
+characterized by roughly power-law continua and strong emission lines; as a
+result, quasar spectra are quite distinct from the roughly black-body
+spectra of stars.
+<P>
+The dominance of the continuum on the colors of quasars is
+severely reduced because of absorption by the Ly<IMG WIDTH=11 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline3417" SRC="img151.gif"> forest and
+Lyman-limit systems (at rest wavelengths below <IMG WIDTH=33 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3419" SRC="img152.gif">&#197;&nbsp; and
+<IMG WIDTH=24 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3421" SRC="img153.gif">&#197;, respectively).  For the SDSS filter set, absorption
+by the Ly<IMG WIDTH=11 HEIGHT=8 ALIGN=BOTTOM ALT="tex2html_wrap_inline3417" SRC="img151.gif"> forest is significant for <IMG WIDTH=52 HEIGHT=25 ALIGN=MIDDLE ALT="tex2html_wrap_inline3425" SRC="img154.gif">, and quasars
+become increasingly red with larger redshift
+fan99a,richards01a.  Fortunately, this effect also gives
+quasars colors that are distinctly different from those of normal
+stars.
+<P>
+Models of quasars by fan99a show that the quasar locus is
+indeed well-separated from the stellar locus except at <I>z</I> = 2.7-2.8,
+where quasars have SDSS broad-band colors that are essentially
+indistinguishable from early F and late A stars.  Thus the majority of
+quasars have colors quite distinct from those of stars, which, unlike
+quasars, lie on a nearly one-dimensional locus in
+<IMG WIDTH=286 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3429" SRC="img155.gif"> color-color-color-color
+space newberg97, fan99a, finlator00.  Using this property, we
+identify quasar candidates primarily as outliers from the stellar
+locus in this 4-color space.  This algorithm is described in more
+detail by richards01b.
+<P>
+The quasar target selection algorithm first models the stellar locus,
+following newberg97, as an elongated tube with an elliptical
+cross-section.  In practice, this is done in two stages, once for the
+<IMG WIDTH=213 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3431" SRC="img156.gif"> color cube, and once for the <IMG WIDTH=209 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3433" SRC="img157.gif"> color cube.  The PSF colors of each object are examined
+in turn, and it is determined whether they are consistent with lying inside
+the stellar locus, incorporating the photometric errors. The
+quoted errors in PSF magnitudes from <TT>frames</TT> are used, after adding
+<IMG WIDTH=12 HEIGHT=9 ALIGN=BOTTOM ALT="tex2html_wrap_inline2799" SRC="img3.gif"> 0.03 mag errors in quadrature in each color to reflect the
+uncertainty in the photometric calibration.  Quasar candidates are
+those objects which lie more than <IMG WIDTH=21 HEIGHT=12 ALIGN=BOTTOM ALT="tex2html_wrap_inline3437" SRC="img158.gif"> from the stellar locus.  Colors are
+measured using PSF magnitudes, and are corrected for reddening using 
+schlegel98 throughout.
+<P>
+The quantity <TT>objFlags</TT> in class <TT>photoObj</TT> uses the bitmasks in
+Table&nbsp;<A HREF="node65.html#tblflag">9</A> to indicate objects whose photometry (and therefore,
+colors) may be in error.  In particular, we reject objects flagged as <TT>
+BLENDED</TT> (although we accept the deblended children of blended parents), <TT>
+BRIGHT</TT>, <TT>SATURATED</TT>, or <TT>EDGE</TT> in any band.  Objects detected as <TT>
+MOVING</TT> at a rate greater than 0.2 pixels per frame with high significance are
+rejected as asteroids (although this rejection is no longer needed in the
+current algorithm; asteroids have colors that put them cleanly in the stellar
+locus; ivezic01).  Deblended children with <TT>PEAKCENTER</TT>, <TT>
+NOTCHECKED</TT>, or <TT>DEBLEND_NOPEAK</TT> set in any band are signs of deblending
+problems; these objects are also rejected.  Objects with <TT>INTERP_CENTER</TT>
+set have a cosmic ray or bad column within 3 pixels of their center;
+empirically, we find that many false quasar candidates are found with <IMG WIDTH=67 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3439" SRC="img159.gif"> and this flag set, so we reject all such objects.  There are a few bad
+columns which are not properly interpolated over by the photometric pipeline,
+and so we reject objects in CCD columns 1019-1031 in <TT>camCol</TT> 5.
+<P>
+Main Quasar Sample
+<P>
+At one point, we had considered separate
+criteria in regions of high and low stellar density, as we were concerned
+about changing stellar populations at low latitudes.  For this reason, objects
+that pass the main quasar target selection criteria have the <TT>
+TARGET_QSO_CAP</TT> (referring to the Galactic cap) or <TT>TARGET_QSO_SKIRT</TT>
+(the ring around Galactic cap region), target mask bit set in <TT>
+primTarget</TT> of class <TT>specObj</TT>, depending on their
+Galactic coordinates and, in particular, the estimated stellar density from
+the bahcall80 model.  However, we
+found that the effectiveness of the algorithm was independent of stellar
+density, so the selection of the two is identical.
+<P>
+An outlier from the <IMG WIDTH=213 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3431" SRC="img156.gif"> color cube is a
+quasar candidate if it passes the above gauntlet of tests and has
+<IMG WIDTH=120 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3443" SRC="img160.gif">.  The bright limit is set to avoid problems with
+cross-talk in the spectrographs.  As indicated in
+Table&nbsp;<A HREF="node65.html#tbltargetcriteria">29</A>, the bright limit used for <TT>
+target</TT> version v2.2.a, runs 752 and 756 was <IMG WIDTH=67 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3445" SRC="img161.gif">.  The object
+need not be stellar if it lies blueward of the main galaxy locus; this
+allows low-redshift AGN, whose host galaxy is visible, to be selected.
+<P>
+We reject some quasar candidates if they have colors that match known types of
+stars which lie outside the main stellar locus.   In particular,  hot
+white dwarfs are excluded when 
+ - and
+<BR><A NAME="rejectwd">&#160;</A><IMG WIDTH=653 HEIGHT=17 ALIGN=BOTTOM ALT="equation1132" SRC="img162.gif"><BR>
+unresolved M dwarf-white dwarf pairs are excluded when
+<BR><A NAME="rejectmdwd">&#160;</A><IMG WIDTH=535 HEIGHT=17 ALIGN=BOTTOM ALT="equation1135" SRC="img163.gif"><BR>
+and A stars are excluded when
+<BR><A NAME="rejecta">&#160;</A><IMG WIDTH=549 HEIGHT=17 ALIGN=BOTTOM ALT="equation1138" SRC="img164.gif"><BR>
+<P>
+The quasar locus crosses the stellar locus for quasars of <IMG WIDTH=53 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline3447" SRC="img165.gif">, so 
+we <EM>include</EM> target objects when
+<BR><A NAME="rejectbluehiz">&#160;</A><IMG WIDTH=539 HEIGHT=17 ALIGN=BOTTOM ALT="equation1142" SRC="img166.gif"><BR>
+even if they are not outliers from the stellar locus.
+<P>
+Each of these three regimes of stars were rejected in the EDR data (as
+indicated in Table&nbsp;<A HREF="node65.html#tbltargetcriteria">29</A>), except with <TT>
+target</TT> version v2.2a, runs 752 and 756, when only the A star
+rejection was applied.  Inclusion of objects in the region where the
+stellar and quasar loci cross was performed for all three versions of
+<TT>target</TT> used for the EDR.
+<P>
+The SDSS catalog is matched against the FIRST catalog of radio sources
+becker95, and stellar objects with radio counterparts within
+<IMG WIDTH=15 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3449" SRC="img167.gif"> and <IMG WIDTH=67 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3451" SRC="img168.gif"> are selected, using the mask bit <TT>
+TARGET_QSO_FIRST_CAP</TT> or <TT>TARGET_QSO_FIRST_SKIRT</TT> depending on their
+position on the sky.
+<P>
+High Redshift Quasar Sample
+<P>
+The mask bit in <TT>primTarget</TT> we use for the high
+redshift quasar sample is <TT>TARGET_QSO_HIZ</TT>.  Outliers from the stellar
+locus in the <IMG WIDTH=209 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3433" SRC="img157.gif"> color cube with <IMG WIDTH=67 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3455" SRC="img169.gif">
+are selected, subject to the rejection criteria given above in  
+equations&nbsp;<A HREF="node54.html#rejectwd">20</A>,&nbsp;<A HREF="node54.html#rejectmdwd">21</A>, and&nbsp;<A HREF="node54.html#rejecta">22</A>.
+Additionally, candidates must be classified as stellar, as they will have
+redshifts above <I>z</I> = 3.5 for the most part (see the discussion in Fan et
+al.&nbsp;2001a).  For <TT>target</TT> versions v2.5 and v2.7, we also targeted
+objects which lie in the region of color-color space for <I>z</I> &gt; 3,  are
+still outliers in the <IMG WIDTH=213 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline3431" SRC="img156.gif"> cube and have <IMG WIDTH=100 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3463" SRC="img170.gif"> and <IMG WIDTH=67 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3455" SRC="img169.gif">, see Table&nbsp;<A HREF="node65.html#tbltargetcriteria">29</A>.
+<P>
+Although low-redshift quasars manifest themselves most dramatically as
+outliers in <IMG WIDTH=54 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3467" SRC="img171.gif">, they are also outliers in the <IMG WIDTH=61 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3469" SRC="img172.gif"> color
+cube, and would thus dominate the (nominally) high-redshift color cut, which
+goes fainter than the main quasar sample.  Therefore, we rejected very blue
+objects that satisfy
+<BR><IMG WIDTH=552 HEIGHT=17 ALIGN=BOTTOM ALT="eqnarray1159" SRC="img173.gif"><BR>
+even if they were outliers in the <IMG WIDTH=61 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline3469" SRC="img172.gif"> color cube.
+Table&nbsp;<A HREF="node65.html#tbltargetcriteria">29</A> indicates that this rejection was not done in
+<TT>target</TT> v2.2.a.
+<P>
+Faint, Reject, and Magnitude Outlier Objects
+<P>
+For <TT>target</TT> versions v2.2.a, v2.5, and v2.7, objects which lie outside
+the stellar locus, but are fainter than the magnitude limit, are flagged as
+<TT>TARGET_QSO_FAINT</TT>; they are not targeted, but are marked as being of
+potential interest.  We emphasize, however, that the algorithm is not
+optimized fainter than <IMG WIDTH=67 HEIGHT=14 ALIGN=BOTTOM ALT="tex2html_wrap_inline3473" SRC="img174.gif">, so the fraction of objects flagged as <TT>
+TARGET_QSO_FAINT</TT> that turn out to be quasars will decrease significantly
+with magnitude.  Objects with this flag set will only have spectra if
+they were targeted by another module.
+<P>
+Performance of Quasar Target Selection
+<P>
+Quasar candidates are selected primarily as objects with colors distinct from
+stars, allowing the serendipitous discovery of a variety of objects of unusual
+color, including those that do not conform to ``standard'' quasar colors.  It
+has thus found a number of very unusual BAL quasars, extreme emission-line
+galaxies, high-redshift (<I>z</I> &gt; 0.7) starburst and post-starburst galaxies, and
+a handful of objects whose spectra defy classification.
+<P>
+This algorithm selects of order 15 objects per square degree.  Our
+target efficiency requirement is that at least 65% of our quasar
+candidates should in fact be quasars.  The EDR is very close to
+meeting this requirement, and we certainly expect future data releases
+to meet or exceed this requirement.  The principal contaminants are
+compact blue star-forming galaxies at low redshift; A stars; white
+dwarfs and M dwarf-white dwarf pairs that the above color cuts don't
+completely remove; and a variety of exotica such as <I>z</I> &gt; 0.4 compact
+E+A galaxies, whose Balmer break gives them colors very similar to 
+<I>z</I>=4 quasars.  Comparison with quasars from the literature shows that
+our completeness is of order 90%, which is consistent with our
+completeness requirement.  Known quasars that are not targeted are
+rejected for a wide variety of reasons: many are due to cosmetic
+defects, and many <I>z</I>=3.5 and <I>z</I>=4.5 quasars are missing due to
+problems with the quasar target selection code, which have been corrected
+since <TT>target</TT> was run to define the plates in the EDR.
+<P>
+<HR><A NAME="tex2html710" HREF="node55.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html708" HREF="node51.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html702" HREF="node53.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html711" HREF="node55.html">Other Science Targets</A>
+<B>Up:</B> <A NAME="tex2html709" HREF="node51.html">Target Selection</A>
+<B> Previous:</B> <A NAME="tex2html703" HREF="node53.html">Luminous Red Galaxies</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>

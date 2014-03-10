@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Filters</TITLE>
+<META NAME="description" CONTENT="Filters">
+<META NAME="keywords" CONTENT="edr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="edr.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html378" HREF="node26.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html376" HREF="node24.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html370" HREF="node24.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html379" HREF="node26.html">Great Circle Drift Scanning</A>
+<B>Up:</B> <A NAME="tex2html377" HREF="node24.html">Imaging System</A>
+<B> Previous:</B> <A NAME="tex2html371" HREF="node24.html">Imaging System</A>
+<BR> <P>
+<H3><A NAME="SECTION00032100000000000000">Filters</A></H3>
+<P>
+<A NAME="hwcamfilt">&#160;</A>
+<P>
+The situation with the SDSS response functions for the five filter
+passbands, and the resulting photometric system, is rather
+complex. There is a set of primary standard stars which 
+have been measured at the U. S. Naval Observatory 40'' telescope and
+with the SDSS 
+Photometric Telescope (&#167;&nbsp;<A HREF="node28.html#hwpt">3.4</A>) which together define a
+photometric system which 
+we believe to be self-consistent to approximately 1%; this system is
+roughly as described in fukugita96. These primary standards are
+described further in &#167;&nbsp;<A HREF="node44.html#swphotocal">4.5</A> below.  Unfortunately, the
+filters used on the USNO and PT telescopes differ systematically from
+those on the 2.5m camera, and we still do not
+have a complete understanding of the transformations between these two
+systems<A NAME="tex2html8" HREF="footnode.html#414"><IMG  ALIGN=BOTTOM ALT="gif" SRC="../../../images/foot_motif.gif"></A>.  Thus the photometric system defined by the USNO and PT
+telescopes is not directly applicable to the 2.5m data, as described
+in detail in &#167;&nbsp;<A HREF="node44.html#swphotocal">4.5</A>.
+Figure&nbsp;<A HREF="node65.html#figimagingfilters">4</A> gives the average measured 
+quantum efficiencies of the 2.5m camera detectors multiplied by the
+reflectivity of the primary and secondary (the two transmissive
+surfaces have negligible effect on the throughput); curves are given
+both assuming no atmosphere, and including the
+transmission of the atmosphere above Apache Point on a night of
+average humidity at airmass 1.3.  
+Tables containing the system response in each filter are available on our web sites.
+The thinned CCDs also suffer from
+internal scattering that scatters light longward of roughly 6000&#197;\
+into an extended halo around an object; this decreases the effective
+quantum efficiency for a point source.  For extended sources (size
+&gt;30''), this effect is negligible, and the dashed curves indicate
+the quantum efficiency in this case in the <I>r</I> and <I>i</I> filters.  The
+<I>z</I> chip is thick, and does not suffer from this problem.
+<P>
+The camera responses were measured by an instrument with a roughly
+triangular wavelength response with FWHM about 100&#197;; this resolution
+has <I>not</I> been corrected for in these data but does not
+appreciably alter the shapes. Better and more detailed response data
+will be obtained and published later, but the results here are
+adequate for most purposes.
+<P>
+Table&nbsp;<A HREF="node65.html#tblfilterparameters">19</A> gives corresponding properties of
+the filters, updating those tabulated in fukugita96 and
+fan01a: the effective wavelength of each filter <IMG WIDTH=30 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline2887" SRC="img24.gif">, the
+photon-weighted mean of the quantity <IMG WIDTH=86 HEIGHT=33 ALIGN=MIDDLE ALT="tex2html_wrap_inline2889" SRC="img25.gif">
+(a measure of the effective width of the filter),
+the Full Width at Half Maximum of the filter, and <I>Q</I>, the integral of the
+system efficiency over <IMG WIDTH=49 HEIGHT=26 ALIGN=MIDDLE ALT="tex2html_wrap_inline2893" SRC="img26.gif">, effective quantum
+efficiency (all assuming 1.3 airmass, and observing a point source).  This
+last quantity relates the measured apparent magnitude (on an AB
+system) to the number of detected electrons:
+<BR><IMG WIDTH=508 HEIGHT=20 ALIGN=BOTTOM ALT="equation366" SRC="img27.gif"><BR>
+where <I>t</I> is the exposure time in seconds.
+<P>
+As pointed out in &#167;&nbsp;<A HREF="node1.html#intro">1</A>, we refer to data on the standards system with the magnitude
+labels (<I>u</I>' <I>g</I>' <I>r</I>' <I>i</I>' <I>z</I>') and the provisional 2.5-meter magnitudes
+with the labels (<IMG WIDTH=78 HEIGHT=27 ALIGN=MIDDLE ALT="tex2html_wrap_inline2825" SRC="img8.gif">).  The SDSS photometry itself
+is presented in the provisional 2.5-meter system.  Finally, the 2.5-meter
+filters themselves are referred to in this paper simply as <I>u</I>, <I>g</I>, <I>r</I>,
+<I>i</I>, and <I>z</I>, a change from some of our earlier papers.
+<P>
+<HR><A NAME="tex2html378" HREF="node26.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../../../images/next_motif.gif"></A> <A NAME="tex2html376" HREF="node24.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../../../images/up_motif.gif"></A> <A NAME="tex2html370" HREF="node24.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../../../images/previous_motif.gif"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html379" HREF="node26.html">Great Circle Drift Scanning</A>
+<B>Up:</B> <A NAME="tex2html377" HREF="node24.html">Imaging System</A>
+<B> Previous:</B> <A NAME="tex2html371" HREF="node24.html">Imaging System</A>
+<P><ADDRESS>
+<I>Michael Strauss <BR>
+Thu Jan 30 11:15:34 EST 2003</I>
+</ADDRESS>
+</BODY>
+</HTML>
