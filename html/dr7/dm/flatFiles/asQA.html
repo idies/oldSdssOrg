@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Astrometric Diagnostics</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Astrometric Diagnostics</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>asQA-rrrrrr.fit</EM>, where <EM>rrrrrr</EM> is the imaging run number.
+ <P>
+<STRONG>Produced by:</STRONG>
+astrom
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Quality analysis diagnostic output from a single astrometric pipeline run.
+If the input FANG files came from SSC, then the "sscXX_id" keys are present
+but not the "psXX_id"; vice versa if the input FANG files came from PS.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+version            v2_7
+ko_ver            ACT v1_0
+astro_id   1998-11-18T16:32:40 19417
+ssc01_id   1998-11-17T20:02:40 04699
+ssc02_id   1998-11-17T20:02:44 04698
+ssc03_id   1998-11-17T20:02:49 04622
+ssc04_id   1998-11-17T20:02:52 04763
+ssc05_id   1998-11-17T20:02:57 04731
+ssc06_id   1998-11-17T20:07:16 04852
+ssc07_id   1998-11-17T20:19:48 04974
+ssc08_id   1998-11-17T20:19:48 04981
+ssc09_id   1998-11-17T20:19:48 04980
+ssc10_id   1998-11-17T20:19:48 04900
+ssc11_id   1998-11-17T20:19:48 04976
+ps01_id    1998-11-17T20:02:40 04699
+ps02_id    1998-11-17T20:02:44 04698
+ps03_id    1998-11-17T20:02:49 04622
+ps04_id    1998-11-17T20:02:52 04763
+ps05_id    1998-11-17T20:02:57 04731
+ps06_id    1998-11-17T20:07:16 04852
+run                  94
+incl                15.
+node                95.
+equinox            2000
+field0               11
+nFields             536
+fieldsPerSegment     25
+
+typedef struct {
+    int id1;
+    int id2;
+    int n1;
+    int n2;
+    int nPairs[30];
+    float muMean[30];
+    float muRms[30];
+    float nuMean[30];
+    float nuRms[30];
+} ASTQA;
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+
+</HTML>

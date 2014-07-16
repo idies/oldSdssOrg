@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Tiling Boundaries</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Tiling Boundaries</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tiBoundaries(In/Out).par</EM> for the <em>tile</em> pipeline.
+ <P>
+<STRONG>Produced by:</STRONG>
+tilePre
+ <P>
+<STRONG>Modified by:</STRONG>
+tile
+ <P>
+<STRONG>Used by:</STRONG>
+tile
+ <P>
+<STRONG>Size:</STRONG>
+Small
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+As input to <em>tile</em>, a list of the boundaries for all targetting
+chunks in the drilling version of the sky.  On output from <em>tile</em>,
+a list of rectangles on the sky which were tiled, where each rectangle is a
+piece of a targetting chunk.
+<p>
+The target types which are tiled are specified in the keywords
+<em>primTargetMask</em> and <em>secTargetMask</em>, where the bits are the
+same as defined for the <em>primTarget</em> and <em>secTarget</em> fields,
+respectively, in the <a href="tsObj.html">tsObj</a> file.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+tilep_id       XXX            # Unique ID for tile pipeline run (output only).
+version        XXX            # In tiBoundariesIn.par files, the version of ts
+                              # which generated the file.
+			      # In tiBoundariesOut.par files, version of tile
+			      # pipeline used.
+created        'XXX'          # Time stamp when file was created
+tileRun        XXX            # Unique integer ID for tile pipeline run
+primTargetMask XXX            # Bit mask specifying all primary target types
+                              # to be tiled.
+secTargetMask  XXX            # Bit mask specifying all secondary target types
+                              # to be tiled.
+			      
+typedef struct {
+    int stripe;               # Stripe number
+    int coordType             # 1 = boundaries specified in survey
+                              #     coordinates (lambda, eta)
+                              # 2 = boundaries specified in great circle
+                              #     coordinates (mu,nu)
+			      # 3 = east/west boundaries specified in great
+			      #     circle coordinates (mu), north/south
+			      #     boundaries specified in survey
+			      #     coordinates (eta)
+    double lambdamu[2];       # The east and west boundaries for this rectangle
+                              # (degrees; mu if coodinates are great circle,
+                              # lambda if survey)
+    double etanu[2];          # The north and south boundaries for this
+                              # rectangle (degrees; nu if coodinates are great
+                              # circle, eta if survey)
+    double lambdaLimits[2];   # Minimum and maximum survey latitude (lambda)
+                              # for this stripe for region in which PRIMARY
+			      # objects are selected (degrees).  Set to -9999
+			      # if there is no limit (such as for southern
+			      # stripes)
+    char targetVersion[30];   # Version of target selection used in this region
+} TIBOUNDARY;
+<!--AUTOCHECK end param -->
+</pre>
+
+</body>
+</html>

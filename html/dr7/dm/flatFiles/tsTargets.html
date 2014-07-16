@@ -1,0 +1,94 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Targets</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Targets</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tsTargets-ss-mmmmmm-eeeeee-vvvv.fit</EM> where <em>ss</em> is the
+stripe, <em>mmmmmm</em> is the startMu in integer arcseconds,
+<em>eeeeee</em> is the endMu in integer arcseconds, and <em>vvvv</em> is
+the skyVersion.
+ <P>
+<STRONG>Produced by:</STRONG>
+opdb
+ <P>
+<STRONG>Used by:</STRONG>
+sx
+ <P>
+<STRONG>Size:</STRONG>
+ <P>
+<STRONG>Archived?</STRONG>
+yes, in the sx
+
+<H2>Description</H2>
+Lists all spectroscopic targets selected from a given chunk.  This lists only
+those targets that we are actually going to try and put a fiber on (i.e., no
+priority=0 targets).  This is produced only for skyVersion=0 or skyVersion>1
+(i.e., target version of sky or southern target selection versions of the sky).
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+STRIPE  =                   XX  / Stripe number of chunk
+STARTMU =               XXXXXX  / StartMu of chunk (integer arcseconds)
+ENDMU   =               XXXXXX  / EndMu of chunk (integer arcseconds)
+SKYVERS =                 XXXX  / 0 is main, >1 is southern
+END
+<!--AUTOCHECK end hdu 0 -->
+PROGRAM =         'xxxxxxxxxx'  / optional - if not main/southern
+</pre>
+
+<H2>Table Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   56
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   12
+TFORM1  = '1J      '
+TTYPE1  = 'run     '           / Run number id of this object
+TFORM2  = '1J      '          
+TTYPE2  = 'rerun   '           / Re-run id.
+TFORM3  = '1J      '          
+TTYPE3  = 'col     '           / Camera Column id for this object.
+TFORM4  = '1J      '          
+TTYPE4  = 'field   '           / Field id for this object.
+TFORM5  = '1J      '
+TTYPE5  = 'id      '           / Id number within field for this object.
+TFORM6  = '1D      '          
+TTYPE6  = 'ra      '           / J2000 RA
+TUNIT6  = 'degrees '          
+TFORM7  = '1D      '          
+TTYPE7  = 'dec     '           / J2000 DEC
+TUNIT7  = 'degrees '          
+TFORM8  = '1J      '          
+TTYPE8  = 'primTarget'         / primTarget in appropriate skyVersion
+TFORM9  = '1J      '          
+TTYPE9  = 'secTarget'          / secTarget in appropriate skyVersion
+TFORM10 = '1J      '          
+TTYPE10 = 'status  '           / object status in appropriate skyVersion
+TFORM11 = '1J      '          
+TTYPE11 = 'priority'           / target priority in appropriate skyVersion
+TFORM12 = '1J      '
+TTYPE12 = 'old     '           / 1=previously targeted, 0=new target
+<!--AUTOCHECK end hdu 0 -->
+END
+</pre>
+
+</body>
+</html>

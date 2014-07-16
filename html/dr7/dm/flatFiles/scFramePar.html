@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for List of Very Bright Star Frames</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>List of Very Bright Star Frames</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<em>scFrame-rrrrrr-c.par</em> where <em>rrrrrr</em> is the run number, and
+<em>c</em> is the column in the Imaging Array.
+ <P>
+<STRONG>Produced by:</STRONG>
+ssc
+ <P>
+<STRONG>Used by:</STRONG>
+ps
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+No
+
+<H2>Description</H2>
+Contains a list of whole frames, cut out by <em>ssc</em>, which contain at
+least one very bright star.
+
+<H2>Contents</H2>
+<PRE>
+<!--AUTOCHECK begin param -->
+<!--##begin PARAM brightStarFrame.header -->
+<!-- P+      Project: sdss   Date: Tue Oct 20 17:29:42 1998-->
+version             'XXX'               # Version of software used. 
+run                 XXX                 # Imaging run number. 
+camCol              XXX                 # Column in the imaging camera. 
+ssc_id              'XXX'               # SSC pipeline run identifier. 
+ko_ver              'XXX'               # Version of known object catalog  
+                                        # used. 
+<!--##end PARAM brightStarFrame.header -->
+
+<!--##begin PARAM brightStarFrame.table -->
+typedef struct {
+    int       field;          # Field sequence number within the run.  0  
+                              # indexed. 
+    char      filter[20];     # Filter (u, g, r, i, or z). 
+    int       row;            # Row center of star in trimmed image.  
+                              # (pixels) 
+    int       col;            # Column center of star in trimmed image.  
+                              # (pixels) 
+    float     mag;            # Catalog magnitude of star. 
+<!--##end PARAM brightStarFrame.table -->
+} SCFRAME
+
+SCFRAME 54 r 742 1560  10.34
+SCFRAME 54 i 742 1560  10.34
+SCFRAME 54 u 742 1560  10.34
+SCFRAME 54 z 742 1560  10.34
+SCFRAME 54 g 742 1560  10.34
+SCFRAME 61 r 350 1383  10.46
+SCFRAME 61 i 350 1383  10.46
+SCFRAME 61 u 350 1383  10.46
+SCFRAME 61 z 350 1383  10.46
+SCFRAME 61 g 350 1383  10.46
+SCFRAME 65 r 898 1331   9.92
+SCFRAME 65 i 898 1331   9.92
+SCFRAME 65 u 898 1331   9.92
+SCFRAME 65 z 898 1331   9.92
+SCFRAME 65 g 898 1331   9.92
+<!--AUTOCHECK end param -->
+</PRE>
+
+</BODY>
+</HTML>

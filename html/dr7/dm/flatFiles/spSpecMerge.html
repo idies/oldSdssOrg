@@ -1,0 +1,218 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Combined and Merged Spectrum</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Combined and Merged Spectrum</H1>
+
+<STRONG>File Format:</STRONG>
+FITS image
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spSpec-pppp-fff.fit</EM>,
+where <EM>pppp</EM> is the plugged-plate id  number, and
+<EM>fff</EM> is the fiber id  number, 
+ <P>
+<STRONG>Produced by:</STRONG>
+spectro1d
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+An output spectrum from the 1-D spectroscopic pipeline.  It is the averaged
+spectrum over all exposures for a plugged plate (may span multiple sequences),
+with the separate spectrum from
+the blue and red cameras merged into a single spectrum.
+
+<H2>Primary Header</H2>
+<pre>
+SIMPLE  =                    T                                                  
+BITPIX  =                    8                                                  
+NAXIS   =                    0                                                  
+EXTEND  =                    T                                                  
+SPEC_CLN=                    3 / Spectral Classn                                
+EARTH_RV= 1.12856000000000E+01 / Heliocentric Correction (km/s)                 
+Z       = 4.21175000000000E-01 / Final redshift                                 
+Z_ERR   = 1.82961000000000E-04 / Redshift error                                 
+Z_CONF  = 1.00000000000000E+00 / Redshift confidence                            
+EMZ_Z   = 2.38111000000000E-01 / Emission line redshift                         
+EMZ_ERR = 2.75223000000000E-04 / Emission line redshift error                   
+EMZ_NMAT=                    4 / No. of matched lines                           
+EMZ_NUNM=                    0 / No. of unmatched lines                         
+EMZ_DEGN=                    0 / 1 if degenerate                                
+END     = '        '                                                            
+</pre>                                                                                
+<H2>Linearly-Binned Spectrum Header</H2>
+There is one HDU of this type.
+<pre>
+XTENSION= 'BINTABLE'                                                            
+BITPIX  =                    8                                                  
+NAXIS   =                    2                                                  
+NAXIS1  =                88465                                                  
+NAXIS2  =                    1                                                  
+PCOUNT  =                    0                                                  
+GCOUNT  =                    1                                                  
+TFIELDS =                   14                                                  
+TFORM1  = '1J      '                                                            
+TTYPE1  = 'len     '                                                            
+TFORM2  = '5201E   '                                                            
+TTYPE2  = 'respec  '                                                            
+TFORM3  = '5201E   '                                                            
+TTYPE3  = 'conspec '                                                            
+TFORM4  = '5201E   '                                                            
+TTYPE4  = 'wave    '                                                            
+TFORM5  = '5201E   '                                                            
+TTYPE5  = 'rms     '                                                            
+TFORM6  = '5201B   '                                                            
+TTYPE6  = 'mask    '                                                            
+TFORM7  = '1J      '                                                            
+TTYPE7  = 'disp.ncoeff'                                                         
+TFORM8  = '2D      '                                                            
+TTYPE8  = 'disp.coeff'                                                          
+TFORM9  = '1J      '                                                            
+TTYPE9  = 'pixmin  '                                                            
+TFORM10 = '1J      '                                                            
+TTYPE10 = 'pixmax  '                                                            
+TFORM11 = '1J      '                                                            
+TTYPE11 = 'disp_mode'                                                           
+TFORM12 = '1J      '                                                            
+TTYPE12 = 'eigen.ncoeff'                                                        
+TFORM13 = '1E      '                                                            
+TTYPE13 = 'eigenVal'                                                            
+TFORM14 = '1E      '                                                            
+TTYPE14 = 'eigen.norm'                                                          
+END                                                                             
+</pre>
+
+<H2>Log-Binned Spectrum Header</H2>
+There is one HDU of this type.
+<pre>
+XTENSION= 'BINTABLE'                                                            
+BITPIX  =                    8                                                  
+NAXIS   =                    2                                                  
+NAXIS1  =                86425                                                  
+NAXIS2  =                    1                                                  
+PCOUNT  =                    0                                                  
+GCOUNT  =                    1                                                  
+TFIELDS =                   14                                                  
+TFORM1  = '1J      '                                                            
+TTYPE1  = 'len     '                                                            
+TFORM2  = '5081E   '                                                            
+TTYPE2  = 'respec  '                                                            
+TFORM3  = '5081E   '                                                            
+TTYPE3  = 'conspec '                                                            
+TFORM4  = '5081E   '                                                            
+TTYPE4  = 'wave    '                                                            
+TFORM5  = '5081E   '                                                            
+TTYPE5  = 'rms     '                                                            
+TFORM6  = '5081B   '                                                            
+TTYPE6  = 'mask    '                                                            
+TFORM7  = '1J      '                                                            
+TTYPE7  = 'disp.ncoeff'                                                         
+TFORM8  = '2D      '                                                            
+TTYPE8  = 'disp.coeff'                                                          
+TFORM9  = '1J      '                                                            
+TTYPE9  = 'pixmin  '                                                            
+TFORM10 = '1J      '                                                            
+TTYPE10 = 'pixmax  '                                                            
+TFORM11 = '1J      '                                                            
+TTYPE11 = 'disp_mode'                                                           
+TFORM12 = '1J      '                                                            
+TTYPE12 = 'eigen.ncoeff'                                                        
+TFORM13 = '1E      '                                                            
+TTYPE13 = 'eigenVal'                                                            
+TFORM14 = '1E      '                                                            
+TTYPE14 = 'eigen.norm'                                                          
+END
+</pre>
+
+<H2>Emission-Line Redshifts</H2>
+There is one HDU of this type.
+<pre>
+XTENSION= 'BINTABLE'                                                            
+BITPIX  =                    8                                                  
+NAXIS   =                    2                                                  
+NAXIS1  =                   60                                                  
+NAXIS2  =                    4                                                  
+PCOUNT  =                    0                                                  
+GCOUNT  =                    1                                                  
+TFIELDS =                   15                                                  
+TFORM1  = '1E      '                                                            
+TTYPE1  = 'center  '                                                            
+TFORM2  = '1E      '                                                            
+TTYPE2  = 'cent_err'                                                            
+TFORM3  = '1E      '                                                            
+TTYPE3  = 'wave    '                                                            
+TFORM4  = '1E      '                                                            
+TTYPE4  = 'wave_err'                                                            
+TFORM5  = '1E      '                                                            
+TTYPE5  = 'wmin    '                                                            
+TFORM6  = '1E      '                                                            
+TTYPE6  = 'wmax    '                                                            
+TFORM7  = '1E      '                                                            
+TTYPE7  = 'fwhm    '                                                            
+TFORM8  = '1E      '                                                            
+TTYPE8  = 'peak    '                                                            
+TFORM9  = '1E      '                                                            
+TTYPE9  = 'continuum'                                                           
+TFORM10 = '1E      '                                                            
+TTYPE10 = 'ew      '                                                            
+TFORM11 = '1E      '                                                            
+TTYPE11 = 'nsigma  '                                                            
+TFORM12 = '1E      '                                                            
+TTYPE12 = 'chisq   '                                                            
+TFORM13 = '1J      '                                                            
+TTYPE13 = 'nu      '                                                            
+TFORM14 = '1J      '                                                            
+TTYPE14 = 'id      '                                                            
+TFORM15 = '1E      '                                                            
+TTYPE15 = 'z       '                                                            
+END                                                                             
+</pre>
+
+<H2>Cross-Correlation Redshifts</H2>
+There is one HDU of this type.
+<pre>
+XTENSION= 'BINTABLE'                                                            
+BITPIX  =                    8                                                  
+NAXIS   =                    2                                                  
+NAXIS1  =                   48                                                  
+NAXIS2  =                    5                                                  
+PCOUNT  =                    0                                                  
+GCOUNT  =                    1                                                  
+TFIELDS =                   12                                                  
+TFORM1  = '1E      '                                                            
+TTYPE1  = 'shift   '                                                            
+TFORM2  = '1E      '                                                            
+TTYPE2  = 'z       '                                                            
+TFORM3  = '1E      '                                                            
+TTYPE3  = 'err     '                                                            
+TFORM4  = '1E      '                                                            
+TTYPE4  = 'r       '                                                            
+TFORM5  = '1E      '                                                            
+TTYPE5  = 'con     '                                                            
+TFORM6  = '1E      '                                                            
+TTYPE6  = 'height  '                                                            
+TFORM7  = '1E      '                                                            
+TTYPE7  = 'width   '                                                            
+TFORM8  = '1E      '                                                            
+TTYPE8  = 'delta   '                                                            
+TFORM9  = '1E      '                                                            
+TTYPE9  = 'lambeg  '                                                            
+TFORM10 = '1E      '                                                            
+TTYPE10 = 'lamend  '                                                            
+TFORM11 = '1J      '                                                            
+TTYPE11 = 'temp_no '                                                            
+TFORM12 = '1J      '                                                            
+TTYPE12 = 'filtered'                                                            
+END                                                                             
+</pre>
+
+</BODY>
+</HTML>

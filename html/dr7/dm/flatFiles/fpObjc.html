@@ -1,0 +1,718 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Photometric output OBJC file</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>OBJC photo output file</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>fpObjc-rrrrrr-c-ffff.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number, c is the camera column (1-6)
+and ffff is the field number.
+ <P>
+<STRONG>Produced by:</STRONG>
+frames
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+7 * 2880 + (2152 * Nstars) {rounded up to nearest multiple of 2880) per file.
+For 400 detected object in a field, 881.28 Kb per file.  For 1000 fields
+in a single pipeline run, a total of 881.28 Mb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Object lists put out by the <em>frames</em> pipeline.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+<!--##begin FITSbinary detection.PDU -->
+<!-- P+      Project: sdss   Date: Fri Feb  5 18:44:34 1999-->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+VERSION = 'XXX     '           / Version of software used.
+PS_ID   = 'XXX     '           / Postage stamp pipeline run identifier.
+BIAS_ID = 'XXX     '           / Bias pipeline run identifier.
+ASTRO_ID= 'XXX     '           / Astrometric pipeline run identifier.
+FRAME_ID= 'XXX     '           / Frames pipeline run identifier.
+KO_VER  = 'XXX     '           / Version of known object catalog used.
+RUN     =                  XXX / Imaging run number.
+FIELD   =                  XXX / Field sequence number within the run.
+CAMCOL  =                  XXX / Column in the imaging camera.
+<!--##end FITSbinary detection.PDU -->
+SEED    =                  XXX / Seed for photo random number generator         
+REF_BAND=                    2 / band used for canonical centre
+FILTERS = 'XXX XXX ...'        / Filter order in arrays.
+DARK_VAR= '4 4 4 4 4'          / Per-pixel variances at zero DN (DN^2)
+GAIN    = '3.5 3.5 3.5 3.5 3.5' / Mean gains of amplifiers (e/DN)
+CREATIME= 'Sun Jun 9 18:48:51 EDT 1996' / The local time file was created
+<!--AUTOCHECK end hdu 0 -->
+END                         
+</pre>
+
+<H2>Table Header</h2>
+There is one HDU of this type in the file.  Most data in this file is
+compressed into 2-byte integers when it is stored in the OPDB.  The compression
+assumes that the data values fit into specific ranges.  Any data outside
+the range is truncated to the minimum/maximum value in the range.  The
+precision with which the data is stored is also truncated.  Magnitudes are
+first converted to uncalibrated luptitudes to facilitate compression.
+Likelihoods (star_L, exp_L, deV_L) are similarly compressed using an asinh
+(10000. * -asinh(x/(2.e-30))/(log(10)*log10(1.e-30))).
+The assumed data ranges for each field and the truncated precisions are:
+<dl>
+<dt> id
+<dd> Uncompressed
+<dt> parent
+<dd> Uncompressed
+<dt> nchild
+<dd> Uncompressed
+<dt> objc_type
+<dd> Uncompressed
+<dt> objc_prob_psf
+<dd> Uncompressed
+<dt> catID
+<dd> Uncompressed
+<dt> objc_flags
+<dd> Uncompressed
+<dt> objc_flags2
+<dd> Uncompressed
+<dt> objc_rowc
+<dd> Uncompressed
+<dt> objc_rowcErr
+<dd> Uncompressed
+<dt> objc_colc
+<dd> Uncompressed
+<dt> objc_colcErr
+<dd> Uncompressed
+<dt> rowv
+<dd> -32.767 to 32.766 pixels/frame, accurate to 0.001 pixels/frame
+<dt> rowvErr
+<dd> -32.767 to 32.766 pixels/frame, accurate to 0.001 pixels/frame
+<dt> colv
+<dd> -32.767 to 32.766 pixels/frame, accurate to 0.001 pixels/frame
+<dt> colvErr
+<dd> -32.767 to 32.766 pixels/frame, accurate to 0.001 pixels/frame
+<dt> rowc
+<dd> Uncompressed
+<dt> rowcErr
+<dd> Uncompressed
+<dt> colc
+<dd> Uncompressed
+<dt> colcErr
+<dd> Uncompressed
+<dt> sky
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> skyErr
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> psfCounts
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> psfCountsErr
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> fiberCounts
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> fiberCountsErr
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> petroCounts
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> petroCountsErr
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> petroRad
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> petroRadErr
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> petroR50
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> petroR50Err
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> petroR90
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> petroR90Err
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> Q
+<dd> -3.2767 to 3.2766, accurate to 0.0001
+<dt> QErr
+<dd> -3.2767 to 3.2766, accurate to 0.0001
+<dt> U
+<dd> -3.2767 to 3.2766, accurate to 0.0001
+<dt> UErr
+<dd> -3.2767 to 3.2766, accurate to 0.0001
+<dt> M_e1
+<dd> Uncompressed
+<dt> M_e2
+<dd> Uncompressed
+<dt> M_e1e1Err
+<dd> Uncompressed
+<dt> M_e1e2Err
+<dd> Uncompressed
+<dt> M_e2e2Err
+<dd> Uncompressed
+<dt> M_rr_cc
+<dd> Uncompressed
+<dt> M_rr_ccErr
+<dd> Uncompressed
+<dt> M_cr4
+<dd> Uncompressed
+<dt> M_e1_psf
+<dd> Uncompressed
+<dt> M_e2_psf
+<dd> Uncompressed
+<dt> M_rr_cc_psf
+<dd> Uncompressed
+<dt> M_cr4_psf
+<dd> Uncompressed
+<dt> iso_rowc
+<dd> Uncompressed
+<dt> iso_rowcErr
+<dd> Uncompressed
+<dt> iso_rowcGrad
+<dd> -327.67 to 327.66 pixels/mag, accurate to 0.01 pixels/mag
+<dt> iso_colc
+<dd> Uncompressed
+<dt> iso_colcErr
+<dd> Uncompressed
+<dt> iso_colcGrad
+<dd> -327.67 to 327.66 pixels/mag, accurate to 0.01 pixels/mag
+<dt> iso_a
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> iso_aErr
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> iso_aGrad
+<dd> -327.67 to 327.66 pixels/mag, accurate to 0.01 pixels/mag
+<dt> iso_b
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> iso_bErr
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> iso_bGrad
+<dd> -327.67 to 327.66 pixels/mag, accurate to 0.01 pixels/mag
+<dt> iso_phi
+<dd> -180.00 to 360.00 deg, accurate to 0.01 deg
+<dt> iso_phiErr
+<dd> 0.00 to 360.00 deg, accurate to 0.01 deg
+<dt> iso_phiGrad
+<dd> Uncompressed.
+<dt> r_deV
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> r_deVErr
+<dd> 0 to 2184.467 pixels, accurate to 1/30 pixels
+<dt> ab_deV
+<dd> 0.0000 to 6.5534, accurate to 0.0001
+<dt> ab_deVErr
+<dd> 0.0000 to 6.5534, accurate to 0.0001
+<dt> phi_deV
+<dd> 0.00 to 655.34 deg, accurate to 0.01 deg
+<dt> phi_deVErr
+<dd> 0.00 to 655.34 deg, accurate to 0.01 deg
+<dt> counts_deV
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> counts_deVErr
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> r_exp
+<dd> 0 to 2184.4666 pixels, accurate to 1/30 pixels
+<dt> r_expErr
+<dd> 0 to 2184.4666 pixels, accurate to 1/30 pixels
+<dt> ab_exp
+<dd> 0.0000 to 6.5534, accurate to 0.0001
+<dt> ab_expErr
+<dd> 0.0000 to 6.5534, accurate to 0.0001
+<dt> phi_exp
+<dd> 0.00 to 655.34 deg, accurate to 0.01 deg
+<dt> phi_expErr
+<dd> 0.00 to 655.34 deg, accurate to 0.01 deg
+<dt> counts_exp
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> counts_expErr
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> counts_model
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> counts_modelErr
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> texture
+<dd> -3.2767 to 3.2766, accurate to 0.0001
+<dt> star_L
+<dd> 0 to 1, accurate to 0.0001 in asinh-compressed units
+<dt> star_lnL
+<dd> Uncompressed
+<dt> exp_L
+<dd> 0 to 1, accurate to 0.0001 in asinh-compressed units
+<dt> exp_lnL
+<dd> Uncompressed
+<dt> deV_L
+<dd> 0 to 1, accurate to 0.0001 in asinh-compressed units
+<dt> deV_lnL
+<dd> Uncompressed
+<dt> fracPSF
+<dd> 0.0000 to 6.5534, accurate to 0.0001
+<dt> flags
+<dd> Uncompressed
+<dt> flags2
+<dd> Uncompressed
+<dt> type
+<dd> Uncompressed
+<dt> prob_psf
+<dd> Uncompressed
+<dt> nprof
+<dd> Uncompressed
+<dt> profMean
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+<dt> profErr
+<dd> -4.15e12 to 1.28e13 counts, accurate to 0.001 luptitudes
+</ul>
+
+Here's the table format.
+
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+<!--##begin FITSbinary detection.header -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                 2264
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   98
+THEAP   =              xxxxxxx
+<!--##end FITSbinary detection.header -->
+<!--##begin FITSbinary detection.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'id      '           / Object ID, unique within its field (1 indexed).
+TFORM2  = '1J      '          
+TTYPE2  = 'parent  '           / parent
+TFORM3  = '1J      '          
+TTYPE3  = 'nchild  '           / Number of children objects.
+TFORM4  = '1J      '          
+TTYPE4  = 'objc_type'          / Classification.
+TFORM5  = '1E      '
+TTYPE5  = 'objc_prob_psf'      / Probablity object is a star.
+TFORM6  = '1J      '          
+TTYPE6  = 'catID   '           / Catalog ID.
+TFORM7  = '1J      '          
+TTYPE7  = 'objc_flags'         / Object flags.
+TFORM8  = '1J      '          
+TTYPE9  = 'objc_flags2'        / More object flags.
+TFORM9  = '1E      '          
+TTYPE9  = 'objc_rowc'          / Nominal row position (r' coordinates).
+TUNIT9  = 'pixels  '          
+TFORM10 = '1E      '          
+TTYPE10 = 'objc_rowcErr'       / Nominal row position (r' coordinates). (error)
+COMMENT                        / This is the centroiding error only.  It does
+COMMENT                        / not include errors from the TRANS structures.
+TUNIT10 = 'pixels  '          
+TFORM11 = '1E      '          
+TTYPE11 = 'objc_colc'          / Nominal column position (r' coordinates).
+TUNIT11 = 'pixels  '          
+TFORM12 = '1E      '          
+TTYPE12 = 'objc_colcErr'       / Nominal column position (r' coordinates). (erro
+COMMENT                        / This is the centroiding error only.  It does
+COMMENT                        / not include errors from the TRANS structures.
+TUNIT12 = 'pixels  '          
+TFORM13 = '1E      '          
+TTYPE13 = 'rowv'               / Row-component of object's velocity.
+TUNIT13 = 'pixels/frame'          
+TFORM14 = '1E      '          
+TTYPE14 = 'rowvErr'            / Row-component of object's velocity. (error)
+TUNIT14 = 'pixels/frame'          
+TFORM15 = '1E      '          
+TTYPE15 = 'colv'               / Column-component of object's velocity.
+TUNIT15 = 'pixels/frame'          
+TFORM16 = '1E      '          
+TTYPE16 = 'colvErr'            / Column-component of obejct's velocity. (error)
+TUNIT16 = 'pixels/frame'          
+TFORM17 = '5E      '          
+TTYPE17 = 'rowc    '           / Row center.
+TUNIT17 = 'pixels  '          
+TFORM18 = '5E      '          
+TTYPE18 = 'rowcErr '           / Row center. (error)
+TUNIT18 = 'pixels  '          
+TFORM19 = '5E      '          
+TTYPE19 = 'colc    '           / Center column.
+TUNIT19 = 'pixels  '          
+TFORM20 = '5E      '          
+TTYPE20 = 'colcErr '           / Center column. (error)
+TUNIT20 = 'pixels  '          
+TFORM21 = '5E      '          
+TTYPE21 = 'sky     '           / Sky flux.
+TUNIT21 = 'DNs/pixel'         
+TFORM22 = '5E      '          
+TTYPE22 = 'skyErr  '           / Sky flux. (error)
+TUNIT22 = 'DNs/pixel'         
+TFORM23 = '5E      '          
+TTYPE23 = 'psfCounts'          / PSF flux.
+TUNIT23 = 'DNs     '          
+TFORM24 = '5E      '          
+TTYPE24 = 'psfCountsErr'       / PSF flux. (error)
+TUNIT24 = 'DNs     '          
+TFORM25 = '5E      '          
+TTYPE25 = 'fiberCounts'        / Flux in 3 arcsec diameter fiber radius.
+TUNIT25 = 'DNs     '          
+TFORM26 = '5E      '          
+TTYPE26 = 'fiberCountsErr'     / Flux in 3 arcsec diameter fiber radius. (error)
+TUNIT26 = 'DNs     '          
+TFORM27 = '5E      '          
+TTYPE27 = 'petroCounts'        / Petrosian flux.
+TUNIT27 = 'DNs     '          
+TFORM28 = '5E      '          
+TTYPE28 = 'petroCountsErr'     / Petrosian flux. (error)
+TUNIT28 = 'DNs     '          
+TFORM29 = '5E      '          
+TTYPE29 = 'petroRad'           / Petrosian radius.
+TUNIT29 = 'pixels  '          
+TFORM30 = '5E      '          
+TTYPE30 = 'petroRadErr'        / Petrosian radius. (error)
+TUNIT30 = 'pixels  '          
+TFORM31 = '5E      '          
+TTYPE31 = 'petroR50'           / Radius with 50 percent of Petrosian light.
+TUNIT31 = 'pixels  '          
+TFORM32 = '5E      '          
+TTYPE32 = 'petroR50Err'        / Radius with 50 percent of Petrosian light. (err
+TUNIT32 = 'pixels  '          
+TFORM33 = '5E      '          
+TTYPE33 = 'petroR90'           / Radius with 90 percent of Petrosian light.
+TUNIT33 = 'pixels  '          
+TFORM34 = '5E      '          
+TTYPE34 = 'petroR90Err'        / Radius with 90 percent of Petrosian light. (err
+TUNIT34 = 'pixels  '          
+TFORM35 = '5E      '          
+TTYPE35 = 'Q       '           / Stokes Q parameter.
+TFORM36 = '5E      '          
+TTYPE36 = 'QErr    '           / Stokes Q parameter. (error)
+TFORM37 = '5E      '          
+TTYPE37 = 'U       '           / Stokes U parameter.
+TFORM38 = '5E      '          
+TTYPE38 = 'UErr    '           / Stokes U parameter. (error)
+TFORM39 = '5E      '
+TTYPE39 = 'M_e1    '           / Adaptive E1 shape measure
+TFORM40 = '5E      '
+TTYPE40 = 'M_e2    '           / Adaptive E2 shape measure
+TFORM41 = '5E      '
+TTYPE41 = 'M_e1e1Err'          / Covariance in E1/E1 shape measure
+TFORM42 = '5E      '
+TTYPE42 = 'M_e1e2Err'          / Covariance in E1/E2 shape measure
+TFORM43 = '5E      '
+TTYPE43 = 'M_e2e2Err'          / Covariance in E2/E2 shape measure
+TFORM44 = '5E      '
+TTYPE44 = 'M_rr_cc '           / Adaptive (<r^2> + <c^2>)
+TFORM45 = '5E      '
+TTYPE45 = 'M_rr_ccErr'         / Error in adaptive (<r^2> + <c^2>)
+TFORM46 = '5E      '
+TTYPE46 = 'M_cr4   '           / Adaptive fourth moment
+TFORM47 = '5E      '
+TTYPE47 = 'M_e1_psf'           / Adaptive E1 for PSF
+TFORM48 = '5E      '
+TTYPE48 = 'M_e2_psf'           / Adaptive E2 for PSF
+TFORM49 = '5E      '
+TTYPE49 = 'M_rr_cc_psf'        / Adaptive (<r^2) + <c^2>) for PSF
+TFORM50 = '5E      '
+TTYPE50 = 'M_cr4_psf'          / Adaptive fourth moment for PSF
+TFORM51 = '5E      '          
+TTYPE51 = 'iso_rowc'           / Isophotal row centroid.
+TUNIT51 = 'pixels  '          
+TFORM52 = '5E      '          
+TTYPE52 = 'iso_rowcErr'        / Isophotal row centroid. (error)
+TUNIT52 = 'pixels  '          
+TFORM53 = '5E      '          
+TTYPE53 = 'iso_rowcGrad'       / Gradient in row centroid with isophote.
+TUNIT53 = 'pixels/(1 mag/arcsec^2 SB change) at object center'
+TFORM54 = '5E      '          
+TTYPE54 = 'iso_colc'           / Isophotal column centroid.
+TUNIT54 = 'pixels  '          
+TFORM55 = '5E      '          
+TTYPE55 = 'iso_colcErr'        / Isophotal column centroid. (error)
+TUNIT55 = 'pixels  '          
+TFORM56 = '5E      '          
+TTYPE56 = 'iso_colcGrad'       / Gradient in column centroid wwith isophote.
+TUNIT56 = 'pixels/(1 mag/arcsec^2 SB change) at object center'
+TFORM57 = '5E      '          
+TTYPE57 = 'iso_a   '           / Isophotal major axis.
+TUNIT57 = 'pixels  '          
+TFORM58 = '5E      '          
+TTYPE58 = 'iso_aErr'           / Isophotal major axis. (error)
+TUNIT58 = 'pixels  '          
+TFORM59 = '5E      '          
+TTYPE59 = 'iso_aGrad'          / Gradient is major axis with isophote.
+TUNIT59 = 'pixels/(1 mag/arcsec^2 SB change) at isophote'
+TFORM60 = '5E      '          
+TTYPE60 = 'iso_b   '           / Isophotal minor axis.
+TUNIT60 = 'pixels  '          
+TFORM61 = '5E      '          
+TTYPE61 = 'iso_bErr'           / Isophotal minor axis. (error)
+TUNIT61 = 'pixels  '          
+TFORM62 = '5E      '          
+TTYPE62 = 'iso_bGrad'          / Gradient in minor axis with isophote.
+TUNIT62 = 'pixels/(1 mag/arcsec^2 SB change) at isophote'
+TFORM63 = '5E      '          
+TTYPE63 = 'iso_phi '           / Isophotal position angle.
+TUNIT63 = 'degrees (positive anticlockwise from scan direction)'          
+TFORM64 = '5E      '          
+TTYPE64 = 'iso_phiErr'         / Isophotal position angle. (error)
+TUNIT64 = 'degrees '          
+TFORM65 = '5E      '          
+TTYPE65 = 'iso_phiGrad'        / Gradient in positional angle with isophote.
+TUNIT65 = 'degrees/(1 mag/arcsec^2 SB change) at isophote'
+TFORM66 = '5E      '          
+TTYPE66 = 'r_deV   '           / DeVaucouler fit scale radius.
+TUNIT66 = 'pixels  '          
+TFORM67 = '5E      '          
+TTYPE67 = 'r_deVErr'           / DeVaucouler fit scale radius. (error)
+TUNIT67 = 'pixels  '          
+TFORM68 = '5E      '          
+TTYPE68 = 'ab_deV  '           / DeVaucouler fit a/b.
+TFORM69 = '5E      '          
+TTYPE69 = 'ab_deVErr'          / DeVaucouler fit a/b. (error)
+TFORM70 = '5E      '          
+TTYPE70 = 'phi_deV '           / DeVaucouler fit position angle.
+TUNIT70 = 'degrees (positive anticlockwise from scan direction + 90 deg)'  
+TFORM71 = '5E      '          
+TTYPE71 = 'phi_deVErr'         / DeVaucouler fit position angle. (error)
+TUNIT71 = 'degrees '          
+TFORM72 = '5E      '          
+TTYPE72 = 'counts_deV'         / DeVaucouler fit counts.
+TUNIT72 = 'DNs     '          
+TFORM73 = '5E      '          
+TTYPE73 = 'counts_deVErr'      / DeVaucouler fit counts. (error)
+TUNIT73 = 'DNs     '          
+TFORM74 = '5E      '          
+TTYPE74 = 'r_exp   '           / Exponetial fit scale radius.
+TUNIT74 = 'pixels  '          
+TFORM75 = '5E      '          
+TTYPE75 = 'r_expErr'           / Exponetial fit scale radius. (error)
+TUNIT75 = 'pixels  '          
+TFORM76 = '5E      '          
+TTYPE76 = 'ab_exp  '           / Exponential fit a/b.
+TFORM77 = '5E      '          
+TTYPE77 = 'ab_expErr'          / Exponential fit a/b. (error)
+TFORM78 = '5E      '          
+TTYPE78 = 'phi_exp '           / Exponential fit position angle.
+TUNIT78 = 'degrees (positive anticlockwise from scan direction + 90 deg)'
+TFORM79 = '5E      '          
+TTYPE79 = 'phi_expErr'         / Exponential fit position angle. (error)
+TUNIT79 = 'degrees '          
+TFORM80 = '5E      '          
+TTYPE80 = 'counts_exp'         / Exponential fit counts.
+TUNIT80 = 'DNs     '          
+TFORM81 = '5E      '          
+TTYPE81 = 'counts_expErr'      / Exponential fit counts. (error)
+TUNIT81 = 'DNs     '          
+TFORM82 = '5E      '          
+TTYPE82 = 'counts_model'       / Better of deV/exp mag fit.
+TUNIT82 = 'DNs     '          
+TFORM83 = '5E      '          
+TTYPE83= 'counts_modelErr'    / Better of deV/exp mag fit. (error)
+TUNIT83 = 'DNs     '          
+TFORM84 = '5E      '          
+TTYPE84 = 'texture '           / Texture parameter.
+TFORM85 = '5E      '          
+TTYPE85 = 'star_L  '           / Star likelihood.
+TFORM86 = '5E      '          
+TTYPE86 = 'star_lnL'           / Star ln(likelihood).
+TFORM87 = '5E      '          
+TTYPE87 = 'exp_L   '           / Exponential disk fit likelihood.
+TFORM88 = '5E      '          
+TTYPE88 = 'exp_lnL '           / Exponential disk fit ln(likelihood).
+TFORM89 = '5E      '          
+TTYPE89 = 'deV_L   '           / DeVaucouler fit likelihood.
+TFORM90 = '5E      '          
+TTYPE90 = 'deV_lnL '           / DeVaucouler fit ln(likelihood).
+TFORM91 = '5E      '          
+TTYPE91 = 'fracPSF '           / Fraction of light in PSF.
+TFORM92 = '5J      '          
+TTYPE92 = 'flags   '           / Object flags.
+TFORM93 = '5J      '          
+TTYPE93 = 'flags2  '           / More object flags.
+TFORM94 = '5J      '          
+TTYPE94 = 'type    '           / Object type.
+TFORM95 = '5E      '
+TTYPE95 = 'prob_psf'           / Probablity object is a star in each filter.
+TFORM96 = '5J      '          
+TTYPE96 = 'nprof   '           / Number of radial bins.
+TFORM97 = '75E     '          
+TTYPE97 = 'profMean'           / Mean pixel flux in annulus.
+TDIM97  = '(15,5)  '          
+TUNIT97 = 'DNs/pixel'         
+TFORM98 = '75E     '          
+TTYPE98 = 'profErr '           / Standard deviation of profMean.
+TDIM98  = '(15,5)  '          
+TUNIT98 = 'DNs/pixel'         
+<!--##end FITSbinary detection.table -->
+<!--AUTOCHECK end hdu 1 -->
+END                                                                        
+</pre>
+
+<H2>OBJECT1_FLAGS Enum Header</h2>
+There is one HDU of this type, enumerating the legal values for the
+"objc_flags" field (a bit mask) in the object HDU.  The legal values are:
+<pre>
+  OBJECT1_CANONICAL_CENTER =    0x1, /* used canonical, not local, centre   */
+  OBJECT1_BRIGHT       =        0x2, /* detected by Bright Objects	    */
+  OBJECT1_EDGE         =        0x4, /* object is too close to edge of frame*/
+  OBJECT1_BLENDED      =        0x8, /* object is/was blended		    */
+  OBJECT1_CHILD        =       0x10, /* object is a child		    */
+  OBJECT1_PEAKCENTER   =       0x20, /* given centre position of peak pixel */
+  OBJECT1_NODEBLEND    =       0x40, /* no deblending attempted	            */
+  OBJECT1_NOPROFILE    =       0x80, /* too small to estimate a profile     */
+  OBJECT1_NOPETRO      =      0x100, /* no Petrosian radius		    */
+  OBJECT1_MANYPETRO    =      0x200, /* more than one Petrosian radius      */
+  OBJECT1_NOPETRO_BIG  =      0x400, /* no Petrosian radius as object is too big */
+  OBJECT1_DEBLEND_TOO_MANY_PEAKS = 0x800, /* too many peaks to deblend      */
+  OBJECT1_CR     	=     0x1000, /* contains a CR pixel                */
+  OBJECT1_MANYR50      =     0x2000, /* more than one 50% radius	    */
+  OBJECT1_MANYR90      =     0x4000, /* more than one 90% radius	    */
+  OBJECT1_BAD_RADIAL   =     0x8000, /* some low S/N radial points	    */
+  OBJECT1_INCOMPLETE_PROFILE = 0x10000, /* r_P includes off-frame pixels    */
+  OBJECT1_INTERP       =    0x20000, /* object contains interpolated pixels */
+  OBJECT1_SATUR        =    0x40000, /* object contains saturated pixels    */
+  OBJECT1_NOTCHECKED   =    0x80000, /* object contains NOTCHECKED pixels   */
+  OBJECT1_SUBTRACTED   =   0x100000, /* object had wings subtracted	    */
+  OBJECT1_NOSTOKES     =   0x200000, /* object has no measured stokes params*/
+  OBJECT1_BADSKY       =   0x400000, /* sky level so bad that object is -ve */
+  OBJECT1_PETROFAINT   =   0x800000, /* >= 1 Petrosian radius too faint     */
+  OBJECT1_TOO_LARGE    =  0x1000000, /* object is too large		    */
+  OBJECT1_DEBLENDED_AS_PSF = 0x2000000, /* deblender treated obj as PSF     */
+  OBJECT1_DEBLEND_PRUNED = 0x4000000, /* deblender pruned peak list	    */
+  OBJECT1_ELLIPFAINT   = 0x8000000, /* Centre's fainter than desired elliptical isophote */
+  OBJECT1_BINNED1      = 0x10000000, /* object was found in 1x1 binned image*/
+  OBJECT1_BINNED2      = 0x20000000, /* object was found in 2x2 binned image*/
+  OBJECT1_BINNED4      = 0x40000000, /* object was found in 4x4 binned image*/
+  OBJECT1_MOVED        = 0x80000000  /* Object appears to have moved during */
+                                     /* the exposure.  May have been        */
+                                     /* deblended as a moving object.       */
+</pre>
+<pre>
+<!--AUTOCHECK begin hdu 2 -->
+XTENSION= 'BINTABLE'                                                           
+BITPIX  =                    8                                                 
+NAXIS   =                    2                                                 
+NAXIS1  =                   66                                                 
+NAXIS2  =                   32                                                 
+PCOUNT  =                    0                                                 
+GCOUNT  =                    1                                                 
+TFIELDS =                    3                                                 
+TYPENAME= 'OBJECT1_FLAGS'                                                      
+TFORM1  = '31A     '                                                           
+TTYPE1  = 'defName '                                                           
+TFORM2  = '31A     '                                                           
+TTYPE2  = 'attributeName'                                                      
+TFORM3  = '1J      '                                                           
+TTYPE3  = 'Value   '                                                           
+END                                                                            
+<!--AUTOCHECK end hdu 2 -->
+</pre>
+
+<H2>OBJECT2_FLAGS Enum Header</h2>
+There is one HDU of this type, enumerating the legal values for the
+"objc_flags" field (a bit mask) in the object HDU.  The legal values are:
+<pre>
+  OBJECT2_DEBLENDED_AS_MOVING= 0x1, /* deblended as a moving object        */
+  OBJECT2_NODEBLEND_MOVING   = 0x2, /* no deblend of moving object         */
+  OBJECT2_TOO_FEW_DETECTIONS = 0x4, /* too few detections to deblend       */
+  OBJECT2_BAD_MOVING_FIT     = 0x8, /* Fit to moving object was too poor   */
+  OBJECT2_STATIONARY        = 0x10, /* velocity is consistent with zero    */
+  OBJECT2_PEAKS_TOO_CLOSE   = 0x20, /* at least some peaks were too close, */
+                                    /* and thus merged                     */
+  OBJECT2_BINNED_CENTER     = 0x40, /* image was binned while centroiding  */
+  OBJECT2_LOCAL_EDGE        = 0x80, /* per-band centre's too near edge     */
+  OBJECT2_BAD_COUNTS_ERROR = 0x100, /* psf|fiberCountsErr is bad/unknown   */
+  OBJECT2_BAD_MOVING_FIT_CHILD = 0x200, /* moving child's fit was too poor */
+  OBJECT2_DEBLEND_UNASSIGNED_FLUX = 0x400, /* deblender failed to assign   */
+                                           /* enough of flux to children   */
+  OBJECT2_SATUR_CENTER     = 0x800, /* object's centre's saturated         */
+  OBJECT2_INTERP_CENTER   = 0x1000, /* object's centre is very close to at */
+                                    /* least one interpolated pixel        */
+  OBJECT2_DEBLENDED_AT_EDGE=0x2000, /* object is deblended though EDGE     */
+  OBJECT2_DEBLEND_NOPEAK   =0x4000, /* object had no detected peak         */
+  OBJECT2_PSF_FLUX_INTERP  =0x8000, /* a signifcant amount of PSF's flux   */
+                                    /* is interpolated                     */
+  OBJECT2_TOO_FEW_GOOD_DETECTIONS=0x10000, /* too few good detections to   */
+                                           /* deblend as moving            */
+  OBJECT2_CENTER_OFF_AIMAGE   = 0x20000, /* at least one peak's centre lay   */
+					 /* off the atlas image in some band */
+  OBJECT2_MEASURED    = 0x10000000, /* object has been measured            */
+  OBJECT2_GROWN_MERGED= 0x20000000, /* growing led to a merger             */
+  OBJECT2_HAS_CENTER  = 0x40000000, /* OBJC has a canonical centre         */
+  OBJECT2_MEASURE_BRIGHT = 0x80000000,/* object should be measured bright  */
+  OBJECT2_DEBLEND_DEGENERATE= 0x40000,/* at least one potential child has  */
+				      /* been pruned as being too similar  */
+                                      /* to some other template            */
+  OBJECT2_BRIGHTEST_GALAXY_CHILD=0x80000, /* this is the brightest child   */
+                                          /* galaxy in a blend             */
+  OBJECT2_CANONICAL_BAND = 0x100000, /* This band was primary (usually r') */
+  OBJECT2_AMOMENT_FAINT  = 0x200000, /* too faint for adaptive moments     */
+  OBJECT2_AMOMENT_SHIFT  = 0x400000, /* centre moved too far while         */
+				     /* determining adaptive moments       */
+  OBJECT2_AMOMENT_MAXITER= 0x800000, /* Too many iterations while          */
+				     /* determining adaptive moments       */
+  OBJECT2_MAYBE_CR = 0x1000000,      /* object may be a cosmic ray         */
+  OBJECT2_MAYBE_EGHOST = 0x2000000,  /* object may be an electronics ghost */
+  OBJECT2_NOTCHECKED_CENTER =0x4000000 /* object's centre is NOTCHECKED    */
+</pre>
+<pre>
+<!--AUTOCHECK begin hdu 3 -->
+XTENSION= 'BINTABLE'                                                           
+BITPIX  =                    8                                                 
+NAXIS   =                    2                                                 
+NAXIS1  =                   66                                                 
+NAXIS2  =                   32                                                 
+PCOUNT  =                    0                                                 
+GCOUNT  =                    1                                                 
+TFIELDS =                    3                                                 
+TYPENAME= 'OBJECT2_FLAGS'                                                      
+TFORM1  = '31A     '                                                           
+TTYPE1  = 'defName '                                                           
+TFORM2  = '31A     '                                                           
+TTYPE2  = 'attributeName'                                                      
+TFORM3  = '1J      '                                                           
+TTYPE3  = 'Value   '                                                           
+END                                                                            
+<!--AUTOCHECK end hdu 3 -->
+</pre>
+
+<H2>OBJ_TYPE Enum Header</h2>
+There is one HDU of this type, enumerating the legal values for the
+"type" field in the object HDU.  The legal values are:
+<pre>
+  OBJ_TYPE_UNK,         /* Unknown	*/
+  OBJ_TYPE_CR,          /* Cosmic ray	*/
+  OBJ_TYPE_DEFECT,      /* Defect	*/
+  OBJ_TYPE_GALAXY,      /* Galaxy	*/
+  OBJ_TYPE_GHOST,       /* Ghost	*/
+  OBJ_TYPE_KNOWNOBJ,    /* Known object	*/
+  OBJ_TYPE_STAR,        /* Star		*/
+  OBJ_TYPE_TRAIL,       /* Star trail	*/
+  OBJ_TYPE_SKY,         /* Sky		*/
+  OBJ_TYPE_NTYPE        /* ???		*/
+</pre>
+<pre>
+<!--AUTOCHECK begin hdu 4 -->
+XTENSION= 'BINTABLE'                                                            
+BITPIX  =                    8                                                 
+NAXIS   =                    2                                                 
+NAXIS1  =                   66                                                 
+NAXIS2  =                   11                                                 
+PCOUNT  =                    0                                                 
+GCOUNT  =                    1                                                 
+TFIELDS =                    3                                                 
+TYPENAME= 'OBJ_TYPE'                                                           
+TFORM1  = '31A     '                                                           
+TTYPE1  = 'defName '                                                           
+TFORM2  = '31A     '                                                           
+TTYPE2  = 'attributeName'                                                      
+TFORM3  = '1J      '                                                           
+TTYPE3  = 'Value   '                                                           
+END                                                                            
+<!--AUTOCHECK end hdu 4 -->
+</pre>
+
+</BODY>
+
+</HTML>

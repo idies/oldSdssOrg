@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for simSurvey genit proc</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>simSurvey genit parameter file</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>xx.par</EM>, where <EM>xxx</EM> describes the run.
+ <P>
+<STRONG>Produced by:</STRONG>
+the user
+ <P>
+<STRONG>Used by:</STRONG>
+the genit proc
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+no
+
+<H2>Description</H2>
+Processing plan to control <em>genit</em> in simSurvey.  
+
+<H2>Contents</H2>
+<pre>
+iRun 100		# the run number
+iGC 25			# which great circle to scan
+ins 1			# 1 for north strip; 2 for south strip
+CCDList 0		# list of the CCDs to generate data for
+oneScanErrorParam err1  # param file that defines tracking errors
+lambdaBegin -6.0	# bore sight at beginning of scan
+lambdaEnd +6.0		# bore sight at end of scan
+nRow 1354		# number of rows to read out each frame
+bYear 1999		# when to begin the scan, in GMT
+bMonth 3
+bDay 22
+bHour 6
+bMinute 10
+bSecond 12.3
+framelo 10		# begin frame number to actually generate data for
+framehi 10		# end frame number to actually generate data for
+datadir .		# where to put the data
+tccdir .		# where to find the TCC file
+transdir .		# where to find the TRANS file
+ocfile oc-100.par	# the name of the OC (observing conditions) file
+bcfile bc-100.par	# the name of the BC (bad columns) file
+flatfile flat-100.fit	# the name of the flat file
+biasfile bias-100	# the name of the bias file
+frametimezero 0		# which frame is read out at the beginning time
+initem 1		# ask Yanny
+applyRefraction 1	# 1 to apply refraction; 0 to ignore refraction
+applyAberration 1       # 1 to apply aberration; 0 to ignore it
+doReddening     1       # 1 applies a very simple reddening model
+coordonly 0		# 1 to do just the coordinates, not the files
+logfile log		# name of a log file
+slowstars 1             # place stellar images the slower yet more accurate way
+addpoisson 1            # add poisson noise to the image
+starCore  0.98          # % light in stellar cores
+starSpike 0.02          # % light in stellar spikes
+dbName /data/dp2.7/sim/cat/01 # where the databases live
+starNames astrom-00-01.fit    # name of the star file
+starIsPM 1              # 1 if this star file has proper motions
+dbList bs glx qsowd     # list of the databases to include
+</PRE>
+</BODY>
+</HTML>
+
+
+
+
+
+
+

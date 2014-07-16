@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for list of matched objects</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>List of matched objects</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tsMatch-rrrrrr-c-v.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number, c is the camera column (1-6)
+and v is the rerun number.
+ <P>
+<STRONG>Produced by:</STRONG>
+ts
+ <P>
+<STRONG>Used by:</STRONG>
+sx
+ <P>
+<STRONG>Size:</STRONG>
+2 * 2880 + (28 * Nmatches) {rounded up to nearest multiple of 2880).
+For a single pipeline run with 1000 fields, 400 objects per field, and typically
+40 matches per field, 1126.08 Kb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes, by sx.
+
+<H2>Description</H2>
+List of matches between objects, for export to SX.  All matches with objects
+in this run are listed.  No matches between other runs are given.
+
+<H2>Primary Header</H2>
+<pre>
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+RUN     =                  XXX / Imaging run number.
+CAMCOL  =                  XXX / Column in the imaging camera.
+RERUN   =                  XXX / Rerun number
+FIELD0  =                  XXX / First field reduced.
+NFIELDS =                  XXX / Number of fields reduced.
+END                         
+</pre>
+
+<H2>Table Header</h2>
+There is one HDU of this type.
+<pre>
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   28
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    7
+TFORM1  = '1J      '
+TTYPE1  = 'field   '           / Field in this run
+TFORM2  = '1J      '
+TTYPE2  = 'id      '           / ID of object in this run
+TFORM3  = '1J      '
+TTYPE3  = 'run     '           / Run ID for matching object
+TFORM4  = '1J      '
+TTYPE4  = 'camCol  '           / Camera column for matching object
+TFORM5  = '1J      '
+TTYPE5  = 'rerun   '           / Rerun number for matching object
+TFORM6  = '1J      '
+TTYPE6  = 'otherField'         / Field for matching object
+TFORM7  = '1J      '
+TTYPE7  = 'otherId '           / ID of matching object
+</pre>
+
+</BODY>
+
+</HTML>

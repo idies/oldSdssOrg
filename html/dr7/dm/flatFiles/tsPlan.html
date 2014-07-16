@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Target Selection</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Target Selection Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tsPlan.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+tsPre
+ <P>
+<STRONG>Used by:</STRONG>
+ts
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control the target selection pipeline.  Each plan targets
+the data from one chunk.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+inputDir		/data/dp3.g/usr/tsww	# Directory for input tsObj files
+outputDir		.			# Directory for output tsObj
+						# files
+chunkFile		tsChunk.par	   	# Chunk file
+
+parametersDir		.			# Directory for tunable
+						# parameters file
+matchParameters         tsMatchParams.par	# Matching parameters file
+starsParameters		tsStarsParams.par	# Stars parameters file
+quasarsParameters	tsQuasarsParams.par	# QSOs parameters file
+galaxiesParameters	tsGalaxiesParams.par	# Galaxies parameters file
+serendipityParameters	tsSerendipityParams.par	# Serendipity parameters file
+standardsParameters	tsStandardsParams.par	# Standards parameters file
+rosatParameters		tsRosatParams.par	# ROSAT parameters file
+
+firstCatalog /data/dp1.16/data/first/first_south.fit # FIRST catalog
+rosatCatalog /data/dp1.16/data/rosat/rosat.fit	     # ROSAT catalog
+usnoDir                                         # USNO catalog directory
+
+diagParameters          tsDiagParams.par        # Running diagnostics tunable
+						# parameters file
+diagDir                 .                       # Output directory for
+						# running diagnostics
+<!--AUTOCHECK end param -->
+</pre>
+The parameters listed above are for when running the target selection pipeline
+on flat files, using as input "tsObj" files.   If "inputDir" or "outputDir"
+is unspecified or blank, then the current directory (".") is assumed.  You
+can also run
+directly on raw pipeline outputs, applying calibrations on the fly.  In
+that case, "inputDir" is assumed to be the root directory of the pipeline
+outputs, and if unspecified or blank defaults to "/sdss/data/$run/$rerun" for
+each segment.  To do this, the optional keyword "calibrate" must be
+set to 1.  The following optional keywords are also read:
+<pre>
+calibrate               1                       # Read raw pipeline outputs
+logDir                 ""                       # Observing log directories
+psDir                  ""                       # PS pipeline outputs
+astromDir              ""                       # Astrometric pipeline outputs
+framesDir              ""                       # Frames pipeline outputs
+fcalibDir              ""                       # FCALIB pipeline outputs
+qualityDir             ""                       # Quality pipeline outputs
+exportDir              ""                       # Directory containing chunks
+                                                # in this sky version
+</pre>
+If any are unspecified or blank, then the default subdirectory from
+"inputDir", as layed out at FNAL, is assumed.  The exception is "exportDir".
+If "exportDir" is set, then it is searched for adjacent chunks to perform
+border resolution along this chunk's "mu" and "eta" boundaries;  if it is
+blank, then no such border resolution is performed (border resolution
+internal to this chunk --- that is, along field and nu boundaries, is still
+performed).
+<p>
+Both "inputDir" and "outputDir" can have "%d" in the string, in which case
+each the "%d" will be replaced with the camera column to read/write the
+input/output files in separate subdirectories for each camera column
+(i.e., "./%d").
+<p>
+When running out of the database, eliminate the
+<em>inputDir</em> and <em>chunkFile</em> parameters and add the following
+parameters (the parameter <em>outputDir</em> will be used only if
+<em>export</em> is set to 1):
+<pre>
+stripe                  XXX                     # Stripe number
+startMu                 XXX                     # starting great circle
+                                                # longitude the chunk
+                                                # (inclusive, integer arcsecs)
+export			XXX                     #-1=don't export,
+						# 0=export field files only
+						# 1=export targets only
+						# 2=export primaries only
+						# 3=export primaries and secs
+						# 4=everything
+parents			XXX			# Export parents (1=yes,0=no)
+split			XXX			# One file per field (1=yes,
+						# 0=no)
+</pre>
+</BODY>
+</HTML>

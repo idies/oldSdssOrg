@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Weather Log</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Weather log by day</H1>
+
+<STRONG>File Format:</STRONG>
+ASCII param file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>idWeather-MJD.par</EM>,
+where <EM>MJD</EM> int(MJD) date.
+ <P>
+<STRONG>Produced by:</STRONG>
+iop/cop
+
+<STRONG>Used by:</STRONG>
+QA
+ <P>
+<STRONG>Size:</STRONG>
+Updated once every few minutes.
+About 20kb/day
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.
+
+<H2>Description</H2>
+Weather info, wind, temps, dust, humidity, timestamped.
+
+<H2>Primary Header</H2>
+
+<pre>
+<!--
+version             'XXX'               # Version of software used. 
+mjd                 XXX                 # MJD day number of night when  
+-->                                        # data was obtained. 
+<!--AUTOCHECK begin param -->
+
+mjd     XXXXX    # MJD day number of night data was obtained
+initialTime   909351408
+
+typedef struct {
+        double pressure;     	#barom pressure (inches of Hg)
+        double airtemp;     	#temp sensor 1 (degrees C)
+        double temp;     	#yet another temp (deg C)
+        double tempin;     	#3.5m heathkit temp (deg F)
+        double dewpoint;      	#dew point (degrees F)
+        double dewpointDep;     #dew point (degrees C)
+        double humidity;     	#humidity sensor 1 (percent 0-100)
+        double humidout;     	#humidity sendor 2 (percent 0-100)
+        double dusta;      	#dust, count of  0.3mu/particles/vol/time
+        double dustb;     	#dust, count of 1mu/particles/vol/time
+        double gustd;     	#last wind gust direction (degrees 0=N, 90=E)
+        double gusts;     	#last wind gust speed (mph)
+        double windd;     	#wind direction (degrees 0=N, 90=E)
+        double winds;             #wind speed (mph)
+        int timeStamp;		# unix timestamp (seconds since 1970) when data obtained
+} MARMOTWEATHER;
+<!--AUTOCHECK end param -->
+
+</pre>
+</body>
+</html>

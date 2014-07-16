@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Raw Spectroscopic CCD Frame</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Raw Spectroscopic CCD Frame</H1>
+
+<STRONG>File Format:</STRONG>
+Non-standard FITS image (uses unsigned integers)
+ <P>
+<STRONG>Name:</STRONG>
+<EM>sdR-cs-xxxxxxxx.fit</EM>,
+where <EM>c</EM> is the camera band (b=blue,r=red), <em>s</em> is the
+spectrograph (1 or 2), and
+<EM>xxxxxxxx</EM> is the running (ever increasing) exposure number.
+These may be kept in sync so frames from the red/blue side 1/2 instrument
+have the same exposure number.
+ <P>
+<STRONG>Produced by:</STRONG>
+specDA
+ <P>
+<STRONG>Used by:</STRONG>
+spectro2d
+ <P>
+<STRONG>Size:</STRONG> 8.8 Mb per file.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.  Tracked file.
+
+<H2>Description</H2>
+A raw frame from the Spectroscopic Camera.
+
+<H2>Primary Header</H2>
+<pre>
+SIMPLE  =                    F / FIT STANDARD
+BITPIX  =                   16 / FITS BITS/PIXEL
+NAXIS   =                    2 / NUMBER OF AXES
+NAXIS1  =                 2128 / WIDTH (TOTAL!)
+NAXIS2  =                 2069 / HEIGHT (TOTAL!)
+SDSS                           / THIS HEADER CONTAINS SPECIAL SDSS KEYWORDS
+UNSIGNED                       / UNSIGNED DATA - NO BSCALE OR BZERO KEYWORDS
+TAI     =        4445728381.32 / 1st row - Number of seconds since Nov 17 1858
+RA      =            356.67274 / 1st row - Right ascension of telescope boresigh
+DEC     =            0.067716  / 1st row - Declination of telescope boresight (d
+SPA     =             359.983  / 1st row - Camera col position angle wrt north (
+IPA     =              30.145  / 1st row - Instrument rotator position angle (de
+IPARATE =             -0.0045  / 1st row - Instrument rotator angular velocity (
+AZ      =            36.658913 / 1st row - Azimuth  (encoder) of tele (0=N?) (de
+ALT     =            51.290342 / 1st row - Altitude (encoder) of tele        (de
+FOCUS   = -999999999999.999999 / 1st row - Focus piston (microns?)              
+DATE-OBS= '1999-10-04'         / 1st row - TAI date                             
+TAIHMS  = '04:33:01.31'        / 1st row - TAI time (HH:MM:SS.SS) (TAI-UT = appr
+TIMESYS = 'tai     '           / TAI, not UTC                                   
+MJD     =                51455 / MJD of observation                             
+VERSION = 'NOCVS:iop'          / version of IOP                                 
+CAMVER  = 'SPEC2 v4_4'         / Camera code version           
+OBSERVER= 'snedden '  
+TELESCOP= 'SDSS 2-5m'                                                           
+SEQID   =                 1400 / Spectro sequence number, unique over the course
+EXPOSURE=                 1404 / Spectro exposure number, unique over the course
+EXPTIME = 9.00000000000000E+02 / Exposure time. (seconds)                       
+FLAVOR  = 'target  '           / Flavor of this sequence (e.g., dome flat, etc.)
+QUALITY = 'unknown '           / night/image quality                            
+RADEG   = -9.9990000000000E+03 / Right Ascension. (degrees)                     
+DECDEG  = -9.9990000000000E+03 / Declination. (degrees)                         
+PLATEID =                  187 / Plate Id                                       
+TILEID  =                -9999 / Tile Id                                        
+MAPID   =                -9999 / Map Id                                         
+NAME    = '187     '           / Name of target; PlateId-MJD-Mapper ReRun       
+CAMERAS = 'b1      '           / cameras used in this exposure                  
+COLBIN  =                -9999 / Binning factor perpendicular to the columns    
+ROWBIN  =                -9999 / Binning factor perpendicular to the rows       
+PROGRAM = 'binning -9999  -9999' / Identifying name for CCD program             
+AMPLL   =                    0 / which amp 0,1,2,3 corresponds to low pix       
+AMPLR   =                    2 / which amp 0,1,2,3 corresponds to low pix       
+AMPUL   =                    1 / which amp 0,1,2,3 corresponds to high pix      
+AMPUR   =                    3 / which amp 0,1,2,3 corresponds to high pix     
+END                                                                            
+</pre>
+
+</BODY>
+</HTML>

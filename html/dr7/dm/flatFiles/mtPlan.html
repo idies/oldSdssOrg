@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for MT Frames Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>MT Frames Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>mtPlan-ddddd.par</EM>, where <EM>ddddd</EM> is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+mtframesPre
+ <P>
+<STRONG>Used by:</STRONG>
+mtframes
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control <em>mtframes</em>.  Each plan targets
+one night's data.
+
+<H2>Contents</H2>
+<PRE>
+<!--AUTOCHECK begin param -->
+parameters          'XXX'               # Tunable parameters file (if any)
+parametersDir 	    'XXX'               # Directory containing the 'parameters'
+                                        # file (optional --- defaults to '.')
+
+mjd                 XXX                 # MJD day number of night when  
+                                        # data was obtained. 
+telescope	    'XXX'		# Telescope which obtained the data.
+
+reportDir	    'XXX'		# report directory
+inputDir            'XXX'		# input directory
+outputDir           'XXX'		# output directory
+diagnosticFile	    'XXX'               # QA diagnostics file
+calibFrameDir       'XXX'               # directory containing master
+                                        # calibration frames
+
+# CCD configuration files
+configDir           'XXX'		# directory for ccd calibration files
+ccdConfig           'XXX'               # amplifier configuration
+ccdECalib           'XXX'               # electronic calibrations
+ccdBC               'XXX'               # bad pixels
+<!--AUTOCHECK end param -->
+</PRE>
+</BODY>
+</HTML>

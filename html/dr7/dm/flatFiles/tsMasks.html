@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Targetting Masks</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Targetting Masks</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tsMasks.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+opdb, sx
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+Small
+ <P>
+<STRONG>Archived?</STRONG>
+No
+
+<H2>Description</H2>
+All masks in one or more targetting chunks.  This file is not normally
+produced, but can be produced as a convenient summary of all culled and bad
+fields within a group of targetting chunks.
+<p>
+The target types which are culled are specified in the bit mask
+<em>culled</em>, where the bits are the same as defined for the
+<em>primTarget</em> fields in the <a href="tsObj.html">tsObj</a> file.
+The bits associated with the <em>badMask</em> field are the same as the
+<em>badMask</em> field in the <a href="tsField.html">tsField</a> file.
+The field boundaries and scanline and stripe areas are for both amplifiers
+together;  if the <em>badMask</em> field indicates that an amplifier is
+bad, then those quantities must be adjusted accordingly.  The field boundaries
+are for the scanline region mapped to this field; the primary region mapped
+to this field is the intersection of the scanline region and the stripe
+region (except in the south, stripe > 45, where stripe cuts are not applied).
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+typedef struct {
+    int stripe;               # Stripe
+    char strip[2];            # Strip (N=north, S=south)
+    int run;                  # Run number
+    int rerun;                # Rerun number
+    int camCol;               # Camera column
+    int field;                # Field ID
+    double mu[2];             # Mu boundaries of the scanline area intersecting
+                              # this field (degrees)
+    double nu[2];             # Nu boundaries of the scanline area intersecting
+                              # this field (degrees)
+    double scanlineArea;      # Area of scanline covered by the field (deg^2)
+    double stripeArea;        # Area of stripe covered by the field (deg^2)
+    int culled;               # Culling bit mask
+    int badMask;              # Quality categories with bad quality
+} TIMASK;
+<!--AUTOCHECK end param -->
+END
+</pre>
+
+</body>
+</html>

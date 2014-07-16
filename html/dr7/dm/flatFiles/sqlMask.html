@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for SQL Mask</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>sqlMask</H1>
+
+<STRONG>File Format:</STRONG>
+comma separated value
+ <P>
+<STRONG>Name:</STRONG>
+<EM>mask-rrrrrr-c.csv</EM>,
+where <EM>rrrrrr</EM> is the imaging run number, <EM>c</EM> is the column location in the Imaging Array of
+the CCD which acquired the data (1-6).
+ <P>
+<STRONG>Produced by:</STRONG>
+Huan Lin's scripts in the dp product
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+Approximately 1Mb for a 100-field run, per camcol.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes, loaded in the sx
+
+<H2>Description</H2>
+This is a collection of polygons that are masked, for various reasons.
+<p>
+The columns are:
+<pre>
+	maskId 		bigint not null, --/D Unique Id number, composed of rerun, run, camcol, field, filter, mask
+	run		int not null,	--/D Run number
+	rerun		int not null,	--/D Rerun number
+	camcol		int not null,	--/D Camera column
+	field		int not null,	--/D Field number
+	mask		int not null,	--/D The object id within a field. Usually changes between reruns of the same field.
+	filter		tinyint not null, --/D The enumerated filter [0..4]
+	ra		float not null,	--/D J2000 right ascension (r') --/U degrees
+	dec		float not null,	--/D J2000 declination (r') --/U degrees
+	radius		float not null, --/D the radius of the bounding circle --/U degrees
+	area		varchar(4096) not null, --/D Area descriptor for the mask object
+	type		int not null, --/D enumerated type of mask --/R MaskType
+	seeing		real not null, --/D seeing width --/U arcsec
+	cx		float not null default(0), --/D unit vector for ra+dec
+	cy		float not null default(0), --/D unit vector for ra+dec
+	cz		float not null default(0), --/D unit vector for ra+dec
+	htmID 		bigint not null default(0) --/D 20-deep hierarchical trangular mesh ID of this object
+</pre>
+
+The enumerated mask types specified by "type" are:
+
+<pre>
+      0    BLEEDING
+      1    BRIGHT_STAR
+      2    TRAIL
+      3    HOLE
+      4    SEEING
+</pre>
+
+The last 4 columns (cx, cy, cz, htmID) are padded with zeros
+in the .csv files; actual values will be computed by Alex Szalay
+upon loading.
+
+<pre></pre>
+
+"seeing" is set to -999 for non-seeing masks (type != 4).
+
+<pre></pre>
+
+The algorithm for calculating maskId is as follows:
+
+<pre>
+filter is [0..4], mask is [0..4096], hlin's sequential id number for the mask 
+in a given filter and field
+
+  int64 id = skyVersion;                  // leftmost bit 0, next 4 bits skyVersion
+  id = id <<= 11;
+  id += rerun;			          // next 11 bits for rerun number
+  id = id <<= 16;
+  id += run;			          // next 16 bits for run number
+  id = id <<= 3;
+  id += camcol;			          // next 3 bits for camcol
+  id = id <<= 1;
+  id += (firstField ? 1 : 0);	          // is this the first field in segment?
+  id = id <<= 12;
+  id += field;			          // next 12 bits for field
+  id = id <<= 16;
+  id += 4096*filter + masknumber;	  // next 16 bits for object number
+
+
+</pre>
+

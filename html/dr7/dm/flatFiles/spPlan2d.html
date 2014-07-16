@@ -1,0 +1,59 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Spectro 2D Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Spectro 2D Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spPlan2d.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+Spectro-2D/SPPLAN2D
+ <P>
+<STRONG>Used by:</STRONG>
+Spectro-2D/SPREDUCE2D
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control the Spectro-2D pipeline
+reduction of a plate's data taken in a single night.
+There is one such plan file for each plate observed on each night.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+plateid  0266  # Plate number
+MJD     51615  # Modified Julian Date
+planfile2d  'spPlan2d-0266-51615.par'  # Plan file for 2D spectral reductions
+extractdir ''  # Directory for extracted spectra
+logfile    'spDiag2d-0266-51615.log'  # Text log file
+plotfile   'spDiag2d-0266-51615.ps'  # PostScript log file
+
+typedef struct {
+ int PLATEID;
+ int MJD;
+ char MAPNAME[14];
+ char FLAVOR[8];
+ float EXPTIME;
+ char NAME[4][20];
+} SPEXP;
+
+SPEXP 266 51615 0266-51615-01 flat 10.0000 { sdR-b1-00003044.fit sdR-b2-00003044.fit sdR-r1-00003044.fit sdR-r2-00003044.fit }
+SPEXP 266 51615 0266-51615-01 arc 2.00000 { sdR-b1-00003045.fit sdR-b2-00003045.fit sdR-r1-00003045.fit sdR-r2-00003045.fit }
+SPEXP 266 51615 0266-51615-01 science 900.000 { sdR-b1-00003046.fit sdR-b2-00003046.fit sdR-r1-00003046.fit sdR-r2-00003046.fit }
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+</HTML>

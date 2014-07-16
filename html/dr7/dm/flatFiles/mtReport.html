@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for MT Pipeline Report</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>MT Pipeline Report</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>mtReport-ddddd.par</EM>, where <EM>ddddd</EM> is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+mt, (excaliburPre)
+ <P>
+<STRONG>Used by:</STRONG>
+excalibur, kali
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+<p>
+<STRONG>Archived?</STRONG>
+No
+
+<H2>Description</H2>
+Summary of all MT sequences in a given night.
+
+<H2>Contents</H2>
+<PRE>
+#
+# Input File for Excaliber and Cali
+#
+mjd                 51259       # MJD day number of night to process
+equinox             2000        # Equinox of all ra and decs     
+
+typedef struct {
+   int seqId;                   # running sequence id, same obj, diff filters.
+				# Object list file name = mtObj-00seqId
+   char seqType[20];            # Pri or Sec or Bias or Flat or Dark
+   char targetName[20];         # Name of Target
+   double ra;                   # decimal degrees RA from last exposure
+   double dec;                  # decimal degrees DEC from last exposure
+} SEQUENCE;
+#    seqNo flavor fieldName    ra        dec
+sequence 1 Pri BD+17o4708      332.87167 18.09139
+sequence 2 Pri BD+62o1916      318.77001 62.83722
+sequence 3 Sec Patch-085-24-1  181.25449 36.758
+sequence 4 Pri 113_339         325.23335 0.465832
+</PRE>
+</BODY>
+</HTML>

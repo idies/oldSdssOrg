@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>spSpec CSV</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>spSpec CSV</H1>
+
+<STRONG>File Format:</STRONG>
+Comma Separated Values (CSV)
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spSpecCsv-mmmmm-pppp-fff.csv</EM>,
+where <EM>mmmmm</EM> is the mjd, <EM>pppp</EM> is the plate id number and <EM>fff</EM> is the fiber id
+number.
+ <P>
+<STRONG>Produced by:</STRONG>
+DAS
+ <P>
+<STRONG>Used by:</STRONG>
+end user
+ <P>
+<STRONG>Archived?</STRONG>
+no
+
+<H2>Description</H2>
+This is a simple extraction from spSpec files.  The csv headers are:
+<p><pre>
+logLambda,lambda,flux,fluxMinusContinuum,standardDeviation,mask
+</pre>
+where
+<ul>
+<li>logLambda is calculated from COEFF0 and COEFF1 of the spSpec file
+<li>lambda (Angstrom) is 10 ^ logLambda
+<li>flux is first row of the primary header in the spSpec file
+<li>fluxMinusContinuum is second row of the primary header in the spSpec file
+<li>standardDeviation is the third row of the primary header in the spSpec file
+<li>mask is the fourth row of the primary header in the spSpec file
+</ul>
+</BODY>
+</HTML>

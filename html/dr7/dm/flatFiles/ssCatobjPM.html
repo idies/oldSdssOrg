@@ -1,0 +1,59 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for simSurvey CATOBJP< file</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>simSurvey CATOBJ file</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>various</EM>,
+ <P>
+<STRONG>Produced by:</STRONG>
+simSurvey:  various methods
+ <P>
+<STRONG>Used by:</STRONG>
+simSurvey: proc genit
+ <P>
+<STRONG>Size:</STRONG>
+could be large.
+ <P>
+<STRONG>Archived?</STRONG>
+kind of
+
+<H2>Description</H2>
+This is a simplified version of the "Weinberg Catalog" which describes the
+true objects we are simulating, with proper motions.
+
+<H2>Contents</H2>
+<PRE>
+typedef struct {
+	double epoch;	# initial epoch, in years
+	double ra;	# ra in degrees
+	double raerr;	# error in mas
+	double dec;	# dec in degrees
+	double decerr;	# error in mas
+	double rapm;	# ra proper motion; mas/year
+	double rapmerr;	# error in mas/year
+	double decpm;	# dec proper motiona; mas/year
+	double decpmerr	# error in mas/year
+	double mag_u;   # the magnitudes
+	double mag_g;
+	double mag_r;
+	double mag_i;
+	double mag_z
+} CATOBJPM;
+
+</PRE>
+
+</BODY>
+</HTML>
+
+
+
+
+

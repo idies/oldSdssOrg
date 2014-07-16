@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Spectroscopic Plates To  Load</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Spectroscopic Plates To Load</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spPlatesToLoad-xxxxx.par</EM>,
+where <em>xxxxx</em> is the database to load.
+These files live in $spectroRoot/1d_$rerun.
+
+ <P>
+<STRONG>Produced by:</STRONG>
+dp
+ <P>
+<STRONG>Used by:</STRONG>
+csv creation; sx loading
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+no
+
+<H2>Description</H2>
+Daily report of all plates that should be 
+loaded in the science database.
+<p>
+Current databases are:
+<ul>
+	<li> collaboration
+	<li> dr1
+	<li> testload
+</ul>
+
+
+<H2>Contents</H2>
+<pre>
+date                 XXX                 # Date and time when  
+                                        # this file was created.
+version             'XXX'               # DP version
+database	    'XXX'               # Database to load
+typedef struct {
+    int       tileId;         # tile ID
+    int       plateId;        # plate ID
+    int       mjd;            # MJD of the last exposure combined
+    int	      isPrimary;      # 1 if this is the primary observation for the
+	 		      # tile; 0 otherwise
+    char      tileRun[21];    # Sample, such as chunk05, or photoz 
+    int      iload;           # incremental load to db number
+} PLATESTOLOAD;
+
+</PRE>
+</BODY>
+</HTML>

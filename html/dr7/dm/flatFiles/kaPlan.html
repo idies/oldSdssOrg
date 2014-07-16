@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Kali Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Kali Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>kaPlan-ddddd.par</EM>, where <EM>ddddd</EM> is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+kaliPre
+ <P>
+<STRONG>Used by:</STRONG>
+kali
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb.
+<p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan for one run of <em>kali</em>, which produces calibrated
+magnitudes and survey coordinates for stars in a single night's worth of
+observed MT Calibration Patches.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+parameters          'XXX'               # Tunable parameters file (if any)
+parametersDir 	    'XXX'               # Directory containing the 'parameters'
+                                        # file (optional --- defaults to '.')
+
+mjd                 XXX                 # MJD day number of night when  
+                                        # data was obtained. 
+
+outputDir           'XXX'               # input and output directory
+diagnosticFile	    'XXX'               # QA diagnostics file
+
+# directory containing the nightly report file, an input to Kali
+reportDir	    'XXX'
+reportFile	    'XXX'
+
+#known objects (Guide Star Catalog) file for astrometry of MT secondary patches
+koDir		    'XXX'
+koFileBase	    'XXX'
+<!--AUTOCHECK end param -->
+</pre>
+</BODY>
+</HTML>

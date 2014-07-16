@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Spectroscopic Strategy</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Spectro Strategy</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>sdStrategy-ddddd.par</EM>,
+where <EM>ddddd</EM> is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+opdb?,sd
+ <P>
+<STRONG>Used by:</STRONG>
+sd,sop
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+No
+
+<H2>Description</H2>
+Daily list of observable spectro targets, includes calibrations
+
+<H2>Contents</H2>
+<PRE>
+mjd	XXXXX
+
+typedef struct {
+
+	char expType[20];		# bias, dark, arc, flat, data
+	double ra;
+	double dec;
+	float airmax;			# maximum airmass can be done at
+	int  plateId;			# plate id
+
+} SDTARGETLIST;
+
+</PRE>
+</BODY>
+</HTML>

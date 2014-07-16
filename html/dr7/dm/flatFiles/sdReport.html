@@ -1,0 +1,100 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Spectroscopic DA Report</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Spectroscopic DA Report</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>sdReport-ddddd.par</EM>,
+where <EM>ddddd</EM> is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+sop
+ <P>
+<STRONG>Used by:</STRONG>
+opdb
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Nightly report of spectroscopic observations.  "mapId" is set to
+fscanMJD*100+fscanId from the associated "plPlugMapM" file.  Entries of
+-9999 indicate unset values.  To facilitate after the fact changes
+of incorrect header keyword values in the sdR files, the sdReport file
+contains an options structure, the 'OPHDRFIX' structure to give
+corrected values for a subset of keywords for a subset of files in 
+a night's spectro data.
+
+<H2>Contents</H2>
+<pre>
+mjd                 XXX                 # MJD day number of night when  
+                                        # data was obtained. 
+observer	    'XXX XXX ...'       # List of observers
+version             'XXX'               # SOP version
+cameraVersion       'XXX'               # Camera software version
+mcpVersion          'XXX'               # MCP software version
+equinox             2000       		# Equinox of telescope coordinates
+					# (years)
+fileNameFormat      sdR-%02d-%08d.fit   # Format to convert frame ID to raw
+					# file name
+
+# CCD configuration files
+configDir           'XXX'		# directory for ccd calibration files
+ccdConfig           'XXX'               # amplifier configuration
+ccdECalib           'XXX'               # electronic calibrations
+ccdBC               'XXX'               # bad pixels
+ccdCamera           'XXX'               # astrometric pixel scale, offsets
+ccdVoltages 	 opCCDLog-%d-51259.par
+
+r1		    4			# which CCD goes to which camera
+b1		    1		 	# which CCD goes to which camera
+disabled 	    -9999		# which CCD goes to which camera
+r2		    2			# which CCD goes to which camera
+b2		    3			# which CCD goes to which camera
+
+typedef struct {
+    int       seqId;          # Sequence number.  This number is  
+                              # unique over the course of the survey.  It  
+                              # is set to the exposure id for the first
+                              # exposure in the sequence.
+    int       tileId;         # tile ID
+    int       plateId;        # plate ID
+    int       mapId;	      # mapped plate ID
+    char      flavor[20];     # Flavor of this sequence (e.g., dome flat,  
+                              # object, arc lamp, etc
+    char      quality[20];    # Mountain estimate of the data quality. 
+    char      program[20];    # Identifying name for CCD program. 
+    int       exposure;       # Exposure identifier. Unique over the survey.
+    double    expTime;        # Exposure time. (seconds) 
+    double    mjd;            # MJD at the start of the exposure. (MJD) 
+    double    ra;             # Right ascension/longitude. (degrees) 
+    double    dec;            # Declination/latitude. (degrees) 
+    char      camera[20];     # Camera used (e.g., b1, r1, b2, r2)
+    char      targetName[20]; # Name of target --- field name
+    char      taihms[20];     # HH:MM:SS.SS of exposure start (UT)
+} SEXP;
+
+
+typedef struct {
+     char fileroot[20];    # Root of file name, without any ".fit" suffix
+     char keyword[9];      # Keyword name
+     char value[80];       # Keyword value (as a string)
+   } OPHDRFIX;
+
+ophdrfix sdR-??-00010850  FFS   "'1 1 1 1 1 1 1 1'"
+
+
+
+</PRE>
+</BODY>
+</HTML>

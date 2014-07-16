@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Plate Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Plate Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>plPlan.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+platePre
+ <P>
+<STRONG>Used by:</STRONG>
+plate
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control the <em>plate</em> pipeline.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+parameters          'XXX'               # Tunable parameters file (if any)
+parametersDir 	    'XXX'               # Directory containing the 'parameters'
+                                        # file (optional --- defaults to '.')
+
+plObsFile           plObs-XXXX-YYYY.par # File with list of plates to design
+tileDir             XXX                 # Directory containing the input
+					# tile specification files.
+outFileDir 	    XXX			# output files to here 
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+
+</HTML>

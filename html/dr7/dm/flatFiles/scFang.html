@@ -1,0 +1,299 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Field Fang</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Field Fang File</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>scFang-rrrrrr-c-ffff.fit</EM> for those produced by SSC,
+<EM>psFang-rrrrrr-c-ffff.fit</EM> for those produced by PSP,
+where <EM>rrrrrr</EM> is the imaging run number, <EM>c</EM> is the column
+location in the Imaging Array of the CCD which acquired the data (1-11),
+and <EM>ffff</EM> is the field number within the run.
+ <P>
+<STRONG>Produced by:</STRONG>
+ssc, ps
+ <P>
+<STRONG>Used by:</STRONG>
+astrom, ps
+ <P>
+<STRONG>Size:</STRONG>
+2880 * 37 + 5 * (8454 * Nstars {rounded up to multiple of 2880}) + 7 * (50 *
+Nstars {rounded up to multiple of 2880}) bytes per file for columns 1-6.
+2880 * 7 + 2 * (50 * Nstars {rounded to multiple of 2880}) bytes per file
+for columns 7-11. Columns 7-11 may not be present.
+For a field with 100 stars, this gives 4,380.48 Kb per file for a photometric
+column, and 31.68 Kb per file for an overlap column.  Total of 26,441.28 Mb for
+all 11 columns of a run with 1000 fields.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes, but only the measured stellar parameters.
+
+<H2>Description</H2>
+The primary function of the Serial Stamp Collection Pipeline is, for
+each field, to: form a subset of the stars detected by the DA Online Bright
+Star Finder on both the leading and trailing astrometric chips;
+cut out associated postage stamps matching that subset in the photometric
+frames; measure the same set of stellar parameters as are measured in the DA
+system for the stars in the new postage stamps.
+This file saves those results.  The stellar parameters for all frames in
+each field (including those measured by the DA system on the astrometric
+chips) are saved in this file, as well as the
+postage stamps for the photometric frames.
+Additionally, the frame-specific TCC-supplied header information (e.g.,
+telescope boresight pointing, TAI, instrument rotation angle, etc) and
+quartiles are copied from the DA gang files,
+thus grouping this information by field such that the postage
+stamp pipeline need not read the DA gang files.
+ <P>
+For overlap columns (columns 7-11), only the measured stellar parameter HDUs
+are written.
+ <P>
+PSP reads the FANG files produced by SSC, corrects the centroids based on the
+measured PSFs, and writes out new FANG files containing the measured star
+parameters only.
+ <P>
+The order of stamps and stars within each HDU is important.  Each stamp/star
+matches up with the other stamps/stars occupying the same position in the
+other HDUs.
+ <p>
+The order of HDUs is given 
+by the <em>[SPQ]FILTERS</em> and <em>HDUSETS</em> keywords in the PDU.
+For example, for SSC FANG files for photometric columns:
+<pre>
+HDUSETS = 'stamps params quarts' / order of HDU sets in the file
+SFILTERS= 'r i u z g'	       / Filters processed for postage stamps.
+PFILTERS= 'l r i u z g t'      / Filters processed for bright star params.
+QFILTERS= 'r i u z g'	       / Filters processed for quartile/flats.
+</pre>
+while for overlap columns:
+<pre>
+HDUSETS = 'params'	       / order of HDU sets in the file
+PFILTERS= 'o s'                / Filters (rows in the imaging camera) processed.
+</pre>
+
+Thus, the order of HDUs is:
+<p>
+HDUs (cols 1-6):<p>
+1-5:postage stamps for riuzg cutouts<p>
+6-12: bright star params for lriuzgt<p>
+13-17: flats/quart for riuzg<p>
+
+HDUs (cols 7-11):<p>
+1-2: bright star params for o,s (overlap rows)<p>
+For FANGs produced by PSP:
+<pre>
+HDUSETS = 'params'	       / order of HDU sets in the file
+PFILTERS= 'l r i u z g t'      / Filters (rows in the imaging camera) processed.
+</pre>
+
+<STRONG>NOTE:</STRONG> This is an illegal fits file, as it uses unsigned shorts.
+Even more illegal, it says "SIMPLE = T".  Buyer beware!
+
+<H2>Primary Header</H2>
+For SSC FANG files, VERSION is the SSC pipeline version.  For PS FANG files,
+VERSION is the PS pipeline version.  The keyword PS_ID is present for PS FANG
+files only.
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+VERSION = 'XXX     '           / Version of software used.
+RUN     =                  XXX / Imaging run number.
+CAMCOL  =                  XXX / Column in imaging camera.
+SSC_ID  = 'XXX     '           / SSC pipeline run identifier.
+PS_ID   = 'XXX     '           / PSP pipeline run identifier (PSP FANGS only)
+KO_VER  = 'XXX     '           / Version of known object catalog used.
+FIELD   =                  XXX / Field sequence number within the run.  
+HDUSETS = 'stamps params quarts' / Order of HDU sets in the file.
+SFILTERS= 'r i u z g'          / Filters processed for postage stamps.
+PFILTERS= 'l r i u z g t'      / Filters processed for bright star params.
+QFILTERS= 'r i u z g'          / Filters processed for quartile/flats.
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Postage Stamps Header</h2>
+One HDU of this format is created for each photometric CCD in the column
+(usually 5 for columns 1-6, always 0 for columns 7-11).
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+XTENSION= 'BINTABLE'
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                 8454
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    3
+EXTNAME = 'STAMP LOC'
+CAMROW  =                  XXX / Row in imaging camera
+FILTER  = 'XXX     '           / Filter for Row in imaging camera
+PSSIZE  =                   65 / Postage Stamp Size
+TSHIFT  =                  XXX / Bias scaling factor
+FRBIASL =                  XXX / Left  Frame bias x TSHIFT
+FRBIASR =                  XXX / Right Frame bias x TSHIFT
+FROSCNL =                  XXX / Left Mean Oscn Value x TSHIFT
+FROSCNR =                  XXX / Right Mean Oscn Value x TSHIFT
+TFORM1  = '4225U   '           / PostStamp shorts
+TTYPE1  = 'pixelMap'           / Postage Stamp subimage
+TZERO1  =                32768
+TUNIT1  = 'ADUs    '
+TFORM2  = '1I      '
+TTYPE2  = 'midRow  '           / Frame row (data section) of middle pixel
+TFORM3  = '1I      '
+TTYPE3  = 'midCol  '           / Frame column (data section) of middle pixel
+END
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+<H2>Bright Star Measured Parameters Header</h2>
+One HDU of this type is created for each CCD in the column (usually 7 for
+columns 1-6, 2 for columns 7-11).
+The instrumental colors are set to:
+<pre>
+     -2.5 * log(counts1/counts2)
+</pre>
+A bad color is flagged with the value -99.
+<pre>
+<!--AUTOCHECK begin hdu 6 -->
+<!--##begin FITSbinary sSCStar.header -->
+<!-- P+      Project: sdss   Date: Tue Oct 20 17:29:42 1998-->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   58
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   15
+<!--##end FITSbinary sSCStar.header -->
+EXTNAME = 'STAR LOC'
+RUN     =                  XXX / Imaging run number.
+NODE    =            XXX.XXXXX / Ra of the great circle's ascending node. (deg)
+INCL    =            XXX.XXXXX / Great circle's inclination wrt cel eq. (deg)
+XBORE   =                XXX.X / Boresight x offset from the array center. (mm)
+YBORE   =                XXX.X / Boresight y offset from the array center. (mm)
+BIAS    =                  XXX / Number of columns of bias per amplifier.
+OVERSCAN=                  XXX / Number of columns of overscan per amplifier.
+FRAME   =                  XXX / Frame number.
+TAI     =        XXXXXXXXXX.XX / Number of seconds since Nov 17 1858 0 UT/TAI.
+RA      =           XXX.XXXXXX / Right ascension/longitude. (degrees)
+DEC     =           XXX.XXXXXX / Declination/latitude. (degrees)
+SPA     =              XXX.XXX / Camera col position angle wrt north. (degrees)
+IPA     =              XXX.XXX / Instrument rotator position angle. (degrees)
+IPARATE =             XXX.XXXX / Instrument rotator angular velocity. (deg/sec)
+AZ      =           XXX.XXXXXX / Azimuth (encoder) of telescope. (degrees)
+ALT     =           XXX.XXXXXX / Altitude (encoder) of telescope. (degrees)
+CAMCOL  =                  XXX / Column in the imaging camera. (astro chips only)
+CAMROW  =                  XXX / Row in imaging camera
+FILTER  = 'XXX     '           / Filter for Row in imaging camera
+<!--##begin FITSbinary sSCStar.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'midRow  '           / Frame row of the stamp's middle pixel.
+TFORM2  = '1J      '          
+TTYPE2  = 'midCol  '           / Frame column of the stamp's middle pixel.
+TFORM3  = '1E      '          
+TTYPE3  = 'rowCentroid'        / Row position of star center.
+TUNIT3  = 'pixels  '          
+TFORM4  = '1E      '          
+TTYPE4  = 'rowCentroidErr'     / Row position of star center. (error)
+TUNIT4  = 'pixels  '          
+TFORM5  = '1E      '          
+TTYPE5  = 'colCentroid'        / Column position of star center.
+TUNIT5  = 'pixels  '          
+TFORM6  = '1E      '          
+TTYPE6  = 'colCentroidErr'     / Column position of star center. (error)
+TUNIT6  = 'pixels  '          
+TFORM7  = '1E      '          
+TTYPE7  = 'rMajor  '           / Major axis radius. 
+TUNIT7  = 'pixels  '          
+TFORM8  = '1E      '          
+TTYPE8  = 'rMinor  '           / Minor axis radius.
+TUNIT8  = 'pixels  '          
+TFORM9  = '1E      '          
+TTYPE9  = 'angMajorAxis'       / Major axis position angle.
+TUNIT9  = 'degrees '          
+TFORM10 = '1E      '          
+TTYPE10 = 'peak    '           / Peak of the gaussian fit.
+TUNIT10 = 'DNs     '          
+TFORM11 = '1E      '          
+TTYPE11 = 'counts  '           / Sum of counts over sky.
+TUNIT11 = 'DNs     '          
+TFORM12 = '1E      '          
+TTYPE12 = 'color   '           / Instrumental color.
+TFORM13 = '1E      '          
+TTYPE13 = 'colorErr'           / Instrumental color. (error)
+TFORM14 = '1J      '          
+TTYPE14 = 'statusFit'          / 0=ok, else error.
+TFORM15 = '1I      '          
+TTYPE15 = 'sscStatus'          / 0=ok,1=bad radius,2=bad peak,4=photo only
+COMMENT                        / -9=dummy entry (not found on this chip)
+<!--##end FITSbinary sSCStar.table -->
+END
+<!--AUTOCHECK end hdu 6 -->
+</pre>
+
+<H2>Quartiles and Flats Header</h2>
+One HDU of this type is created for each photometric chip (usually 5).
+This is a straight copy of the quartile HDU from the DA Gang file, with an
+added field for a flatfield calculation.
+Below, <EM>NAXIS2</EM> will be equal to 2128.
+<pre>
+<!--AUTOCHECK begin hdu 13 -->
+<!--##begin FITSbinary sSCQuartile.header -->
+<!-- P+      Project: sdss   Date: Tue Oct 20 17:29:42 1998-->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   16
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    4
+<!--##end FITSbinary sSCQuartile.header -->
+EXTNAME = 'QFLAT LOC'
+CAMROW  =                    1 / Row in imaging camera
+FILTER  = 'XXX     '           / Filter for Row in imaging camera
+TSHIFT  =                  XXX / Quartile scaling factor
+HISTBINS=                  XXX / Num bins in quartile hists
+DBASE   =                  XXX / Maximum delta for hist bases
+NQCALCL =                  XXX / Number of quartiles calculated - lo col numbers
+NQCALCR =                  XXX / Number of quartiles calculated - hi col numbers
+FRBIASL =                  XXX / Left  Frame bias x TSHIFT
+FRBIASR =                  XXX / Right Frame bias x TSHIFT
+FRSKYL  =                  XXX / Left Mean Sky Value x TSHIFT
+FRSKYR  =                  XXX / Right Mean Sky Value x TSHIFT
+FROSCNL =                  XXX / Left Mean Oscn Value x TSHIFT
+FROSCNR =                  XXX / Right Mean Oscn Value x TSHIFT
+SKIPPED =                  XXX / Number of rows ignored
+AUTHOR  = 'Node=sdssid1.fnal.gov Type=photo Cr=1 Bd=0 #=5 Src=CAMERA'
+<!--##begin FITSbinary sSCQuartile.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'q1      '           / 25th percentile.
+TUNIT1  = 'ADUs x TSHIFT'     
+TFORM2  = '1J      '          
+TTYPE2  = 'q2      '           / 50th percentile.
+TUNIT2  = 'ADUs x TSHIFT'     
+TFORM3  = '1J      '          
+TTYPE3  = 'q3      '           / 75th percentile.
+TUNIT3  = 'ADUs x TSHIFT'     
+TFORM4  = '1J      '          
+TTYPE4  = 'flatVal '           / Flat field value (similar to q2).
+TUNIT4  = 'ADUs x TSHIFT'     
+<!--##end FITSbinary sSCQuartile.table -->
+END
+<!--AUTOCHECK end hdu 13 -->
+</pre>
+
+</BODY>
+
+</HTML>

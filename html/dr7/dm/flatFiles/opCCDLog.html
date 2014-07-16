@@ -1,0 +1,96 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for CCD Voltage/Temperature Log File</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>CCD Voltage/Temperature Log File</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>opCCDLog-rc-ddddd.par</EM>, where <em>r</em> is the camRow (1-5 for
+photometric, 6-9 for astrometric, 0=spectro, 0=mt), <em>c</em> is the camCol
+(1-6 for photometric, 0-5 for astrometric, 1-4 for spectro, 0=mt), and
+<em>ddddd</em> is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+mop, iop, sop
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+Approximately 100 Kb per CCD per night, or approximately 6 Mb for all files for
+a single night.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.
+
+<H2>Contents</H2>
+<PRE>
+<!--AUTOCHECK begin param -->
+<!--##begin PARAM cCDVoltages.header -->
+<!-- P+      Project: sdss   Date: Mon Aug 10 14:38:01 1998-->
+version             'XXX'               # Version of software used. 
+mjd                 XXX                 # MJD day number of night when  
+                                        # data was obtained. 
+camRow              XXX                 # Row in the camera of the CCD. 
+camCol              XXX                 # Column in the camera of the  
+                                        # CCD. 
+initialTime         XXX.X               
+cameraNaN           XXX.X               
+<!--##end PARAM cCDVoltages.header -->
+
+typedef enum { 
+  OUTOFSPEC = 7,
+  TOL_RAW = 8,
+  READ = 1,
+  READ_RAW = 2,
+  NOM = 3,
+  BIAS = 5,
+  TOL = 6,
+  NOM_RAW = 4
+} VOLTTYPE;
+
+typedef struct {
+    double    timeSeq;        
+    VOLTTYPE  voltType;
+    double    ln2temp;        
+    double    heaterv;        
+    double    ccdtemp;        
+    double    tset;           
+    double    tzero;          
+    double    iMtrim2;        
+    double    iMtrim1;        
+    double    iPtrim2;        
+    double    iPtrim1;        
+    double    vswM;           
+    double    vlg;            
+    double    vtM;            
+    double    vtP;            
+    double    vp3M;           
+    double    vp12M;          
+    double    vp3P;           
+    double    vp12P;          
+    double    vsM;            
+    double    vsP;            
+    double    vr;             
+    double    vrd2;           
+    double    vrd1;           
+    double    vdd2;           
+    double    vdd1;           
+    double    lowvsP;         
+    double    vperase;        
+} VOLTAGES;
+
+VOLTAGES 890068273 TOL 1.1 2.1 3.1 4.1 5.1 6.1 7.1 8.1 9.1 10.1 11.1 12.1 \
+	13.1 14.1 15.1 16.1 17.1 18.1 19.1 20.1 21.1 22.1 23.1 24.1 25.1 26.1
+
+<!--AUTOCHECK end param -->
+</PRE>
+
+
+</BODY>
+</HTML>

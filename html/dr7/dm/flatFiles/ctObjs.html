@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for List of Objects in Tile Area</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>List of Targets in Tile Area</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>ctObjs.fit</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+completeTilePre
+ <P>
+ <P>
+<STRONG>Used by:</STRONG>
+completeTile
+ <P>
+<STRONG>Size:</STRONG>
+Total of up to 10MB for a tiling run of 1000 sq degrees.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+List of all potential target objects within the area of sky tiled by a single
+tiling run.
+The <em>primTarget</em> and <em>secTarget</em> fields take the same value as
+the same fields in the <a href="tsObj.html">tsObj</a> files (see the
+description of that file for the legal values for those bit masks).
+If the object was targetted in the main survey then the targetting flags and
+priority are for the main survey; in this case the highest bit in the two
+flags will not be set.  If the object was not targetted in the main survey
+then the target flags and priority are for the southern survey; in this case
+the highest bit in the two flags will be set.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Table Header</H2>
+There is one HDU of this type.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                  XXX
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   12
+FILTERS = 'u g r i z'          / Filter order in arrays
+TFORM1  = '1J      '
+TTYPE1  = 'run     '           / Run number id of this object
+TFORM2  = '1J      '          
+TTYPE2  = 'rerun   '           / Re-run id.
+TFORM3  = '1J      '          
+TTYPE3  = 'col     '           / Camera Column id for this object.
+TFORM4  = '1J      '          
+TTYPE4  = 'field   '           / Field id for this object.
+TFORM5  = '1J      '
+TTYPE5  = 'id      '           / Id number within field for this object.
+TFORM6  = '1J      '          
+TTYPE6  = 'tid     '           / Unique integer id within this file.
+TFORM7  = '1D      '          
+TTYPE7  = 'ra      '           / J2000 RA
+TUNIT7  = 'degrees '          
+TFORM8  = '1D      '          
+TTYPE8  = 'dec     '           / J2000 DEC
+TUNIT8  = 'degrees '          
+TFORM9  = '1J      '          
+TTYPE9  = 'primTarget'         / Targeting flags (first 32 bits).
+TFORM10 = '1J      '          
+TTYPE10 = 'secTarget'          / Targeting flags (second 32 bits).
+TFORM11 = '1J      '          
+TTYPE11 = 'priority'           / Priority for close targets.
+TFORM12 = '1J      '          
+TTYPE12 = 'tileId  '           / First tile target assigned to (-1 for none).
+TFORM13 = '1J      '          
+TTYPE13 = 'tiFlag  '           / Tiling status (0=tiled, 1=untiled, 2=culled)
+TFORM14 = '5E      '
+TTYPE14 = 'mag     '           / Fiber magnitudes
+TFORM15 = '1E      '
+TTYPE15 = 'starL   '           / r' likelihood objects is stellar
+TFORM16 = '1E      '
+TTYPE16 = 'expL    '           / r' likelihood objects is an exponential disk
+TFORM17 = '1E      '
+TTYPE17 = 'deVaucL '           / r' likelihood objects is a deVaucouleurs prof
+<!--AUTOCHECK end hdu 0 -->
+END
+</pre>
+
+</body>
+</html>

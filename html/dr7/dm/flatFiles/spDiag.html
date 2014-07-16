@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Spectro 1D Pipeline Diagnositics</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Spectro 1D Diagnostics</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spDiag-mmmmm-pppp.par</EM>, where <EM>mmmmm</em> is the MJD and
+<EM>pppp</EM> is the plate number.
+ <P>
+<STRONG>Produced by:</STRONG>
+spectro1d
+ <P>
+<STRONG>Used by:</STRONG>
+opdb
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 kb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<STRONG>Content Verification</STRONG>
+<pre>
+set plate $plate
+set mjd $mjd
+set spDiag [param2Chain spDiag1d-$mjd-[format %04d $plate].par k]
+loop i 0 [chainSize $spDiag] {
+    set fiber [chainElementGetByPos $spDiag $i]
+	set fiberId [exprGet $fiber.fiberId]
+    set file [format spSpec-%d-%1d-%04d-%03d.fit" $mjd $plate $fiberId]
+    if {![file exists $file] } { error "missing file" }
+}
+</pre>
+
+
+
+<H2>Description</H2>
+Quality analysis diagnostic output from a single spectro 1d run.
+
+<H2>Contents</H2>
+<pre>
+version            v5_2_1
+
+typedef enum {
+  SPEC_UNKNOWN,
+  SPEC_STAR,
+  SPEC_GALAXY,
+  SPEC_QSO,
+  SPEC_HIZ_QSO,
+  SPEC_SKY,
+  SPEC_STAR_LATE,
+  SPEC_GAL_EM
+} SPEC_CLASS;
+typedef enum {
+  NOT_MEASURED,
+  FAILED,
+  INCONSISTENT,
+  XCORR_EMLINE,
+  XCORR_HIC,
+  XCORR_LOC,
+  EMLINE_XCORR,
+  EMLINE_HIC,
+  EMLINE_LOC,
+  MANUAL_HIC,
+  MANUAL_LOC,
+  XCORR_4000BREAK
+} Z_STATUS;
+
+typedef struct {
+int fiberId;
+int objId[5];
+int primTarget;
+int secTarget;
+double xFocal;
+double yFocal;
+double ra;
+double dec;
+float skyRes[3];
+float ugrizFibre[5];
+float griFlux[3];
+float griSN[3];
+float deriv2;
+float mean;
+float contChi2;
+float blueSlope;
+float redSlope;
+SPEC_CLASS class;
+Z_STATUS zStat;
+float zFinal;
+float zErrFinal;
+float zConfFinal;
+float zXcorr;
+float zErrXcorr;
+float zConfXcorr;
+float zEmz;
+float zErrEmz;
+float zConfEmz;
+int templateId;
+int nEmline;
+int zWarning;
+float galClass;
+} DIAG;
+
+DIAG 1 { 752 1 1 175 123} 96 0 191.41329 -258.48611 169.73949 -1.1913831 .8441 2.38824 2.91341} { 22.044 19.6521 18.6233 17.9367 17.5159} { 4752.406.06 6239.29} { 5.32191 14.7849 18.486} 0.00457088 0 0.561163 0 0 SPEC_GY XCORR_EMLINE 0.0658634 0.000100516 0.994137 0.0658634 0.000100516 0.9940.065777 5.99721e-05 0.825796 7 7 512 -0.336578
+
+</BODY>
+</HTML>

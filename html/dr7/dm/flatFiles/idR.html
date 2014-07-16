@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Raw CCD Frame</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Raw CCD Frame</H1>
+
+<STRONG>File Format:</STRONG>
+Non-standard FITS image (uses unsigned integers)
+ <P>
+<STRONG>Name:</STRONG>
+<EM>idR-rrrrrr-rc-ffff.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number, 
+<EM>r</EM> is the camera row (filter) location in the
+Imaging array (123456789=riuzgolts), <EM>c</EM> is the column
+location in the Imaging Array of the CCD which acquired the data (1-6),
+and <EM>ffff</EM> is the field number within the run.
+ <P>
+<STRONG>Produced by:</STRONG>
+iop
+ <P>
+<STRONG>Used by:</STRONG>
+bias, ssc, frames
+ <P>
+<STRONG>Size:</STRONG> 5,800.32 Kb per file.  Total of 174,009.6 Mb
+for all 30 photometric chips of a run with 1000 fields.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.  Tracked file.
+
+<H2>Description</H2>
+A raw photometric frame from the Imaging Array.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    F                                                 
+BITPIX  =                  -16                                                 
+NAXIS   =                    2                                                 
+NAXIS1  =                 2128                                                 
+NAXIS2  =                 1361
+BUNITS  = 'ADUs    '
+SDSS                           / This contains an SDSS extension
+UNSIGNED                       / This is an SDSS unsigned 16-bit integer image
+ORIGIN  = 'SDSS    '
+TELESCOP= '2.5m    '
+OBSERVER= 'XXX     '
+RUN     =                  XXX / Imaging run number
+COMMENT   arFlavor enum: SCIENCE, CALIBRATION, TEST, IGNORE
+FLAVOR  = 'XXX     '           / Flavor of this run
+COMMENT   arGCSystem enum: MEAN, APPARENT
+SYS_SCN = 'XXX'                / System of the scan great circle (e.g., mean)
+EQNX_SCN=              XXXX.XX / Equinox of the scan great circle. (years)
+NODE    =            XXX.XXXXX / RA of the great circle's ascending node (deg)
+INCL    =            XXX.XXXXX / Great circle's inclination wrt cel. eq. (deg)
+XBORE   =               XXX.XX / Boresight x offset from the array center (mm)
+YBORE   =               XXX.XX / Boresight y offset from the array center (mm)
+COMMENT   arGCSystem enum: MEAN, APPARENT
+SYSTEM  = 'XXX     '           / System of the TCC coordinates (e.g., mean)
+EQUINOX =              XXXX.XX / Equinox of the TCC coordinates (years)
+C_OBS   =                XXX.X / CCD row clock rate (usec/row) 
+COLBIN  =                  XXX / Binning factor perpendicular to the columns
+ROWBIN  =                  XXX / Binning factor perpendicular to the rows
+COMMENT   arStrip enum: N or S
+STRIP   = 'XXX     '           / Strip in the stripe being tracked.
+STRIPE  =		    XX / Stripe index number (23 &lt;--&gt; eta=0)
+FRAME   =                  XXX / Frame sequence number within the run
+FIELD   =                  XXX / Field sequence number within the run
+CAMCOL  =                  XXX / Column in the imaging camera
+COMMENT   The following parameters are for when column 0 of row 0 was read
+TAI     =        XXXXXXXXXX.XX / Number of seconds since Nov 17 1858 0 TAI
+RA      =           XXX.XXXXXX / Right ascension of telescope boresight (deg)
+DEC     =           XXX.XXXXXX / Declination of telescope boresight (degrees) 
+SPA     =              XXX.XXX / Camera col position angle wrt north (degrees)
+IPA     =              XXX.XXX / Instrument rotator position angle (degrees)
+IPARATE =             XXX.XXXX / Instrument rotator angular velocity (deg/sec)
+AZ      =           XXX.XXXXXX / Azimuth (encoder) of tele (0=N?) (degrees)
+ALT     =           XXX.XXXXXX / Altitude(encoder) of tele        (degrees)
+FOCUS   =           XXXXX.X    / Focus piston (microns?)
+COMMENT
+VERSION = 'XXX     '           / Version of DA software
+CCDMODE = 'XXX     '           / 'STARING' or 'DRIFT'
+DATE-OBS= 'DD/MM/YY'           / TAI date (DD/MM/YY)
+TAIHMS  = 'HH:MM:SS.SS'        / TAI time (HH:MM:SS.SS) (TAI-UT =approx 30 s)
+OBJECT  = 'XXX     '           / e.g., 'stripe 50.6 degrees, north strip'
+EXPTIME =               XXX.XX / Exposure time (seconds)
+NLINES  =                 1361 / Number of lines in a frame
+COMMENT  CCD-specific parameters
+FILTER  = 'X       '           / Filter ('u', 'g', 'r', 'i', 'z', 'l', or 't')
+CAMROW  =                  XXX / Row in the imaging camera
+CCDLOC  =                  XXX / Survey location of CCD (e.g., rowCol)
+BADLINES=                    0 / Number of bad lines in frame
+AMPL    =                    X / which amp 0,1,2,3 corresponds to low pix
+AMPR    =                    X / which amp 0,1,2,3 corresponds to high pix
+CCDSECL = '[XXX:XXX,XXX:XXX]'  / Physical ccd section for low pixels
+DATASECL= '[XXX:XXX,XXX:XXX]'  / Image section for data for low pixels
+BIASSECL= '[XXX:XXX,XXX:XXX]'  / Image section for prescan for low pix
+OVERSECL= '[XXX:XXX,XXX:XXX]'  / Image section for overscan for low pix
+CCDSECR = '[XXX:XXX,XXX:XXX]'  / Physical ccd section for high pixels
+DATASECR= '[XXX:XXX,XXX:XXX]'  / Image section for data for high pixels
+BIASSECR= '[XXX:XXX,XXX:XXX]'  / Image section for prescan for high pixels
+OVERSECR= '[XXX:XXX,XXX:XXX]'  / Image section for overscan for high pixels
+END                                                                            
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+</BODY>
+</HTML>

@@ -1,0 +1,173 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for ROSAT Catalog</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>ROSAT Catalog</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tsROSAT.fit</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+ROSAT folks
+ <P>
+<STRONG>Used by:</STRONG>
+ts, target
+ <P>
+<STRONG>Size:</STRONG>
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+ <P>
+
+<H2>Description</H2>
+ROSAT source catalog.  There is one file for the entire ROSAT catalog (as
+currently distributed by the ROSAT folks).
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+VERSION = 'XXX     '           / ROSAT catalog version
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Table Header</h2>
+In the table below, the values in the flags field is a bit mask with the
+following enumerated types:
+<pre>
+typedef enum arRosatFlags
+{
+  AR_ROSAT_FLAG_NEARBY       =   0x1, // Nearby sources affecting SASS flux
+                                      // determination.
+  AR_ROSAT_FLAG_POSITION     =   0x2, // Possible problem with position
+                                      // determination.
+  AR_ROSAT_FLAG_EXTENDED     =   0x4, // Extended beyond SASS extraction radius.
+  AR_ROSAT_FLAG_COMPLEX      =   0x8, // Complex diffuse emission pattern.
+  AR_ROSAT_FLAG_MISSED       =  0x10, // Source missed by SASS.
+  AR_ROSAT_FLAG_RECALCULATED =  0x20, // Source counts and extraction radius
+                                      // recalculated.
+  AR_ROSAT_FLAG_IMAGE        =  0x40, // Broad band image available.
+  AR_ROSAT_FLAG_VARIABLE     =  0x80, // Variability flag.
+  AR_ROSAT_FLAG_MBROAD       = 0x100, // Detected in broad band using
+                                      // background map.
+  AR_ROSAT_FLAG_LBROAD       = 0x200, // Detected in broad band using local
+                                      // background.
+  AR_ROSAT_FLAG_MHARD        = 0x400, // Detected in hard band using
+                                      // background map.
+  AR_ROSAT_FLAG_LHARD        = 0x800, // Detected in hard band using local
+                                      // background.
+  AR_ROSAT_FLAG_MSOFT        =0x1000, // Detected in soft band using
+                                      // background map.
+  AR_ROSAT_FLAG_LSOFT        =0x2000  // Detected in soft band using local
+                                      // background.
+};
+</pre>
+
+Here's the table.
+
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                  135
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   26
+TFORM1  = '1J      '
+TTYPE1  = 'ID      '           / SDSS id for ROSAT source (>0, unique)
+TUNIT1  = 'unitless'
+TFORM2  = '22A     '
+TTYPE2  = 'sourceName'         / ROSAT source name
+TUNIT2  = 'unitless'
+TFORM3  = '1D      '                                                           
+TTYPE3  = 'ra      '           / J2000 right ascension
+TUNIT3  = 'degrees '
+TFORM4  = '1D      '                                                           
+TTYPE4  = 'dec     '           / J2000 declination
+TUNIT4  = 'degrees '
+TFORM5  = '1D      '                                                           
+TTYPE5  = 'lambda  '           / Survey "longitude"
+TUNIT5  = 'degrees '
+TFORM6  = '1D      '                                                           
+TTYPE6  = 'eta     '           / Survey "latitude"
+TUNIT6  = 'degrees '
+TFORM7  = '1E      '                                                           
+TTYPE7  = 'posErr  '           / Error in position
+TUNIT7  = 'arcsec  '
+TFORM8  = '1J      '
+TTYPE8  = 'flags   '           / Bit mask of different kinds
+TUNIT8  = 'unitless'
+TFORM9  = '1E      '                                                           
+TTYPE9  = 'cps     '           / Source count rate in broad energy band
+TUNIT9  = 'counts/sec'
+TFORM10 = '1E      '                                                           
+TTYPE10 = 'cpsErr  '           / Error in source count rate
+TUNIT10 = 'counts/sec'
+TFORM11 = '1E      '
+TTYPE11 = 'background'         / Background count rate, vignetting corrected
+TUNIT11 = 'counts/sec/arcmin**2'
+TFORM12 = '1E      '                                                           
+TTYPE12 = 'exposure'           / Exposure time
+TUNIT12 = 'seconds '
+TFORM13 = '1E      '                                                           
+TTYPE13 = 'hr1     '           / Hardness ratio 1
+TUNIT13 = 'unitless'
+TFORM14 = '1E      '                                                           
+TTYPE14 = 'hr1Err  '           / Error in hardness ratio 1
+TUNIT14 = 'unitless'
+TFORM15 = '1E      '                                                           
+TTYPE15 = 'hr2     '           / Hardness ratio 2
+TUNIT15 = 'unitless'
+TFORM16 = '1E      '                                                           
+TTYPE16 = 'hr2Err  '           / Error in hardness ratio 2
+TUNIT16 = 'unitless'
+TFORM17 = '1E      '                                                           
+TTYPE17 = 'extent  '           / Extent parameter
+TUNIT17 = 'arcsec  '
+TFORM18 = '1E      '                                                           
+TTYPE18 = 'extentLike'         / Likelihood of extent
+TUNIT18 = 'unitless'
+TFORM19 = '1E      '                                                           
+TTYPE19 = 'detectLike'         / Likelihood of detection
+TUNIT19 = 'unitless'
+TFORM20 = '1E      '
+TFORM20 = 'extRadius'          / Extraction radius
+TUNIT20 = 'arcsec'
+TFORM21 = '1A      '
+TTYPE21 = 'e       '           / PHA range with highest detection likelihood
+                               / A: 11-41, B: 52-201, C: 52-90, D: 91-201,
+                               / ' ' or b: broad (11-235)
+TUNIT21 = 'unitless'
+TFORM22 = '1E      '
+TTYPE22 = 'vigf    '           / Vignetting factor
+TUNIT22 = 'unitless'
+TFORM23 = '1J      '
+TTYPE23 = 'orgdat  '           / date when source was included (YYMMDD)
+TUNIT23 = 'unitless'
+TFORM24 = '1J      '
+TTYPE24 = 'moddat  '           / date when source properties changed (YYMMDD)
+TUNIT24 = 'unitless'
+TFORM25 = '1J      '
+TTYPE25 = 'fieldId '           / SASS field id
+TUNIT25 = 'unitless'
+TFORM26 = '1J      '
+TTYPE26 = 'src     '           / SASS source number (MASOL number) in SASS field
+TUNIT26 = 'unitless'
+END     
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+</BODY>
+</HTML>

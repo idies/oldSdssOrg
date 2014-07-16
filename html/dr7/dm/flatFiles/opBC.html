@@ -1,0 +1,72 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for CCD Bad Pixel File</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>CCD Bad Pixel File</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>opBC-ddddd.par</EM>,
+where <EM>ddddd</EM> is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+mop, iop, sop
+ <P>
+<STRONG>Used by:</STRONG>
+mtframes, ssc, ps, frames
+ <P>
+<STRONG>Size:</STRONG>
+approximately 100 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+CCD bad pixel file, specifying the bad pixels for each
+CCD "program".  This file is changed seldom.  Each
+observing report is accompanied by one of these files, specifying which CCD
+bad pixels apply for that night's observing.  Each file should list
+all programs used for all CCDs in a given instrument.
+
+<H2>Contents</H2>
+<PRE>
+<!--AUTOCHECK begin param -->
+mjd           51259             # MJD day number when this file was created.
+                                # This should be unique over the collection
+                                # of all configuration files for a given
+                                # camera.
+
+typedef enum { 
+  DRKCUR =0,                    # low level dark current 
+  HOTCOL,                       # Hot column - bad dark current 
+  DEPCOL,                       # Depressed column 
+  CTECOL,                       # Bad charge transfer efficiency 
+  BLKCOL,                       # blocked column - fix with flatfield 
+  BADBLK,                       # badly blocked col - just fill in 
+  HOTSPOT,			# single hot pixel
+  NOISY,			# a noisy column
+  TRAP				# location of trap head
+} DFTYPE;
+
+typedef struct {
+  char program[40];             # program name 'stare_0123'
+  int camRow;                   # camRow mt=0 spec=0 dsc=9
+  int camCol;                   # camCol mt=0 spec=1234 dsc=9
+  int dfcol0;                   # starting column of this defect (trimmed image)
+  int dfncol;                   # number of columns in this defect
+  int dfrow0;                   # starting row of this defect (trimmed image)
+  int dfnrow;                   # number of rows in this defect
+  DFTYPE dftype;                # defect type
+  int astroline;		# 1 if astroline to pay attention, 0 else.
+} CCDBC;
+
+ccdbc drifitng 0 0 300 1 0 2047 HOTCOL 1
+<!--AUTOCHECK end param -->
+</PRE>
+</BODY>
+</HTML>

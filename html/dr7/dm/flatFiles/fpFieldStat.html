@@ -1,0 +1,173 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Field Statistics</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Field Statistics</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>fpFieldStat-rrrrrr-c-ffff.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number, <EM>c</EM> is the column
+location in the Imaging Array of the CCD which acquired the data (1-6), and
+<em>ffff</em> is the field number.
+ <P>
+<STRONG>Produced by:</STRONG>
+frames
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+2 * 2880 + Nfields * 120 bytes, rounded up to the nearest multiple of 2880.
+Total of 126.72 Kb for a single frames pipeline run with 1000 fields.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Contains a statistical summary of the results of the frames pipeline for
+one field for a single frames pipeline run.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+<!--##begin FITSbinary frameStatistic.PDU -->
+<!-- P+      Project: sdss   Date: Fri Feb  5 18:44:34 1999-->
+SIMPLE  =                    T                                              
+BITPIX  =                    8                                                  
+NAXIS   =                    0                                                  
+EXTEND  =                    T                                                  
+RUN     =                 xxxx / Imaging Run Number                             
+CAMCOL  =                    x / Column in imaging camera                       
+FIELD   =                   xx / the field reduced                              
+FILTERS = 'u g r i z'          / Filters processed                              
+REFCOLOR= 'r       '           / Reference Filter                               
+VERSION = 'xxxx    '           / Version of software used. 
+DERV_VER= 'xxxx    '                                                            
+ASTR_VER= 'xxxx    '                                                            
+ASTRO_ID= 'xxxx    '           / Astrometric pipeline run identifier.
+BIAS_ID = 'PS      '           / Bias pipeline run identifier.            
+FRAME_ID= 'xxxx    '           / Frames pipeline run identifier.      
+KO_VER  = 'xxxxx   '           / Version of known object catalog used.
+PS_ID   = 'xxxxx   '           / Postage stamp pipeline run identifier. 
+END          
+<!--##end FITSbinary frameStatistic.PDU -->
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Table Header</h2>
+There is one HDU of this type.  It contains the actual field statistics.
+There is only one entry (for the one field), thus <em>NAXIS2</em> below is
+always 1.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+<!--##begin FITSbinary frameStatistic.header -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                  500
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   28
+<!--##end FITSbinary frameStatistic.header -->
+<!--##begin FITSbinary frameStatistic.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'status  '           / Processed?
+TFORM2  = '5E      '          
+TTYPE2  = 'rowOffset'          / Offset to add to transformed row coordinates.
+TUNIT2  = 'pixels  '          
+TFORM3  = '5E      '          
+TTYPE3  = 'colOffset'          / Offset to add to transformed column coordinates
+TUNIT3  = 'pixels  '          
+TFORM4  = '1J      '          
+TTYPE4  = 'nObjects'           / Number of objects detected.
+TFORM5  = '1J      '          
+TTYPE5  = 'nChild  '           / Number of children in the field.
+TFORM6  = '1J      '          
+TTYPE6  = 'nStars  '           / Number of objects classified as stars.
+TFORM7  = '1J      '          
+TTYPE7  = 'nGals   '           / Number of objects classified as galaxies.
+TFORM8  = '5J      '          
+TTYPE8  = 'saturation_level'   / Saturation level.
+TFORM9  = '5E      '          
+TTYPE9  = 'neff_psf'           / Effective area of the point spread function.
+TUNIT9  = 'pixels  '          
+TFORM10 = '5E      '          
+TTYPE10 = 'sky_psp '           / Sky from the point spread function.
+TUNIT10 = 'DNs/pixel'         
+TFORM11 = '5E      '          
+TTYPE11 = 'sky_frames'         / Global sky value in the corrected frame.
+TUNIT11 = 'DNs/pixel'         
+TFORM12 = '5E      '          
+TTYPE12 = 'sky_frames_sub'     / Global sky value after object subtraction.
+TUNIT12 = 'DNs/pixel'         
+TFORM13 = '5E      '          
+TTYPE13 = 'sigPix  '           / Clipped sigma of pixel values in corrected fram
+TUNIT13 = 'DNs     '          
+TFORM14 = '5E      '
+TTYPE14 = 'deV_ap_correction'
+TFORM15 = '5E      '
+TTYPE15 = 'deV_ap_correctionErr'
+TFORM16 = '5E      '
+TTYPE16 = 'exp_ap_correction'
+TFORM17 = '5E      '
+TTYPE17 = 'exp_ap_correctionErr'
+TFORM18 = '5E      '
+TTYPE18 = 'deV_model_ap_correction'
+TFORM19 = '5E      '
+TTYPE19 = 'deV_model_ap_correctionErr'
+TFORM20 = '5E      '
+TTYPE20 = 'exp_model_ap_correction'
+TFORM21 = '5E      '
+TTYPE21 = 'exp_model_ap_correctionErr'
+TFORM22 = '5J      '          
+TTYPE22 = 'nCR     '           / Number of cosmic rays detected on the frame.
+TFORM23 = '5J      '          
+TTYPE23 = 'nBrightObj'         / Number of bright objects detected.
+TFORM24 = '5J      '          
+TTYPE24 = 'nFaintObj'          / Number of faint objects detected.
+TFORM25 = '5E      '          
+TTYPE25 = 'median_fiberColor'  / Median fiber colors of objects.
+TFORM26 = '5E      '          
+TTYPE26 = 'median_psfColor'    / Median PSF colors of objects.
+TFORM27 = '5E      '          
+TTYPE27 = 'q       '           / Mean Stokes Q parameter on the frame?
+TFORM28 = '5E      '          
+TTYPE28 = 'u       '           / Mean Stokes U parameter on the frame?
+TFORM29 = '5E      '                                                            
+TTYPE29 = 'adopted_cond3_fac2'                                                  
+<!--##end FITSbinary frameStatistic.table -->
+END
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+<H2>FIELD_FLAGS Enum Header</h2>
+Lists the possible enumerated values for the "status" field in HDU 1.
+<pre>
+<!--AUTOCHECK begin hdu 2 -->
+XTENSION= 'BINTABLE'                                                            
+BITPIX  =                    8                                                  
+NAXIS   =                    2                                                  
+NAXIS1  =                   66                                                  
+NAXIS2  =                    5                                                  
+PCOUNT  =                    0                                                  
+GCOUNT  =                    1                                                  
+TFIELDS =                    3                                                  
+TYPENAME= 'FIELD_FLAGS'                                                         
+TFORM1  = '31A     '                                                            
+TTYPE1  = 'defName '                                                            
+TFORM2  = '31A     '                                                            
+TTYPE2  = 'attributeName'                                                       
+TFORM3  = '1J      '                                                            
+TTYPE3  = 'Value   '                                                            
+END                                                                             
+<!--AUTOCHECK end hdu 2 -->
+</pre>
+
+</BODY>
+</HTML>

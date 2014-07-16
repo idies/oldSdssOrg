@@ -1,0 +1,212 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Single-Exposure/Single-Camera Spectra</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Single-Exposure/Single-Camera Spectra</H1>
+
+<STRONG>File Format:</STRONG>
+FITS file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spSpec2d-cs-eeeeeeee.fit</EM>,
+where <em>c</em> is the camera band (b=blue,r=red),  <em>s</em> is the
+spectrograph (1,2), and <EM>eeeeeeee</EM> is the exposure number.
+ <P>
+<STRONG>Produced by:</STRONG>
+spectro2d
+ <P>
+<STRONG>Used by:</STRONG>
+spectro2d (merge)
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.  Tracked file.
+
+<H2>Description</H2>
+The output spectra from the 2-D spectroscopic pipeline for a single exposure
+for a single spectroscopic CCD.
+
+<H2>Primary Header</H2>
+Contains the spectra, one row per fiber, 320 fibers, in units of
+10^-17 ergs/s/cm^2/A.
+<pre>
+SIMPLE  =                    T /Primary Header created by MWRFITS               
+BITPIX  =                  -32 / FITS BITS/PIXEL                                
+NAXIS   =                    2 / NUMBER OF AXES                                 
+NAXIS1  =                 2048 / WIDTH (TOTAL!)                                 
+NAXIS2  =                  320 / HEIGHT (TOTAL!)                                
+SDSS                           / THIS HEADER CONTAINS SPECIAL SDSS KEYWORDS     
+UNSIGNED                       / UNSIGNED DATA - NO BSCALE OR BZERO KEYWORDS    
+TAI     =        4445729418.43 / 1st row - Number of seconds since Nov 17 1858  
+RA      =            356.67301 / 1st row - Right ascension of telescope boresigh
+DEC     =            0.067344  / 1st row - Declination of telescope boresight (d
+SPA     =             359.984  / 1st row - Camera col position angle wrt north (
+IPA     =              25.181  / 1st row - Instrument rotator position angle (de
+IPARATE =             -0.0051  / 1st row - Instrument rotator angular velocity (
+AZ      =            30.383366 / 1st row - Azimuth  (encoder) of tele (0=N?) (de
+ALT     =            53.304879 / 1st row - Altitude (encoder) of tele        (de
+FOCUS   = -999999999999.999999 / 1st row - Focus piston (microns?)              
+DATE-OBS= '1999-10-04'         / 1st row - TAI date                             
+TAIHMS  = '04:50:18.42'        / 1st row - TAI time (HH:MM:SS.SS) (TAI-UT = appr
+TIMESYS = 'tai     '           / TAI, not UTC                                   
+MJD     =                51455 / MJD of observation                             
+VERSION = 'NOCVS:iop'          / version of IOP                                 
+CAMVER  = 'SPEC2 v4_4'         / Camera code version                            
+OBSERVER= 'snedden '                                                            
+TELESCOP= 'SDSS 2.5-M'         / Sloan Digital Sky Survey                       
+SEQID   =                 1400 / Spectro sequence number, unique over the course
+EXPOSURE=                 1405 / Spectro exposure number, unique over the course
+EXPTIME = 9.00000000000000E+02 / Exposure time. (seconds)                       
+FLAVOR  = 'target  '           / Flavor of this sequence (e.g., dome flat, etc.)
+QUALITY = 'unknown '           / night/image quality                            
+RADEG   = -9.9990000000000E+03 / Right Ascension. (degrees)                     
+DECDEG  = -9.9990000000000E+03 / Declination. (degrees)                         
+PLATEID =                  187 / Plate Id                                       
+TILEID  =                -9999 / Tile Id                                        
+MAPID   =                -9999 / Map Id                                         
+NAME    = '187     '           / Name of target; PlateId-MJD-Mapper ReRun       
+CAMERAS = 'b1      '           / cameras used in this exposure                  
+COLBIN  =                -9999 / Binning factor perpendicular to the columns    
+ROWBIN  =                -9999 / Binning factor perpendicular to the rows       
+PROGRAM = 'binning -9999  -9999' / Identifying name for CCD program             
+AMPLL   =                    0 / which amp 0,1,2,3 corresponds to low pix       
+AMPLR   =                    2 / which amp 0,1,2,3 corresponds to low pix       
+AMPUL   =                    1 / which amp 0,1,2,3 corresponds to high pix      
+AMPUR   =                    3 / which amp 0,1,2,3 corresponds to high pix      
+CAMROW  =                    0 /                                                
+CAMCOL  =                    1 /                                                
+AUTHOR  = 'Scott Burles & David Schlegel' /                                     
+SPEC2D_V= 'NOCVS:idlspec2d'    / Version of idlspec2d                           
+UTILS_V = 'NOCVS:idlutils'     / Version of idlutils                            
+GAIN2   =              1.13000 / Gain in electrons per ADU                      
+RDNOISE2=              4.40700 / Readout noise in electrons                     
+GAIN3   =              1.13000 / Gain in electrons per ADU                      
+RDNOISE3=              3.72900 / Readout noise in electrons                     
+NBLEAD  =                    0 / Number of columns with blead trails            
+PLUGMAPF= './plPlugMapM-0187-51454-01.par' /                                    
+FLATFILE= 'sdR-b1-00001402.fit' /                                               
+ARCFILE = 'sdR-b1-00001403.fit' /                                               
+OBJFILE = 'sdR-b1-00001405.fit' /                                               
+LAMPLIST= '/usr/sdss/data05/rspete/idlspec2d/etc/lamphgcdne.dat' /              
+SKYLIST = '/usr/sdss/data05/rspete/idlspec2d/etc/skylines.dat' /                
+PIXFLAT = '../pixflat/pixflat-51441-b1.fits' /                                  
+OSIGMA  =              1.00000 /Original guess at spatial sigma in pix          
+SKIPROW =                    8 /Number of rows skipped in step 1                
+LOWREJ  =                   15 /Extraction, low rejection                       
+HIGHREJ =                   15 /Extraction, high rejection                      
+SCATPOLY=                   16 /Order of scattered light poly                   
+PROFTYPE=                    1 /1=Gaussian                                      
+NFITPOLY=                    3 /Order of profile parameter fit                  
+END                                                                             
+</pre>
+
+<H2>Noise HDU</H2>
+Contains the inverse variance of the flux, one row per fiber, 320 fibers.
+There is one HDU of this type.
+<pre>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS              
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 2048 /                                                
+NAXIS2  =                  320 /                                                
+</pre>
+
+<H2>Plug Map HDU</H2>
+Repeats all information in the input "plPlugMapM" file, identifying
+the object in each fiber.  There is one HDU of this type.
+<pre>
+XTENSION= 'BINTABLE'           /Binary table written by MWRFITS                 
+BITPIX  =                    8 /Required value                                  
+NAXIS   =                    2 /Required value                                  
+NAXIS1  =                  109 /Number of bytes per row                         
+NAXIS2  =                  320 /Number of rows                                  
+PCOUNT  =                    0 /Normally 0 (no varying arrays)                  
+GCOUNT  =                    1 /Required value                                  
+TFIELDS =                   16 /Number of columns in table                      
+TFORM1  = '5I      '           /                                                
+TTYPE1  = 'OBJID   '           / Unique object id (run,rerun,camCol,field,id)
+TFORM2  = '6A      '           /                                                
+TTYPE2  = 'HOLETYPE '          / Hole type
+TFORM3  = 'D       '           /                                                
+TTYPE3  = 'RA      '           / J2000 rightascension
+TUNIT3  = 'deg     '
+TFORM4  = 'D       '           /                                                
+TTYPE4  = 'DEC     '           / J2000 declination
+TUNIT4  = 'deg     '
+TFORM5  = '5E      '           /                                                
+TTYPE5  = 'MAG     '           / Fiber magnitude (ugriz)
+TFORM6  = 'E       '           /                                                
+TTYPE6  = 'STARL   '           / r' likelihood object is star
+TFORM7  = 'E       '           /                                                
+TTYPE7  = 'EXPL    '           / r' likelihood object is exponential disk
+TFORM8  = 'E       '           /                                                
+TTYPE8  = 'DEVAUCL '           / r' likelihood object is deVaucouleurs profile
+TFORM9  = '19A     '           /                                                
+TTYPE9  = 'OBJTYPE '           / Type of object (OBJECT holes only)
+TFORM10 = 'D       '           /                                                
+TTYPE10 = 'XFOCAL  '           / Hole x-axis position in focal plane
+TUNIT10 = 'mm      '
+TFORM11 = 'D       '           /                                                
+TTYPE11 = 'YFOCAL  '           / Hole y-axis position in focal plane
+TUNIT11 = 'mm      '
+TFORM12 = 'I       '           /                                                
+TTYPE12 = 'SPECTROGRAPHID '    / Spectrograph ID of plugged fiber
+TFORM13 = 'I       '           /                                                
+TTYPE13 = 'FIBERID '           / Fiber ID of plugged fiber
+TFORM14 = 'I       '           /                                                
+TTYPE14 = 'THROUGHPUT '        / Fiber throughput (0 - 65535 , 0=no light)
+TFORM15 = 'I       '           /                                                
+TTYPE15 = 'PRIMTARGET '        / Primary target flags
+TFORM16 = 'I       '           /                                                
+TTYPE16 = 'SECTARGET '         / Secondary target flags
+</pre>
+
+<H2>Dispersion HDU</H2>
+The dispersion function in each of the 320 fibers.  There is one HDU of this
+type.
+<pre>
+XTENSION= 'BINTABLE'           /Binary table written by MWRFITS                 
+BITPIX  =                    8 /Required value                                  
+NAXIS   =                    2 /Required value                                  
+NAXIS1  =                12816 /Number of bytes per row                         
+NAXIS2  =                    1 /Number of rows                                  
+PCOUNT  =                    0 /Normally 0 (no varying arrays)                  
+GCOUNT  =                    1 /Required value                                  
+TFIELDS =                    4 /Number of columns in table                      
+TFORM1  = '8A      '           /                                                
+TTYPE1  = 'FUNC    '           /                                                
+TFORM2  = 'E       '           /                                                
+TTYPE2  = 'XMIN    '           /                                                
+TFORM3  = 'E       '           /                                                
+TTYPE3  = 'XMAX    '           /                                                
+TFORM4  = '1600D   '           /                                                
+TTYPE4  = 'COEFF   '           /                                                
+TDIM4   = '( 5, 320)'          /                                                
+</pre>
+
+<H2>Dispersion HDU</H2>
+Pixel mask, one row per fiber.  There is one HDU of this type.
+type.
+<pre>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS              
+BITPIX  =                   16 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 2048 /                                                
+NAXIS2  =                  320 /                                                
+END
+</pre>
+
+<H2>Dispersion HDU</H2>
+Fiber mask.  There is one HDU of this type.
+<pre>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS              
+BITPIX  =                   16 /                                                
+NAXIS   =                    1 /                                                
+NAXIS1  =                  320 /                                                
+END
+</pre>
+
+</BODY>
+</HTML>

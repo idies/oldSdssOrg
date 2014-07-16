@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for FIRST Catalog</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>FIRST Catalog</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tsFIRST.fit</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+FIRST folks
+ <P>
+<STRONG>Used by:</STRONG>
+ts, target
+ <P>
+<STRONG>Size:</STRONG>
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+ <P>
+
+<H2>Description</H2>
+FIRST source catalog.  There is one file for the entire FIRST catalog (as
+currently distributed by the FIRST folks), with an HDU for every FIRST field on
+the sky.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+VERSION = 'XXX     '           / FIRST catalog version
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Table Header</h2>
+There is one of these HDUs per FIRST field, with roughly 20,000 fields over the
+entire sky and 40 sources per field.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   64
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+FIELD   =                  XXX / Unique id for the field
+CREATVER= 'XXX     '           / Catalog version which first included this field
+RASTART =               XXX.XX / Start right ascension (J2000, deg), inclusive
+RAEND   =               XXX.XX / End right ascension (J2000, deg), exclusive
+DECSTART=               XXX.XX / Start declination (J2000, deg), inclusive
+DECEND  =               XXX.XX / End declination (J2000, deg), exclusive
+TFIELDS =                   19
+TFORM1  = '1J      '
+TTYPE1  = 'ID      '           / Unique identifier over entire catalog
+TUNIT1  = 'unitless'
+TFORM2  = '1D      '                                                           
+TTYPE2  = 'ra      '           / J2000 right ascension
+TUNIT2  = 'degrees '
+TFORM3  = '1D      '                                                           
+TTYPE3  = 'dec     '           / J2000 declination
+TUNIT3  = 'degrees '
+TFORM4  = '1D      '                                                           
+TTYPE4  = 'lambda  '           / Survey "longitude"
+TUNIT4  = 'degrees '
+TFORM5  = '1D      '                                                           
+TTYPE5  = 'eta     '           / Survey "latitude"
+TUNIT5  = 'degrees '
+TFORM6  = '1J      '                                                           
+TTYPE6  = 'wflag   '           / 1=sidelobe, 0=not a sidelobe
+TUNIT6  = 'unitless'
+TFORM7  = '1E      '                                                           
+TTYPE7  = 'fpeak   '           / Peak flux density
+TUNIT7  = 'mJy     '
+TFORM8  = '1E      '                                                           
+TTYPE8  = 'fint    '           / Integrated flux density
+TUNIT8  = 'mJy     '
+TFORM9  = '1E      '                                                           
+TTYPE9  = 'rms     '           / Local noise estimate at the source position
+TUNIT9  = 'mJy     '
+TFORM10 = '1E      '                                                           
+TTYPE10 = 'maj     '           / Major axis FWHM
+TUNIT10 = 'arcsec  '
+TFORM11 = '1E      '                                                           
+TTYPE11 = 'min     '           / Minor axis FWHM
+TUNIT11 = 'arcsec  '
+TFORM12 = '1E      '                                                           
+TTYPE12 = 'pa      '           / Position angle (east of north)
+TUNIT12 = 'degrees '
+END     
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+</BODY>
+</HTML>

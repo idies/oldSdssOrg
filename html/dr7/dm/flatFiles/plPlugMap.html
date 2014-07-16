@@ -1,0 +1,182 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Tile/Plate/Plugged-Plate</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Tile/Plate/Plugged-Plate</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>plPlugMapT-XXXX.par</EM> for a tile with <em>XXXX</em> the tile ID,
+<em>plPlugMapP-YYYYQ.par</em> for a plate with <em>YYYY</em> the plate id,
+and <em>plPlugMapM-YYYY-ZZZZZ-AAQ.par</em> for a plate with <em>YYYY</em> the
+plate id, <em>ZZZZZ</em> the MJD of the mapper run (keyword
+<em>fscanMJD</em>), <em>AA</em> a unique integer over this mapper run for the
+plate (keyword <em>fscanId</em>), and <em>Q</em> the pointing identifier (A, B,
+C, ...) for plates with multiple pointings (it is absent for plates with a
+single pointing, which is most plates).
+ <P>
+<STRONG>Produced by:</STRONG>
+completeTilePre
+ <P>
+<STRONG>Modified by:</STRONG>
+completeTile, plate, plug
+ <P>
+<STRONG>Used by:</STRONG>
+completeTile, plate, plug
+ <P>
+<STRONG>Size:</STRONG>
+approximately 100 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+This file tracks the creation of a tile through its being plugged on the
+mountain as a plate.  Its created by the <em>completeTile</em> pipeline, which
+assigns the final list of targets to a tile.  At this stage, the table fields
+<em>xFocal</em>, <em>yFocal</em>, <em>spectrographId</em>, <em>fiberId</em>,
+and <em>throughput</em> are all unset (indicating by setting their values to
+-999), as are the keywords <em>plateVersion</em>, <em>plateId</em>,
+<em>temp</em>, <em>haMin</em>, <em>haMax</em>, <em>mjdDesign</em>,
+<em>theta</em>, <em>fscanVersion</em>, <em>fmapVersion</em>, <em>fscanMJD</em>,
+<em>fscanId</em>, <em>fscanMode</em>, <em>fscanSpeed</em>,
+<em>pluggers</em>, and <em>cartridgeId</em>.  The
+<em>plate</em> pipeline converts the file from a tile specification file
+to a plate specification file for that plate.  It fills in the values for the
+table fields <em>xFocal</em> and <em>yFocal</em> (the physical location of the
+hole on the plate), assigns preliminary values to <em>spectrographId</em> and
+<em>fiberId</em> to assist in plugging, and adds the keywords
+<em>plateVersion</em> (the version
+of the plate pipeline used), <em>plateId</em> (the unique ID for
+the plate), <em>temp</em>, <em>haMin</em>, <em>haMax</em>, <em>mjdDesign</em>,
+and <em>theta</em> (the observing conditions for which the plate was designed).
+The <em>scanner/mapper</em>  converts the file from a plate specification to a
+specification for a plate plugged with a fiber harness.  It fills in values
+for the table fields <em>spectrographId</em>, <em>fiberId</em>, and
+<em>throughput</em> (identifying which fiber is plugged in which hole and how
+much light is being transmitted through it), and adds the keywords
+<em>fscanVersion</em>, <em>fmapVersion</em>, <em>fscanMJD</em>,
+<em>fscanId</em>, <em>fscanMode</em>,
+<em>fscanSpeed</em>, <em>pluggers</em>, and <em>cartridgeId</em>.  The
+combination <em>fscanMJD</em> and <em>fscanId</em> is unique for a given
+<em>plateId</em>, and uniquely identifies a mapping for a plate.
+The <em>primTarget</em> and <em>secTarget</em> fields take the same value as
+the same fields in the <a href="tsObj.html">tsObj</a> files (see the
+description of that file for the legal values for those bit masks).
+If the object was targetted in the main survey then the targetting flags
+are for the main survey; in this case the highest bit in the two flags will
+not be set.  If the object was not targetted in the main survey then the
+target flags are for the southern survey; in this case the highest bit in the
+two flags will be set.
+
+<H2>Contents</H2>
+<PRE>
+# First set of keywords created by completeTile pipeline
+completeTileVersion 'XXX'               # Version of completeTile software
+tileId              XXXX                # Unique tile ID
+raCen               XXX.X               # J2000 RA of tile center (degrees)
+decCen              XXX.X               # J2000 DEC of tile center (degrees)
+reddeningMed	XX.XX XX.XX XX.XX XX.XX XX.XX # Median extinction over all
+					# science objects on the tile, in 
+					# order ugriz
+
+pointing                X               # Pointing (present only for plates
+                                        # with multiple pointings)
+
+# Next set of keywords added by plate software
+plateVersion        'XXX'               # Version of plate software
+plateId              XXXX               # Unique plate ID
+temp		    XXX.X               # Temperature plate drilled for (deg C)
+haMin		    XXX.X               # Minimum ha angle drilled for (deg)
+haMax		    XXX.X               # Maximum ha angle drilled for (deg)
+mjdDesign	      XXX               # Integer MJD drilled for (MJD)
+theta               XXX.X               # Cartridge position angle (deg)
+
+# Next set of keywords added by mapper software
+fscanVersion         'XXX'              # Version of scan software
+fmapVersion         'XXX'               # Version of mapping software
+fscanMJD	    XXXXX		# Integer MJD when plugged plate was
+					# scanned
+fscanId		     XX			# Unique mapped-plugged-plate id
+					# (together with fscanMJD)
+fscanMode 	    'XXX'		# 'slow', 'fast', or 'extreme'
+fscanSpeed 	    XXXX		# Motor scanning speed 
+pluggers            'XXX'               # Who plugged the plate
+cartridgeId          XXX                # Cartridge plugged into the plate
+
+# Type of plate hole
+typedef enum {
+    OBJECT,          # Object
+    COHERENT_SKY,    # Coherent sky bundle
+    GUIDE,           # Coherent guide bundle
+    LIGHT_TRAP,      # Light trap
+    QUALITY,         # Drilling quality assurance
+    ALIGNMENT        # Plate alignment hole
+} HOLETYPE;
+
+
+# Why completeTile (or tile) assigned this target to the tile
+typedef enum {
+    GALAXY,
+    QSO,
+    STAR_BHB,
+    STAR_CARBON,
+    STAR_BROWN_DWARF,
+    STAR_SUB_DWARF,
+    STAR_CATY_VAR,
+    STAR_RED_DWARF,
+    STAR_WHITE_DWARF,
+    REDDEN_STD,
+    SPECTROPHOTO_STD,
+    HOT_STD,
+    ROSAT_A,
+    ROSAT_B,
+    ROSAT_C,
+    ROSAT_D,
+    SERENDIPITY_BLUE,
+    SERENDIPITY_FIRST,
+    SERENDIPITY_RED,
+    SERENDIPITY_DISTANT,
+    SERENDIPITY_MANUAL,
+    QA,              # Quality assurance (assigned to more than one tile)
+    SKY,             # Blank sky
+    NA,              # Not applicable (not an OBJECT hole)
+    STAR_PN
+} OBJTYPE;
+
+typedef struct {
+    int       objId[5];       # Unique object id (run,rerun,camCol,field,id)
+    HOLETYPE  holeType;	      # Hole type
+    double    ra;             # J2000 RA (deg, -999 for QUALITY holes)
+    double    dec;            # J2000 DEC (deg, -999 for QUALITY holes)
+    float     mag[5];         # Fiber magnitude (u, g, r, i, z; OBJECT and
+                              # and GUIDE holes only)
+    float     starL;          # r' likelihood object is star (0-1,
+                                OBJECT holes only)
+    float     expL;           # r' likelihood object is exponential disk (0-1,
+                                OBJECT holes only)
+    float     deVaucL;        # r' likelihood object is deVaucouleurs profile
+                                (0-1, OBJECT holes only)
+    OBJTYPE   objType;        # Type of object (OBJECT holes only)
+    double    xFocal;         # Hole x-axis position in focal plane (mm)
+    double    yFocal;         # Hole y-axis position in focal plane (mm)
+    int       spectrographId; # Spectrograph ID of plugged fiber (1,2, OBJECT
+                              # holes only)
+    int       fiberId;        # Fiber ID of plugged fiber (for OBJECT holes,
+			      # 1 - 320, -1 if not mapped; for GUIDE holes,
+			      # 1-11 [small guide bundles only]) ids <0 for 
+			      # overlay in plugMapP file only
+    int       throughput;     # Fiber throughput (0 - 65535 , 0=no light, 
+                              # OBJECT holes only)
+    int       primTarget;     # Primary target flags
+    int       secTarget;      # Secondary target flags
+} PLUGMAPOBJ;
+
+</PRE>
+</BODY>
+</HTML>

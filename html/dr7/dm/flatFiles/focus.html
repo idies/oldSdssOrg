@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Focus Log</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Focus Log</H1>
+
+<STRONG>File Format:</STRONG>
+ASCII param file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>focus-XXXXX.par</EM>,
+where <EM>XXXXX</EM> in the int(MJD) date.
+ <P>
+<STRONG>Produced by:</STRONG>
+iop/cop
+<p>
+<STRONG>Used by:</STRONG>
+OPDB
+
+ <P>
+<STRONG>Size:</STRONG>
+???
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.
+
+<H2>Description</H2>
+Focus log for a single night.
+
+<H2>Contents</H2>
+
+<pre>
+<!--AUTOCHECK start param -->
+
+typedef struct {
+	 int run;        # run ID
+	 int frame;      # frame number in the run
+	 int mirror; 	 # which mirror
+	 int piston; 	 # microns
+	 int x_tilt; 	 # arcsec
+	 int y_tilt; 	 # arcsec
+	 int x_trans; 	 # microns
+	 int y_trans;  	 # microns
+} MIRROR;
+
+typedef struct {
+	 int run;
+	 int frame;
+	 int g1;
+	 int g2;
+	 int g3;
+	 int g4;
+	 int g5;
+} S_GALIL;
+
+typedef struct {
+	 int run;
+	 int frame;
+	 int g1;
+	 int g2;
+	 int g3;
+	 int g4;
+	 int g5;
+	 int g6;
+} P_GALIL;
+
+typedef struct {int run; int frame;  char comment[60];} FCOMMENT
+<!--AUTOCHECK end param -->
+
+fcomment 752 741   {Kp: 0.2 Kd: 0.1 Ki: 0.005 naverage: 2 interval: 60}
+fcomment 752 741   {Kp: 0.2 Kd: 0.1 Ki: 0.005 naverage: 2 interval: 60}
+fcomment 753 8   {Kp: 0.2 Kd: 0.1 Ki: 0.005 naverage: 2 interval: 60}
+fcomment 753 22   {Kp: 0.2 Kd: 0.1 Ki: 0.005 naverage: 2 interval: 60}
+mirror 753 22 2       1600 -255  0 0 133
+s_galil 753 22 -16636 1872371 1952371 2221143 -9636  
+mirror 755 10 2       1900 -255  0 0 133
+s_galil 755 10 -16619 2250323 2330323 2599095 -9619  
+mirror 755 15 2       1600 -255  0 0 133
+s_galil 755 15 -16636 1872371 1952371 2221143 -9636  
+fcomment 755 16  {pausing focus loop}
+
+</pre>
+</body>
+</html>

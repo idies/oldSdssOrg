@@ -1,0 +1,85 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Tiling Mask Full</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Tiling Mask</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tilingMask.par</EM> for the <em>tile</em> pipeline.
+ <P>
+<STRONG>Produced by:</STRONG>
+tilePre
+ <P>
+<STRONG>Modified by:</STRONG>
+tile
+ <P>
+<STRONG>Used by:</STRONG>
+sqlServer Load
+ <P>
+<STRONG>Size:</STRONG>
+Small
+ <P>
+<STRONG>Archived?</STRONG>
+No, not in OPDB
+
+<H2>Description</H2>
+As input to <em>tile</em>, a list of the masks for all targetting
+chunks in the drilling version of the sky.  On output from <em>tile</em>,
+a list of rectangles on the sky which were tiled, where each rectangle is a
+piece of a targetting chunk.
+<p>
+The target types which are tiled are specified in the keywords
+<em>primTargetMask</em> and <em>secTargetMask</em>, where the bits are the
+same as defined for the <em>primTarget</em> and <em>secTarget</em> fields,
+respectively, in the <a href="tsObj.html">tsObj</a> file.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+			      
+typedef struct {
+int chunk;
+			     #also known as the tileRun number
+int primTargetMask;
+			     #bitmask for which targets are tiled
+
+int secTargetMask;
+			     #bitmask for which targets are tiled
+
+int stripe;		     # Stripe number
+char NSBX;		     #What is this?
+int coordType;
+		              # 1 = boundaries specified in survey
+                              #     coordinates (lambda, eta)
+                              # 2 = boundaries specified in great circle
+                              #     coordinates (mu,nu)
+			      # 3 = east/west boundaries specified in great
+			      #     circle coordinates (mu), north/south
+			      #     boundaries specified in survey
+			      #     coordinates (eta)
+double lambdamu[2];
+			      # The east and west boundaries for this rectangle
+                              # (degrees; mu if coodinates are great circle,
+                              # lambda if survey)
+double etanu[2];
+			      # The north and south boundaries for this
+                              # rectangle (degrees; nu if coodinates are great
+                              # circle, eta if survey)
+char targetVersion[30];
+			      # Version of target selection used in this region
+double firstArea;
+		 	      # Area covered by the FIRST radio source cat
+} TIBOUNDARYFULL;
+
+<!--AUTOCHECK end param -->
+</pre>
+
+May be empty here if no masks present
+</body>
+</html>

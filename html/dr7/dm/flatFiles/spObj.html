@@ -1,0 +1,759 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Calibrated Objects</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Calibrated Photo and Spectroscopic Data for Objects</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spObj-pppp-mmmmm-rr.fit</EM>,
+where <EM>pppp</EM> is the spectroscopic plate number, <em>mmmmm</em> 
+is the MJD of observation of the last exposure included in the 
+spectro reduction, and <em>rr</em> is the spectroscopic rerun number.
+ <P>
+<STRONG>Produced by:</STRONG>
+dp
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+7 * 2880 + (2240 * Nstars) {rounded up to nearest multiple of 2880) * Nfields.
+For the objects of a given plate, 4.5 Mb.
+ <P>
+<STRONG>Archived?</STRONG>
+
+<H2>Description</H2>
+Calibrated version of the object lists put out by the <em>frames</em> pipeline.
+Versions of the tsObj data for each object observed on a spectroscopic
+plate, with the information for each object from the plPlugMapP file
+(targeting information) and spDiag (spectroscopic information) attached.
+<p>
+
+The first HDU gives the matching object in 
+the best (DR1) version of the sky, using the matches in OPDB.  
+The second HDU in the 
+file gives the usual object parameters for the original target objects, 
+using the original calibrations used in target selection (that is, the 
+target version of the sky).  
+<p>
+
+If the 
+original target object matches a PRIMARY in DR1, then that object is 
+given.  If not, and it matches one or more SECONDARY objects in DR1, 
+then one of the SECONDARY objects is given (the choice among secondaries 
+is essentially random).  
+If the original target object does not match a 
+PRIMARY or SECONDARY in the best version of the sky, then the original 
+object is repeated.  The attribute "catId", which has never been used, 
+indicates one kind of object it is.  0=target version of the object, 1= 
+SECONDARY object in best version of the sky, 2=PRIMARY object in best 
+version of the sky.
+<p>
+
+<H2>Primary Header</H2>
+<pre>
+SIMPLE  =                    T                                                  
+BITPIX  =                    8                                                  
+NAXIS   =                    0                                                  
+EXTEND  =                    T                                                  
+COMMENT = 'HDU 0 is best, HDU 1 is target'                                      
+COMMENT = 'best= latest reduction, target= the image from the reduction that we'
+COMMENT = 'Target is useful to see why we did what we did'                      
+COMMENT = 'Best is often a better view of the object'                           
+MAPID   = '0666-52146-01'      / Mapping between targets and fibers us          
+DATE    = '2003-03-17'         / date of file creation                          
+AUTHOR  = 'Jim Annis'                                                           
+ORIGIN  = 'SDSS@Fermilab'                                                       
+TELESCOP= 'SDSS 2.5m at Apache Point Observatory'                               
+INSTRUME= 'SDSS imaging camera'                                                 
+SURVEY  = 'The Sloan Digital Sky Survey'                                        
+END                                                                             
+</pre>
+
+<p>
+The <em>objc_type</em>, <em>objc_flags</em>, <em>objc_flags2</em>,
+<em>flags</em>, <em>flags2</em>, and <em>type</em> fields
+are enumerated types or bit masks, with the same set of legal values as found
+for the same fields in the <a href="fpObjc.html">fpObjc</a> file.
+<p>
+The <em>status</em> field is a bit mask specifying the status of the object
+in the survey.  The bits are defined as:
+<pre>
+  AR_OBJECT_STATUS_SET        = 0x1,    /* This object's status has been set */
+					/* in reference to its own run.      */
+  AR_OBJECT_STATUS_GOOD       = 0x2,    /* Good as determined by its         */
+					/* object flags.  Absence implies    */
+                                        /* bad.  This flag is set by         */
+                                        /* "setObjectStatus".                */
+  AR_OBJECT_STATUS_DUPLICATE  = 0x4,    /* This object has one or more       */
+					/* duplicate detections in an        */
+					/* adjacent field of the same Frames */
+					/* Pipeline Run.  This is set by     */
+					/* "setObjectStatus".                */
+  AR_OBJECT_STATUS_OK_RUN     = 0x10,   /* Located within the primary range  */
+					/* of rows for this field.  This is  */
+                                        /* usable object.  This flag is set  */
+                                        /* by "setObjectStatus".             */
+  AR_OBJECT_STATUS_RESOLVED   = 0x20,   /* This object has been resolved     */
+					/* against other runs.               */
+  AR_OBJECT_STATUS_PSEGMENT   = 0x40,   /* Belongs to a PRIMARY segment.     */
+					/* This does not imply that this is a*/
+					/* primary object.                   */
+  AR_OBJECT_STATUS_FIRST_FIELD= 0x100,  /* Belongs to the first field in its */
+					/* segment.  Used to distinguish     */
+					/* objects in fields shared by two   */
+					/* segments.                         */
+  AR_OBJECT_STATUS_OK_SCANLINE= 0x200,  /* Lies within valid nu range        */
+					/* for its scanline.                 */
+  AR_OBJECT_STATUS_OK_STRIPE  = 0x400,  /* Lies within valid eta range for   */
+					/* its stripe.                       */
+  AR_OBJECT_STATUS_SECONDARY  = 0x1000, /* This is a secondary survey object.*/
+  AR_OBJECT_STATUS_PRIMARY    = 0x2000, /* This is a primary survey object.  */
+  AR_OBJECT_STATUS_TARGET     = 0x4000  /* This is a spectroscopic target.   */
+</pre>
+<p>
+The <em>primTarget</em> field is a bit mask specifying which primary target
+catagories the object was selected in.  The bits are defined as:
+<pre>
+  AR_TARGET_QSO_HIZ           = 0x1,
+  AR_TARGET_QSO_CAP           = 0x2,
+  AR_TARGET_QSO_SKIRT         = 0x4,
+  AR_TARGET_QSO_FIRST_CAP     = 0x8,
+  AR_TARGET_QSO_FIRST_SKIRT   = 0x10,
+  AR_TARGET_QSO_MAG_OUTLIER  = 0x2000000,
+  AR_TARGET_QSO_REJECT	      = 0x20000000,
+  AR_TARGET_GALAXY_RED        = 0x20,
+  AR_TARGET_GALAXY_RED_II     = 0x4000000,
+  AR_TARGET_GALAXY            = 0x40,
+  AR_TARGET_GALAXY_BIG        = 0x80,
+  AR_TARGET_GALAXY_BRIGHT_CORE= 0x100,
+  AR_TARGET_ROSAT_A           = 0x200,
+  AR_TARGET_ROSAT_B           = 0x400,
+  AR_TARGET_ROSAT_C           = 0x800,
+  AR_TARGET_ROSAT_D           = 0x1000,
+  AR_TARGET_ROSAT_E           = 0x8000000,
+  AR_TARGET_STAR_BHB          = 0x2000,
+  AR_TARGET_STAR_CARBON       = 0x4000,
+  AR_TARGET_STAR_BROWN_DWARF  = 0x8000,
+  AR_TARGET_STAR_SUB_DWARF    = 0x10000,
+  AR_TARGET_STAR_CATY_VAR     = 0x20000,
+  AR_TARGET_STAR_RED_DWARF    = 0x40000,
+  AR_TARGET_STAR_WHITE_DWARF  = 0x80000,
+  AR_TARGET_STAR_PN           = 0x10000000,
+  AR_TARGET_SERENDIP_BLUE     = 0x100000,
+  AR_TARGET_SERENDIP_FIRST    = 0x200000,
+  AR_TARGET_SERENDIP_RED      = 0x400000,
+  AR_TARGET_SERENDIP_DISTANT  = 0x800000,
+  AR_TARGET_SERENDIP_MANUAL   = 0x1000000
+</pre>
+The <em>secTarget</em> field is a bit mask specifying which secondary target
+catagories the object was selected in.  The bits are defined as:
+<pre>
+  TAR_TARGET_LIGHT_TRAP        = 0x1,
+  TAR_TARGET_REDDEN_STD        = 0x2,
+  TAR_TARGET_TEST_TARGET       = 0x4,
+  TAR_TARGET_QA                = 0x8,
+  TAR_TARGET_SKY               = 0x10,
+  TAR_TARGET_SPECTROPHOTO_STD  = 0x20,
+  TAR_TARGET_GUIDE_STAR        = 0x40,
+  TAR_TARGET_BUNDLE_HOLE       = 0x80,
+  TAR_TARGET_QUALITY_HOLE      = 0x100,
+  TAR_TARGET_HOT_STD           = 0x200
+</pre>
+The <em>CULLED</em> keyword is a bit mask with the same bit values as the
+<em>primTarget</em> field.  If a bit is set, then all targets of that target
+type were culled during target selection, and thus this field is excluded from
+that science sample.
+<p>
+<pre>
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8                                                  
+NAXIS   =                    2                                                  
+NAXIS1  =                 3481                                                  
+NAXIS2  =                  640                                                  
+PCOUNT  =                    0                                                  
+GCOUNT  =                    1                                                  
+TFIELDS =                  208            
+TFORM1  = '1J      '          
+TTYPE1  = 'run     '           / Run ID
+TUNIT1  = 'unitless'          
+TFORM2  = '1J      '          
+TTYPE2  = 'camCol  '           / Camera column
+TUNIT2  = 'unitless'          
+TFORM3  = '1J      '          
+TTYPE3  = 'rerun   '           / Rerun number
+TUNIT3  = 'unitless'          
+TFORM4  = '1J      '          
+TTYPE4  = 'field   '           / Field ID
+TUNIT4  = 'unitless'          
+TFORM5  = '1J      '          
+TTYPE5  = 'parent  '           / Parent
+TUNIT5  = 'unitless'          
+TFORM6  = '1J      '          
+TTYPE6  = 'id      '           / Object ID, unique within its field (1 indexed)
+TUNIT6  = 'unitless'          
+TFORM7  = '1J      '          
+TTYPE7  = 'nchild  '           / Number of Children
+TUNIT7  = 'unitless'          
+TFORM8  = '1J      '          
+TTYPE8  = 'objc_type'          / Classification
+TUNIT8  = 'unitless'          
+TFORM9  = '1E      '
+TTYPE9  = 'objc_prob_psf'      / Probablity object is a star
+TUNIT9  = 'unitless'          
+TFORM10 = '1J      '          
+TTYPE10 = 'catID   '           / Catalog ID
+TUNIT10 = 'unitless'          
+TFORM11 = '1J      '          
+TTYPE11 = 'objc_flags'         / Object flags
+TUNIT11 = 'unitless'          
+TFORM12 = '1J      '          
+TTYPE12 = 'objc_flags2'        / More object flags
+TUNIT12 = 'unitless'          
+TFORM13 = '1E      '          
+TTYPE13 = 'objc_rowc'          / Nominal row position (r' coordinates)
+TUNIT13 = 'pixels  '          
+TFORM14 = '1E      '          
+TTYPE14 = 'objc_rowcErr'       / Nominal row position (r' coordinates) error
+COMMENT                        / This is the centroiding error only.  It does
+COMMENT                        / not include errors from the TRANS structures.
+TUNIT14 = 'pixels  '          
+TFORM15 = '1E      '          
+TTYPE15 = 'objc_colc'          / Nominal column position (r' coordinates)
+TUNIT15 = 'pixels  '          
+TFORM16 = '1E      '          
+TTYPE16 = 'objc_colcErr'       / Nominal column position (r' coordinates) error
+COMMENT                        / This is the centroiding error only.  It does
+COMMENT                        / not include errors from the TRANS structures.
+TUNIT16 = 'pixels  '          
+TFORM17 = '1E      '          
+TTYPE17 = 'rowv    '           / Row-component of object's velocity
+TUNIT17 = 'deg/day '          
+TFORM18 = '1E      '          
+TTYPE18 = 'rowvErr '           / Row-component of object's velocity error
+TUNIT18 = 'deg/day '          
+TFORM19 = '1E      '          
+TTYPE19 = 'colv'               / Column-component of object's velocity 
+TUNIT19 = 'deg/day'          
+TFORM20 = '1E      '          
+TTYPE20 = 'colvErr'            / Column-component of obejct's velocity error
+TUNIT20 = 'deg/day'          
+TFORM21 = '5E      '          
+TTYPE21 = 'rowc    '           / Row center
+TUNIT21 = 'pixels  '          
+TFORM22 = '5E      '          
+TTYPE22 = 'rowcErr '           / Row center error
+TUNIT22 = 'pixels  '          
+TFORM23 = '5E      '          
+TTYPE23 = 'colc    '           / Center colum 
+TUNIT23 = 'pixels  '          
+TFORM24 = '5E      '          
+TTYPE24 = 'colcErr '           / Center column error
+TUNIT24 = 'pixels  '          
+TFORM25 = '5E      '          
+TTYPE25 = 'sky     '           / Sky flux
+TUNIT25 = 'asinh mag/arcsec^2'         
+TFORM26 = '5E      '          
+TTYPE26 = 'skyErr  '           / Sky flux error
+TUNIT26 = 'asinh mag/arcsec^2'         
+TFORM27 = '5E      '          
+TTYPE27 = 'psfCounts'          / PSF flux
+TUNIT27 = 'asinh mag     '          
+TFORM28 = '5E      '          
+TTYPE28 = 'psfCountsErr'       / PSF flux error
+TUNIT28 = 'asinh mag     '          
+TFORM29 = '5E      '          
+TTYPE29 = 'fiberCounts'        / Flux in 3 arcsec diameter fiber radius
+TUNIT29 = 'asinh mag     '          
+TFORM30 = '5E      '          
+TTYPE30 = 'fiberCountsErr'     / Flux in 3 arcsec diameter fiber radius error
+TUNIT30 = 'asinh mag     '          
+TFORM31 = '5E      '          
+TTYPE31 = 'petroCounts'        / Petrosian flux
+TUNIT31 = 'asinh mag     '          
+TFORM32 = '5E      '          
+TTYPE32 = 'petroCountsErr'     / Petrosian flux error
+TUNIT32 = 'asinh mag     '          
+TFORM33 = 5E      '          
+TTYPE33 = 'petroRad'           / Petrosian radius
+TUNIT33 = 'arcsec '          
+TFORM34 = '5E      '          
+TTYPE34 = 'petroRadErr'        / Petrosian radius error
+TUNIT34 = 'arcsec '          
+TFORM35 = '5E      '          
+TTYPE35 = 'petroR50'           / Radius with 50 percent of Petrosian light
+TUNIT35 = 'arcsec '          
+TFORM36 = '5E      '          
+TTYPE36 = 'petroR50Err'        / Radius with 50 percent of Petrosian light error
+TUNIT36 = 'arcsec '          
+TFORM37 = '5E      '          
+TTYPE37 = 'petroR90'           / Radius with 90 percent of Petrosian light
+TUNIT37 = 'arcsec '          
+TFORM38 = '5E      '          
+TTYPE38 = 'petroR90Err'        / Radius with 90 percent of Petrosian light error
+TUNIT38 = 'arcsec  '          
+TFORM39 = '5E      '          
+TTYPE39 = 'Q       '           / Stokes Q parameter
+TUNIT39 = 'unitless'          
+TFORM40 = '5E      '          
+TTYPE40 = 'QErr    '           / Stokes Q parameter error
+TUNIT40 = 'unitless'          
+TFORM41 = '5E      '          
+TTYPE41 = 'U       '           / Stokes U parameter
+TUNIT41 = 'unitless'          
+TFORM42 = '5E      '          
+TTYPE42 = 'UErr    '           / Stokes U parameter error
+TUNIT42 = 'unitless'          
+TFORM43 = '5E      '
+TTYPE43 = 'M_e1    '           / Adaptive E1 shape measure
+TUNIT43 = 'unitless'          
+TFORM44 = '5E      '
+TTYPE44 = 'M_e2    '           / Adaptive E2 shape measure
+TUNIT44 = 'unitless'          
+TFORM45 = '5E      '
+TTYPE45 = 'M_e1e1Err'          / Covariance in E1-E1 shape measure
+TUNIT45 = 'unitless'          
+TFORM46 = '5E      '
+TTYPE46 = 'M_e1e2Err'          / Covariance in E1-E2 shape measure
+TUNIT46 = 'unitless'          
+TFORM47 = '5E      '
+TTYPE47 = 'M_e2e2Err'          / Covariance in E2-E2 shape measure
+TUNIT47 = 'unitless'          
+TFORM48 = '5E      '
+TTYPE48 = 'M_rr_cc '           / Adaptive (<r^2> + <c^2>)
+TUNIT48 = 'unitless'          
+TFORM49 = '5E      '
+TTYPE49 = 'M_rr_ccErr'         / Error in adaptive (<r^2> + <c^2>)
+TUNIT49 = 'unitless'          
+TFORM50 = '5E      '
+TTYPE50 = 'M_cr4   '           / Adaptive fourth moment
+TUNIT50 = 'unitless'          
+TFORM51 = '5E      '
+TTYPE51 = 'M_e1_psf'           / Adaptive E1 for PSF
+TUNIT51 = 'unitless'          
+TFORM52 = '5E      '
+TTYPE52 = 'M_e2_psf'           / Adaptive E2 for PSF
+TUNIT52 = 'unitless'          
+TFORM53 = '5E      '
+TTYPE53 = 'M_rr_cc_psf'        / Adaptive (<r^2) + <c^2>) for PSF
+TUNIT53 = 'unitless'          
+TFORM54 = '5E      '
+TTYPE54 = 'M_cr4_psf'          / Adaptive fourth moment for PSF
+TUNIT54 = 'unitless'          
+TFORM55 = '5E      '          
+TTYPE55 = 'iso_rowc'           / Isophotal row centroid
+TUNIT55 = 'pixels  '          
+TFORM56 = '5E      '          
+TTYPE56 = 'iso_rowcErr'        / Isophotal row centroid error
+TUNIT56 = 'pixels  '          
+TFORM57 = '5E      '          
+TTYPE57 = 'iso_rowcGrad'       / Gradient in row centroid with isophote
+TUNIT57 = 'pixels/mag/arcsec^2'
+TFORM58 = '5E      '          
+TTYPE58 = 'iso_colc'           / Isophotal column centroid
+TUNIT58 = 'pixels  '          
+TFORM59 = '5E      '          
+TTYPE59 = 'iso_colcErr'        / Isophotal column centroid error
+TUNIT59 = 'pixels  '          
+TFORM60 = '5E      '          
+TTYPE60 = 'iso_colcGrad'       / Gradient in column centroid with isophote
+TUNIT60 = 'pixels/mag/arcsec^2'
+TFORM61 = '5E      '          
+TTYPE61 = 'iso_a   '           / Isophotal major axis
+TUNIT61 = 'arcsec  '          
+TFORM62 = '5E      '          
+TTYPE62 = 'iso_aErr'           / Isophotal major axis error
+TUNIT62 = 'arcsec  '          
+TFORM63 = '5E      '          
+TTYPE63 = 'iso_aGrad'          / Gradient in major axis with isophote
+TUNIT63 = 'arcsec/mag/arcsec^2'
+TFORM64 = '5E      '          
+TTYPE64 = 'iso_b   '           / Isophotal minor axis
+TUNIT64 = 'arcsec  '          
+TFORM65 = '5E      '          
+TTYPE65 = 'iso_bErr'           / Isophotal minor axis error
+TUNIT65 = 'arcsec  '          
+TFORM66 = '5E      '          
+TTYPE66 = 'iso_bGrad'          / Gradient in minor axis with isophote
+TUNIT66 = 'arcsec/mag/arcsec^2'
+TFORM67 = '5E      '          
+TTYPE67 = 'iso_phi '           / Isophotal position angle
+TUNIT67 = 'degrees (+N thru E)'          
+TFORM68 = '5E      '          
+TTYPE68 = 'iso_phiErr'         / Isophotal position angle error
+TUNIT68 = 'degrees '          
+TFORM69 = '5E      '          
+TTYPE69 = 'iso_phiGrad'        / Gradient in positional angle with isophote
+TUNIT69 = 'degrees/mag/arcsec^2'
+TFORM70 = '5E      '          
+TTYPE70 = 'r_deV   '           / De Vaucouleurs fit scale radius
+TUNIT70 = 'arcsec  '          
+TFORM71 = '5E      '          
+TTYPE71 = 'r_deVErr'           / De Vaucouleurs fit scale radius error
+TUNIT71 = 'arcsec  '          
+TFORM72 = '5E      '          
+TTYPE72 = 'ab_deV  '           / De Vaucouleurs fit a/b
+TUNIT72 = 'unitless'          
+TFORM73 = '5E      '          
+TTYPE73 = 'ab_deVErr'          / De Vaucouleurs fit a/b error
+TUNIT73 = 'unitless'          
+TFORM74 = '5E      '          
+TTYPE74 = 'phi_deV '           / De Vaucouleurs fit position angle
+TUNIT74 = 'degrees (+N thru E)'          
+TFORM75 = '5E      '          
+TTYPE75 = 'phi_deVErr'         / De Vaucouleurs fit position angle error
+TUNIT75 = 'degrees '          
+TFORM76 = '5E      '          
+TTYPE76 = 'counts_deV'         / De Vaucouleurs magnitude fit
+TUNIT76 = 'asinh mag '          
+TFORM77 = '5E      '          
+TTYPE77 = 'counts_deVErr'      / De Vaucouleurs magnitude fit error
+TUNIT77 = 'asinh mag '          
+TFORM78 = '5E      '          
+TTYPE78 = 'r_exp   '           / Exponetial fit scale radius
+TUNIT78 = 'arcsec  '          
+TFORM79 = '5E      '          
+TTYPE79 = 'r_expErr'           / Exponetial fit scale radius error
+TUNIT79 = 'arcsec '          
+TFORM80 = '5E      '          
+TTYPE80 = 'ab_exp  '           / Exponential fit a/b
+TUNIT80 = 'unitless'          
+TFORM81 = '5E      '          
+TTYPE81 = 'ab_expErr'          / Exponential fit a/b error
+TUNIT81 = 'unitless'          
+TFORM82 = '5E      '          
+TTYPE82 = 'phi_exp '           / Exponential fit position angle
+TUNIT82 = 'degrees (+N thru E)'          
+TFORM83 = '5E      '          
+TTYPE83 = 'phi_expErr'         / Exponential fit position angle error
+TUNIT83 = 'degrees '          
+TFORM84 = '5E      '          
+TTYPE84 = 'counts_exp'         / Exponential fit
+TUNIT84 = 'asinh mag '          
+TFORM85 = '5E      '          
+TTYPE85 = 'counts_expErr'      / Exponential fit error
+TUNIT85 = 'asinh mag '          
+TFORM86 = '5E      '          
+TTYPE86 = 'counts_model'       / Better of DeV/Exp magnitude fit
+TUNIT86 = 'asinh mag '          
+TFORM87 = '5E      '          
+TTYPE87 = 'counts_modelErr'    / Better of DeV/Exp magnitude fit error
+TUNIT87 = 'asinh mag '          
+TFORM88 = '5E      '          
+TTYPE88 = 'texture '           / Texture parameter
+TUNIT88 = 'unitless'          
+TFORM89 = '5E      '          
+TTYPE89 = 'star_L  '           / Star likelihood
+TUNIT89 = 'unitless'          
+TFORM90 = '5E      '          
+TTYPE90 = 'star_lnL'           / Star ln(likelihood)
+TUNIT90 = 'unitless'          
+TFORM91 = '5E      '          
+TTYPE91 = 'exp_L   '           / Exponential disk fit likelihood
+TUNIT91 = 'unitless'          
+TFORM92 = '5E      '          
+TTYPE92 = 'exp_lnL '           / Exponential disk fit ln(likelihood)
+TUNIT92 = 'unitless'          
+TFORM93 = '5E      '          
+TTYPE93 = 'deV_L   '           / De Vaucouleurs fit likelihood
+TUNIT93 = 'unitless'          
+TFORM94 = '5E      '          
+TTYPE94 = 'deV_lnL '           / De Vaucouleurs fit ln(likelihood)
+TUNIT94 = 'unitless'          
+TFORM95 = '5E      '          
+TTYPE95 = 'fracPSF '           / Fraction of light in PSF
+TUNIT95 = 'unitless'          
+TFORM96 = '5J      '          
+TTYPE96 = 'flags   '           / Object flags
+TUNIT96 = 'unitless'          
+TFORM97 = '5J      '          
+TTYPE97 = 'flags2  '           / More object flags
+TUNIT97 = 'unitless'          
+TFORM98 = '5J      '          
+TTYPE98 = 'type    '           / Object type
+TUNIT98 = 'unitless'          
+TFORM99 = '5E      '
+TTYPE99 = 'prob_psf'           / Probablity object is a star in each filter
+TUNIT99 = 'unitless'          
+TFORM100= '5J      '          
+TTYPE100= 'nprof   '           / Number of radial bins
+TUNIT100= 'unitless'          
+TFORM101= '75E     '          
+TTYPE101= 'profMean'           / Mean pixel flux in annulus
+TUNIT101= 'maggies/arcsec^2'         
+TDIM101 = '(15,5)  '          
+TFORM102= '75E     '          
+TTYPE102= 'profErr '           / Standard deviation of profMean
+TUNIT102= 'maggies/arcsec^2'        
+TDIM102 = '(15,5)  '          
+TFORM103= '1J      '          
+TTYPE103= 'status  '           / Survey status
+TUNIT103= 'unitless'          
+TFORM104= '1D      '          
+TTYPE104= 'ra      '           / J2000 right ascension (r')
+TUNIT104= 'degrees '          
+TFORM105= '1D      '          
+TTYPE105= 'dec     '           / J2000 declination (r')
+TUNIT105= 'degrees '          
+TFORM106= '1D      '          
+TTYPE106= 'lambda  '           / Survey longitude (r')
+TUNIT106= 'degrees '          
+TFORM107= '1D      '          
+TTYPE107= 'eta     '           / Survey latitude (r')
+TUNIT107= 'degrees '          
+TFORM108= '1D      '          
+TTYPE108= 'l       '           / Galactic longitude (lII, r')
+TUNIT108= 'degrees '          
+TFORM109= '1D      '          
+TTYPE109= 'b       '           / Galactic latitude (bII, r')
+TUNIT109= 'degrees '          
+TFORM110= '5E      '          
+TTYPE110= 'offsetRa'           / Filter position ra minus final ra (* cos(dec))
+TUNIT110= 'arcsec  '          
+TFORM111= '5E      '          
+TTYPE111= 'offsetDec'          / Filter position dec minus final dec
+TUNIT111= 'arcsec  '          
+TFORM112= '1J      '
+TTYPE112= 'primTarget'         / Target selection flags
+TUNIT112= 'unitless'          
+TFORM113= '1J      '
+TTYPE113= 'secTarget'          / Additional Target selection flags
+TUNIT113= 'unitless'          
+TFORM114= '5E      '
+TTYPE114= 'reddening'          / Reddening in each filter
+TUNIT114= 'mag   '
+TFORM115= '1J      '
+TTYPE115= 'propermotionmatch'  / 1= match to USNO catatalog
+TUNIT115= 'unitless'          
+TFORM116= '1E      '
+TTYPE116= 'propermotiondelta'  / Difference in positions between USNO and
+COMMENT                        / photo object (r' band)
+TUNIT116= 'arcsec'
+TFORM117= '1E      '
+TTYPE117= 'propermotion'       / Proper motion of object
+TUNIT117= 'arcsec/century'
+TFORM118= '1E      '
+TTYPE118= 'propermotionangle'  / Direction of proper motion
+TUNIT118= 'degrees (+N thru E)'
+TFORM119= '1E      '
+TTYPE119= 'usnoBlue'           / Blue magntiude of matching USNO object
+TUNIT119= 'mag     '
+TFORM120= '1E      '
+TTYPE120= 'usnoRed '           / Red magntiude of matching USNO object
+TUNIT120= 'mag     '
+TFORM121= '1J      '
+TTYPE121= 'firstMatch'         / Number of FIRST sources matched (0=no match)
+TUNIT121= 'unitless'          
+TFORM122= '1J      '
+TTYPE122= 'firstId '           / FIRST catalog id of one matching source
+TUNIT122= 'unitless'          
+TFORM123= '1D      '
+TTYPE123= 'firstLambda'        / Composite radio source survey longitude
+TUNIT123= 'degrees '
+TFORM124= '1D      '
+TTYPE124= 'firstEta'           / Composite radio source survey latitude
+TUNIT124= 'degrees '
+TFORM125= '1E      '
+TTYPE125= 'firstDelta'         / Position difference between first and photo object (r' band)
+TUNIT125= 'arcsec'
+TFORM126= '1E      '
+TTYPE126= 'firstPeak'          / Peak first radio flux
+TUNIT126= 'mJy'
+TFORM127= '1E      '
+TTYPE127= 'firstInt'           / Integrated first radio flux
+TUNIT127= 'mJy'
+TFORM128= '1E      '
+TTYPE128= 'firstRms'           / Rms error in flux
+TUNIT128= 'mJy'
+TFORM129= '1E      '
+TTYPE129= 'firstMajor'         / Major axis (deconvolved)
+TUNIT129= 'arcsec'
+TFORM130= '1E      '
+TTYPE130= 'firstMinor'         / Minor axis (deconvolved)
+TUNIT130= 'arcsec'
+TFORM131= '1E      '
+TTYPE131= 'firstPa'            / Position angle (east of north)
+TUNIT131= 'degrees'
+TFORM132= '1J      '
+TTYPE132= 'rosatMatch'         / ID of matching ROSAT source (0 = no match)
+TUNIT132= 'unitless'          
+TFORM133= '1E      '
+TTYPE133= 'rosatDelta'         / Position difference between ROSAT and photo object (r' band)
+TUNIT133= 'arcsec'
+TFORM134= '1E      '                                                           
+TTYPE134= 'rosatPosErr'        / Error in ROSAT position
+TUNIT134= 'arcsec '
+TFORM135= '1E      '
+TTYPE135= 'rosatCps'           / Integrated ROSAT counts
+TUNIT135= 'counts/sec'
+TFORM136= '1E      '
+TTYPE136= 'rosatCpsErr'        / Error in integrated ROSAT counts
+TUNIT136= 'counts/sec'
+TFORM137= '1E      '
+TTYPE137= 'rosatHr1'           / ROSAT hardness ratio 1
+TUNIT137= 'unitless'          
+TFORM138= '1E      '
+TTYPE138= 'rosatHr1Err'        / Error in ROSAT hardness ratio 1
+TUNIT138= 'unitless'          
+TFORM139= '1E      '
+TTYPE139= 'rosatHr2'           / ROSAT hardness ratio 2
+TUNIT139= 'unitless'          
+TFORM140= '1E      '
+TTYPE140= 'rosatHr2Err'        / Error in ROSAT hardness ratio 2
+TUNIT140= 'unitless'          
+TFORM141= '1E      '
+TTYPE141= 'rosatExt'           / ROSAT extent parameter
+TUNIT141= 'arcsec'
+TFORM142= '1E      '
+TTYPE142= 'rosatExtLike'       / ROSAT extent parameter likelihood
+TUNIT142= 'unitless'          
+TFORM143= '1E      '
+TTYPE143= 'rosatDetectLike'    / ROSAT detection likelihood
+TUNIT143= 'unitless'          
+TFORM144= '1E      '
+TTYPE144= 'rosatExposure'      / ROSAT exposure time
+TUNIT144= 'seconds '
+TFORM145= '1J      '
+TTYPE145= 'priority'           / Priority bits
+TSCAL145= 1.00000000000000E+00
+TZERO145= 2.14748364800000E+09
+TUNIT145= 'unitless'          
+TFORM146= '50J     '
+TTYPE146= 'matchid '           / Link ids (run,camCol,rerun,field,id)
+TUNIT146= 'unitless'          
+TDIM146 = '(5,10)  '
+TFORM147= '1J      '                                                            
+TTYPE147= 'sprerun '          / Spectroscopic Rerun 
+TFORM148= '19A     '                                                            
+TTYPE148= 'vers_2d '          / Version of spectro2d
+TFORM149= '19A     '                                                            
+TTYPE149= 'vers_1d '          / Version of spectro1d
+TFORM150= '1J      '                                                            
+TTYPE150= 'plate   '          / plate observed 
+TFORM151= '1J      '                                                            
+TTYPE151= 'mjd     '          / MJD of last observation included in reduction
+TFORM152= '19A     '                                                            
+TTYPE152= 'mapid   '          / id of the fiber mapping
+TFORM153= '1J      '                                                            
+TTYPE153= 'fiberid '          / id of the fiber
+TFORM154= '5J      '                                                            
+TTYPE154= 'objid   '          / id of the object
+TFORM155= '1J      '                                                            
+TTYPE155= 'diag_primtarget'   / primtarget flags as found in spDiag file
+TFORM156= '1J      '                                                            
+TTYPE156= 'diag_sectarget'    / sectarget flags as found in spDiag file
+TFORM157= '1D      '                                                            
+TTYPE157= 'xfocal  '          / Hole x-axis position in focal plane (mm)
+TFORM158= '1D      '                                                            
+TTYPE158= 'yfocal  '          / Hole y-axis position in focal plane (mm)
+TFORM159= '1D      '                                                            
+TTYPE159= 'diag_ra '          / ra as found in the spDiag file
+TFORM160= '1D      '                                                            
+TTYPE160= 'diag_dec'          / dec as found in the spDiag file
+TFORM161= '3E      '                                                            
+TTYPE161= 'skyres  '          
+TFORM162= '5E      '                                                            
+TTYPE162= 'ugrizfibre'        
+TFORM163= '3E      '                                                            
+TTYPE163= 'griflux '          
+TFORM164= '3E      '                                                            
+TTYPE164= 'grisn   '          
+TFORM165= '1E      '                                                            
+TTYPE165= 'deriv2  '          
+TFORM166= '1E      '                                                            
+TTYPE166= 'mean    '          
+TFORM167= '1E      '                                                            
+TTYPE167= 'contchi2'          
+TFORM168= '1E      '                                                            
+TTYPE168= 'blueslope'         
+TFORM169= '1E      '                                                            
+TTYPE169= 'redslope'          
+TFORM170= '80A     '                                                            
+TTYPE170= 'class   '          
+TFORM171= '80A     '                                                            
+TTYPE171= 'zstat   '          
+TFORM172= '1E      '                                                            
+TTYPE172= 'zfinal  '          
+TFORM173= '1E      '                                                            
+TTYPE173= 'zerrfinal'         
+TFORM174= '1E      '                                                            
+TTYPE174= 'zconffinal'        
+TFORM175= '1E      '                                                            
+TTYPE175= 'zxcorr  '          
+TFORM176= '1E      '                                                            
+TTYPE176= 'zerrxcorr'         
+TFORM177= '1E      '                                                            
+TTYPE177= 'zconfxcorr'        
+TFORM178= '1E      '                                                            
+TTYPE178= 'zemz    '          
+TFORM179= '1E      '                                                            
+TTYPE179= 'zerremz '          
+TFORM180= '1E      '                                                            
+TTYPE180= 'zconfemz'          
+TFORM181= '1J      '                                                            
+TTYPE181= 'templateid'        
+TFORM182= '1J      '                                                            
+TTYPE182= 'nemline '          
+TFORM183= '1J      '
+TTYPE183= 'zwarning'             
+FORM184= '1E      '          
+TTYPE184= 'galclass'          
+TFORM185= '1D      '                                                            
+TTYPE185= 'vel_dis '          / velocity dispersion (km/s)
+TFORM186= '1D      '                                                            
+TTYPE186= 'vel_dise'          / error on velocity dispersion (km/s)
+TFORM187= '1D      '                                                            
+TTYPE187= 'eclass  '          / classification
+TFORM188= '1D      '                                                            
+TTYPE188= 'ecoeff1 '          / 1st expansion coefficient
+TFORM189= '1D      '                                                            
+TTYPE189= 'ecoeff2 '          / 2st expansion coefficient
+TFORM190= '1D      '                                                            
+TTYPE190= 'ecoeff3 '          / 3st expansion coefficient
+TFORM191= '1D      '                                                            
+TTYPE191= 'ecoeff4 '          / 4st expansion coefficient
+TFORM192= '1D      '                                                            
+TTYPE192= 'ecoeff5 '          / 5st expansion coefficient
+TFORM193= '5J      '                                                            
+TTYPE193= 'plugmapobj_objid'  / obj id as founnd in plPlugMapM file
+TFORM194= '80A     '                                                            
+TTYPE194= 'holetype'          / 
+TFORM195= '1D      '                                                            
+TTYPE195= 'plugmapobj_ra'     / ra as found in plPlugMapM file
+TFORM196= '1D      '                                                            
+TTYPE196= 'plugmapobj_dec'    / ra as found in plPlugMapM file
+TFORM197= '5E      '                                                            
+TTYPE197= 'mag     '          /
+TFORM198= '1E      '                                                            
+TTYPE198= 'starl   '          /
+TFORM199= '1E      '                                                            
+TTYPE199= 'expl    '          /
+TFORM200= '1E      '                                                            
+TTYPE200= 'devaucl '          /
+TFORM201= '80A     '                                                            
+TTYPE201= 'objtype '          /
+TFORM202= '1D      '                                                            
+TTYPE202= 'plugmapobj_xfocal' / xfocal as found in plPlugMapM file
+TFORM203= '1D      '                                                            
+TTYPE203= 'plugmapobj_yfocal' / yfocal as found in plPlugMapM file
+TFORM204= '1J      '                                                            
+TTYPE204= 'spectrographid'    / id of spectrograph
+TFORM205= '1J      '                                                            
+TTYPE205= 'plugmapobj_fiberid'/ fiber id as found in plPlugMapM file
+TFORM206= '1J      '                                                            
+TTYPE206= 'throughput'        /
+TFORM207= '1J      '                                                            
+TTYPE207= 'plugmapobj_primtarget' / primtarget as found in plPlugMapM file
+TFORM208= '1J      '                                                            
+TTYPE208= 'plugmapobj_sectarget' / sectarget as found in plPlugMapM file
+END                                              
+</pre>
+
+</BODY>
+
+</HTML>

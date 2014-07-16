@@ -1,0 +1,120 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for List of Bright Star Postage Stamps</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>List of 200x200 Bright Star Postage Stamps</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<em>scWing-rrrrrr-c.par</em> where <em>rrrrrr</em> is the run number, and
+<em>c</em> is the column in the Imaging Array.
+ <P>
+<STRONG>Produced by:</STRONG>
+ssc
+ <P>
+<STRONG>Used by:</STRONG>
+ps
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+No
+
+<H2>Description</H2>
+Contains a list of 200x200 sub-region cutouts around bright stars.
+
+<H2>Contents</H2>
+<PRE>
+
+<!--AUTOCHECK begin param -->
+<!--##begin PARAM wingStamps.header -->
+<!-- P+      Project: sdss   Date: Tue Oct 20 17:29:42 1998-->
+version             'XXX'               # Version of software used. 
+run                 XXX                 # Imaging run number. 
+camCol              XXX                 # Column in the imaging camera. 
+ssc_id              'XXX'               # SSC pipeline run identifier. 
+ko_ver              'XXX'               # Version of known object catalog  
+                                        # used. 
+<!--##end PARAM wingStamps.header -->
+
+<!--##begin PARAM wingStamps.table -->
+typedef struct {
+    int       field;          # Field sequence number within the run.  0  
+                              # indexed. 
+    char      filter[20];     # Filter (u, g, r, i, or z). 
+    int       row;            # Row center of cutout area in trimmed  
+                              # image, based upon predicted position of  
+                              # star in r-band. (pixels) 
+    int       col;            # Column center of cutout area in trimmed  
+                              # image, based upon predicted position of  
+                              # star in r-band. (pixels) 
+    float     mag;            # Catalog magnitude of star. 
+<!--##end PARAM wingStamps.table -->
+} SCWING            
+                         
+SCWING  104 r  390 1333  12.67
+SCWING  104 i  390 1333  12.67
+SCWING  104 u  390 1333  12.67
+SCWING  104 z  390 1333  12.67
+SCWING  104 g  390 1333  12.67
+SCWING  105 r 1064  925  11.86
+SCWING  105 i 1064  925  11.86
+SCWING  105 u 1064  925  11.86
+SCWING  105 z 1064  925  11.86
+SCWING  105 g 1064  925  11.86
+SCWING  109 r  655 1062  11.74
+SCWING  109 i  655 1062  11.74
+SCWING  109 u  655 1062  11.74
+SCWING  109 z  655 1062  11.74
+SCWING  109 g  655 1062  11.74
+SCWING  117 r  825  738  12.68
+SCWING  117 i  825  738  12.68
+SCWING  117 u  825  738  12.68
+SCWING  117 z  825  738  12.68
+SCWING  117 g  825  738  12.68
+SCWING  121 r  358  918  12.65
+SCWING  121 i  358  918  12.65
+SCWING  121 u  358  918  12.65
+SCWING  121 z  358  918  12.65
+SCWING  121 g  358  918  12.65
+SCWING  124 r  366  942  12.51
+SCWING  124 i  366  942  12.51
+SCWING  124 u  366  942  12.51
+SCWING  124 z  366  942  12.51
+SCWING  124 g  366  942  12.51
+SCWING  130 r  388  935  12.40
+SCWING  130 i  388  935  12.40
+SCWING  130 u  388  935  12.40
+SCWING  130 z  388  935  12.40
+SCWING  130 g  388  935  12.40
+SCWING  140 r  950 1335  11.05
+SCWING  140 i  950 1335  11.05
+SCWING  140 u  950 1335  11.05
+SCWING  140 z  950 1335  11.05
+SCWING  140 g  950 1335  11.05
+SCWING  142 r  898  863  12.73
+SCWING  142 i  898  863  12.73
+SCWING  142 u  898  863  12.73
+SCWING  142 z  898  863  12.73
+SCWING  142 g  898  863  12.73
+SCWING  144 r  395  868  11.31
+SCWING  144 i  395  868  11.31
+SCWING  144 u  395  868  11.31
+SCWING  144 z  395  868  11.31
+SCWING  144 g  395  868  11.31
+SCWING  168 r 1013 1162  12.16
+SCWING  168 i 1013 1162  12.16
+SCWING  168 u 1013 1162  12.16
+SCWING  168 z 1013 1162  12.16
+SCWING  168 g 1013 1162  12.16
+<!--AUTOCHECK end param -->
+</PRE>
+
+</BODY>
+</HTML>

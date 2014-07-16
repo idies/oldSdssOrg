@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for MT Primary Stars</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>MT Primary Stars</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>metaFC.fit</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+Contained in MTSTDS product
+ <P>
+<STRONG>Used by:</STRONG>
+excal
+ <P>
+<STRONG>Size:</STRONG>
+approximately 1 Mb
+ <P>
+<STRONG>Archived?</STRONG>
+Partially
+
+<H2>Description</H2>
+Defines all the MT standard stars in one meta finding
+chart. This lists the calibrated magnitudes for all the standard
+stars, and also lists the positions and relative fluxes of cataloged
+stars within all the standard star fields for use as finding chart
+stars.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+FILTER  =                  'V' / Filter in which finding chart was generated
+END
+<!--AUTOCHECK end hdu 0 -->
+
+<H2>Primary Standard Stars Header</H2>
+There is one HDU of this type.  It contains information about the fundamental,
+primary, and monitor stars.
+
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+XTENSION= 'BINTABLE'
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                  112
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    9
+TFORM1  = '40A     '
+TTYPE1  = 'objName '           / Object name.
+TFORM2  = '1J      '
+TTYPE2  = 'stdId   '           / unique standard id number (1-N);
+                               / matches 'stdId' in Finding Chart Stars HDU.
+TFORM3  = '1J      '
+TTYPE3  = 'stdFlavor'          / standard star flavor (0=fundamental,1=primary,
+                               / 2=monitor).
+TFORM4  = '1D      '
+TTYPE4  = 'ra      '           / J2000 right ascension (degrees)
+TFORM5  = '1D      '
+TTYPE5  = 'dec     '           / J2000 declination (degrees)
+TFORM6  = '1E      '
+TTYPE6  = 'v       '           / V magnitude
+TFORM7  = '1E      '
+TTYPE7  = 'bv      '           / B-V
+TFORM8  = '5E      '
+TTYPE8  = 'mag     '           / SDSS magnitudes (order is u' g' r' i' z')
+TFORM9  = '5E      '
+TTYPE9  = 'magErr  '           / Errors SDSS magnitudes (order is u' g' r' i' z')
+END<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+<H2>Finding Chart Stars Header</H2>
+There is one HDU of this type.  It contains the finding chart stars for all
+fields grouped together in one bunch.
+
+<pre>
+<!--AUTOCHECK begin hdu 2 -->
+XTENSION= 'BINTABLE'
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   28
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    5
+TFORM1  = '1J      '
+TTYPE1  = 'objId   '           / unique identifying number within finding chart
+TFORM2  = '1J      '
+TTYPE2  = 'stdId   '           / 1-N = standard star (matches 'stdId' in
+                               /       Primary Standard Stars HDU); 
+                               / 0   = not a standard star
+TFORM3  = '1E      '
+TTYPE3  = 'mag     '           / mag for this object in FILTER
+TFORM4  = '1D      '
+TTYPE4  = 'ra      '           / J2000 right ascension (degrees)
+TFORM5  = '1D      '
+TTYPE5  = 'dec     '           / J2000 declination (degrees)
+END
+<!--AUTOCHECK begin hdu 2 -->
+</pre>
+</BODY>
+</HTML>

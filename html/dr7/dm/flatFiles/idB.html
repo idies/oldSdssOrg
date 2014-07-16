@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Bias Vector</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Bias Vector</H1>
+
+<STRONG>File Format:</STRONG>
+FITS image
+ <P>
+<STRONG>Name:</STRONG>
+<EM>idB-rrrrrr-bc.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number (of the calibration run
+which produced the vector), <EM>b</EM> is the filter used (u, g, r, i, or z),
+and <EM>c</EM> is the column
+location in the Imaging Array of the CCD which acquired the data (1-6).
+ <P>
+<STRONG>Produced by:</STRONG>
+bias
+ <P>
+<STRONG>Used by:</STRONG>
+ps, frames
+ <P>
+<STRONG>Size:</STRONG>
+8640 bytes per file.  For a single calibration of all photometric chips,
+there are 30 files created for a total of 259.2 Kb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+There is one bias vector per chip.  Bias vectors are determined
+from calibration runs, separate from the actual data run being processed.
+A bias calibration run is just a normal drift scan with the "shutter"
+closed.  The bias vector is just the median over all rows in the run; i.e.,
+each pixel value in the bias vector is the median value of all pixel values
+along its associated column.  Overscan columns are included, and medianed the
+same way as the data columns.  No other processing is done.
+ <P>
+When processing the data from an imaging run, the bias vectors from the most
+recent bias calibration run are used.
+ <P>
+The pixel values are stored as unsigned integers.
+The <EM>TSCALE</EM> keyword gives the amount by which each pixel value has
+been multiplied; e.g., if <EM>TSCALE</EM> = 32, then each pixel value in
+the image is 32 times larger than the true value.  This scaling allows us to
+calculate precise values while maintaining pure integers.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                   16
+NAXIS   =                    2
+NAXIS1  =                 2128
+NAXIS2  =                    1
+BSCALE  =                    1
+BZERO   =                32768
+BUNITS  = 'ADUs x TSCALE'
+VERSION = 'XXX     '           / Software version used.
+TSCALE  =                  XXX / Scale factor to increase precision
+CAMCOL  =                  XXX / Column in the imaging camera.
+CAMROW  =                  XXX / Row in the imaging camera.
+RUN     =                  XXX / Run which produced the vector.
+BIAS_ID = 'XXX     '           / Bias pipeline run identifier.
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+</BODY>
+
+</HTML>

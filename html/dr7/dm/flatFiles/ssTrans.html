@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for simSurvey TRANS file</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>simSurvey TRANS file</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>runxxxxxx-rc-trans-eee.par</EM>,
+where <EM>xxxxxx</EM> is the zero padded run number, rc is camRow and camCol,
+and eee is the name of the tracking error file used to generate this.
+ <P>
+<STRONG>Produced by:</STRONG>
+simSurvey:  proc transParMake
+ <P>
+<STRONG>Used by:</STRONG>
+simSurvey: proc genit
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb.
+ <P>
+<STRONG>Archived?</STRONG>
+no
+
+<H2>Description</H2>
+For the run and CCD defined in the file name, define a TRANS structure
+for each frame from the CCD, such that (column, row) = TRANS * (nu, mu).
+
+<H2>Contents</H2>
+<PRE>
+typedef struct {
+    int       id;        # sequence number
+    double    a;         # the TRANS parameter a
+    double    b;         # the TRANS parameter b
+    double    c;         # the TRANS parameter c
+    double    d;         # the TRANS parameter d
+    double    e;         # the TRANS parameter e
+    double    f;         # the TRANS parameter f
+} TRANS;
+
+</PRE>
+
+</BODY>
+</HTML>
+
+
+
+
+

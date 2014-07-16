@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Tile Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Tile Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tiPlan.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+tilePre
+ <P>
+<STRONG>Used by:</STRONG>
+tile
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control the <em>tile</em> pipeline.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+parameters          'XXX'               # Tunable parameters file (if any)
+parametersDir 	    'XXX'               # Directory containing the 'parameters'
+                                        # file (optional --- defaults to '.')
+
+inputFile         tiInputTargets.fit    # input targets file
+outputFile        tiOutputTargets.fit   # output targets file
+outputTCFile      tiTileCenters.par     # output tile centers file
+inputDir	    XXX			# input files from here
+outputDir 	    XXX			# output files to here 
+tileType	    XXX                 # optional tile type (survey, lite, or
+					# test, used by opdb only --- defaults
+					# to survey
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+
+</HTML>

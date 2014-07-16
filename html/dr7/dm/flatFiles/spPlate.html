@@ -1,0 +1,523 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>DM from fits header</TITLE>
+<STYLE TYPE="text/CSS">
+<!--
+DT {font-weight: bold}
+-->
+</STYLE>
+</HEAD>
+
+<BODY>
+<H1>DM from fits header</H1>
+<DL>
+<DT>File Format:</DT>
+<DD>FITS</DD>
+<DT>Name:</DT>
+<DD><EM>spPlate-YYYY-ZZZZZ.fits</EM>,
+where <em>YYYY</em> is the plate ID and <em>ZZZZZ</em> is the MJD the plate was
+observed.  If the same mapping of this plate was observed on several nights,
+then this MJD corresponds to the last night it was observed.</DD>
+<DT>Produced by:</DT>
+<DD>idlspec2d</DD>
+<DT>Used by:</DT>
+<DD>spectro1d, specBS</DD>
+<DT>Size:</DT>
+<DD>57M</DD>
+<DT>Archived?</DT>
+<DD>Yes</DD>
+</DL>
+
+
+<H2>Description</H2>
+<P>The 640 combined flux- and wavelength-calibrated spectra over all
+exposures (potentially spanning multiple nights) for a given mapped plate.</P>
+
+<P>
+In summary, this file contains the following:
+
+<UL>
+<LI><A HREF="#hdu0">HDU #0</A> = Flux in units of 10^(-17) erg/cm/s/Ang [FLOAT]</LI>
+<LI><A HREF="#hdu1">HDU #1</A> = Inverse variance (1/sigma^2) for the above [FLOAT]</LI>
+<LI><A HREF="#hdu2">HDU #2</A> = AND mask [32-bit INT]</LI>
+<LI><A HREF="#hdu3">HDU #3</A> = OR mask [32-fit INT]</LI>
+<LI><A HREF="#hdu4">HDU #4</A> = RMS resolution at each pixel (=FWHM/2.35) in pixels [FLOAT]</LI>
+<LI><A HREF="#hdu5">HDU #5</A> = Plug-map structure from plPlugMapM file [BINARY FITS TABLE]</LI>
+<LI><A HREF="#hdu6">HDU #6</A> = Average sky flux in units of 10^(-17) erg/s/cm^2/Ang [FLOAT]</LI>
+<LI><A HREF="#hdu7">HDU #7</A> = Synthetic magnitude u,g,r,i,z Vectors [FLOAT]</LI>
+<LI><A HREF="#hdu8">HDU #8</A> = Median S/N of each fiber in the g,r,i regions of each spectrum respectively.[FLOAT]</LI>
+</UL>
+</P>
+
+<p> Each HDU contains an entry for each of the 640 fibers on a
+plate. </P>
+
+<P>There are two masks, an "AND" mask and an "OR" mask.  The spectra
+are constructed from 3 or more 15-minute observations, and the "AND" mask
+bits are set if that bit is set for each and every input observation.
+The "OR" mask bits are set if that bit is set for any of the observations.
+</P>
+
+<P>
+The mask bits are set as follows: <BR>
+<PRE>
+ 0 NOPLUG          Fiber not listed in plugmap file
+ 1 BADTRACE        Bad trace from routine TRACE320CRUDE
+ 2 BADFLAT         Low counts in fiberflat
+ 3 BADARC          Bad arc solution
+ 4 MANYBADCOLUMNS  >10% pixels are bad columns
+ 5 MANYREJECTED    >10% pixels are rejected in extraction
+ 6 LARGESHIFT      Large spatial shift between flat and object pos'n
+ 7 BADSKYFIBER     Sky Fiber shows extreme residuals
+ 8 NEARWHOPPER     Within 2 fibers of a whopping fiber (inclusive)
+10 SMEARIMAGE      Smear available for red and blue cameras (deprecated)
+11 SMEARHIGHSN     S/N sufficient for full smear fit (deprecated)
+12 SMEARMEDSN      S/N only sufficient for scaled median fit (deprecated)
+16 NEARBADPIXEL    Bad pixel within 3 pixels of trace
+17 LOWFLAT         Flat field less than 0.5
+18 FULLREJECT      Pixel fully rejected in extraction (INVVAR=0)
+19 PARTIALREJECT   Some pixels rejected in extraction
+20 SCATTEREDLIGHT  Scattered light significant
+21 CROSSTALK       Cross-talk significant
+22 NOSKY           Sky level unknown at this wavelength (INVVAR=0)
+23 BRIGHTSKY       Sky level > flux + 10*(flux error)
+                   AND sky > 2.0 * median(sky,99 pixels)
+24 NODATA          No data available in combine B-spline (INVVAR=0)
+25 COMBINEREJ      Rejected in combine B-spline
+26 BADFLUXFACTOR   Low flux-calibration or flux-correction factor
+27 BADSKYCHI       Relative chi^2 > 3 in sky residuals at this wavelength
+28 REDMONSTER      Contiguous region of bad chi^2 in sky residuals
+                   (with threshhold of relative chi^2 > 3)
+</PRE>
+</P>
+
+<P>
+<B>Which mask bits are important?</B>  The conditions that are considered
+very bad are already used to set the errors to infinity for the
+effected pixels (specifically, the inverse variance is set to zero).
+The most useful mask bit to look at is BRIGHTSKY, which indicates
+when the sky is so bright relative to the object that perhaps one
+shouldn't trust any of the object flux there.  Our reported errors
+are meant to include sky-subtraction errors, but there are instances
+(particularly around 5577) where these errors may be untrustworthy.
+</P>
+
+<P>The dispersion per pixel and the sky flux are computed at each
+pixel by re-weighting the individual spectra at each pixel according
+to their formal errors.  This re-weighting is only approximate.</P>
+
+<P>Note that the sky lines are slightly shifted in the reductions
+because we transform the velocities to the barycenter of the solar
+system.  Each exposure that contributes to the co-added spectra will
+have slightly different barycenter correction, so the "average sky"
+contains a superposition of these slightly-offset sky lines.  These
+shifts keep the object spectra as-measured at the barycenter,
+regardless of the time of year or the Earth's rotation relative to the
+spectroscopic targets.</P>
+
+</A NAME="hdu0">
+<H2>Primary HDU</H2>
+<P>Contains the flux density of each spectrum in units of 10^-17
+erg/s/cm^2/Ang.  The length of the
+spectra (NAXIS1) can vary, depending on the pixel binning and wavelength
+coverage.  The number of spectra (NAXIS2) is always 640.</P>
+<PRE>
+SIMPLE  =                    T / FIT STANDARD                                   
+BITPIX  =                  -32 / FITS BITS/PIXEL                                
+NAXIS   =                    2 / NUMBER OF AXES                                 
+NAXIS1  =                 3856 / WIDTH (TOTAL!)                                 
+NAXIS2  =                  640 / HEIGHT (TOTAL!)                                
+EXTEND  =                    T /                                                
+TAI     =        4593557832.61 / 1st row - Number of seconds since Nov 17 1858  
+RA      =            187.46463 / 1st row - Right ascension of telescope boresigh
+DEC     =            12.487701 / 1st row - Declination of telescope boresight (d
+EQUINOX =              2000.00 /                                                
+RADECSYS= 'FK5     '           /                                                
+AZ      =        300.020823333 / 1st row - Azimuth  (encoder) of tele (0=N?) (de
+ALT     =        56.0378723333 / 1st row - Altitude (encoder) of tele        (de
+AIRMASS =              1.15830 /                                                
+FOCUS   =            60.000000 / 1st row - Focus piston (microns?)              
+DATE-OBS= '2004-06-10'         / 1st row - TAI date                             
+TAIHMS  = '04:01:06.29'        / 1st row - TAI time (HH:MM:SS.SS) (TAI-UT = appr
+TIMESYS = 'tai     '           / TAI, not UTC                                   
+TAI-BEG =        4593555888.00 / Exposure Start Time                            
+TAI-END =        4593558651.00 / Exposure End Time                              
+MJD     =                53166 / MJD of observation                             
+MJDLIST = '53166   '           /                                                
+VERSION = 'v3_138_0'           / version of IOP                                 
+CAMVER  = 'SPEC1 v4_8'         / Camera code version                            
+OBSERVER= 'jcb     '                                                            
+OBSCOMM = 'science '                                                            
+TELESCOP= 'SDSS 2.5-M'         / Sloan Digital Sky Survey                       
+NEXP    =                   12 / Number of exposures in this file               
+BESTEXP =                27097 /                                                
+EXPID01 = 'b1-00027096-00027094-00027095' / ID string for exposure 1            
+EXPID02 = 'b1-00027097-00027094-00027095' / ID string for exposure 2            
+EXPID03 = 'b1-00027098-00027094-00027095' / ID string for exposure 3            
+EXPID04 = 'b2-00027096-00027094-00027095' / ID string for exposure 4            
+EXPID05 = 'b2-00027097-00027094-00027095' / ID string for exposure 5            
+EXPID06 = 'b2-00027098-00027094-00027095' / ID string for exposure 6            
+EXPID07 = 'r1-00027096-00027094-00027095' / ID string for exposure 7            
+EXPID08 = 'r1-00027097-00027094-00027095' / ID string for exposure 8            
+EXPID09 = 'r1-00027098-00027094-00027095' / ID string for exposure 9            
+EXPID10 = 'r2-00027096-00027094-00027095' / ID string for exposure 10           
+EXPID11 = 'r2-00027097-00027094-00027095' / ID string for exposure 11           
+EXPID12 = 'r2-00027098-00027094-00027095' / ID string for exposure 12           
+NEXP_B1 =                    3 / b1 camera number of exposures                  
+NEXP_B2 =                    3 / b2 camera number of exposures                  
+NEXP_R1 =                    3 / r1 camera number of exposures                  
+NEXP_R2 =                    3 / r2 camera number of exposures                  
+EXPT_B1 =              2400.30 / b1 camera exposure time (seconds)              
+EXPT_B2 =              2400.30 / b2 camera exposure time (seconds)              
+EXPT_R1 =              2400.30 / r1 camera exposure time (seconds)              
+EXPT_R2 =              2400.30 / r2 camera exposure time (seconds)              
+EXPTIME =              2400.30 / Minimum of exposure times for all cameras      
+SPCOADD = 'Sun Apr 29 13:56:29 2007' / SPCOADD finished                         
+FLAVOR  = 'science '           / Flavor of this sequence (e.g., dome f          
+QUALITY = 'excellent'          / night/image quality                            
+RADEG   = 1.87464100000000E+02 / Right Ascension. (degrees)                     
+DECDEG  = 1.24877500000000E+01 / Declination. (degrees)                         
+PLATEID =                 1615 / Plate Id                                       
+TILEID  =                 1140 / Tile Id                                        
+CARTID  =                    5 /Cartridge used in this plugging                 
+REDDEN  = '0.0796 0.0586 0.0425 0.0322 0.0228' / Median reddening vector for pla
+MAPID   =              5316001 / Map Id                                         
+NAME    = '1615-53160-01'      / Name of target; PlateId-MJD-Mapper Re          
+NGUIDE  =              27.0000 / Number of guider frames during exposure        
+SEEING20=              1.22667 / 20% seeing during exposure (arcsec)            
+SEEING50=              1.32667 / 50% seeing during exposure (arcsec)            
+SEEING80=              1.47667 / 80% seeing during exposure (arcsec)            
+RMSOFF20=       0.132410666667 / 20% RMS offset of guide fibers (arcsec)        
+RMSOFF50=       0.250306333333 / 50% RMS offset of guide fibers (arcsec)        
+RMSOFF80=       0.378881333333 / 80% RMS offset of guide fibers (arcsec)        
+COLBIN  =                    1 / Binning factor perpendicular to the c          
+ROWBIN  =                    1 / Binning factor perpendicular to the r          
+PROGRAM = 'binning 1   1 '     / Identifying name for CCD program               
+SECFOCUS= 6.00000000000000E+01 / Secondary Mirror Position as reported          
+GUIDEIMG= '/data/spectro/guider/gimg0208.fits' / Last archived guider image     
+WTIME   =        1086840891.67 / weatherData(timeStamp)                         
+AIRTEMP =        14.6333333333 / weatherData(airtemp)                           
+DEWPOINT=       -6.43333333333 / weatherData(dewpoint)                          
+DEWDEP  =        21.0666666667 / weatherData(dewpointDep)                       
+DUSTA   =       -9999.00000000 / weatherData(dusta)                             
+DUSTB   =        1326.66666667 / weatherData(dustb)                             
+DUSTC   =        14545.3333333 / weatherData(dustc)                             
+DUSTD   =        1068.33333333 / weatherData(dustd)                             
+GUSTD   = 2.78100000000000E+02 / weatherData(gustd)                             
+GUSTS   =        22.0333333333 / weatherData(gusts)                             
+HUMIDITY=        22.7000000000 / weatherData(humidity)                          
+HUMIDOUT=        22.0000000000 / weatherData(humidout)                          
+PRESSURE=        21.4900000000 / weatherData(pressure)                          
+WINDD   =        268.933333333 / weatherData(windd)                             
+WINDS   =        14.6000000000 / weatherData(winds)                             
+TEMP01  =       -93.3600000000 / CCD 01 Temperature                             
+TEMP02  =       -93.4900000000 / CCD 02 Temperature                             
+TEMP03  =       -92.3200000000 / CCD 03 Temperature                             
+TEMP04  =       -92.5800000000 / CCD 04 Temperature                             
+AUTHOR  = 'Scott Burles & David Schlegel' /                                     
+VERSIDL = '6.3     '           / Version of IDL                                 
+VERSUTIL= 'v5_2_0  '           / Version of idlutils                            
+VERSREAD= 'v5_3_3  '           / Version of idlspec2d for pre-processing raw dat
+VERS2D  = 'v5_3_3  '           / Version of idlspec2d for 2D reduction          
+VERSCOMB= 'v5_3_2  '           / Version of idlspec2d for combining multiple spe
+VERSLOG = 'fermi-CVS 04/29/07' / Version of SPECLOG product                     
+VERSFLAT= 'v1_7    '           / Version of SPECFLAT product                    
+OPBC    = 'opBC-51813.par'     /                                                
+OPCONFIG= 'opConfig-50000.par' /                                                
+OPECALIB= 'opECalib-51577.par' /                                                
+XSIGMA  =       0.954296739300 /                                                
+XSIGMIN =       0.931442000000 /                                                
+XSIGMAX =        1.01137995720 /                                                
+WSIGMA  =       0.897743760824 /                                                
+WSIGMIN =       0.850736000000 /                                                
+WSIGMAX =        1.00960004330 /                                                
+PLUGFILE= 'plPlugMapM-1615-53160-01.par' /                                      
+LAMPLIST= 'lamphgcdne.dat'     /                                                
+SKYLIST = 'skylines.dat'       /                                                
+HELIO_RV=        27.9144043066 / Heliocentric correction (added to velocities)  
+VACUUM  =                    T / Wavelengths are in vacuum                      
+SFLATTEN=                    T / Superflat has been applied                     
+PSFSKY  =                    3 / Order of PSF skysubtraction                    
+SKYCHI2 =        1.13077654335 / Mean chi^2 of sky-subtraction                  
+SCHI2MIN=        1.03063195647 /                                                
+SCHI2MAX=        1.23022636571 /                                                
+PREJECT =             0.200000 / Profile area rejection threshold               
+SPEC1_G =              18.2088 /(S/N)^2 for spec  1 at mag 20.20                
+SPEC1_R =              20.4968 /(S/N)^2 for spec  1 at mag 20.25                
+SPEC1_I =              17.8236 /(S/N)^2 for spec  1 at mag 19.90                
+SPEC2_G =              18.0836 /(S/N)^2 for spec  2 at mag 20.20                
+SPEC2_R =              16.9525 /(S/N)^2 for spec  2 at mag 20.25                
+SPEC2_I =              15.7482 /(S/N)^2 for spec  2 at mag 19.90                
+NSTD    =                   16 / Number of (good) std stars                     
+GOFFSTD =           -0.0647583 / Spectrophoto offset for std stars in G-band    
+GRMSSTD =            0.0488723 / Spectrophoto RMS for std stars in G-band       
+ROFFSTD =           -0.0422068 / Spectrophoto offset for std stars in R-band    
+RRMSSTD =            0.0385001 / Spectrophoto RMS for std stars in R-band       
+IOFFSTD =           -0.0537424 / Spectrophoto offset for std stars in I-band    
+IRMSSTD =            0.0358539 / Spectrophoto RMS for std stars in I-band       
+GROFFSTD=           -0.0159950 / Spectrophoto offset for std stars in (GR)      
+GRRMSSTD=            0.0492487 / Spectrophoto RMS for std stars in (GR)         
+RIOFFSTD=          -0.00345993 / Spectrophoto offset for std stars in (RI)      
+RIRMSSTD=            0.0257763 / Spectrophoto RMS for std stars in (RI)         
+NGAL    =                  449 / Number of (good) main galaxies                 
+GOFFGAL =           0.00695229 / Spectrophoto offset for main galaxies in G-band
+GRMSGAL =            0.0514427 / Spectrophoto RMS for main galaxies in G-band   
+ROFFGAL =           0.00336075 / Spectrophoto offset for main galaxies in R-band
+RRMSGAL =            0.0504721 / Spectrophoto RMS for main galaxies in R-band   
+IOFFGAL =           0.00660992 / Spectrophoto offset for main galaxies in I-band
+IRMSGAL =            0.0561837 / Spectrophoto RMS for main galaxies in I-band   
+GROFFGAL=          0.000831604 / Spectrophoto offset for main galaxies in (GR)  
+GRRMSGAL=            0.0390498 / Spectrophoto RMS for main galaxies in (GR)     
+RIOFFGAL=          -0.00204182 / Spectrophoto offset for main galaxies in (RI)  
+RIRMSGAL=            0.0255867 / Spectrophoto RMS for main galaxies in (RI)     
+LOWREJ  =                    5 / Extraction: low rejection                      
+HIGHREJ =                    8 / Extraction: high rejection                     
+SCATPOLY=                    0 / Extraction: Order of scattered light polynomial
+PROFTYPE=                    3 / Extraction profile: 1=Gaussian                 
+NFITPOLY=                    1 / Extraction: Number of parameters in each profil
+XCHI2   =              1.19279 / Extraction: Mean chi^2                         
+XCHI2MIN=              1.05698 /                                                
+XCHI2MAX=              1.34297 /                                                
+NWORDER =                    2 / Linear-log10 coefficients                      
+WFITTYPE= 'LOG-LINEAR'         / Linear-log10 dispersion                        
+COEFF0  =        3.57930000000 / Central wavelength (log10) of first pixel      
+COEFF1  =    0.000100000000000 / Log10 dispersion per pixel                     
+UNAME   = 'fnpc197.fnal.gov'   /                                                
+FBADPIX =            0.0290671 / Fraction of bad pixels                         
+FBADPIX1=            0.0292774 / Fraction of bad pixels on spectro-1            
+FBADPIX2=            0.0288568 / Fraction of bad pixels on spectro-2            
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =        3.57930000000 / Central wavelength (log10) of first pixel      
+CD1_1   =    0.000100000000000 / Log10 dispersion per pixel                     
+CRPIX1  =                    1 / Starting pixel (1-indexed)                     
+CTYPE1  = 'LINEAR  '           /                                                
+DC-FLAG =                    1 / Log-linear flag                                
+BUNIT   = '1E-17 erg/cm^2/s/Ang' /                                              
+</PRE>
+
+</A NAME="hdu1">
+<H2>HDU1</H2>
+<p> Contains the estimated inverse variance (i.e., the inverse of the
+square of the estimated error) of the flux density of
+each spectrum, in units of (10^-17 erg/s/cm^2/Ang)^-2.  It is set to
+zero (i.e., infinite error) for pixels with flags indicating that the
+data are unreliable. </P>
+<PRE>
+XTENSION= 'IMAGE   '           / IMAGE extension                                
+BITPIX  =                  -32 / Number of bits per data pixel                  
+NAXIS   =                    2 / Number of data axes                            
+NAXIS1  =                 3856 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 / No Group Parameters                            
+GCOUNT  =                    1 / One Data Group                                 
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =        3.57930000000 / Central wavelength (log10) of first pixel      
+CD1_1   =    0.000100000000000 / Log10 dispersion per pixel                     
+CRPIX1  =                    1 / Starting pixel (1-indexed)                     
+CTYPE1  = 'LINEAR  '           /                                                
+DC-FLAG =                    1 / Log-linear flag                                
+BUNIT   = '1/(1E-17 erg/cm^2/s/Ang)^2' /                                        
+</PRE>
+
+</A NAME="hdu2">
+<H2>HDU2</H2>
+<p> Contains the 'AND' mask, setting bits in the combined spectra if
+they are set in each of the 3 or more individual exposures making up
+the observation.</P>
+<PRE>
+XTENSION= 'IMAGE   '           / IMAGE extension                                
+BITPIX  =                   32 / Number of bits per data pixel                  
+NAXIS   =                    2 / Number of data axes                            
+NAXIS1  =                 3856 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 / No Group Parameters                            
+GCOUNT  =                    1 / One Data Group                                 
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =        3.57930000000 / Central wavelength (log10) of first pixel      
+CD1_1   =    0.000100000000000 / Log10 dispersion per pixel                     
+CRPIX1  =                    1 / Starting pixel (1-indexed)                     
+CTYPE1  = 'LINEAR  '           /                                                
+DC-FLAG =                    1 / Log-linear flag                                
+</PRE>
+
+</A NAME="hdu3">
+<H2>HDU3</H2>
+<p> Contains the 'OR' mask, setting bits in the combined spectra if
+they are set in any of the 3 or more individual exposures making up
+the observation.</P>
+<PRE>
+XTENSION= 'IMAGE   '           / IMAGE extension                                
+BITPIX  =                   32 / Number of bits per data pixel                  
+NAXIS   =                    2 / Number of data axes                            
+NAXIS1  =                 3856 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 / No Group Parameters                            
+GCOUNT  =                    1 / One Data Group                                 
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =        3.57930000000 / Central wavelength (log10) of first pixel      
+CD1_1   =    0.000100000000000 / Log10 dispersion per pixel                     
+CRPIX1  =                    1 / Starting pixel (1-indexed)                     
+CTYPE1  = 'LINEAR  '           /                                                
+DC-FLAG =                    1 / Log-linear flag                                
+</PRE>
+
+</A NAME="hdu4">
+<H2>HDU4: Dispersion</H2>
+
+<P>Contains the RMS resolution at each pixel in units of pixels.  To
+get the FWHM resolution, multiply the pixel values by sqrt(8*ln(2))
+&sim; 2.35. Since the spectra are binned with constant logarithmic
+dispersion, the pixel size is fixed in velocity space at 69 km/s =
+ln(10) * <var>c</var> * 0.0001, where 0.0001 is the log10 dispersion
+per pixel (stored in the header field <code>CD1_1</code>).  To convert
+to resolution in wavelength units, multiply by the local pixel size in
+wavelength units, which is ln(10) * lambda * 0.0001 where lambda is
+the wavelength of the pixel and 0.0001 is again the log10
+dispersion.</P>
+
+<PRE>
+XTENSION= 'IMAGE   '           / IMAGE extension                                
+BITPIX  =                  -32 / Number of bits per data pixel                  
+NAXIS   =                    2 / Number of data axes                            
+NAXIS1  =                 3856 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 / No Group Parameters                            
+GCOUNT  =                    1 / One Data Group                                 
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =        3.57930000000 / Central wavelength (log10) of first pixel      
+CD1_1   =    0.000100000000000 / Log10 dispersion per pixel                     
+CRPIX1  =                    1 / Starting pixel (1-indexed)                     
+CTYPE1  = 'LINEAR  '           /                                                
+DC-FLAG =                    1 / Log-linear flag                                
+BUNIT   = 'pixels  '           /cm^2/s/Ang)^2' /                                
+</PRE>
+
+</A NAME="hdu5">
+<H2>HDU5</H2>
+<P>Contains the entries from the plPlugMapM file used for the Spectro-2D
+reduction.  There are always 640 rows (one per object).
+Note that there are two arrays 'tsobjid' and 'tsobj_mag'
+tacked onto the end of each element of this table which contain
+the tsObj (from calibrated photo) id and fiber mags used
+in the spectrophotometry calculations for this object.</P>
+<PRE>
+XTENSION= 'BINTABLE'           /Binary table written by MWRFITS v1.4a           
+BITPIX  =                    8 /Required value                                  
+NAXIS   =                    2 /Required value                                  
+NAXIS1  =                  178 /Number of bytes per row                         
+NAXIS2  =                  640 /Number of rows                                  
+PCOUNT  =                    0 /Normally 0 (no varying arrays)                  
+GCOUNT  =                    1 /Required value                                  
+TFIELDS =                   21 /Number of columns in table                      
+COMMENT                                                                         
+COMMENT  *** End of mandatory fields ***                                        
+COMMENT                                                                         
+*
+COMMENT  *** Column names ***                                                   
+COMMENT                                                                         
+TTYPE1  = 'OBJID   '           /                                                
+TTYPE2  = 'HOLETYPE '          /                                                
+TTYPE3  = 'RA      '           /                                                
+TTYPE4  = 'DEC     '           /                                                
+TTYPE5  = 'MAG     '           /                                                
+TTYPE6  = 'STARL   '           /                                                
+TTYPE7  = 'EXPL    '           /                                                
+TTYPE8  = 'DEVAUCL '           /                                                
+TTYPE9  = 'OBJTYPE '           /                                                
+TTYPE10 = 'XFOCAL  '           /                                                
+TTYPE11 = 'YFOCAL  '           /                                                
+TTYPE12 = 'SPECTROGRAPHID '    /                                                
+TTYPE13 = 'FIBERID '           /                                                
+TTYPE14 = 'THROUGHPUT '        /                                                
+TTYPE15 = 'PRIMTARGET '        /                                                
+TTYPE16 = 'SECTARGET '         /                                                
+TTYPE17 = 'OFFSETID '          /                                                
+TTYPE18 = 'SCI_EXPTIME '       /                                                
+TTYPE19 = 'CALIBFLUX '         /                                                
+TTYPE20 = 'CALIBFLUX_IVAR '    /                                                
+TTYPE21 = 'SFD_EBV '           /                                                
+COMMENT                                                                         
+COMMENT  *** Column formats ***                                                 
+COMMENT                                                                         
+TFORM1  = '5J      '           /                                                
+TFORM2  = '6A      '           /                                                
+TFORM3  = 'D       '           /                                                
+TFORM4  = 'D       '           /                                                
+TFORM5  = '5E      '           /                                                
+TFORM6  = 'E       '           /                                                
+TFORM7  = 'E       '           /                                                
+TFORM8  = 'E       '           /                                                
+TFORM9  = '16A     '           /                                                
+TFORM10 = 'D       '           /                                                
+TFORM11 = 'D       '           /                                                
+TFORM12 = 'J       '           /                                                
+TFORM13 = 'J       '           /                                                
+TFORM14 = 'J       '           /                                                
+TFORM15 = 'J       '           /                                                
+TFORM16 = 'J       '           /                                                
+TFORM17 = 'J       '           /                                                
+TFORM18 = 'E       '           /                                                
+TFORM19 = '5E      '           /                                                
+TFORM20 = '5E      '           /                                                
+TFORM21 = 'E       '           /                                                
+</PRE>
+
+</A NAME="hdu6">
+<H2>HDU6</H2>
+<p> The sky spectrum subtracted from each fiber, in units of 10^-17
+erg/sec/cm^2/A.  Note that the sky lines are slightly shifted in the
+reductions because we transform the velocities to the barycenter of
+the solar system. Each exposure that contributes to the co-added
+spectra will have slightly different barycenter correction, so the
+"average sky" contains a superposition of these slightly-offset sky
+lines. These shifts keep the object spectra as-measured at the
+barycenter, regardless of the time of year or the Earth's rotation
+relative to the spectroscopic targets. </p>
+<PRE>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS v1.4a        
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 3856 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 /                                                
+GCOUNT  =                    1 /                                                
+</PRE>
+
+</A NAME="hdu7">
+<H2>HDU7</H2>
+<p> Broad-band magnitudes synthesized from the spectra.  These values
+are here for testing purposes only, and should be considered
+"unofficial"; better is to use the synthesized magnitudes available in
+the spZbest files (output of the specBS pipeline). </p> 
+<PRE>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS v1.4a        
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                    5 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 /                                                
+GCOUNT  =                    1 /                                                
+</PRE>
+
+</A NAME="hdu8">
+<H2>HDU8</H2>
+<p> Median signal-to-noise ratio per pixel for each fiber in the g, r,
+and i regions.   These values are here for testing purposes only, and 
+should be considered "unofficial". </p> 
+<PRE>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS v1.4a        
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                    3 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 /                                                
+GCOUNT  =                    1 /                                                
+</PRE>
+</BODY>
+</HTML>

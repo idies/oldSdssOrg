@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Frame Info</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Frame Info</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>idFrameLog-rrrrrr-cc.par</EM>, where <EM>rrrrrr</EM> is the imaging run
+number, and <em>cc</em> is the cpu number (1-6 photo, 7-10 astrom).
+ <P>
+<STRONG>Produced by:</STRONG>
+iop
+ <P>
+<STRONG>Used by:</STRONG>
+ssc
+ <P>
+<STRONG>Size:</STRONG>
+approximately 100 Kb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Lists the TCC information for each frame for a given run for a given CCD.
+Values of -9999 represent an undefined value.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+<!--##begin PARAM tCCInfo.header -->
+<!-- P+      Project: sdss   Date: Fri May 22 10:15:22 1998-->
+version             'XXX'               # Version of software used. 
+mjd                 XXX                 # MJD day number of night when  
+                                        # data was obtained. 
+run                 XXX                 # Imaging run number. 
+<!--##end PARAM tCCInfo.header -->
+cpu                 XXX		        # cpu ID
+
+# All values in the table are for when column 0 of row 0 of that frame for the
+# given CPU was read.
+<!--##begin PARAM tCCInfo.table -->
+typedef struct {
+    int       frame;          # Frame number. 
+    double    mjd;            # MJD (TAI / 86400). (MJD) 
+    double    ra;             # Right ascension/longitude. (degrees) 
+    double    dec;            # Declination/latitude. (degrees) 
+    float     spa;            # Camera col position angle wrt north.  
+                              # (degrees) 
+    float     ipa;            # Instrument rotator position angle.  
+                              # (degrees) 
+    float     ipaRate;        # Instrument rotator angular velocity.  
+                              # (deg/sec) 
+    double    az;             # Azimuth (encoder) of telescope. (degrees) 
+    double    alt;            # Altitude (encoder) of telescope.  
+                              # (degrees) 
+<!--##end PARAM tCCInfo.table -->
+} FRAMEINFO;
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+</HTML>

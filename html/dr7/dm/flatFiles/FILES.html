@@ -1,0 +1,807 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File Formats</TITLE>
+</HEAD>
+
+<BODY>
+
+<h1> Directory Structures</h1>
+
+The location of files is described in the <a href="DIRS.html"> Directory
+Structure</a> page.
+
+<H1>Survey Interface File Formats</H1>
+
+Below are listed all files used by the current set of pipelines/processes,
+grouped by process.  Individual files may be repeated as they may be used
+by more than one process; in this case, repeated listings include a
+parenthesized reference to the process which first created it.
+<menu>
+  <li> <a href="#misc">Miscellaneous</a>
+	<menu>
+          <li> <a href="yanny.html">FTCL Parameter Files</a>
+	  <li> <a href="#ccd">CCD configuration files</a>
+	  <li> <a href="#weather">Weather log files</a>
+	  <li> <a href="#tarTape">Tar tape logfiles</a>
+	</menu>
+  <li> <a href="#mt">Monitor Telescope</a>
+        <menu>
+          <li> <a href="#mop">mop</a>
+          <li> <a href="#mtframes">mtframes</a>
+          <li> <a href="#excal">excal</a>
+          <li> <a href="#kali">kali</a>
+	</menu>
+  <li> <a href="#imaging">Imaging</a>
+	<menu>
+  	  <li> <a href="#iop">iop</a>
+	  <li> <a href="#bias">bias</a>
+	  <li> <a href="#ssc">ssc</a>
+	  <li> <a href="#ps">ps</a>
+	  <li> <a href="#astrom">astrom</a>
+	  <li> <a href="#frames">frames</a>
+	  <li> <a href="#fcalib">fcalib</a>
+	  <li> <a href="#runQA">runQA</a>
+  	</menu>
+  <li> <a href="#targetSelection">Target Selection</a>
+	<menu>
+  	  <li> <a href="#ts">ts</a>
+	  <li> <a href="#export">export</a>
+  	  <li> <a href="#tsMan">tsManual</a>
+          <li> <a href="#tile">tile</a>
+          <li> <a href="#completeTile">completeTile</a>
+	</menu>
+  <li> <a href="#spectroscopy">Spectroscopy</a>
+	<menu>
+	  <li> <a href="#plate">plate</a>
+	  <li> <a href="#plug">plug</a>
+	  <li> <a href="#plateDb">plateDb</a>
+	  <li> <a href="#specDA">specDA</a>
+	  <li> <a href="#spectro2d">spectro2d</a>
+	  <li> <a href="#spectro1d">spectro1d</a>
+	  <li> <a href="#spectrodp">spectrodp</a>
+	</menu>
+  <li> <a href="#databases">Databases</a>
+	<menu>
+	  <li> <a href="#zoom">Zoom image file creation</a>
+	  <li> <a href="#imaging_csv">imaging csv creation</a>
+	  <li> <a href="#imaging_csv_load">imaging csv loading</a>
+	  <li> <a href="#spectro_csv">plates csv creation</a>
+	  <li> <a href="#spectro_csv_load">plates csv loading</a>
+	</menu>
+<!--
+  <li> <a href="#simSurvey">simSurvey</a>
+-->
+  
+</menu>
+
+<hr>
+
+<h2><a name="misc">Miscellaneous</a></h2>
+<UL>
+  <li> <a name="ccd">CCD configuration files</a>
+       <ul>
+	 <li> <a href="opConfig.html">opConfig</a> -- CCD readout configurations
+	 <li> <a href="opECalib.html">opECalib</a> -- CCD electronic calibration
+	 <li> <a href="opBC.html">opBC</a> -- CCD bad pixels
+	 <li> <a href="opCCDLog.html">opCCDLog</a> -- CCD temperatures and voltages
+       </ul>
+   <li> <a name="weather">Weather log files</a>
+       <ul>
+	 <li> <a href="idWeather.html">idWeatherLog</a> -- Weather log file 
+	 <li> <a href="opCloud.html">opCloud</a> -- cloud camera statistics
+       </ul>
+   <li> <a name="tarTape">Tar tape log files</a>
+       <ul>
+	 <li> <a href="idTarTape.html">idTarTape</a> -- Tar tape log
+       </ul>
+</UL>
+
+<h2><a name="mt">Monitor Telescope</a></h2>
+<UL>
+  <LI> <a name="mop">mop</a>
+       <ul>
+	 <LI> mopPre outputs
+	 <LI> additional inputs
+	      <UL>
+		<li> <a href="priFieldCenters.html">priFieldCenters</a> -- list of field centers
+	      </UL>
+	 <LI> outputs
+	      <UL>
+		<li> <a href="mdReport.html">mdReport</a> -- observing log
+		<li> <a href="mdR.html">mdR</a> -- raw frames
+		<li> <a href="opConfig.html">opConfig</a> (CCD readout configurations)
+		<li> <a href="opECalib.html">opECalib</a> (CCD electronic calibrations)
+		<li> <a href="opBC.html">opBC</a> (CCD bad pixels)
+		<li> <a href="opCCDLog.html">opCCDLog</a> (CCD temperatures and voltages)
+	        <li> <a href="idTarTape.html">idTarTape</a> (Tar tape logs)
+	      </UL>
+       </ul>
+  <LI> <a name="mtframes">mtframes</a>
+       <ul>
+	 <li> mtframesPre outputs
+	      <UL>
+		<li> <a href="mtPlan.html">mtPlan</a> -- processing plan
+		<li> <a href="mtParam.html">mtParam</a> -- tunable parameters
+	      </UL>
+	 <li> additional inputs
+	      <UL>
+		<LI> <A HREF="mdReport.html">mdReport</A> (mop)
+		<li> <a href="mdR.html">mdR</a> (mop)
+		<li> <a href="opConfig.html">opConfig</a> (mop)
+		<li> <a href="opECalib.html">opECalib</a> (mop)
+		<li> <a href="opBC.html">opBC</a> (mop)
+	      </ul>
+	 <li> outputs
+	      <UL>
+		<LI> <A HREF="mtObj.html">mtObj</A> -- instrumental object lists
+		<li> <a href="mtProcessing.html">mtProcessing</a> -- calibrations list
+		<li> <a href="mdReport.html">mdReport</a> (mop, modified)
+	      </ul>
+       </ul>
+  <LI> <a name="excal">excal</a>
+       <UL>
+	 <LI> excaliburPre outputs
+	      <UL>
+		<li> <a href="exPlan.html">exPlan</a> -- processing plan
+		<li> <a href="exParam.html">exParam</a> -- tunable parameters
+	      </UL>
+	 <LI> additional inputs
+	      <UL>
+		<LI> <A HREF="mdReport.html">mdReport</A> (mop)
+		<LI> <A HREF="mtObj.html">mtObj</A> (mtframes)
+		<LI> <A HREF="metaFC.html">metaFC</A> -- MT primary field definitions
+	      </UL>
+	 <LI> outputs
+	      <ul>
+		<li> <a href="exPhotom.html">exPhotom</a> -- photometric solutions
+		<li> <a href="mdReport.html">mdReport</a> (mop, modified)
+	      </ul>
+       </UL>
+  <LI> <a name="kali">kali</a>
+       <UL>
+	 <LI> kaliPre outputs
+	      <UL>
+		<li> <a href="kaPlan.html">kaPlan</a> -- processing plan
+		<li> <a href="kaParam.html">kaParam</a> -- tunable parameters
+	      </UL>
+	 <LI> additional inputs
+	      <UL>
+		<LI> <A HREF="mdReport.html">mdReport</A> (mop)
+		<LI> <A HREF="mtObj.html">mtObj</A> (mtframes)
+		<li> <a href="exPhotom.html">exPhotom</a> (excal)
+		<LI> <A HREF="koCat.html">koCat</A> -- Guide Star Catalog matches
+	      </UL>
+	 <LI> outputs
+	      <ul>
+		<LI> <A HREF="kaCalObj.html">kaCalObj</A> -- calibrated object lists 
+		<li> <a href="mdReport.html">mdReport</a> (mop, modified)
+	      </ul>
+       </UL>
+</ul>
+
+<h2><a name="imaging">Imaging</a></h2>
+<ul>
+  <li> <a name="iop">iop</a>
+       <UL>
+	 <LI> iopPre outputs
+	 <LI> additional inputs
+	 <LI> outputs
+	      <UL>
+		<li> <a href="idReport.html">idReport</a> -- observing log
+		<li> <a href="idR.html">idR</a> -- raw frames
+		<li> <a href="idGang.html">idGang</a> -- frame gang files
+		<li> <a href="idFrameLog.html">idFrameLog</a> -- frame log files
+		<li> <a href="focus.html">focus</a> -- focus log
+		<li> <a href="idTapeSummary.html">idTapeSummary</a> -- nightly log of what run/camcol is on which labeled tape
+		<li> <a href="idTapeLog.html">idTapeLog</a> -- raw frame tape
+	        <li> <a href="idTarTape.html">idTarTape</a> (Tar tape logs)
+		<li> <a href="opConfig.html">opConfig</a> (CCD readout configurations)
+		<li> <a href="opECalib.html">opECalib</a> (CCD electronic calibrations)
+		<li> <a href="opBC.html">opBC</a> (CCD bad pixels)
+		<li> <a href="opCCDLog.html">opCCDLog</a> (CCD temperatures and voltages)
+	        <li> <a href="opCamera.html">opCamera</a> -- imaging camera geometry
+		<li> <a href="idDaParam.html">idDaParam</a> --- all the DA tunable parameters
+	      </UL>
+       </UL>
+  <LI> <a name="bias">bias</a>
+       <UL>
+	 <LI> biasPre outputs
+	      <UL>
+		<li> <a href="biPlan.html">biPlan</a> -- processing plan
+	      </UL>
+	 <LI> additional inputs
+	      <UL>
+		<LI> <a href="idR.html">idR</a> (iop)
+	      </UL>
+	 <li>outputs
+	      <UL>
+		<li> <A HREF="idB.html">idB</A> -- bias vectors
+	      </UL>
+       </UL>
+  <LI> <a name="ssc">ssc</a>
+       <UL>
+	 <li>sscPre outputs
+	      <UL>
+		<li> <a href="scPlan.html">scPlan</a> -- processing plan
+		<li> <a href="scParam.html">scParam</a> -- tunable parameters
+		<li> <a href="koCat.html">koCat</a> -- catalog of known bright stars
+	      </UL>
+	 <LI> additional inputs
+	      <UL>
+		<LI> <a href="idReport.html">idReport</a> (iop)
+		<LI> <A HREF="idGang.html">idGang</A> (iop)
+		<LI> <a href="idR.html">idR</a> (iop)
+		<li> <a href="opConfig.html">opConfig</a> (iop)
+		<li> <a href="opECalib.html">opECalib</a> (iop)
+		<li> <a href="opBC.html">opBC</a> (iop)
+		<LI> <A HREF="opCamera.html">opCamera</A> (iop)
+	      </UL>
+	 <li> outputs
+	      <UL>
+		<li> <a href="scFang.html">scFang</a> -- matching postage stamps
+		<li> <a href="scFramePar.html">scFrameList</a> -- list of very bright star frames
+		<li> <a href="scFrame.html">scFrame</a> -- very bright star frames
+		<li> <a href="scWingPar.html">scWingList</a> -- list of 200x200 bright star postage stamps
+		<li> <a href="scWing.html">scWing</a> -- 200x200 bright star postage stamps
+		<li> <a href="scDiag.html">scDiag</a> -- diagnostics
+		<li> <a href="asTrans.html">scTrans</a> -- Rough TRANS from row, column to great circle coordinates
+	      </UL>
+       </UL>
+  <li> <a name="ps">ps</a>
+       <UL>
+	 <LI> psPre outputs
+	      <UL>
+		<li> <a href="psPlan.html">psPlan</a> -- processing plan
+		<li> <a href="psParam.html">psParam</a> -- tunable parameters
+	      </UL>
+	 <LI> additional inputs
+	      <UL>
+		<LI> <a href="idB.html">idB</a> (bias)
+		<li> <a href="opConfig.html">opConfig</a> (iop)
+		<li> <a href="opECalib.html">opECalib</a> (iop)
+		<li> <a href="opBC.html">opBC</a> (iop)
+		<LI> <A HREF="opCamera.html">opCamera</A> (iop)
+		<li> <a href="exPhotom.html">exPhotom</a> (excal)
+		<LI> <A HREF="kaCalObj.html">kaCalObj</A> (kali)
+		<LI> <a href="scFang.html">scFang</a> (ssc)
+		<li> <a href="scFramePar.html">scFrameList</a> (ssc)
+		<li> <a href="scFrame.html">scFrame</a> (ssc)
+		<li> <a href="scWingPar.html">scWingList</a> (ssc)
+		<li> <a href="scWing.html">scWing</a> (ssc)
+		<LI> <a href="asTrans.html">scTrans</a> (ssc)
+		<li> <A HREF="psCT.html">psCT</A> (ps) -- photometric calibration by time (from earlier run)
+	      </UL>
+	 <LI> outputs
+	      <UL>
+		<li> <a href="psFF.html">psFF</a> -- flat field vector
+		<li> <a href="psBB.html">psBB</a> -- corrected bias vector
+		<li> <a href="psField.html">psField</a> -- photometric calibration by field
+		<li> <A HREF="psCT.html">psCT</A> -- photometric calibration by time
+		<li> <a href="scFang.html">psFang</a> -- matching postage stamps
+	      </UL>
+       </UL>
+  <LI> <a name="astrom">astrom</a>
+       <UL>
+	 <LI> astromPre outputs
+	      <UL>
+		<li> <a href="asPlan.html">asPlan</a> -- processing plan
+		<li> <a href="asParam.html">asParam</a> -- tunable parameters
+		<li> <a href="koTycho2.html">koTycho2,koUcac</a> -- Tycho2/UCAC catalog stars
+	      </UL>
+	 <LI> additional inputs
+	      <UL>
+		<LI> <a href="idReport.html">idReport</a> (iop)
+		<li> <a href="idWeather.html">idWeatherLog</a> (weather)
+		<LI> <A HREF="opCamera.html">opCamera</A> (iop)
+		<LI> <A HREF="opConfig.html">opConfig</A> (iop)
+		<LI> <A HREF="scFang.html">psFang</A> (ps)
+	      </UL>
+	 <li>outputs
+	      <UL>
+		<li> <a href="asTrans.html">asTrans</a> -- TRANS from row, column to great circle coordinates
+		<li> <a href="asQA.html">asQA</a> -- diagnostics
+	      </UL>
+       </UL>
+  <LI> <a name="frames">frames</a>
+       <UL>
+	 <li> framesPre outputs
+	      <UL>
+		<li> <a href="fpPlan.html">fpPlan</a> -- processing plan
+		<li> <a href="fpParam.html">fpParam</a> -- tunable parameters
+		<li> <a href="koCat.html">koCat</a> -- known objects
+	      </UL>
+	 <LI> additional inputs
+	      <UL>
+		<LI> <a href="idR.html">idR</a> (iop)
+		<li> <a href="opConfig.html">opConfig</a> (iop)
+		<li> <a href="opECalib.html">opECalib</a> (iop)
+		<li> <a href="opBC.html">opBC</a> (iop)
+		<LI> <a href="idB.html">idB</a> (bias)
+		<LI> <a href="asTrans.html">asTrans</a> (astrom)
+		<li> <a href="psFF.html">psFF</a> (ps)
+		<li> <a href="psBB.html">psBB</a> -- (ps)
+		<li> <a href="psField.html">psField</a> (ps)
+		<li> <A HREF="psCT.html">psCT</A> (ps)
+	      </UL>
+         <li> outputs
+              <UL>
+	        <li> <a href="fpFieldStat.html">fpFieldStat</a> -- summary statistics for each field
+	        <li> <a href="fpObjc.html">fpObjc</a> -- <a href="../limitFiles/fpObjc.par">limits</a> 
+		-- object lists
+	        <li> <a href="fpC.html">fpC</a> -- corrected frame
+	        <li> <a href="fpBIN.html">fpBIN</a> -- binned corrected frame
+	        <li> <a href="fpM.html">fpM</a> -- mask image
+	        <li> <a href="fpAtlas.html">fpAtlas</a> -- atlas images
+	        <li> <!--  <a href="fpAtlasObj.html"> -->
+		     <!--  -->fpAtlasObj<!--  </a> --> -- atlas image
+		    of one object, extraced from the fpAtlas file by
+		    obsolete version of the DAS. <font color="red">These files are no
+		    longer created by new versions of the DAS, and the
+		    file description has been removed.</font>
+              </UL>
+         </UL>
+<li> <a name="fcalib">fcalib</a>
+   <UL>
+    <li> fcalibPre outputs
+	<UL>
+		<li> <a href="fcPlan.html">fcPlan</a> -- processing plan
+		<li> <a href="fcParam.html">fcParam</a> -- tunable parameters
+	</UL>
+    <li> additional inputs
+        <UL>
+		<LI> <a href="idReport.html">idReport</a> (iop)
+		<li> <a href="asTrans.html">asTrans</a> (astrom)
+		<li> <a href="exPhotom.html">exPhotom</a> (excal)
+		<LI> <A HREF="kaCalObj.html">kaCalObj</A> (kali)
+	        <li> <a href="fpObjc.html">fpObjc</a> -- <a href="../limitFiles/fpObjc.par">limits</a> 
+		-- object lists
+	</UL>
+    <li> outputs
+	<UL>
+	 <li> <a href="fcPCalib.html">fcPCalib</a> -- Photometric Calibrations
+	</UL>
+   </UL>
+</UL>
+
+
+<li> <a name="runQA">runQA</a>
+  <ul>
+    <li> runQA outputs
+    <ul>
+      <li> <a href="runQA.html">runQA</a>
+    </ul>
+  </ul>
+
+<h2><a name="targetSelection">Target Selection</a></h2>
+<UL>
+<li><a name="ts">ts</a>
+  <UL>
+    <li> tsPre inputs
+	<UL>
+	<li> <a href="tsPlan.html">tsPlan</a> -- processing plan
+	<li> <a href="tsMatchParam.html">tsMatchParam</a> -- Target Selection Matching Parameters
+	<li> <a href="tsQuasarParam.html">tsQuasarParam</a> -- Quasar Target Selection Parameters
+	<li> <a href="tsGalaxyParam.html">tsGalaxyParam</a> -- Galaxy Target Selection Parameters
+	<li> <a href="tsStarParam.html">tsStarParam</a> -- Star Target Selection Parameters
+	<li> <a href="tsSerendipParam.html">tsSerendipParam</a> -- Serendipity  Target Selection Parameters
+	<li> <a href="tsStandardParam.html">tsStandardParam</a> -- Standards Target Selection Parameters
+	<li> <a href="tsLocusPoints.html">tsLocusPoints</a> -- Quasar Target Selection Locus Points
+	<li> <a href="tsChunk.html">tsChunk</a> -- list of segments in a resolved chunk of sky
+	<li> <a href="tsObj.html">tsObj</a> -- <a href="../limitFiles/tsObj.par">limits</a> 
+	     -- calibrated objects
+	<li> <a href="tsFIRST.html">tsFIRST</a> -- FIRST catalog
+	<li> <a href="tsROSAT.html">tsROSAT</a> -- ROSAT catalog
+	</UL>
+    <li> additional inputs
+    <li> outputs
+	<UL>
+	<li> <a href="tsObj.html">tsObj</a> -- <a href="../limitFiles/tsObj.par">limits</a> 
+	     -- calibrated objects
+	<li> <a href="tsTargets.html">tsTargets</a> -- spectroscopic targets selected from a chunk
+	</UL>
+  </UL>
+<li><a name="export">export</a>
+  <UL>
+    <li> outputs
+	<UL>
+	<li> <a href="DIRS.html#chunk">Directory name</a>
+	<li> <a href="tsChunk.html">tsChunk</a> (ts)
+	<li> <a href="tsObj.html">tsObj</a> -- <a href="../limitFiles/tsObj.par">limits</a> 
+	     -- calibrated objects
+	<li> <a href="tsField.html">tsField</a> -- <a href="../limitFiles/tsField.par">limits</a> 
+	-- calibrated field info
+	<li> <a href="tsTargets.html#chunk">tsTargets</a> -- spectroscopic targets selected from a chunk
+	<li> <a href="tsMasks.html">tsMasks</a> -- culled and bad fields (optional)
+	</UL>
+  </UL>
+<li><a name="tsMan">tsManual</a>
+  <UL>
+    <li> outputs
+	<UL>
+	<li> <a href="tsManual.html">tsManual</a> -- manually selected targets
+	</UL>
+  </UL>
+<li><a name="tile">tile</a>
+  <UL>
+    <li> tilePre outputs
+	<UL>
+		<li> <a href="tiPlan.html">tiPlan</a> -- processing plan
+		<li> <a href="tiParam.html">tiParam</a> -- tunable parameters
+		<li> <a href="tiInputTargets.html">tiInputTargets</a> -- untiled targets
+		<li> <a href="tiBoundaries.html">tiBoundariesIn</a> -- targetting chunk boundaries
+        </UL>
+    <li> additional inputs
+        <UL>
+        </UL>
+    <li> outputs
+        <UL>
+		<li> <a href="tiInputTargets.html">tiOutputTargets</a> -- tiled and untiled targets
+		<li> <a href="tiTileCenters.html">tiTileCenters</a> -- tile centers
+		<li> <a href="tiUntiledCenters.html">tiUnTiledCenters</a> -- tile centers for plates which were never drilled or redesigned
+		<li> <a href="tiBoundaries.html">tiBoundariesOut</a> -- tiling chunk boundaries
+		<li> <a href="tiBoundariesFull.html">tiBoundariesOut</a> -- targetting chunk boundaries in new format for sql DB uploads
+		<li> <a href="tilingMask.html">tilingMask</a> -- targetting chunk mask in new format for sql DB uploads
+	</UL>
+   </UL>
+<li><a name="completeTile">completeTile</a>
+  <UL>
+    <li> completeTilePre outputs
+	<UL>
+		<li> <a href="ctPlan.html">ctPlan</a> -- processing plan
+		<li> <a href="ctParam.html">ctParam</a> -- tunable parameters
+		<li> <a href="ctObjs.html">ctObjs</a> -- potential targets in tile area
+        </UL>
+    <li> additional inputs
+        <UL>
+		<li> <a href="tiTileCenters.html">tiTileCenters</a> (tile)
+        </UL>
+    <li> outputs
+        <UL>
+		<li> <a href="plPlugMap.html">plPlugMap</a> -- final target list for tile
+	</UL>
+   </UL>
+</UL>
+
+<h2><a name="spectroscopy">Spectroscopy</a></h2>
+<UL>
+<li> <a name="plate">plate</a>
+  <UL>
+    <li> platePre outputs
+     <UL>
+        <li> <a href="plPlan.html">plPlan</a> -- processing plan
+        <li> <a href="plParam.html">plParam</a> -- tunable parameters
+        <li> <a href="plObs.html">plObs</a> -- list of plates to design
+     </UL>
+    <li> additional inputs
+     <UL>
+	<li> <a href="plPlugMap.html">plPlugMap</a> -- (completeTile)
+     </UL>
+    <li> outputs
+     <ul>
+	<li> <a href="plPlugMap.html">plPlugMap</a> -- (modified)
+	<li> <a href="plOverlay.html">plOverlay</a> -- Plug plate transparency overlay with connect-the-dot drawing
+     </UL>
+   </UL>
+<li> <a name="plug">plug</a>
+  <UL>
+    <li> plugPre outputs
+     <UL>
+     </UL>
+    <li> additional inputs
+     <UL>
+	<li> <a href="plPlugMap.html">plPlugMap</a> -- (platePrep)
+	<li> <a href="plOverlay.html">plOverlay</a> -- (platePrep)
+     </UL>
+    <li> outputs
+     <ul>
+	<li> <a href="plPlugMap.html">plPlugMap</a> -- (modified)
+     </UL>
+   </UL>
+<li> <a name="plateDb">plateDb</a>
+     <UL>
+     <LI> additional inputs
+          <ul>
+	  <li> <a href="tiTileCenters.html">tiTileCenters</a> -- (tile)
+          <li> <a href="plObs.html">plObs</a> -- (plate)
+	  <li> <a href="plPlugMap.html">plPlugMap</a> -- (plate)
+          </ul>
+     <LI> outputs
+     </ul>
+<LI> <a name="specDA">specDA</a>
+     <UL>
+     <LI> sopPre outputs
+     <LI> additional inputs
+        <UL>
+	   <li> <a href="plPlugMap.html">plPlugMapM</a> -- (plug)
+	</UL>
+     <LI> outputs
+        <UL>
+	<li> <a href="sdReport.html">sdReport</a> -- Spectro observing report
+	<li> <a href="sdR.html">sdR</a> -- Raw spectro data frames
+	<li> <a href="idTapeSummary.html">idTapeSummary</a> -- nightly log of what run/camcol is on which labeled tape
+        <li> <a href="idTarTape.html">idTarTape</a> (Tar tape logs)
+	<li> <a href="opConfig.html">opConfig</a> (CCD readout configurations)
+	<li> <a href="opECalib.html">opECalib</a> (CCD electronic calibrations)
+	<li> <a href="opBC.html">opBC</a> (CCD bad pixels)
+	<li> <a href="opCCDLog.html">opCCDLog</a> (CCD temperatures and voltages)
+	<li> <a href="idDaParam.html">idDaParam</a> --- all the DA tunable parameters
+        </UL>
+     </UL>
+	
+<LI> <a name="spectro2d">spectro2d</a>
+     <UL>
+       <li> spectro2dPre outputs
+	     <ul>
+	      <li> <a href="spPlan2d.html">spPlan2d</a> -- processing plan
+	      <li> <a href="spPlancomb.html">spPlancomb</a> -- combining plan
+	     </ul>
+       <li> additional inputs
+	     <ul>
+	      <li> <a href="sdReport.html">sdReport</a> (specDA)
+	      <li> <a href="sdR.html">sdR</a> (specDA)
+	      <li> <a href="plPlugMap.html">plPlugMap</a> (plug)
+	     </ul>
+       <li> outputs
+	     <ul>
+	     <li> <a href="spPlate.html">spPlate</a> -- combined spectra over all exposures
+	     </ul>
+     </UL>
+<LI> <a name="spectro1d">spectro1d</a>
+     <UL>
+       <li> spectro1dPre outputs
+	     <ul>
+	      <li> <a href="spPlan1d.html">spPlan1d</a> -- processing plan
+	      <li> <a href="spParam1d.html">spParam1d</a> -- tunable parameters
+	     </ul>
+       <li> additional inputs
+	     <ul>
+	     <li> <a href="spPlate.html">spPlate</a> (spectro2d)
+	     <li> <a href="plPlugMap.html">plPlugMapM</a> (plug)
+	     </ul>
+       <li> outputs
+	     <ul>
+	     <li> <a href="spSpec.html">spSpec</a> -- <a href="../limitFiles/spSpec.par">limits</a> 
+	     -- line measurements and redshift determinations</li>
+	     <li> <a href="spPlot.html">spPlot</a> -- gif and ps plots of the spectra
+             <li> <a href="spDiag.html">spDiag</a> -- diagnostics
+	     </ul>
+     </UL>
+<LI> <a name="spectrodp">spectrodp</a>
+     <UL>
+       <li> spectrodp inputs
+	     <ul>
+	      <li> <a href="tsObj.html">tsObj</a> -- the tsObj files
+	      <li> <a href="fpAtlas.html">fpAtlas</a> -- atlas images
+          <li> <a href="spDiag.html">spDiag</a> -- spectro1d summary 
+	      <li> <a href="plPlugMap.html">plPlugMapM</a> -- the plug mapping 
+	      <li> <a href="spSpec.html">spSpec</a> -- headers of the spSpec file
+	     </ul>
+       <li> outputs
+	     <ul>
+	     <li> <a href="spObj.html">spObj</a> -- tsObj+spDiag+plPlugMapM files for each spectro object
+	     <li> <a href="spAtlas.html">spAtlas</a> -- atlas images for each spectro object
+	     <li> <a href="spObj.html">stars-$label</a> -- spObj for all objects spectro classed as stars
+	     <li> <a href="spObj.html">gals-$label</a> -- spObj for all objects spectro classed as galaxies
+	     <li> <a href="spObj.html">qsos-$label</a> -- spObj for all objects spectro classed as quasars
+	     <li> <a href="spObj.html">unk-$label</a> -- spObj for all objects spectro classed as sky or unkown
+	     <li> <a href="spObj.html">main_gals-$label</a> -- spObj for all objects spectro classed 
+			as galaxies and targeted as main galaxies
+	     <li> <a href="spObj.html">main_qsos-$label</a> -- spObj for all objects spectro classed 
+			as quasars and targeted as main quasars
+	     <li> <a href="spObj.html">main_lrgs-$label</a> -- spObj for all objects spectro classed 
+			as galaxies and targeted as LRG
+	     </ul>
+     </UL>
+</ul>
+
+<h2><a name="databases">Databases</a></h2>
+
+<a href=csvStructure.html>SQL Database Loading Architecture</a>
+
+<UL>
+  <li> <a name="zoom">Create Zoom Images</a>
+  		<ul>
+		<li> <a href="DIRS.html#zoom">Directory structure</a>
+		 <li> inputs
+		 	<ul>
+	       	<li> <a href="fpC.html">fpC</a> -- corrected frame
+		<li> <a href="tsField.html">tsField</a> -- <a href="../limitFiles/tsField.par">limits</a> 
+		-- calibrated field info
+			</ul>
+		 <li> outputs 
+		 	<ul>
+	       	<li> <a href="Zoom.html">Zoom</a> -- Zoom frames
+			</ul>
+		</ul>
+  <li> <a name="imaging_csv">Create imaging CSV</a>
+       <ul>
+		<li> <a href="DIRS.html#imCsv">Directory structure</a>
+		<li> inputs
+	   	<ul>
+			<li> <a href="tsChunk.html">tsChunk</a> (ts) -- list of runs and fields
+			<li> <a href="tsObj.html">tsObj</a> -- <a href="../limitFiles/tsObj.par">limits</a> 
+			     -- calibrated objects, the SDSS incarnate
+			<li> <a href="tsField.html">tsField</a> -- 
+			<a href="../limitFiles/tsField.par">limits</a> -- calibrated field info
+	   	</ul>
+	 	<li> outputs
+	   	<ul>
+			<li> <a href="sqlField.html">sqlField</a> --
+				imaging field information
+			<li> <a href="sqlSegment.html">sqlSegment</a> --
+				imaging field information
+			<li> <a href="sqlPhotoObj.html">sqlPhotoObj</a> --
+				imaging field information
+			<li> <a href="sqlFieldProfile.html">sqlFieldProfile</a> --
+				imaging field information
+			<li> <a href="sqlPhotoProfile.html">sqlPhotoProfile</a> --
+				imaging field information
+			<li> <a href="sqlFirst.html">sqlFirst</a> --
+				imaging field information
+			<li> <a href="sqlRosat.html">sqlRosat</a> --
+				imaging field information
+			<li> <a href="sqlUSNO.html">sqlUSNO</a> --
+				imaging field information
+			<li> <a href="sqlMask.html">sqlMask</a> --
+			        imaging mask information
+	   		<li> <a href="csv_created.html">csv_created</a> 
+				-- "files are ready for loading" semaphore
+	   	</ul>
+
+	</ul>
+  <li> <a name="imaging_csv_load">Load imaging CSV</a>
+       <ul>
+		<li> inputs
+	   	<ul>
+			<li> <a href="sqlField.html">sqlField</a> --
+				imaging field information
+			<li> <a href="sqlSegment.html">sqlSegment</a> --
+				imaging segment information
+			<li> <a href="sqlPhotoObj.html">sqlPhotoObj</a> --
+				imaging objc information
+			<li> <a href="sqlFieldProfile.html">sqlFieldProfile</a> --
+				imaging field profile information
+			<li> <a href="sqlPhotoProfile.html">sqlPhotoProfile</a> --
+				imaging object profile information
+			<li> <a href="sqlFirst.html">sqlFirst</a> --
+				imaging FIRST objects information
+			<li> <a href="sqlRosat.html">sqlRosat</a> --
+				imaging ROSAT objects information
+			<li> <a href="sqlUSNO.html">sqlUSNO</a> --
+				imaging USNO objects information
+			<li> <a href="sqlMask.html">sqlMask</a> --
+			        imaging mask information
+	   		<li> <a href="csv_created.html">csv_created</a> 
+				-- "files are ready for loading" semaphore
+	   	</ul>
+	 	<li> output
+	   	<ul>
+	   		<li> <a href="csv_loaded.html">csv_loaded</a> 
+				-- "files have been loaded" semaphore
+	   	</ul>
+       </ul>
+  <li><a name="spectro_csv">Create spectroscopy CSV</a>
+       <ul>
+		<li> <a href="DIRS.html#spCsv">Directory structure</a>
+		<li> inputs
+	   	<ul>
+                <li> <a href="spDiag.html">spDiag</a> -- list of fibers
+		<li> <a href="spSpec.html">spSpec</a> -- <a href="../limitFiles/spSpec.par">limits</a> 
+		-- line measurements and redshift determinations</li>
+		<li> <a href="spPlatesToLoad.html">
+				spPlatesToLoad.par</a> -- which files to load
+	   	</ul>
+	 	<li> outputs
+	   	<ul>
+	   	<li> <a href="sqlPlate.html">sqlPlate</a> 
+			-- Plate information
+	   	<li> <a href="sqlSpecObj.html">sqlSpecObj</a> 
+			-- measured information for spectra
+	   	<li> <a href="sqlSpecLine.html">sqlSpecLine</a> 
+			-- measure lines in spectra
+	   	<li> <a href="sqlSpecLineIndex.html">sqlSpecLineIndex</a> 
+			-- spectra line indeces
+	   	<li> <a href="sqlELRedshift.html">sqlELRedshift</a> 
+			-- emission line redshifts
+	   	<li> <a href="sqlXCRedshift.html">sqlXCRedshift</a> 
+			-- cross correlation redshifts
+	   	<li> <a href="csv_created.html">csv_created</a> 
+				-- "files are ready for loading" semaphore
+	   	</ul>
+   </ul>
+  <li><a name="spectro_csv_load">Load spectroscopy CSV</a>
+   		<ul>
+		<li> inputs
+	   	<ul>
+		<li> <!--  <a href="plate-mjd.html"> -->plate-mjd.par<!--  </a> --> --
+			        plate status from plate-mapper <font
+		    color="red">Description to be added</font>
+		<li> <a href="spPlatesToLoad.html">
+				spPlatesToLoad.par</a> -- which files to load
+		<li> <a href="plPlugMap.html">
+				plPlugMapM</a> -- plugging information
+	   	<li> <a href="sqlPlate.html">sqlPlate</a> 
+			-- Plate information
+	   	<li> <a href="sqlSpecObj.html">sqlSpecObj</a> 
+			-- measured information for spectra
+	   	<li> <a href="sqlSpecLine.html">sqlSpecLine</a> 
+			-- measure lines in spectra
+	   	<li> <a href="sqlSpecLineIndex.html">sqlSpecLineIndex</a> 
+			-- spectra line indeces
+	   	<li> <a href="sqlELRedshift.html">sqlELRedshift</a> 
+			-- emission line redshifts
+	   	<li> <a href="sqlXCRedshift.html">sqlXCRedshift</a> 
+			-- cross correlation redshifts
+	   		<li> <a href="csv_created.html">csv_created</a> 
+				-- "files are ready for loading" semaphore
+		<li> <a href="spDuplicates.html">Duplicates List </a>
+		        -- a list of duplicate observations for a set of
+		           plates
+	   	</ul>
+	 	<li> loading output
+	   	<ul>
+	   	<li> <a href="csv_loaded.html">csv_loaded</a> 
+			-- "files have been loaded" semaphore
+	   	</ul>
+       </ul>
+  <li><a name="tiling_csv">Create Tiling CSV</a>
+       <ul>
+		<li> <a href="DIRS.html#tilingCsv">Directory structure</a>
+		<li> inputs
+	   	<ul>
+	        <li> <a href="tsTargets.html">tsTargets</a> -- (ts)
+		<li> <a href="tiTileCenters.html">tiTileCenters</a> -- (tile)
+	        <li> <a href="plPlugMap.html">plPlugMapT</a> -- (completeTile)
+	   	</ul>
+	 	<li> outputs
+	   	<ul>
+		<li> <a href="tsTargetsCsv.html">tsTargetsCsv</a>
+			-- List of Targets in CSV format
+	   	<li> <a href="csv_created.html">csv_created</a> 
+				-- "files are ready for loading" semaphore
+	   	</ul>
+   </ul>
+  <li><a name="tiling_csv_load">Load Tiling CSV</a>
+   		<ul>
+		<li> inputs
+	   	<ul>
+		<li> <a href="tsTargetsCsv.html">tsTargetsCsv</a>
+			-- List of Targets in CSV format
+	   	<li> <a href="csv_created.html">csv_created</a> 
+				-- "files are ready for loading" semaphore
+	   	</ul>
+	 	<li> loading output
+	   	<ul>
+	   	<li> <a href="csv_loaded.html">csv_loaded</a> 
+			-- "files have been loaded" semaphore
+	   	</ul>
+</UL>
+
+<!--
+<h2><a name="simSurvey">simSurvey</a></h2>
+  <li> <a href="ssGlossary.html">Glossary</a> of terms used in simSurvey
+  <li> input catalogs
+    <ul>
+	<li> <a href="ssCatobj.html">ssCatobj</a> -- input catalog of objects
+	<li> <a href="ssCatobjPM.html">ssCatobjPM</a> -- input catalog of objects with proper motions
+    </ul>
+  <li> imaging camera
+    <ul>
+	<li> <a href="ssGenit.html">ssGenit</a> -- control file for generating
+		drift scan data for the camera
+    	<li> <a href="ssErr.html">ssErr</a> -- tracking errors
+    	<li> <a href="ssTrans.html">ssTrans</a> -- TRANS for the scan
+   </ul>
+</UL>
+-->
+<hr>
+<address>Chris Stoughton  &lt; stoughto@fnal.gov &gt;</address>
+<address>Steve Kent &lt; skent@fnal.gov &gt;</address>
+<address>Jeff Munn &lt; munn@fnal.gov &gt;</address>
+<address>Brian Yanny &lt; yanny@fnal.gov &gt;</address>
+<address>Jim Annis &lt; annis@fnal.gov &gt;</address>
+</body>
+</html>
+     
+     
+     

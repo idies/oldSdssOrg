@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Photometric Calibration by Time</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Photometric Calibration by Time</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>psCT-rrrrrr-c.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number and <EM>c</EM> is the column
+location in the Imaging Array of the CCD which acquired the data (1-6).
+ <P>
+<STRONG>Produced by:</STRONG>
+ps
+ <P>
+<STRONG>Used by:</STRONG>
+ps (used in case no calibrated MT patches exist as input), frames
+ <P>
+<STRONG>Size:</STRONG>
+8640 bytes per file.  1 file for a single postage stamp pipeline run.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Photometric calibrations as a function of time.  There is one time-stamped
+photometric calibration for every calibration patch intersected by the run
+for which processed MT data exists.  The time-stamp indicates the time at
+which the calibration patch was observed by the Imaging Camera during this
+run.
+<p>
+The "KALXX_ID" keywords identify which secondary patches are used.  If,
+for example, 3 patches were used, then the keywords "KAL01_ID", "KAL02_ID", and
+"KAL03_ID" must be present.  Each such keyword identifies one patch, and should
+have a value of the form "XXXXX:YYYYY", where "XXXXX" is the sequence ID for the
+patch (i.e., the sequence ID recorded in the observing log for the frames from
+which the data came), and "YYYYY" is the unique ID for the Kali run which
+produced the calibrated data.  A sample keyword would look like:
+<pre>
+    KAL01_ID= '14653:1998-11-14T14:21:27 25387'
+</pre>
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+<!--##begin FITSbinary photometricTransformationByTime.PDU -->
+<!-- P+      Project: sdss   Date: Fri Jan  8 22:38:56 1999-->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+VERSION = 'XXX     '           / Version of software used.
+RUN     =                  XXX / Imaging run number.
+SSC_ID  = 'XXX     '           / SSC pipeline run identifier.
+ASTRO_ID= 'XXX     '           / Astrometric pipeline run identifier.
+BIAS_ID = 'XXX     '           / Bias pipeline run identifier.
+PS_ID   = 'XXX     '           / Postage stamp pipeline run identifier.
+<!--##end FITSbinary photometricTransformationByTime.PDU -->
+EXCAL_ID= 'XXX     '           / Excal pipeline run identifier (optional).
+KALXX_ID= 'kali_id'            / Kali pipeline run identifier for patch XX
+CAMCOL  =                  XXX / Column in the imaging camera.
+FILTERS = 'XXX XXX ...'        / Filter order in array fields
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Table Header</H2>
+There is one HDU of this format per file.  There is only one entry for each
+calibration patch intersected by the run for which processed MT data exists.
+The order of the filters in each row is the same as the order of filters in
+the PDU keyword <em>FILTER</em>.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+<!--##begin FITSbinary photometricTransformationByTime.header -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   48
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    3
+<!--##end FITSbinary photometricTransformationByTime.header -->
+<!--##begin FITSbinary photometricTransformationByTime.table -->
+TFORM1  = '1D      '          
+TTYPE1  = 'mjd     '           / MJD time at which this calibration applies.
+TUNIT1  = 'MJD     '          
+TFORM2  = '5E      '          
+TTYPE2  = 'flux20  '           / Flux for a 20th mag (above atmosphere) object.
+TUNIT2  = 'counts  '          
+TFORM3  = '5E      '          
+TTYPE3  = 'flux20Err'          / Flux for a 20th mag (above atmosphere) object. 
+TUNIT3  = 'counts  '          
+<!--##end FITSbinary photometricTransformationByTime.table -->
+END                                                                            
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+</BODY>
+
+</HTML>

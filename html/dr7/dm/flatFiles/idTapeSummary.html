@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Tape Summary Log</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Tape Summary Log</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>idTapeSummary-ddddd.par</EM>, where <EM>ddddd</EM> is the integer MJD date
+ <P>
+<STRONG>Produced by:</STRONG>
+iop
+ <P>
+<STRONG>Used by:</STRONG>
+strategy (tape loading onto production system)
+<p>
+<STRONG>Size:</STRONG>
+&lt; 100 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Summary of contents of all tapes produced by iop for a given night.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+mjd		  XXXXX	      # mjd
+
+typedef struct {
+    int	    run;	      # Run number for frames (camCol > 0), else 0
+    int     camCol;	      # camCol 1-6 for photo cols, 0 = GLST
+    int     startField;	      # starting field number for this run on tape
+			      # for frames (camCol > 0), else 0
+    int     endField;	      # ending  field number for this run on tape
+			      # for frames (camCol > 0), else 0
+    char    tapeLabel[10];    # tape label id, i.e. JL0082
+    int     tapeCopy;	      # 1 = To FNAL for processing, 0 = duplicate
+	
+} TAPESUMMARY;
+
+# the first entries are for raw imaging frame tapes
+
+tapesummary 581 1 0 69 JL0005 1
+tapesummary 582 1 0 72 JL0005 1
+
+tapesummary 581 1 0 69 JL0017 0
+tapesummary 582 1 0 72 JL0017 0
+
+tapesummary 581 2 0 69 JL0006 1
+tapesummary 582 2 0 72 JL0006 1
+
+tapesummary 581 2 0 69 JL0018 0
+tapesummary 582 2 0 72 JL0018 0
+
+tapesummary 581 3 0 69 JL0007 1
+tapesummary 582 3 0 72 JL0007 1
+
+tapesummary 581 3 0 69 JL0019 0
+tapesummary 582 3 0 72 JL0019 0
+
+tapesummary 581 4 0 69 JL0008 1
+tapesummary 582 4 0 72 JL0008 1
+
+tapesummary 581 4 0 69 JL0020 0
+tapesummary 582 4 0 72 JL0020 0
+
+tapesummary 581 5 0 69 JL0009 1
+tapesummary 582 5 0 72 JL0009 1
+
+tapesummary 581 5 0 69 JL0021 0
+tapesummary 582 5 0 72 JL0021 0
+
+tapesummary 581 6 0 69 JL0010 1
+tapesummary 582 6 0 72 JL0010 1
+
+tapesummary 581 6 0 69 JL0022 0
+tapesummary 582 6 0 72 JL0022 0
+
+# the following entries are for GLST (gangs, logs, spectro, TPM) tapes
+
+tapesummary 0 0 0 0 JL0011 1
+tapesummary 0 0 0 0 JL0023 0
+
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+</HTML>

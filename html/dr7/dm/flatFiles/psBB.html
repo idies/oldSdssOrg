@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Corrected Bias Vector</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Corrected Bias Vector</H1>
+
+<STRONG>File Format:</STRONG>
+FITS image
+ <P>
+<STRONG>Name:</STRONG>
+<EM>psBB-rrrrrr-bc-ffff.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number (of the calibration run
+which produced the vector), <EM>b</EM> is the filter used (u, g, r, i, or z),
+<EM>c</EM> is the column
+location in the Imaging Array of the CCD which acquired the data (1-6),
+and <em>ffff</em> is the file number.
+ <P>
+<STRONG>Produced by:</STRONG>
+ps
+ <P>
+<STRONG>Used by:</STRONG>
+frames
+ <P>
+<STRONG>Size:</STRONG>
+8640 bytes per file.  For a single calibration of all photometric chips,
+and for a single field, there are 30 files created for a total of 259.2 Kb.
+ <P>
+<STRONG>Archived?</STRONG>
+Tracked file.
+
+<H2>Description</H2>
+There is one psBB bias vector (a.k.a. "better bias") per chip per field.
+The original bias vectors, idB* files, are determined from calibration runs.
+Corrected bias vectors, psBB* files, are (optionally) produced by PSP which 
+adds the scattered light correction to the original bias vectors.
+ 
+The pixel values are stored as unsigned integers. The TSCALE keyword gives the
+amount by which each pixel value has been multiplied;
+e.g., if TSCALE = 32, then each pixel
+value in the image is 32 times larger than the true value.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                   16
+NAXIS   =                    2
+NAXIS1  =                 2128
+NAXIS2  =                    1
+BZERO   =                32768
+BSCALE  =                    1
+BUNITS  = 'ADUs x TSCALE'     
+TSCALE  =                   32
+TSHIFT  =                  XXX / Scale factor to increase precision
+DERV_VER= 'XXX     '
+ASTR_VER= 'XXX     '           / Version of astrom used
+VERSION = 'XXX     '           / Version of photo used 
+FF_ID   = 'XXX     '           / a copy of PS_ID from supplied flatfield 
+SSC_ID  = 'XXX     '           / SSC pipeline run identifier 
+ASTRO_ID= 'XXX     '           / Astrometric pipeline run identifier
+BIAS_ID = 'XXX     '           / Bias pipeline run identifier 
+PS_ID   = 'XXX     '           / Postage stamp pipeline run identifier 
+RUN     =                  XXX / Imaging run number 
+CAMCOL  =                  XXX / Column in the imaging camera 
+CAMROW  =                  XXX / Row in the imaging camera 
+FILTER  = 'XXX     '           / Filter (u, g, r, i, or z) 
+EXCAL_ID= 'XXX     '           / Excal pipeline run identifier (optional) 
+KALXX_ID= 'seqId kali_id'      / Kali pipeline run identifier for patch XX
+END    
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+</BODY>
+
+</HTML>

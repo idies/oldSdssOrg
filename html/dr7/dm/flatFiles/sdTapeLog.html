@@ -1,0 +1,133 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Tape Log</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Tape Label Log</H1>
+
+<STRONG>File Format:</STRONG>
+ASCII param file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>daTapeLog-yyyy-mm-id.par</EM>,
+where <EM>yyyy</EM> is the year, 
+<EM>mm-id</EM> is the month followed by a id for multiple logs/month
+ <P>
+<STRONG>Produced by:</STRONG>
+da, iop, telescope mountain operations, fnal tape operations
+ <P>
+<STRONG>Used by:</STRONG>
+opdb 
+ <P>
+<STRONG>Size:</STRONG> Several 10's of Kb per file.  
+At least one file per month, perhaps one per day/night.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes, in the opdb. 
+
+<H2>Description</H2>
+A list of DLT tapes, their labels (VSNs) and what's on each tape.
+
+<H2>Format</H2>
+
+<pre>
+#
+#
+#	Log of tapes created and written at APO 1995 November
+#
+#
+
+typedef struct {
+	char label[20];		#VSN PP-AA-NN (no spaces, JE prefix for APO, JF for FNAL, JH for other)
+	int  runLow;		# imaging/spectro run low id, 0=other
+	int  runHi;		# imaging/spectro run hi id, 0=other
+        int camCol;      # 1-6 = main camera, 7=gangs+logs, 8=mt, 9,10=spectrograph, 0=other
+        char dateString[20];    # YYYY/MM/DD corresponding to UT midnite of night's observing
+	int dup;		# 1 if duplicate tape 
+	char qualityCheck[20];  # initials of person who ok'ed tape media
+} TAPEID;
+
+
+
+#data tapes for imaging run 581 581
+tapeid JE-AA-41  581 581 1 1995/11/29 0 APO_OK
+tapeid JE-AA-42  581 581 2 1995/11/29 0 APO_OK
+tapeid JE-AA-43  581 581 3 1995/11/29 0 APO_OK
+tapeid JE-AA-44  581 581 4 1995/11/29 0 APO_OK
+tapeid JE-AA-45  581 581 5 1995/11/29 0 APO_OK
+tapeid JE-AA-46  581 581 6 1995/11/29 0 APO_OK
+
+# tape with camcol 7 has gang files plus logs on  it
+tapeid JE-AA-47  581 581 7 1995/11/29 0 APO_OK
+
+#tape with mt info on it
+tapeid JE-AA-62  49976 49976 8 1995/11/29 0 APO_OK
+tapeid JE-AA-63  49976 49976 8 1995/11/29 1 APO_OK
+
+# duplicates for JPG
+tapeid JE-AA-48  581 581 1 1995/11/29 1 APO_OK
+tapeid JE-AA-49  581 581 2 1995/11/29 1 APO_OK
+tapeid JE-AA-50  581 581 3 1995/11/29 1 APO_OK
+tapeid JE-AA-51  581 581 4 1995/11/29 1 APO_OK
+tapeid JE-AA-52  581 581 5 1995/11/29 1 APO_OK
+tapeid JE-AA-53  581 581 6 1995/11/29 1 APO_OK
+
+tapeid JE-AA-54  581 581 7 1995/11/29 1 APO_OK
+
+
+# an extra tape with some misc info on it.
+tapeid  JE-AA-54  0 0  0 1995/11/29 0 APO_OK
+
+
+# spectroscopic data
+
+tapeid JE-AA-55 100976 100976 9 1995/11/30 0 APO_OK
+tapeid JE-AA-56 100976 100976 10 1995/11/30 0 APO_OK
+tapeid JE-AA-57 100976 100976 9 1995/11/30 1 APO_OK
+tapeid JE-AA-58 100976 100976 10 1995/11/30 1 APO_OK
+
+
+#data tapes for imaging run 582 582
+tapeid JE-AA-81  582 582 1 1995/11/29 0 APO_OK
+tapeid JE-AA-82  582 582 2 1995/11/29 0 APO_OK
+tapeid JE-AA-83  582 582 3 1995/11/29 0 APO_OK
+tapeid JE-AA-84  582 582 4 1995/11/29 0 APO_OK
+tapeid JE-AA-85  582 582 5 1995/11/29 0 APO_OK
+tapeid JE-AA-86  582 582 6 1995/11/29 0 APO_OK
+
+# tape with camcol 7 has gang files plus logs on  it
+tapeid JE-AA-87  582 582 7 1995/11/29 0 APO_OK
+
+#tape with mt info on it
+tapeid JE-AB-02  49976 49976 8 1995/11/29 0 APO_OK
+tapeid JE-AB-03  49976 49976 8 1995/11/29 1 APO_OK
+
+# duplicates for JPG
+tapeid JE-AA-88  582 582 1 1995/11/29 1 APO_OK
+tapeid JE-AA-89  582 582 2 1995/11/29 1 APO_OK
+tapeid JE-AA-90  582 582 3 1995/11/29 1 APO_OK
+tapeid JE-AA-91  582 582 4 1995/11/29 1 APO_OK
+tapeid JE-AA-92  582 582 5 1995/11/29 1 APO_OK
+tapeid JE-AA-93  582 582 6 1995/11/29 1 APO_OK
+
+tapeid JE-AA-94  582 582 7 1995/11/29 1 APO_OK
+
+
+# an extra tape with some misc info on it.
+tapeid  JE-AA-94  0 0  0 1995/11/29 0 APO_OK
+
+
+# spectroscopic data
+
+tapeid JE-AA-95 100976 100976 9 1995/11/30 0 APO_OK
+tapeid JE-AA-96 100976 100976 10 1995/11/30 0 APO_OK
+tapeid JE-AA-97 100976 100976 9 1995/11/30 1 APO_OK
+tapeid JE-AA-98 100976 100976 10 1995/11/30 1 APO_OK
+</pre>
+
+</BODY>
+
+</HTML>
+

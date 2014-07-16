@@ -1,0 +1,103 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for MT Calibrated Objects</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>MT Calibrated Objects</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>kaCalObj-ssssssss.fit</EM>,
+where <EM>ssssssss</EM> is the sequence number.
+ <P>
+<STRONG>Produced by:</STRONG>
+kali
+ <P>
+<STRONG>Used by:</STRONG>
+ps, fcalib
+ <P>
+<STRONG>Size:</STRONG>
+8.64 Kb per file, assuming &lt; 46 stars were detected.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Calibrated objects detected in the MT pipeline.  Each file contains the object
+list for one MT sequence.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+<!--##begin FITSbinary secondaryStar.PDU -->
+<!-- P+      Project: sdss   Date: Tue Aug 11 12:40:54 1998-->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+VERSION = 'XXX     '           / Version of software used.
+EXCAL_ID= 'XXX     '           / Excal pipeline run identifier.
+KALI_ID = 'XXX     '           / Kali pipeline run identifier.
+MTFRA_ID= 'XXX     '           / Mtframes pipeline run identifier.
+TELESCOP= 'XXX     '           / Telescope with which data was obtained.
+SEQID   =                  XXX / MT sequence number.
+<!--##end FITSbinary secondaryStar.PDU -->
+STDS_VER= 'XXX     '           / Version of MTSTDS used.
+RA      =           XXX.XXXXXX / RA of MT field center (J2000, degrees)
+DEC     =           XXX.XXXXXX / DEC of MT field center (J2000, degrees)
+MJD     =                  XXX / MJD day number of night when data was obtained.
+NAME    = 'XXX     '           / Name of target field
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Object List Header</h2>
+There is one HDU of this type.  This contains the list of stars detected in
+this sequence.  There is one entry for each star.
+<PRE>
+<!--AUTOCHECK begin hdu 1 -->
+<!--##begin FITSbinary secondaryStar.header -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   88
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    8
+<!--##end FITSbinary secondaryStar.header -->
+FILTERS = 'u g r i z'          / Filter order in array fields.
+<!--##begin FITSbinary secondaryStar.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'id      '           / Unique ID within a frame.
+TFORM2  = '1D      '          
+TTYPE2  = 'ra      '           / J2000 right ascension.
+TUNIT2  = 'degrees '          
+TFORM3  = '1E      '          
+TTYPE3  = 'raErr   '           / J2000 right ascension. (error)
+TUNIT3  = 'degrees '          
+TFORM4  = '1D      '          
+TTYPE4  = 'dec     '           / J2000 declination.
+TUNIT4  = 'degrees '          
+TFORM5  = '1E      '          
+TTYPE5  = 'decErr  '           / J2000 declination. (error)
+TUNIT5  = 'degrees '          
+TFORM6  = '5E      '          
+TTYPE6  = 'mag     '           / Calibrated magnitudes.
+TUNIT6  = 'mag     '          
+TFORM7  = '5E      '          
+TTYPE7  = 'magErr  '           / Calibrated magnitudes. (error)
+TUNIT7  = 'mag     '          
+TFORM8  = '5J      '
+TTYPE8  = 'saturated'          / 0=not saturated, 1=A/D converter saturation
+COMMENT                        / 2=Full well saturation, A/D and full well
+<!--##end FITSbinary secondaryStar.table -->
+<!--AUTOCHECK end hdu 1 -->
+</PRE>
+
+</BODY>
+</HTML>

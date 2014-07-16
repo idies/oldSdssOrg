@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for List of Plates to Design</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>List of Plates to Design</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>plObs-XXXX-YYYY.par</EM>, where <em>XXXX</em> is the plate id of the
+first plate to design, and <em>YYYY</em> is the plate id of the last plate
+to design.
+ <P>
+<STRONG>Produced by:</STRONG>
+platePre
+ <P>
+<STRONG>Used by:</STRONG>
+plate
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+List of plates to design, and the observing conditions to optimize them for.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+typedef struct {
+    int plateId;              # Unique plate ID
+    int tileId;               # Unique tile ID
+    float temp;               # Design temperature (degrees Celsius)
+    float haMin;              # Design minimum hour angle (degrees)
+    float haMax;              # Design maximum hour angle (degrees)
+    int mjdDesign;            # Design day (integer MJD).
+} PLOBS;
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+
+</HTML>

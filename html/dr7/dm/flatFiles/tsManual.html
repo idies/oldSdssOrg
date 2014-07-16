@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Manually Selected Spectroscopic Targets</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Manually Selected Spectroscopic Targets</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tsManual-ss-mmmmmm.par</EM>, where <EM>ss</EM> is the stripe number, and
+<EM>mmmmmm</EM> is the starting great circle longitude (mu) of the chunk in
+integer arcsecs.
+ <P>
+<STRONG>Produced by:</STRONG>
+Serendipity Working Group
+ <P>
+<STRONG>Used by:</STRONG>
+opdb
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.
+
+<H2>Contents</H2>
+Contains list of manually selected spectroscopic targets for a given chunk.
+<PRE>
+stripe               'XX'               # stripe number
+startMu          'XXXXXX'               # starting great circle longitude
+					# of the chunk (inclusive,
+					# integer arcsecs)
+
+# List of all segments of Frames Pipeline Runs in the chunk
+typedef struct {
+    int       run;            # Imaging run number
+    int       camCol;         # Camera column (1-6)
+    int       rerun;          # Identifying rerun number
+    int       field;          # Field
+    int       id;             # Object ID within the field
+    int       priority;       # Priority (1-255, 1=lo, 255=hi)
+    char      comment[500];   # Why this target was selected (including author)
+} TSMANUAL;
+
+TSMANUAL 581 1 0 125 1 255 "Anderson: it looks pretty"
+
+</PRE>
+</BODY>
+</HTML>

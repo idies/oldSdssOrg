@@ -1,0 +1,104 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Final Photometric Calibration</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Final Photometric Calibration</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>fcPCalib-rrrrrr-c.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number and <EM>c</EM> is the column
+location in the Imaging Array of the CCD which acquired the data (1-6).
+ <P>
+<STRONG>Produced by:</STRONG>
+fcalib
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+2 * 2880 + (Nfields * 164 {rounded up to nearest multiple of 2880 bytes}).
+Total of 169.92 Kb for a final calibration run with 1000 fields.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+A final photometric calibration, matching photo frames to MT calibration
+patches.
+See the data model page for "psCT" files for a description of the "KALXX_ID"
+keywords.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+<!--##begin FITSbinary photometricTransformation.PDU -->
+<!-- P+      Project: sdss   Date: Wed Feb 25 15:27:56 1998-->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+VERSION = 'XXX     '           / Version of software used.
+FRAME_ID= 'XXX     '           / Frames pipeline run identifier.
+ASTRO_ID= 'XXX     '           / Astrometric pipeline run identifier.
+FCALI_ID= 'XXX     '           / Final photometric calibration run identifier.
+FIELD0  =                  XXX / First field processed.
+NFIELDS =                  XXX / Number of fields processed.
+RUN     =                  XXX / Imaging run number.
+CAMCOL  =                  XXX / Column in the imaging camera.
+<!--##end FITSbinary photometricTransformation.PDU -->
+EXCAL_ID= 'XXX     '           / Excal pipeline run identifier.
+KALXX_ID= 'kali_id'            / Kali pipeline run identifier for patch XX
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Table Header</H2>
+There is one HDU of this type.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+<!--##begin FITSbinary photometricTransformation.header -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                  188
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   11
+<!--##end FITSbinary photometricTransformation.header -->
+FILTERS = 'u g r i z'          / Filter order in arrays.
+<!--##begin FITSbinary photometricTransformation.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'field   '           / Field sequence number within the run.
+TFORM2  = '1J      '          
+TTYPE2  = 'seqId   '           / Sequence id overlapping this field (-1=none)
+TFORM3  = '5J      '          
+TTYPE3  = 'numStar '           / Number of matching secondary stars in field
+TFORM4  = '5E      '          
+TTYPE4  = 'a       '           / Zero-point. (unit: mag)
+TFORM5  = '5E      '          
+TTYPE5  = 'aErr    '           / Zero-point. (error) (unit: mag)
+TFORM6  = '5E      '          
+TTYPE6  = 'b       '           / Color term. (unit: mag)
+TFORM7  = '5E      '          
+TTYPE7  = 'bErr    '           / Color term. (error) (unit: mag)
+TFORM8  = '5E      '          
+TTYPE8  = 'c       '           / Color x extinction term. (unit: mag)
+TFORM9  = '5E      '          
+TTYPE9  = 'cErr    '           / Color x extinction term. (error) (unit: mag)
+TFORM10 = '5E      '          
+TTYPE10 = 'k       '           / Extinction coefficient. (unit: mag)
+TFORM11 = '5E      '          
+TTYPE11 = 'kErr    '           / Extinction coefficient. (error) (unit: mag)
+<!--##end FITSbinary photometricTransformation.table -->
+<!--AUTOCHECK end hdu 1 -->
+END
+</pre>
+
+</body>
+</html>

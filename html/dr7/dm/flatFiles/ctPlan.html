@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Complete Tile Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>CompleteTile Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>ctPlan.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+completeTilePre
+ <P>
+<STRONG>Used by:</STRONG>
+completeTile
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control the <em>completeTile</em> pipeline.  Each plan
+targets the tiles created by a single run of the <em>tile</em> pipeline.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+parameters          'XXX'               # Tunable parameters file (if any)
+parametersDir 	    'XXX'               # Directory containing the 'parameters'
+                                        # file (optional --- defaults to '.')
+
+tcFile            tiTileCenters.par     # input tile centers file
+inputDir	    XXX			# input files from here
+outputDir 	    XXX			# output files to here 
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+
+</HTML>

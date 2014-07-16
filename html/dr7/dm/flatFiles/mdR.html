@@ -1,0 +1,141 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for MT Raw CCD Frame</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>MT Raw CCD Frame</H1>
+
+<STRONG>File Format:</STRONG>
+Non-standard FITS image (uses unsigned integers)
+ <P>
+<STRONG>Name:</STRONG>
+<EM>mdR-eeeeeeee.fit</EM>, where <EM>eeeeeeee</EM> is the exposure number.
+ <P>
+<STRONG>Produced by:</STRONG>
+mop
+ <P>
+<STRONG>Used by:</STRONG>
+mtframes
+ <P>
+<STRONG>Size:</STRONG>
+9,149.76 Kb per file.  Six sequences per hour, five
+frames per sequences, and 10 hours in a night yields a total of 2,744.928 Mb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.  Tracked file.
+
+<H2>Description</H2>
+A raw photometric frame from the MT.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    F / FIT STANDARD                                  
+BITPIX  =                   16 / FITS BITS/PIXEL                               
+NAXIS   =                    2 / NUMBER OF AXES                                
+NAXIS1  =                 2128 / WIDTH (TOTAL!)                                
+NAXIS2  =                 2068 / HEIGHT (TOTAL!)                               
+SDSS                           / THIS HEADER CONTAINS SPECIAL SDSS KEYWORD     
+UNSIGNED                       / UNSIGNED DATA - NO BSCALE OR BZERO KEYWORDS   
+TAI     =        4401604153.79 / 1st row - Number of seconds since Nov 17 1858 
+TAIHMS  = '11:49:13.79'        / 1st row - TAI time (HH:MM:SS.SS) (TAI-UT = app
+DATE-OBS= '11/05/98'           / 1st row - TAI date                            
+ORIGIN  = 'MT running at APO'                                                  
+TELESCOP= 'APO24   '                                                           
+OBSERVER= '{Russet McMillan}'                                                  
+RUN     =                50944 / Imaging run number                            
+FLAVOR  = 'Flat    '           / Flavor of this run: science, test, cal        
+SYS_SCN = '?       '           / System of the scan great circle (e.g., mean)  
+EQNX_SCN= -1.0000000000000E+00 / Equinox of the scan great circle. (years)     
+NODE    = -1.0000000000000E+00 / RA of the great circle's ascending node (deg) 
+INCL    = -1.0000000000000E+00 / Great circle's inclination wrt cel. eq. (deg) 
+XBORE   = 0.00000000000000E+00 / Boresight x offset from the array center (mm) 
+YBORE   = 0.00000000000000E+00 / Boresight y offset from the array center (mm) 
+SYSTEM  = 'mean    '           / System of the TCC coordinates (e.g., mean)    
+EQUINOX = '2000    '           / Equinox of the TCC coordinates (years)        
+C_OBS   = 6.00000000000000E+02 / CCD row clock rate (usec/row)                 
+COLBIN  =                    1 / Binning factor perpendicular to the columns   
+ROWBIN  =                    1 / Binning factor perpendicular to the rows      
+STRIP   = '?       '           / Strip in the stripe being tracked             
+STRIPE  =                   -1 / Stripe index number (23 <--> eta=0)           
+FRAME   =                    0 / Frame sequence number within the drift        
+FIELD   =                    0 /  Field sequence number within the run         
+COMMENT = 'The following parameters are for when column 0 of row 0 was read'   
+DAVERS  = 'v11_1   '           / Version of DA software                        
+CCDMODE = '0       '           / Was the camera drifting                       
+OBJECT  = 'target210'                                                          
+EXPTIME = 8.00000000000000E+00 / Integration time in seconds                   
+COMMENT = 'CCD-specific parameters'                                            
+CAMCOL  =                    0 / Column in the imaging camera                  
+CAMROW  =                    0 / row in the imaging camera                     
+CCDLOC  =                    0 / Survey location of CCD (e.g., rowCol)         
+FILTER  = 'z       '           / Filter ('u', 'g', 'r', 'i', 'z', 'l', or 't') 
+NLINES  =                 2048 / Number of lines in a frame                    
+AMPL    =                    0 / which amp 0,1,2,3 corresponds to low pix      
+AMPL    =                    2 / which amp 0,1,2,3 corresponds to low pix      
+AMPR    =                    1 / which amp 0,1,2,3 corresponds to high pix     
+AMPR    =                    3 / which amp 0,1,2,3 corresponds to high pix     
+CCDSECL = '[0,2068]'           / Physical ccd section for low pixels           
+DATASECL= '[1024,2068]'        / Image section for image in low pixels   
+BIASSECL= '[20,2068]'          / Image section for bias in low pixels          
+OVERSECL= '[20,2068]'          / Image section for overscan in low pixels      
+CCDSECR = '[1,2068]'           / Physical ccd section for pixels               
+DATASECR= '[1024,2068]'        / Image section for image in high pixels        
+BIASSECR= '[20,2068]'          / Image section for bias in high pixels         
+OVERSECR= '[20,2068]'          / Image section for overscan in high pixels     
+GROUP   = 'astro   '           / frame group                                   
+CAMTEMP = 1.80000000000000E+02 / camera temperature                            
+GAIN    = 5.00000000000000E+00 / camera gain                                   
+READNOIS= 1.20000000000000E+01 / camera readnoise                              
+NAME    = 'MT      '                                                           
+CHIPID  = '4271ABU12-01'                                                       
+T_RA    = '175317.87'                                                          
+T_DEC   = '+250001.1'                                                          
+T_EPOCH = '2000.000'                                                           
+T_EL    = ' 61.0   '                                                           
+T_AZ    = ' -96.8  '                                                           
+FOCUS_T = '-6      '                                                           
+FOCUS_U = '-6      '                                                           
+FOCUS_V = '-6      '                                                           
+LOUVERS = 'closed  '                                                           
+LST     = '20:01:12'                                                           
+DEWTEMP = 1.00000000000000E+02 / dewar temperature                             
+DOMETEMP= 2.50000000000000E+04 / dome temperature                              
+OBJNAME = 'Twilight'           / Name of object                                
+SEQID   =                46475 / Sequence id number                            
+EXPNUM  =                46479 / Exposure id number                            
+AIRMASS = 1.14000000000000E+00                                                 
+VCOMM0  = 'BIAS BOARD VOLTAGES'                                                
+VCOMM1  = 'SIGNAL        DAC        SET         MEASURED       NOM     TOL   ' 
+VCOMM2  = 'LN2TEMP                   77 K           99 K       570      25   ' 
+VCOMM3  = 'HEATERV                                  99 K       512      20   ' 
+VCOMM4  = 'CCDTEMP                                 -94 C       280       5   ' 
+VCOMM5  = 'TSET          115      -0.52 V        -0.56 V       485       5   ' 
+VCOMM6  = 'TZERO          45      -3.29 V        -3.36 V       344       5   ' 
+VCOMM7  = 'I-TRIM2       254       4.98 V         4.98 V       765       5   ' 
+VCOMM8  = 'I-TRIM1       254       4.98 V         4.96 V       765       5   ' 
+VCOMM9  = 'I+TRIM2        10      -4.67 V        -4.74 V       274       5   ' 
+VCOMM10 = 'I+TRIM1         0      -5.06 V        -5.16 V       253       5   ' 
+VCOMM11 = 'VSW-          153      -3.99 V        -4.06 V       309       7   ' 
+VCOMM12 = 'VLG           101      -6.01 V        -6.07 V       204      15   ' 
+VCOMM13 = 'VT-           101      -6.01 V        -6.09 V       204       7   ' 
+VCOMM14 = 'VT+           177       6.99 V         7.07 V       868       5   ' 
+VCOMM15 = 'VP3-           60      -7.59 V        -7.67 V       124       7   ' 
+VCOMM16 = 'VP12-          60      -7.59 V        -7.67 V       124       7   ' 
+VCOMM17 = 'VP3+          215       8.49 V         8.62 V       946       5   ' 
+VCOMM18 = 'VP12+         139       5.49 V         5.53 V       792       5   ' 
+VCOMM19 = 'VS-           153      -3.99 V        -4.08 V       309       7   ' 
+VCOMM20 = 'VS+           177       6.99 V         0.08 V       868       5   ' 
+VCOMM21 = 'VR             45      11.98 V        12.03 V       817       5   ' 
+VCOMM22 = 'VRD2          223      13.99 V        14.14 V       870       5   ' 
+VCOMM23 = 'VRD1          223      13.99 V        14.22 V       870       5   ' 
+VCOMM24 = 'VDD2          236      24.30 V        24.95 V       923       7   ' 
+VCOMM25 = 'VDD1          236      24.30 V        24.77 V       923       7   ' 
+END                                                                            
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+</BODY>
+</HTML>

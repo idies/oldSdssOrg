@@ -1,0 +1,313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Extra Spectra for a single CCD and exposure</TITLE>
+<STYLE TYPE="text/CSS">
+<!--
+DT {font-weight: bold}
+-->
+</STYLE>
+</HEAD>
+
+<BODY>
+<H1>Calibrated Spectra for a single CCD and exposure</H1>
+<DL>
+<DT>File Format:</DT>
+<DD>FITS</DD>
+<DT>Name:</DT>
+<DD>spCFrame-<i>cc</i>-<i>eeeeeeee</i>.fits</DD>
+</DL>
+
+<H2>Description</H2>
+<p>
+The spectroscopic observations combine 3 or more exposures of 15
+minutes each, each of which consists of red and blue halves.  The
+combined spectra are available in the spPlate file.  The spCFrame
+files contain the extracted spectra  for a single CCD (i.e., the red
+or blue half) of a single exposure.    These spectra are still in the native
+wavelength mapping, which is neither linear in wavelength nor log-wavelength.
+However, the spectra are flux-calibrated, and deviant pixels are rejected
+in the pixel mask (from the comparison with the other exposures).
+
+</p><p>
+The spCFrame file contains the following:<br>
+</p><pre>HDU #0 = Flux in units of 10^(-17) erg/s/cm^2/Ang [FLOAT]
+HDU #1 = Inverse variance (1/sigma^2) for the above [FLOAT]
+HDU #2 = Pixel mask [32-bit INT]
+HDU #3 = Wavelength solution in log-10 Angstroms (vacuum) [FLOAT]
+HDU #4 = Wavelength dispersion in units of (10^(-4) log-10 wavelength)^(-1) [FLOAT]
+         (these are the same units as in the combined-spectrum spPlate file)
+HDU #5 = Plug-map structure from plPlugMapM file [BINARY FITS TABLE]
+HDU #6 = Sky flux in units of 10^(-17) erg/s/cm^2/Ang [FLOAT]
+</pre>
+
+
+
+<H2>Primary HDU 0</H2>
+<p>Flux density in units of 10^{-17} erg/s/cm^2/A</p>
+<PRE>
+SIMPLE  =                    T / FIT STANDARD                                   
+BITPIX  =                  -32 / FITS BITS/PIXEL                                
+NAXIS   =                    2 / NUMBER OF AXES                                 
+NAXIS1  =                 2048 / WIDTH (TOTAL!)                                 
+NAXIS2  =                  320 / HEIGHT (TOTAL!)                                
+EXTEND  =                    T /                                                
+TAI     =        4606272460.09 / 1st row - Number of seconds since Nov 17 1858  
+RA      =            39.822852 / 1st row - Right ascension of telescope boresigh
+DEC     =            0.036944  / 1st row - Declination of telescope boresight (d
+EQUINOX =              2000.00 /                                                
+RADECSYS= 'FK5     '           /                                                
+SPA     =             359.998  / 1st row - Camera col position angle wrt north (
+IPA     =             332.026  / 1st row - Instrument rotator position angle (de
+IPARATE =             -0.0048  / 1st row - Instrument rotator angular velocity (
+AZ      =            326.04356 / 1st row - Azimuth  (encoder) of tele (0=N?) (de
+ALT     =            52.269743 / 1st row - Altitude (encoder) of tele        (de
+AIRMASS =              1.26042 /                                                
+FOCUS   =            0.000000  / 1st row - Focus piston (microns?)              
+DATE-OBS= '2004-11-04'         / 1st row - TAI date                             
+TAIHMS  = '08:07:40.09'        / 1st row - TAI time (HH:MM:SS.SS) (TAI-UT = appr
+TIMESYS = 'tai     '           / TAI, not UTC                                   
+TAI-BEG =        4606271477.00 / Exposure Start Time                            
+TAI-END =        4606272409.00 / Exposure End Time                              
+MJD     =                53313 / MJD of observation                             
+VERSION = 'v3_142_0'           / version of IOP                                 
+CAMVER  = 'SPEC1 v4_8'         / Camera code version                            
+OBSERVER= 'ank     '                                                            
+OBSCOMM = 'science '                                                            
+TELESCOP= 'SDSS 2.5-M'         / Sloan Digital Sky Survey                       
+SEQID   =                29120 / Spectro sequence number, unique over           
+EXPOSURE=                29122 / Spectro exposure number, unique over           
+EXPTIME = 9.00100000000000E+02 / Exposure time. (seconds)                       
+DARKTIME= 9.32000000000000E+02 / Time between flush charge and read-ou          
+FLAVOR  = 'science '           / Flavor of this sequence (e.g., dome f          
+QUALITY = 'excellent'          / night/image quality                            
+RADEG   = 3.98223500000000E+01 / Right Ascension. (degrees)                     
+DECDEG  = 3.68630600000000E-02 / Declination. (degrees)                         
+PLATEID =                 1560 / Plate Id                                       
+TILEID  =                 9466 / Tile Id                                        
+CARTID  =                    9 /Cartridge used in this plugging                 
+REDDEN  = '0 0 0 0 0'          / Median reddening vector for plate              
+MAPID   =              5330701 / Map Id                                         
+NAME    = '1560-53307-01'      / Name of target; PlateId-MJD-Mapper Re          
+PLUGMAPO= '/data/spectro/plugMapM/plPlugMapM-1560-53307-01.par' / plPlugMap load
+CAMERAS = 'b1      '           / camera ID in this exposure                     
+NGUIDE  =                   39 / Number of guider frames during exposure        
+SEEING20=              1.12000 / 20% seeing during exposure (arcsec)            
+SEEING50=              1.23000 / 50% seeing during exposure (arcsec)            
+SEEING80=              1.37000 / 80% seeing during exposure (arcsec)            
+RMSOFF20=             0.143178 / 20% RMS offset of guide fibers (arcsec)        
+RMSOFF50=             0.228473 / 50% RMS offset of guide fibers (arcsec)        
+RMSOFF80=             0.304631 / 80% RMS offset of guide fibers (arcsec)        
+CAMCOL  =                    1 / CCD ID in this exposure                        
+COLBIN  =                    1 / Binning factor perpendicular to the c          
+ROWBIN  =                    1 / Binning factor perpendicular to the r          
+PROGRAM = 'binning 1   1 '     / Identifying name for CCD program               
+AMPLL   =                    0 / which amp 0,1,2,3 corresponds to low           
+AMPLR   =                    2 / which amp 0,1,2,3 corresponds to low           
+AMPUL   =                    1 / which amp 0,1,2,3 corresponds to high          
+AMPUR   =                    3 / which amp 0,1,2,3 corresponds to high          
+SECFOCUS= 0.00000000000000E+00 / Secondary Mirror Position as reported          
+GUIDEIMG= '/data/spectro/guider/gimg0464.fits' / Last archived guider image     
+WTIME   = 1.09955546000000E+09 / weatherData(timeStamp)                         
+AIRTEMP = 7.50000000000000E+00 / weatherData(airtemp)                           
+DEWPOINT= -2.5300000000000E+01 / weatherData(dewpoint)                          
+DEWDEP  = 3.28000000000000E+01 / weatherData(dewpointDep)                       
+DUSTA   = -9.9990000000000E+03 / weatherData(dusta)                             
+DUSTB   = 2.50000000000000E+01 / weatherData(dustb)                             
+DUSTC   = 9.26000000000000E+02 / weatherData(dustc)                             
+DUSTD   = 1.90000000000000E+01 / weatherData(dustd)                             
+GUSTD   = 1.37300000000000E+02 / weatherData(gustd)                             
+GUSTS   = 6.00000000000000E+00 / weatherData(gusts)                             
+HUMIDITY= 7.60000000000000E+00 / weatherData(humidity)                          
+HUMIDOUT= 7.00000000000000E+00 / weatherData(humidout)                          
+PRESSURE= 2.15300000000000E+01 / weatherData(pressure)                          
+WINDD   = 1.79200000000000E+02 / weatherData(windd)                             
+WINDS   = 5.10000000000000E+00 / weatherData(winds)                             
+FFS     = '0 0 0 0 0 0 0 0'    / FlatField Screen 1:closed 0:open               
+FF      = '0 0 0 0 '           / FlatField Lamps 1:on 0:off                     
+NE      = '0 0 0 0 '           / Ne Lamps 1:on 0:off                            
+HGCD    = '0 0 0 0 '           / Hgcd Lamps 1:on 0:off                          
+SPEC1   = '1 0 1 1 '           / Dr_opn Dr_cls Latch Slithead (1:inpla          
+SPEC2   = '1 0 1 1 '           / Dr_opn Dr_cls Latch Slithead (1:inpla          
+TEMP01  = -9.3360000000000E+01 / CCD 01 Temperature                             
+TEMP02  = -9.4140000000000E+01 / CCD 02 Temperature                             
+TEMP03  = -9.2970000000000E+01 / CCD 03 Temperature                             
+TEMP04  = -9.2970000000000E+01 / CCD 04 Temperature                             
+CAMROW  =                    0 /                                                
+AUTHOR  = 'Scott Burles & David Schlegel' /                                     
+VERSIDL = '6.3     '           / Version of IDL                                 
+VERSUTIL= 'v5_2_0  '           / Version of idlutils                            
+VERSREAD= 'v5_3_3  '           / Version of idlspec2d for pre-processing raw dat
+VERS2D  = 'v5_3_3  '           / Version of idlspec2d for 2D reduction          
+VERSLOG = 'fermi-CVS 05/16/07' / Version of SPECLOG product                     
+VERSFLAT= 'v1_7    '           / Version of SPECFLAT product                    
+GAIN2   =              1.10000 / Gain in electrons per ADU                      
+RDNOISE2=              3.97710 / Readout noise in electrons                     
+GAIN3   =              1.05000 / Gain in electrons per ADU                      
+RDNOISE3=              2.96507 / Readout noise in electrons                     
+NBLEAD  =                    0 / Number of columns with blead trails            
+PIXBIAS = 'pixbiasave-00001-b1.fits' /                                          
+PIXFLAT = 'pixflatave-00001-b1.fits' /                                          
+OPBC    = 'opBC-51813.par'     /                                                
+OPCONFIG= 'opConfig-50000.par' /                                                
+OPECALIB= 'opECalib-51577.par' /                                                
+FRAMESN2=        9.10780207702 /                                                
+XSIGMA  =              1.05818 /                                                
+WSIGMA  =              1.03411 /                                                
+PLUGFILE= 'plPlugMapM-1560-53307-01.par' /                                      
+FLATFILE= 'sdR-b1-00029120.fit' /                                               
+ARCFILE = 'sdR-b1-00029121.fit' /                                               
+OBJFILE = 'sdR-b1-00029122.fit' /                                               
+LAMPLIST= 'lamphgcdne.dat'     /                                                
+SKYLIST = 'skylines.dat'       /                                                
+HELIO_RV=        3.02849160012 / Heliocentric correction (added to velocities)  
+VACUUM  =                    T / Wavelengths are in vacuum                      
+SFLATTEN=                    T / Superflat has been applied                     
+PSFSKY  =                    3 / Order of PSF skysubtraction                    
+SKYCHI2 =        1.08588621061 / Mean chi^2 of sky-subtraction                  
+PREJECT =             0.200000 / Profile area rejection threshold               
+LOWREJ  =                    5 / Extraction: low rejection                      
+HIGHREJ =                    8 / Extraction: high rejection                     
+SCATPOLY=                    0 / Extraction: Order of scattered light polynomial
+PROFTYPE=                    3 / Extraction profile: 1=Gaussian                 
+NFITPOLY=                    1 / Extraction: Number of parameters in each profil
+XCHI2   =              1.20984 / Extraction: Mean chi^2                         
+BUNIT   = '1E-17 erg/cm^2/s/Ang' /                                              
+</PRE>
+<H2>HDU1</H2>
+<p> Contains the estimated inverse variance (i.e., the inverse of the
+square of the estimated error) of the flux density of
+each spectrum, in units of (10^-17 erg/s/cm^2/Ang)^-2.  It is set to
+zero (i.e., infinite error) for pixels with flags indicating that the
+data are unreliable. </P>
+<PRE>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS v1.4a        
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 2048 /                                                
+NAXIS2  =                  320 /                                                
+PCOUNT  =                    0 /                                                
+GCOUNT  =                    1 /                                                
+</PRE>
+<H2>HDU2</H2>
+Mask bits for this image.  See the spPlate data model for the meaning
+of the mask bits. </p>
+<PRE>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS v1.4a        
+BITPIX  =                   32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 2048 /                                                
+NAXIS2  =                  320 /                                                
+PCOUNT  =                    0 /                                                
+GCOUNT  =                    1 /                                                
+</PRE>
+<H2>HDU3</H2>
+<p>Wavelength solution in log-10 Angstroms (vacuum)</p>
+<PRE>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS v1.4a        
+BITPIX  =                  -64 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 2048 /                                                
+NAXIS2  =                  320 /                                                
+PCOUNT  =                    0 /                                                
+GCOUNT  =                    1 /                                                
+</PRE>
+<H2>HDU4</H2>
+<p> Wavelength dispersion in units of (10^(-4) log-10 wavelength)^(-1) [FLOAT]
+         (these are the same units as in the combined-spectrum spPlate file)</p>
+<PRE>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS v1.4a        
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 2048 /                                                
+NAXIS2  =                  320 /                                                
+PCOUNT  =                    0 /                                                
+GCOUNT  =                    1 /                                                
+</PRE>
+<H2>HDU5</H2>
+<p>Plug-map structure from plPlugMapM file </p>
+<PRE>
+XTENSION= 'BINTABLE'           /Binary table written by MWRFITS v1.4a           
+BITPIX  =                    8 /Required value                                  
+NAXIS   =                    2 /Required value                                  
+NAXIS1  =                  178 /Number of bytes per row                         
+NAXIS2  =                  320 /Number of rows                                  
+PCOUNT  =                    0 /Normally 0 (no varying arrays)                  
+GCOUNT  =                    1 /Required value                                  
+TFIELDS =                   21 /Number of columns in table                      
+COMMENT                                                                         
+COMMENT  *** End of mandatory fields ***                                        
+COMMENT                                                                         
+*
+COMMENT  *** Column names ***                                                   
+COMMENT                                                                         
+TTYPE1  = 'OBJID   '           /                                                
+TTYPE2  = 'HOLETYPE '          /                                                
+TTYPE3  = 'RA      '           /                                                
+TTYPE4  = 'DEC     '           /                                                
+TTYPE5  = 'MAG     '           /                                                
+TTYPE6  = 'STARL   '           /                                                
+TTYPE7  = 'EXPL    '           /                                                
+TTYPE8  = 'DEVAUCL '           /                                                
+TTYPE9  = 'OBJTYPE '           /                                                
+TTYPE10 = 'XFOCAL  '           /                                                
+TTYPE11 = 'YFOCAL  '           /                                                
+TTYPE12 = 'SPECTROGRAPHID '    /                                                
+TTYPE13 = 'FIBERID '           /                                                
+TTYPE14 = 'THROUGHPUT '        /                                                
+TTYPE15 = 'PRIMTARGET '        /                                                
+TTYPE16 = 'SECTARGET '         /                                                
+TTYPE17 = 'OFFSETID '          /                                                
+TTYPE18 = 'SCI_EXPTIME '       /                                                
+TTYPE19 = 'CALIBFLUX '         /                                                
+TTYPE20 = 'CALIBFLUX_IVAR '    /                                                
+TTYPE21 = 'SFD_EBV '           /                                                
+COMMENT                                                                         
+COMMENT  *** Column formats ***                                                 
+COMMENT                                                                         
+TFORM1  = '5J      '           /                                                
+TFORM2  = '6A      '           /                                                
+TFORM3  = 'D       '           /                                                
+TFORM4  = 'D       '           /                                                
+TFORM5  = '5E      '           /                                                
+TFORM6  = 'E       '           /                                                
+TFORM7  = 'E       '           /                                                
+TFORM8  = 'E       '           /                                                
+TFORM9  = '16A     '           /                                                
+TFORM10 = 'D       '           /                                                
+TFORM11 = 'D       '           /                                                
+TFORM12 = 'J       '           /                                                
+TFORM13 = 'J       '           /                                                
+TFORM14 = 'J       '           /                                                
+TFORM15 = 'J       '           /                                                
+TFORM16 = 'J       '           /                                                
+TFORM17 = 'J       '           /                                                
+TFORM18 = 'E       '           /                                                
+TFORM19 = '5E      '           /                                                
+TFORM20 = '5E      '           /                                                
+TFORM21 = 'E       '           /                                                
+</PRE>
+<H2>HDU6</H2>
+<p>Sky flux in units of 10^(-17) erg/s/cm^2/Ang </p>
+<PRE>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS v1.4a        
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 2048 /                                                
+NAXIS2  =                  320 /                                                
+PCOUNT  =                    0 /                                                
+GCOUNT  =                    1 /                                                
+</PRE>
+<H2>HDU7</H2>
+<p>HDU for testing purposes only; please ignore. </p>
+<PRE>
+XTENSION= 'IMAGE   '           /Image Extension created by MWRFITS v1.4a        
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 2048 /                                                
+NAXIS2  =                  320 /                                                
+PCOUNT  =                    0 /                                                
+GCOUNT  =                    1 /                                                
+</PRE>
+</BODY>
+</HTML>

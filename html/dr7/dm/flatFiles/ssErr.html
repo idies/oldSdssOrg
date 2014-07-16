@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for simSurvey tracking errors</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>simSurvey tracking errors</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>xxx.par</EM>, where <EM>base </EM> describes the errors.
+ <P>
+<STRONG>Produced by:</STRONG>
+the user
+ <P>
+<STRONG>Used by:</STRONG>
+proc ssErrorsGenerate
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+no
+
+<H2>Description</H2>
+Simple model of tracking errors for the 2.5m telescope.  
+
+<p> delNuInit and delMuInit are the initial offsets of the telescope pointing.
+<p> The following depend on time:  ScaleX, ScaleY, theta (rotator angle),
+and phi (drift direction).
+<P> They depend on time with an offset, linear term, and two sine waves,
+each with an amplitude, wavelength, and phase (in degrees).  The units of
+time for this dependence is frames.
+<p> The following parameters describe perfect tracking.
+
+<H2>Contents</H2>
+<pre>
+delNuInit 0.0
+delMuInit 0.0
+
+offsetScaleX 1
+linScaleX 0
+s1AmpScaleX 0
+s1LengthScaleX 100000
+s1PhaseScaleX 0
+s2AmpScaleX 0
+s2LengthScaleX 100000
+s2PhaseScaleX 0
+
+offsetScaleY 1
+linScaleY 0
+s1AmpScaleY 0
+s1LengthScaleY 100000
+s1PhaseScaleY 0
+s2AmpScaleY 0
+s2LengthScaleY 100000
+s2PhaseScaleY 0
+
+offsetDelTheta 0.0
+linDelTheta 0
+s1AmpDelTheta 0.02
+s1LengthDelTheta 60
+s1PhaseDelTheta 0
+s2AmpDelTheta 0
+s2LengthDelTheta 100000
+s2PhaseDelTheta 0
+
+offsetDelPhi 0.0
+linDelPhi 0
+s1AmpDelPhi 0.0
+s1LengthDelPhi 70
+s1PhaseDelPhi 40
+s2AmpDelPhi 0
+s2LengthDelPhi 100000
+s2PhaseDelPhi 0
+
+
+
+</PRE>
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for MT Primary Fields</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>MT Primary Fields</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>priFieldCenters-XXX.par</EM>, where <em>XXX</em> is the telescope (APO20,
+APO24, or USNO40).
+ <P>
+<STRONG>Produced by:</STRONG>
+Contained in MTSTDS product
+ <P>
+<STRONG>Used by:</STRONG>
+mop
+ <P>
+<STRONG>Size:</STRONG>
+approximately 10 Kb for each telescope
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Lists the set of MT primary fields to be observed by each telescope.
+A primary field may contain several primary stars.  Thus, the preferred 
+pointing of the telescope is not necessarily the coordinates of a given 
+primary star.  The coordinates given in this file will tend to maximize 
+the number of neighboring primary stars obtained within the telescope's 
+field-of-view for a given pointing for a given primary star.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+telescope            XXX        # Telescope (APO20, APO24, USNO40)
+equinox             2000        # equinox of the coordinate system
+
+typedef struct {
+    char      fieldName[40];    # Name of the field
+    float     fieldRa;          # RA of the field center (degrees)
+    float     fieldDec;         # DEC of the field center (degrees)
+    float     exposureTime[5];  # Exposure time to be used for each filter
+                                # (seconds, order is u' g' r' i' z')
+} PRIFIELD;
+<!--AUTOCHECK end param -->
+</pre>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Photo calibrated MT Objects</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>MT Calibrated Objects</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>mtCalObj-sssssssss.fit</EM>,
+where <EM>sssssssss</EM> is the sequence number.
+ <P>
+<STRONG>Produced by:</STRONG>
+mt, (excaliburPre), (kaliPre)
+ <P>
+<STRONG>Used by:</STRONG>
+mtPost, excalibur, kali
+ <P>
+<STRONG>Size:</STRONG>
+14.4 Kb per file.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Objects detected in the MT pipeline.  Each file contains the object list for
+one MT sequence.
+
+<H2>Primary Header</H2>
+<pre>
+<!--##begin FITSbinary frameParameter.PDU -->
+<!-- P+      Project: sdss   Date: Wed Jan 24 13:55:54 1996-->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+SEQUENCE=                  XXX / MT sequence number.
+QUALITY = 'XXX     '           / Data quality.
+<!--##end FITSbinary frameParameter.PDU -->
+END
+</pre>
+
+<H2>Frame Parameters Header</h2>
+There is one HDU of this type.  It contains some averaged photometric
+information (seeing and sky brightness) in each filter.  There is one entry
+for each filter.
+<pre>
+<!--##begin FITSbinary frameParameter.header -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   13
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    4
+<!--##end FITSbinary frameParameter.header -->
+<!--##begin FITSbinary frameParameter.table -->
+TFORM1  = '1A      '          
+TTYPE1  = 'FILTER  '           / Filter.
+TFORM2  = '1E      '          
+TTYPE2  = 'FWHM    '           / Median FWHM of brightest objects on the frame.
+TUNIT2  = 'pixels  '          
+TFORM3  = '1E      '          
+TTYPE3  = 'SKY     '           / Global sky value for the frame.
+TUNIT3  = 'counts/pixel'      
+TFORM4  = '1E      '          
+TTYPE4  = 'SKYERR  '           / Global sky value for the frame. (error)
+TUNIT4  = 'counts/pixel'      
+<!--##end FITSbinary frameParameter.table -->
+END
+</pre>
+
+<H2>Object List Header</h2>
+There is one HDU of this type.  This contains the list of stars detected in
+this sequence.  There is one entry for each star.
+<PRE>
+<!--##begin FITSbinary mTStar.header -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   56
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    6
+<!--##end FITSbinary mTStar.header -->
+FILTERS = 'u g r i z'          / Filter order in array fields.
+<!--##begin FITSbinary mTStar.table -->
+TFORM1  = '1E      '          
+TTYPE1  = 'LAMBDA  '           / lambda.
+TUNIT1  = 'pixels  '          
+TFORM2  = '1E      '          
+TTYPE2  = 'LAMERR  '           / lambda error.
+TUNIT2  = 'pixels  '          
+TFORM3  = '1E      '          
+TTYPE3  = 'ETA     '           / eta coord.
+TUNIT3  = 'pixels  '          
+TFORM4  = '1E      '          
+TTYPE4  = 'ETAERR  '           / eta err.
+TUNIT4  = 'pixels  '          
+TFORM5  = '5E      '          
+TTYPE5  = 'MAGS    '           / Sky-subtracted mags.
+TUNIT5  = 'counts  '          
+TFORM6  = '5E      '          
+TTYPE6  = 'MAGSERR'          / Sky-subtracted mags. (error)
+TUNIT6  = 'counts  '          
+<!--##end FITSbinary mTStar.table -->
+</PRE>
+
+</BODY>
+</html>

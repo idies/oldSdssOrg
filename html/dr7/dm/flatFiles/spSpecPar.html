@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Measured Spectro Parameters</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Measured Spectroscopic Parameters</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spSpecPar-pppp-dddd.par</EM>,
+where <EM>pppp</EM> is the plate id, and 
+dddd the fiber id.
+ <P>
+<STRONG>Produced by:</STRONG>
+spectro
+ <P>
+<STRONG>Used by:</STRONG>
+
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Redshift, line lists for each spectrum
+
+<H2>Contents</H2>
+<pre>
+plate   XXXX	#plate id (int)
+mjd    XXXXX	#date plate observered
+
+typedef struct {
+
+	int fiberId;			#must match plugmap fiberId
+	char objectId[60];
+	float redshift;
+	float redshiftErr;
+	float confidence;
+	char classification[20];
+	int nEmLines;
+} SPPARAM;
+
+typedef struct {
+
+	int fiberId;  		#must match plug map fiberId
+	float wavelength;
+	float fwhm;
+	float peak;
+	int  LineId;
+} SPLINE;
+
+	
+
+</pre>
+</BODY>
+</HTML>

@@ -1,0 +1,140 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Single-Exposure/Single-Camera Spectrum</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Single-Exposure/Single-Camera Spectrum</H1>
+
+<STRONG>File Format:</STRONG>
+FITS image
+ <P>
+<STRONG>Name:</STRONG>
+<EM>s-sc-eeeeeeee-fff.fit</EM>,
+where <em>s</em> is the spectrograph (1,2), <em>c</em> is the camera band
+(b=blue,r=red), <EM>eeeeeeee</EM> is the exposure number,
+and <EM>fff</EM> is the fiber id.
+ <P>
+<STRONG>Produced by:</STRONG>
+spectro2d
+ <P>
+<STRONG>Used by:</STRONG>
+spectro1d
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+An output spectrum from the 2-D spectroscopic pipeline for a single exposure
+for a single camera (blue or red).
+
+<H2>Primary Header</H2>
+<pre>
+SIMPLE  =                    T                                                  
+BITPIX  =                  -32                                                  
+NAXIS   =                    2                                                  
+NAXIS1  =                 2048                                                  
+NAXIS2  =                    3                                                  
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel Aug 1 1997' / FITS file originator       
+OBJECT  = 'gal  20.33 18.54 16.75 14.96 13.17' / Name of the object observed    
+EXTEND  =                    F / File may contain extensions                    
+IRAF-TLM= '18:26:43 (07/10/1998)' / Time of last modification                   
+SOP     = '1.0     '           / SPECTROSCOPIC OBSERVER'S PROGRAM VERSION       
+DATE    = '07/10/98'                                                            
+DATE-OBS= '01/04/1999'                                                          
+TELESCOP= '2.5 M   '                                                            
+INSTRUME= '640Z-1  '                                                            
+SLITHEAD=                   45 / WHICH SLITHEAD IS IN THE SPECTROGRAPH          
+OBSERVER= 'A. Uomoto'                                                           
+IMAGETYP= 'object  '                                                            
+RA      =                182.5 / DEGREES                                        
+DEC     =                 30.5 / DEGREES                                        
+EQUINOX =                 2000                                                  
+UT-START= '07:16:58'           / UT START TIME                                  
+UT-END  = '07:31:58'           / UT ENDING TIME                                 
+HA-START= '+10:00:38.487381120' / START HA                                      
+HA-END  = '+13:46:15.449153880' / ENDING HA                                     
+EXPTIME =                 900. / SHUTTER OPEN TIME (SECONDS)                    
+DARKTIME=                 900. / INTEGRATING TIME (SECONDS)                     
+CCD     = '1589CR24'           / CCD SERIAL NUMBER                              
+COLL-A  =               234.02 / COLLIMATOR MOTOR A POSITION                    
+COLL-B  =               324.52                                                  
+COLL-C  =               224.55                                                  
+RH      =                   83 / RELATIVE HUMIDITY AT START (%)                 
+T0      =                 12.8 / ELECTRONICS TEMPERATURE (C)                    
+T1      =                 12.4 / FOCUS TOP TEMPERATURE (C)                      
+T2      =                 12.2 / FOCUS BOTTOM TEMPERATURE (C)                   
+T3      =                 12.3 / BLUE CAMERA TEMPERATURE (C)                    
+T4      =                 12.0 / BLUE SIDE TEMPERATURE (C)                      
+T5      =                 12.3 / RED CAMERA TEMPERATURE (C)                     
+T6      =                 12.3 / RED SIDE TEMPERATURE (C)                       
+COMMENT   Reserved Keywords                                                     
+BUNIT   =           'ADU     ' / raw counts in ADUs                             
+COMMENT   User Keywords                                                         
+EXPTIME =                900.0 / exposure time in seconds                       
+DARKTIME=                900.0 / dark time in seconds                           
+CCDSUM  =           '1 1     ' / column binning by row binning                  
+CCDSEC2 =    '[1:2048,1:2048]' / physical section of CCD mapped onto DATASEC2   
+PROVER2 =      '[1:20,1:2048]' / image section containing pre-overscan from amp 
+DATASEC2=   '[41:2088,1:2048]' / image section containing CCD data from amp 2   
+POOVER2 = '[2109:2128,1:2048]' / image section containing post-overscan from amp
+GAIN2   =                  4.2 / gain (electrons per ADU) for amp 2             
+RDNOISE2=                  5.0 / read noise (electrons rms) for amp 2           
+COMMENT   # Sat 22:03:05 25-Jul-98                                              
+COMMENT   begin        mknoise                                                  
+COMMENT           background     0.                                             
+COMMENT           gain           4.2                                            
+COMMENT           rdnoise        5.                                             
+COMMENT           poisson        yes                                            
+COMMENT           seed           61                                             
+FIXPIX  = 'Oct  7 17:17 Bad pixel file is tempmask'                             
+WCSDIM  =                    3                                                  
+LTM1_1  =                   1.                                                  
+LTM2_2  =                   1.                                                  
+WAT0_001= 'system=multispec'                                                    
+WAT1_001= 'wtype=multispec label=Wavelength units=angstroms'                    
+WAT2_001= 'wtype=multispec spec1 = "196 1 2 3914.4586893598 1.0596615768509 204'
+TRIM    = 'Oct  7 17:17 Trim data section is [41:2088,1:2048]'                  
+CCDSEC  = '[41:2088,1:2048]'                                                    
+BIASSEC = '[1:2048,1:2048]'                                                     
+CCDPROC = 'Oct  7 17:17 CCD processing done'                                    
+GAIN    =                   1.                                                  
+RDNOISE =                   5.                                                  
+NCOMBINE=                    3                                                  
+BPM     = 's1b.cr.pl'                                                           
+APSCATTE= 'Scattered light subtracted'                                          
+CTYPE1  = 'MULTISPE'                                                            
+CTYPE2  = 'MULTISPE'                                                            
+CTYPE3  = 'LINEAR  '                                                            
+CD1_1   =                   1.                                                  
+CD2_2   =                   1.                                                  
+CD3_3   =                   1.                                                  
+LTM3_3  =                   1.                                                  
+WAT3_001= 'wtype=linear'                                                        
+WAT2_002= '8 0. 1228.31 1233.70 0.5 0. 1 4 1. 2048. 4999.0976060881 1084.566743'
+WAT2_003= '18048 -0.0867381271722416 -0.0711211628314912   0.5 0. 1 4 1. 2048. '
+WAT2_004= '4999.08729825513 1084.69869583145 -0.0535396827044082 -0.06707003526'
+WAT2_005= '87686"  '                                                            
+DCLOG1  = 'REFSPEC1 = b04aper.ms 0.5'                                           
+DCLOG2  = 'REFSPEC2 = b08aper.ms 0.5'                                           
+SKYSUB  = 'yes     '                                                            
+BANDID1 = 'spectrum - background none, weights variance, clean no'              
+BANDID2 = 'raw - background none, weights none, clean no'                       
+BANDID3 = 'sigma - background none, weights variance, clean no'                 
+MSTITLE = '        '                                                            
+WAXMAP01= '1 0 0 0 2 0 '                                                        
+APID196 = 'gal  20.33 18.54 16.75 14.96 13.17'                                  
+WFITTYPE= 'CHEBYSHEV'                                                           
+NWORDER =                    4                                                  
+PIXMIN  = 1.00000000000000E+00                                                  
+PIXMAX  = 2.04800000000000E+03                                                  
+COEFF0  = 4.99909245217162E+03                                                  
+COEFF1  = 1.08463271950597E+03                                                  
+COEFF2  = -7.0138904938325E-02                                                  
+COEFF3  = -6.9095599050130E-02                                                  
+END                                                                             
+</pre>
+
+</BODY>
+</HTML>

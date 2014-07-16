@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Tile Centers</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Tile Centers</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tiTileCenters-XXXX-YYYY.par</EM>, where <em>XXXX</em> is the beginning
+tile number, and <em>YYYY</em> the ending tile number.
+ <P>
+<STRONG>Produced by:</STRONG>
+tile
+ <P>
+<STRONG>Used by:</STRONG>
+completeTile
+ <P>
+<STRONG>Size:</STRONG>
+Total of up to 100kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+List of tile centers.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+tilep_id      XXX             # Unique ID for tile pipeline run(output only).
+version       XXX             # Version of tile pipeline used (output only).
+tileRun       XXX             # Unique integer ID for tile pipeline run
+
+typedef struct {
+    int tileId;               # Unique tile ID
+    double raCen;             # J2000 right ascension of tile center (degrees)
+    double decCen;            # J2000 declination of tile center (degrees)
+    int nTargets;             # Number of targets assigned to this tile.
+} TILE;
+<!--AUTOCHECK end param -->
+</pre>
+
+</body>
+</html>

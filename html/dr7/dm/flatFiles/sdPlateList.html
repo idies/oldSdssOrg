@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Spectroscopic Plate List</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Spectro Plate List</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>sdPlateList.par</EM>,
+ <P>
+<STRONG>Produced by:</STRONG>
+opdb?,sd
+ <P>
+<STRONG>Used by:</STRONG>
+sd,sop
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+No
+
+<H2>Description</H2>
+List of all plates on mountain, and their status (received, marked, stuffed) and
+priorities
+
+<H2>Contents</H2>
+<PRE>
+mjd	XXXXX
+
+typedef struct {
+
+	int plateId;
+	double ra;			# RA at center of plate
+	double dec;			# DEC at center of plate
+	float airmax;			# maximum airmass can be done at
+	char recvStat[20];		# plate at drillers or received on mountain or defective
+	char markStat[20];		# plate marked (important holes labeled)	
+	char stuffStat[20]; 		# is plate currently stuffed?
+	int markPriority;		# mark priority, 0=low, 1=higher
+	int stuffPriority;		# stuff priority, 0=low, 1=higher
+
+} SDPLATELIST;
+
+</PRE>
+</BODY>
+</HTML>

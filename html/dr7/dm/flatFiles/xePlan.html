@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Extract Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Extract Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>xePlan-rrrrr.par</EM>, where <EM>rrrrr</EM> is the run number.
+ <P>
+<STRONG>Produced by:</STRONG>
+extractPrePre
+ <P>
+<STRONG>Used by:</STRONG>
+extract, extractPost
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+<p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control Extract.
+
+<H2>Contents</H2>
+In addition to the <a href="PLAN.html">generic plan keywords</a>, the following
+keywords are required.
+<pre>
+run                 XXX                 # Run number to process.
+
+framesDir	    .                   # directory containing raw images
+outputDir           .                   # directory for output
+
+# Observing report file
+reportDir	    /data/dp1.8/mt_trial/mtInput-51259
+reportFile	    sdReport-51259.par
+
+# CCD configuration files
+configDir           .                   # directory for ccd configuration files
+ccdConfig           opConfig-51259.par  # amplifier configuration
+ccdECalib           opECalib-51259.par  # electronic calibrations
+ccdBC               opBC-51259.par      # bad pixels
+
+</pre>
+
+</body>
+</html>

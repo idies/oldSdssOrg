@@ -1,0 +1,411 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Directories</TITLE>
+</HEAD>
+
+<BODY>
+
+<a name="rootDirectories"></a>
+<h1> Root Directories </h1>
+
+All data locations are relative to a root directory.
+
+<ul>
+<li> <strong>imagingRoot</strong> at FNAL is /sdss/data
+<li> <strong>spectroRoot</strong> at FNAL is /sdss/data/spectro -> /data/dp9.a/data/spectro
+<li> <strong>targetRoot</strong> at FNAL is /sdss/data/targetRoot -> /data/dp21.a/data/inchunk_target_v5_4
+<li> <strong>bestRoot</strong> at FNAL is /sdss/data/bestRoot -> /data/dp21.a/data/inchunk_best_v5_4
+<li> <strong>tilingRoot</strong> at FNAL is /sdss/data/tilingRoot -> /opdb/d1/data/tileChunk
+<li> <strong>csvRoot</strong> at FNAL is /sdss/data/csvRoot -> /data/dp23.b/data/csv
+</ul>
+
+<!--  Also see the <a href="/data_inv/DAS.html">DAS data distribution page</a>. -->
+
+<H1>Production Directories</H1>
+
+<a name="imaging">
+<h3>Imaging Data Directories</h3>
+</a>
+<strong>Name:</strong> <em>imagingRoot/$run/$rerun</em> where
+<ul>
+<li> <em>$run</em> is the run number, format %d
+<li> <em>$rerun</em> is the rerun number, format %d
+</ul>
+
+Each <em>$run/$rerun</em> may have the following directories:
+
+<ul>
+<li>astrom -- results of the astrom pipeline</li>
+<li>calibChunks -- in <em>$camCol</em> directories,</li>
+results of target selection (tsField, tsObj)</li>
+<li>corr -- in <em>$camCol</em> directories, the corrected frames (fpC)</li>
+<li>dplogs -- log files from data processing and quality control</li>
+<li>fangs -- in <em>$camCol</em> directories, the fang files</li>
+<li>fields -- in <em>$camCol</em> directories, the raw frames</li>
+<li>gangs -- the gang files</li>
+<li>logs -- parameter files from the telescope</li>
+<li>nfcalib -- results of photometric calibration</li>
+<li>objcs -- in <em>$camCol</em> directories, outputs of photo: (fpAtlas, fpBIN, fpFieldStat, fpM, fpObjc, psBB, psField)</li>
+<li>photo -- plan and parameter files to help run photo pipelines</li>
+<li>psFangs -- in <em>$camCol</em> directories, the psFang files</li>
+<li>sq -- results of the setQuality pipeline</li>
+<li>ssc -- plan and parameter files to help run ssc, also contains the known object catalog</li>
+<li><a name="zoom"></a>
+Zoom -- in $camCol directories, the fpC*z??.jpeg files</li>
+</ul>
+
+
+<a name="spectro">
+<h3>Spectro Data Directories</h3>
+</a>
+<strong>Name for 2d pipeline outputs:</strong>
+<em>spectroRoot/2d_$rerun/$plate</em> where
+<ul>
+<li> <em>$rerun</em> is the spectro rerun number, format %d
+<li> <em>$plate</em> is the plate, format %04d
+</ul>
+
+<strong>Name for 1d pipeline outputs:</strong>
+<em>spectroRoot/1d_$rerun/$plate</em> where
+<ul>
+<li> <em>$rerun</em> is the spectro rerun number, format %d
+<li> <em>$plate</em> is the plate, format %04d
+</ul>
+
+Each <em>1d_$rerun/$plate</em> has the following directories:
+<ul>
+<li> <em>1d</em> has the spSpec files
+<li> <em>gif</em> has the spPlot files
+</ul>
+
+<strong>Name for photo measurements of spectro targets:</strong>
+<em>spectroRoot/3d_$rerun/$plate</em> where
+<ul>
+<li> <em>$rerun</em> is the spectro rerun number, format %d
+<li> <em>$plate</em> is the plate, format %04d
+</ul>
+
+Each <em>3d_$rerun/$plate</em> has the following directories:
+<ul>
+<li> <em>spAtlas-$plate-$mjd-$rerun</em> has the spAtlas files
+</ul>
+
+<strong>Directory of clean spectroscopic sample data:</strong>
+<em>spectroRoot/ss_$rerun/$plate</em> and <em>ss_tar_$rerun/$plate.tar.gz</em> where
+<ul>
+<li> <em>$rerun</em> is the spectro rerun number, format %d
+<li> <em>$plate</em> is the plate, format %04d
+</ul>
+
+The plPlugMapM files should be found in 2d_$rerun, 1d_$rerun and ss_$rerun.
+Last resort, look in spectroRoot/speclog. There the sdReport may be found,
+as well.  There is one directory for each MJD.
+Note that there can potentially be a different MJD for plugging and
+observing.  You have to look in the header of the <a href="spSpec.html">
+spSpec</a> or <a href="spPlate.html">spPlate</a> files to find the plugfile.
+
+<a name="chunk"></a> <h3>Target Data Directories</h3>
+<STRONG>Name:</STRONG><EM>targetRoot/stripe$stripe_mu$mu_$skyVersion</EM>
+where <EM>$stripe</EM> is the stripe number (format %d), <em>$mu</em> is the 
+starting mu (format %6d), and <EM>$skyVersion</EM> is the sky version
+(format %d):
+<ul>
+	<li>skyVersion = 0: targeted sky
+</ul>
+
+
+<a name="chunk"> <h3>Best Data Directories</h3> </a>
+<STRONG>Name:</STRONG> <EM>bestRoot/stripe$stripe_mu$mu_$skyVersion</EM>
+where <EM>$stripe</EM> is the stripe number (format %d), <em>$mu</em> is the 
+starting mu (format %6d), and <EM>$skyVersion</EM> is the sky version
+(format %d):
+<ul>
+	<li>skyVersion = 1: best sky (better reruns)
+</ul>
+
+<a name="tiling"> <h3>Tiling Data Directories</h3> </a>
+<STRONG>Name:</STRONG> <em>tilingRoot/chunk$chunk</em> contains the
+tiling information for spectro tiling chunk # $chunk.
+
+<a name="imCsv"> <h3>Imaging CSV Directories</h3> </a>
+  <ul>
+   <li> <b>phCSV/</b> directory - contains the <b>imaging</b> (photo) CSV 
+files.&nbsp;  The tables that will be loaded from here are the <b>Chunk</b>, 
+      <b>Segment</b>,        <b>Field, Mask, ObjMask, PhotoObj</b>, <b>Profile</b> 
+, <b>First</b>,        <b>Rosat</b>, and <b>USNO</b> tables.&nbsp; There is
+a different subdirectory for each skyVersion of the data to be loaded:</li>
+              
+    <ul>
+   <li> <b>target/</b> directory - contains CSV files for the TARGET (skyVersion 
+ = 0) data.</li>
+                  
+      <ul>
+   <li> <b>&lt;skyVersion#&gt;-&lt;stripe#&gt;-&lt;startMu&gt;</b>, 
+ e.g. 0-42-123456 : This is the chunk/stripe level directory that contains 
+ the individual runs.&nbsp; This level is necessary to allow for the possibility 
+ that a given run may overlap more than one chunk.</li>
+                      
+        <ul>
+   <li> <b>&lt;run#&gt;/</b>: There is one subdirectory for each run to be
+ loaded.&nbsp; The subdirectory name is the run-number (run#).&nbsp; The
+files  in each run# directory will be named <b>&lt;tablename&gt;-target-&lt;run#&gt;-&lt;rerun#&gt;[_&lt;sequence#&gt;].csv</b> 
+ (the sequence number is used if necessary when files get very large), and 
+ the following files will be deposited here:</li>
+                          
+          <ul>
+   <li> <b>csv_ready</b>: The <b>csv_ready</b> file is a semaphore  file
+indicating that the CSV files for this run are ready to be loaded.&nbsp;
+ This is necessary in case new runs are added while the robot is queueing
+the existing runs to be loaded, and also for the future when we load runs
+in parallel.</li>
+    <li> <b>sqlField-target-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlField-target-752-8.csv</li>
+    <li> <b>sqlFieldProfile-target-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g.
+ sqlFieldProfile-target-752-8.csv</li>
+    <li> <b>sqlFirst-target-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlFirst-target-752-8.csv</li>
+    <li> <b>sqlMask-target-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlMask-target-752-8.csv</li>
+    <li> <b>sqlObjMask-target-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlAtlas-target-752-8.csv</li>
+    <li> <b>sqlPhotoObjAll-target-&lt;run#&gt;-&lt;rerun#&gt;_&lt;seq#&gt;.csv</b>,
+ e.g. sqlPhotoObjAll-target-752-8_0.csv</li>
+    <li> <b>sqlPhotoProfile-target-&lt;run#&gt;-&lt;rerun#&gt;_&lt;seq#&gt;.csv</b>,
+ e.g. sqlPhotoProfile-target-752-8_1.csv</li>
+    <li> <b>sqlRosat-target-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlRosat-target-752-8.csv</li>
+    <li> <b>sqlSegment-target-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g.,
+sqlSegment-target-752-8.csv</li>
+    <li> <b>sqlUSNO-target-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlUSNO-target-752-8.csv</li>
+    <li> <b>zoom/</b>: This directory will contain the jpeg zoom files under
+ the subdirectories <b>1, 2, 3, 4, 5, 6</b> for that part of each
+	camCol contained in the resolved chunk (i.e. without overlaps).</li>
+                         
+          </ul>
+    <li> <b>csv_ready</b>: The <b>csv_ready</b> file is a semaphore  file 
+that tells the robot that the TARGET database is ready to load, i.e.  the 
+CSV files are ready to be queued for loading.</li>
+    <li> <b>sqlChunk-target.csv</b></li>
+    <li> <b>sqlTarget-target.csv</b></li>
+    <li> <b>sqlTargetInfo-target.csv</b></li>
+                     
+        </ul>
+                 
+      </ul>
+    <li> <b>best/</b> directory - contains CSV files for the BEST (skyVersion
+ = 1) data.</li>
+                  
+      <ul>
+   <li> <b>&lt;skyVersion#&gt;-&lt;stripe#&gt;-&lt;startMu&gt;</b>, 
+ e.g. 1-42-191169 : This is the chunk/stripe level directory that contains 
+ the individual runs.&nbsp; This level is necessary to allow for the possibility 
+ that a given run may overlap more than one chunk.</li>
+                      
+        <ul>
+   <li> <b>&lt;run#&gt;/</b>: As above, there will be one subdirectory for
+ each run.&nbsp; The files under this directory will be named</li>
+                          
+          <ul>
+   <li> <b>csv_ready</b>: The <b>csv_ready</b> file is a semaphore  file
+indicating that the CSV files for this run are ready to be loaded.&nbsp;
+ This is necessary in case new runs are added while the robot is queueing
+the existing runs to be loaded, and also for the future when we load runs
+in parallel.</li>
+    <li> <b>sqlField-best-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlField-best-752-7.csv</li>
+    <li> <b>sqlFieldProfile-best-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g.
+ sqlFieldProfile-best-752-7.csv</li>
+    <li> <b>sqlFirst-best-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlFirst-best-752-7.csv</li>
+    <li> <b>sqlMask-best-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlMask-best-752-7.csv</li>
+    <li> <b>sqlObjMask-best-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlAtlas-best-752-7.csv</li>
+    <li> <b>sqlPhotoObjAll-best-&lt;run#&gt;-&lt;rerun#&gt;_&lt;seq#&gt;.csv</b>,
+ e.g. sqlPhotoObjAll-best-752-7_0.csv</li>
+    <li> <b>sqlPhotoProfile-best-&lt;run#&gt;-&lt;rerun#&gt;_&lt;seq#&gt;.csv</b>,
+ e.g. sqlPhotoProfile-best-752-7_1.csv</li>
+    <li> <b>sqlRosat-best-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlRosat-best-752-7.csv</li>
+    <li> <b>sqlSegment-target-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g.,
+sqlSegment-best-752-7.csv</li>
+    <li> <b>sqlUSNO-best-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlUSNO-best-752-7.csv</li>
+    <li> <b>zoom/</b>: This directory will contain the jpeg zoom files under
+ the subdirectories <b>1, 2, 3, 4, 5, 6</b>  for that part of each
+	camCol contained in the resolved chunk (i.e. without overlaps).</li>
+                         
+          </ul>
+    <li> <b>csv_ready</b>: The <b>csv_ready</b> is a semaphore file that
+tells the robot that the BEST database is ready to load, i.e. the  CSV files
+are done.</li>
+    <li> <b>sqlChunk-best.csv</b>, containing the chunk data.</li>
+                     
+        </ul>
+                 
+      </ul>
+    <li> <b>runs/</b> directory - intended to contain CSV files for the RUNS
+	(skyVersion &gt; 0) data.</li>
+                  
+      <ul>
+   <li> <b>&lt;run#&gt;-&lt;rerun#&gt;/</b>: This will be the chunk (stripe)
+ level subdirectory.&nbsp; The individual run will be under this directory.&nbsp;
+ This is for consistency with the directory structure for target and best.</li>
+                      
+        <ul>
+   <li> <b>&lt;run#&gt;/</b>: There will be one subdirectory for each run 
+to be loaded.&nbsp; There will be no masks for the runs skyversion.&nbsp; 
+The files in this directory will be:</li>
+                          
+          <ul>
+   <li> <b>csv_ready</b>: This is a semaphore file indicating that the CSV 
+files for this run are ready to be queued for loading. &nbsp;This is to prevent 
+premature loading of a run before the CSV generation is finished.</li>
+    <li> <b>sqlField-runs-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlField-runs-1336-16.csv</li>
+    <li> <b>sqlFieldProfile-runs-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g.
+ sqlFieldProfile-runs-1336-16.csv</li>
+    <li> <b>sqlFirst-runs-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlFirst-runs-1336-16.csv</li>
+    <li> <b>sqlObjMask-runs-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlAtlas-runs-1336-16.csv</li>
+    <li> <b>sqlPhotoObj-runs-&lt;run#&gt;-&lt;rerun#&gt;_&lt;seq#&gt;.csv</b>,
+ e.g. sqlPhotoObj-runs-1336-16_0.csv</li>
+    <li> <b>sqlPhotoProfile-runs-&lt;run#&gt;-&lt;rerun#&gt;_&lt;seq#&gt;.csv</b>,
+ e.g. sqlPhotoProfile-runs-1336-16_1.csv</li>
+    <li> <b>sqlRosat-runs-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlRosat-runs-1336-16.csv</li>
+    <li> <b>sqlSegment-target-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g.,
+sqlSegment-runs-1336-16.csv</li>
+    <li> <b>sqlUSNO-runs-&lt;run#&gt;-&lt;rerun#&gt;.csv</b>, e.g. sqlUSNO-runs-1336-16.csv</li>
+    <li> <b>zoom/</b>: This directory will contain the jpeg zoom files under
+ the subdirectories <b>1, 2, 3, 4, 5, 6</b> for each camCol.</li>
+                         
+          </ul>
+    <li> <b>csv_ready</b>: The <b>csv_ready</b> file is a semaphore  file 
+that tells the robot that the RUNS database is ready to load, i.e. the CSV 
+files are ready to be queued for loading.</li>
+    <li> <b>sqlChunk-runs.csv</b>, containing the chunk data if applicable.</li>
+                     
+        </ul>
+               
+      </ul>
+        <li> <b>log/</b>:<b>&nbsp;</b><b>T</b>he log directory - this is
+the  default location for the photo log and error files.</li>
+           
+    </ul>
+       
+  </ul>
+   
+<a name="spCsv"> <h3>Spectro CSV Directories</h3> </a>
+       
+  <ul>
+    <li> <b>spCSV/</b> directory - contains the <b>spectro</b> CSV files.&nbsp;
+	The subdirectories below this level are:</li>
+	
+	<ul>
+	  <li> <b>plates/</b>:<b>&nbsp;</b><b>T</b>he data directory containing
+	      the  subdirectories for individual spectro runs:</li>
+	      
+	      <ul>
+		<li> <b>&lt;year&gt;-&lt;month&gt;-&lt;day&gt;-&lt;hour&gt;</b>,
+		    e.g. 2002-11-19-1300 : Each such directory contains an individual spectro
+		    run.&nbsp; This level is necessary to allow for the possibility that there
+		    may be more than one run. &nbsp;This is the data directory containing the
+		    actual CSV files:</li>
+		    
+		    <ul>
+		      <li> <b>csv_ready</b>: This is a semaphore file indicating that the CSV 
+			  files for this plate run are ready to be queued for loading. &nbsp;This is 
+			  to prevent premature loading of a run before the CSV generation is finished.</li>
+		      <li><b>sqlPlateX.csv </b>- the data for the <b>PlateX </b>table.</li>
+		      <li> <b>sqlSpecObjAll.csv </b>- the data for the <b>SpecObjAll </b>table.</li>
+		      <li> <b>sqlSpecLineAll.csv</b> - the data for the <b>SpecLineAll</b>
+			  table.</li>
+		      <li> <b>sqlSpecLineIndex.csv</b> - the data for the <b>SpecLineIndex</b>
+			  table.</li>
+		      <li> <b>sqlELRedshift.csv</b> - the data for the <b>ELRedshift</b> (emission-line 
+			  redshifts) table.</li>
+		      <li> <b>sqlHoleObj.csv</b> - the data for the <b>HoleObj</b> table.</li>
+		      <li><b>sqlXCRedshift.csv</b> - the data for the <b>XCRedshift</b> 
+			  (cross-correlation  redshifts) table.</li>
+			  
+		    </ul>
+		<li><b>&lt;plate#&gt;/gif/</b>: One pair of
+		    subdirectories per plate containing gif plots of
+		    all the spectra on the plate:
+		    <ul>
+		      <li><b>spPlot-&lt;MJD&gt;-&lt;plate#&gt;-&lt;fiberId&gt;.gif</b></li>
+		    </ul>
+		</li>  
+		<li> <b>csv_ready</b>: The <b>csv_ready</b> a semaphore file that 
+		    tells the robot that the spectro data is ready to load, i.e. the CSV files 
+		    are ready to be queued for loading.</li>
+		    
+	      </ul>
+	  <li> <b>log/</b>:<b>&nbsp;</b><b>T</b>he log directory - this is
+	      the  default location for the spectro log and error files.</li>
+	      
+                
+    </ul>
+   
+  </ul>
+ 
+ 
+<a name="tiCsv"> <h3>Tiling CSV Directories</h3> </a>
+   
+  <ul>
+      <li> <b>tiCSV/</b> directory - contains the <b>tiling</b> CSV files.&nbsp;
+ The  subdirectories below this level are:</li>
+           
+    <ul>
+        <li> <b>tiles/</b>:<b> </b><b>T</b>he data directory containing the
+ subdirectories for individual tiling runs:</li>
+               
+      <ul>
+          <li> <b>&lt;tileRun#&gt;-&lt;year&gt;-&lt;month&gt;-&lt;day&gt;-&lt;hour&gt;</b>, 
+e.g. 10-2003-01-8-1800 : Each such directory contains an individual tiling 
+run.&nbsp; This level is necessary to allow for the possibility that there 
+may be more than one run. &nbsp;The files in each such directory are:</li>
+                   
+        <ul>
+            <li> <b>csv_ready</b>: This is a semaphore file indicating that 
+the CSV files for this tiling run are ready to be queued for loading. &nbsp;This 
+is to prevent premature loading of a run before the CSV generation is finished.</li>
+           <li><b>sqlTileAll-&lt;tileRun#&gt;.csv </b>- the data for the <b>TileAll
+            </b>table.</li>
+            <li> <b>sqlTiledTargetAll-&lt;tileRun#&gt;.csv </b>- the data for 
+the <b>TiledTargetAll             </b>table.</li>
+            <li> <b>sqlTilingGeometry</b><b>-&lt;tileRun#&gt;</b><b>.csv</b> 
+- the data for the <b>TilingGeometry</b> table.</li>
+            <li> <b>sqlTilingInfo</b><b>-&lt;tileRun#&gt;</b><b>.csv</b>
+- the data for the <b>TilingInfo</b> table.</li>
+            <li> <b>sqlTilingRun</b><b>-&lt;tileRun#&gt;</b><b>.csv</b> 
+- the data for the <b>TilingRun</b> table.</li>
+                     
+        </ul>
+         <li><b>csv_ready</b>: The <b>csv_ready</b> a semaphore file that 
+tells the robot that the tiling data is ready to load, i.e. the CSV files 
+are ready to be queued for loading.</li>
+                 
+      </ul>
+        <li> <b>log/</b>:<b>&nbsp;</b><b>T</b>he log directory - this is
+the  default location for the tiling log and error files.</li>
+           
+    </ul>
+       
+  </ul>
+   
+   
+<blockquote>      
+  <center><img src="csvdir.jpg" border="2" height="740" width="600"
+ alt="CSV Directory Structure Layout JPG Image">
+   </center>
+    <br>
+  </blockquote>
+   
+<center></center>
+   
+<center><b>Figure 1</b>. The directory structure layout for the CSV files.</center>
+      
+<p><br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   </p>
+
+</BODY>
+
+</HTML>

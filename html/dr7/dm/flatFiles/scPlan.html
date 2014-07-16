@@ -1,0 +1,123 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for SSC Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>SSC Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>scPlan.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+sscPre
+ <P>
+<STRONG>Used by:</STRONG>
+ssc
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+parameters          'XXX'               # Tunable parameters file (if any)
+parametersDir 	    'XXX'               # Directory containing the 'parameters'
+                                        # file (optional --- defaults to '.')
+
+run                 XXX                 # Imaging run number. 
+camCol              XXX                 # Column in the imaging camera. 
+startField          XXX                 # Start pipeline with this field. 
+endField            XXX                 # Stop pipeline with this field  
+                                        # (inclusive). 
+report		    'XXX'		# Report file
+
+# Processing Parameters
+verbose               1                 # verbose &gt; 0 means print a lot
+display               0                 # display &gt; 0 means show various
+                                        #   images as the pipeline progresses,
+                                        #   waiting for user input after 
+                                        #   displaying each one
+
+
+ccdrow_r        1
+ccdrow_i        2
+ccdrow_u        3
+ccdrow_z        4
+ccdrow_g        5
+ccdrow_o        6
+ccdrow_l        7
+ccdrow_t        8
+ccdrow_s        9
+
+aGangInputDir	    'XXX'               # astrometric gangs are here
+pGangInputDir       'XXX'               # photometric gangs are here
+fieldInputDir       'XXX'               # photometric images are/will go here
+fieldInputDevice    disk                # disk or tape
+fieldOutputDevice   disk_photo		# disk/tape
+tapeDeviceName      'XXX'               # name of tape drive
+tapeLabel           'XXX'               # if "tape", name of volume label
+tapeLabelLength     XXX                 # if "tape", length of tape label 
+tapeSkipFiles       XXX                 # skip this many images at the very
+                                        #   start of the tape (does not
+                                        #   include the tape label)
+tapeLogFile         XXX			# file with description of every
+					# file on the tape.
+writePhotomOnly     0			#  if 1, just read tapes onto 
+					# disk and name them, don't 
+				        # ssc-process
+ignorePhotomData      1                 # if 1, ignore any photometric data,
+                                        #   working only on astrometric data
+
+
+
+inputDir            'XXX'               # all the rest of the input comes 
+                                        #   from here
+outputDir           'XXX'               # all output files but fangs go here
+outputFangDir	    'XXX'               # all output fang files go here
+
+keepPhotomImages      1                 # if 1, keep photometric images on disk
+                                        # if 0, delete them after use
+                                        # this is probably 1 if using "disk"
+                                        # but possibly 0 if using "tape"
+                  
+diagnostics           1                 # if &gt; 0, do create a file with
+                                        #   diagnostic output from each field
+diagFile         scDiag                 # prefix of the file into which 
+                                        #   diagnostic output will be placed.
+                                        #   Name includes run, camCol. Ex:
+                                        #       scDiag-0000505-1.par
+                                        # NB: this parameter must exist, even
+                                        #   if "diagnostics" is set to 0!!!
+koDir		   'XXX'                # Directory for known objects
+koFileBase       scStarcat              # prefix of the file which we use to 
+                                        #   identify candidates for wing and
+                                        #   frame stars.  Ex:
+                                        #       scStarcat-000505.fit
+catalog_type     equatorial             # Catalog equatorial or great circle
+wingFile         scWing                 # prefix for the file into which we 
+                                        #   write list of "wing stars" cut out.
+                                        #   Name includes run and camcol. Ex:
+                                        #       scWing-000581-1.par
+frameFile        scFrame                # prefix for the file into which we 
+                                        #   write list of "frame stars" cut out.
+                                        #   Name includes run and camcol. Ex:
+                                        #       scFrame-000581-1.par
+
+# CCD configuration files
+configDir           'XXX'		# directory for ccd calibration files
+ccdConfig           'XXX'               # amplifier configuration
+ccdECalib           'XXX'               # electronic calibrations
+ccdBC               'XXX'               # bad pixels
+ccdCamera	    'XXX'               # camera geometry
+<!--AUTOCHECK end param -->
+</pre>
+</BODY>
+</HTML>

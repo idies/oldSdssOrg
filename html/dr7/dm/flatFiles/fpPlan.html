@@ -1,0 +1,143 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Frames Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Frames Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>fpPlan.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+framesPre
+ <P>
+<STRONG>Used by:</STRONG>
+frames
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control the frames pipeline.  Each plan targets the data
+from one column in the Imaging Array for one imaging run.
+
+<H2>Contents</H2>
+<pre>
+rerun		    XXX                 # Rerun number (optional, used by
+					# OPDB only)
+<!--AUTOCHECK begin param -->
+parameters          'XXX'               # Tunable parameters file (if any)
+parametersDir 	    'XXX'               # Directory containing the 'parameters'
+                                        # file
+
+run                 XXX                 # Imaging run number. 
+camCol              XXX                 # Column in the imaging camera. 
+startField          XXX                 # Start pipeline with this field. 
+endField            XXX                 # End pipeline with this field  
+                                        # (inclusive). 
+
+# Processing Parameters
+diagnostics         1                   # if &gt; 0, do create a file with
+                                        #   diagnostic output from each field
+diagFile            fpDiag              # prefix of the file into which 
+                                        #   diagnostic output will be placed.
+                                        #   Name includes run, camCol. Ex:
+                                        #       scDiag-0000505-1.par
+                                        # NB: this parameter must exist, even
+                                        #   if "diagnostics" is set to 0!!!
+
+
+filterlist          u g r i z           # filters to include when processing
+ccdrow_r            1
+ccdrow_i            2
+ccdrow_u            3
+ccdrow_z            4
+ccdrow_g            5
+ccdrow_o            6
+ccdrow_l            7
+ccdrow_t            8
+ccdrow_s            9
+
+# the raw images may be found in subdirectories here
+imageDir 	    'XXX'
+
+# known objects directory and file names
+koDir               'XXX'
+koBrightStars       'XXX'
+koBrightGalaxies    'XXX'
+
+#output dir for ps pipeline
+psDir               'XXX'
+
+#trans files
+transFileDir        'XXX'
+transFile           'XXX'
+
+# directory for col bias frames, named idB-000581-rc.fit
+biasDir             'XXX'
+
+# CCD configuration files
+configDir           'XXX'		# directory for ccd calibration files
+ccdConfig           'XXX'               # amplifier configuration
+ccdECalib           'XXX'               # electronic calibrations
+ccdBC               'XXX'               # bad pixels
+
+# put the output (corrected images, atlas images, OBJC catalogs, logs) here:
+outputDir 	    'XXX'
+
+# The remaining parameters are all optional
+verbose             1                   # verbose &gt; 0 means print a lot
+display             0                   # display &gt; 0 means show various
+                                        #   images as the pipeline progresses,
+                                        #   waiting for user input after 
+                                        #   displaying each one
+time_limit   0				# Max number of seconds per field;
+					# 0 means unlimited
+
+write_test_info	      1			# if 1 write the TEST_INFO output files
+verbose               0                 # verbose > 0 means print a lot
+write_fpC_files	      1			# should I write fpC files?
+display	              0  		# |display| > 0 means show various
+                                        #  images as the pipeline progresses,
+                                        #  waiting for user input after 
+                                        #  displaying each one if display > 0
+					#  If |display| > 10, use a large image
+# The other display_* params only apply if $display is true
+display_filterlist	all		# names of filters to display
+display_zoom	1			# how much to zoom after displaying
+display_row 	-1			# where to zoom about
+display_col	-1
+#
+display_raw		0		# display raw and corrected frames
+display_smooth 		0		# show frame after smoothing with PSF
+display_subtracted	0		# show image after star subtraction
+display_binned 		0		# show binned objects as they are found
+
+display_objs		0		# display objects as they are measured
+					# if > 1, show IDs too
+display_isoEllipse	0		# show isophotal fit
+display_peaks		0		# show all peaks within objects
+display_petroRad	0		# show object's Petrosian radius
+
+display_summary		0		# display summary graphs at end of run
+#
+# Optional truth table stuff
+#
+truth_file		/dev/null
+truth_format		%*g %*s %g %*g %*g %*s %g %g %g %*s
+truth_cols 		2 3 1 4
+truth_dist		2
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+
+</HTML>

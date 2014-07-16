@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Final Calibration Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Final Calibration Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>fcPlan.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+fcalibPre
+ <P>
+<STRONG>Used by:</STRONG>
+fcalib
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control the final photometric calibration pipeline.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+parameters          'XXX'               # Tunable parameters file (if any)
+parametersDir 	    'XXX'               # Directory containing the 'parameters'
+                                        # file
+
+run                 XXX                 # Imaging run number. 
+camCol              XXX                 # Column in the imaging camera. 
+startField          XXX                 # Start pipeline with this field. 
+endField            XXX                 # End pipeline with this field  
+                                        # (inclusive). 
+filterList	    u g r i z
+
+# put the output here:
+outputDir 	    'XXX'
+plotDir             'XXX'               # Output directory for QA plots
+
+objDir              'XXX'               # Input directory
+mtPatches           {seq# dir} {seq# dir} {seq# dir}
+astromFile          XXX
+reportFile	    XXX
+photomFile          XXX
+
+framesDir	    XXX
+fangDir             /data/dp3.7/data/fangs
+runDay              50949
+
+mtstdsPatchFile     exSecPatch.par
+mtPatchFormat       kaCalObj-%08d.fit
+
+#Versions of mtPipe (v7_2), version of mtstds (v3_2) and 'mt rerun' (0)
+#of pipelines used to generate exPhotom files.
+mtVerPhotom v7_2v3_2-0
+
+#Versions of mtPipe (v7_2, v7_0), version of mtstds (v3_2, v3_0) and 'mt
+#rerun' (0) of pipelines used to select mtPatches from
+mtVerSecList v7_2v3_2-0 v7_0v3_0-0
+
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+
+</HTML>

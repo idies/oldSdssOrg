@@ -1,0 +1,96 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Atlas Images</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Atlas Images of Spectroscopic Objects</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spAtlas-pppp-mmmmm-fff.fit</EM>,
+where <EM>pppp</EM> is the spectroscopic plate number, <em>mmmmm</em> 
+is the MJD of observation of the last exposure included in the 
+spectro reduction, and <em>fff</em> is the fiber id.
+ <P>
+<STRONG>Produced by:</STRONG>
+dp
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+About 115 Kb per fiber, 107 Mb per plate.
+ <P>
+<STRONG>Archived?</STRONG>
+ <P>
+
+<H2>Description</H2>
+Contains the atlas images for all objects observed on a given
+spectroscopic plate.
+<p>
+
+There are 10 atlas images per file. The first 5 are u,g,r,i,z,
+for the best reduction. The second 5 are u,g,r,i,z for the
+target reduction.  If the atlas image cannot be
+read for any reason, a dummy image of size 0,0 is placed into the
+fits file. If the object has run 0, as can happen for hot standars
+for example, the fits file may be empty.
+
+
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T                                                  
+BITPIX  =                   16                                                  
+NAXIS   =                    2                                                  
+NAXIS1  =                  128                                                  
+NAXIS2  =                  148                                                  
+BZERO   = 3.27680000000000E+04                                                  
+BSCALE  = 1.00000000000000E+00                                                  
+EXTEND  =                    T                                                  
+VERSION = 'v5_3_53 '                                                            
+DERV_VER= 'v8_15   '                                                            
+ASTR_VER= 'v5_13   '                                                            
+ASTRO_ID= '2002-09-19T13:40:11 27771'                                           
+BIAS_ID = 'PS      '                                                            
+FRAME_ID= '2002-09-19T14:09:21 08329'                                           
+KO_VER  = 'devel   '                                                            
+PS_ID   = '2002-09-18T15:17:24 15246 camCol 1'                                  
+CREATIME= 'Thu Sep 19 19:12:28 2002 UTC' / The local time when this file was cre
+SEED    =             93054723 / Seed for photo random number generato          
+REF_BAND=                    2 / index of band used for canonical cent          
+RUN     =                 1907 / Imaging run number                             
+RERUN   =                   21 / Processing rerun number                        
+CAMCOL  =                    1 / Column in the imaging camera                   
+FIELD   =                  153 / Field sequence number                          
+DARK_VAR= '9.61 15.6025 1.8225 7.84 0.81' / Per-pixel variances at zero DN; DN^2
+GAIN    = '1.62 3.32 4.71 5.165 4.745' / Mean gains of amplifiers; e/DN         
+SOFTBIAS=                 1000 / software "bias" added to all DN                
+ID      =                   24 / Object id, as in run-rerun-camcol-fie          
+FILTER  = 'u       '                                                            
+SKY     = 'best    '           / best= latest reduction, target= the i          
+COMMENT = 'Target is useful to see why we did what we did'                      
+COMMENT = 'Best is often a better view of the object'                           
+PLATE   =                  266 / spectroscopic plate                            
+MJD     =                51630 / 2400000-MJD of last spectroscopic obs          
+FIBER   =                  327 / fiber id                                       
+COMMENT = 'As in plate-mjd-fiber'                                               
+MAPID   = '0266-51615-01'      / Mapping between targets and fibers us          
+DATE    = '2003-02-27'         / date of file creation                          
+ORIGIN  = 'SDSS@Fermilab'                                                       
+TELESCOP= 'SDSS 2.5m at Apache Point Observatory'                               
+INSTRUME= 'SDSS imaging camera'                                                 
+AUTHOR  = 'Jim Annis'                                                           
+COMMENT = 'These atlas images have been  extracted from'                        
+COMMENT = 'the standard FITS heap format that the SDSS'                         
+COMMENT = 'PHOTO pipeline produces.'                                            
+<!--AUTOCHECK end hdu 0 -->
+END
+</pre>
+
+</BODY>
+</HTML>

@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Spectro 2D Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Spectro 2D Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spPlancomb.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+Spectro-2D/SPPLAN1D
+ <P>
+<STRONG>Used by:</STRONG>
+Spectro-2D/SPCOMBINE
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to combine all spectroscopic reductions
+for a single plate with the same plugging.  This can span several nights.
+There is one such plan file for each plate observed with the same plugging.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+plateid  0266  # Plate number
+MJD      51630  # Modified Julian Date for most recent observation
+planfile2d  'spPlan2d-0266-51615.par' 'spPlan2d-0266-51630.par'  # Plan file(s) for 2D spectral reductions
+planfilecomb 'spPlancomb-0266-51630.par'  # Plan file for combining spectra
+extractdir ''  # Directory for extracted spectra
+combinedir ''  # Directory for combined spectra
+logfile    'spDiagcomb-0266-51630.log'  # Text log file
+plotfile   'spDiagcomb-0266-51630.ps'  # PostScript log file
+fcalibprefix 'spFluxcalib-0266-51630'  # Prefix for flux-calibration files
+combinefile   'spPlate-0266-51630.fits'  # Output combined spectra file
+plotsnfile        'spSN2d-0266-51630.ps'  # Two page S/N and magnitude plot
+snfile        'spSN2d-0266-51630.fits'  # Small fits file with S/N numbers
+
+typedef struct {
+ int PLATEID;
+ int MJD;
+ char MAPNAME[14];
+ char FLAVOR[8];
+ float EXPTIME;
+ char NAME[4][25];
+} SPEXP;
+
+SPEXP 266 51615 0266-51615-01 science 900.000 { spFrame-b1-00003046.fits spFrame-b2-00003046.fits spFrame-r1-00003046.fits spFrame-r2-00003046.fits }
+SPEXP 266 51630 0266-51615-01 science 900.000 { spFrame-b1-00003238.fits spFrame-b2-00003238.fits spFrame-r1-00003238.fits spFrame-r2-00003238.fits }
+SPEXP 266 51630 0266-51615-01 science 900.000 { spFrame-b1-00003239.fits spFrame-b2-00003239.fits spFrame-r1-00003239.fits spFrame-r2-00003239.fits }
+SPEXP 266 51630 0266-51615-01 science 900.000 { spFrame-b1-00003240.fits spFrame-b2-00003240.fits spFrame-r1-00003240.fits spFrame-r2-00003240.fits }
+SPEXP 266 51630 0266-51615-01 science 900.000 { spFrame-b1-00003241.fits spFrame-b2-00003241.fits spFrame-r1-00003241.fits spFrame-r2-00003241.fits }
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+</HTML>

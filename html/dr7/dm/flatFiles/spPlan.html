@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Spectro Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Spectro Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spPlan.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+opdb
+ <P>
+<STRONG>Used by:</STRONG>
+spectro
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb.
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control the spectro pipeline.  Each plan targets the
+data from one night's spectroscopic observations.
+
+<H2>Contents</H2>
+In addition to the <a href="PLAN.html">generic plan keywords</a>, the following
+keywords are required.
+<pre>
+seqBegin            XXX                 # Starting sequence number. 
+seqEnd 		    XXX		        # Ending sequence number (inclusive). 
+
+# Processing Parameters
+verbose             1                   # verbose &gt; 0 means print a lot
+display             0                   # display &gt; 0 means show various
+                                        #   images as the pipeline progresses,
+                                        #   waiting for user input after 
+                                        #   displaying each one
+diagnostics         1                   # if &gt; 0, do create a file with
+                                        #   diagnostic output from each field
+diagFile            spDiag              # prefix of the file into which 
+                                        #   diagnostic output will be placed.
+                                        #       spDiag.par
+
+
+mjd		   XXX
+
+inputDir	   'XXX'		# where are the raw .fit images
+templateDir	   'XXX'		# where are the template files
+templateFile	   'XXX'		# format of template file names
+
+reportFile	   'XXX'		# name of sdReport-MJD.par file
+
+plugDir		   'XXX'		# directory where tsPlugMap files
+				        # may be found
+plugFile	   'XXX'		# prefix of plug map file
+
+
+# CCD configuration files
+configDir           'XXX'		# directory for ccd calibration files
+ccdConfig           'XXX'               # amplifier configuration
+ccdECalib           'XXX'               # electronic calibrations
+ccdBC               'XXX'               # bad pixels
+
+outputDir          'XXX'		# where should the output go (top dir)
+</pre>
+
+</BODY>
+</HTML>

@@ -1,0 +1,192 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Binned Corrected Frame</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Binned Corrected Frame</H1>
+
+<STRONG>File Format:</STRONG>
+FITS image
+ <P>
+<STRONG>Name:</STRONG>
+<EM>fpBIN-rrrrrr-bc-ffff.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number, <EM>b</EM> is the filter used
+(u, g, r, i, or z), <EM>c</EM> is the column location in the Imaging Array of
+the CCD which acquired the data (1-6), and <EM>ffff</EM> is the
+field number within the run.
+ <P>
+<STRONG>Produced by:</STRONG>
+frames
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG> 357.120 Kb per file.  5 files per field.  Total of
+1,785.6 Mb for a single frames pipeline run with 1000 fields.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.  Tracked file.
+ <P>
+
+<H2>Description</H2>
+
+<h3>DR1 fpBIN files (photo v5_3)</h3>
+
+A 4x4 binned version of the corrected image after sky-subtraction.
+The counts in each binned pixel are the average of the counts in its
+associated 16 unbinned pixels after a global sky and scattering wings
+of stars have been subtracted (<code>fpC</code> and <code>fpBIN</code>
+header keyword <code>SKY</code>), scaled up a factor of
+<code>BINFAC</code> (== 2^<code>SHIFTED</code>), with
+<code>SOFTBIAS</code> added afterwards.  All pixels that are in atlas
+images are replaced by the background level before binning and sky
+subtraction, with suitable noise added.  All of the header parameters
+from the raw image are inherited as well.
+
+<h3>EDR fpBIN files (photo v5_2)</h3>
+A 4x4 binned version of the corrected image.  The counts in each binned pixel
+are the average of the counts in its associated 16 unbinned pixels, scaled up
+a factor of BINFAC (== 2^SHIFTED).  All pixels that are in atlas images are
+replaced by the background level before binning, with suitable noise added.
+All of the header parameters from the raw image are inherited as well.
+
+<h2>Primary header</h2>
+
+<h3>DR1 version (photo v5_3)</h3>
+
+<pre>
+SIMPLE  =                    T
+BITPIX  =                   16
+NAXIS   =                    2
+NAXIS1  =                  512
+NAXIS2  =                  372
+BZERO   = 3.27680000000000E+04
+BSCALE  = 1.00000000000000E+00
+TAI     =        4461557881.39 / 1st row - Number of seconds since Nov 17 1858
+RA      =            257.72569 / 1st row - Right ascension of telescope boresigh
+DEC     =            59.298150 / 1st row - Declination of telescope boresight (d
+SPA     =             160.117  / 1st row - Camera col position angle wrt north (
+IPA     =             295.168  / 1st row - Instrument rotator position angle (de
+IPARATE =             -0.0001  / 1st row - Instrument rotator angular velocity (
+AZ      =            154.45981 / 1st row - Azimuth  (encoder) of tele (0=N?) (de
+ALT     =            58.184500 / 1st row - Altitude (encoder) of tele        (de
+FOCUS   = -999999999999.999999 / 1st row - Focus piston (microns?)
+DATE-OBS= '2000-04-04'         / 1st row - TAI date
+TAIHMS  = '09:38:01.39'        / 1st row - TAI time (HH:MM:SS.SS) (TAI-UT = appr
+COMMENT  TAI,RA,DEC,SPA,IPA,IPARATE,AZ,ALT,FOCUS at reading of col 0, row 0
+BUNITS  = 'ADUs    '
+ORIGIN  = 'SDSS    '
+TELESCOP= '2.5m    '
+TIMESYS = 'TAI     '
+RUN     =                 1336 / Run number
+FRAME   =                   53 / Frame sequence number within the run
+CCDLOC  =                   11 / Survey location of CCD (e.g., rowCol)
+STRIPE  =                   42 / Stripe index number (23 <--> eta=0)
+STRIP   = 'N       '           / Strip in the stripe being tracked.
+FLAVOR  = 'science '           / Flavor of this run
+SYS_SCN = 'mean    '           / System of the scan great circle (e.g., mean)
+EQNX_SCN=           2000.00    / Equinox of the scan great circle. (years)
+NODE    =           95.00000   / RA of the great circle's ascending node (deg)
+INCL    =           80.00000   / Great circle's inclination wrt cel. eq. (deg)
+XBORE   =           -22.74     / Boresight x offset from the array center (mm)
+YBORE   =           0.00       / Boresight x offset from the array center (mm)
+OBJECT  = '42 N    '           / e.g., 'stripe 50.6 degrees, north strip'
+EXPTIME = '53.907456'          / Exposure time (seconds)
+EQUINOX = '2000.0  '           / Equinox of the TCC coordinates (years)
+SYSTEM  = 'FK5     '           / System of the TCC coordinates (e.g., mean)
+CCDMODE = 'DRIFT   '           / 'STARING' or 'DRIFT'
+C_OBS   =                26322 / CCD row clock rate (usec/row)
+COLBIN  =                    1 / Binning factor perpendicular to the columns
+ROWBIN  =                    1 / Binning factor perpendicular to the rows
+DAVERS  = 'v14_20  '           / Version of DA software
+COMMENT  CCD-specific parameters
+CAMROW  =                    1 / Row in the imaging camera
+BADLINES=                    0 / Number of bad lines in frame
+FLUX20  = 2.07340000000000E+03 / Number of DN in 20th mag object
+FLUX0   = -9.9990000000000E+03 / Number of DN in 0th mag object
+FCALI_ID= 'None    '
+SKY     = 1.23440000000000E+02 / Approx. sky level (DN)
+BUNIT   = 'DNs     '
+FILTER  = 'r       '           / filter used
+CAMCOL  =                    1 / column in the imaging camera
+BINFAC  =                    4 / Amount image is binned by
+SHIFTED =                    2 / Number of bits image is scaled up
+ROW0    =                    0 / Row origin of binned image
+COL0    =                    0 / Column origin of binned image
+CSIZE   =                 2048 / ncol for original image
+RSIZE   =                 1489 / nrow for original image
+SOFTBIAS=                 1000 / software "bias" added to all DN
+VERSION = 'XXX     '           / Version of photo used.
+DERV_VER= 'v8_15   '           / Version of dervish used
+ASTR_VER= 'v5_13   '           / Version of astrotools used
+ASTRO_ID= 'XXX     '           / Astrometric pipeline run identifier.
+BIAS_ID = 'XXX     '           / Bias pipeline run identifier.
+FRAME_ID= 'XXX     '           / Frames pipeline run identifier.
+KO_VER  = 'XXX     '           / Version of known object catalog used.
+PS_ID   = 'XXX     '           / Postage stamp pipeline run identifier.
+EXTEND  =                    T
+ATVSN   = 'v5_13   '           / ASTROTOOLS version tag
+RADECSYS= 'ICRS    '           / International Celestial Reference Sys
+CTYPE1  = 'DEC--TAN'           / X (Column) Axis Projection
+CTYPE2  = 'RA---TAN'           / Y (Row) Axis Projection
+CUNIT1  = 'deg     '           / Column Axis Units
+CUNIT2  = 'deg     '           / Row Axis Units
+CRPIX1  = 2.56500000000000E+02 / Column Pixel Coordinate of Reference
+CRPIX2  = 1.86500000000000E+02 / Row Pixel Coordinate of Reference Pix
+CRVAL1  = 5.84369373300000E+01 / DEC at Reference Pixel
+CRVAL2  = 2.56399396510000E+02 / RA at Reference Pixel
+CD1_1   = 1.57331035156250E-04 / DEC degrees per column pixel
+CD1_2   = -4.1065817204300E-04 / DEC degrees per row pixel
+CD2_1   = 4.10884085384116E-04 / RA  degrees per column pixel
+CD2_2   = 1.57749907535816E-04 / RA  degrees per row pixel
+END
+</pre>
+
+<h3>Older version of the fpBIN header  - not sure what it applies to</h3>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                   16
+NAXIS   =                    2
+NAXIS1  =                  512
+NAXIS2  =                  372
+BSCALE  =                    1
+BZERO   =                32768
+BINFAC  =                    4 / Amount image is binned by                     
+SHIFTED =                    2 / Number of bits image is scaled up             
+ROW0    =                   12 / Row origin of binned image                    
+COL0    =                    3 / Column origin of binned image                 
+CSIZE   =                 2048 / ncol for original image                       
+RSIZE   =                 1489 / nrow for original image                       
+SOFTBIAS=                  XXX / Software "bias" added to each pixel
+VERSION = 'XXX     '           / Version of software used.
+PS_ID   = 'XXX     '           / Postage stamp pipeline run identifier.
+BIAS_ID = 'XXX     '           / Bias pipeline run identifier.
+ASTRO_ID= 'XXX     '           / Astrometric pipeline run identifier.
+FRAME_ID= 'XXX     '           / Frames pipeline run identifier.
+KO_VER  = 'XXX     '           / Version of known object catalog used.
+RUN     =                  XXX / Imaging run number.
+FIELD   =                  XXX / Field sequence number within the run.
+CAMCOL  =                  XXX / Column in the imaging camera.
+FILTER  = 'XXX     '           / Filter (u, g, r, i, or z).
+RADECSYS= 'ICRS    '           / International Celestial Reference Sys
+CTYPE1  = 'DEC--TAN'           / X (Column) Axis Projection
+CTYPE2  = 'RA---TAN'           / Y (Row) Axis Projection
+CUNIT1  = 'deg     '           / Column Axis Units
+CUNIT2  = 'deg     '           / Row Axis Units
+CRPIX1  = 1.02400000000000E+03 / Column Pixel Coordinate of Reference
+CRPIX2  = 6.80000000000000E+02 / Row Pixel Coordinate of Reference Pix
+CRVAL1  = -3.1788873000000E-01 / DEC at Reference Pixel
+CRVAL2  = 1.88473355950000E+02 / RA at Reference Pixel
+CD1_1   = 1.10005818270640E-04 / DEC degrees per column pixel
+CD1_2   = 1.31691176470661E-08 / DEC degrees per row pixel
+CD2_1   = -4.1308597225549E-08 / RA  degrees per column pixel
+CD2_2   = 1.09963954550070E-04 / RA  degrees per row pixel
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+</BODY>
+
+</HTML>

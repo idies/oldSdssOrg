@@ -1,0 +1,99 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Atlas Images</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Atlas Images</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>fpAtlas-rrrrrr-c-ffff.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number, <EM>c</EM> is the column
+location in the Imaging Array of the CCD which acquired the data (1-6),
+and <EM>ffff</EM> is the field number within the run.
+ <P>
+<STRONG>Produced by:</STRONG>
+frames
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+This is a guess.  Say 400 objects per field, with an average atlas image
+measuring 10x10 pixels.  Then 665.28 Kb per file.  One file per field.
+Total of 665.28 Mb for a single frames pipeline run with 1000 fields.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.  Tracked file.
+ <P>
+
+<H2>Description</H2>
+Contains the atlas images for all objects detected in a single field.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T                                                  
+BITPIX  =                    8                                                  
+NAXIS   =                    0                                                  
+EXTEND  =                    T                                                  
+VERSION = 'v5_3_53 '                   / Version of software used.
+DERV_VER= 'v8_15   '                                                            
+ASTR_VER= 'v5_13   '                                                            
+ASTRO_ID= '2002-09-04T21:12:55 06053'  / Astrometric pipeline run identifier.
+BIAS_ID = 'PS      '                   / Bias pipeline run identifier.  
+FRAME_ID= '2002-09-05T13:21:29 18735'  / Frames pipeline run identifier.
+KO_VER  = 'devel   '                   / Version of known object catalog used.
+PS_ID   = '2002-09-04T17:49:34 19844 camCol 1'/ Postage stamp pipeline run identifier.                               
+CREATIME= 'Thu Sep  5 18:22:46 2002 UTC' / The local time when this file was cre
+SEED    =             97451090 / Seed for photo random number generato          
+REF_BAND=                    2 / index of band used for canonical cent          
+RUN     =                 1336 / Imaging run number                             
+RERUN   =                   21 / Processing rerun number                        
+CAMCOL  =                    1 / Column in the imaging camera                   
+FIELD   =                   11 / Field sequence number                          
+FILTERS = 'u g r i z'          / Filter order in arrays                         
+DARK_VAR= '9.61 15.6025 1.8225 7.84 0.81' / Per-pixel variances at zero DN; DN^2
+GAIN    = '1.62 3.32 4.71 5.165 4.745' / Mean gains of amplifiers; e/DN         
+NROW    =                 1489                                                  
+NCOL    =                 2048                                                  
+SOFTBIAS=                 1000 / software "bias" added to all DN                
+<!--AUTOCHECK end hdu 0 -->
+END
+</pre>
+
+<H2>Table Header</h2>
+There is one HDU of this type.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+XTENSION= 'BINTABLE'                                                           
+BITPIX  =                    8                                                 
+NAXIS   =                    2                                                 
+NAXIS1  =                   32                                                 
+NAXIS2  =                  XXX                                                 
+PCOUNT  =                  XXX                                                 
+GCOUNT  =                    1                                                 
+TFIELDS =                    7                                                 
+THEAP   =                  XXX                                                 
+TFORM1  = '1J      ' /INT
+TTYPE1  = 'id      ' /id
+TFORM2  = '1J      ' /INT
+TTYPE2  = 'run     ' /run
+TFORM3  = '1J      ' /INT
+TTYPE3  = 'rerun   ' /rerun
+TFORM4  = '1J      ' /INT
+TTYPE4  = 'camCol  ' /camCol
+TFORM5  = '1J      ' /INT
+TTYPE5  = 'field   ' /field
+TFORM6  = '1J      ' /INT
+TTYPE6  = 'parent  ' /parent
+TFORM7  = '1PB(0)  ' /UCHAR
+TTYPE7  = 'ncolor  ' /ncolor
+<!--AUTOCHECK end hdu 1 -->
+END
+</pre>
+</BODY>
+</HTML>

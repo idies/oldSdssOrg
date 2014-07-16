@@ -1,0 +1,139 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Combined Spectra</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Combined Spectra</H1>
+
+<STRONG>File Format:</STRONG>
+FITS image
+ <P>
+<STRONG>Name:</STRONG>
+<EM>idlout-s-pppp-fff.fit</EM>,
+where <em>s</em> is the spectrograph id (1,2), <em>pppp</em> is the plate id,
+and <em>fff</em> is the fiber id.
+ <P>
+<STRONG>Produced by:</STRONG>
+spectro2d
+ <P>
+<STRONG>Used by:</STRONG>
+spectro1d
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.  Tracked file.
+
+<H2>Description</H2>
+The combined spectrum over all exposures (potentially spanning multiple
+sequences) for a given fiber of a given mapped plate.
+
+<H2>Primary Header</H2>
+Contains the spectra in the first row, and the RMS error in the second, both
+binned log-linear.
+<pre>
+SIMPLE  =                    T / Written by IDL:   6-Jan-2000 02:52:15.00       
+BITPIX  =                  -32 / FITS BITS/PIXEL                                
+NAXIS   =                    2 / NUMBER OF AXES                                 
+NAXIS1  =                 3883 / WIDTH (TOTAL!)                                 
+NAXIS2  =                    2 / HEIGHT (TOTAL!)                                
+SDSS                           / THIS HEADER CONTAINS SPECIAL SDSS KEYWORDS     
+CREATORS= 'Burles & Schlegel (1999) IDLspec' /                                  
+UNSIGNED                       / UNSIGNED DATA - NO BSCALE OR BZERO KEYWORDS    
+TAI     =        4445730497.16 / 1st row - Number of seconds since Nov 17 1858  
+RA      =            356.67310 / 1st row - Right ascension of telescope boresigh
+DEC     =            0.066850  / 1st row - Declination of telescope boresight (d
+SPA     =             359.986  / 1st row - Camera col position angle wrt north (
+IPA     =              19.407  / 1st row - Instrument rotator position angle (de
+IPARATE =             -0.0056  / 1st row - Instrument rotator angular velocity (
+AZ      =            23.258754 / 1st row - Azimuth  (encoder) of tele (0=N?) (de
+ALT     =            55.018277 / 1st row - Altitude (encoder) of tele        (de
+FOCUS   = -999999999999.999999 / 1st row - Focus piston (microns?)              
+DATE-OBS= '1999-10-04'         / 1st row - TAI date                             
+TAIHMS  = '05:08:17.16'        / 1st row - TAI time (HH:MM:SS.SS) (TAI-UT = appr
+TIMESYS = 'tai     '           / TAI, not UTC                                   
+MJD     =                51455 / MJD of observation                             
+VERSION = 'NOCVS:iop'          / version of IOP                                 
+CAMVER  = 'SPEC2 v4_4'         / Camera code version                            
+OBSERVER= 'snedden '                                                            
+TELESCOP= 'SDSS 2.5-M'         / Sloan Digital Sky Survey                       
+NEXP    =                    6 /Number of exposures in this file                
+EXPID0  = '187-b1-51455-1400-1404' /ID string for exposure 0                    
+EXPID1  = '187-b1-51455-1400-1405' /ID string for exposure 1                    
+EXPID2  = '187-b1-51455-1400-1406' /ID string for exposure 2                    
+EXPID3  = '187-r1-51455-1400-1404' /ID string for exposure 3                    
+EXPID4  = '187-r1-51455-1400-1405' /ID string for exposure 4                    
+EXPID5  = '187-r1-51455-1400-1406' /ID string for exposure 5                    
+EXPTIME =            2700.0000 /total exposure time (seconds)                   
+REDSCAL =              1.00000 /Red scaling to match blue overlap               
+COMBINE2= 'Thu Jan  6 02:45:58 2000' /COMBINE2DOUT finished                     
+FLAVOR  = 'target  '           / Flavor of this sequence (e.g., dome flat, etc.)
+QUALITY = 'unknown '           / night/image quality                            
+RADEG   = -9.9990000000000E+03 / Right Ascension. (degrees)                     
+DECDEG  = -9.9990000000000E+03 / Declination. (degrees)                         
+PLATEID =                  187 / Plate Id                                       
+TILEID  =                -9999 / Tile Id                                        
+MAPID   =                -9999 / Map Id                                         
+NAME    = '187     '           / Name of target; PlateId-MJD-Mapper ReRun       
+CAMERAS = 'r1      '           / cameras used in this exposure                  
+COLBIN  =                -9999 / Binning factor perpendicular to the columns    
+ROWBIN  =                -9999 / Binning factor perpendicular to the rows       
+PROGRAM = 'binning -9999  -9999' / Identifying name for CCD program             
+AMPLL   =                    0 / which amp 0,1,2,3 corresponds to low pix       
+AMPLR   =                    2 / which amp 0,1,2,3 corresponds to low pix       
+AMPUL   =                    1 / which amp 0,1,2,3 corresponds to high pix      
+AMPUR   =                    3 / which amp 0,1,2,3 corresponds to high pix      
+CAMROW  =                    0 /                                                
+CAMCOL  =                    4 /                                                
+AUTHOR  = 'Scott Burles & David Schlegel' /                                     
+SPEC2D_V= 'NOCVS:idlspec2d'    / Version of idlspec2d                           
+UTILS_V = 'NOCVS:idlutils'     / Version of idlutils                            
+GAIN2   =              4.38000 / Gain in electrons per ADU                      
+RDNOISE2=              4.81800 / Readout noise in electrons                     
+GAIN3   =              4.38000 / Gain in electrons per ADU                      
+RDNOISE3=              4.38000 / Readout noise in electrons                     
+NBLEAD  =                    0 / Number of columns with blead trails            
+PLUGMAPF= './plPlugMapM-0187-51454-01.par' /                                    
+FLATFILE= 'sdR-r1-00001402.fit' /                                               
+ARCFILE = 'sdR-r1-00001403.fit' /                                               
+OBJFILE = 'sdR-r1-00001406.fit' /                                               
+LAMPLIST= '/usr/sdss/data05/rspete/idlspec2d/etc/lamphgcdne.dat' /              
+SKYLIST = '/usr/sdss/data05/rspete/idlspec2d/etc/skylines.dat' /                
+PIXFLAT = '../pixflat/pixflat-51441-r1.fits' /                                  
+OSIGMA  =              1.00000 /Original guess at spatial sigma in pix          
+SKIPROW =                    8 /Number of rows skipped in step 1                
+LOWREJ  =                   15 /Extraction, low rejection                       
+HIGHREJ =                   15 /Extraction, high rejection                      
+SCATPOLY=                   16 /Order of scattered light poly                   
+PROFTYPE=                    1 /1=Gaussian                                      
+NFITPOLY=                    3 /Order of profile parameter fit                  
+PIXMIN  =              0.00000 /Place holding                                   
+PIXMAX  =              2047.00 /Place holding                                   
+OBJID   = '    125      0      2     49    227' /                               
+MAG     = '  24.406  21.361  19.855  19.052  18.695' /                          
+RAOBJ   =            356.30073 /RA (deg) of object                              
+DECOBJ  =          -0.71300969 /DEC (deg) of object                             
+OBJTYPE = 'GALAXY             ' /                                               
+XFOCAL  =           -80.608033 /                                                
+YFOCAL  =           -169.93505 /                                                
+SPECID  =                    1 /                                                
+PRIMTARG=                   32 /                                                
+SECTARGE=                    0 /                                                
+FIBERID =                  208 /                                                
+NWORDER =                    2 /Linear-log10 coefficients                       
+WFITTYPE= 'LOG-LINEAR'         /Linear-log10 dispersion                         
+COEFF0  =              3.57403 /Center wavelength (log10) of first pixel        
+COEFF1  =          9.99571e-05 /Log10 dispersion per pixel                      
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =              3.57403 /Iraf zero point                                 
+CD1_1   =          9.99571e-05 /Iraf dispersion                                 
+CRPIX1  =                    1 /Iraf starting pixel                             
+CTYPE1  = 'LINEAR  '           /                                                
+WCSDIM  =                    2 /                                                
+DC-FLAG =                    1 /Log-linear flag                                 
+END                                                                             
+</pre>
+
+</BODY>
+</HTML>

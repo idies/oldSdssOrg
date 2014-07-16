@@ -1,0 +1,302 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Photometric Calibration By Field</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Photometric Calibration By Field</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>psField-rrrrrr-c-ffff.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number, <EM>c</EM> is the column
+location in the Imaging Array of the CCD which acquired the data (1-6),
+and <em>ffff</em> is the field number.
+ <P>
+<STRONG>Produced by:</STRONG>
+ps
+ <P>
+<STRONG>Used by:</STRONG>
+frames
+ <P>
+<STRONG>Size:</STRONG>
+3 * 2880 + (Nfields * 584 {rounded up to nearest multiple of 2880 bytes}).
+Total of 593.28 Kb for a single postage stamp pipeline run with 1000 fields.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Prelimary photometric calibration, as well as final point-spread-function
+fit, for a single field in an imaging run.
+<p>
+The "KALXX_ID" keywords identify which secondary patches are used.  If,
+for example, 3 patches were used, then the keywords "KAL01_ID", "KAL02_ID", and
+"KAL03_ID" must be present.  Each such keyword identifies one patch, and should
+have a value of the form "XXXXX:YYYYY", where "XXXXX" is the sequence ID for
+the patch (i.e., the sequence ID recorded in the observing log for the frames
+from which the data came), and "YYYYY" is the unique ID for the Kali run which
+produced the calibrated data.  A sample keyword would look like:
+<pre>
+    KAL01_ID= '14653:1998-11-14T14:21:27 25387'
+</pre>
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+<!--##begin FITSbinary photometricCalibration.PDU -->
+<!-- P+      Project: sdss   Date: Wed Apr 15 12:01:35 1998-->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+VERSION = 'XXX     '           / Version of software used.
+RUN     =                  XXX / Imaging run number.
+SSC_ID  = 'XXX     '           / SSC pipeline run identifier.
+ASTRO_ID= 'XXX     '           / Astrometric pipeline run identifier.
+BIAS_ID = 'XXX     '           / Bias pipeline run identifier.
+PS_ID   = 'XXX     '           / Postage stamp pipeline run identifier.
+FIELD   =                  XXX / Field reduced.
+FIELD0  =                  XXX / First field reduced.
+NFIELDS =                  XXX / Number of fields reduced.
+CAMCOL  =                  XXX / Column in the imaging camera.
+<!--##end FITSbinary photometricCalibration.PDU -->
+EXCAL_ID= 'XXX     '           / Excal pipeline run identifier (optional).
+KALXX_ID= 'XXX     '            / Kali pipeline run identifier for patch XX
+FILTERS = 'XXX XXX ...'        / Filter order in array fields
+DSCALE  =                  XXX / Scaling for bias drift (lbias and rbias)
+INCL    =            XXX.XXXXX / Great circle inclination wrt cel. eq. (degrees)
+NODE    =            XXX.XXXXX / RA of great circle's asending node. (degrees)
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Eigenimages Header</h2>
+There are five HDUs of this type, one for each filter, in the same order as the
+order of filters in the PDU keyword <em>FILTER</em>.  Each HDU gives the set of
+eigenimages characterizing the PSF in its filter.  Legal values for the
+"rtype" field are the dervish data type values TYPE_U8, TYPE_S8, TYPE_U16,
+TYPE_S16, TYPE_U32, TYPE_S32, TYPE_FL32, and TYPEFL64, however the OPDB expects
+the datatype to always be TYPE_FL32.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                  144
+NAXIS2  =                  XXX
+PCOUNT  =                  XXX
+GCOUNT  =                    1
+N_BASIS =                  XXX / Number of fields for basis stars
+N_COEFF =                  XXX / Number of fields for coeff stars
+TFIELDS =                   11
+THEAP   =                  XXX
+TFORM1  = '1J      '
+TTYPE1  = 'nrow_b  '           / Maximum order in row for spatial variations
+TFORM2  = '1J      '
+TTYPE2  = 'ncol_b  '           / Maximum order in col for spatial variations
+TFORM3  = '25E     '
+TTYPE3  = 'c       '           / Spatial variation of coefficients
+TDIM3   = '(5,5)   '
+TFORM4  = '1E      '
+TTYPE4  = 'lambda  '           / Eigenvalue
+TFORM5  = '1J      '
+TTYPE5  = 'rnrow   '           / Number of rows in eigenimage
+TFORM6  = '1J      '
+TTYPE6  = 'rncol   '           / Number of columns in eigenimage
+TFORM7  = '1J      '
+TTYPE7  = 'rtype   '           / Data type in eigenimage
+TFORM8  = '1PE(0)  '
+TTYPE8  = 'rrows   '           / Rows in eigenimage
+TFORM9  = '1J      '
+TTYPE9  = 'rrow0   '           / Row 0 in eigenimage
+TFORM10 = '1J      '
+TTYPE10 = 'rcol0   '           / Col 0 in eigenimage
+TFORM11 = '1E      '
+TTYPE11 = 'counts  '           / Counts in eigenimage
+<!--AUTOCHECK end hdu 1 -->
+END
+</pre>
+
+<H2>PSF Header</h2>
+There is one HDU of this type, with one only one row.  The order of the filters
+in each row is the same as the order of filters in the PDU keyword.
+The "status" field records the status of the PSF fit for that field in that
+filter, and can take the following meanings:
+<pre>
+   PSP_FIELD_UNKNOWN = -1,      /* this should never happen */
+   PSP_FIELD_OK = 0,            /* everything OK */
+   PSP_FIELD_PSF22 = 1,         /* forced to take linear PSF across field */
+   PSP_FIELD_PSF11 = 2,         /* forced to take constant PSF across field */
+   PSP_FIELD_NOPSF = 3,         /* forced to take default PSF */
+   PSP_FIELD_ABORTED = 4,       /* aborted processing */
+   PSP_FIELD_MISSING = 5,       /* missing (dummy) field */
+   PSP_FIELD_OE_TRANSIENT = 6,  /* field with odd/even bias level transient */
+   PSP_FIELD_STATUS_MASK = 31,  /* Mask defining which bits are used
+                                   for status values; higher bits are available
+                                   to be set with extra information */
+   PSP_FIELD_EXTENDED_KL = 0x20,/* Window for KL stars was extended */
+   PSP_FIELD_SPARSE = 0x40,     /* field is sparsely populated with KL stars */
+   PSP_FIELD_MAX = 0x40000000   /* Maximum possible bit value in a +ve int */
+</pre>
+"psp_status" is the maximum value of "status" over all 5 filters.
+<em>FILTER</em>.
+<pre>
+<!--AUTOCHECK begin hdu 6 -->
+<!--##begin FITSbinary photometricCalibration.header -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                 1388
+NAXIS2  =                    1
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   29
+<!--##end FITSbinary photometricCalibration.header -->
+<!--##begin FITSbinary photometricCalibration.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'field   '           / Field sequence number within the run.
+TFORM2  = '1J      '          
+TTYPE2  = 'psp_status'         /
+TFORM3  = '5J      '          
+TTYPE3  = 'status  '           /
+TFORM4  = '5E      '          
+TTYPE4  = 'sky     '           / The average sky value in the frame.
+TUNIT4  = 'counts/pixel'      
+TFORM5  = '5E      '          
+TTYPE5  = 'skySig  '           / Sigma of distribution of sky values.
+TUNIT5  = 'counts/pixel'      
+TFORM6  = '5E      '          
+TTYPE6  = 'skyErr  '           / The average sky value in the frame. (error)
+TUNIT6  = 'counts/pixel'      
+TFORM7  = '5E      '          
+TTYPE7  = 'skySlope'           / The slope in the sky value along the columns.
+TUNIT7  = 'counts/field'      
+TFORM8  = '5E      '          
+TTYPE8  = 'lbias   '           / Left-hand bias level.
+TUNIT8  = 'ADUs x DSCALE'     
+TFORM9  = '5E      '          
+TTYPE9  = 'rbias   '           / Right-hand bias level.
+TUNIT9  = 'ADUs x DSCALE'     
+TFORM10 = '5J      '          
+TTYPE10 = 'psf_nstar'          / Number of stars used in psf measurement.
+TFORM11 = '5E      '
+TTYPE11 = 'psf_ap_correctionErr' / Photometric error due to imperfect PSF model
+TUNIT11 = 'mags    '
+TFORM12 = '5E      '          
+TTYPE12 = 'psf_sigma1'         / Inner gaussian sigma for the composite fit
+TUNIT12 = 'pixels  '          
+TFORM13 = '5E      '          
+TTYPE13 = 'psf_sigma2'         / Outer gaussian sigma for the composite fit
+TUNIT13 = 'pixels  '          
+TFORM14 = '5E      '          
+TTYPE14 = 'psf_b   '           / Ratio of the inner PSF to the outer PSF at the 
+TFORM15 = '5E      '          
+TTYPE15 = 'psf_p0  '           / The value of the power law at the origin.
+TFORM16 = '5E      '          
+TTYPE16 = 'psf_beta'           / Slope of power law.
+TFORM17 = '5E      '          
+TTYPE17 = 'psf_sigmap'         / Width parameter for power law.
+TFORM18 = '5E      '          
+TTYPE18 = 'psf_width'          / Effective PSF width, based on 2-Gaussian fit
+TUNIT18 = 'arcsecs '          
+TFORM19 = '5E      '          
+TTYPE19 = 'psf_psfCounts'      / Flux via fit to the PSF.
+TUNIT19 = 'counts  '          
+TFORM20 = '5E      '          
+TTYPE20 = 'psf_sigma1_2G'     
+TUNIT20 = 'pixels  '
+TFORM21 = '5E      '          
+TTYPE21 = 'psf_sigma2_2G'     
+TUNIT21 = 'pixels  '
+TFORM22 = '5E      '          
+TTYPE22 = 'psf_b_2G'          / Ratio of gaussian 2 to gaussian 1 at origin 
+TFORM23 = '5E      '          
+TTYPE23 = 'psfCounts'         
+TFORM24 = '5J      '          
+TTYPE24 = 'prof_nprof'         / Number of profile bins.
+TFORM25 = '75E     '          
+TTYPE25 = 'prof_mean'         
+TDIM25  = '(15,5)  '          
+TFORM26 = '75E     '          
+TTYPE26 = 'prof_med'          
+TDIM26  = '(15,5)  '          
+TFORM27 = '75E     '          
+TTYPE27 = 'prof_sig'          
+TDIM27  = '(15,5)  '          
+TFORM28 = '5E      '          
+TTYPE28 = 'gain    '           / Gain averaged over all amplifiers.
+TUNIT28 = 'electrons/DN'      
+TFORM29 = '5E      '          
+TTYPE29 = 'dark_variance'      / Dark variance?
+<!--##end FITSbinary photometricCalibration.table -->
+<!--AUTOCHECK end hdu 6 -->
+END
+</pre>
+
+<H2>Flux Calibration Header</h2>
+There is one HDU of this type, with five rows, one row per filter, in the order
+of the filters in the PDU keyword <em>FILTER</em>.
+<pre>
+<!--AUTOCHECK begin hdu 7 -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                    9
+NAXIS2  =                    5
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    3
+TFORM1  = '1A      '
+TTYPE1  = 'filter  '           / Filter
+TFORM2  = '1E      '          
+TTYPE2  = 'flux20  '           / Flux for a 20th mag (above atmosphere) object.
+TUNIT2  = 'counts  '          
+TFORM3  = '1E      '          
+TTYPE3  = 'flux20Err'          / Flux for a 20th mag (above atmosphere) object.
+TUNIT3  = 'counts  '          
+<!--AUTOCHECK end hdu 7 -->
+END
+</pre>
+
+<H2>Aperture Correction Header</h2>
+There is one HDU of this type, with five rows, one row per filter, in the order
+of the filters in the PDU keyword <em>FILTER</em>.
+<pre>
+<!--AUTOCHECK begin hdu 8 -->
+XTENSION= 'BINTABLE'
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   17
+NAXIS2  =                    5
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    5
+TFORM1  = '1A      '
+TTYPE1  = 'filter  '
+TFORM2  = '1J      '
+TTYPE2  = 'nann_ap_frame'      / Number of annuli in the aperture magnitude used
+COMMENT                        / to allow for PSF variations within a frame
+TFORM3  = '1J      '
+TTYPE3  = 'nann_ap_run'        / Number of annuli in the aperture magnitude used
+COMMENT                        / to allow for PSF variations during a run
+TFORM4  = '1E      '
+TTYPE4  = 'ap_corr_run'        / Bias in the aperture correction
+TUNIT4  = 'mags    '
+COMMENT                        / median of m(aperture)-m(psf), where
+COMMENT                        / aperture is defined by nann_aperture_corr_run
+TFORM5  = '1E      '
+TTYPE5  = 'ap_corr_runErr'     / Error in aperture correction, including
+TUNIT5  = 'mags    '
+COMMENT                        / Error in aperture correction, including
+COMMENT                        / contributions from the bias and rms scatter
+END
+<!--AUTOCHECK end hdu 8 -->
+END
+</pre>
+
+</BODY>
+</HTML>

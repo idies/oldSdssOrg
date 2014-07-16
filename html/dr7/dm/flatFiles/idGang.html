@@ -1,0 +1,315 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Frame Gang</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Frame Gang File</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+<P>
+<STRONG>Name:</STRONG>
+<EM>idGang-rrrrrr-c#-ffff.fit</EM> for photometric columns, and
+<EM>idGang-rrrrrr-r#-ffff.fit</EM> for astrometric rows,
+where <EM>rrrrrr</EM> is the imaging run number, <EM>#</EM> is the photometric
+column or astrometric row in the Imaging Array, and <EM>ffff</EM> is the
+<STRONG>frame</STRONG> number.
+ <P>
+<STRONG>Produced by:</STRONG>
+iop
+ <P>
+<STRONG>Used by:</STRONG>
+iop (quality analysis), ssc
+ <P>
+<STRONG>Size:</STRONG>
+480.96 Kb for photometric gang files and 1,128.96 Kb for astrometric gang
+files.  Total for all chips for a 1000 frame/chip run is 7,401.6 Mb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.  Tracked file.
+
+<H2>Description</H2>
+A frame gang file groups information created by the DA system for a single set
+of frames from a single DA CPU: i.e., for either a single column of
+photometric CCDs or a single row of astrometric CCDs.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    F
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+SDSS                           / special flag for decoding simple=f data
+UNSIGNED                       / U format used - unsigned 16 bit data in table
+BZERO   = 3.27680000000000E+04                                                  
+BSCALE  = 1.00000000000000E+00                                                  
+TAI     =        XXXXXXXXXX.XX / Number of seconds since Nov 17 1858 0 UT/TAI.
+RA      =           XXX.XXXXXX / Right ascension/longitude. (degrees)
+DEC     =           XXX.XXXXXX / Declination/latitude. (degrees)
+SPA     =              XXX.XXX / Camera col position angle wrt north. (degrees)
+IPA     =              XXX.XXX / Instrument rotator position angle. (degrees)
+IPARATE =             XXX.XXXX / Instrument rotator angular velocity. (deg/sec)
+AZ      =           XXX.XXXXXX / Azimuth (encoder) of telescope. (degrees)
+ALT     =           XXX.XXXXXX / Altitude (encoder) of telescope. (degrees)
+FOCUS   =                XXX.X / Focus position (encoder). (microns)
+DATE-OBS= 'DD/MM/YY'           / TAI date (DD/MM/YY)
+TAIHMS  = 'HH:MM:SS.SS'        / TAI time (HH:MM:SS.SS) (TAI-UT = approx 30 s)
+DAVERS  = 'XXX     '           / Version of DA software
+BADLINES=                    0 / Number of bad lines in frame                   
+FRAME   =                  XXX / Frame number.
+RUN     =                  XXX / Imaging run number.
+BUNITS  = 'ADUs    '                                                            
+ORIGIN  = 'SDSS    '
+TELESCOP= '2.5m    '
+CCDMODE = 'XXX     '           / 'STARING' or 'DRIFT'
+EQUINOX =              XXXX.XX / Equinox of the TCC coordinates.
+SYSTEM  = 'XXX     '           / System of the TCC coordinates (mean, apparent).
+CAMCOL  =                  XXX / Column in the imaging camera. (astro chips only)
+CCDSECL = '[1:2128,1:1361]'
+OVERSECL= '[1:20,1:1361]'
+BIASSECL= '[21:40,1:1361]'
+DATASECL= '[41:2088,1:1361]'
+CCDSECR = '[0:0,0:0]'
+DATASECR= '[0:0,0:0]'
+BIASSECR= '[0:0,0:0]'
+OVERSECR= '[1:20,1:1361]'
+C_OBS   =                XXX.X / CCD row clock rate. (usec/row)
+COLBIN  =                  XXX / Binning factor perpendicular to the columns.
+ROWBIN  =                  XXX / Binning factor perpendicular to the rows.
+NLINES  =                 1361 / Number of lines in a frame                     
+AMPL    =                    1
+AMPR    =                    1
+OBSERVER= 'XXX     '
+FLAVOR  = 'XXX     '           / Flavor of this run (science, calibration, test,
+SYS_SCN = 'XXX     '           / Coordinate system of the scan great circle.
+EQNX_SCN=              XXXX.XX / Equinox of the scan great circle. (years)
+NODE    =            XXX.XXXXX / Ra of the great circle's ascending node. (deg)
+INCL    =            XXX.XXXXX / Great circle's inclination wrt cel eq. (deg)
+XBORE   =                XXX.X / Boresight x offset from the array center. (mm)
+YBORE   =                XXX.X / Boresight y offset from the array center. (mm)
+STRIP   = 'XXX     '           / Strip in the stripe being tracked (N or S).
+STRIPE  =                  XXX / Survey stripe identifier.
+FIELD   =                  XXX / Field sequence number within the run           
+OBJECT  = 'XXX     '           / e.g., 'stripe 50.6 degrees, north strip'
+EXPTIME =               XXX.XX / Exposure time (seconds)
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Quartiles Header</h2>
+HDU's of this format are found in photometric gang files only.  There are 5 of
+these HDUs, one per CCD in the column.
+Below, <EM>NAXIS2</EM> will be equal to 2128.
+The <EM>TSHIFT</EM> keyword gives the amount by which each quartile value has
+been multiplied; e.g., if <EM>TSHIFT</EM> = 100, then each quartile value in
+the HDU is 100 times larger than the true value.  This scaling allows us to
+calculate precise quartile values while maintaining pure integers.
+In <EM>EXTNAME</EM>, "LOC" is replaced with the two digit identifier for the
+location of the CCD in the imaging camera.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+<!--##begin FITSbinary quartile.header -->
+<!-- P+      Project: sdss   Date: Tue Oct 20 17:29:42 1998-->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   12
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    3
+<!--##end FITSbinary quartile.header -->
+EXTNAME = 'QUART LOC'
+CAMROW  =                  XXX / Row in imaging camera
+TSHIFT  =                  XXX / Quartile scaling factor
+HISTBINS=                  XXX / Num bins in quartile hists
+DBASE   =                  XXX / Maximum delta for hist bases
+NQCALCL =                  XXX / Number of quartiles calculated - lo col numbers
+NQCALCR =                  XXX / Number of quartiles calculated - hi col numbers
+FRBIASL =                  XXX / Left  Frame bias x TSHIFT
+FRBIASR =                  XXX / Right Frame bias x TSHIFT
+FRSKYL  =                  XXX / Left Mean Sky Value x TSHIFT
+FRSKYR  =                  XXX / Right Mean Sky Value x TSHIFT
+FROSCNL =                  XXX / Left Mean Oscn Value x TSHIFT
+FROSCNR =                  XXX / Right Mean Oscn Value x TSHIFT
+SKIPPED =                  XXX / Number of rows ignored
+QTNCUT  =                  XXX / SigCut = qtNcut * 0.00527 * sigma              
+AUTHOR  = 'Node=sdssid1.fnal.gov Type=photo Cr=1 Bd=0 #=5 Src=CAMERA'
+<!--##begin FITSbinary quartile.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'q1      '           / 25th percentile.
+TUNIT1  = 'ADUs x TSHIFT'     
+TFORM2  = '1J      '          
+TTYPE2  = 'q2      '           / 50th percentile.
+TUNIT2  = 'ADUs x TSHIFT'     
+TFORM3  = '1J      '          
+TTYPE3  = 'q3      '           / 75th percentile.
+TUNIT3  = 'ADUs x TSHIFT'     
+<!--##end FITSbinary quartile.table -->
+END
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+<H2>Postage Stamp Header</h2>
+There is one HDU of this format for each CCD (including focus CCDs) handled by
+the DA CPU (e.g., 6 for astrometric rows, and 5 for photometric columns).
+Note that every HDU of this format contains an exact number of rows
+in its binary table (30 for photometric HDUs, 100 for astrometric HDUs),
+but not every row contains real data around a star.  The keyword
+<EM>BSCOUNT</EM> specifies the actual number of stars detected; the rows after
+the first <EM>BSCOUNT</EM> rows should be ignored.  This is done for speed
+purposes in the DA system.  Thus, <EM>NAXIS2</EM> is always equal to 30 for
+photometric HDUs, and 100 for astrometric HDUs.
+In <EM>EXTNAME</EM>, "LOC" is replaced with the two digit identifier for the
+location of the CCD in the imaging camera.
+<pre>
+<!--AUTOCHECK begin hdu 6 -->
+XTENSION= 'BINTABLE'
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                 1686
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    3
+EXTNAME = 'STAMP LOC'
+CAMROW  =                  XXX / Row in imaging camera <EM>(PHOTO CHIPS ONLY)</EM>
+PSSIZE  =                   29 / Postage Stamp Size
+BSCOUNT =                  XXX / Number of Bright Stars
+PIX4STAR=                  XXX / Number of pixels in 3x3 needed for star
+STAR5X5 =                  XXX / True means use 5x5 for star finding
+STARDIST=                  XXX / Minimum distance between adjacent stars
+SDISTRIB=                  XXX / True means distribute stamps over frame
+STHRESHL=                  XXX / Star threshold - lo column numbers
+STHRESHR=                  XXX / Star threshold - hi column numbers
+SABSKYL =                  XXX / Value to add to sky level = threshold - lo colu
+SABSKYR =                  XXX / Value to add to sky level = threshold - hi colu
+SSATL   =                  XXX / Star saturation - lo column numbers
+SSATR   =                  XXX / Star saturation - hi column numbers
+SLOCOLL =                  XXX / Number of lo cols to skip for lo column numbers
+SLOCOLR =                  XXX / Number of lo cols to skip for hi column numbers
+SHICOLL =                  XXX / Number of hi cols to skip for lo column numbers
+SHICOLR =                  XXX / Number of hi cols to skip for hi column numbers
+TSHIFT  =                  XXX / Bias scaling factor
+FRBIASL =                  XXX / Left  Frame bias x TSHIFT
+FRBIASR =                  XXX / Right Frame bias x TSHIFT
+FRSKYL  =                  XXX / Left Mean Sky Value x TSHIFT
+FRSKYR  =                  XXX / Right Mean Sky Value x TSHIFT
+FROSCNL =                  XXX / Left Mean Oscn Value x TSHIFT
+FROSCNR =                  XXX / Right Mean Oscn Value x TSHIFT
+SKIPPED =                  XXX / Number of rows ignored
+TIMEROW =                  XXX / 10*Average time per row (usec)
+TIMEFRAM=                  XXX / 10*Time to analyze PREVIOUS frame (usec), scale
+AUTHOR  = 'Node=sdssid1.fnal.gov Type=photo Cr=1 Bd=0 #=5 Src=CAMERA'
+TFORM1  = '841U    '           / PostStamp ushorts
+TTYPE1  = 'pixelMap'           / Postage Stamp subimage
+TUNIT1  = 'ADUs    '
+TFORM2  = '1I      '
+TTYPE2  = 'midRow  '           / Frame row (data section) of middle pixel
+TFORM3  = '1I      '
+TTYPE3  = 'midCol  '           / Frame column (data section) of middle pixel
+END
+<!--AUTOCHECK end hdu 6 -->
+</pre>
+
+<H2>Bright Star Measured Parameters Header</h2>
+There is one HDU of this format for each CCD (including focus CCDs) handled by
+the DA CPU (e.g., 6 for astrometric rows, and 5 for photometric columns).
+Note that every HDU of this format contains an exact number of rows
+in its binary table (30 for photometric HDUs, 100 for astrometric HDUs),
+but not every row contains real data around a star.  The keyword
+<EM>BSCOUNT</EM> specifies the actual number of stars detected; the rows after
+the first <EM>BSCOUNT</EM> rows should be ignored.  This is done for speed
+purposes in the DA system.  Thus, <EM>NAXIS2</EM> is always equal to 30 for
+photometric HDUs, and 100 for astrometric HDUs.
+In <EM>EXTNAME</EM>, "LOC" is replaced with the two digit identifier for the
+location of the CCD in the imaging camera.
+<P>
+The table fields given below are for photometric and astrometric chips.  Data from
+the focus chips are stored in the same fields, but with different meanings.  For
+the focus chips, the fields have the following meanings:
+<ul>
+<li> <em>midRow</em> --- same as imaging chips
+<li> <em>midCol</em> --- same as imaging chips
+<li> <em>rowCentroid</em> --- focus g_xf
+<li> <em>rowCentroidErr</em> --- not used
+<li> <em>colCentroid</em> --- focus g_yf
+<li> <em>colCentroidErr</em> --- not used
+<li> <em>rmajor</em> --- focus g_xmom
+<li> <em>rminor</em> --- focus g_ymom
+<li> <em>angMajorAxis</em> --- focus sigma
+<li> <em>peak</em> --- not used
+<li> <em>counts</em> --- focus g_filval
+<li> <em>statusFit</em> --- same as imaging chips
+</ul>
+<pre>
+<!--AUTOCHECK begin hdu 11 -->
+<!--##begin FITSbinary dAStar.header -->
+<!-- P+      Project: sdss   Date: Tue Oct 20 17:29:42 1998-->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   48
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   12
+<!--##end FITSbinary dAStar.header -->
+EXTNAME = 'STAR LOC'
+CAMROW  =                  XXX / Row in imaging camera <EM>(PHOTO CHIPS ONLY)</EM>
+BSCOUNT =                  XXX / Number of Bright Stars
+FOCFLAG =                  XXX / Focus code run flag
+SIGFILT =             X.XXXXXX / Sigma used for gunn filter
+VARFILTL=             X.XXXXXX / Variance (left)  used for gunn filter
+VARFILTR=             X.XXXXXX / Variance (right) used for gunn filter
+GAINFILL=             X.XXXXXX / Amp Gain (left)  used for gunn filter
+GAINFILR=             X.XXXXXX / Amp Gain (right) used for gunn filter
+NMEDIAN =                  XXX / Number used in stokes medians
+RMEDIAN =                  XXX / Median of rmajor for Stars
+QMEDIAN =                  XXX / Median of Q for Stars
+UMEDIAN =                  XXX / Median of U for Stars
+AUTHOR  = 'Node=sdssid1.fnal.gov Type=photo Cr=1 Bd=0 #=5 Src=CAMERA'
+<!--##begin FITSbinary dAStar.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'midRow  '           / Frame row of the stamp's middle pixel.
+TFORM2  = '1J      '          
+TTYPE2  = 'midCol  '           / Frame column of the stamp's middle pixel.
+TFORM3  = '1E      '          
+TTYPE3  = 'rowCentroid'        / Row position of star center.
+TUNIT3  = 'pixels  '          
+TFORM4  = '1E      '          
+TTYPE4  = 'rowCentroidErr'     / Row position of star center. (error)
+TUNIT4  = 'pixels  '          
+TFORM5  = '1E      '          
+TTYPE5  = 'colCentroid'        / Column position of star center.
+TUNIT5  = 'pixels  '          
+TFORM6  = '1E      '          
+TTYPE6  = 'colCentroidErr'     / Column position of star center. (error)
+TUNIT6  = 'pixels  '          
+TFORM7  = '1E      '          
+TTYPE7  = 'rMajor  '           / Major axis radius. 
+TUNIT7  = 'pixels  '          
+TFORM8  = '1E      '          
+TTYPE8  = 'rMinor  '           / Minor axis radius.
+TUNIT8  = 'pixels  '          
+TFORM9  = '1E      '          
+TTYPE9  = 'angMajorAxis'       / Major axis position angle.
+TUNIT9  = 'degrees '          
+TFORM10 = '1E      '          
+TTYPE10 = 'peak    '           / Peak of the gaussian fit.
+TUNIT10 = 'DNs     '          
+TFORM11 = '1E      '          
+TTYPE11 = 'counts  '           / Sum of counts over sky.
+TUNIT11 = 'DNs     '          
+TFORM12 = '1J      '          
+TTYPE12 = 'statusFit'          / 0=ok, else error.
+<!--##end FITSbinary dAStar.table -->
+END
+<!--AUTOCHECK end hdu 11 -->
+</pre>
+
+</BODY>
+</HTML>

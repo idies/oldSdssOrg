@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Target Selection Matching Params</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Target Selection Matching Params</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tsMatchParam.par</EM>  
+ <P>
+<STRONG>Produced by:</STRONG>
+ <P>
+<STRONG>Used by:</STRONG>
+target selection
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Tunable parameters to control matching against external catalogs in
+target selection.
+
+<H2>Contents</H2>
+<pre>
+# Tunable parameters to control matching against the ROSAT, FIRST and
+# PMM catalogs
+
+# ROSAT parameters
+rosatMatch         1     # 1=match against ROSAT catalog, 0=don't
+rosatRadius       60.    # ROSAT catalog match radius (arcsecs)
+
+# FIRST parameters
+firstMatch         1     # 1=match against FIRST catalog, 0=don't
+firstRadius        2.    # Simple FIRST source match radius (arcsecs)
+firstRadiusDouble  5.    # Complex FIRST source match radius (arcsecs)
+firstDoubleSize    2.    # Max separation between components of complex
+			 # WARNING, should be 60. instead of 2.
+
+# USNO parameters
+usnoMatch          1     # 1=match against USNO catalog, 0=don't
+usnoRadius         1.    # USNO catalog match radius (arcsecs)
+</pre>
+</BODY>
+</HTML>

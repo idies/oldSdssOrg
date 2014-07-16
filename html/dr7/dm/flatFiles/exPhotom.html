@@ -1,0 +1,206 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for MT Calibration</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>MT Calibration</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>exPhotom-ddddd.par</EM>, where <EM>ddddd</EM> is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+excal
+ <P>
+<STRONG>Used by:</STRONG>
+kali, ps, fcalib
+ <P>
+<STRONG>Size:</STRONG>
+3 * 2880 + 544 * N (rounded up to 2880) bytes, where N is the number of
+calibrations.  For a typical night (one calibration per hour for 10 hours),
+14.4 Kb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+A set of MT calibration coefficients as produced by one run of <em>excal</em>
+for a single night.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+<!--##begin FITSbinary mTFilterSolution.PDU -->
+<!-- P+      Project: sdss   Date: Thu May 21 15:17:29 1998-->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+VERSION = 'XXX     '           / Version of software used.
+TELESCOP= 'XXX     '           / Telescope with which data was obtained.
+MTFRA_ID= 'XXX     '           / Mtframes pipeline run identifier.
+EXCAL_ID= 'XXX     '           / Excal pipeline run identifier.
+PRISOLVE=                  XXX / 1=fundamentals only used, 0=all primaries used.
+SCALE   =                  XXX / Frame scale measured by excal (arcsec/pixel).
+PARITY  =                  XXX / Frame parity measured by excal.
+PA      =                  XXX / Frame position angle measured by excal (deg).
+STDS_VER= 'XXX     '           / Version of MTSTDS used.
+<!--##end FITSbinary mTFilterSolution.PDU -->
+MJD     =                  XXX / MJD day number of night when data was obtained.
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Photometric Coefficients Header</H2>
+There is one HDU of this type.  Each row contains a single block of photometric
+calibration coefficients, valid over the specified time period.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+<!--##begin FITSbinary mTFilterSolution.header -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                  570
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   24
+SIGNS   = 'XXX XXX ...'        / Sign for color term: 0=redward, 1=blueward.
+COLORFIL= 'XXX XXX ...'        / Filter used to form color.
+<!--##end FITSbinary mTFilterSolution.header -->
+FILTERS = 'u g r i z'          / Filter order in array fields.
+<!--##begin FITSbinary mTFilterSolution.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'blockId '           / Coefficient block id.
+TFORM2  = '1D      '          
+TTYPE2  = 'startMJD'           / Start time at which calibration is valid.
+TUNIT2  = 'MJD     '          
+TFORM3  = '1D      '          
+TTYPE3  = 'midMJD  '           / Mid time at which calibration is valid.
+TUNIT3  = 'MJD     '          
+TFORM4  = '1D      '          
+TTYPE4  = 'endMJD  '           / End time at which calibration is valid.
+TUNIT4  = 'MJD     '          
+TFORM5  = '1I      '          
+TTYPE5  = 'photometric'        / Photometric? (-1=undetermined, 0=no, 1=yes)
+TFORM6  = '5D      '          
+TTYPE6  = 'a       '           / Zero-point.
+TFORM7  = '5E      '          
+TTYPE7  = 'aErr    '           / Zero-point. (error)
+TFORM8  = '5D      '          
+TTYPE8  = 'b       '           / Color-term.
+TFORM9  = '5E      '          
+TTYPE9  = 'bErr    '           / Color-term. (error)
+TFORM10 = '5D      '          
+TTYPE10 = 'c       '           / Color x extinction term.
+TFORM11 = '5E      '          
+TTYPE11 = 'cErr    '           / Color x extinction term. (error)
+TFORM12 = '5D      '          
+TTYPE12 = 'k       '           / Extinction coefficient.
+TFORM13 = '5E      '          
+TTYPE13 = 'kErr    '           / Extinction coefficient. (error)
+TFORM14 = '5D      '          
+TTYPE14 = 'aa      '           / Zero-point unprimed.
+TFORM15 = '5E      '          
+TTYPE15 = 'aaErr   '           / Zero-point unprimed. (error)
+TFORM16 = '5D      '          
+TTYPE16 = 'bb      '           / Color-term unprimed.
+TFORM17 = '5E      '          
+TTYPE17 = 'bbErr   '           / Color-term unprimed. (error)
+TFORM18 = '5D      '          
+TTYPE18 = 'cc      '           / Color x extinction term unprimed.
+TFORM19 = '5E      '          
+TTYPE19 = 'ccErr   '           / Color x extinction term unprimed. (error)
+TFORM20 = '5D      '          
+TTYPE20 = 'kk      '           / Extinction coefficient unprimed.
+TFORM21 = '5E      '          
+TTYPE21 = 'kkErr   '           / Extinction coefficient unprimed. (error)
+TFORM22 = '5J      '          
+TTYPE22 = 'nStars  '           / Number of stars used in fit.
+TFORM23 = '5E      '          
+TTYPE23 = 'chisq   '           / Reduced chi-squared of the fit.
+TFORM24 = '5E      '          
+TTYPE24 = 'rms     '           / RMS residuals.
+<!--##end FITSbinary mTFilterSolution.table -->
+END
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+<H2>Star-Match Header</H2>
+Matches up each observed star used in the solution with its matching star
+in the primary catalog, and gives its solved magnitude for this pipeline run.
+There is one HDU of this type.
+<pre>
+<!--AUTOCHECK begin hdu 2 -->
+<!--##begin FITSbinary matchedPrimary.header -->
+<!-- P+      Project: sdss   Date: Fri Aug 28 17:42:07 1998-->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                  166
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    9
+<!--##end FITSbinary matchedPrimary.header -->
+FILTERS = 'u g r i z'          / Filter order in array fields.
+<!--##begin FITSbinary matchedPrimary.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'blockId '           / Coefficient block id.
+TFORM2  = '1J      '          
+TTYPE2  = 'seqId   '           / MT sequence number.
+TFORM3  = '1J      '          
+TTYPE3  = 'star    '           / Unique ID within a frame.
+TFORM4  = '20A     '          
+TTYPE4  = 'standard'           / Unique name of primary standard star.
+TFORM5  = '5E      '          
+TTYPE5  = 'mag     '           / Magnitudes determined by this excal run.
+TUNIT5  = 'mag     '          
+TFORM6  = '5E      '          
+TTYPE6  = 'magErr  '           / Magnitudes determined by this excal run. (error
+TUNIT6  = 'mag     '          
+TFORM7  = '5J      '
+TTYPE7  = 'saturated'          / 0=not saturated, 1=A/D converter saturation
+COMMENT                        / 2=Full well saturation, A/D and full well
+TFORM8  = '1J      '          
+TTYPE8  = 'isPhotoStandard'    / 1=fundamental, 0=primary, -1=monitor
+TFORM9  = '5J      '
+TTYPE9  = 'use_in_solution'    / 1=used, 0=not used, -1=completely ignored
+<!--##end FITSbinary matchedPrimary.table -->
+<!--AUTOCHECK end hdu 2 -->
+</pre>
+
+<H2>Fitted-primaries Header</H2>
+Lists the fitted magnitudes for each non-fundamental primary star, averaged
+over all observations for that night.  This HDU is present only if
+the PDU keyword "PRISOLVE" is set to 1.  There is one HDU of this type.
+<pre>
+<!--AUTOCHECK begin hdu 3 -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   80
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    4
+FILTERS = 'u g r i z'          / Filter order in array fields.
+TFORM1  = '20A     '          
+TTYPE1  = 'standard'           / Unique name of primary standard star.
+TFORM2  = '5E      '          
+TTYPE2  = 'mag     '           / Magnitudes fitted by this excal run.
+TUNIT2  = 'mag     '          
+TFORM3  = '5E      '          
+TTYPE3  = 'magErr  '           / Magnitudes fitted by this excal run. (error)
+TUNIT3  = 'mag     '          
+TFORM4  = '5J      '          
+TTYPE4  = 'nStars  '           / Number of stars averaged together.
+<!--AUTOCHECK end hdu 3 -->
+</pre>
+
+</body>
+</html>

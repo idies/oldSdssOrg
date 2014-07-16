@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Completed Tile</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Completed Tile file</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tsCTile-rrrr-tttt.par</EM>,
+where <EM>rrrr</EM> is the tiling run and tttt is the tile id.
+ <P>
+<STRONG>Produced by:</STRONG>
+ts (opdb)
+ <P>
+<STRONG>Used by:</STRONG>
+ts, sd
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+No
+
+<H2>Description</H2>
+List of all targets to have a hole drilled for them on a tile.
+
+<H2>Contents</H2>
+<pre>
+trun	XXXX	#tiling run number (int)
+tid	XXXX	#tile id (int)
+
+typedef struct {
+
+	char objId[18];		# object id string: "run-rerun-field-id"
+	char objType[20];	# choose from obj,sky bundle, 
+			        # darkFiber, brightFiber, guider, 
+				# lightTrap, qualityHole
+	double ra;
+	double dec;
+	float mag[5];		# {u g r i z}
+	float starL;		# star likelihood (0-1)
+	float expL;		# spiral likelihood (0-1)
+	float deVaucL;		# ellip likelihood (0-1)
+	char targetFlags[60];	# OR (|) of targetting flags
+} CTILEOBJ;
+
+</pre>
+</BODY>
+</HTML>

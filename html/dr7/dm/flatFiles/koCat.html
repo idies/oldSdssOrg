@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Known Object Catalog</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Known Object Catalog</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>koCat-rrrrrr.fit</EM>, where <EM>rrrrrr</EM> is the imaging run number.
+<strong>NOTE</strong>: this naming schema does not support <em>kali</em>.
+ <P>
+<STRONG>Produced by:</STRONG>
+kaliPre, sscPre, psPre
+ <P>
+<STRONG>Used by:</STRONG>
+kali, ssc, ps
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb.
+ <p>
+<STRONG>Archived?</STRONG>
+No
+ <P>
+<STRONG>TODO:</STRONG>
+This file needs to be finalized.
+
+<H2>Description</H2>
+Input catalog of known objects overlapping run being processed.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+RUN     =                  XXX / Imaging run number.
+INCL    =            XXX.XXXXX / Great circle inclination wrt cel. eq. (degrees)
+NODE    =            XXX.XXXXX / RA of great circle's asending node. (degrees)
+EQUINOX =              XXXX.XX / Equinox of great circle coordinates. (years)
+KO_VER  = 'XXX     '           / Version of known object catalog used.
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Table Header</h2>
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                  123
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   19
+TFORM1  = '1J      '
+TTYPE1  = 'cattype '           / Catalog ID 1000016 = ACRS, 1000017 = GSC
+TFORM2  = '1D      '
+TTYPE2  = 'ra      '           / RA J2000 in decimal degrees
+TFORM3  = '1D      '
+TTYPE3  = 'dec     '           / DEC J2000 in decimal degrees
+TFORM4  = '1D      '
+TTYPE4  = 'lambda  '           / Survey Lambda in decimal degrees
+TFORM5  = '1D      '
+TTYPE5  = 'eta     '           / Survey Eta in decimal degrees
+TFORM6  = '1E      '
+TTYPE6  = 'mag     '           / Magnitude, some band
+TFORM7  = '1E      '
+TTYPE7  = 'color   '           / color
+TFORM8  = '1E      '
+TTYPE8  = 'a       '           / for galaxies, major axis radius in arcsec
+TFORM9  = '1E      '
+TTYPE9  = 'b       '           / for galaxies, minor axis radius in arcsec
+TFORM10 = '1E      '
+TTYPE10 = 'pa      '           / position angle of extended obj in degrees
+TFORM11 = '1E      '
+TTYPE11 = 'raerr   '           / error in ra, seconds of time?
+TFORM12 = '1E      '
+TTYPE12 = 'decerr  '           / error in dec, arcsec? 
+TFORM13 = '1E      '
+TTYPE13 = 'rapm    '           / proper motion seconds of time/cen (ACRS)
+TFORM14 = '1E      '
+TTYPE14 = 'decpm   '           / proper motion arcsec/cen (ACRS)
+TFORM15 = '1E      '
+TTYPE15 = 'x       '           / 0
+TFORM16 = '1E      '
+TTYPE16 = 'y       '           / 0
+TFORM17 = '1D      '
+TTYPE17 = 'mu      '           / GC mu, (if calculated) at node,incl
+TFORM18 = '1D      '
+TTYPE18 = 'nu      '           / GC nu, (if calculated) at node,incl
+TFORM19 = '1J      '
+TTYPE19 = 'catid   '           / ID number within ACRS catalog
+END     
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+</BODY>
+</HTML>

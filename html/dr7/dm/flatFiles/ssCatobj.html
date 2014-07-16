@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for simSurvey CATOBJ file</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>simSurvey CATOBJ file</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>defined by ssRealFileNameGet</EM>,
+ <P>
+<STRONG>Produced by:</STRONG>
+simSurvey:  various methods
+ <P>
+<STRONG>Used by:</STRONG>
+simSurvey: proc genit
+ <P>
+<STRONG>Size:</STRONG>
+could be large.
+ <P>
+<STRONG>Archived?</STRONG>
+kind of
+
+<H2>Description</H2>
+This is a transcription of the "Weinberg Catalog" which describes the
+true objects we are simulating.
+
+<H2>Contents</H2>
+<PRE>
+typedef struct {
+	double lambda; #position in survey coordinates (degrees)
+	double eta; 
+	double redshift; # the redshift
+	double pa; 	 # position angle in degrees
+	int t; 		 # object type: 0    for star (ignore pa, ax, and re)
+	                 #              1    quasar
+		         #              2    E
+                         #              3    S0
+                         #              4    Sa
+                         #              5    Sb
+                         #              6    Sc
+                         #              7    Sd/Irr
+			 #              8    white dwarf
+			 #              9    white dwarf
+	double ax_b;     # bulge axis ratio with 0.1 &lt ax &lt 1.0
+	double ax_d;     # bulge axis ratio with 0.1 &lt ax &lt 1.0
+	double reff_b;   # bulge:  half light major axis (in pix)
+	double reff_d;   # disk:  (1.678 x scale length)
+	double u_p; 	 # the magnitudes for the PSF component
+	double g_p; 
+	double r_p;
+	double i_p; 
+	double z_p; 
+	double u_b; 	 # the magnitudes for the BULGE component
+	double g_b; 
+	double r_b;
+	double i_b; 
+	double z_b; 
+	double u_d; 	 # the magnitudes for the DISK component
+	double g_d; 
+	double r_d;
+	double i_d; 
+	double z_d; 
+	double mu; 	# not required as input; used internally
+	double nu
+} CATOBJ;
+
+</PRE>
+
+</BODY>
+</HTML>
+
+
+
+
+

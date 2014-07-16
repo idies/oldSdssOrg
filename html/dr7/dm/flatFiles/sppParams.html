@@ -1,0 +1,1328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Stellar Parameters table</TITLE>
+<STYLE TYPE="text/CSS">
+<!--
+DT {font-weight: bold}
+-->
+</STYLE>
+</HEAD>
+
+<BODY>
+<H1>Stellar Parameters table</H1>
+<DL>
+<DT>File Format:</DT>
+<DD>ASCII</DD>
+<DT>Name:</DT>
+<DD>p<em>pppp</em>.param</DD>
+</DL>
+
+<H2>Description</H2>
+
+<TABLE BORDER=1>
+<TR>
+<TH>Field #</TH>
+<TH>Field Name</TH>
+<TH>Type/Unit</TH>
+<TH>Discription</TH>
+</TR>
+<TR>
+<TD> 0 </TD>
+<TD> specobjid </TD>
+<TD> int64 </DT>
+<TD> 64 bit unique spectrum id f(plate,mjd,fiberid) </DT>
+</TR>
+<TR>
+<TD> 1 </TD>
+<TD> plate </TD>
+<TD> int </DT>
+<TD> plate number </DT>
+</TR>
+<TR>
+<TD> 2 </TD>
+<TD> mjd </TD>
+<TD> int </DT>
+<TD> Modified Julian Date of (last) observation for this plate/mjd combination </DT>
+</TR>
+<TR>
+<TD> 3 </TD>
+<TD> fiberid </TD>
+<TD> int </DT>
+<TD> Fiber number (1-640) 1-320 on spectrograph#1 321-640 on spectrograph#2 </DT>
+</TR>
+<TR>
+<TD> 4 </TD>
+<TD> fehspectype </TD>
+<TD> char[4] </DT>
+<TD><PRE>
+SEGUE or SDSS target type abbreviations (type as targeted from photo)
+	AGB  Asymtotic Giant Branch candidate star
+	BHB  Blue Horizontal Branch candidate star
+	CVR  Cool White Dwarf candidate star
+	FTO  F turnoff candidate star
+	GAL  SDSS main survey or LRG GALAXY candidate
+	GD   G Dwarf candidate star
+	HOT  HOT standard star (main SDSS Survey, g-r < 0)
+	KD   K Dwarf candidate star
+	KG   K Giant candidate star
+	LOW  Low metalicity candidate star	
+	MD   M Dwarf candidate star 
+	PHO  Photometric Standard star (usually brighter F dwarf)
+	QA   Quality Assurance target (in SEGUE, duplicates another fiber)
+	QSO  SDSS main survey QSO candidate
+	RED  Reddening Standard star (usually fainter F dwarf)
+	ROS  may be F/G dwarf or MS/WD or low lat target
+	SER  Serendip. Manual (1. globular/open cluster 2. High Prop motion) 
+	STA  Main SDSS survey STAR (not GAL or QSO or Standard)
+	SKY  Sky fiber, should have no object flux
+	WD   White Dwarf candidate fiber
+</PRE></DT>
+</TR>
+<TR>
+<TD> 5 </TD>
+<TD> sptypea </TD>
+<TD> char[4] </DT>
+<TD> <PRE>Stellar Type Classification -- A 
+F0-F9, G0-G9, K0-K5, K7, M0-M9, L0-L8 NA
+</PRE>
+</DT></TR>
+<TR>
+<TD> 6 </TD>
+<TD> hammersptype </TD>
+<TD> char[5] </DT>
+<TD> <PRE>Stellar Type Classification -- B 
+00, AGN, QSO, O, OB, A0, A0p, B6, B9, Car, CAR, CV, CWD, F2, F5, F9
+G0, G2, G5, K1, K3, K5, K7, M0V, M1-M8, L0, L1-L5, L9, QSO,
+SBT, SFM, SKY, STA, T2, WD, WDm
+</PRE></DT></TR>
+<TR>
+<TD> 7  </TD>
+<TD> flag </TD>
+<TD> char[5] </DT>
+<TD> <PRE>
+SSPP flags:  4 flags for each spectrum as a 4 char string 'abcd'.
+	  xxxx = this is not a star, it's a Galaxy/QSO from SDSS main
+	      n= all is normal for this flag position (one of four)
+		By position:
+		1. d, D, E, h, H, l, n, N, S, V
+			d: possible White Dwarf 
+			D: apparent White Dwarf
+			E: Emission, possible QSO
+			h: Helium line?
+			H: apparent Teff too Hot for parameter est.
+			l: Sodium?
+			N: ?
+			S: Sky fiber -- no signal
+			V: Radial Velocity mismatch
+			
+		2. C
+			Color mismatch (spectroscopic color Teff far from
+			implied (g-r)_0 color Teff)
+		3. B
+			Balmer flag: unusual Balmer eq. widths for star
+		4. g
+			g band : unsual G-band eq. width for star Carbon star?
+</PRE></DT></TR>
+<TR>
+<TD> 8  </TD>
+<TD> feha </TD>
+<TD> float/dex </DT>
+<TD>       </DT>
+</TR>
+<TR>
+<TD> 9  </TD>
+<TD> fehan </TD>
+<TD> int </DT>
+<TD>        </DT>
+</TR>
+<TR>
+<TD> 10  </TD>
+<TD> fehaerr    </TD>
+<TD> float/dex  </DT>
+<TD> error/sigma on the [Fe/H] value </DT>
+</TR>
+<TR>
+<TD> 11  </TD>
+<TD> fehw </TD>
+<TD> float/dex  </DT>
+<TD>       </DT>
+</TR>
+<TR>
+<TD> 12  </TD>
+<TD> fehwn       </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 13  </TD>
+<TD> fehwerr    </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 14  </TD>
+<TD> fehr </TD>
+<TD> float/dex        </DT>
+<TD> refined weighted method [Fe/H] -- the best overall [Fe/H] estimate </DT>
+</TR>
+<TR>
+<TD> 15  </TD>
+<TD> fehrn       </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 16  </TD>
+<TD> fehrerr    </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 17  </TD>
+<TD> feh1 </TD>
+<TD> float/dex  </DT>
+<TD>       </DT>
+</TR>
+<TR>
+<TD> 18  </TD>
+<TD> feh1n       </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 19  </TD>
+<TD> feh1err    </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 20  </TD>
+<TD> feh2 </TD>
+<TD> float/dex </DT>
+<TD>       </DT>
+</TR>
+<TR>
+<TD> 21  </TD>
+<TD> feh2n       </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 22  </TD>
+<TD> feh2err    </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 23  </TD>
+<TD> feh3 </TD>
+<TD> float/dex </DT>
+<TD>       </DT>
+</TR>
+<TR>
+<TD> 24  </TD>
+<TD> feh3n       </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 25  </TD>
+<TD> feh3err    </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 26  </TD>
+<TD> feh4 </TD>
+<TD> float/dex  </DT>
+<TD>       </DT>
+</TR>
+<TR>
+<TD> 27  </TD>
+<TD> feh4n       </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 28  </TD>
+<TD> feh4err    </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 29  </TD>
+<TD> feh5 </TD>
+<TD> float/dex  </DT>
+<TD>       </DT>
+</TR>
+<TR>
+<TD> 30  </TD>
+<TD> feh5n       </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 31 </TD>
+<TD> feh5err    </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 32 </TD>
+<TD> feh6 </TD>
+<TD> float/dex </DT>
+<TD>       </DT>
+</TR>
+<TR>
+<TD> 33 </TD>
+<TD> feh6n       </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 34 </TD>
+<TD> feh6err    </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 35 </TD>
+<TD> feh7 </TD>
+<TD> float/dex </DT>
+<TD>       </DT>
+</TR>
+<TR>
+<TD> 36 </TD>
+<TD> feh7n       </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 37 </TD>
+<TD> feh7err    </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 38 </TD>
+<TD> feh8 </TD>
+<TD> float/dex </DT>
+<TD>       </DT>
+</TR>
+<TR>
+<TD> 39 </TD>
+<TD> feh8n       </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 40 </TD>
+<TD> feh8err    </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 41 </TD>
+<TD> feh9 </TD>
+<TD> float/dex </DT>
+<TD>       </DT>
+</TR>
+<TR>
+<TD> 42 </TD>
+<TD> feh9n       </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 43 </TD>
+<TD> feh9err    </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 44 </TD>
+<TD> teffa      </TD>
+<TD> float/Kelvin  </DT>
+<TD> Adopted Teff -- weighted mean of methods teff1-teff10 below </DT>
+</TR>
+<TR>
+<TD> 45 </TD>
+<TD> teffan      </TD>
+<TD> int </DT>
+<TD> number of methods averaged </DT>
+</TR>
+<TR>
+<TD> 46 </TD>
+<TD> teffaerr   </TD>
+<TD> float/K </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 47 </TD>
+<TD> teff1      </TD>
+<TD> float/K </DT>
+<TD> Teff  teffba Balmer ha method </DT>
+</TR>
+<TR>
+<TD> 48 </TD>
+<TD> teff1n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 49 </TD>
+<TD> teff1err   </TD>
+<TD> float/K </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 50 </TD>
+<TD> teff2      </TD>
+<TD> float/K </DT>
+<TD> Teff teffbd Balmer hd method </DT>
+</TR>
+<TR>
+<TD> 51 </TD>
+<TD> teff2n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 52 </TD>
+<TD> teff2err   </TD>
+<TD> float/K </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 53 </TD>
+<TD> teff3      </TD>
+<TD> float/K </DT>
+<TD> Teff kteff method -- From Kurucz based on colors </DT>
+</TR>
+<TR>
+<TD> 54 </TD>
+<TD> teff3n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 55 </TD>
+<TD> teff3err   </TD>
+<TD> float/K </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 56 </TD>
+<TD> teff4      </TD>
+<TD> float/K </DT>
+<TD> Teff Girardi isochrone method isoteff </DT>
+</TR>
+<TR>
+<TD> 57 </TD>
+<TD> teff4n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 58 </TD>
+<TD> teff4err   </TD>
+<TD> float/K </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 59 </TD>
+<TD> teff5      </TD>
+<TD> float/K    </DT>
+<TD> Teff sstemp method -- again based on colors </DT>
+</TR>
+<TR>
+<TD> 60 </TD>
+<TD> teff5n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 61 </TD>
+<TD> teff5err   </TD>
+<TD> float/K </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 62 </TD>
+<TD> teff6      </TD>
+<TD> float/K </DT>
+<TD> Young Sun grid method 1/2 for teff </DT>
+</TR>
+<TR>
+<TD> 63 </TD>
+<TD> teff6n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 64 </TD>
+<TD> teff6err   </TD>
+<TD> float/K </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 65 </TD>
+<TD> teff7      </TD>
+<TD> float/K </DT>
+<TD> ANN Neural Network method </DT>
+</TR>
+<TR>
+<TD> 66 </TD>
+<TD> teff7n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 67 </TD>
+<TD> teff7err   </TD>
+<TD> float/K </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 68 </TD>
+<TD> teff8      </TD>
+<TD> float/K </DT>
+<TD> Wilhelm Beers and Gray (1999) method </DT>
+</TR>
+<TR>
+<TD> 69 </TD>
+<TD> teff8n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 70 </TD>
+<TD> teff8err   </TD>
+<TD> float/K </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 71 </TD>
+<TD> teff9      </TD>
+<TD> float/K </DT>
+<TD> Carlos/Kurucz grid 24 method </DT>
+</TR>
+<TR>
+<TD> 72 </TD>
+<TD> teff9n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 73 </TD>
+<TD> teff9err   </TD>
+<TD> float/K </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 74 </TD>
+<TD> teff10     </TD>
+<TD> float/K </DT>
+<TD> Carlos/Kurucz grid 13 method </DT>
+</TR>
+<TR>
+<TD> 75 </TD>
+<TD> teff10n     </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 76 </TD>
+<TD> teff10err  </TD>
+<TD> float/K </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 77 </TD>
+<TD> logga      </TD>
+<TD> float/dex </DT>
+<TD> Adopted log g -- weighted mean of methods logg1-logg8 below </DT>
+</TR>
+<TR>
+<TD> 78 </TD>
+<TD> loggan      </TD>
+<TD> int </DT>
+<TD> number of methods in the average for this star </DT>
+</TR>
+<TR>
+<TD> 79 </TD>
+<TD> loggaerr   </TD>
+<TD> float/dex </DT>
+<TD> estimated error/sigma in logga </DT>
+</TR>
+<TR>
+<TD> 80 </TD>
+<TD> logg1      </TD>
+<TD> float/dex </DT>
+<TD> Young Sun Lee grid method 1 for log g </DT>
+</TR>
+<TR>
+<TD> 81 </TD>
+<TD> logg1n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 82 </TD>
+<TD> logg1err   </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 83 </TD>
+<TD> logg2      </TD>
+<TD> float/dex </DT>
+<TD> Young Sun Lee grid method 2 for log g </DT>
+</TR>
+<TR>
+<TD> 84 </TD>
+<TD> logg2n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 85 </TD>
+<TD> logg2err   </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 86 </TD>
+<TD> logg3      </TD>
+<TD> float/dex </DT>
+<TD> ANN Neural Netork method </DT>
+</TR>
+<TR>
+<TD> 87 </TD>
+<TD> logg3n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 88 </TD>
+<TD> logg3err   </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 89 </TD>
+<TD> logg4      </TD>
+<TD> float/dex </DT>
+<TD> Ca I gravity indicator </DT>
+</TR>
+<TR>
+<TD> 90 </TD>
+<TD> logg4n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 91 </TD>
+<TD> logg4err   </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 92 </TD>
+<TD> logg5      </TD>
+<TD> float/dex </DT>
+<TD> MgH gravity indicator </DT>
+</TR>
+<TR>
+<TD> 93 </TD>
+<TD> logg5n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 94 </TD>
+<TD> logg5err   </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 95 </TD>
+<TD> logg6      </TD>
+<TD> float/dex </DT>
+<TD> Wilhelm Beers and Gray method </DT>
+</TR>
+<TR>
+<TD> 96 </TD>
+<TD> logg6n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 97 </TD>
+<TD> logg6err   </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 98 </TD>
+<TD> logg7      </TD>
+<TD> float/dex </DT>
+<TD> Carlos Allende Kurucz grid 24 method </DT>
+</TR>
+<TR>
+<TD> 99 </TD>
+<TD> logg7n      </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 100 </TD>
+<TD> logg7err  </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 101 </TD>
+<TD> logg8     </TD>
+<TD> float/dex  </DT>
+<TD> Carlos Allende Kurucz grid 13 method </DT>
+</TR>
+<TR>
+<TD> 102 </TD>
+<TD> logg8n     </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 103 </TD>
+<TD> logg8err  </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 104 </TD>
+<TD> alphafe   </TD>
+<TD> float/dex </DT>
+<TD>         [alpha/Fe]  indicator (experimental) </DT>
+</TR>
+<TR>
+<TD> 105 </TD>
+<TD> alphafen   </TD>
+<TD> int </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 106 </TD>
+<TD> alphafeerr </TD>
+<TD> float/dex </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 107 </TD>
+<TD> distV      </TD>
+<TD> float/kpc </DT>
+<TD> distance to star if star is dwarf (Luminosity class V) </DT>
+</TR>
+<TR>
+<TD> 108 </TD>
+<TD> distTO     </TD>
+<TD> float/kpc </DT>
+<TD> distance to star if star is turnoff star (class IV) </DT>
+</TR>
+<TR>
+<TD> 109 </TD>
+<TD> distIII    </TD>
+<TD> float/kpc </DT>
+<TD> distance to star if star is giant (Lum class III) </DT>
+</TR>
+<TR>
+<TD> 110 </TD>
+<TD> distAGB    </TD>
+<TD> float/kpc </DT>
+<TD> distance to star if star is on Asym giant branch </DT>
+</TR>
+<TR>
+<TD> 111 </TD>
+<TD> distHB     </TD>
+<TD> float/kpc </DT>
+<TD> distance to star if star is on Horizontal Branch </DT>
+</TR>
+<TR>
+<TD> 112 </TD>
+<TD> distCAP    </TD>
+<TD> float/kpc </DT>
+<TD> distance to star from Carlos model fits </DT>
+</TR>
+<TR>
+<TD> 113 </TD>
+<TD> distYSL    </TD>
+<TD> float/kpc </DT>
+<TD> distance to star from Young Sun model fits </DT>
+</TR>
+<TR>
+<TD> 114 </TD>
+<TD> distZ      </TD>
+<TD> float/kpc </DT>
+<TD> distance to star in Z direction above Galactic plane </DT>
+</TR>
+<TR>
+<TD> 115 </TD>
+<TD> KPindex    </TD>
+<TD> float/Angstroms </DT>
+<TD> Calcium K index </DT>
+</TR>
+<TR>
+<TD> 116 </TD>
+<TD> GPindex    </TD>
+<TD> float/Angstroms </DT>
+<TD> G band index </DT>
+</TR>
+<TR>
+<TD> 117 </TD>
+<TD> tvel       </TD>
+<TD> float/km/s </DT>
+<TD> an unknown velocity-related quantity? </DT>
+</TR>
+<TR>
+<TD> 118 </TD>
+<TD> RVflag </TD>
+<TD>     char[32]  </DT>
+<TD> RV flag, if ok, it says OK </DT>
+</TR>
+<TR>
+<TD> 119 </TD>
+<TD> rva </TD>
+<TD> float/km/s </DT>
+<TD>Adopted RV (usually Elodie) with +7.3m km/s offset added to fit known clusters. THIS IS THE Radial Velocity to use in nearly all circumstances for stars</TD>
+</TR>
+<TR>
+<TD> 120 </TD>
+<TD> rvaerr     </TD>
+<TD> float/km/s </DT>
+<TD> error in RV </DT>
+</TR>
+<TR>
+<TD> 121 </TD>
+<TD> calcrv     </TD>
+<TD> float/km/s </DT>
+<TD> sspp calculated RV c=3e5 used throughout (i.e. not 299792.) </DT>
+</TR>
+<TR>
+<TD> 122 </TD>
+<TD> calcrverr  </TD>
+<TD> float/km/s </DT>
+<TD> error in calcrv </DT>
+</TR>
+<TR>
+<TD> 123 </TD>
+<TD> bsrv       </TD>
+<TD> float/km/s </DT>
+<TD> SpecBS RV -- based on templates taken from actual SDSS spectra, zeropointed </DT>
+</TR>
+<TR>
+<TD> 124 </TD>
+<TD> bsrverr    </TD>
+<TD> float/km/s </DT>
+<TD> SpecBS RV error </DT>
+</TR>
+<TR>
+<TD> 125 </TD>
+<TD> elodierv   </TD>
+<TD> float/km/s </DT>
+<TD> ELODIE template match RV (best estimate if err not 0, > 20) </DT>
+</TR>
+<TR>
+<TD> 126 </TD>
+<TD> elodierverr </TD>
+<TD> float/km/s </DT>
+<TD> ELODIE RV error </DT>
+</TR>
+<TR>
+<TD> 127 </TD>
+<TD> unused1 </TD>
+<TD> float </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 128 </TD>
+<TD> unused2 </TD>
+<TD> float </DT>
+<TD>  </DT>
+</TR>
+<TR>
+<TD> 129 </TD>
+<TD> velgal </TD>
+<TD> float/km/s </DT>
+<TD> another velocity, close to V_Galactic_Standard_of_Rest, i.e. Sun's motion removed. </DT>
+</TR>
+<TR>
+<TD> 130 </TD>
+<TD> g0 </TD>
+<TD> float/mag </DT>
+<TD> Dereddened psf magnitude in the g band.  SFD(98) used to subtract E(B-V)*3.793 </DT>
+</TR>
+<TR>
+<TD> 131 </TD>
+<TD> V0 </TD>
+<TD> float/mag </DT>
+<TD> Derived V magnitude, V0, determined from g0 and (g-r)_0 </DT>
+</TR>
+<TR>
+<TD> 132 </TD>
+<TD> gmr0 </TD>
+<TD> float/mag </DT>
+<TD> Dereddened psf color (g-r)_0 </DT>
+</TR>
+<TR>
+<TD> 133 </TD>
+<TD> grhbaa </TD>
+<TD> float/mag </DT>
+<TD> variants on color determined with input from Balmer line/continuum strengths/slopes </DT>
+</TR>
+<TR>
+<TD> 134 </TD>
+<TD> grbha       </TD>
+<TD> float/mag </DT>
+<TD> variants on color determined with input from Balmer line/continuum strengths/slopes </DT>
+</TR>
+<TR>
+<TD> 135 </TD>
+<TD> grbhd </TD>
+<TD> float/mag </DT>
+<TD> variants on color -- used in Teff determination </DT>
+</TR>
+<TR>
+<TD> 136 </TD>
+<TD> grhp </TD>
+<TD> float/mag </DT>
+<TD> variants on color determined with input from Balmer line/continuum strengths/slopes </DT>
+</TR>
+<TR>
+<TD> 137 </TD>
+<TD> BmV0 </TD>
+<TD> float/mag </DT>
+<TD> (B-V)_0 derived </DT>
+</TR>
+<TR>
+<TD> 138 </TD>
+<TD> BmVBalmer0 </TD>
+<TD> float/mag </DT>
+<TD> (B-V)_Balmer_0 derived </DT>
+</TR>
+<TR>
+<TD> 139 </TD>
+<TD> umg0 </TD>
+<TD> float/mag </DT>
+<TD> Dereddened psf color (u-g)_0 </DT>
+</TR>
+<TR>
+<TD> 140 </TD>
+<TD> rmi0 </TD>
+<TD> float/mag </DT>
+<TD> Dereddened psf color (r-i)_0 </DT>
+</TR>
+<TR>
+<TD> 141 </TD>
+<TD> imz0 </TD>
+<TD> float/mag </DT>
+<TD> Dereddened psf color (i-z)_0 </DT>
+</TR>
+<TR>
+<TD> 142 </TD>
+<TD> uerr </TD>
+<TD> float/mag </DT>
+<TD> Error in psf magnitude u band </DT>
+</TR>
+<TR>
+<TD> 143 </TD>
+<TD> gerr </TD>
+<TD> float/mag </DT>
+<TD> error in g </DT>
+</TR>
+<TR>
+<TD> 144 </TD>
+<TD> rerr </TD>
+<TD> float/mag </DT>
+<TD> error in r </DT>
+</TR>
+<TR>
+<TD> 145 </TD>
+<TD> ierr </TD>
+<TD> float/mag </DT>
+<TD> error in i </DT>
+</TR>
+<TR>
+<TD> 146 </TD>
+<TD> zerr </TD>
+<TD> float/mag </DT>
+<TD> error in z </DT>
+</TR>
+<TR>
+<TD> 147 </TD>
+<TD> ebv </TD>
+<TD> float </DT>
+<TD> E(B-V) at this (l,b) from SFD98 </DT>
+</TR>
+<TR>
+<TD> 148 </TD>
+<TD> sna </TD>
+<TD> float </DT>
+<TD> Signal to noise ratio for this spectrum (averaged) </DT>
+</TR>
+<TR>
+<TD> 149 </TD>
+<TD> qualitycheck   </TD>
+<TD> int </DT>
+<TD> Quality check integer </DT>
+</TR>
+<TR>
+<TD> 150 </TD>
+<TD> ra </TD>
+<TD> double/deg </DT>
+<TD> RA (J2000) </DT>
+</TR>
+<TR>
+<TD> 151 </TD>
+<TD> dec </TD>
+<TD> double/deg </DT>
+<TD> DEC (J2000) </DT>
+</TR>
+<TR>
+<TD> 152 </TD>
+<TD> l </TD>
+<TD> double/deg </DT>
+<TD> Galactic Longitude </DT>
+</TR>
+<TR>
+<TD> 153 </TD>
+<TD> b </TD>
+<TD> double/deg </DT>
+<TD> Galactic Latitude </DT>
+</TR>
+<TR>
+<TD> 154 </TD>
+<TD> chiHK </TD>
+<TD> float </DT>
+<TD> chi-square/dof measurement for the best fit to the spectrum in the region of Ca H+K </DT>
+</TR>
+<TR>
+<TD> 155 </TD>
+<TD> chiGband </TD>
+<TD> float </DT>
+<TD> chi-square/dof measure for the best fit spectrum in the region of the G band </DT>
+</TR>
+<TR>
+<TD> 156 </TD>
+<TD> chiMg </TD>
+<TD> float </DT>
+<TD> chi-square/dof measure for the best fit spectrum in the region of Mg triplet </DT>
+</TR>
+<TR>
+<TD> 157 </TD>
+<TD> pmepoch </TD>
+<TD> double/years </DT>
+<TD> Proper motion epoch </DT>
+</TR>
+<TR>
+<TD> 158 </TD>
+<TD> pmmatch </TD>
+<TD> int </DT>
+<TD> Proper motion match to USNO-B catalog (1 = match, 0 =no match) </DT>
+</TR>
+<TR>
+<TD> 159 </TD>
+<TD> pmdelta </TD>
+<TD> float/arcsec </DT>
+<TD> distance the star has moved </DT>
+</TR>
+<TR>
+<TD> 160 </TD>
+<TD> pml </TD>
+<TD> float/mas/yr </DT>
+<TD> propermotion in the Galactic l direction </DT>
+</TR>
+<TR>
+<TD> 161 </TD>
+<TD> pmb </TD>
+<TD> float/mas/yr </DT>
+<TD> proper motion in the Galactic b direction </DT>
+</TR>
+<TR>
+<TD> 162 </TD>
+<TD> pmra </TD>
+<TD> float/mas/yr </DT>
+<TD> proper motion in ra </DT>
+</TR>
+<TR>
+<TD> 163 </TD>
+<TD> pmdec </TD>
+<TD> float/mas/yr </DT>
+<TD> proper motion in dec </DT>
+</TR>
+<TR>
+<TD> 164 </TD>
+<TD> pmraerr </TD>
+<TD> float/mas/yr </DT>
+<TD> error in pmra </DT>
+</TR>
+<TR>
+<TD> 165 </TD>
+<TD> pmdecerr </TD>
+<TD> float/mas/yr </DT>
+<TD> error in pmdec </DT>
+</TR>
+<TR>
+<TD> 166 </TD>
+<TD> pmsigra </TD>
+<TD> float </DT>
+<TD> sigma in ra ppm </DT>
+</TR>
+<TR>
+<TD> 167  </TD>
+<TD> pmsigdec </TD>
+<TD> float </DT>
+<TD> sigma in dec ppm </DT>
+</TR>
+<TR>
+<TD> 168  </TD>
+<TD> pmnfit </TD>
+<TD> int </DT>
+<TD> number of fits to the ppm </DT>
+</TR>
+<TR>
+<TD> 169 </TD>
+<TD> usnomag_u </TD>
+<TD> float/mag </DT>
+<TD> USNO-B mag of the star in the derived u band </DT>
+</TR>
+<TR>
+<TD> 170 </TD>
+<TD> usnomag_g </TD>
+<TD> float/mag </DT>
+<TD> USNO-B mag of the star in the derived g band </DT>
+</TR>
+<TR>
+<TD> 171 </TD>
+<TD> usnomag_r </TD>
+<TD> float/mag </DT>
+<TD> USNO-B mag of the star in the derived r band </DT>
+</TR>
+<TR>
+<TD> 172 </TD>
+<TD> usnomag_i </TD>
+<TD> float/mag </DT>
+<TD> USNO-B mag of the star in the derived i band </DT>
+</TR>
+<TR>
+<TD> 173 </TD>
+<TD> usnomag_z </TD>
+<TD> float/mag </DT>
+<TD> USNO-B mag of the star in the derived z band </DT>
+</TR>
+<TR>
+<TD> 174 </TD>
+<TD> pmdist20 </TD>
+<TD> float/mag </DT>
+<TD> distance to nearest star brighter than 20th </DT>
+</TR>
+<TR>
+<TD> 175 </TD>
+<TD> pmdist22 </TD>
+<TD> float/mag </DT>
+<TD> distance to nearest star brighter than 22nd </DT>
+</TR>
+<TR>
+<TD> 176 </TD>
+<TD> brun </TD>
+<TD> int </DT>
+<TD> Run number (best reduction of sky) from photoobjall table </DT>
+</TR>
+<TR>
+<TD> 177 </TD>
+<TD> brerun </TD>
+<TD> int </DT>
+<TD> Rerun number </DT>
+</TR>
+<TR>
+<TD> 178 </TD>
+<TD> bcamcol </TD>
+<TD> int </DT>
+<TD> Camcol (1-6 on 2.5m mosaic camera) </DT>
+</TR>
+<TR>
+<TD> 179 </TD>
+<TD> bfield </TD>
+<TD> int </DT>
+<TD> Field number </DT>
+</TR>
+<TR>
+<TD> 180 </TD>
+<TD> bobj </TD>
+<TD> int </DT>
+<TD> object number within field </DT>
+</TR>
+<TR>
+<TD> 181 </TD>
+<TD> zbsubclass </TD>
+<TD> char[32] </DT>
+<TD> specBS subclass </DT>
+</TR>
+<TR>
+<TD> 182 </TD>
+<TD> zbelodiesptype </TD>
+<TD> char[32] </DT>
+<TD> specBS ELODIE best match template type </DT>
+</TR>
+<TR>
+<TD> 183 </TD>
+<TD> lpar </TD>
+<TD> float/mag </DT>
+<TD> Newberg-Lenz "l" color, perpendicular to stellar locus, sensitive to metalicity. </DT>
+</TR>
+<TR>
+<TD> 184 </TD>
+<TD> spar </TD>
+<TD> float/mag </DT>
+<TD> Ivezic (modified) s color, principal component </DT>
+</TR>
+<TR>
+<TD> 185 </TD>
+<TD> wpar </TD>
+<TD> float/mag </DT>
+<TD> Ivezic (modified) w color, principal component </DT>
+</TR>
+<TR>
+<TD> 186 </TD>
+<TD> p1spar </TD>
+<TD> float/mag </DT>
+<TD> Ivezic perpendicular to s color,component </DT>
+</TR>
+<TR>
+<TD> 187 </TD>
+<TD> zbclass </TD>
+<TD> char[32] </DT>
+<TD> SpecBS class </DT>
+</TR>
+<TR>
+<TD> 188 </TD>
+<TD> zbrchi2 </TD>
+<TD> float </DT>
+<TD> SpecBS rchi2 reduced chi-square per dof </DT>
+</TR>
+<TR>
+<TD> 189 </TD>
+<TD> zbdof </TD>
+<TD> float </DT>
+<TD> SpecBS dof measure for best fit template </DT>
+</TR>
+<TR>
+<TD> 190 </TD>
+<TD> zbvdisp </TD>
+<TD> float/km/s </DT>
+<TD> SpecBS Velocity dispersion (only relevant for GALaxies, not for stars) </DT>
+</TR>
+<TR>
+<TD> 191 </TD>
+<TD> zbvdisperr </TD>
+<TD> float/km/s </DT>
+<TD> SpecBS error in Velocity dispersion </DT>
+</TR>
+<TR>
+<TD> 192 </TD>
+<TD> zbzwarning </TD>
+<TD> int </DT>
+<TD> SpecBS warning flag </DT>
+</TR>
+<TR>
+<TD> 193 </TD>
+<TD> spec_cln </TD>
+<TD> char[32] </DT>
+<TD> Spectro1d(Chicago) classification  1= star, 6= red star, 0 = unknown </DT>
+</TR>
+<TR>
+<TD> 194 </TD>
+<TD> sprv </TD>
+<TD> float/km/s </DT>
+<TD> Spectro1d(Chicago) pipeline RV (also valid for Galaxies computed as cz) </DT>
+</TR>
+<TR>
+<TD> 195 </TD>
+<TD> sprverr </TD>
+<TD> float/km/s </DT>
+<TD> Spectro1d(Chicago) pipeline RV err </DT>
+</TR>
+<TR>
+<TD> 196 </TD>
+<TD> vel_dis </TD>
+<TD> float/km/s </DT>
+<TD> Spectro1d(Chicago) Velocity dispersion (only relevant for GALaxies, not for stars) </DT>
+</TR>
+<TR>
+<TD> 197 </TD>
+<TD> vel_disperr </TD>
+<TD> float/km/s </DT>
+<TD> Spectro1d(Chicago) Velocity dispersion error </DT>
+</TR>
+<TR>
+<TD> 198 </TD>
+<TD> spz_conf </TD>
+<TD> float </DT>
+<TD> Spectro1d(Chicago) redshift confidence </DT>
+</TR>
+<TR>
+<TD> 199 </TD>
+<TD> spz_status </TD>
+<TD> int </DT>
+<TD> Spectro1d(Chicago) redshift status </DT>
+</TR>
+<TR>
+<TD> 200 </TD>
+<TD> spz_warning  </TD>
+<TD> int </DT>
+<TD> Spectro1d(Chicago) redshift warning </DT>
+</TR>
+<TR>
+<TD> 201 </TD>
+<TD> eclass </TD>
+<TD> float </DT>
+<TD> Spectro1d(Chicago) Galaxy Principal component classification - Andy Connolly </DT>
+</TR>
+<TR>
+<TD> 202 </TD>
+<TD> ecoeff1 </TD>
+<TD> float </DT>
+<TD> Spectro1d(Chicago) Principal component 1 (for Galaxies)  </DT>
+</TR>
+<TR>
+<TD> 203 </TD>
+<TD> ecoeff2 </TD>
+<TD> float </DT>
+<TD> Spectro1d(Chicago) Principal component 2 (for Galaxies)  </DT>
+</TR>
+<TR>
+<TD> 204 </TD>
+<TD> ecoeff3 </TD>
+<TD> float </DT>
+<TD> Spectro1d(Chicago) Principal component 3 (for Galaxies) </DT>
+</TR>
+<TR>
+<TD> 205 </TD>
+<TD> ecoeff4 </TD>
+<TD> float </DT>
+<TD> Spectro1d(Chicago) PC 4 </DT>
+</TR>
+<TR>
+<TD> 206 </TD>
+<TD> ecoeff5 </TD>
+<TD> float </DT>
+<TD> Spectro1d PC5 </DT>
+</TR>
+<TR>
+<TD> 207 </TD>
+<TD> inspect </TD>
+<TD> int </DT>
+<TD> Inspection flag (0 = sspp not manually inspected, yet) </DT>
+</TABLE>
+</BODY>
+</HTML>

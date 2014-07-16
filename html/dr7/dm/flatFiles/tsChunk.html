@@ -1,0 +1,101 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File describing a chunk</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Chunk File</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG><p>
+In <em>chunkRoot/stripSS/muMMMMMM_V</em> the file is named
+<EM>tsChunk-SS-MMMMMM.par</EM>, where <EM>SS</EM> is the stripe number,
+<EM>MMMMMM</EM> is the starting great circle longitude (mu) of the chunk in
+integer arcsecs, and <em>S</em> is the sky version.<P>
+
+In <em>runsRoot/RRRR/V/</em> the file is named
+<em>tsChunk-RRRR-V.par</em>, where <em>RRRR</em> is the run number, 
+and <em>V</em> is the rerun number.<p>
+
+<STRONG>Produced by:</STRONG>
+ts
+ <P>
+<STRONG>Used by:</STRONG>
+ts, sx
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes, by sx.
+
+<p>
+<STRONG>Content Verification</STRONG>
+<pre>
+set tsChunk [param2Chain tsChunk.par k]
+loop i 0 [chainSize $tsChunk] {
+	set segment [chainElementGetByPos $tsChunk $i]
+	set run [exprGet $segment.run]
+	set rerun [exprGet $segment.rerun]
+	set camcol [exprGet $segment.camcol]
+	set field0 [exprGet $segment.field0]
+	set nFields [exprGet $segment.nFields]
+	loop j $field0 $nFields {
+		set file [format $camcol/tsField-%06d-%1d-%1d-%04d.fit" $run $col $rerun $field]
+		if {![file exists $file] } { error "missing file $file" }
+		set file [format $camcol/tsObj-%06d-%1d-%1d-%04d.fit" $run $col $rerun $field]
+		if {![file exists $file] } { error "missing file $file" }
+	}
+}
+</pre>
+
+<H2>Contents</H2>
+Contains a list of all segments of Frames Pipeline Runs in a resolved chunk
+of sky.  Not used when running target selection out of the database.
+<PRE>
+stripe               'XX'               # stripe number
+startMu          'XXXXXX'               # starting great circle longitude
+					# of the chunk (inclusive,
+					# integer arcsecs)
+endMu            'XXXXXX'               # ending great circle longitude
+					# of the chunk (exclusive,
+					# integer arcsecs)
+skyVersion           'X'                # sky version:
+                                        # -1 = untiled run (skyVersion
+					# = 15 will be used in the SQL
+					# database instead of -1)
+                                        # 0 = targeted sky
+                                        # 1 = best (aka latest photo) sky 
+                                        # 2, 3, 4, ... 14 = Southern Survey sky
+					# 15 = used in SQL database to designate
+					# skyVersion = -1 
+
+NOTE: to make the life of a database programmer easier, the "runs"
+version of the sky, which is designated as skyVersion = -1 in a tsChunk file,
+is stored as skyVersion = 15 in the SQL database. These two values are
+equivalent. The highest allowed skyVersion in a tsChunk file is 14.
+
+# List of all segments of Frames Pipeline Runs in the chunk
+typedef struct {
+    int       run;            # Imaging run number.
+    int       camCol;         # Camera column (1-6).
+    int       rerun;          # Identifying rerun number.
+    int       stripeNumber;   # Identifying stripe number
+    char      strip[2];       # Identifying strip N or S
+    int       startMu;        # Starting great circle longitude of the
+			      # segment (inclusive, integer arcsecs).
+    int       endMu;          # Ending great circle longitude of the
+			      # segment (inclusive, integer arcsecs).
+    int       field0;         # First field in the segment.
+    int       nFields;        # Number of fields in the segment.
+    char      status[20];     # primary, secondary, or bad
+} TSSEG;
+
+TSSEG 581 1 0 25 S 634010 645000 3 68 primary
+
+</PRE>
+</BODY>
+</HTML>

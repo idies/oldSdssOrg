@@ -1,0 +1,263 @@
+<HTML>
+<HEAD>
+<TITLE>FTCL Parameter Files</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>FTCL Parameter Files</H1>
+
+Most simple ascii data files used in the Survey are formatted as
+"FTCL parameter files".  This file format is described here.
+
+Additionally, the spectro2d pipeline uses an "IDL Yanny parameter file" format
+which is very nearly the same, but differs in some respects as described
+below.  The IDL format may only be used for files internal to the spectro2d
+pipeline.  That is, it may not be used for files used outside the spectro2d
+pipeline, as IDL is not used anywhere else in the survey.
+
+<H2>Format</H2>
+
+FTCL parameter files contain two elements.
+<dl>
+<dt> Keyword/value pairs
+<dd> A line may contain a keyword/value pair.  The first token is the keyword.
+     The remainder of the line, up to a comment-delimiting '#' sign, is the
+     value of the keyword.  In the following example, the value '51256' is
+     assigned to the keyword 'MJD', and the value 'u g r i z' is assigned to
+     the keyword 'filters':
+<pre>
+mjd	51256		# MJD day number of observations
+filters u g r i z       
+</pre>
+<dt> Tables
+<dd> Tables of data are given by first defining a C-like structure which
+     defines the table format.  
+
+
+     Then, any lines in the file whose first token
+     is the name of the structure are considered to contain the data for a
+     single entry in the table.  The tokens in each line are in the same order
+     as in the structure.  Arrays are contained within '{ }' and array elements
+     are whitespaced-separated.  Lines may be continued using a backslash as\
+     the last character.  For example, a
+     simple weather table containing four different temperatures stored as an
+     array along with a single pressure, humidity, and time stamp might look
+     like:
+<pre>
+typedef struct {
+   double mjd;
+   double humidity;
+   double pressure;
+   double temperature[4];
+} WEATHER;
+
+WEATHER 52191.300 0.23 75.21 {10.4 10.7 10.6 10.7}
+WEATHER 52191.310 0.24 75.26 {10.3 10.6 10.5 10.7}
+WEATHER 52191.320 0.23 75.28 {10.2 10.6 10.4 10.5}
+WEATHER 52191.330 0.23 75.30 {10.2 10.5 10.3 10.3}
+</pre>
+</dl>
+
+The keyword names (mjd, humidity, etc. in the above example) are case
+sensitive (for the IDL format they are not case sensitive).  The data model
+defines whether the variable with describes,
+for example, the camera column, is camCol, CamCol, camcol, or CAMCOL. <p>
+
+The name of the structure (WEATHER in the above example) must be in ALL CAPS
+in the structure definition, but is case-insensitive in the table entries.
+
+<pre>
+	Standard datatypes are:
+	char[N] - character string of length N 
+			(N = length of longest char string to appear 
+		       	in table +1, must be explicitly specified)
+     	float - 4-byte floating-point
+     	double - 8-byte floating-point
+     	short - 2-byte integers		(signed short assumed)
+     	int - 4-byte integers		(signed int assumed)
+	enum - enumerated types         (as in the C language)
+</pre>
+
+The simple data types supported are:  int, short, double, float, and
+char.  For char, you also need to specify the length (the length is ignored in
+the IDL format).  
+<p>
+
+	One dimensional fixed length arrays of the above types are supported.
+<p>
+
+	For example:
+<pre>
+	typedef struct {
+		float mag[5];
+		char b[5][20];
+		double c;
+		int flags[2];
+	} MYSTRUCT
+
+mystruct {17.5 17.546 17.4 16.1 16.0} {the rain in "spain is" wet} 1.24345567 {123123 1231213}
+mystruct {17.5 17.446 17.4 16.1 16.0} {the snow in chile "is dry"} 7.24345567 {123123 0}
+
+</pre>
+
+Delimiters for array dimensions may be
+square ([]) brackets or, following dervish conventions, angle (<>) brackets.
+
+<p>
+
+A backslash (\) may be used as a line continuation character for long
+table or header entries.
+
+<p>
+The  
+<a href="./idReport.html">idReport</a>
+files have an attribute defined in the typedef struct as:
+
+<pre>
+    char      program[20];    # Identifying name for CCD program. 
+</pre>
+
+The length of the string is defined in square brackets after the variable name.
+The actual length (20 in this case) is defined by the data model for the
+structure or file you are writing.  No 'program' string in the table section
+of the corresponding FTCL param file in this example then
+should exceed 19 characters (1 extra for the C termination).<p>
+
+<p>
+ Enums:
+<p>
+
+You may also use an enum to define an enumerated data type.  
+<p>
+These are similar to C-language enums, in that one lists a comma-separated
+number of identifying tags in a multi-line typedef statement which 
+are internally stored 
+as ints, 0, 1, 2, 3, etc, but which are referenced by the tag for 
+mnemonic convenience or
+documentation purposes.  The tags should start with a letter,
+and be alphanumeric, like a variable-name in C. 
+Underscores are permitted in the tag name, i.e.  START_RUN, END_RUN.
+
+<p>
+
+For example, if one wants to keep track of when one is starting or
+ending a series of runs in a table, you can define an enum such as 
+the following at the top of the table:
+
+<pre>
+# Entry written at start or end of run
+typedef enum {
+        START,
+        END
+} RUNMARK;
+</pre>
+
+and a structure and table with the attribute defined using 
+this enum looks like this:
+
+<pre>
+
+	typedef struct {
+		int run;	      # Run number
+    		RUNMARK   mark;       # Entry written at start or end of run.
+		double mjd;	      # time of START or END of run
+	} NEWSTRUCT;
+
+NEWSTRUCT 712 START 51876.1 
+NEWSTRUCT 712 END 51876.123
+
+NEWSTRUCT 722 START 51878.1 
+NEWSTRUCT 722 END 51879.123
+
+</pre>
+
+By convention enum values (i.e. START,END) are all-caps and
+newlines separate the comma-separated entries in the typedef definition
+of the enum.
+
+<p>
+
+For this example, each table entry has either <em>START</em> or
+<em>END</em> for its RUNMARK field value.
+
+The enum definition needs to appear in the file before a typedef that uses
+that enumerated type.
+<p>
+Multiple Tables/Structures in a single FTCL file:
+<p>
+A given file may contain any number of keyword/value lines and any number of
+tables.  
+<P> 
+An enum definition in a param file with multiple tables is shown here 
+<a href="./idReport.html">idReport</a>
+
+<p>
+The IDL Yanny parameter format also
+supports multi-dimensional arrays.  For example, an array of
+strings could be defined with
+<pre>
+     char NAME[2][20];
+</pre>
+that would contain two strings, for example
+<pre>
+     {Eat "more bananas"}
+</pre>
+Since the string length is ignored in the IDL format, this could have been
+defined equivalently with
+<pre>
+     char NAME[2][0];
+</pre>
+
+<H2>Reading and Writing</H2>
+Within any FTCL-based shell, one can read an FTCL parameter file using the
+command "param2Chain".  For example, to read the file '$fileName':
+<pre>
+ftcl> set chains [param2Chain $fileName keys]
+</pre>
+The keyword/value pairs will be returned as a TCLX keyed list in the variable
+"keys".  Each table will be read into a DERVISH chain.  The list of chains is
+returned by the command as a TCL list.
+<p>
+Say we have a TCLX keyed list stored in the variable "keys", and two chains
+with the handles "h1" and "h2" that we wish to write to an FTCL parameter file
+named "$outFileName""
+<pre>
+ftcl> chain2Param $outFile "h1 h2" keys
+</pre>
+Both commands have various options to control how the files are read and
+written.  See their documentation for more details.
+<p>
+For reading and writing IDL Yanny parameter files, one can
+use the routines YANNY_WRITE, YANNY_READ, YANNY_PAR.  The format
+allows one to loss-lessly switch between IDL structures,
+FITS binary tables and IDL Yanny parameter files.
+<p>
+One can also read FTCL parameter files with these same IDL routines,
+except that the case-sensitivity to element names is lost.
+The two structures in an sdReport file can be read with:
+<pre>
+     IDL> yanny_read, 'sdReport-52059.par', a, hdr=hdr
+</pre>
+   The structure formats could be viewed with
+<pre>
+     IDL> help, *a[0], /structure
+     IDL> help, *a[1], /structure
+</pre>
+   The MJD's in the SEXP structure can be printed with
+<pre>
+     IDL> print, (*a[0]).mjd
+</pre>
+   An keyword from the header can be retrieved with
+<pre>
+     IDL> print, yanny_par(hdr, 'equinox')
+</pre>
+
+<h2> Caveats </h2>
+<ol>
+<li>If the last character in a string is a quoted double quote, it is chopped off by param2Chain.</li>
+<li>Quoting characters, i.e. '\' (backslash characters), in strings are not
+removed in param2Chain when quoting a double quote.</li>
+</ol>
+</BODY>
+</HTML>

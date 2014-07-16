@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Imaging Tape Log</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Imaging Tape Log</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>idTapeLog-llllll.par</EM>, where <EM>llllll</EM> is the tape label.
+ <P>
+<STRONG>Produced by:</STRONG>
+iop
+ <P>
+<STRONG>Used by:</STRONG>
+strategy (tape loading onto production system)
+ <p>
+<STRONG>Size:</STRONG>
+&lt; 100 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Lists the position of every file stored on a single labelled imaging frame
+tape.  Such tapes store a bunch of raw frames from the Imaging Camera.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+tapelabel   jb4015                # tape label
+dataSource  1                     # camera column (1, 2, 3, 4, 5, 6)
+device      sdssid1-1		  # Tape drive
+mjd         51029                 # MJD day number
+
+typedef struct {
+        int filemarks;            # number of filemarks to skip to get here
+        int run;                  # run number
+        int frame;                # frame number
+        int ccd;                  # CCD id
+} TAPELOG;
+<!--AUTOCHECK end param -->
+
+tapelog 1 2318 0 13
+tapelog 2 2318 2 23
+tapelog 3 2318 4 33
+tapelog 4 2318 6 43
+tapelog 5 2318 8 53
+tapelog 6 2318 1 13
+tapelog 7 2318 3 23
+tapelog 8 2318 5 33
+tapelog 9 2318 7 43
+tapelog 10 2318 9 53
+tapelog 11 2318 2 13
+tapelog 12 2318 4 23
+tapelog 13 2318 6 33
+tapelog 14 2318 8 43
+tapelog 15 2318 10 53
+tapelog 16 2318 3 13
+tapelog 17 2318 5 23
+tapelog 18 2318 7 33
+tapelog 19 2318 9 43
+tapelog 20 2318 11 53
+tapelog 21 2318 4 13
+tapelog 22 2318 6 23
+tapelog 23 2318 8 33
+tapelog 24 2318 10 43
+tapelog 25 2318 12 53
+</pre>
+</body>
+</html>

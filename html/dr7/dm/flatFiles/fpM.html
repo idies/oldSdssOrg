@@ -1,0 +1,120 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Frame Masks</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Frame Masks</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>fpM-rrrrrr-bc-ffff.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number, <EM>b</EM> is the filter used
+(u, g, r, i, or z), <EM>c</EM> is the column location in the Imaging Array of
+the CCD which acquired the data (1-6), and <EM>ffff</EM> is the
+field number within the run.
+ <P>
+<STRONG>Produced by:</STRONG>
+frames
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+???
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.  Tracked file.
+
+<H2>Description</H2>
+Contains the frame masks for a single frame.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+RUN     =                  XXX / Imaging run number.
+CAMCOL  =                  XXX / Column in the imaging camera.
+FIELD   =                  XXX / Field sequence number within the run.
+NFILTER =                    5 / number of colors processed
+MASKROWS=                 1489 / number of rows in the mask
+MASKCOLS=                 2048 / number of columns in the mask
+NPLANE  =                   10 / number of different mask "planes" in the file
+VERSION = 'XXX     '           / Version of software used.
+DERV_VER= 'xxxxx   '                                                            
+ASTR_VER= 'xxxxx   '                                                            
+ASTRO_ID= 'XXX     '           / Astrometric pipeline run identifier.
+BIAS_ID = 'XXX     '           / Bias pipeline run identifier.
+FRAME_ID= 'XXX     '           / Frames pipeline run identifier.
+KO_VER  = 'XXX     '           / Version of known object catalog used.
+PS_ID   = 'XXX     '           / Postage stamp pipeline run identifier.
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Table Header</h2>
+There are 10 HDUs of this type.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   44                                                  
+NAXIS2  =                  227                                                  
+PCOUNT  =                50492                                                  
+GCOUNT  =                    1                                                  
+TFIELDS =                   10                                                  
+THEAP   =                 9988                                                  
+TFORM1  = '1J      ' /INT                                                       
+TTYPE1  = 'refcntr ' /refcntr                                                   
+TFORM2  = '1J      ' /INT                                                       
+TTYPE2  = 'nspan   ' /nspan                                                     
+TFORM3  = '1J      ' /INT                                                       
+TTYPE3  = 'row0    ' /row0                                                      
+TFORM4  = '1J      ' /INT                                                       
+TTYPE4  = 'col0    ' /col0                                                      
+TFORM5  = '1J      ' /INT                                                       
+TTYPE5  = 'rmin    ' /rmin                                                      
+TFORM6  = '1J      ' /INT                                                       
+TTYPE6  = 'rmax    ' /rmax                                                      
+TFORM7  = '1J      ' /INT                                                       
+TTYPE7  = 'cmin    ' /cmin                                                      
+TFORM8  = '1J      ' /INT                                                       
+TTYPE8  = 'cmax    ' /cmax                                                      
+TFORM9  = '1J      ' /INT                                                       
+TTYPE9  = 'npix    ' /npix                                                      
+TFORM10 = '1PB(0)  ' /SPAN                                                      
+TTYPE10 = 's       ' /s                                                         
+END                                                                             
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+<H2>S_MASKTYPE Enum Header</h2>
+<pre>
+<!--AUTOCHECK begin hdu 11 -->
+XTENSION= 'BINTABLE'                                                            
+BITPIX  =                    8                                                  
+NAXIS   =                    2                                                  
+NAXIS1  =                   66                                                  
+NAXIS2  =                   32                                                  
+PCOUNT  =                    0                                                  
+GCOUNT  =                    1                                                  
+TFIELDS =                    3                                                  
+TYPENAME= 'S_MASKTYPE'                                                       
+TFORM1  = '31A     '                                                            
+TTYPE1  = 'defName '                                                            
+TFORM2  = '31A     '                                                            
+TTYPE2  = 'attributeName'                                                       
+TFORM3  = '1J      '                                                            
+TTYPE3  = 'Value   '                                                            
+END                                                                             
+<!--AUTOCHECK end hdu 11 -->
+</pre>
+
+</BODY>
+</HTML>

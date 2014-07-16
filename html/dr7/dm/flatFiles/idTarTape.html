@@ -1,0 +1,85 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Tar Tape Log</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Tar Tape Log</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>idTarTape-llllll.par</EM>, where <EM>llllll</EM> is the tape label.
+ <P>
+<STRONG>Produced by:</STRONG>
+iop, mop, sop
+ <P>
+<STRONG>Used by:</STRONG>
+strategy (tape loading onto production system)
+<p>
+<STRONG>Size:</STRONG>
+&lt; 100 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Lists every TAR file stored on a single labelled multiple tar file tape.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+tapelabel   jb4015            # tape label
+dataSource  ganglog           # ganglog, mt
+device      /dev/nrst1	      # Tape drive
+
+typedef enum {
+        ASTROGANG,            # astro GANG files for a single imaging run
+        PHOTOGANG,            # photo GANG files for a single imaging run
+        LOG,                  # log files for a single imaging+spectro night
+        SPECTRO,              # all raw frames for a single spectro night
+        MT,                   # all files for a single MT night
+	TPM,		      # all TPM files for a single imaging+spec night
+        MURMUR,               # Murmur files for one or more nights
+        BIAS                  # Bias files for one or more nights
+} TARCONTENTS;
+
+typedef struct {
+        int filemarks;        # number of filemarks to skip to get here
+        TARCONTENTS contents; # ASTROGANG, PHOTOGANG, LOG, SPECTRO, MT, TPM
+        int id;               # run number for GANG, else MJD
+} TARFILE;
+<!--AUTOCHECK end param -->
+
+========================
+For a photo/spectro GLST tape:
+
+tapelabel   jb4015
+dataSource  ganglog
+device      /dev/nrst1
+
+TARFILE 1 LOG  51259
+TARFILE 2 ASTROGANG   134
+TARFILE 3 PHOTOGANG   134
+TARFILE 4 ASTROGANG   135
+TARFILE 5 PHOTOGANG   135
+TARFILE 6 ASTROGANG   136
+TARFILE 7 PHOTOGANG   136
+TARFILE 8 SPECTRO 51259
+TARFILE 9 TPM 51259
+
+========================
+For a mt tape:
+
+tapelabel   jb4015
+dataSource  mt
+device      /dev/nrst1
+
+TARFILE  1 MT 51725
+TARFILE  2 MT 51726
+
+</pre>
+</body>
+</html>

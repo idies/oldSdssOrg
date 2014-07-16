@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for MT Diagnositics</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>MT Diagnostics</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>mtDiag-ddddd.par</EM>, where <EM>ddddd</EM> is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+excal, kali
+ <P>
+<STRONG>Used by:</STRONG>
+excalPost, kaliPost
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 kb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Quality analysis diagnostic output from a single <em>mtframes</em>,
+<em>excal</em>, or <em>kali</em> run.  Not all pipelines fill in all fields.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+mjd           50196
+delta_14163   {star1 {  0.40 -2.33 }} {star2 {  0.05  0.56 }} {nstar 2}
+
+typedef struct {
+  int seqId;
+  char flavor[20];
+  char targetName[20];
+  double mjd;
+  double ra;
+  double dec;
+  double airmass;
+  double ratio;
+  int npossible;      # total number of possible matches with finding chart
+  int nmatched;       # actual number of detected stars matching finding chart
+  double counts;      # number of counts of primary standard in primaryFilter
+  double pri_row;     # position of primary standard in primaryFilter (row)
+  double pri_col;     # position of primary standard in primaryFilter (col)
+} MTDIAG;
+
+#      seqId flavor   target        mjd         ra      dec     airmass nm np  counts    row  col
+MTDIAG 13950 Astrom  Feige34    50196.116285 159.91502 43.1    1.031498 43 36     0        0    0
+MTDIAG 13956 Pri     BD+26o2606 50196.125463 222.25961 25.7075 2.096186 57 24 29189.333 1022 1024
+MTDIAG 14163 Sec     SA57       50196.411829 197.18    29.38   1.50237  32 27     0        0    0
+
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+</HTML>

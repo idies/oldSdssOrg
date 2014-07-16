@@ -1,0 +1,456 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Exported Field Info</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Exported Field Info</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tsField-rrrrrr-c-v-ffff.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number, <em>c</em> is the camera
+column (1-6), <em>v</em> is the rerun number, and <em>ffff</em> is the field
+number for the first field in the file.
+ <P>
+<STRONG>Produced by:</STRONG>
+opdb
+ <P>
+<STRONG>Used by:</STRONG>
+sx
+ <P>
+<STRONG>Size:</STRONG>
+ <P>
+<STRONG>Archived?</STRONG>
+Yes, by sx.
+
+<H2>Description</H2>
+Contains all field information exported to the SX.
+
+<H2>Primary Header</H2>
+<pre>
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+RUN     =                  XXX / Imaging run number [unitless]
+CAMCOL  =                  XXX / Column in the imaging camera [unitless]
+RERUN   =                  XXX / Rerun number [unitless]
+FIELD0  =                  XXX / First field in this file [unitless]
+NFIELDS =                  XXX / Number of fields in this file [unitless]
+STRIPE  =                  XXX / Stripe number [unitless]
+STRIP   = 'X       '           / N - north, S - south [unitless]
+EQUINOX =          XXXX.XXXXXX / Equinox of great circle scanned [Julian years]
+NODE    =           XXX.XXXXXX / Ascending node of great circle scanned [degrees]
+INCL    =           XXX.XXXXXX / Inclincation of great circle scanned [degrees]
+C_OBS   =            XXXXX.XXX / CCD clock rate [usec/unbinned-row]
+TRACKING=            XXXXX.XXX / Tracking rate [arcsec/TAI-sec]
+PHOTO_ID= 'XXX     '           / Photometric pipeline run id.
+TASTR_ID= 'XXX     '           / Astrometric pipeline run id for target.
+EASTR_ID= 'XXX     '           / Astrometric pipeline run id for export.
+TFCAL_ID= 'XXX     '           / Photometric calibration run id for target.
+EFCAL_ID= 'XXX     '           / Photometric calibration run id for export.
+PHOT_VER= 'XXX     '           / Version of frames pipeline used.
+TAST_VER= 'XXX     '           / Version of astrometric pipeline for target.
+EAST_VER= 'XXX     '           / Version of astrometric pipeline for export.
+TFCA_VER= 'XXX     '           / Version of fcalib for target.
+EFCA_VER= 'XXX     '           / Version of fcalib for export.
+TARG_VER= 'XXX     '           / Version of target pipeline used.
+EXPO_VER= 'XXX     '           / Version of export pipeline used.
+FILTERS = 'XXX XXX ...'        / Filter order in array fields
+DSCALE  =                  XXX / Scaling for bias drift [lbias and rbias]
+END
+</pre>
+
+<H2>Table Header</h2>
+There is one HDU of this type, with one row per field, ordered in
+ascending field number.  <EM>NAXIS2</EM> is equal to the number of fields
+(same as the PDU keyword NFIELDS).  The order of the filters
+in each row is the same as the order of filters in the PDU keyword.
+The "QUALITY" field records the quality of data in the field, in terms of its
+acceptance for the survey, and can take the following meanings:
+<pre>
+  AR_DQ_BAD        = 1,  /* Not acceptable for the survey */
+  AR_DQ_ACCEPTABLE = 2,  /* Acceptable for the survey, but we'd better data */
+  AR_DQ_GOOD       = 3,  /* Fully acceptable --- no desire for better data */
+  AR_DQ_MISSING    = 4,  /* No objects in this field, because data is missing,
+                          * but we accept the field into the survey as a hole
+                          * in the survey */
+  AR_DQ_HOLE       = 5,  /* Data in this field is not acceptable, but we will
+                          * accept the field into the survey as a hole in the
+                          * survey, meaning none of the objects in the field
+                          * are part of the survey */
+</pre>
+The "status" fields record the status of the PSF fit for that field in
+that filter, and can take the following meanings:
+<pre>
+  AR_PSF_STATUS_UNKNOWN = -1,    /* ??? */
+  AR_PSF_STATUS_OK      =  0,    /* PSF fitted by 2nd order parabolas */
+  AR_PSF_STATUS_PSF22   =  1,    /* PSF fitted by linear functions */
+  AR_PSF_STATUS_PSF11   =  2,    /* PSF fitted by a constant */
+  AR_PSF_STATUS_NOPSF   =  3,    /* PSF fit from previous frame used*/
+  AR_PSF_STATUS_ABORTED =  4,    /* ??? */
+  AR_PSF_STATUS_MISSING =  5     /* ??? */
+</pre>
+"psp_status" is the maximum value of "status" over all 5 filters.
+The <em>culled</em> field is a bit mask with the same bit values as the
+<em>primTarget</em> field in the tsObj file.  If a bit is set, then all
+targets of that target type were culled during target selection, and thus
+this field is excluded from that science sample.
+<p>
+The <em>badMask</em>, <em>acceptableMask</em>, <em>goodMask</em>, and
+<em>holeMask</em> fields are bit masks indicating which quality categories
+were set to those qualities.  The quality categories (the bits) are:
+<pre>
+  AR_FQ_SEEING           = 0x1,
+  AR_FQ_TRACKING         = 0x2,
+  AR_FQ_PSF              = 0x4,
+  AR_FQ_PHOTOMETRY       = 0x8,
+  AR_FQ_PHOTO_DROPOUT    = 0x10,
+  AR_FQ_ODD_EVEN_DROPOUT = 0x20,
+  AR_FQ_SKY_U            = 0x40,
+  AR_FQ_SKY_G            = 0x80,
+  AR_FQ_SKY_R            = 0x100,
+  AR_FQ_SKY_I            = 0x200,
+  AR_FQ_SKY_Z            = 0x400,
+  AR_FQ_AMP_U0           = 0x800,
+  AR_FQ_AMP_U1           = 0x1000,
+  AR_FQ_AMP_G0           = 0x2000,
+  AR_FQ_AMP_G1           = 0x4000,
+  AR_FQ_AMP_R0           = 0x8000,
+  AR_FQ_AMP_R1           = 0x10000,
+  AR_FQ_AMP_I0           = 0x20000,
+  AR_FQ_AMP_I1           = 0x40000,
+  AR_FQ_AMP_Z0           = 0x80000,
+  AR_FQ_AMP_Z1           = 0x100000,
+  AR_FQ_MANUAL           = 0x200000
+</pre>
+Here's the table format.
+<pre>
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                 3004
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   98
+TFORM1  = '1J      '          
+TTYPE1  = 'field   '           / Field sequence number within the run.
+TUNIT1  = 'unitless'
+TFORM2  = '1J      '
+TTYPE2  = 'quality '           / Data quality
+TUNIT2  = 'unitless'
+COMMENT astrometric transformation
+COMMENT mu nu are defined as:
+COMMENT   r'-i' < riCut:
+COMMENT       rowm =row+dRow0+dRow1*col+dRow2*(col^2)+dRow3*(col^3)+csRow*colour
+COMMENT       colm =col+dCol0+dCol1*col+dCol2*(col^2)+dCol3*(col^3)+csCol*colour
+COMMENT     Which colour to use depends on the filter as follows:
+COMMENT       u: u-g    g: g-r    r,i,z: r-i
+COMMENT   r'-i' >= riCut
+COMMENT       rowm = row+dRow0+dRow1*col+dRow2*(col^2)+dRow3*(col^3)+ccRow
+COMMENT       colm = col+dCol0+dCol1*col+dCol2*(col^2)+dCol3*(col^3)+ccCol
+COMMENT   mu = a + b * rowm + c * colm
+COMMENT   nu = d + e * rowm + f * colm
+TFORM3  = '5D      '          
+TTYPE3  = 'a       '                     / A.
+TUNIT3  = 'degrees'
+TFORM4  = '5D      '          
+TTYPE4  = 'b       '                     / B.
+TUNIT4  = 'degrees/pixel'
+TFORM5  = '5D      '          
+TTYPE5  = 'c       '                     / C.
+TUNIT5  = 'degrees/pixel'
+TFORM6  = '5D      '          
+TTYPE6  = 'd       '                     / D.
+TUNIT6  = 'degrees'
+TFORM7  = '5D      '          
+TTYPE7  = 'e       '                     / E.
+TUNIT7  = 'degrees/pixel'
+TFORM8  = '5D      '          
+TTYPE8  = 'f       '                     / F.
+TUNIT8  = 'degrees/pixel'
+TFORM9  = '5D      '          
+TTYPE9  = 'dRow0   '                     / Zero-order row distortion coefficient
+TUNIT9  = 'unitless'
+TFORM10 = '5D      '          
+TTYPE10 = 'dRow1   '                     / First-order row distortion coefficient
+TUNIT10 = 'unitless'
+TFORM11 = '5D      '          
+TTYPE11 = 'dRow2   '                     / Second-order row distortion coefficient
+TUNIT11 = 'unitless'
+TFORM12 = '5D      '          
+TTYPE12 = 'dRow3   '                     / Third-order row distortion coefficient
+TUNIT12 = 'unitless'
+TFORM13 = '5D      '          
+TTYPE13 = 'dCol0   '                     / Zero-order column distortion coefficient
+TUNIT13 = 'unitless'
+TFORM14 = '5D      '          
+TTYPE14 = 'dCol1   '                     / First-order column distortion coefficient
+TUNIT14 = 'unitless'
+TFORM15 = '5D      '          
+TTYPE15 = 'dCol2   '                     / Second-order column distortion coefficient
+TUNIT15 = 'unitless'
+TFORM16 = '5D      '          
+TTYPE16 = 'dCol3   '                     / Third-order column distortion coefficient
+TUNIT16 = 'unitless'
+TFORM17 = '5D      '          
+TTYPE17 = 'csRow   '                     / Slope in row DCR correction for blue objects
+TUNIT17 = 'unitless'
+TFORM18 = '5D      '          
+TTYPE18 = 'csCol   '                     / Slope in column DCR correction for blue objects
+TUNIT18 = 'unitless'
+TFORM19 = '5D      '          
+TTYPE19 = 'ccRow   '                     / Constant row DCR correction for red objects
+TUNIT19 = 'unitless'
+TFORM20 = '5D      '          
+TTYPE20 = 'ccCol   '                     / Constant column DCR correction for red objects
+TUNIT20 = 'unitless'
+TFORM21 = '5D      '          
+TTYPE21 = 'riCut   '                     / r'-i' cutoff between blue and red objects
+TUNIT21 = 'unitless'
+TFORM22 = '5D      '          
+TTYPE22 = 'mjd     '                     / MJD(TAI) when row 0 was read
+TUNIT22 = 'MJD(TAI)'          
+TFORM23 = '5D      '          
+TTYPE23 = 'airmass '                     / Airmass for star at frame center (mid exposure)
+TUNIT23 = 'unitless'
+TFORM24 = '5D      '
+TTYPE24 = 'muErr   '                     / Error in mu in calibration
+TUNIT24 = 'arcsec  '
+TFORM25 = '5D      '
+TTYPE25 = 'nuErr   '                     / Error in nu in calibration
+TUNIT25 = 'arcsec  '
+COMMENT photometric transformation
+TFORM26 = '1J      '          
+TTYPE26 = 'seqId   '                     / Sequence id overlapping this field (-1=none)
+TUNIT26 = 'unitless'
+TFORM27 = '5J      '          
+TTYPE27 = 'numStars'                     / Number of matching secondary stars in field
+TUNIT27 = 'unitless'
+TFORM28 = '5E      '          
+TTYPE28 = 'aa      '                     / Zero-point
+TUNIT28 = 'mag     '          
+TFORM29 = '5E      '          
+TTYPE29 = 'aaErr   '                     / Zero-point error
+TUNIT29 = 'mag     '          
+TFORM30 = '5E      '          
+TTYPE30 = 'bb      '                     / Color term
+TUNIT30 = 'mag     '          
+TFORM31 = '5E      '          
+TTYPE31 = 'bbErr   '                     / Color term error
+TUNIT31 = 'mag     '          
+TFORM32 = '5E      '          
+TTYPE32 = 'cc      '                     / Color x extinction term
+TUNIT32 = 'mag     '          
+TFORM33 = '5E      '          
+TTYPE33 = 'ccErr   '                     / Color x extinction term error
+TUNIT33 = 'mag     '          
+TFORM34 = '5E      '          
+TTYPE34 = 'kk      '                     / Extinction coefficient
+TUNIT34 = 'mag     '          
+TFORM35 = '5E      '          
+TTYPE35 = 'kkErr   '                     / Extinction coefficient error
+TUNIT35 = 'mag     '          
+COMMENT info from the fpFieldStat file
+TFORM36 = '1J      '          
+TTYPE36 = 'frames_status'                / Frames processing status
+TUNIT36 = 'unitless'
+TFORM37 = '5E      '          
+TTYPE37 = 'rowOffset'                    / Offset to add to transformed row coordinates
+TUNIT37 = 'pixels  '          
+TFORM38 = '5E      '          
+TTYPE38 = 'colOffset'                    / Offset to add to transformed column coordinates
+TUNIT38 = 'pixels  '          
+TFORM39 = '1J      '          
+TTYPE39 = 'nObjects'                     / Number of objects detected
+TUNIT39 = 'unitless'
+TFORM40 = '1J      '          
+TTYPE40 = 'nChild  '                     / Number of children in the field
+TUNIT40 = 'unitless'
+TFORM41 = '1J      '          
+TTYPE41 = 'nStars  '                     / Number of objects classified as stars
+TUNIT41 = 'unitless'
+TFORM42 = '1J      '          
+TTYPE42 = 'nGals   '                     / Number of objects classified as galaxies
+TUNIT42 = 'unitless'
+TFORM43 = '5J      '          
+TTYPE43 = 'saturation_level'             / Saturation level
+TUNIT43 = 'unitless'
+TFORM44 = '5E      '          
+TTYPE44 = 'neff_psf'                     / Effective area of the point spread function
+TUNIT44 = 'pixels  '          
+TFORM45 = '5E      '          
+TTYPE45 = 'sky_psp '                     / Sky from the point spread function
+TUNIT45 = 'asinh mag/arcsec^2'         
+TFORM46 = '5E      '          
+TTYPE46 = 'sky_frames'                   / Global sky value in the corrected frame
+TUNIT46 = 'asinh mag/arcsec^2'         
+TFORM47 = '5E      '          
+TTYPE47 = 'sky_frames_sub'               / Global sky value after object subtraction
+TUNIT47 = 'asinh mag/arcsec^2'         
+TFORM48 = '5E      '          
+TTYPE48 = 'sigPix  '                     / Clipped sigma of pixel values in corrected frame
+TUNIT48 = 'asinh mag/arcsec^2'          
+TFORM49 = '5E      '
+TTYPE49 = 'deV_ap_correction'            / De Vaucouleurs aperture correction
+TUNIT49 = 'mag'
+TFORM50 = '5E      '
+TTYPE50 = 'deV_ap_correctionErr'         / De Vaucouleurs aperture correction error
+TUNIT50 = 'mag'
+TFORM51 = '5E      '
+TTYPE51 = 'exp_ap_correction'            / Exponential aperture correction
+TUNIT51 = 'mag'
+TFORM52 = '5E      '
+TTYPE52 = 'exp_ap_correctionErr'         / Exponential aperture correction error
+TUNIT52 = 'mag'
+TFORM53 = '5E      '
+TTYPE53 = 'deV_model_ap_correction'      / De Vaucouleurs model aperture correction
+TUNIT53 = 'mag'
+TFORM54 = '5E      '
+TTYPE54 = 'deV_model_ap_correctionErr'   / De Vaucouleurs model aperture correction error
+TUNIT54 = 'mag'
+TFORM55 = '5E      '
+TTYPE55 = 'exp_model_ap_correction'      / Exponential model aperture correction
+TUNIT55 = 'mag'
+TFORM56 = '5E      '
+TTYPE56 = 'exp_model_ap_correctionErr'   / Exponential model aperture correction error
+TUNIT56 = 'mag'
+TFORM57 = '5J      '          
+TTYPE57 = 'nCR     '                     / Number of cosmic rays detected on the frame
+TUNIT57 = 'unitless'
+TFORM58 = '5J      '          
+TTYPE58 = 'nBrightObj'                   / Number of bright objects detected
+TUNIT58 = 'unitless'
+TFORM59 = '5J      '          
+TTYPE59 = 'nFaintObj'                    / Number of faint objects detected
+TUNIT59 = 'unitless'
+TFORM60 = '5E      '          
+TTYPE60 = 'median_fiberColor'            / Median fiber colors of objects
+TUNIT60 = 'mag'
+TFORM61 = '5E      '          
+TTYPE61 = 'median_psfColor'              / Median PSF colors of objects
+TUNIT61 = 'mag'
+TFORM62 = '5E      '          
+TTYPE62 = 'q       '                     / Mean Stokes Q parameter on the frame
+TUNIT62 = 'unitless'
+TFORM63 = '5E      '          
+TTYPE63 = 'u       '                     / Mean Stokes U parameter on the frame
+TUNIT63 = 'unitless'
+COMMENT PSP field info
+TFORM64 = '1J      '          
+TTYPE64 = 'psp_status'                   / Maximum value of "status" over all five filters
+TUNIT64 = 'unitless'
+TFORM65 = '5J      '
+TTYPE65 = 'status  '                     / Type of PSF fit for each filter in the field
+TUNIT65 = 'unitless'
+TFORM66 = '5E      '          
+TTYPE66 = 'sky     '                     / The average sky value in the frame
+TUNIT66 = 'asinh mag/arcsec^2'      
+TFORM67 = '5E      '          
+TTYPE67 = 'skySig  '                     / Sigma of distribution of sky values
+TUNIT67 = 'asinh mag/arcsec^2'      
+TFORM68 = '5E      '          
+TTYPE68 = 'skyErr  '                     / The error of average sky value in the frame 
+TUNIT68 = 'asinh mag/arcsec^2'      
+TFORM69 = '5E      '          
+TTYPE69 = 'skySlope'                     / The slope in the sky value along the columns
+TUNIT69 = 'asinh mag/arcsec^2/field'      
+TFORM70 = '5E      '          
+TTYPE70 = 'lbias   '                     / Left-hand bias level
+TUNIT70 = 'ADU x DSCALE'     
+TFORM71 = '5E      '          
+TTYPE71 = 'rbias   '                     / Right-hand bias level
+TUNIT71 = 'ADU x DSCALE'     
+TFORM72 = '5J      '          
+TTYPE72 = 'psf_nstar'                    / Number of stars used in psf measurement
+TUNIT72 = 'unitless'
+TFORM73 = '5E      '
+TTYPE73 = 'psf_ap_correctionErr'         / Photometric error due to imperfect PSF model
+TUNIT73 = 'mag     '
+TFORM74 = '5E      '          
+TTYPE74 = 'psf_sigma1'                   / Inner gaussian sigma for the composite fit.
+TUNIT74 = 'arcsec  '          
+TFORM75 = '5E      '          
+TTYPE75 = 'psf_sigma2'                   / Outer gaussian sigma for the composite fit
+TUNIT75 = 'arcsec  '          
+TFORM76 = '5E      '          
+TTYPE76 = 'psf_b   '                     / Ratio of the inner PSF to the outer PSF at the origin
+TUNIT76 = 'unitless'
+TFORM77 = '5E      '          
+TTYPE77 = 'psf_p0  '                     / The value of the power law at the origin
+TUNIT77 = 'unitless'
+TFORM78 = '5E      '          
+TTYPE78 = 'psf_beta'                     / Slope of power law
+TUNIT78 = 'unitless'
+TFORM79 = '5E      '          
+TTYPE79 = 'psf_sigmap'                   / Width parameter for power law
+TUNIT79 = 'unitless'
+TFORM80 = '5E      '          
+TTYPE80 = 'psf_width'                    / Effective PSF width in 2-Gaussian fit
+TUNIT80 = 'arcsec  '          
+TFORM81 = '5E      '          
+TTYPE81 = 'psf_psfCounts'                / Flux via fit to the PSF
+TUNIT81 = 'counts  '          
+TFORM82 = '5E      '          
+TTYPE82 = 'psf_sigma1_2G'                / PSF inner sigma in 2-Gaussian fit
+TUNIT82 = 'pixels  '
+TFORM83 = '5E      '          
+TTYPE83 = 'psf_sigma2_2G'                / PSF outer sigma in 2-Gaussian fit
+TUNIT83 = 'pixels  '
+TFORM84 = '5E      '          
+TTYPE84 = 'psf_b_2G'          / Ratio of gaussian 2 to gaussian 1 at origin 
+TFORM85 = '5E      '          
+TTYPE85 = 'psfCounts'                    / PSF counts
+TUNIT85 = 'unitless'
+TFORM86 = '5J      '          
+TTYPE86 = 'prof_nprof'                   / Number of profile bins in PSF model
+TUNIT86 = 'unitless'
+TFORM87 = '75E     '          
+TTYPE87 = 'prof_mean'                    / Mean PSF profile
+TUNIT87 = 'unitless'
+TDIM87  = '(15,5)  '          
+TFORM88 = '75E     '          
+TTYPE88 = 'prof_med'                     / Median PSF profile
+TUNIT88 = 'unitless'
+TDIM88  = '(15,5)  '          
+TFORM89 = '75E     '          
+TTYPE89 = 'prof_sig'                     / PSF profile sigma
+TUNIT89 = 'unitless'
+TDIM89  = '(15,5)  '          
+TFORM90 = '5E      '          
+TTYPE90 = 'gain    '                     / Gain averaged over all amplifiers
+TUNIT90 = 'electrons/DN'      
+TFORM91 = '5E      '          
+TTYPE91 = 'dark_variance'                / Dark variance
+TUNIT91 = 'unitless'
+TFORM92 = '1E      '          
+TTYPE92 = 'scanlineArea'                 / Area of scanline covered by the field
+TUNIT92 = 'deg^2'
+TFORM93 = '1E      '          
+TTYPE93 = 'stripeArea'                   / Area of stripe covered by the field
+TUNIT93 = 'deg^2'
+TFORM94 = '1J      '
+TTYPE94 = 'culled  '                     / Culling bit mask
+TUNIT94 = 'unitless'
+TFORM95 = '1J      '
+TTYPE95 = 'badMask '                     / Quality categories with bad quality
+TUNIT95 = 'unitless'
+TFORM96 = '1J      '
+TTYPE96 = 'acceptableMask '              / Quality categories with acceptable quality
+TUNIT96 = 'unitless'
+TFORM97 = '1J      '
+TTYPE97 = 'goodMask'                     / Quality categories with good quality
+TUNIT97 = 'unitless'
+TFORM98 = '1J      '
+TTYPE98 = 'holeMask'                     / Quality categories with hole quality
+TUNIT98 = 'unitless'
+END
+</pre>
+
+</BODY>
+</HTML>

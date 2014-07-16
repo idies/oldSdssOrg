@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Flat Field Vector</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Flat Field Vector</H1>
+
+<STRONG>File Format:</STRONG>
+FITS image
+ <P>
+<STRONG>Name:</STRONG>
+<EM>psFF-rrrrrr-bc.fit</EM>,
+where <EM>rrrrrr</EM> is the imaging run number, <EM>b</EM> is the filter used
+(u, g, r, i, or z), and <EM>c</EM> is the column location in the Imaging Array
+of the CCD which acquired the data (1-6).
+ <P>
+<STRONG>Produced by:</STRONG>
+ps
+ <P>
+<STRONG>Used by:</STRONG>
+frames
+ <P>
+<STRONG>Size:</STRONG>
+8640 bytes per file.  5 files per pipeline run.  Total of 43.2 Kb for a single
+postage stamp pipeline run.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Flat-field vector for a single CCD.  Actually, this is an <EM>inverse</EM>
+flat-field vector, meaning that the raw frame must be multiplied (not
+divided) by the vector to recover the desired values.  The pixel values are
+stored as unsigned integers.
+The <EM>TSHIFT</EM> keyword gives the amount by which each pixel value has
+been multiplied; e.g., if <EM>TSHIFT</EM> = 32, then each pixel value in
+the image is 32 times larger than the true value.  This scaling allows us to
+calculate precise values while maintaining pure integers.
+See the data model page for "psCT" files for a description of the "KALXX_ID"
+keywords.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                   16
+NAXIS   =                    2
+NAXIS1  =                 2048
+NAXIS2  =                    1
+BSCALE  =                    1
+BZERO   =                32768
+TSHIFT  =                  XXX / Scale factor to increase precision
+<!--##begin FITS flatFieldVector.PDU -->
+<!-- P+      Project: sdss   Date: Fri Jan  8 22:36:42 1999-->
+VERSION = 'XXX     '           / Version of software used.
+RUN     =                  XXX / Imaging run number.
+SSC_ID  = 'XXX     '           / SSC pipeline run identifier.
+ASTRO_ID= 'XXX     '           / Astrometric pipeline run identifier.
+BIAS_ID = 'XXX     '           / Bias pipeline run identifier.
+PS_ID   = 'XXX     '           / Postage stamp pipeline run identifier.
+FILTER  = 'XXX     '           / Filter (u, g, r, i, or z).
+<!--##end FITS flatFieldVector.PDU -->
+CAMCOL  =                  XXX / Column in the imaging camera.
+EXCAL_ID= 'XXX     '           / Excal pipeline run identifier (optional).
+KALXX_ID= 'seqId kali_id'      / Kali pipeline run identifier for patch XX
+PSOLD_ID= 'XXX     '           / Old PS pipeline run identifier (optional).
+FF_ID   = 'XXX     '           / a copy of PS_ID from supplied flatfield 
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+</BODY>
+</HTML>

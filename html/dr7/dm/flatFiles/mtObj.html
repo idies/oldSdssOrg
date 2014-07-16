@@ -1,0 +1,157 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for MT Objects</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>MT Objects</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>mtObj-ssssssss.fit</EM>,
+where <EM>ssssssss</EM> is the sequence number.
+ <P>
+<STRONG>Produced by:</STRONG>
+mtframes
+ <P>
+<STRONG>Used by:</STRONG>
+excal, kali
+ <P>
+<STRONG>Size:</STRONG>
+17.28 Kb per file (assuming &lt; 49 stars detected).  For a typical night (10
+hours, with 10 sequences per hour), we'll have 100 such files, for a total of
+1.728 Mb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Objects detected in the MT pipeline.  Each file contains the object list for
+one MT sequence.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+<!--##begin FITSbinary mTFrame.PDU -->
+<!-- P+      Project: sdss   Date: Mon Feb 23 14:07:30 1998-->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+VERSION = 'XXX     '           / Version of software used.
+TELESCOP= 'XXX     '           / Telescope with which data was obtained.
+MTFRA_ID= 'XXX     '           / Mtframes pipeline run identifier.
+SEQID   =                  XXX / MT sequence number.
+<!--##end FITSbinary mTFrame.PDU -->
+MJD     =                  XXX / MJD day number of night when data was obtained.
+OBJNAME = 'XXX     '           / Name of field
+FLAVOR  = 'XXX     '           / Flavor of this sequence (Pri, Sec)
+MJDDATE =         XXXXX.XXXXXX / MJD at start of the first exposure
+RA      =           XXX.XXXXXX / ra for last exposure in sequence (deg)
+DEC     =           XXX.XXXXXX / dec for last exposure in sequence (deg)
+EQUINOX =          XXXX.XXXXXX / equinox for last exposure in sequence (yr)
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Frame Parameters Header</h2>
+There is one HDU of this type.  It contains some averaged photometric
+information (seeing and sky brightness) in each filter.  There is one entry
+for each filter.  Usually <em>NAXIS2</em> will always be 5, however if a
+frame was not taken in a specific filter, or if its quality was bad,
+then there will not be an entry for that filter.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+<!--##begin FITSbinary mTFrame.header -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   13
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                    4
+<!--##end FITSbinary mTFrame.header -->
+<!--##begin FITSbinary mTFrame.table -->
+TFORM1  = '1A      '          
+TTYPE1  = 'filter  '           / Filter.
+TFORM2  = '1E      '          
+TTYPE2  = 'fwhm    '           / Median FWHM of brightest objects on the frame.
+TUNIT2  = 'pixels  '          
+TFORM3  = '1E      '          
+TTYPE3  = 'sky     '           / Global sky value for the frame.
+TUNIT3  = 'ADUs/pixel'        
+TFORM4  = '1E      '          
+TTYPE4  = 'skyErr  '           / Global sky value for the frame. (error)
+TUNIT4  = 'ADUs/pixel'        
+<!--##end FITSbinary mTFrame.table -->
+END
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+<H2>Object List Header</h2>
+There is one HDU of this type.  This contains the list of stars detected in
+this sequence.  There is one entry for each star.
+<PRE>
+<!--AUTOCHECK begin hdu 2 -->
+<!--##begin FITSbinary mTStar.header -->
+<!-- P+      Project: sdss   Date: Wed Aug 26 15:58:33 1998-->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                  120
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   10
+<!--##end FITSbinary mTStar.header -->
+FILTERS = 'u g r i z'          / Filter order in array fields.
+U_STARTT=         XXXXX.XXXXXX / MJD at start of u exposure
+G_STARTT=         XXXXX.XXXXXX / MJD at start of g exposure
+R_STARTT=         XXXXX.XXXXXX / MJD at start of r exposure
+I_STARTT=         XXXXX.XXXXXX / MJD at start of i exposure
+Z_STARTT=         XXXXX.XXXXXX / MJD at start of z exposure
+U_EXPTIM=                 X.XX / Exposure time for u exposure (seconds)
+G_EXPTIM=                 X.XX / Exposure time for g exposure (seconds)
+R_EXPTIM=                 X.XX / Exposure time for r exposure (seconds)
+I_EXPTIM=                 X.XX / Exposure time for i exposure (seconds)
+Z_EXPTIM=                 X.XX / Exposure time for z exposure (seconds)
+<!--##begin FITSbinary mTStar.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'id      '           / Unique ID within a frame.
+TFORM2  = '1E      '          
+TTYPE2  = 'row     '           / Center along rows in primary filter.
+TUNIT2  = 'pixels  '          
+TFORM3  = '1E      '          
+TTYPE3  = 'rowErr  '           / Center along rows in primary filter. (error)
+TUNIT3  = 'pixels  '          
+TFORM4  = '1E      '          
+TTYPE4  = 'col     '           / Center along columns in primary filter.
+TUNIT4  = 'pixels  '          
+TFORM5  = '1E      '          
+TTYPE5  = 'colErr  '           / Center along columns in primary filter. (error)
+TUNIT5  = 'pixels  '          
+TFORM6  = '5E      '          
+TTYPE6  = 'counts  '           / Sky-subtracted counts.
+TUNIT6  = 'ADUs    '          
+TFORM7  = '5E      '          
+TTYPE7  = 'countsErr'          / Sky-subtracted counts. (error)
+TUNIT7  = 'ADUs    '          
+TFORM8  = '5E      '          
+TTYPE8  = 'peak    '           / Counts in peak pixel.
+TUNIT8  = 'ADUs    '          
+TFORM9  = '5E      '          
+TTYPE9  = 'fwhm    '           / FWHM.
+TUNIT9  = 'pixels  '          
+TFORM10 = '5J      '
+TTYPE10 = 'saturated'          / 0=not saturated, 1=A/D converter saturation
+COMMENT                        / 2=Full well saturation, A/D and full well
+<!--##end FITSbinary mTStar.table -->
+<!--AUTOCHECK end hdu 2 -->
+</PRE>
+
+</BODY>
+</HTML>

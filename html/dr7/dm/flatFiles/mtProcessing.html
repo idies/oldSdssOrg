@@ -1,0 +1,155 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for MT Calibration Frames</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>MT Calibration Frames</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>mtProcessing-ddddd.log</EM>,
+where <EM>ddddd</EM> is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+mtframes
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+A log of which frames in which nights were used to create the master
+bias and flat frames for a given night's data.  Since occasionally
+flats and/or biases must be copied over from other nights, a record of
+both frame number and mjd is needed for the unambiguous identification
+of the raw bias and flat frames.
+
+<H2>Contents</H2>
+<PRE>
+<!--AUTOCHECK begin param -->
+version         'XXX'          # Version of software used.
+mtfra_id        'XXX'          # mtFrames pipeline run identifier.
+telescope       'XXX'          # Telescope with which data was obtained.
+mjd		XXX	       # MJD of night being processed
+fileNameFormat  mdR-%08d.fit   # Format to convert exposure ID to raw file name
+
+biasexp             # list of all bias exposures used in creating master bias
+biasmjd             # list of mjds from whence the bias exposures came (there
+                    # must be a one-to-one match between the biasexp list 
+                    # and the biasmjd list)
+
+twiexp(u)           # list of all u' twilight flats used in creating master 
+                    # u' twilight flat
+twimjd(u)           # list of mjds from whence the u' twilight flats came 
+                    # (there must be a one-to-one match between the twiexp 
+                    # list and the twimjd list)
+
+twiexp(g)           # list of all g' twilight flats used in creating master 
+                    # g' twilight flat
+twimjd(g)           # list of mjds from whence the g' twilight flats came 
+                    # (there must be a one-to-one match between the twiexp 
+                    # list and the twimjd list)
+
+twiexp(r)           # list of all r' twilight flats used in creating master 
+                    # r' twilight flat
+twimjd(r)           # list of mjds from whence the r' twilight flats came 
+                    # (there must be a one-to-one match between the twiexp 
+                    # list and the twimjd list)
+
+twiexp(i)           # list of all i' twilight flats used in creating master 
+                    # i' twilight flat
+twimjd(i)           # list of mjds from whence the i' twilight flats came 
+                    # (there must be a one-to-one match between the twiexp 
+                    # list and the twimjd list)
+
+twiexp(z)           # list of all z' twilight flats used in creating master 
+                    # z' twilight flat
+twimjd(z)           # list of mjds from whence the z' twilight flats came 
+                    # (there must be a one-to-one match between the twiexp 
+                    # list and the twimjd list)
+
+domeexp(u)          # list of all u' dome flats used in creating master u' 
+                    # dome flat
+domemjd(u)          # list of mjds from whence the u' dome flats came (there 
+                    # must be a one-to-one match between the domeexp list 
+                    # and the domemjd list)
+
+domeexp(g)          # list of all g' dome flats used in creating master g' 
+                    # dome flat
+domemjd(g)          # list of mjds from whence the g' dome flats came (there 
+                    # must be a one-to-one match between the domeexp list 
+                    # and the domemjd list)
+
+domeexp(r)          # list of all r' dome flats used in creating master r' 
+                    # dome flat
+domemjd(r)          # list of mjds from whence the r' dome flats came (there 
+                    # must be a one-to-one match between the domeexp list 
+                    # and the domemjd list)
+
+domeexp(i)          # list of all i' dome flats used in creating master i' 
+                    # dome flat
+domemjd(i)          # list of mjds from whence the i' dome flats came (there 
+                    # must be a one-to-one match between the domeexp list 
+                    # and the domemjd list)
+
+domeexp(z)          # list of all z' dome flats used in creating master z' 
+                    # dome flat
+domemjd(z)          # list of mjds from whence the z' dome flats came (there 
+                    # must be a one-to-one match between the domeexp list 
+                    # and the domemjd list)
+<!--AUTOCHECK end param -->
+
+
+---------------------------------------------------------------------
+An example of mtProcessing.log for a night with no master dome flats:
+
+fileNameFormat     mdR-%08d.fit
+version            v6_0
+mtfra_id           1998-09-28T12:26:32 19689
+telescope          APO24
+
+biasexp 46481 46482 46483 46484 46485 46486 46487 46488 46489
+biasmjd 50949 50949 50949 50949 50949 50949 50949 50949 50949
+
+twiexp(u) 46492 46493 46494 46495 46496
+twimjd(u) 50949 50949 50949 50949 50949
+
+twiexp(g) 46504 46505 46506 46723 46724
+twimjd(g) 50949 50949 50949 50949 50949
+
+twiexp(r) 46502 46503 46720 46721 46722
+twimjd(r) 50949 50949 50949 50949 50949
+
+twiexp(i) 46497 46498 46499 46500 46501
+twimjd(i) 50949 50949 50949 50949 50949
+
+twiexp(z) 46725 46726 46727 46728 46729
+twimjd(z) 50949 50949 50949 50949 50949
+
+domeexp(u) 
+domemjd(u) 
+
+domeexp(g) 
+domemjd(g) 
+
+domeexp(r) 
+domemjd(r) 
+
+domeexp(i) 
+domemjd(i) 
+
+domeexp(z) 
+domemjd(z) 
+---------------------------------------------------------------------
+</PRE>
+
+</BODY>
+</HTML>

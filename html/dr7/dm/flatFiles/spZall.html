@@ -1,0 +1,336 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>SDSS Data Model for spZall</TITLE>
+<STYLE TYPE="text/CSS">
+<!--
+DT {font-weight: bold}
+SPAN.fixme {font-weight: bold; color: red}
+-->
+</STYLE>
+</HEAD>
+
+<BODY>
+<H1>SDSS Data Model for spZall</H1>
+<DL>
+<DT>File Format:</DT>
+<DD>FITS binary table</DD>
+<DT>Name:</DT>
+<DD>spZall-<i>pppp</i>-<i>mmmmm</i>.fits</DD>
+</DL>
+
+<H2>Description</H2>
+<P>This file is a FITS binary table identical in form to the spZbest file,
+but with all the fits ever done to each object.  This includes 5
+possible galaxy redshifts, 5 possible QSO redshifts, and 1 for each
+of many types of stars.  They are rank-sorted for each object,
+letting you go through and keep asking "but what's the next best fit?".
+This is what the IDL procedure
+<a href="http://spectro.princeton.edu/idlspec2d_doc.html#PLOTSPEC">plotspec</a>
+uses when the ZNUM keyword is specified.
+For example, ZNUM=2 will over-plot the 2nd-best fit eigenspectrum.
+</P>
+
+<P>Not all of the parameters in the spZbest file are computed for
+the spZall file.  For example, the SDSS filter convolutions are not done.</P>
+
+
+<H2>Primary HDU</H2>
+<PRE>
+SIMPLE  =                    T / FIT STANDARD                                   
+BITPIX  =                   16 / FITS BITS/PIXEL                                
+NAXIS   =                    0 / NUMBER OF AXES                                 
+EXTEND  =                    T /                                                
+TAI     =        4482194319.54 / 1st row - Number of seconds since Nov 17 1858  
+RA      =            28.656976 / 1st row - Right ascension of telescope boresigh
+DEC     =            13.804520 / 1st row - Declination of telescope boresight (d
+EQUINOX =              2000.00 /                                                
+RADECSYS= 'FK5     '           /                                                
+AZ      =        306.432220000 / 1st row - Azimuth  (encoder) of tele (0=N?) (de
+ALT     =        61.3134576667 / 1st row - Altitude (encoder) of tele        (de
+AIRMASS =              1.10307 /                                                
+FOCUS   = -999999999999.999999 / 1st row - Focus piston (microns?)              
+DATE-OBS= '2000-11-29'         / 1st row - TAI date                             
+TAIHMS  = '05:40:17.51'        / 1st row - TAI time (HH:MM:SS.SS) (TAI-UT = appr
+TIMESYS = 'tai     '           / TAI, not UTC                                   
+TAI-BEG =        4482192260.00 / Exposure Start Time                            
+TAI-END =        4482195390.00 / Exposure End Time                              
+MJD     =                51877 / MJD of observation                             
+MJDLIST = '51877   '           /                                                
+VERSION = 'v3_19_1 '           / version of IOP                                 
+CAMVER  = 'SPEC2 v4_5'         / Camera code version                            
+OBSERVER= 'harvanek'                                                            
+OBSCOMM = 'science '                                                            
+TELESCOP= 'SDSS 2.5-M'         / Sloan Digital Sky Survey                       
+NEXP    =                   12 / Number of exposures in this file               
+BESTEXP =                 7251 /                                                
+EXPID01 = 'b1-00007250-00007254-00007255' / ID string for exposure 1            
+EXPID02 = 'b1-00007251-00007254-00007255' / ID string for exposure 2            
+EXPID03 = 'b1-00007252-00007254-00007255' / ID string for exposure 3            
+EXPID04 = 'b2-00007250-00007254-00007255' / ID string for exposure 4            
+EXPID05 = 'b2-00007251-00007254-00007255' / ID string for exposure 5            
+EXPID06 = 'b2-00007252-00007254-00007255' / ID string for exposure 6            
+EXPID07 = 'r1-00007250-00007254-00007255' / ID string for exposure 7            
+EXPID08 = 'r1-00007251-00007254-00007255' / ID string for exposure 8            
+EXPID09 = 'r1-00007252-00007254-00007255' / ID string for exposure 9            
+EXPID10 = 'r2-00007250-00007254-00007255' / ID string for exposure 10           
+EXPID11 = 'r2-00007251-00007254-00007255' / ID string for exposure 11           
+EXPID12 = 'r2-00007252-00007254-00007255' / ID string for exposure 12           
+NEXP_B1 =                    3 / b1 camera number of exposures                  
+NEXP_B2 =                    3 / b2 camera number of exposures                  
+NEXP_R1 =                    3 / r1 camera number of exposures                  
+NEXP_R2 =                    3 / r2 camera number of exposures                  
+EXPT_B1 =              2700.00 / b1 camera exposure time (seconds)              
+EXPT_B2 =              2700.00 / b2 camera exposure time (seconds)              
+EXPT_R1 =              2700.00 / r1 camera exposure time (seconds)              
+EXPT_R2 =              2700.00 / r2 camera exposure time (seconds)              
+EXPTIME =              2700.00 / Minimum of exposure times for all cameras      
+SPCOADD = 'Fri May 11 07:26:36 2007' / SPCOADD finished                         
+FLAVOR  = 'science '           / Flavor of this sequence (e.g., dome flat, etc.)
+QUALITY = 'excellent'          / night/image quality                            
+RADEG   = 2.86571000000000E+01 / Right Ascension. (degrees)                     
+DECDEG  = 1.38045200000000E+01 / Declination. (degrees)                         
+PLATEID =                  430 / Plate Id                                       
+TILEID  =                  208 / Tile Id                                        
+CARTID  =                    5 /Cartridge used in this plugging                 
+MAPID   =              5187701 / Map Id                                         
+NAME    = '0430-51877-01'      / Name of target; PlateId-MJD-Mapper ReRun       
+NGUIDE  =              21.0000 / Number of guider frames during exposure        
+SEEING20=              2.08333 / 20% seeing during exposure (arcsec)            
+SEEING50=              2.20333 / 50% seeing during exposure (arcsec)            
+SEEING80=              2.36333 / 80% seeing during exposure (arcsec)            
+RMSOFF20=       0.128227666667 / 20% RMS offset of guide fibers (arcsec)        
+RMSOFF50=       0.251879666667 / 50% RMS offset of guide fibers (arcsec)        
+RMSOFF80=       0.442921666667 / 80% RMS offset of guide fibers (arcsec)        
+COLBIN  =                    1 / Binning factor perpendicular to the columns    
+ROWBIN  =                    1 / Binning factor perpendicular to the rows       
+PROGRAM = 'binning 1   1 '     / Identifying name for CCD program               
+SECFOCUS= -1.3000000000000E+02 / Secondary Mirror Position as reported by TCC   
+GUIDEIMG= '/data/spectro/guider/gimg0756.fits' / Last archived guider image     
+WTIME   =        975476788.000 / weatherData(timeStamp)                         
+AIRTEMP =        5.30000000000 / weatherData(airtemp)                           
+DEWPOINT=       -8.20000000000 / weatherData(dewpoint)                          
+DEWDEP  =        13.5000000000 / weatherData(dewpointDep)                       
+DUSTA   =        5254.00000000 / weatherData(dusta)                             
+DUSTB   =        135.666666667 / weatherData(dustb)                             
+DUSTC   =        6086.33333333 / weatherData(dustc)                             
+DUSTD   =        155.000000000 / weatherData(dustd)                             
+GUSTD   = 7.95000000000000E+01 / weatherData(gustd)                             
+GUSTS   =        11.7000000000 / weatherData(gusts)                             
+HUMIDITY=        37.0666666667 / weatherData(humidity)                          
+HUMIDOUT=        36.3333333333 / weatherData(humidout)                          
+PRESSURE=        21.5700000000 / weatherData(pressure)                          
+WINDD   =        87.0666666667 / weatherData(windd)                             
+WINDS   =        8.83333333333 / weatherData(winds)                             
+TEMP01  =       -94.1400000000 / CCD 01 Temperature                             
+TEMP02  =       -92.9700000000 / CCD 02 Temperature                             
+TEMP03  =       -92.5800000000 / CCD 03 Temperature                             
+TEMP04  =       -93.4900000000 / CCD 04 Temperature                             
+AUTHOR  = 'Scott Burles & David Schlegel' /                                     
+VERSIDL = '6.3     '           / Version of IDL                                 
+VERSUTIL= 'v5_2_0  '           / Version of idlutils                            
+VERSREAD= 'v5_3_3  '           / Version of idlspec2d for pre-processing raw dat
+VERS2D  = 'v5_3_3  '           / Version of idlspec2d for 2D reduction          
+VERSCOMB= 'v5_3_2  '           / Version of idlspec2d for combining multiple spe
+VERS1D  = 'v5_3_2  '           /Version of idlspec2d for 1D reduction           
+VERSLOG = 'fermi-CVS 05/11/07' / Version of SPECLOG product                     
+VERSFLAT= 'v1_7    '           / Version of SPECFLAT product                    
+OPBC    = 'opBC-51813.par'     /                                                
+OPCONFIG= 'opConfig-50000.par' /                                                
+OPECALIB= 'opECalib-51577.par' /                                                
+XSIGMA  =       0.938221750000 /                                                
+XSIGMIN =       0.904645000000 /                                                
+XSIGMAX =       0.997335000000 /                                                
+WSIGMA  =       0.890092998379 /                                                
+WSIGMIN =       0.845413000000 /                                                
+WSIGMAX =        1.00929999352 /                                                
+PLUGFILE= 'plPlugMapM-0430-51877-01.par' /                                      
+LAMPLIST= 'lamphgcdne.dat'     /                                                
+SKYLIST = 'skylines.dat'       /                                                
+HELIO_RV=        18.0336065943 / Heliocentric correction (added to velocities)  
+VACUUM  =                    T / Wavelengths are in vacuum                      
+SFLATTEN=                    T / Superflat has been applied                     
+PSFSKY  =                    3 / Order of PSF skysubtraction                    
+SKYCHI2 =        1.08416902433 / Mean chi^2 of sky-subtraction                  
+SCHI2MIN=        1.05534681302 /                                                
+SCHI2MAX=        1.17834241969 /                                                
+PREJECT =             0.200000 / Profile area rejection threshold               
+SPEC1_G =              17.7522 /(S/N)^2 for spec  1 at mag 20.20                
+SPEC1_R =              18.6219 /(S/N)^2 for spec  1 at mag 20.25                
+SPEC1_I =              17.6288 /(S/N)^2 for spec  1 at mag 19.90                
+SPEC2_G =              16.2644 /(S/N)^2 for spec  2 at mag 20.20                
+SPEC2_R =              15.6690 /(S/N)^2 for spec  2 at mag 20.25                
+SPEC2_I =              13.8085 /(S/N)^2 for spec  2 at mag 19.90                
+NSTD    =                   16 / Number of (good) std stars                     
+GOFFSTD =           -0.0162220 / Spectrophoto offset for std stars in G-band    
+GRMSSTD =            0.0757010 / Spectrophoto RMS for std stars in G-band       
+ROFFSTD =           -0.0105619 / Spectrophoto offset for std stars in R-band    
+RRMSSTD =            0.0487866 / Spectrophoto RMS for std stars in R-band       
+IOFFSTD =           -0.0130701 / Spectrophoto offset for std stars in I-band    
+IRMSSTD =            0.0493715 / Spectrophoto RMS for std stars in I-band       
+GROFFSTD=           -0.0187340 / Spectrophoto offset for std stars in (GR)      
+GRRMSSTD=            0.0497939 / Spectrophoto RMS for std stars in (GR)         
+RIOFFSTD=            0.0102034 / Spectrophoto offset for std stars in (RI)      
+RIRMSSTD=            0.0328852 / Spectrophoto RMS for std stars in (RI)         
+NGAL    =                  417 / Number of (good) main galaxies                 
+GOFFGAL =           0.00672913 / Spectrophoto offset for main galaxies in G-band
+GRMSGAL =            0.0455279 / Spectrophoto RMS for main galaxies in G-band   
+ROFFGAL =           0.00734711 / Spectrophoto offset for main galaxies in R-band
+RRMSGAL =            0.0433952 / Spectrophoto RMS for main galaxies in R-band   
+IOFFGAL =           0.00634956 / Spectrophoto offset for main galaxies in I-band
+IRMSGAL =            0.0454840 / Spectrophoto RMS for main galaxies in I-band   
+GROFFGAL=           0.00297165 / Spectrophoto offset for main galaxies in (GR)  
+GRRMSGAL=            0.0415170 / Spectrophoto RMS for main galaxies in (GR)     
+RIOFFGAL=          -0.00133705 / Spectrophoto offset for main galaxies in (RI)  
+RIRMSGAL=            0.0243410 / Spectrophoto RMS for main galaxies in (RI)     
+LOWREJ  =                    5 / Extraction: low rejection                      
+HIGHREJ =                    8 / Extraction: high rejection                     
+SCATPOLY=                    0 / Extraction: Order of scattered light polynomial
+PROFTYPE=                    3 / Extraction profile: 1=Gaussian                 
+NFITPOLY=                    1 / Extraction: Number of parameters in each profil
+XCHI2   =              1.20192 / Extraction: Mean chi^2                         
+XCHI2MIN=              1.12970 /                                                
+XCHI2MAX=              1.28281 /                                                
+NWORDER =                    2 / Linear-log10 coefficients                      
+WFITTYPE= 'LOG-LINEAR'         / Linear-log10 dispersion                        
+COEFF0  =        3.58000000000 / Central wavelength (log10) of first pixel      
+COEFF1  =    0.000100000000000 / Log10 dispersion per pixel                     
+UNAME   = 'fnpc217.fnal.gov'   /                                                
+FBADPIX =            0.0114787 / Fraction of bad pixels                         
+FBADPIX1=           0.00687047 / Fraction of bad pixels on spectro-1            
+FBADPIX2=            0.0160869 / Fraction of bad pixels on spectro-2            
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =        3.58000000000 / Central wavelength (log10) of first pixel      
+CD1_1   =    0.000100000000000 / Log10 dispersion per pixel                     
+CRPIX1  =                    1 / Starting pixel (1-indexed)                     
+CTYPE1  = 'LINEAR  '           /                                                
+DC-FLAG =                    1 / Log-linear flag                                
+BUNIT   = '1E-17 erg/cm^2/s/Ang' /                                              
+DIMS0   =                   51 / Number of fits per objects                     
+DIMS1   =                  640 / Number of objects                              
+</PRE>
+<H2>HDU1</H2>
+<PRE>
+XTENSION= 'BINTABLE'           /Binary table written by MWRFITS v1.4a           
+BITPIX  =                    8 /Required value                                  
+NAXIS   =                    2 /Required value                                  
+NAXIS1  =                  927 /Number of bytes per row                         
+NAXIS2  =                32640 /Number of rows                                  
+PCOUNT  =                    0 /Normally 0 (no varying arrays)                  
+GCOUNT  =                    1 /Required value                                  
+TFIELDS =                   49 /Number of columns in table                      
+COMMENT                                                                         
+COMMENT  *** End of mandatory fields ***                                        
+COMMENT                                                                         
+*
+COMMENT  *** Column names ***                                                   
+COMMENT                                                                         
+TTYPE1  = 'PLATE   '           /                                                
+TTYPE2  = 'TILE    '           /                                                
+TTYPE3  = 'MJD     '           /                                                
+TTYPE4  = 'FIBERID '           /                                                
+TTYPE5  = 'OBJID   '           /                                                
+TTYPE6  = 'OBJTYPE '           /                                                
+TTYPE7  = 'PLUG_RA '           /                                                
+TTYPE8  = 'PLUG_DEC '          /                                                
+TTYPE9  = 'CLASS   '           /                                                
+TTYPE10 = 'SUBCLASS '          /                                                
+TTYPE11 = 'Z       '           /                                                
+TTYPE12 = 'Z_ERR   '           /                                                
+TTYPE13 = 'RCHI2   '           /                                                
+TTYPE14 = 'DOF     '           /                                                
+TTYPE15 = 'RCHI2DIFF '         /                                                
+TTYPE16 = 'TFILE   '           /                                                
+TTYPE17 = 'TCOLUMN '           /                                                
+TTYPE18 = 'NPOLY   '           /                                                
+TTYPE19 = 'THETA   '           /                                                
+TTYPE20 = 'THETA_COVAR '       /                                                
+TTYPE21 = 'VDISP   '           /                                                
+TTYPE22 = 'VDISP_ERR '         /                                                
+TTYPE23 = 'VDISPZ  '           /                                                
+TTYPE24 = 'VDISPZ_ERR '        /                                                
+TTYPE25 = 'VDISPCHI2 '         /                                                
+TTYPE26 = 'VDISPNPIX '         /                                                
+TTYPE27 = 'VDISPDOF '          /                                                
+TTYPE28 = 'WAVEMIN '           /                                                
+TTYPE29 = 'WAVEMAX '           /                                                
+TTYPE30 = 'WCOVERAGE '         /                                                
+TTYPE31 = 'ZWARNING '          /                                                
+TTYPE32 = 'SN_MEDIAN '         /                                                
+TTYPE33 = 'CHI68P  '           /                                                
+TTYPE34 = 'FRACNSIGMA '        /                                                
+TTYPE35 = 'FRACNSIGHI '        /                                                
+TTYPE36 = 'FRACNSIGLO '        /                                                
+TTYPE37 = 'SPECTROFLUX '       /                                                
+TTYPE38 = 'SPECTROFLUX_IVAR '  /                                                
+TTYPE39 = 'SPECTROSYNFLUX '    /                                                
+TTYPE40 = 'SPECTROSYNFLUX_IVAR ' /                                              
+TTYPE41 = 'SPECTROSKYFLUX '    /                                                
+TTYPE42 = 'ANYANDMASK '        /                                                
+TTYPE43 = 'ANYORMASK '         /                                                
+TTYPE44 = 'SPEC1_G '           /                                                
+TTYPE45 = 'SPEC1_R '           /                                                
+TTYPE46 = 'SPEC1_I '           /                                                
+TTYPE47 = 'SPEC2_G '           /                                                
+TTYPE48 = 'SPEC2_R '           /                                                
+TTYPE49 = 'SPEC2_I '           /                                                
+COMMENT                                                                         
+COMMENT  *** Column formats ***                                                 
+COMMENT                                                                         
+TFORM1  = 'J       '           /                                                
+TFORM2  = 'J       '           /                                                
+TFORM3  = 'J       '           /                                                
+TFORM4  = 'J       '           /                                                
+TFORM5  = '5J      '           /                                                
+TFORM6  = '18A     '           /                                                
+TFORM7  = 'D       '           /                                                
+TFORM8  = 'D       '           /                                                
+TFORM9  = '6A      '           /                                                
+TFORM10 = '19A     '           /                                                
+TFORM11 = 'E       '           /                                                
+TFORM12 = 'E       '           /                                                
+TFORM13 = 'E       '           /                                                
+TFORM14 = 'J       '           /                                                
+TFORM15 = 'E       '           /                                                
+TFORM16 = '24A     '           /                                                
+TFORM17 = '10J     '           /                                                
+TFORM18 = 'J       '           /                                                
+TFORM19 = '10E     '           /                                                
+TFORM20 = '100E    '           /                                                
+TFORM21 = 'E       '           /                                                
+TFORM22 = 'E       '           /                                                
+TFORM23 = 'E       '           /                                                
+TFORM24 = 'E       '           /                                                
+TFORM25 = 'E       '           /                                                
+TFORM26 = 'E       '           /                                                
+TFORM27 = 'J       '           /                                                
+TFORM28 = 'E       '           /                                                
+TFORM29 = 'E       '           /                                                
+TFORM30 = 'E       '           /                                                
+TFORM31 = 'J       '           /                                                
+TFORM32 = 'E       '           /                                                
+TFORM33 = 'E       '           /                                                
+TFORM34 = '10E     '           /                                                
+TFORM35 = '10E     '           /                                                
+TFORM36 = '10E     '           /                                                
+TFORM37 = '5E      '           /                                                
+TFORM38 = '5E      '           /                                                
+TFORM39 = '5E      '           /                                                
+TFORM40 = '5E      '           /                                                
+TFORM41 = '5E      '           /                                                
+TFORM42 = 'J       '           /                                                
+TFORM43 = 'J       '           /                                                
+TFORM44 = 'E       '           /                                                
+TFORM45 = 'E       '           /                                                
+TFORM46 = 'E       '           /                                                
+TFORM47 = 'E       '           /                                                
+TFORM48 = 'E       '           /                                                
+TFORM49 = 'E       '           /                                                
+COMMENT                                                                         
+COMMENT  *** Column dimensions (2 D or greater) ***                             
+COMMENT                                                                         
+TDIM20  = '( 10, 10)'          /                                                
+</PRE>
+</BODY>
+</HTML>

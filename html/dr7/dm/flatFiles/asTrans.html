@@ -1,0 +1,231 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Astrometric Calibration</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Astrometric Calibration</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>asTrans-rrrrrr.fit</EM> for those produced by ASTROM,
+<EM>scTrans-rrrrrr-c.fit</EM> for those produced by SSC,
+where <EM>rrrrrr</EM> is the imaging run number and <em>c</em> is the camera
+column.
+ <P>
+<STRONG>Produced by:</STRONG>
+astrom, ssc
+ <P>
+<STRONG>Used by:</STRONG>
+ps, frames
+ <P>
+<STRONG>Size:</STRONG>
+2880 + Nccds * (2880 + (Nfields * 156, rounded up to an even multiple of 2880))
+bytes.  Total of 4,841.28 Kb for the photometric file with all 30 photometric
+CCDs for a run with 1000 fields.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Astrometric transformations for every field in a single imaging run.  It
+transforms frame (row,col) coordinates to great circle (mu,nu) coordinates
+for a given inclination.
+<pre>
+  r-i < riCut:
+
+      rowm = row + dRow0 + dRow1*col + dRow2*(col^2) + dRow3*(col^3) + csRow*(color)
+      colm = col + dCol0 + dCol1*col + dCol2*(col^2) + dCol3*(col^3) + csCol*(color)
+
+  r-i >= riCut
+
+      rowm = row + dRow0 + dRow1*col + dRow2*(col^2) + dRow3*(col^3) + ccRow
+      colm = col + dCol0 + dCol1*col + dCol2*(col^2) + dCol3*(col^3) + ccCol
+
+  mu = a + b * rowm + c * colm
+  nu = d + e * rowm + f * colm
+</pre>
+The color to use is u-g for u, g-r gor g, and r-i for r, i, z and the
+astrometric filters.
+The order of the extension HDUs is determined by the PDU keywords
+<em>CCDARRAY</em>, which is set to "astro" if this file is for the astrometric
+chips or "photo" if this file is for the photometric chips,
+<em>CAMCOLS</em>, which contains a white-space separated list of the columns
+in the imaging camera processed, and <em>FILTERS</em>, which contains a
+white-space separated list of the filters/camera-rows processed.  There is one
+HDU per CCD processed, in order as listed in <em>CAMCOLS</em> and
+<em>FILTERS</em>, with <em>FILTERS</em> being the most rapidly varying index
+if <em>CCDARRAY</em> is set to "photo", and <em>CAMCOLS</em> being the most
+rapidly varying index if <em>CCDARRAY</em> is set to "astro".
+For example, if the PDU contains the keywords:
+<pre>
+CCDARRAY= 'photo   '           / CCDs
+CAMCOLS = '1 2 3   '           / Columns in the imaging camera processed.
+FILTERS = 'r i     '           / Filters (rows in the imaging camera) processed.
+</pre>
+then the HDUs in the file are ordered as follows:
+<pre>
+PDU
+HDU camCol=1, filter=r
+HDU camCol=1, filter=i
+HDU camCol=2, filter=r
+HDU camCol=2, filter=i
+HDU camCol=3, filter=r
+HDU camCol=4, filter=i
+</pre>
+The errors, <em>muErr</em> and <em>nuErr</em>, are the errors in the
+transformation (that is, the rms systematic errors) in great circle longitude
+and latitude, respectively.  For the r' chips, this is the error in the
+absolute astrometry (r' coordinates to sky).  For the u', g', i', and z' chips,
+this is the error in the relative astrometry (u', g', i', or z' to r').  For
+example, to transform g' pixel coordinates to r' pixel coordinates, one applies
+the g' TRANS structure to the g' coordinates, and then the inverse r' TRANS
+structure to the intermediate sky coordinates.  The total error in this
+transformation is just the errors listed in the g' TRANS structure.  Those
+errors are in arcsec; to convert to errors in the transformed r' coordinates
+just divide by the pixel scale for the r' CCD.
+
+<H2>Primary Header</H2>
+TRANS files produced by SSC have the "SSC_ID" keyword, identifying the SSC
+pipeline run which produced the file, but don't have the "ASTRO_ID",
+"SSCXX_ID", or "PSXX_ID" keywords.  TRANS files produced by ASTROM have the
+"ASTRO_ID" keyword, identifying the ASTROM pipeline run which produced the
+file, but don't have the "SSC_ID" keyword.  For ASTROM produced TRANS files,
+if the input FANG files came from SSC then there is an "SSCXX_ID" keyword
+for each camera column processed, identifying the SSC pipeline run which
+produced those FANG files, whereas if the FANG files came from PS then there
+is a "PSXX_ID" keyword for each column.
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+<!--##begin FITSbinary astrometricTransformation.PDU -->
+<!-- P+      Project: sdss   Date: Fri Feb  5 15:46:04 1999-->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+VERSION = 'XXX     '           / Version of software used.
+ASTRO_ID= 'XXX     '           / ASTROM pipe run id (ASTROM TRANS files only)
+SSC_ID  = 'XXX     '           / SSC pipeline run id (SSC TRANS files only)
+INCL    =            XXX.XXXXX / Great circle inclination wrt cel. eq. (degrees)
+NODE    =            XXX.XXXXX / RA of great circle's asending node. (degrees)
+EQUINOX =              XXXX.XX / Equinox of great circle coordinates. (years)
+FIELD0  =                  XXX / First field reduced.
+NFIELDS =                  XXX / Number of fields reduced.
+KO_VER  = 'XXX     '           / Version of known object catalog used.
+RUN     =                  XXX / Imaging run number.
+<!--##end FITSbinary astrometricTransformation.PDU -->
+CCDARRAY= 'photo   '           / CCD array (photo or astro)
+CAMCOLS = '1 2 3 4 5 6'        / Columns in the imaging camera processed.
+FILTERS = 'r i u z g'          / Filters (rows in the imaging camera) processed.
+COMMENT  The following keywords are for ASTROM TRANS files only:
+SSC01_ID= 'XXX     '           / SSC pipeline run identifier for column 1.
+SSC02_ID= 'XXX     '           / SSC pipeline run identifier for column 2.
+SSC03_ID= 'XXX     '           / SSC pipeline run identifier for column 3.
+SSC04_ID= 'XXX     '           / SSC pipeline run identifier for column 4.
+SSC05_ID= 'XXX     '           / SSC pipeline run identifier for column 5.
+SSC06_ID= 'XXX     '           / SSC pipeline run identifier for column 6.
+SSC07_ID= 'XXX     '           / SSC pipeline run identifier for column 7.
+SSC08_ID= 'XXX     '           / SSC pipeline run identifier for column 8.
+SSC09_ID= 'XXX     '           / SSC pipeline run identifier for column 9.
+SSC10_ID= 'XXX     '           / SSC pipeline run identifier for column 10.
+SSC11_ID= 'XXX     '           / SSC pipeline run identifier for column 11.
+PS01_ID = 'XXX     '           / PS pipeline run identifier for column 1.
+PS02_ID = 'XXX     '           / PS pipeline run identifier for column 2.
+PS03_ID = 'XXX     '           / PS pipeline run identifier for column 3.
+PS04_ID = 'XXX     '           / PS pipeline run identifier for column 4.
+PS05_ID = 'XXX     '           / PS pipeline run identifier for column 5.
+PS06_ID = 'XXX     '           / PS pipeline run identifier for column 6.
+COMMENT mu nu are defined as:
+COMMENT   r'-i' < riCut:
+COMMENT       rowm = row+dRow0+dRow1*col+dRow2*(col^2)+dRow3*(col^3)+csRow*c
+COMMENT       colm = col+dCol0+dCol1*col+dCol2*(col^2)+dCol3*(col^3)+csCol*c
+COMMENT   r'-i' >= riCut
+COMMENT       rowm = row+dRow0+dRow1*col+dRow2*(col^2)+dRow3*(col^3)+ccRow
+COMMENT       colm = col+dCol0+dCol1*col+dCol2*(col^2)+dCol3*(col^3)+ccCol
+COMMENT   mu = a + b * rowm + c * colm
+COMMENT   nu = d + e * rowm + f * colm
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Table Header</h2>
+There is one HDU of this type per CCD.  Note: the "field" field is the same
+value as the "id" attribute in TRANS structures.
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+<!--##begin FITSbinary astrometricTransformation.header -->
+XTENSION= 'BINTABLE'          
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                  180
+NAXIS2  =                  XXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   24
+FILTER  = 'XXX     '           / Filter (u, g, r, i, or z).
+CAMCOL  =                  XXX / Column in the imaging camera.
+<!--##end FITSbinary astrometricTransformation.header -->
+CAMROW  =                  XXX / Row in the imaging camera.
+<!--##begin FITSbinary astrometricTransformation.table -->
+TFORM1  = '1J      '          
+TTYPE1  = 'field   '           / Field sequence number within the run.
+TFORM2  = '1D      '          
+TTYPE2  = 'a       '           / A.
+TFORM3  = '1D      '          
+TTYPE3  = 'b       '           / B.
+TFORM4  = '1D      '          
+TTYPE4  = 'c       '           / C.
+TFORM5  = '1D      '          
+TTYPE5  = 'd       '           / D.
+TFORM6  = '1D      '          
+TTYPE6  = 'e       '           / E.
+TFORM7  = '1D      '          
+TTYPE7  = 'f       '           / F.
+TFORM8  = '1D      '          
+TTYPE8  = 'dRow0   '           / Zero-order row distortion coefficient.
+TFORM9  = '1D      '          
+TTYPE9  = 'dRow1   '           / First-order row distortion coefficient.
+TFORM10 = '1D      '          
+TTYPE10 = 'dRow2   '           / Second-order row distortion coefficient.
+TFORM11 = '1D      '          
+TTYPE11 = 'dRow3   '           / Third-order row distortion coefficient.
+TFORM12 = '1D      '          
+TTYPE12 = 'dCol0   '           / Zero-order column distortion coefficient.
+TFORM13 = '1D      '          
+TTYPE13 = 'dCol1   '           / First-order column distortion coefficient.
+TFORM14 = '1D      '          
+TTYPE14 = 'dCol2   '           / Second-order column distortion coefficient.
+TFORM15 = '1D      '          
+TTYPE15 = 'dCol3   '           / Third-order column distortion coefficient.
+TFORM16 = '1D      '          
+TTYPE16 = 'csRow   '           / Slope in row DCR correction for blue objects.
+TFORM17 = '1D      '          
+TTYPE17 = 'csCol   '           / Slope in column DCR correction for blue objects
+TFORM18 = '1D      '          
+TTYPE18 = 'ccRow   '           / Constant row DCR correction for red objects.
+TFORM19 = '1D      '          
+TTYPE19 = 'ccCol   '           / Constant column DCR correction for red objects.
+TFORM20 = '1D      '          
+TTYPE20 = 'riCut   '           / r'-i' cutoff between blue and red objects.
+TFORM21 = '1D      '          
+TTYPE21 = 'mjd     '           / MJD(TAI) when row 0 was read.
+TUNIT21 = 'MJD     '          
+TFORM22 = '1D      '          
+TTYPE22 = 'airmass '           / Airmass for star at frame center (mid exposure)
+TFORM23 = '1E      '
+TTYPE23 = 'muErr   '           / Error in transformation in mu
+TUNIT23 = 'arcsec  '
+TFORM24 = '1E      '
+TTYPE24 = 'nuErr   '           / Error in transformation in nu
+TUNIT24 = 'arcsec  '
+<!--##end FITSbinary astrometricTransformation.table -->
+END
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+</BODY>
+
+</HTML>

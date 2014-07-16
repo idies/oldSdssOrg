@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for SSC Diagnositics</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>SSC Diagnostics</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<em>scDiag-rrrrrr-c.par</em> where <em>rrrrrr</em> is the run number, and
+<em>c</em> is the column in the Imaging Array.
+ <P>
+<STRONG>Produced by:</STRONG>
+ssc
+ <P>
+<STRONG>Used by:</STRONG>
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Quality analysis diagnostic output from a single <em>ssc</em> run.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+<!--##begin PARAM sSCField.header -->
+<!-- P+      Project: sdss   Date: Tue Oct 20 17:29:42 1998-->
+version             'XXX'               # Version of software used. 
+run                 XXX                 # Imaging run number. 
+camCol              XXX                 # Column in the imaging camera. 
+ssc_id              'XXX'               # SSC pipeline run identifier. 
+ko_ver              'XXX'               # Version of known object catalog  
+                                        # used. 
+<!--##end PARAM sSCField.header -->
+
+<!--##begin PARAM sSCField.table -->
+typedef struct {
+    int       field;          # Field sequence number within the run.  0  
+                              # indexed. 
+    int       nWingStars;     # Number of wing stars. 
+    int       nFrameStars;    # Number of full frame stars. 
+    int       nLeading;       # Number of stars in leading astro chip. 
+    int       nMatched;       # Number of stars matched in both astro  
+                              # chips. 
+    int       nGoodAstro;     # num valid stars matched in astro chips
+    int       nFound;         # num valid stars found in photo chips
+    int       nValid;         # Number of stars in both astro chips and  
+                              # passed tests in photo chips. 
+    float     dRow;           # Difference between row positions of stars  
+                              # in leading vs trailing astro chips.  
+                              # (pixels) 
+    float     dCol;           # Difference between column positions of  
+                              # stars in leading vs trailing astro chips.  
+                              # (pixels) 
+    int       lBias;          # Bias value in left-hand amp of camRow=1  
+                              # chip. (scaled integers) 
+    int       rBias;          # Bias value in right-hand amp of camRow=1  
+                              # chip. (scaled integers) 
+    int       median;         # Median of column 100 on camRow=1 chip.  
+                              # (scaled integers) 
+    float     median_gr;      # median g-r color for this field 
+    float     median_ri;      # median r-i color for this field 
+<!--##end PARAM sSCField.table -->
+} SCDIAG;
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+</HTML>

@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Astrometric Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Astrometric Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>asPlan.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+astromPre
+ <P>
+<STRONG>Used by:</STRONG>
+astrom
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control the astrometric pipeline.  Each plan targets
+one imaging run.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+parameters          'XXX'               # Tunable parameters file (if any)
+parametersDir 	    'XXX'               # Directory containing the 'parameters'
+                                        # file (optional --- defaults to '.')
+
+# Which data to process
+run                 XXX                 # Imaging run number to process
+camCols             XXX XXX ...         # Camera columns to process
+startField          XXX                 # First field to process
+endField            XXX                 # Last field to process
+
+# Where to put the output files
+outputDir           'XXX'		# Output directory
+
+# Where are the FANG files for this run, one directory for each camera column
+inputDirs           {1 XXX} \
+		    {2 XXX} \
+		    {3 XXX} \
+		    {4 XXX} \
+		    {5 XXX} \
+		    {6 XXX} \
+		    {7 XXX} \
+		    {8 XXX} \
+		    {9 XXX} \
+		    {10 XXX} \
+		    {11 XXX}
+
+# Known object catalog file
+koDir               'XXX'		# Directory for 'koFile'
+koFile             'XXX'		# Known object catalog file
+
+# Log files
+logFileDir          XXX			# Directory for 'logFile'
+					# and 'weatherFile'
+logFile             'XXX'		# Observing log file
+weatherFile	    'XXX'		# Weather log file
+
+# CCD configuration files
+configDir           'XXX'		# Directory for 'ccdCamera' and
+					# 'ccdConfig'
+ccdCamera           'XXX'		# Camera geometry file
+ccdConfig           'XXX'		# CCD configuration file
+<!--AUTOCHECK end param -->
+</pre>
+
+</BODY>
+</HTML>

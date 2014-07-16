@@ -1,0 +1,85 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Ani Thakar">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; Linux 2.4.3-12 i686) [Netscape]">
+   <title>SDSS CSV File Directory Structure and File Names</title>
+<!--
+Authors:	Ani R. Thakar
+Created:	March 30, 2002
+-->
+</head>
+<body text="#111111" bgcolor="#FFFFFF" link="#333399" vlink="#663366" alink="#CC0000">
+
+<h1>
+<img SRC="sxlogo1.gif" >&nbsp; <font color="#7700EE">CSV Filenames, Formats
+and Directory Structure</font></h1>
+<h2>
+Directory Structure</h2>
+The directory structure for the CSV files is as follows (see Figure 1 below):
+
+<ul>
+<li>
+<b>CSV/ </b>directory - the top of the directory tree for CSV files.</li>
+
+<li>
+<b>spCSV/</b> directory - contains the spectro CSV files.&nbsp; The files
+that are written to this subdirectory are listed below, along with their
+target tables:</li>
+
+<ul>
+<li>
+<b>plates/</b>:<b> T</b>he data directory containing the actual CSV files:</li>
+
+<ul>
+<li>
+<b>sqlPlate.csv </b>- the data for the <b>Plates </b>table.</li>
+
+<li>
+<b>sqlSpecObj.csv </b>- the data for the <b>SpecObj (SpecObjAll) </b>table.</li>
+
+<li>
+<b>sqlSpecLine.csv</b> - the data for the <b>SpecLine</b> table.</li>
+
+<li>
+<b>sqlSpecLineIndex.csv</b> - the data for the <b>SpecLineIndex</b> table.</li>
+
+<li>
+<b>sqlELRedshift.csv</b> - the data for the <b>ELRedshift</b> (emission-line
+redshifts) table.</li>
+
+<li>
+<b>sqlXCRedshift.csv</b> - the data for the <b>XCRedshift</b> (cross-correlation
+redshifts) table.</li>
+</ul>
+
+<li>
+<b>csv_ready | csv_queued</b>: The <b>csv_ready</b> a semaphore file that
+tells the robot that the spectro data is ready to load, i.e. the CSV files
+are ready to be queued for loading.&nbsp; After the robot finishes queuing
+them, it replaces this file with the <b>csv_queued</b> file indicating
+that the files have been queued for loading.</li>
+</ul>
+</ul>
+</ul>
+
+<center><img SRC="csvdir.jpg" BORDER=2 height=540 width=720>
+<br><b>Figure 1</b>. The directory structure layout for the CSV files.</center>
+
+<p><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p><img SRC="rule.gif" >
+<h6>
+<a href="mailto:thakar@pha.jhu.edu">Ani R. Thakar<br>
+</a>Last Modified: April 24, 2002.</h6>
+
+</body>
+</html>

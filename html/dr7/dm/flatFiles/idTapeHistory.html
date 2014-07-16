@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Tape History</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Tape History</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>idTapeHistory-llllll.par</EM>, where <EM>llllll</EM> is the tape label.
+ <P>
+<STRONG>Produced by:</STRONG>
+iop
+ <P>
+<STRONG>Used by:</STRONG>
+strategy (tape loading onto production system)
+<STRONG>Size:</STRONG>
+&lt; 100 Kb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.
+
+<H2>Description</H2>
+Lists a summary of the contents of a single labelled imaging tape.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+tapelabel  JL0082
+
+typedef enum {
+	PHOTO_COL1,
+	PHOTO_COL2,
+	PHOTO_COL3,
+	PHOTO_COL4,
+	PHOTO_COL5,
+	PHOTO_COL6,
+	ASTROGANG,
+	PHOTOGANG,
+	SPECTRO1,
+	SPECTRO2,
+	MT,
+	LOG,
+	ARCHLOG,
+	INITIALIZE,
+	SHIPPED
+} DATASOURCE;
+
+typedef enum {
+	BEGIN,
+	END
+} ACTIONTYPE;
+
+typedef struct {
+	char filemarks[10];		# number of filemarks to skip to get here.
+	DATASOURCE datasource;  	#PHOTO_COL1,..., MT, LOG
+	char run[10];     		#run number
+	char frame[10];   		#beginning or ending frame number
+	ACTIONTYPE action;		#begin/end
+} TAPEHISTORY;
+
+tapehistory  1 LOG 2293 0 BEGIN
+tapehistory  2 LOG 2293 0 END
+tapehistory  2 ASTROGANG 2293 0 BEGIN
+tapehistory  3 ASTROGANG 2293 245 END
+tapehistory  4 PHOTOGANG 2293 0 BEGIN
+tapehistory  5 PHOTOGANG 2293 245 END
+<!--AUTOCHECK end param -->
+
+=======================
+
+For a photo imaging data tape:
+
+tapelabel JL0083
+
+tapehistory  1 PHOTO_COL1 2293 0 BEGIN
+tapehistory  1226 PHOTO_COL1 2293 245 END
+	     
+tapehistory  1226 PHOTO_COL1 2294 0 BEGIN
+tapehistory  2451 PHOTO_COL1 2294 245 END
+</pre>
+</body>
+</html>

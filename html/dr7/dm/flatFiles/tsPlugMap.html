@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Plug Map</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Plug Map</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>tsPlugMap-pppp-MJD.par</EM>,
+where <EM>pppp</EM> is the plate id, and MJD is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+ts (opdb)
+ <P>
+<STRONG>Used by:</STRONG>
+ts, sd, sp
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+No
+
+<H2>Description</H2>
+List of all targets to have a hole drilled for them on a tile, with
+initial x,y hole positions, and rotation of plate, and fiber assignment
+to each object.
+
+<H2>Contents</H2>
+<pre>
+trun	XXXX	#tiling run number (int)
+tid	XXXX	#tile id (int)
+plate   XXXX	#plate id (int)
+
+raCen	X.XXX	#plate center (RA)
+decCen  X.XXX   #plate center (DEC)
+
+theta   XXX.XXX	#plate rotation (theta) to space holes
+
+harness XXX	#harness number (int)
+slitHead XXX	#slithead id (int)
+
+typedef struct {
+
+	char objId[18];		# object id string: "run-rerun-field-id"
+	char objType[20];	# choose from obj,sky bundle, 
+			        # darkFiber, brightFiber, guider, 
+				# lightTrap, qualityHole, alignment holes
+				# also allowed: darkFiber, brightFiber
+				# for fiber mapper mismatches
+	double ra;
+	double dec;
+	float mag[5];		# {u g r i z}
+	float starL;		# star likelihood (0-1)
+	float expL;		# spiral likelihood (0-1)
+	float deVaucL;		# ellip likelihood (0-1)
+	char targetFlags[60];	# OR (|) of targetting flags: STANDARD|STAR_TAR
+	float x;		# x pos (mm) on plate
+	float y;		# y pos (mm) on plate
+	int   spectrographId    # specId 0 or 1
+	int   bundle;		# bundle id 1-16
+	int   fid;		# fiber id within bundle 1-20
+	int   fiberId;		# overall fiber id 1-640
+
+} PLUGMAPOBJ;
+
+</pre>
+</BODY>
+</HTML>

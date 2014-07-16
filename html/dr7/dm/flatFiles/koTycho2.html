@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Astrometric Standards Catalog</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Astrometric Standards Catalog</H1>
+
+<STRONG>File Format:</STRONG>
+FITS binary table
+ <P>
+<STRONG>Name:</STRONG>
+<EM>koTycho2-XX.fit</EM> for Tycho-2 catalogs, <EM>koUcac-XX.fit</EM> for UCAC
+catalogs, where <EM>XX</EM> is the stripe number.
+ <P>
+<STRONG>Produced by:</STRONG>
+manually
+ <P>
+<STRONG>Used by:</STRONG>
+astrom
+ <P>
+<STRONG>Size:</STRONG>
+Big
+ <p>
+<STRONG>Archived?</STRONG>
+No
+ <P>
+
+<H2>Description</H2>
+Input catalog of primary astrometric standards, one file per survey stripe,
+against which SDSS data is
+astrometrically calibrated by the <em>astrom</em> pipeline.  Two different
+catalogs are used; 1) USNO CCD Astrograph Catalog (UCAC), the catalog of choice
+(but it doesn't currently cover the entire SDSS area), and 2) Tycho-2.
+The UCAC catalog files don't contain the proper motion, magnitude error, color,
+and flag fields.
+
+<H2>Primary Header</H2>
+<pre>
+<!--AUTOCHECK begin hdu 0 -->
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    0
+EXTEND  =                    T
+EQUINOX =              XXXX.XX / Catalog equinox (TT, years)
+EPOCH   =              XXXX.XX / Mean catalog epoch (TT, years)
+KO_VER  = 'XXX     '           / Version of catalog
+END
+<!--AUTOCHECK end hdu 0 -->
+</pre>
+
+<H2>Table Header</h2>
+<pre>
+<!--AUTOCHECK begin hdu 1 -->
+XTENSION= 'BINTABLE'
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   64
+NAXIS2  =                XXXXX
+PCOUNT  =                    0
+GCOUNT  =                    1
+TFIELDS =                   14
+TFORM1  = '1J      '
+TTYPE1  = 'catId   '           / Unique ID of the star within the catalog
+TFORM2  = '1D      '
+TTYPE2  = 'ra      '           / J2000 right ascension
+TUNIT2  = 'degrees '
+TFORM3  = '1E      '
+TTYPE3  = 'raErr   '           / Error in right ascension
+TUNIT3  = 'mas (cos[lat] term included)'
+TFORM4  = '1D      '
+TTYPE4  = 'dec     '           / J2000 declination
+TUNIT4  = 'degrees '
+TFORM5  = '1E      '
+TTYPE5  = 'decErr  '           / Error in declination
+TUNIT5  = 'mas     '
+TFORM6  = '1E      '
+TTYPE6  = 'raPm    '           / Proper motion in right ascension
+TUNIT6  = 'mas/Julian-Year (cos[lat] term included)'
+TFORM7  = '1E      '
+TTYPE7  = 'raPmErr '           / Error in proper motion in right ascension
+TUNIT7  = 'mas/Jullian-Year (cos[lat] term included)'
+TFORM8  = '1E      '
+TTYPE8  = 'decPm   '           / Proper motion in declination
+TUNIT8  = 'mas/Julian-Year'
+TFORM9  = '1E      '
+TTYPE9  = 'decPmErr'           / Error in proper motion in declination
+TUNIT9  = 'mas/Jullian-Year'
+TFORM10 = '1E      '
+TTYPE10 = 'mag     '           / Catalog magnitude
+TFORM11 = '1E      '
+TTYPE11 = 'magErr  '           / Error in catalog magnitude
+TFORM12 = '1E      '
+TTYPE12 = 'color   '           / Catalog color
+TUNIT12 = 'mags    '
+TFORM13 = '1E      '
+TTYPE13 = 'colorErr'           / Error in catalog color
+TUNIT13 = 'mags    '
+TFORM14 = '1J      '           / Astrometric quality flag
+TTYPE14 = 'astromFlag'
+END   
+<!--AUTOCHECK end hdu 1 -->
+</pre>
+
+</BODY>
+</HTML>

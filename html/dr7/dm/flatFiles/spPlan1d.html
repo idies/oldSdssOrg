@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Spectro 1D Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Spectro 1D Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spPlan1D.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+spectro1dPre
+ <P>
+<STRONG>Used by:</STRONG>
+spectro1d
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <p>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+Processing plan to control the spectroscopic 1-D pipeline.  Each plan targets
+a list of mapped plates.
+
+<H2>Contents</H2>
+<pre>
+<!--AUTOCHECK begin param -->
+parameters          'XXX'               # Tunable parameters file (if any)
+parametersDir 	    'XXX'               # Directory containing the 'parameters'
+                                        # file (optional --- defaults to '.')
+
+plateList         202                   # List of plates to process
+
+# Processing Parameters
+verbose             1                   # verbose &gt; 0 means print a lot
+display             0                   # display &gt; 0 means show various
+                                        #   images as the pipeline progresses,
+                                        #   waiting for user input after 
+                                        #   displaying each one
+device		    /xw			# pgplot device
+
+diagFormat          spDiag-%04d.par     # diag file for given plate number
+logFormat           spLog-%04d.txt      # log file for given plate number
+
+2d1doutputFormat 'idlout-%01d-%04d-%03d.fit' # extracted spectra format
+IRAFoutputFormat 'ap-%04d-%01d.dat'     # IRAF aperture file format
+inputDir	   'XXX'		# where are input combined spectra are
+templateDir    '$SPECTRO_DIR/templates' # where are the template files
+templateFile	   'spTemplate1-%04d.fit' # format of template file names
+plugDir		   'XXX'		# directory where tsPlugMap files
+				        # may be found
+plugFile	   'XXX'		# name of plug map file
+
+reflineFile	   reflines.par         # List of emission lines
+outputDir          'XXX'		# where should the output go (top dir)
+specFormat   spSpec-%04d-%03d.fit       # Format for output file
+fibers            1:640                 # Fibres to reduce
+<!--AUTOCHECK begin param -->
+</pre>
+
+</BODY>
+</HTML>

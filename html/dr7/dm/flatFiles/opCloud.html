@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Cloud Camera Statistics File</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Cloud Camera Statistics File</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>opCloud-ddddd.par</EM>, where <EM>ddddd</EM> is the int(MJD).
+ <P>
+<STRONG>Produced by:</STRONG>
+mtDA
+ <P>
+<STRONG>Used by:</STRONG>
+mtDAPost
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb.
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Contents</H2>
+The statistics from the all-sky cloud camera for a single night.  Each set
+of statistics is for the distribution of counts (units for counts are
+arbitrary) in the central 100x100 region of a single cloud camera image after
+flattening, noisefixing, etc.  Each set is timestamped with the time the
+data was obtained.
+
+<PRE>
+<!--AUTOCHECK begin param -->
+version             'XXX'               # Version of software used. 
+mjd                 XXX                 # MJD day number of night when  
+                                        # data was obtained. 
+typedef struct {
+    double    mjd;            # MJD when data obtained (MJD).
+    float     minValue;       # Minimum value.
+    float     minValue10;     # 10th minimum value.
+    float     skyValue;       # "Sky value" from Deutsch's favorite program.
+    float     stdDev;         # "Standard deviation" from Deutsch's favorite
+			      # program.
+    float     mean;           # Mean value.
+    float     sigma;          # Square-root of the variance.
+    float     skewness;       # Skewness.
+    float     kurtosis;       # Kurtosis.
+    float     maxValue10;     # 10th maximum value of the tree at the
+			      # north center of the image.
+} CLOUDSTAT;
+<!--AUTOCHECK end param -->
+
+</PRE>
+</BODY>
+</HTML>

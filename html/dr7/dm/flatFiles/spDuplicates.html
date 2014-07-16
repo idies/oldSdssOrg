@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Duplicate Spectro Observations</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Duplicate Spectro Observations</H1>
+
+<STRONG>File Format:</STRONG>
+Yanny parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spDuplicates-xxxxx.par</EM>, where xxxxx is the database to load.  
+This file lives in /data/dp3.b/data/spectro/duplicates.
+ <P>
+<STRONG>Produced by:</STRONG>
+spDuplicates script in DP product
+ <P>
+<STRONG>Used by:</STRONG>
+sx loading
+ <P>
+<STRONG>Size:</STRONG>
+Small (estimated to be approximately 1 MB by end of survey)
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Description</H2>
+
+The plPlugMapM files for a given spectro load are searched for objects
+which were observed multiple times but are not of object type QA, SKY, 
+REDDEN_STD, or SPECTROPHOTO_STD.  The search interval for duplicates
+is +/-0.0003deg in RA and +/-0.0003deg in DEC.  The spDuplicates file
+contains the results of this search.
+
+<H2>Contents</H2>
+
+A header and two schemas are contained within the spDuplicates file.
+
+The header lists the following info:
+
+  outputDir     the directory where the spDuplicates file will go
+                (e.g., /data/dp3.b/data/spectro/duplicates)
+  outputFile    the name of the spDuplicates file
+                (e.g., spDuplicates-DR1.2002Dec18.par)
+  spectro1dDir  the root directory under which the spSpec-$mjd-$plateName-$fiber.fit files sit
+                (e.g., /data/dp7.a/DR1/data/spectro/1d_20)
+  speclogDir    the root directory under which the plPlugMapM files sit
+                (e.g., /data/dp3.b/data/spectro/speclog)
+  platesDir     the directory where the plate list file sits
+                (e.g., /data/dp7.a/DR1/doc/coverage)
+  platesFile    the name of the plate list file
+                (e.g., plateradec.dr1spectro.par)
+
+
+The first schema lists the set of plates which were searched.
+The schema lists the duplicate objects themselves.
+
+<pre>
+typedef struct {
+    int    plate;         # plate id         | id and mjd are the 
+    int    mjd;           # plate mjd        | only important entries;
+    double ra;            # plate RA  [deg]  | ra, dec, and SN_gri
+    double dec;           # plate DEC [deg]  | are only along for
+    float  SN_gri;        # plate SN in gri  | the ride.
+} PLATERADEC;
+
+typedef struct {
+    int    plate1;        # plate id of object 1 in duplicate pair
+    int    mjd1;          # plate mjd of object 1 
+    int    fiber1;        # fiber id of object 1
+    char   objType1[20];  # object type of object 1
+    int    plate2;        # plate id of object 2 in duplicate pair
+    int    mjd2;          # plate mjd of object 2
+    int    fiber2;        # fiber id of object 2
+    char   objType2[20];  # object type of object 2
+} DUPLIST;
+</pre>
+
+Note:  it is possible for there to be multiple entries for object 1
+in the DUPLIST structure -- each with a different object 2 -- if
+this object was observed more than twice.  
+
+</body>
+</html>

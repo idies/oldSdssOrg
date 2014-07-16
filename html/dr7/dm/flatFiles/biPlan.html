@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Bias Pipeline Plan</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Bias Pipeline Plan</H1>
+
+<STRONG>File Format:</STRONG>
+FTCL parameter file
+ <P>
+<STRONG>Name:</STRONG>
+<EM>biPlan.par</EM>
+ <P>
+<STRONG>Produced by:</STRONG>
+biasPre
+ <P>
+<STRONG>Used by:</STRONG>
+bias
+ <P>
+<STRONG>Size:</STRONG>
+&lt; 10 Kb
+ <P>
+<STRONG>Archived?</STRONG>
+Yes
+
+<H2>Contents</H2>
+The bias pipeline has no tunable parameters, thus "parameters" should be blank.
+<pre>
+<!--AUTOCHECK begin param -->
+parameters                              # Tunable parameters file (if any)
+parametersDir 	    'XXX'               # Directory containing the 'parameters'
+                                        # file (optional --- defaults to '.')
+
+run                 XXX                 # Bias run number. 
+startField          XXX                 # Start pipeline with this field. 
+endField            XXX                 # Stop pipeline with this field  
+                                        # (inclusive). 
+
+inputDir            'XXX'               # raw frames directory
+outputDir           'XXX'               # all output files but fangs go here
+<!--AUTOCHECK end param -->
+</pre>
+</BODY>
+</HTML>
